@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Meta -->
+		<meta name="description" content="Best Bootstrap Admin Dashboards">
+		<meta name="author" content="Bootstrap Gallery" />
+		<link rel="canonical" href="https://www.bootstrap.gallery/">
+		<meta property="og:url" content="https://www.bootstrap.gallery">
+		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+		<meta property="og:type" content="Website">
+		<meta property="og:site_name" content="Bootstrap Gallery">
+		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0//xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
+
+		<!-- Title -->
+		<title>Bootstrap Admin Dashboards</title>
+
+
+		<!-- *************
+			************ Common Css Files *************
+		************ -->
+		<!-- Animated css -->
+		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/css/animate.css">
+
+		<!-- Bootstrap font icons css -->
+		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/fonts/bootstrap/bootstrap-icons.css">
+
+		<!-- Main css -->
+		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/css/main.min.css">
+
+
+		<!-- *************
+			************ Vendor Css Files *************
+		************ -->
+
+		<!-- Scrollbar CSS -->
+		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
+
+		<!-- Data Tables -->
+		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5.css" />
+		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5-custom.css" />
+		<!-- Date Range CSS -->
+		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
+		<style>
+			.btn .bi{
+				font-size: 1rem;
+				vertical-align: baseline;
+			}
+			.table td{
+          		text-align: center;
+	
+			}
+			.table th{
+				
+				white-space: nowrap;
+				text-align: center;
+				padding-left: 20px;
+			}
+			.table tr>*{
+				padding:1rem;
+				vertical-align: middle;
+			}
+			.table th:not(.sorting_asc){
+				padding: .5rem;
+				padding-left: 20px;
+			}
+			.table th span{
+				font-size: 0.85rem;
+			}
+			th>div{
+				padding: .5rem;
+				padding-right: 20px;
+			}
+			.scrolltable{
+				overflow-x: auto;
+			}
+			.page-item .page-link{
+				border: 0;
+				padding:.6rem 1rem;
+			}
+			.page-item.disabled .page-link{
+				border: 0;
+				opacity: 0;
+			}
+			.page-item.active .page-link{
+				border: 0;
+			}
+			.btn{
+				width: 40px;
+			}
+			.page-item:not(:first-child,:last-child){
+				margin: 0 5px;
+			}
+			.page-item a{
+				border-radius: 10px;
+				transition: 0.3s ease-in-out;
+				opacity: 1;
+			}
+			.page-item.active a:hover{
+				background-color: #3688fa;
+				opacity: 1;
+				color:#fff;
+			}
+			.page-item.active a{
+				color:#fff;
+			}
+			.page-item:not(.active) a:hover{
+				background-color: #3688fa;
+				opacity: 0.5;
+				color:#fff;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- Loading wrapper start -->
+		<!-- <div id="loading-wrapper">
+			<div class="spinner">
+                <div class="line1"></div>
+				<div class="line2"></div>
+				<div class="line3"></div>
+				<div class="line4"></div>
+				<div class="line5"></div>
+				<div class="line6"></div>
+            </div>
+		</div> -->
+		<!-- Loading wrapper end -->
+
+		<!-- Page wrapper start -->
+		<div class="page-wrapper">
+
+			<!-- Sidebar wrapper start -->
+			<nav class="sidebar-wrapper">
+
+				<!-- Sidebar brand starts -->
+				<div class="sidebar-brand">
+					<a href="index.html" class="logo">
+						<img src="/xdm/v1/template/arise-v1.0/assets/images/logo.svg" alt="Admin Dashboards" />
+					</a>
+				</div>
+				<!-- Sidebar brand starts -->
+
+				<!-- Sidebar menu starts -->
+				<div class="sidebar-menu">
+					<div class="sidebarMenuScroll">
+						<ul>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-house"></i>
+									<span class="menu-text">Dashboards</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="index.html">Analytics</a>
+										</li>
+										<li>
+											<a href="reports.html">Reports</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-handbag"></i>
+									<span class="menu-text">Product</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="orders.html">Order History</a>
+										</li>
+										<li>
+											<a href="products.html">Products</a>
+										</li>
+										<li>
+											<a href="view-cart.html">Shopping Cart</a>
+										</li>
+										<li>
+											<a href="checkout.html">Billing Details</a>
+										</li>
+										<li>
+											<a href="customers.html">Customers</a>
+										</li>
+										<li>
+											<a href="add-product.html">Add Product</a>
+										</li>
+										<li>
+											<a href="reviews.html">Reviews</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-gem"></i>
+									<span class="menu-text">Widgets</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="widgets.html">Widgets</a>
+										</li>
+										<li>
+											<a href="graph-widgets.html">Graph Widgets</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-collection"></i>
+									<span class="menu-text">UI Elements</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="accordions.html">Accordions</a>
+										</li>
+										<li>
+											<a href="alerts.html">Alerts</a>
+										</li>
+										<li>
+											<a href="buttons.html">Buttons</a>
+										</li>
+										<li>
+											<a href="badges.html">Badges</a>
+										</li>
+										<li>
+											<a href="cards.html">Cards</a>
+										</li>
+										<li>
+											<a href="carousel.html">Carousel</a>
+										</li>
+										<li>
+											<a href="dropdowns.html">Dropdowns</a>
+										</li>
+										<li>
+											<a href="icons.html">Icons</a>
+										</li>
+										<li>
+											<a href="modals.html">Modals</a>
+										</li>
+										<li>
+											<a href="offcanvas.html">Off Canvas</a>
+										</li>
+										<li>
+											<a href="progress.html">Progress Bars</a>
+										</li>
+										<li>
+											<a href="spinners.html">Spinners</a>
+										</li>
+										<li>
+											<a href="tabs.html">Tabs</a>
+										</li>
+										<li>
+											<a href="tooltips.html">Tooltips</a>
+										</li>
+										<li>
+											<a href="typography.html">Typography</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-stickies"></i>
+									<span class="menu-text">Pages</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="profile.html">Profile</a>
+										</li>
+										<li>
+											<a href="account-settings.html">Account Settings</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="calendar.html">
+									<i class="bi bi-calendar4"></i>
+									<span class="menu-text">Calendar</span>
+								</a>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-columns-gap"></i>
+									<span class="menu-text">Forms</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="form-inputs.html">Form Inputs</a>
+										</li>
+										<li>
+											<a href="form-checkbox-radio.html">Checkbox &amp; Radio</a>
+										</li>
+										<li>
+											<a href="form-file-input.html">File Input</a>
+										</li>
+										<li>
+											<a href="form-validations.html">Validations</a>
+										</li>
+										<li>
+											<a href="bs-select.html">Bootstrap Select</a>
+										</li>
+										<li>
+											<a href="date-time-pickers.html">Date Time Pickers</a>
+										</li>
+										<li>
+											<a href="input-mask.html">Input Masks</a>
+										</li>
+										<li>
+											<a href="editor.html">Editor</a>
+										</li>
+										<li>
+											<a href="form-layout1.html">Form Layout</a>
+										</li>
+										<li>
+											<a href="form-layout2.html">Form Layout 2</a>
+										</li>
+										<li>
+											<a href="form-layout3.html">Form Layout 3</a>
+										</li>
+										<li>
+											<a href="form-layout4.html">Form Horizontal</a>
+										</li>
+										<li>
+											<a href="form-layout5.html">Form Layout Tabs</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown active">
+								<a href="#">
+									<i class="bi bi-window-split"></i>
+									<span class="menu-text">Tables</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="tables.html">Tables</a>
+										</li>
+										<li>
+											<a href="data-tables.html" class="current-page">Data Tables</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-pie-chart"></i>
+									<span class="menu-text">Graphs &amp; Maps</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="apex.html">Apex</a>
+										</li>
+										<li>
+											<a href="morris.html">Morris</a>
+										</li>
+										<li>
+											<a href="maps.html">Maps</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-layout-sidebar"></i>
+									<span class="menu-text">Layouts</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="layout.html">Default Layout</a>
+										</li>
+										<li>
+											<a href="layout-grid.html">Grid Layout</a>
+										</li>
+										<li>
+											<a href="layout-welcome.html">Welcome Layout</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="sidebar-dropdown">
+								<a href="#">
+									<i class="bi bi-x-diamond"></i>
+									<span class="menu-text">Authentication</span>
+								</a>
+								<div class="sidebar-submenu">
+									<ul>
+										<li>
+											<a href="login.html">Login</a>
+										</li>
+										<li>
+											<a href="signup.html">Signup</a>
+										</li>
+										<li>
+											<a href="error.html">Error</a>
+										</li>
+										<li>
+											<a href="maintenance.html">Maintenance</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="starter-page.html">
+									<i class="bi bi-hand-index-thumb"></i>
+									<span class="menu-text">Link</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Sidebar menu ends -->
+
+			</nav>
+			<!-- Sidebar wrapper end -->
+
+			<!-- *************
+				************ Main container start *************
+			************* -->
+			<div class="main-container">
+
+				<!-- Page header starts -->
+				<div class="page-header">
+
+					<div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
+
+					<!-- Breadcrumb start -->
+					<ol class="breadcrumb d-md-flex d-none">
+						<li class="breadcrumb-item">
+							<i class="bi bi-house"></i>
+							<a href="index.html">Home</a>
+						</li>
+						<li class="breadcrumb-item">Page2</li>
+						<li class="breadcrumb-item breadcrumb-active" aria-current="page">Data</li>
+					</ol>
+					<!-- Breadcrumb end -->
+
+					<!-- Header actions ccontainer start -->
+					<div class="header-actions-container">
+
+						<!-- Search container start -->
+						<div class="search-container">
+
+							<!-- Search input group start -->
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search anything">
+								<button class="btn" type="button">
+									<i class="bi bi-search"></i>
+								</button>
+							</div>
+							<!-- Search input group end -->
+
+						</div>
+						<!-- Search container end -->
+
+						<!-- Leads start -->
+						<a href="orders.html" class="leads d-none d-xl-flex">
+							<div class="lead-details">You have <span class="count"> 21 </span> new leads </div>
+							<span class="lead-icon"><i
+									class="bi bi-bell-fill animate__animated animate__swing animate__infinite infinite"></i><b
+									class="dot animate__animated animate__heartBeat animate__infinite"></b></span>
+						</a>
+						<!-- Leads end -->
+
+						<!-- Header actions start -->
+						<ul class="header-actions">
+							<li class="dropdown d-none d-md-block">
+								<a href="#" id="countries" data-toggle="dropdown" aria-haspopup="true">
+									<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/br.svg" class="flag-img" alt="Admin Panels" />
+								</a>
+								<div class="dropdown-menu dropdown-menu-end mini" aria-labelledby="countries">
+									<div class="country-container">
+										<a href="index.html">
+											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/us.svg" alt="Clean Admin Dashboards" />
+										</a>
+										<a href="index.html">
+											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/in.svg" alt="Google Dashboards" />
+										</a>
+										<a href="index.html">
+											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/gb.svg" alt="AI Admin Dashboards" />
+										</a>
+										<a href="index.html">
+											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/tr.svg" alt="Modern Dashboards" />
+										</a>
+										<a href="index.html">
+											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/ca.svg" alt="Best Admin Dashboards" />
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="dropdown">
+								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+									<span class="user-name d-none d-md-block">Abigale Heaney</span>
+									<span class="avatar">
+										<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" alt="Admin Templates">
+										<span class="status online"></span>
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end" aria-labelledby="userSettings">
+									<div class="header-profile-actions">
+										<a href="profile.html">Profile</a>
+										<a href="account-settings.html">Settings</a>
+										<a href="login.html">Logout</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<!-- Header actions end -->
+
+					</div>
+					<!-- Header actions ccontainer end -->
+
+				</div>
+				<!-- Page header ends -->
+
+				<!-- Content wrapper scroll start -->
+				<div class="content-wrapper-scroll">
+
+					<!-- Content wrapper start -->
+					<div class="content-wrapper">
+
+						<!-- Row start -->
+						<div class="row">
+							<div class="col-sm-12 col-12">
+								<!-- Card start -->
+								<div class="card border">
+									<div class="card-header bg-light">
+										<h2 class="card-title">
+											Code
+										</h2>
+										<div>
+											<form class="row gx-3 align-items-center" action="">
+												<div class="row gy-3">
+													<div class="col-12 col-md-6 col-lg-4 col-xl ">
+														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+														<select class="form-select" id="inlineFormSelectPref1">
+															<option value="N" selected>N</option>
+															<option value="Y">Y</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+														<select class="form-select" id="inlineFormSelectPref2">
+															<option value="Y" selected>Y</option>
+															<option value="N">N</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+														<select class="form-select" id="inlineFormSelectPref3">
+															<option selected>수정일</option>
+															<option value="1">One</option>
+															<option value="2">Two</option>
+															<option value="3">Three</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="specificSizeInputName1">Preference</label>
+														<input type="text" class="form-control datepicker" id="specificSizeInputName1" placeholder="" value="2024-06-05">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
+														<input type="text" class="form-control datepicker" id="specificSizeInputName2" placeholder="" value="2024-07-05">
+													</div>
+												</div>
+												<div class="row gy-3 mt-0">
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+														<select class="form-select" id="inlineFormSelectPref4">
+															<option selected>검색구분</option>
+															<option value="1">One</option>
+															<option value="2">Two</option>
+															<option value="3">Three</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
+														<input type="text" class="form-control" id="specificSizeInputName2" placeholder="검색어">
+													</div>
+													<div class="col-12 col-lg-4 col-xl ">
+														<button type="button" class="btn btn-info "><i class="bi bi-search"></i></button>
+														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
+													</div>
+													<div class="col">      
+													</div>
+													<div class="col">
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="row justify-content-between">
+											<div class="col-6 col-lg-3">Total: 171</div>
+											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
+												<select class="dataTable-selector form-select" name="" id="">
+													<option value="5">5</option>
+													<option value="10">10</option>
+													<option value="15">15</option>
+													<option value="20">20</option>
+												</select>
+											</div>
+										</div>
+										<div class="scrolltable">
+											<table class="table dataTable table-hover" id="">
+												<thead>
+													<tr>
+														<th>
+															<input type="checkbox">
+														</th>
+														<th><span>#</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 이름</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
+														<th class="d-flex flex-nowrap justify-content-center">
+															<div class="sorting sorting_asc"><span class="dataTable-sorter">대체코드</span></div>
+															<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름</span></div>
+															<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름(영문)</span></div>
+														</th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">순서</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>171</td>
+														<td>57</td>
+														<td>테테테</td>
+														<td>278</td>
+														<td>ㅁㄴㅇㄹ</td>
+														<td>Y</td>
+														<td>1</td>
+														<td>2023-10-12 16:02:31</td>
+														<td>2023-10-12 16:02:31</td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>170</td>
+														<td>33</td>
+														<td>로그인,로그인UI</td>
+														<td>272</td>
+														<td>사용자</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>169</td>
+														<td>33</td>
+														<td>로그인,로그인UI</td>
+														<td>273</td>
+														<td>관리자</td>
+														<td>Y</td>
+														<td>2</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>168</td>
+														<td>32</td>
+														<td>qna.타입</td>
+														<td>266</td>
+														<td>기타</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<!-- <tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td><input type="checkbox"></td>
+														<td>167</td>
+														<td>31</td>
+														<td>qna.상태</td>
+														<td>262</td>
+														<td>미확인</td>
+														<td>Y</td>
+														<td>1</td>
+														<td></td>
+														<td></td>
+													</tr> -->
+												</tbody>
+											</table>	
+										</div>
+										
+										<div class="dataTable-bottom">
+											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
+												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+													<li class="paginate_button previous page-item" id="previousPage">
+														<a class="page-link" href="#">
+															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+														</a>
+													</li>
+													<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
+													<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
+													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
+													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
+													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
+													<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
+													<li class="paginate_button next page-item" id="nextPage">
+														<a class="page-link" href="#">
+															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+														</a>
+													</li>
+												</ul>
+												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+													
+													<li class="page-item"><a class="page-link" href="#">
+															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+														</a></li>
+													<li class="page-item"><a class="page-link" href="#">1</a></li>
+													<li class="page-item active"><a class="page-link" href="#">2</a></li>
+													<li class="page-item"><a class="page-link" href="#">3</a></li>
+													<li class="page-item"><a class="page-link" href="#">
+															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+														</a></li>
+												</ul> -->
+											</nav>
+										</div>
+										<div class="btn-toolbar mt-5 justify-content-between">
+											<div>
+												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
+												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+											</div>
+											<div>
+												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
+												<a href="codeGroupXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Card end -->
+							</div>
+						</div>
+						<!-- Row end -->
+
+					</div>
+					<!-- Content wrapper end -->
+
+					<!-- App Footer start -->
+					<div class="app-footer">
+						<span>© Arise admin 2023</span>
+					</div>
+					<!-- App footer end -->
+
+				</div>
+				<!-- Content wrapper scroll end -->
+
+			</div>
+			<!-- *************
+				************ Main container end *************
+			************* -->
+
+		</div>
+		<!-- Page wrapper end -->
+
+		<!-- *************
+			************ Required JavaScript Files *************
+		************* -->
+		<script>
+			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
+			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
+
+			// 이전 페이지 링크 클릭 이벤트 처리
+			document.getElementById('previousPage').addEventListener('click', function(event) {
+				event.preventDefault(); // 기본 동작(링크 이동) 방지
+				if (currentPageIndex > 0) {
+				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+				currentPageIndex--; // 이전 페이지 인덱스로 변경
+				pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
+				}
+				updatePaginationState(); // 페이지네이션 상태 업데이트
+			});
+
+			// 다음 페이지 링크 클릭 이벤트 처리
+			document.getElementById('nextPage').addEventListener('click', function(event) {
+				event.preventDefault(); // 기본 동작(링크 이동) 방지
+				if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
+				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+				currentPageIndex++; // 다음 페이지 인덱스로 변경
+				pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
+				}
+				updatePaginationState(); // 페이지네이션 상태 업데이트
+			});
+
+			// 페이지 번호 링크 클릭 이벤트 처리
+			pageItems.forEach(function(pageItem, index) {
+				pageItem.addEventListener('click', function(event) {
+				event.preventDefault(); // 기본 동작(링크 이동) 방지
+				if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
+					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+					currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
+					pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
+					updatePaginationState(); // 페이지네이션 상태 업데이트
+				}
+				});
+			});
+
+			// 초기 페이지네이션 상태 업데이트
+			updatePaginationState();
+
+			// 페이지네이션 버튼 상태 업데이트 함수
+			function updatePaginationState() {
+				// 이전 버튼 상태 업데이트
+				if (currentPageIndex === 0) {
+				document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
+				} else {
+				document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
+				}
+
+				// 다음 버튼 상태 업데이트
+				if (currentPageIndex === pageItems.length - 1) {
+				document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
+				} else {
+				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
+				}
+			}
+		</script>
+		<!-- Required jQuery first, then Bootstrap Bundle JS -->
+		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/js/bootstrap.bundle.min.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/js/modernizr.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/js/moment.js"></script>
+
+		<!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+		<!-- Overlay Scroll JS -->
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+		<!-- Data Tables -->
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.min.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bootstrap.min.js"></script>
+
+		<!-- Custom Data tables -->
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/custom/custom-datatables.js"></script>
+
+		<!-- Date Range JS -->
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/custom-daterange.js"></script>
+
+		<!-- Main Js Required -->
+		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
+
+	</body>
+
+</html>
