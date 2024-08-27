@@ -1,11 +1,10 @@
 package com.exion.infra.code;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CodeDao {
-	public void selectList() {
-		
-	}
+public interface CodeDao {
+	public List<CodeDto> selectList();
 }
