@@ -3,18 +3,16 @@ package com.exion.infra.codegroup;
 import java.util.Date;
 
 public class CodeGroupDto {
-	
 	private String seq;
 	private String codeGroupName;
 	private Integer groupOrder;
-	private String groupDesc;
+	private String  groupDesc;
 	private Integer useNy;
+	private Integer delNy;
 	private Date regDate;
 	private Date modDate;
-	private Integer delNy;
 	
-//-----------------------------------	
-
+	//------------------------------
 	public String getSeq() {
 		return seq;
 	}
@@ -45,6 +43,12 @@ public class CodeGroupDto {
 	public void setUseNy(Integer useNy) {
 		this.useNy = useNy;
 	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -57,12 +61,6 @@ public class CodeGroupDto {
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
 	}
-	public Integer getDelNy() {
-		return delNy;
-	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
-	}
 	
-
+	
 }

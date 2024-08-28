@@ -3,6 +3,7 @@ package com.exion.infra.code;
 import java.util.Date;
 
 public class CodeDto {
+	
 	private String seq;
 	private String codeName;
 	private Integer codeOrder;
@@ -13,7 +14,7 @@ public class CodeDto {
 	private Date modDate;
 	private Integer codeGroup_seq;
 	
-	///----------------------
+	//----------------------------------
 	public String getSeq() {
 		return seq;
 	}
@@ -68,8 +69,5 @@ public class CodeDto {
 	public void setCodeGroup_seq(Integer codeGroup_seq) {
 		this.codeGroup_seq = codeGroup_seq;
 	}
-	
-
-	
 	
 }

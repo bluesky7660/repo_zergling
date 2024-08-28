@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.mall.course.CourseDao">
+	<resultMap type="com.exion.mall.course.CourseDto" id="resultObj"></resultMap>
+	<select id="selectCourse" resultMap="resultObj">
+		select
+			d.seq
+		    ,d.eduType
+		    ,d.courseName
+		    ,d.coursePrice
+		    ,d.instructor
+		    ,d.courseRegStart
+		    ,d.courseRegEnd
+		    ,d.studyStart
+		    ,d.studyEnd
+		    ,d.location
+		    ,d.content
+		    ,d.regDate
+		    ,d.modDate
+		    ,d.delNy
+		from
+			course d
+		order by d.seq desc
+	</select>
+</mapper>

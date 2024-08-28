@@ -13,20 +13,16 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmList")
 	public String codeGroupXdmList() {
-		
 		List<CodeGroupDto> codeGroups = codeGroupService.selectList();
-		System.out.println("----------------------------------------------------");
-		for(CodeGroupDto codeGroupDto : codeGroups) {
-//			System.out.println(codeGroupDto.getSeq() + "|" + codeGroupDto.getCodeGroupName() + "|" + codeGroupDto.getGroupOrder() + "|" + codeGroupDto.getGroupDesc()+ "|" + codeGroupDto.getUseNy()+ "|" + codeGroupDto.getDelNy()+ "|" + a.getRegDate()+ "|" + a.getModDate());
-			System.out.printf("| %-5s | %-9s | %-3d | %-15s |%n", codeGroupDto.getSeq(), codeGroupDto.getCodeGroupName(), codeGroupDto.getGroupOrder(), codeGroupDto.getGroupDesc());
+		for(CodeGroupDto codeGroup:codeGroups) {
+			System.out.printf("|%-5s|%-5s|\n",codeGroup.getSeq(),codeGroup.getCodeGroupName());
 		}
-		System.out.println("----------------------------------------------------");
-		System.out.println("codeGroups: "+codeGroups.size());
-		return "/xdm/v1/infra/codegroup/codeGroupXdmList"; 
+		
+		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmForm")
 	public String codeGroupXdmForm() {
-		return "/xdm/v1/infra/codegroup/codeGroupXdmForm";
-	} 
+		return "/xdm/v1/infra/codegroup/codeGroupXdmform";
+	}
 }

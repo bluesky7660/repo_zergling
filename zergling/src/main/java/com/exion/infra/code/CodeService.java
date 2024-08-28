@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class CodeService {
 
 	@Autowired
-	private CodeDao codeDao;
+	CodeDao codeDao;
 	
-	public List<CodeDto> selectList() {
-		List<CodeDto> commoncode = codeDao.selectList();
-		return commoncode;
+	public List<CodeDto> selectList(){
+		List<CodeDto> commonCode = codeDao.selectList();
+		return commonCode;
 	}
 }

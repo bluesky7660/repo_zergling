@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.infra.user.UserDao">
+	  <resultMap type="com.exion.infra.user.UserDto" id="resultObj"></resultMap>
+	  <select id="selectUser" resultMap="resultObj">
+		  	select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			order by c.seq desc
+	  </select>
+</mapper>

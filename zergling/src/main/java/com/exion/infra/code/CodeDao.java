@@ -1,7 +1,6 @@
 package com.exion.infra.code;
 
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 @Repository
