@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,12 +14,9 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping(value = "/v1/infra/user/userXdm")
-	public String userXdm() {
-		List<UserDto> users = userService.selectUser();
-		for(UserDto user:users ) {
-			String admNy = user.getAdmNy() == 1 ? "관리자" : "유저";
-			System.out.printf("|%-5s|%-5s|%-5s|\n",user.getSeq(),admNy,user.getName());
-		}
+	public String userXdm(Model model) {
+		model.addAttribute("list3", userService.selectUser()) ;
+		model.addAttribute("totalRows", userService.selectUser().size());
 		return "xdm/v1/infra/user/userXdm";
 	}
 }

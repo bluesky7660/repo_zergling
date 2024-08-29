@@ -1,0 +1,6 @@
+.accordion-body-item:not(:last-child){
+    margin-bottom: 30px;
+}
+.accordion-body-item button{
+    width: 100%;
+}

@@ -1,0 +1,102 @@
+*{
+    text-align: left;
+}
+body{
+    overflow-y: scroll;
+}
+
+.contentArea{
+    max-width: 340px;
+    margin:  auto;
+    padding: 3rem 0 150px;
+    /* text-align: center; */
+    /* background-color: blue; */
+    
+}
+
+.logo{
+    margin: 0 auto 50px;
+    cursor: pointer;
+}
+footer{
+    border-top: 1px solid #eee;
+    padding:20px 150px;
+
+}
+
+li a{
+    display: inline-block;
+    height: fit-content;
+}
+li a img{
+    width: 50px;
+}
+
+form>*{
+    margin-bottom: 20px;
+}
+.tab_button{
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    padding:15px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #ccc;
+    border-bottom-color: #474c98;
+    opacity: 0.7;
+    cursor: pointer;
+}
+.tab_button.active{
+    border-color: #474c98;
+    opacity: 1;
+    border-bottom: 0;
+}
+
+.tab_contents>*:not(.active){
+    display: none;
+}
+
+.tab_contents>*>*{
+    margin-bottom: 50px;
+}
+
+.simple_Signup li{
+    /* width: fit-content; */
+    text-align: center;
+    flex-basis: calc(100%/4);
+}
+.new_incentives{
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+}
+.new_incentives p{
+    margin: 20px 0;
+}
+.input_area li>label{
+    margin-bottom: 20px;
+}
+.input_box input:not(input[type="radio"]){
+    display: inline-block;
+    width: 100%;
+    /*  */
+    font-size: 13px;
+    line-height: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: #ccc;
+}
+.verify_desc *{
+    margin-bottom: 5px;
+    color:#aaa;
+    font-size: 13px;
+    letter-spacing: -1px;
+}
+.input_area li{
+    margin-bottom: 20px;
+}
+/* .input_area li>label{
+    display: inline-block;
+    margin-bottom: 20px;
+} */

@@ -1,0 +1,141 @@
+/* 
+
+
+
+
+footer{
+    border-top: 1px solid #eee;
+    padding:20px 150px;
+
+}
+
+.btn:hover {
+
+    background-color: #555;
+    color: #fff;
+
+}
+li a{
+    display: inline-block;
+    height: fit-content;
+}
+li a img{
+    width: 50px;
+}
+
+
+.gap_line{
+    font-size: 10px !important;
+    
+}
+.btn-blue{
+    background: #fff;
+    border-color: #474c98;
+    color: #474c98;
+    
+}
+.btn-blue:hover{
+    background: #efeff8;
+    color: #474c98;
+
+}
+.btn-gray:hover{
+    background: #f2f2f2;
+    color: #212529;
+
+} */
+
+/*콘텐츠*/
+*{
+    text-align: left;
+}
+.logo{
+    margin: 0 auto 50px;
+    cursor: pointer;
+}
+
+.contentArea{
+    max-width: 340px;
+    margin:  auto;
+    padding: 3rem 0 150px;
+}
+.btn{
+    font-weight: bold;
+    padding-top:15px;
+    padding-bottom:15px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+/*로그인 input*/
+.user-login{
+    margin-bottom: 20px;
+}
+.user-login>input[type="text"]{
+    border-radius: 6px 6px 0 0;
+}
+.user-login .password_box input{
+    border-radius:0 0 6px 6px;
+}
+.user-login input{
+    font-size: 14px;
+    /* padding-top:15px;
+    padding-bottom:15px; */
+    line-height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: #ccc;
+    border-collapse: collapse;
+}
+
+
+
+
+/*로그인 버튼*/
+.login-btn{
+    margin-bottom: 20px;
+}
+.login-btn button{
+    background-color: #aaa;
+    color:#fff;
+}
+/*save_id_chk_box*/
+.etc_box *{
+    font-size: 14px;
+}
+.save_id_chk_box{
+    line-height: 24px;
+}
+/*search box*/
+.search span{
+    color:#777;
+    /* font-size: 14px; */
+}
+
+/*sns버튼*/
+.sns_login {
+    margin-top: 30px;
+}
+.sns_login ul{
+    width: fit-content;
+    margin: 0 auto 20px;
+}
+.sns_login img{
+    width: 50px;
+}
+.sns_login  p{
+    text-align: center;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: -1px;
+    color:#777;
+}
+
+/*etc button*/
+.etc_buttons button:first{
+    border-color: #474c98;
+}
+
+.etc_buttons button{
+    
+}

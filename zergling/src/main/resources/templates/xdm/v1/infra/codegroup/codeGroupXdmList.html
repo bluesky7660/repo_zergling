@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<!-- Required meta tags -->
@@ -47,7 +47,7 @@
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
 		<style>
-			.btn .bi{
+			/* .btn .bi{
 				font-size: 1rem;
 				vertical-align: baseline;
 			}
@@ -113,7 +113,7 @@
 				background-color: #3688fa;
 				opacity: 0.5;
 				color:#fff;
-			}
+			} */
 		</style>
 	</head>
 
@@ -541,7 +541,7 @@
 								<div class="card border">
 									<div class="card-header bg-light">
 										<h2 class="card-title">
-											Code
+											Code Group
 										</h2>
 										<div>
 											<form class="row gx-3 align-items-center" action="">
@@ -564,7 +564,7 @@
 														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 														<select class="form-select" id="inlineFormSelectPref3">
 															<option selected>수정일</option>
-															<option value="1">One</option>
+															<option value="1">등록일</option>
 															<option value="2">Two</option>
 															<option value="3">Three</option>
 														</select>
@@ -606,7 +606,7 @@
 									</div>
 									<div class="card-body">
 										<div class="row justify-content-between">
-											<div class="col-6 col-lg-3">Total: 171</div>
+											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
 												<select class="dataTable-selector form-select" name="" id="">
 													<option value="5">5</option>
@@ -626,12 +626,12 @@
 														<th><span>#</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 코드</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 이름</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
+														<!-- <th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
 														<th class="d-flex flex-nowrap justify-content-center">
 															<div class="sorting sorting_asc"><span class="dataTable-sorter">대체코드</span></div>
 															<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름</span></div>
 															<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름(영문)</span></div>
-														</th>
+														</th> -->
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">순서</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -639,19 +639,24 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td><input type="checkbox"></td>
-														<td>171</td>
-														<td>57</td>
-														<td>테테테</td>
-														<td>278</td>
-														<td>ㅁㄴㅇㄹ</td>
-														<td>Y</td>
-														<td>1</td>
-														<td>2023-10-12 16:02:31</td>
-														<td>2023-10-12 16:02:31</td>
+													<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
+														<td colspan="8"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr>
+													<tr th:each="listG : ${list}" th:if="${!#lists.isEmpty(list)}">
+														<td><input type="checkbox"></td>
+														<!-- <td>171</td> -->
+														<td th:text="${listG.seq}"></td>
+														<td th:text="${listG.seq}"></td>
+														<td th:text="${listG.codeGroupName}" class="td_spotlight"></td>
+														<!-- <td >278</td>
+														<td>ㅁㄴㅇㄹ</td> -->
+														<td th:if="${listG.useNy eq 0}">N</td>
+														<td th:unless="${listG.useNy eq 0}">Y</td>
+														<td th:text="${listG.groupOrder}"></td>
+														<td th:text="${#dates.format(listG.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:text="${#dates.format(listG.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+													</tr>
+													<!-- <tr>
 														<td><input type="checkbox"></td>
 														<td>170</td>
 														<td>33</td>
@@ -687,7 +692,7 @@
 														<td></td>
 														<td></td>
 													</tr>
-													<tr>
+													<tr data="">
 														<td><input type="checkbox"></td>
 														<td>167</td>
 														<td>31</td>
@@ -698,12 +703,12 @@
 														<td>1</td>
 														<td></td>
 														<td></td>
-													</tr>
+													</tr> -->
 													<!-- <tr>
 														<td><input type="checkbox"></td>
 														<td>167</td>
 														<td>31</td>
-														<td>qna.상태</td>
+														<td td:text="${list.codeGroupName}">qna.상태</td>
 														<td>262</td>
 														<td>미확인</td>
 														<td>Y</td>

@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="./usr/v1/assets/css/bootstrap.min.css" />
+    <!--<link rel="shortcut icon" href="assets/images/favicon.svg"> -->
+    
+    <link rel="stylesheet" href="/usr/v1/assets/css/reset.css">
+    
+    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/style.css"> -->
+    <link rel="stylesheet" href="/usr/v1/assets/css/tiny-slider.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- another-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css" integrity="sha256-wiMI7buOV5UBzdWN4s4kXqE/LZ794hx5oJOOIQlDBaM=" crossorigin="anonymous">
+    
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/main.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <div class="navbar_pc">
+                <div class="customer_service_area d-flex justify-content-end">
+                    <div class="customer_service_box d-flex  align-items-center">
+                        <ul class="d-flex gap-3">
+                            <li class="">
+                                <a href="signup.html">회원가입</a>
+                            </li>
+                            <li class="">
+                                <a href="login.html">로그인</a>
+                            </li>
+                            <!-- <li class="">
+                                <a href="javascript:void(0);">회원혜택</a>
+                            </li> -->
+                            <li class="">
+                                <a href="user_order_list.html">주문배송</a>
+                            </li>
+                            <!-- <li class="">
+                                <a href="javascript:void(0);">매장안내</a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);">고객센터</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="scrolltable">
+                    <div class="gnb_search d-flex justify-content-between gap-5">
+                        <div class="search_wrapper d-flex align-items-center  gap-5">
+                            <div class="logo" onclick="window.location.href='index.html'">
+                                <img src="./usr/v1/assets/images/logo_book.svg" alt="">
+                            </div>
+                            <div class="search_area w-100">
+                                <div class="search_box d-flex align-items-center gap-3">
+                                    <input type="text" class="input-search">
+                                    <button class="search_btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user_box d-flex align-items-center gap-4">
+                            <div class="cart" onclick="window.location.href='user_cart.html'">
+                                <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
+                            </div>
+                            <div class="user_my" onclick="window.location.href='user_account.html'">
+                                <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="gnb_list d-flex align-items-center gap-4">
+                        <div class="gnb_wrapper d-flex align-items-center gap-5">
+                            <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
+                            <div class="anb_wrapper">
+                                <div class="anb_wrapper_area">
+                                    <div class="anb_wrapper_list">
+                                        <h5 class="anb_category">국내도서</h5>
+                                        <ul>
+                                            <li onclick="window.location.href='product_list.html'">국내도서 - 소설</li>
+                                            <li onclick="window.location.href='product_list.html'">국내도서 - 시/에세이</li>
+                                            <li onclick="window.location.href='product_detail.html'">도서 상세보기</li>
+                                            <li onclick="window.location.href='product_buy.html'">도서 구매</li>
+                                        </ul>
+                                    </div>
+                                    <div class="anb_wrapper_list">
+                                        <h5 class="anb_category">회원정보</h5>
+                                        <ul>
+                                            <li onclick="window.location.href='user_order_list.html'">주문/배송목록</li>
+                                            <li onclick="window.location.href='user_delivery_address.html'">배송주소록</li>
+                                            <li onclick="window.location.href='user_delivery_address_add.html'">배송지추가</li>
+                                            <li onclick="window.location.href='user_account.html'">회원정보 변경</li>
+                                            <li onclick="window.location.href='user_password.html'">비밀번호 변경</li>
+                                        </ul>
+                                    </div>
+                                    <div class="anb_wrapper_list">
+                                        <h5 class="anb_category">그외 기타</h5>
+                                        <ul>
+                                            <li onclick="window.location.href='login.html'">로그인</li>
+                                            <li onclick="window.location.href='signup.html'">회원가입</li>
+                                            <li onclick="window.location.href='account_recovery.html'">비밀번호 찾기</li>
+                                            <li onclick="window.location.href='account_recovery.html'">아이디 찾기</li>
+                                            <li onclick="window.location.href='header_ver2.html'">헤더 다른버전2</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="gnb_link gap-3">
+                            <li onclick="window.location.href='product_list.html'">국내도서</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main-slider-wrapper">
+                <div class="slider-container swiper-container swiper-container-h" id="slider1">
+                    <div class="your-slider swiper-wrapper" >
+                        <div class="group-1">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    처음의 리커버, 다음의 리커버<br>
+                                    교보문고 리커버:K 1~101📚
+                                </p>
+                            </div>
+                        </div>
+                        <div class="group-2">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/newbookchange.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    홍진채·윤지호·김학균·김청광 추천!<br>
+                                    100배 주식, 떡잎부터 알아보는 법
+                                </p>
+                            </div>
+                        </div>
+                        <!-- <div class="swiper-container swiper-container-v">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">Vertical Slide 1</div>
+                                <div class="swiper-slide">Vertical Slide 2</div>
+                                <div class="swiper-slide">Vertical Slide 3</div>
+                                <div class="swiper-slide">Vertical Slide 4</div>
+                                <div class="swiper-slide">Vertical Slide 5</div>
+                            </div>
+                            <div class="swiper-pagination swiper-pagination-v"></div>
+                        </div> -->
+                        <div class="group-2">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/20240715_093914811.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    히가시노 게이고가 재현한<br>
+                                    황금시대 본격미스터리!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="group-3">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/9c6ac11d679e4a44b6f6f60903cc089b.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    이지안 도슨트와 함께 떠나는<br>
+                                    일본 소도시 미술 성지 투어
+                                </p>
+                            </div>
+                        </div>
+                        <div class="group-3">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/bnG_01_261d4d7d9d9b4890b06527f069647e1b.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    💸매월 1일~7일<br>
+                                    교보e캐시 더드림
+                                </p>
+                            </div>
+                        </div>
+                        <div class="group-4">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/i_1624_450_89bef945de3b4f169a88c3f37d3673e6.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    교보 오리지널 오디오북<br>
+                                    <산책하는 법>🚶‍♀️
+                                </p>
+                            </div>
+                        </div>
+                        <div class="group-5">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/75b1314eb88b4d4abaa27010bb12baba.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    8월 북메이트 모집 중🌊<br>
+                                    이달의 책 독서 지원금&애슝 유리컵
+                                </p>
+                            </div>
+                        </div>
+                        <div class="group-6">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/i_1624_450_5eb0927b569444c4a5ec92342047f38c.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    들키고 싶은 이야기<br>
+                                    『책과 마주하는 마음으로』 에필로그
+                                </p>
+                            </div>
+                        </div>
+                        <div class="group-7">
+                            <div class="img-box">
+                                <img src="./usr/v1/assets/images/mainSlider/i_1624_450_1e8517dd08074efca142057b5465d502.jpg" alt="Image 1"/>
+                            </div>
+                            <div class="item_text_box">
+                                <p>
+                                    아카데미 실눈캐가<br>
+                                    되었습니다
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <ul class="slick-dots swiper-pagination"></ul>
+                        <button class="prev"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="next"><i class="fa-solid fa-chevron-right"></i></button>
+                        <button class="auto-toggle"><i class="fa-solid fa-stop"></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- <section class="content_link">
+                <div class="content_linkArea">
+                    <ul class="d-flex justify-content-between">
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/sale_icon.svg" alt="">
+                                </div>
+                                <span>할인혜택</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/hotDeal_icon.svg" alt="">
+                                </div>
+                                <span>핫딜</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/discover_icon.svg" alt="">
+                                </div>
+                                <span>디스커버</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/musicAndVideo_icon.svg" alt="">
+                                </div>
+                                <span>음반/영상</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/publish_icon.svg" alt="">
+                                </div>
+                                <span>바로출판POD</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/sale_icon.svg" alt="">
+                                </div>
+                                <span>할인혜택</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/hotDeal_icon.svg" alt="">
+                                </div>
+                                <span>핫딜</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/discover_icon.svg" alt="">
+                                </div>
+                                <span>디스커버</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/musicAndVideo_icon.svg" alt="">
+                                </div>
+                                <span>음반/영상</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <img src="./usr/v1/assets/images/publish_icon.svg" alt="">
+                                </div>
+                                <span>바로출판POD</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section> -->
+            <section class="today_pick">
+                <div class="today_pickArea">
+                    <div class="area-head d-flex justify-content-between">
+                        <div class="d-flex">
+                            <h3>오늘의 선택</h3>
+                            <!-- <div class="tabs ms-5">
+                                <ul class="d-flex  align-items-center gap-5">
+                                    <li>전체</li>
+                                    <li>국내도서</li>
+                                    <li>외국도서</li>
+                                    <li>eBook</li>
+                                    <li>sam</li>
+                                    <li>핫트랙스</li>
+                                    <li>교보ONLY</li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <a href="javascript:void(0);">더보기 +</a>
+                        </div>
+                    </div>
+                    <div class="contentArea ">
+                        <!-- <div class="detail_pick d-flex">
+                            <div>
+                                <img src="./usr/v1/assets/images/md_pick/domesticBooks01.jpg" alt="">
+                            </div>
+                            <div class="textArea">
+                                <h4>[소설] 당신이 누군가를 죽였다 </h4>
+                                <p> 히가시노 게이고 · 북다 </p>
+                                <p class="price"><span class="saleP"></span> <span class="priceN">17,820</span>원</p>
+                                <p class="md_comment_title">히가시노 게이고 101번째 작품</p>
+                                <p class="md_comment_desc">
+                                    한여름 호화 별장지에서 벌어진 의문의 연쇄 살인. 다시 돌아온 '가가 형사'가 신출귀몰한 솜씨로 비밀을 파헤친다. 고전 추리의 진면목을 만끽할 수 있는 걸작.
+                                </p>
+                            </div>
+                        </div> -->
+                        <div class="md_pick_list">
+                            <div class="slider-container swiper-container"id="slider2">
+                                <div class="swiper-wrapper your-slider" >
+                                    <div>
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9791170611561.jpg" alt="">
+                                        </div>
+                                        <p>당신이 누군가를 죽였다</p>
+                                    </div>
+                                    <div>
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9791162543825.jpg" alt="">
+                                        </div>
+                                        <p>신독, 혼자 있는 시간의 힘</p>
+                                    </div>
+                                    <div>
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9791169092753.jpg" alt="">
+                                        </div>
+                                        <p>단식 존엄사</p>
+                                    </div>
+                                    <div>
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9791193941102.jpg" alt="">
+                                        </div>
+                                        <p>오늘부터 초등 어휘왕</p>
+                                    </div>
+                                    <div>
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9788993178302.jpg" alt="">
+                                        </div>
+                                        <p>지도로 보아야 보인다</p>
+                                    </div>
+                                    <div>
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9788936457273.jpg" alt="">
+                                        </div>
+                                        <p>라이프 재킷</p>
+                                    </div>
+                                    <div>
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9791191994308.jpg" alt="">
+                                        </div>
+                                        <p>셰프의 가벼운 레스토랑</p>
+                                    </div>
+                                    <div class="foreign_books">
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/9784089084694.jpg" alt="">
+                                        </div>
+                                        <p>『ハイキュ-!!』コミックカレンダ-2025(卓上/特製デザインカ-ド15枚付き)</p>
+                                    </div>
+                                    <div class="eBook">
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/480D240778940.jpg" alt="">
+                                        </div>
+                                        <p>농사짖는 천마님. 1</p>
+                                    </div>
+                                    <div class="sam">
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/prod/300/4801191061049.jpg" alt="">
+                                        </div>
+                                        <p>언젠가 우리가 같은 별을 바라본다면</p>
+                                    </div>
+                                    <div class="hot">
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/hot/hot1699345057957.jpg" alt="">
+                                        </div>
+                                        <p>노르잇 투명독서대 높이조절 PR01A</p>
+                                    </div>
+                                    <div class="kyobo_only">
+                                        <div class="img-box">
+                                            <img src="./usr/v1/assets/images/kyobo_only/5210000003276.jpg" alt="">
+                                        </div>
+                                        <p>친절한 클래식 - 퇴근길에 어울리는 미술과 음악의 페어링</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button swiper-button-next"></div>
+                            <div class="swiper-button swiper-button-prev"></div>
+                        </div>
+                        <!-- <div class="slider-controls">
+                            <button class="prev"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div> -->
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="banners" id="banner01">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <img src="./usr/v1/assets/images/banners02.jpg" alt="">
+                    </div>
+                    <div>
+                        <img src="./usr/v1/assets/images/banners03.png" alt="">
+                    </div>
+                </div>
+            </section> -->
+            <section class="mostView flexibilization1">
+                <div>
+                    <div class="area-head">
+                        <h3>급상승! 많이 보고 있는 상품</h3>
+                    </div>
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container" id="slider3">
+                            <div class="swiper-wrapper">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791189352745.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">시/에세이</span>
+                                    <p class="book-title">내가 한 말을 오해하지 않기로 함</p>
+                                    <span class="author">문상훈 · 위너스북</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791194171034.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">시/에세이</span>
+                                    <p class="book-title">내가 네번째로 사랑하는 계절</p>
+                                    <span class="author">한정원 · 난다</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791170611561.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">당신이 누군가를 죽였다</p>
+                                    <span class="author">히가시노 게이고 · 북다</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9788954681155.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">홍학의 자리</p>
+                                    <span class="author">정해연 · 엘릭시르</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791167374561.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">영원한 천국</p>
+                                    <span class="author">정유정 · 은행나무</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791141601300.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">이중 하나는 거짓말</p>
+                                    <span class="author">김애란 · 문학동네</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791192559889.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">시/에세이</span>
+                                    <p class="book-title">오케이 다시한번 해볼게요</p>
+                                    <span class="author">박여름 · 히읏</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791193937198.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">빛이 이끄는 곳으로</p>
+                                    <span class="author">백희성 · 북로망스</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button swiper-button-next"></div>
+                        <div class="swiper-button swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="picks">
+                <div>
+                    <div class="area-head">
+                        <h3><img src="./usr/v1/assets/images/ico_welcome_picks.svg" alt=""></h3>
+                        <div><a href="javascript:void(0);">더보기 +</a></div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="left-box">
+                            <div class="textArea">
+                                <span class="green_color">발견의 기쁨을 선물합니다.</span>
+                                <p>
+                                    취향을 분석해 꼭 맞는 책을 <br>추천해드릴게요!
+                                </p>
+                            </div>
+                            <div class="btn-box">
+                                <button type="button" class="btn btn-green">로그인하고 더 많은 추천 받기</button>
+                            </div>
+                        </div>                      
+                        <div class="right-box">
+                            <ul class="d-flex gap-3 ms-5">
+                                <li>
+                                    <p class="pick-type">종합추천</p>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/picks/books01.jpg" alt="">
+                                    </div>
+                                    <span class="book-type">[자기계발]</span>
+                                    <p class="title">
+                                        말하지 않으면 인생은 바뀌지 않는다
+                                    </p>
+                                    <p class="author">샘혼</p>
+                                </li>
+                                <li>
+                                    <p class="pick-type">종합추천</p>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/picks/books01.jpg" alt="">
+                                    </div>
+                                    <span class="book-type">[자기계발]</span>
+                                    <p class="title">
+                                        말하지 않으면 인생은 바뀌지 않는다
+                                    </p>
+                                    <p class="author">샘혼</p>
+                                </li>
+                                <li>
+                                    <p class="pick-type">종합추천</p>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/picks/books01.jpg" alt="">
+                                    </div>
+                                    <span class="book-type">[자기계발]</span>
+                                    <p class="title">
+                                        말하지 않으면 인생은 바뀌지 않는다
+                                    </p>
+                                    <p class="author">샘혼</p>
+                                </li>
+                                <li>
+                                    <p class="pick-type">종합추천</p>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/picks/books01.jpg" alt="">
+                                    </div>
+                                    <span class="book-type">[자기계발]</span>
+                                    <p class="title">
+                                        말하지 않으면 인생은 바뀌지 않는다
+                                    </p>
+                                    <p class="author">샘혼</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- <section class="art_culture flexibilization2">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <h3>ART & CULTURE</h3>
+                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                    </div>
+                    
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container"id="slider5">
+                            <div class="swiper-wrapper">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button swiper-button-next"></div>
+                        <div class="swiper-button swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section> -->
+            <section class="new_arrivals flexibilization2">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <div class="d-flex">
+                            <h3 class="mb-0">화제의 신상</h3>
+                            <!-- <div class="tabs ms-5">
+                                <ul class="d-flex align-items-center  gap-5">
+                                    <li>전체</li>
+                                    <li>국내도서</li>
+                                    <li>외국도서</li>
+                                    <li>eBook</li>
+                                    <li>sam</li>
+                                    <li>핫트랙스</li>
+                                    <li>교보ONLY</li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                    </div>
+                    
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container"id="slider6">
+                            <div class="swiper-wrapper">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791191570724.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9788936439569.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">기술자들</p>
+                                    <span class="author">김려령 · 창비</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791162851562.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">시/에세이</span>
+                                    <p class="book-title">박인희 컬렉션 세트</p>
+                                    <span class="author">박인희 · 마음의숲</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9788932042978.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">시/에세이</span>
+                                    <p class="book-title">우연한 미래에 우리가 있어서</p>
+                                    <span class="author">신용목 · 문학과지성사</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791198809995.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">센트 아일랜드</p>
+                                    <span class="author">김유진 · 한끼</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791192559889.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">시/에세이</span>
+                                    <p class="book-title">오케이 다시한번 해볼게요</p>
+                                    <span class="author">박여름 · 히읏</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791193937198.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">빛이 이끄는 곳으로</p>
+                                    <span class="author">백희성 · 북로망스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791191824438.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">없는 사람들을 생각해</p>
+                                    <span class="author">정지혜 · 자이언트북스</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button swiper-button-next"></div>
+                        <div class="swiper-button swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="banners" id="banner02">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <img src="./usr/v1/assets/images/banners02.jpg" alt="">
+                    </div>
+                    <div>
+                        <img src="./usr/v1/assets/images/banners03.png" alt="">
+                    </div>
+                </div>
+            </section> -->
+            <!-- <section class="week_book">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <h3>이 주의 책</h3>
+                        <div class="">ad</div>
+                    </div>
+                    <div class="contentArea">
+                        <ul class="d-flex justify-content-between gap-5 flex-auto txt text-start">
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/week_books/9791195522170.jpg" alt="">
+                                </div>
+                                <p class="title">보편의 단어</p>
+                                <p class="author">이기주 · 말글터</p>
+                                <p class="price"><strong>14,400</strong>원</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/week_books/9791191013672.jpg" alt="">
+                                </div>
+                                <p class="title">초등 관심 사전</p>
+                                <p class="author">고정욱 · 북라이프</p>
+                                <p class="price"><strong>12,150</strong>원</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/week_books/9791189217280.jpg" alt="">
+                                </div>
+                                <p class="title">우등생 해법 전과목 세트 초등 4-2(2024)</p>
+                                <p class="author">최용준 해법수학연구회 · 천재교육</p>
+                                <p class="price"><strong>54,450</strong>원</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/week_books/9791125979029.jpg" alt="">
+                                </div>
+                                <p class="title">상위 1%의 비밀은 공부정서에 있습니다</p>
+                                <p class="author">정우열 · 저녁달</p>
+                                <p class="price"><strong>16,020</strong>원</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/week_books/9788930041683.jpg" alt="">
+                                </div>
+                                <p class="title">허송세월</p>
+                                <p class="author">김훈 · 나남</p>
+                                <p class="price"><strong>16,200</strong>원</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section> -->
+            <!-- <section class="hit">
+                <div class="d-flex gap-5">
+                    <div class="left-box">
+                        <div class="area-head">
+                            <h3 class="mb-4">히트</h3>
+                            <p class="desc mb-4">
+                                교보문고에서만 만나볼 수 있는 특별한 <br>상품들을 지금 소개합니다.
+                            </p>
+                            <div class=""><a href="javascript:void(0);">더보기 +</a></div>
+                        </div>
+                        <div class="swiper-button-area">
+                            <div class="swiper-button swiper-button-next"></div>
+                            <div class="swiper-button swiper-button-prev"></div>
+                        </div>
+                    </div>  
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container"id="slider7">
+                            <div class="swiper-wrapper">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section> -->
+            <section class="bestseller flexibilization3">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="title-tab d-flex">
+                                 <h3 class="mb-0">베스트</h3>
+                                 <span> </span>
+                                 <h3 class="mb-0 d-none">스테디</h3>
+                            </div>
+                            <div>
+                                <!-- <div class="best-tabs tabs ms-5">
+                                    <ul class="d-flex align-items-center  gap-5">
+                                        <li>전체</li>
+                                        <li>국내도서</li>
+                                        <li>외국도서</li>
+                                        <li>eBook</li>
+                                        <li>sam</li>
+                                        <li>핫트랙스</li>
+                                        <li>교보ONLY</li>
+                                    </ul>
+                                </div> -->
+                                <!-- <div class="steady-tabs tabs ms-5 d-none">
+                                    <ul class="d-flex align-items-center  gap-5">
+                                        <li>국내도서</li>
+                                        <li>외국도서</li>
+                                    </ul>
+                                </div> -->
+                            </div>                            
+                        </div>
+                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                    </div>                    
+                    <div class="contentArea">
+                        <ul class="best-content gap-5">
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/prod/300/9791170611561.jpg" alt="">
+                                </div>
+                                <p class="title">당신이 누군가를 죽였다</p>
+                                <p class="author">히가시노 게이고 · 북다</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/prod/300/9788930041683.jpg" alt="">
+                                </div>
+                                <p class="title">허송세월</p>
+                                <p class="author">김훈 · 나남</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/prod/300/9791171712373.jpg" alt="">
+                                </div>
+                                <p class="title">전지적 루이 & 후이 시점</p>
+                                <p class="author">송영관 ·  위즈덤하우스</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/prod/300/9788998441012.jpg" alt="">
+                                </div>
+                                <p class="title">모순</p>
+                                <p class="author">양귀자 · 쓰다</p>
+                            </li>
+                            <li>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/week_books/9791191013672.jpg" alt="">
+                                </div>
+                                <p class="title">초등 관심 사전</p>
+                                <p class="author">고정욱 · 북라이프</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="banners" id="banner03">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <img src="./usr/v1/assets/images/banner04.jpg" alt="">
+                    </div>
+                </div>
+            </section>
+            <section class="kyobo_original">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <h3>교보 오리지널</h3>
+                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                    </div>
+                    
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container"id="slider8">
+                            <div class="swiper-wrapper">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/prod/300/9791170611561.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">소설</span>
+                                    <p class="book-title">당신이 누군가를 죽였다</p>
+                                    <span class="author">히가시노 게이고 · 북다</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button swiper-button-next"></div>
+                        <div class="swiper-button swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="kyobo_casting">
+                <div class="area-head">
+                    <h3><img src="./usr/v1/assets/images/welcome_casting_logo_ink@2x.png" alt=""></h3>
+                    <div><a href="javascript:void(0);">더보기 +</a></div>
+                </div>
+                <div class="slider-container">
+                    <div class="swiper-container slider-for-container">
+                        <div class="swiper-wrapper slider-for">
+                            <div>
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="슬라이드 1">
+                                </div>
+                            </div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/tkg0cz5e-720.jpg" alt="슬라이드 2"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="슬라이드 3"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="슬라이드 4"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="슬라이드 5"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="슬라이드 6"></div></div>
+                        </div>
+                    </div>
+            
+                    <div class="swiper-container slider-nav-container">
+                        <div class="contentArea" style="z-index: 2;">
+                            <div class="textArea">
+                                <p class="title">얼미부부, 재밌기 행복하기 사랑하기 <br>사랑하기</p>
+                                <p class="made_by"><span>by</span> 교보문고</p>
+                            </div>
+                            <div class="swiper-button-area">
+                                <button class="nav-prev">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </button>
+                                <button class="nav-next">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-wrapper slider-nav">
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="썸네일 1"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/tkg0cz5e-720.jpg" alt="썸네일 2"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="썸네일 3"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="썸네일 4"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="썸네일 5"></div></div>
+                            <div><div class="img-box"><img src="./usr/v1/assets/images/kyobo_casting/woqyno21-720.jpg" alt="썸네일 6"></div></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            <section class="kyobo_event">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <div class="d-flex">
+                            <h3 class="mb-0">이벤트</h3>
+                            <div class="tabs ms-5">
+                                <ul class="d-flex align-items-center  gap-5">
+                                    <li>교보문고</li>
+                                    <li>eBook</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                    </div>
+                    
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container"id="slider9">
+                            <div class="swiper-wrapper">
+                                <div>
+                                    <a class="img-box">
+                                        <img src="./usr/v1/assets/images/event/웰컴하단 이벤트_PC_1200_150_fd3423d701db48ffae353d118cea343e.jpg" alt="Image 3"/>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="img-box">
+                                        <img src="./usr/v1/assets/images/event/i_1200_150_369df9190510427a927bdcaf382c60cc.jpg" alt="Image 1"/>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="img-box">
+                                        <img src="./usr/v1/assets/images/event/68b8e4c84eba470e93e63f4880c252e9.jpg" alt="Image 2"/>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="img-box">
+                                        <img src="./usr/v1/assets/images/event/83c15a07c6ca49ddbcc3d3d7bb7f0055.jpg" alt="Image 1"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-box">
+                            <div class="swiper-navigation-box">
+                                <div class="swiper-button swiper-button-prev"></div>
+                                <div class="swiper-button swiper-button-next"></div>
+                            </div>
+                            <div class="swiper-auto-button" id="toggle-autoplay">
+                                <i class="fa-solid fa-stop"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="publish_pod">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <h3>바로출판POD</h3>
+                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                    </div>
+                    
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container"id="slider10">
+                            <div class="swiper-wrapper">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                                <div>
+                                    <div class="img-box">
+                                        <img src="./usr/v1/assets/images/publish_pod/1400000700068.jpg" alt="Image 1"/>
+                                    </div>
+                                    <span class="book-type">경제/경영</span>
+                                    <p class="book-title">읽고 쓰고 소유하다</p>
+                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button swiper-button-next"></div>
+                        <div class="swiper-button swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section> -->
+        </main>
+        <div class="top_btn"><i class="fa-solid fa-xl fa-chevron-up"></i></div>
+        <footer>
+            <div class="notice">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-3">
+                            <strong>공지사항</strong>
+                            <span class="notice_text">
+                                상품권(해피머니, 컬쳐캐쉬) 사용 일시 중지 안내
+                            </span>
+                        </div>
+                        <strong class="notice_more">더보기</strong>
+                    </div>
+                    <span class="line_space">|</span>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-3">
+                            <strong>당첨자발표</strong>
+                            <span class="notice_text">
+                                [로맨스/BL소설][24년 7/5] 먼슬리 교보💰캐시DREAM 당첨자 발표
+                            </span>
+                        </div>
+                        <strong class="notice_more">더보기</strong>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="sitemap">
+                <ul class="d-flex justify-content-between gap-5">
+                    <li>
+                        <div>
+                            <strong>회원혜택</strong>
+                        </div>
+                        <ul>
+                            <li>교보북클럽</li>
+                            <li>등급별 혜택</li>
+                            <li>신규회원 혜택</li>
+                            <li>Prestige Lounge</li>
+                            <li>제휴포인트/상품권</li>
+                            <li>참좋은교보문고</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>쇼핑 TIP</strong>
+                        </div>
+                        <ul>
+                            <li>제휴포인트/상품권</li>
+                            <li>교보문고 기프트카드</li>
+                            <li>대량구매</li>
+                            <li>리딩트리</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>빠른 서비스</strong>
+                        </div>
+                        <ul>
+                            <li>북클럽카드 등록</li>
+                            <li>영수증 후 적립</li>
+                            <li>교보캐시 조회·충전</li>
+                            <li>교보e캐시 조회·충전</li>
+                            <li>기프트카드 조회·충전</li>
+                            <li>협력사 여러분</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>교보문고 소식</strong>
+                        </div>
+                        <ul>
+                            <li>인스타그램(교보문고)</li>
+                            <li>인스타그램(인터넷교보문고)</li>
+                            <li>페이스북(교보문고)</li>
+                            <li>페이스북(인터넷교보문고)</li>
+                            <li>트위터</li>
+                            <li>유튜브</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>FAQ</strong>
+                        </div>
+                        <ul>
+                            <li>주문·결제</li>
+                            <li>eBook</li>
+                            <li>도서·상품정보</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer mt-3">
+                <div class="footer-top d-flex justify-content-between">
+                    <div class="logo">
+                        <img src="./usr/v1/assets/images/img_logo_kyobo_member@2x.png" alt="">
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <select class="form-select" name="" id="">
+                            <option value="">Family Site</option>
+                        </select>
+                        <div class="icons d-flex gap-3">
+                            <div class="icon-box"><img src="./usr/v1/assets/images/btn_footer_sns_youtube_v2@2x.png" alt=""></div>
+                            <div class="icon-box"><img src="./usr/v1/assets/images/btn_footer_sns_fb_v2@2x.png" alt=""></div>
+                            <div class="icon-box"><img src="./usr/v1/assets/images/btn_footer_sns_insta_v2@2x.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom d-flex mt-3 gap-2">
+                    <div class="left-box">
+                        <ul class="footer_menu_list d-flex gap-3">
+                            <li>회사소개</li>
+                            <li>이용약관</li>
+                            <li>개인정보처리방침</li>
+                            <li>청소년보호정책</li>
+                            <li>대량주문안내</li>
+                            <li>협력사여러분</li>
+                            <li>채용정보</li>
+                            <li>광고소개</li>
+                        </ul>
+                        <ul class="footer_info_box d-flex flex-wrap gap-1 mt-3">
+                            <li>대표이사 : 안병현, 김상훈</li>
+                            <li>서울특별시 종로구 종로 1</li>
+                            <li>사업자등록번호 : 102-81-11670</li>
+                            <li>대표전화 : 1544-1900(발신자 부담전화)</li>
+                            <li>FAX : 0502-987-5711(지역번호 공통)</li>
+                            <li>서울특별시 통신판매업신고번호 : 제 653호</li>
+                            <li class="btn_footer">사업자정보확인</li>
+                        </ul>
+                        <div class="copyright"></div>
+                    </div>
+                    <div class="right-box">
+                        <div>
+                            <p>
+                                <span>토스페이먼츠 구매안전서비스</span>
+                                <span class="btn_footer">서비스 가입 확인</span>
+                            </p>
+                            <span>
+                                고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한<br>
+                                토스페이먼츠의 구매안전서비스를 이용하실 수 있습니다.
+                            </span>
+                        </div>
+
+                        <div class="d-flex mt-3 gap-3">
+                            <div class="d-flex gap-2">
+                                <div class="img-box">
+                                    <img src="./usr/v1/assets/images/img_mark_isms@2x.png" alt="">
+                                </div>
+                                <p>
+                                    정보보호관리체계<br>ISMS 인증획득
+                                </p>
+                            </div>
+                            <div>
+                                <p>
+                                    [인증범위] 인터넷 교보문고 및 브랜드 서비스 운영<br>
+                                    [유효기간] 2023.11.15 ~ 2026.11.14
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- <script>
+        $(document).ready(function(){
+            $('.selectpicker').selectpicker();
+        });// select피커 작동
+    </script> -->
+    <!-- Required jQuery first, then Bootstrap Bundle JS -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="./usr/v1/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script src="assets/js/jquery.min.js"></script> -->
+    <!-- <script src="assets/js/bootstrap.bundle.min.js"></script> -->
+
+    <!-- Main Js Required -->
+	<!-- <script src="assets/js/main.js"></script> -->
+
+    <!-- Overlay Scroll JS -->
+    <!-- <script src="assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+    <script src="assets/vendor/overlay-scroll/custom-scrollbar.js"></script> -->
+
+    <!-- another-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/js/bootstrap-select.min.js"></script> -->
+
+    
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- Bootstrap 5 Bundle JS (includes Popper) -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Bootstrap Select JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- <script src="assets/js/tiny-slider.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tiny-slider@2.9.4/dist/tiny-slider.css">
+    <script src="https://cdn.jsdelivr.net/npm/tiny-slider@2.9.4/dist/tiny-slider.js"></script> -->
+    <!-- Initialize Bootstrap Select -->
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
+    <script src="./usr/v1/assets/js/header.js"></script>
+    <script src="./usr/v1/assets/js/custom.js"></script>
+    
+    <script>
+        $('.swiper-wrapper > div').addClass('swiper-slide');
+        $(document).ready(function(){
+            // $('.selectpicker').selectpicker();
+            
+
+
+            //첫번째슬라이드 설정 - 메인
+            var customTexts1 = ["핫 이슈", "발견의 기쁨", "기획전", "eBook", "sam", "핫트랙스", "웹소설"];
+            // // Swiper 초기화
+            const createdGroups = new Set();
+            var swiperInstance_swiper_slide = document.querySelectorAll(".main-slider-wrapper .swiper-slide") ;
+            for (let i = 0; i < swiperInstance_swiper_slide.length; i++) {
+                swiperInstance_swiper_slide[i].classList.add("groupSlider"+i);
+                
+            }
+            // 슬라이드의 수를 구합니다.
+            var slideCount = swiperInstance_swiper_slide.length;
+
+            var swiper1 = new Swiper('.swiper-container#slider1', {
+                slidesPerView: 1, // 한 번에 보이는 슬라이드 수
+                slidesPerGroup: 1, // 슬라이드 이동 시 그룹 크기
+                effect: 'fade',
+                fadeEffect: { crossFade: true },
+                loop: true, // 루프 모드 활성화
+                // loopAdditionalSlides: 0, // 기본값으로 설정해 보기
+                // loopedSlides: slideCount, // 슬라이드 수에 맞춰 설정 (슬라이드 수와 동일하게 설정)
+                speed: 1000,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.main-slider-wrapper .swiper-pagination', // 페이지네이션 요소
+                    clickable: true, // 페이지네이션 클릭 가능 설정
+                    renderBullet: function (index, className) {
+                        const groupClass = getGroupClass(index);
+                        // console.log(index);
+                        // console.log(groupClass);
+                        const groupIndex = parseInt(groupClass.replace('group-', '')) - 1; // 'group1', 'group2'에서 숫자만 추출
+                        const text = customTexts1[groupIndex];
+                        
+                        // console.log(groupIndex);
+                        // console.log(text);
+                        // console.log(createdGroups);
+                        
+                        // Set을 사용해 중복된 그룹 불릿 방지
+                        if (groupClass && !createdGroups.has(groupClass)) {
+                            createdGroups.add(groupClass); // 그룹 추가하여 중복 방지
+                            return `<li class="${className} ${groupClass}">${text}</li>`;
+                        }
+                        return ''; // 중복된 불릿은 생성하지 않음
+                        // else if (!existingBullet) {
+                        //     return `<span class="${className} ${groupClass}"></span>`;
+                        // }else{
+                        //     return '';
+                        // }
+                        
+                    },
+                },
+                navigation: {
+                    nextEl: '.main-slider-wrapper .next',
+                    prevEl: '.main-slider-wrapper .prev',
+                },
+                onSlideChangeEnd : function(event){
+                    var num = getSlideDataIndex(event)
+
+                },
+                on: {
+                    init: function () {
+                         updatePagination(this); // 초기화 후 페이지네이션 상태 설정
+                    },
+                    slideChange: function () {
+                         updatePagination(this); // 현재 Swiper 인스턴스 참조
+                    },
+                }
+                
+            });
+
+            //페이지네이션 불릿 클릭 이벤트 처리
+            document.querySelector('.main-slider-wrapper .swiper-pagination').addEventListener('click', function(event) {
+                const clickedBullet = event.target; // 클릭된 불릿 요소
+                const groupClass = Array.from(clickedBullet.classList).find(cls => cls.startsWith('group')); // 클릭된 불릿의 그룹 클래스 찾기
+                if (groupClass) {
+                    // 해당 그룹의 첫 슬라이드 인덱스 찾기
+                    console.log("groupClass: "+groupClass);
+                    const firstSlideIndex = findFirstSlideIndex(groupClass);
+                    console.log("firstSlideIndex: "+firstSlideIndex);
+                    if (firstSlideIndex !== null) {
+                        
+                        swiper1.slideToLoop(firstSlideIndex); // 첫 슬라이드로 이동
+                        
+                    }
+                }
+            });         
+            
+            //현재 슬라이드의 그룹 클래스를 반환하는 함수
+            function getGroupClass(index) {
+                // console.log(swiperInstance_swiper_slide[index]);
+                const slide = swiperInstance_swiper_slide[index]; // 현재 슬라이드 요소
+                // console.log(Array.from(slide.classList).find(cls => cls.startsWith('group')));
+                return slide ? Array.from(slide.classList).find(cls => cls.startsWith('group')) : null; // 그룹 클래스 반환
+            }
+
+            // 특정 그룹의 첫 슬라이드 인덱스를 찾는 함수
+            function findFirstSlideIndex(groupClass) {
+                console.log(swiper1.slides);
+                // 슬라이드를 `groupSliderX` 클래스를 기준으로 정렬
+                const slides = Array.from(swiper1.slides);
+                slides.sort((a, b) => {
+                    // 슬라이드의 `groupSliderX` 클래스 추출
+                    const classA = Array.from(a.classList).find(cls => cls.startsWith('groupSlider'));
+                    const classB = Array.from(b.classList).find(cls => cls.startsWith('groupSlider'));
+
+                    // 클래스가 없는 경우 가장 큰 값을 지정
+                    const numA = classA ? parseInt(classA.replace('groupSlider', '')) : Infinity;
+                    const numB = classB ? parseInt(classB.replace('groupSlider', '')) : Infinity;
+
+                    // 숫자 순서대로 정렬
+                    return numA - numB;
+                });
+                for (let i = 0; i < swiper1.slides.length; i++) {
+                    const slide = slides[i];
+                    console.log("뭘까나:"+Array.from(slide.classList).includes(groupClass));
+                    if (Array.from(slide.classList).includes(groupClass)) {
+                        console.log("findFirstSlideIndex:"+ i);
+                        console.log("##slide: "+slide.classList);
+                        // return i; // 첫 번째 슬라이드 인덱스 반환
+                        console.log("찾은 index: "+ i);
+                        console.log("찾은슬라이더: "+ slide.classList);
+                        return i; 
+                    }
+                    // console.log("findFirstSlideIndex2:"+ i);
+                }
+                return null; // 그룹에 해당하는 슬라이드가 없는 경우
+            }
+            //페이지네이션 상태를 업데이트하는 함수
+            function updatePagination(swiper) {
+                const activeIndex = swiper.realIndex; // 현재 활성화된 슬라이드 인덱스
+                const bullets = document.querySelectorAll('.main-slider-wrapper .swiper-pagination-bullet'); // 모든 페이지네이션 불릿 요소
+                const activeGroupClass = getGroupClass(activeIndex); // 현재 활성화된 슬라이드의 그룹 클래스
+                
+                // 모든 불릿 요소를 순회하며 활성화된 그룹에 맞게 스타일 설정
+                bullets.forEach(bullet => {
+                    const bulletGroupClass = Array.from(bullet.classList).find(cls => cls.startsWith('group')); // 불릿의 그룹 클래스
+                    if (bulletGroupClass === activeGroupClass) {
+                        bullet.classList.add('swiper-pagination-bullet-active'); // 활성화된 그룹의 불릿에 스타일 추가
+                    } else {
+                        bullet.classList.remove('swiper-pagination-bullet-active'); // 비활성화된 그룹의 불릿에서 스타일 제거
+                    }
+                });
+            }
+
+            function getSlideDataIndex(swipe){
+                var activeIndex = swipe.activeIndex;
+                var slidesLen = swipe.slides.length;
+                if(swipe.params.loop){
+                    switch(swipe.activeIndex){
+                        case 0:
+                            activeIndex = slidesLen-3;
+                            break;
+                        case slidesLen-1:
+                            activeIndex = 0;
+                            break;
+                        default:
+                            --activeIndex;
+                    }
+                }
+                return  activeIndex;
+
+            }
+
+             //auto토글버튼
+            const toggleButton1 = document.querySelector('.main-slider-wrapper .auto-toggle');
+            const toggleIcon1 = toggleButton1.querySelector('i');
+            let isAutoplaying1 = true; // 현재 자동 재생 상태를 추적
+
+            toggleButton1.addEventListener('click', () => {
+                if (isAutoplaying1) {
+                    swiper1.autoplay.stop();
+                    toggleIcon1.classList.remove('fa-stop');
+                    toggleIcon1.classList.add('fa-play');
+                    toggleButton1.innerHTML = '<i class="fa-solid fa-play"></i>';
+                } else {
+                    swiper1.autoplay.start();
+                    toggleIcon1.classList.add('fa-stop');
+                    toggleIcon1.classList.remove('fa-play');
+                    toggleButton1.innerHTML = '<i class="fa-solid fa-stop"></i>';
+                }
+                isAutoplaying1 = !isAutoplaying1; // 자동 재생 상태 토글
+            });
+
+            //2번째슬라이더 - 오늘의 선택
+            var swiper2 = new Swiper('.swiper-container#slider2', {
+                slidesPerView: 5, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 1, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
+                simulateTouch: false, // 터치 드래그 비활성화
+                allowTouchMove: false, // 터치 이동 비활성화
+                loop: true, // 슬라이드가 끝없이 반복되도록 설정
+                navigation: {
+                    nextEl: '.md_pick_list .swiper-button-next', // 다음 버튼
+                    prevEl: '.md_pick_list .swiper-button-prev', // 이전 버튼
+                },
+            });
+
+            //casting - 교보 오리지널 다음부분
+
+            var $sliderNav = $('.slider-nav');
+            var $sliderFor = $('.slider-for');
+
+            $sliderFor.slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                fade: true,
+                draggable: true,
+                infinite: false,
+                asNavFor: '.slider-nav',
+                arrows: false // 기본 네비게이션 버튼 비활성화
+            });
+
+            $sliderNav.slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                asNavFor: '.slider-for',
+                fade: true,
+                centerMode: false,
+                focusOnSelect: true,
+                infinite: false, // 무한 루프 비활성화
+                draggable: true, // 드래그 비활성화
+                arrows: false // 기본 네비게이션 버튼 비활성화
+            });
+
+            // 슬라이더 동기화 맞추기
+            $sliderNav.on('afterChange', function(event, slick, currentSlide){
+                $sliderFor.slick('slickGoTo', currentSlide);
+            });
+
+            // 네비게이션 슬라이더에 좌우 버튼 기능 추가
+            $('.nav-prev').on('click', function(){
+                $sliderNav.slick('slickPrev');
+            });
+
+            $('.nav-next').on('click', function(){
+                $sliderNav.slick('slickNext');
+            });
+
+            //초기화 시 주 슬라이더의 위치를 네비게이션 슬라이더에 맞추기
+            $sliderFor.slick('slickGoTo', $sliderNav.slick('slickCurrentSlide'));
+           
+            
+            var swiper3 = new Swiper('.swiper-container#slider3', {
+                slidesPerView: 4, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 4, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
+                // loop: true, // 슬라이드가 끝없이 반복되도록 설정
+                // pagination: {
+                //     el: '.swiper-pagination',
+                //     clickable: true, // 페이지네이션을 클릭할 수 있도록 설정
+                // },
+                navigation: {
+                    nextEl: '.mostView .swiper-button-next', // 다음 버튼
+                    prevEl: '.mostView .swiper-button-prev', // 이전 버튼
+                },
+            });
+
+            //
+            var swiper5 = new Swiper('.swiper-container#slider5', {
+                slidesPerView: 4, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 4, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
+                // loop: true, // 슬라이드가 끝없이 반복되도록 설정
+                // pagination: {
+                //     el: '.swiper-pagination',
+                //     clickable: true, // 페이지네이션을 클릭할 수 있도록 설정
+                // },
+                navigation: {
+                    nextEl: '.art_culture .swiper-button-next', // 다음 버튼
+                    prevEl: '.art_culture .swiper-button-prev', // 이전 버튼
+                },
+            });
+
+            //화제의 신상
+            var swiper6 = new Swiper('.swiper-container#slider6', {
+                slidesPerView: 5, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 5, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
+                // loop: true, // 슬라이드가 끝없이 반복되도록 설정
+                // pagination: {
+                //     el: '.swiper-pagination',
+                //     clickable: true, // 페이지네이션을 클릭할 수 있도록 설정
+                // },
+                navigation: {
+                    nextEl: '.new_arrivals .swiper-button-next', // 다음 버튼
+                    prevEl: '.new_arrivals .swiper-button-prev', // 이전 버튼
+                },
+            });
+
+            //히트
+            var swiper7 = new Swiper('.swiper-container#slider7', {
+                slidesPerView: 3, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 3, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
+                navigation: {
+                    nextEl: '.hit .swiper-button-next', // 다음 버튼
+                    prevEl: '.hit .swiper-button-prev', // 이전 버튼
+                },
+            });
+
+            //교보 오리지널
+            var swiper8 = new Swiper('.swiper-container#slider8', {
+                slidesPerView: 3, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 3, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
+                navigation: {
+                    nextEl: '.kyobo_original .swiper-button-next', // 다음 버튼
+                    prevEl: '.kyobo_original .swiper-button-prev', // 이전 버튼
+                },
+            });
+
+            //이벤트
+            var swiper9 = new Swiper('.swiper-container#slider9', {
+                slidesPerView: 1, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 1, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 1,
+                loop: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.kyobo_event .swiper-button-next', // 다음 버튼
+                    prevEl: '.kyobo_event .swiper-button-prev', // 이전 버튼
+                },
+            });
+           
+            var swiper10 = new Swiper('.swiper-container#slider10', {
+                slidesPerView: 4, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 4, // 한 번에 넘길 슬라이드 개수
+                spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
+                navigation: {
+                    nextEl: '.publish_pod .swiper-button-next', // 다음 버튼
+                    prevEl: '.publish_pod .swiper-button-prev', // 이전 버튼
+                },
+            });
+
+        });
+        
+    </script>
+</body>
+</html>

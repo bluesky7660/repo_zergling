@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,11 +13,9 @@ public class CourseController {
 	CourseService courseService;
 	
 	@RequestMapping(value = "/v1/mall/course/courseXdm")
-	public String courseXdm() {
-		List<CourseDto> courses = courseService.selectCourse();
-		for(CourseDto course: courses) {
-			System.out.printf("|%-5s|%-7s|%-30s|\n",course.getSeq(),course.getEduType(),course.getCourseName());
-		}
+	public String courseXdm(Model model) {
+		model.addAttribute("list", courseService.selectCourse());
+		model.addAttribute("totalRows", courseService.selectCourse().size()) ;
 		return "xdm/v1/mall/course/courseXdm";
 	}
 }

@@ -8,6 +8,7 @@ public class CodeDto {
 	private String codeName;
 	private Integer codeOrder;
 	private String codeDesc;
+	private String codeGroupName;
 	private Integer useNy;
 	private Integer delNy;
 	private Date regDate;
@@ -38,6 +39,12 @@ public class CodeDto {
 	}
 	public void setCodeDesc(String codeDesc) {
 		this.codeDesc = codeDesc;
+	}
+	public String getCodeGroupName() {
+		return codeGroupName;
+	}
+	public void setCodeGroupName(String codeGroupName) {
+		this.codeGroupName = codeGroupName;
 	}
 	public Integer getUseNy() {
 		return useNy;

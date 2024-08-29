@@ -1,0 +1,408 @@
+.prod_detail_head{
+    margin-bottom: 50px;
+}
+
+.prod_detail_head_top{
+    margin-bottom: 30px;
+}
+.prod_detail_head_top *{
+    text-align: center;
+}
+.prod_detail_head_top .prod_title{
+    font-size: 25px;
+}
+.prod_detail_head_bottom>*{
+    width: calc(100%/3);
+}
+.prod_detail_head_bottom .img-box{
+    width: 380px;
+    height: fit-content;
+    margin: 0;
+}
+.prod_detail_head_bottom .rating_box{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding:30px;
+}
+.prod_detail_head_bottom .rating_box>div{
+    padding:10px;
+}
+.prod_detail_head_bottom .rating_box *{
+    text-align: center;
+    color:#777;
+}
+.rating_number *{
+    font-size: 20px;
+    
+}
+
+.prod_detail_info{
+    display: flex;
+    flex-direction: column;
+}
+
+.prod_detail_info>*{
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+.prod_detail_info .prod_price *:not(.regular_price){
+    font-size: 25px;
+}
+
+
+.delivery_info p{
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.prod_detail_info_etc{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: auto;
+    margin-bottom:0;
+    gap: 20px;
+}
+.buy_btn_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.buy_btn_box button{
+    width: calc((100%/2) - 5px);
+}
+
+
+.prod_detail_tabs{
+    position:sticky;
+    top: 0;
+    z-index: 12;
+    background-color: #fff;
+    margin-bottom: 50px;
+    border-bottom: 1px solid;
+}
+.prod_detail_tabs>*{
+    padding: 30px;
+    cursor: pointer;
+}
+
+.prod_detail_info_wrap{
+    width: calc(100% - 400px);
+}
+.prod_detail_info_wrap>div{
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+
+
+/*사이드*/
+.prod_detail_recommend{
+    width: 400px;
+    padding-left: 50px;
+    /* background-color: rebeccapurple; */
+}
+.prod_detail_recommend ul li{
+    display: flex;
+    gap:15px; 
+}
+.prod_detail_recommend ul li .textArea{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0;
+}
+.prod_detail_recommend ul li:first-child .textArea>:first-child{
+    background-color: #4dac27;
+}
+.prod_detail_recommend ul li .textArea>:first-child{
+    border-radius: 10px 0 10px 0;
+    display: inline-block;
+    width: fit-content;
+    padding: 8px;
+    font-size: 13px;
+    background-color: #555;
+    color: #fff;
+}
+.prod_detail_recommend ul li *{
+    font-size: 14px;
+    white-space: nowrap;
+}
+.prod_detail_recommend ul li .img-box{
+    width: 110px;
+}
+.prod_detail_recommend .prod_title *{
+    font-size: 17px;
+}
+
+.author_info_box{
+    background-color: #f5f5f5;
+    border-radius: 30px;
+    padding:30px;
+}
+.author_type button{
+    background-color: #fff;
+    border:none;
+    border-radius: 18px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.author_type button:hover{
+    border: none;
+    background-color: #fff;
+}
+.author_info .img-box,.book_review .img-box{
+    width: 110px;
+}
+.info_desc.hidden{
+    line-height: 20px;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding-bottom: 0;
+}
+.info_text:not(.info_desc).hidden{
+    height:100px;
+}
+
+.info_text{
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 30px;
+    
+}
+.info_text:not(.info_desc)::after{
+    content: "";
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(180deg, transparent, #fff 15px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.author_other_prod .prod_title{
+    font-size: 14px;
+}
+.collapse_btn{
+    margin-top: 30px;
+    cursor: pointer;
+}
+.collapse_btn::after{
+    content: "\f106"; /* Font Awesome 유니코드 */
+    font-family: "Font Awesome 6 Free"; /* Font Awesome 6 폰트 패밀리 설정 */
+    font-weight: 900; /* 폰트 굵기 설정, Font Awesome 6 Free는 900 */
+    margin-left: 10px;
+    border-radius: 50%;
+    padding:10px;
+    display: inline-block;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ccc;
+    
+}
+.collapse_btn.hidden::after{
+    content: "\f107";
+}
+
+.review_box{
+    background-color: #f5f5f5;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.review_box *{
+    text-align: center;
+}
+.rating_number_box{
+    border-right: 1px solid #ccc;
+}
+.rating_number_box,.review_tags{
+    width: 50%;
+}
+.rating_number_box .scroll_box{
+    
+    margin-top: 30px;
+}
+
+.rating_number_box .scroll_box>li{
+    width: fit-content;
+    align-items: center;
+    display: flex;
+    margin: 10px;
+}
+.rating_number_box .clover_box li{
+    width: 20px;
+}
+.rating_total li.active{
+    opacity: 1;
+}
+.rating_total li{
+    opacity: 0.3;
+}
+.scroll_box li:nth-child(2) .clover_box li:not(:nth-child(1),:nth-child(2),:nth-child(3)){
+    opacity: 0.3;
+}
+.scroll_box li:nth-child(3) .clover_box li:not(:nth-child(1),:nth-child(2)){
+    opacity: 0.3;
+}
+.scroll_box li:nth-child(4) .clover_box li:not(:nth-child(1)){
+    opacity: 0.3;
+}
+
+.review_box .score_bar{
+    position: relative;
+    flex: 0 0 165px;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    margin: 0 12px;
+}
+
+.review_tab_box{
+    padding: 30px 0;
+    /* margin-bottom:30px;
+    padding-bottom: 30px; */
+    border-bottom: 1px solid #aaa;
+    display: flex;
+    justify-content: space-between;
+}
+.review_tab_box .sort_box{
+    width: 110px;
+}
+/*리뷰리스트*/
+.review_list{
+    padding: 50px 0;
+}
+/* .review_list>ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+} */
+.review_list>ul>li{
+    margin-bottom:30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #aaa;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding:0 20px 30px;
+}
+
+.review_list .review_head{
+    display: flex;
+    justify-content: space-between;
+}
+.review_list .review_head span{
+    font-size: 14px;
+    color: #aaa;
+}
+.review_list .review_head .line_space{
+    font-size: 12px;
+    margin:0;
+}
+.review_head>div{
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+.user_review_num{
+    display: none;
+}
+.user_select_tag{
+    padding-left:20px ;
+    position: relative;
+    color:#0d1357;
+}
+.user_select_tag::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0px;
+    width: 13px;
+    height: 13px;
+    background: url(../images/ico_quotes@2x.png) center no-repeat;
+    background-size: 13px 13px;
+}
+
+.btn_like::before{
+    content: "좋아요 ";
+}
+.review_footer{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+}
+.review_footer *{
+    font-size: 14px;
+    color:#777;
+}
+
+.review_list .clover_box{
+    gap: 3px;
+}
+.review_list .clover_box li{
+    width: 15px;
+    
+}
+/*리뷰작성박스*/
+.review_write_box{
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    margin-top: 30px;
+}
+.review_write_box>*:not(:nth-child(3),:last-child){
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 50px;
+}
+.review_write_box .box_title{
+    font-weight: bolder;
+}
+.review_write_box .box_title::after{
+    content: " *";
+    color:#357b19;
+}
+.review_write_box .caption-badge{
+    background-color: transparent;
+    color:#212529;
+    font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 25px;
+}
+.review_write_box .caption-badge *:not(strong){
+    font-size: 18px;
+    font-weight: 400;
+    color: #aaa;
+}
+.review_write_box input[type="radio"] {
+    display: none; /* 기본 라디오 버튼 숨기기 */
+}
+.review_write_box label{
+    cursor: pointer;
+    padding: 15px 20px;
+    border-radius: 46px;
+    color:#212529;
+    font-weight: bolder;
+    background-color: #f5f5f5;
+}
+.review_write_box input[type="radio"]:checked + label{
+    background-color: #aaa;
+    color:#fff;
+}
+.rating_prod_title{
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+/* .review_write_box input[type="radio"]:checked + label::before {
+    background-color: #007bff;
+    border-color: #007bff;
+} */
