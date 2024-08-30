@@ -13,10 +13,22 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value = "/v1/infra/user/userXdm")
-	public String userXdm(Model model) {
+	@RequestMapping(value = "/v1/infra/user/userXdmList")
+	public String userXdmList(Model model) {
 		model.addAttribute("list3", userService.selectUser()) ;
 		model.addAttribute("totalRows", userService.selectUser().size());
-		return "xdm/v1/infra/user/userXdm";
+		return "/xdm/v1/infra/user/userXdmList";
+	}
+	
+	@RequestMapping(value = "/v1/infra/user/userXdmForm")
+	public String userXdmForm() {
+
+		return "/xdm/v1/infra/user/userXdmForm";
+	}
+	@RequestMapping(value = "/v1/infra/user/userXdmInst")
+	public String userXdmForm(UserDto userDto) {
+//		System.out.println("그룹이름: "+userDto.getDateOfBirth());	
+		userService.insert(userDto);
+		return "redirect:/v1/infra/user/userXdmList";
 	}
 }

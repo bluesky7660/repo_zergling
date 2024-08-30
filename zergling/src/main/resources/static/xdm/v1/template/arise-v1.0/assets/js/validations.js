@@ -70,10 +70,9 @@
 			});
 
 			if (!allValid) {
-				event.preventDefault();
+				event.preventDefault();	// 페이지전환막기
 				event.stopPropagation();
 			} else {
-				event.preventDefault(); // Prevent default submission
 
 				// 서버에 데이터 전송 (예: fetch API 사용)
 				// const formData = new FormData(form);

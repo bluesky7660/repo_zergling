@@ -15,4 +15,7 @@ public class CodeService {
 		List<CodeDto> commonCode = codeDao.selectList();
 		return commonCode;
 	}
+	public int insert(CodeDto codeDto) {
+		return codeDao.insert(codeDto);
+	}
 }

@@ -10,11 +10,12 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.seq
+			,a.codeGroupOtherNum
 			,a.codeGroupName
 			,a.groupOrder
 			,a.groupDesc
 			,a.useNy
-		    ,a.delNy
+<!-- 		    ,a.delNy -->
 			,a.regDate
 			,a.modDate
 		FROM
@@ -23,4 +24,25 @@
 		ORDER BY
 			a.seq desc
 	</select>
+	<insert id="insert">
+		insert into codegroup(
+			codeGroupOtherNum
+			,codeGroupName
+		    ,groupOrder
+		    ,groupDesc
+		    ,useNy
+		    ,regDate
+		    ,modDate
+		    ,delNy
+		)value(
+			#{codeGroupOtherNum}
+			,#{codeGroupName}
+		    ,#{groupOrder}
+		    ,#{groupDesc}
+		    ,#{useNy}
+		    ,now()
+		    ,now()
+		    ,0
+		)
+	</insert>
 </mapper>

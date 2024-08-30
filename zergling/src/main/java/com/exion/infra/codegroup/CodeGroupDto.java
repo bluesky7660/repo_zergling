@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CodeGroupDto {
 	private String seq;
+	private String codeGroupOtherNum;
 	private String codeGroupName;
 	private Integer groupOrder;
 	private String  groupDesc;
@@ -18,6 +19,12 @@ public class CodeGroupDto {
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;
+	}
+	public String getCodeGroupOtherNum() {
+		return codeGroupOtherNum;
+	}
+	public void setCodeGroupOtherNum(String codeGroupOtherNum) {
+		this.codeGroupOtherNum = codeGroupOtherNum;
 	}
 	public String getCodeGroupName() {
 		return codeGroupName;

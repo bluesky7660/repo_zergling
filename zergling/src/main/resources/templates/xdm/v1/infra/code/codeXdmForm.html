@@ -15,7 +15,7 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
+		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0//xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
 		<title>Bootstrap Admin Dashboards</title>
@@ -371,19 +371,19 @@
 			<div class="main-container">
 
 				<!-- Page header starts -->
-				<div class="page-header">
+				<div class="page-header bg-white">
 
 					<div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
 
 					<!-- Breadcrumb start -->
-					<ol class="breadcrumb d-md-flex">
+					<!-- <ol class="breadcrumb d-md-flex order-md-1 order-2">
 						<li class="breadcrumb-item">
 							<i class="bi bi-house"></i>
 							<a href="index.html">Home</a>
 						</li>
 						<li class="breadcrumb-item">Page</li>
 						<li class="breadcrumb-item breadcrumb-active" aria-current="page">Form</li>
-					</ol>
+					</ol> -->
 					<!-- Breadcrumb end -->
 
 					<!-- Header actions ccontainer start -->
@@ -473,14 +473,14 @@
 							<div>
 								<div class="pb-4">
 									<!-- Breadcrumb start -->
-									<!-- <ol class="breadcrumb d-md-flex order-md-1 order-2">
+									<ol class="breadcrumb d-md-flex order-md-1 order-2">
 										<li class="breadcrumb-item">
 											<i class="bi bi-house"></i>
 											<a href="index.html">Home</a>
 										</li>
 										<li class="breadcrumb-item">Page</li>
 										<li class="breadcrumb-item breadcrumb-active" aria-current="page">Form</li>
-									</ol> -->
+									</ol>
 									<!-- Breadcrumb end -->
 								</div>
 								<div class="pb-4">
@@ -498,39 +498,57 @@
 										<div class="card-title">기본정보</div>
 									</div>
 									<div class="card-body">
-										<form method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmInst" class="needs-validation"  novalidate>
+										<form class="needs-validation" method="post" autocomplete="off" action="/v1/infra/code/codeXdmInst" novalidate>
 											<!-- Row start -->
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputCodeNumber" class="form-label">코드그룹 코드</label>
-														<input type="text" class="form-control" id="inputCodeNumber" name="seq" placeholder="자동생성" readonly="readonly" disabled>
+														<label for="inputIndustryType1" class="form-label">코드그룹</label>
+														<select class="form-select validate-this" id="inputIndustryType1" name="codeGroup_seq" required>
+															<option value="" selected disabled>선택하세요</option>
+															<option th:each="group : ${codeGroups}" th:value="${group.seq}" th:text="${group.codeGroupName}"></option>
+														</select>
+														<div class="invalid-feedback">
+															코드그룹을 선택해주세요.
+														</div>
 													</div>
 												</div>
 											</div>
 											<div class="row">
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputName" class="form-label">코드</label>
+														<input type="text" class="form-control" id="inputName" placeholder="자동생성" readonly="" disabled>
+													</div>
+												</div>
 												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputCodeNumber2" class="form-label">코드그룹 코드(ANOTHER)</label>
-														<input type="text" class="form-control" id="inputCodeNumber2" name="codeGroupOtherNum" placeholder="영대소문자, 숫자">
+														<label for="inputEmail" class="form-label">코드(ANOTHER)</label>
+														<input type="text" class="form-control" id="inputEmail" placeholder="영대소문자, 숫자">
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputName" class="form-label">코드그룹이름</label>
-														<input type="text" class="form-control validate-this" id="inputName" name="codeGroupName" placeholder="한글, 영대소문자, 숫자" required>
+														<label for="inputNumber" class="form-label">코드이름</label>
+														<input type="text" class="form-control validate-this" id="inputNumber" name="codeName" placeholder="한글, 영대소문자, 숫자" required>
 														<div class="invalid-feedback">
-															코드그룹이름을 적어주세요.
+															코드이름을 적어주세요.
 														</div>
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputCompanyName" class="form-label">코드이름 (영문)</label>
+														<input type="text" class="form-control" id="inputCompanyName" placeholder="영대소문자, 숫자">
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">	
-														<label for="inputUseNy" class="form-label">사용여부</label>
-														<select class="form-select validate-this" id="inputUseNy" name="useNy" required>
+														<label for="inputIndustryType2" class="form-label">사용여부</label>
+														<select class="form-select validate-this" id="inputIndustryType2" name="useNy" required>
 															<option value="" selected disabled>선택하세요</option>
 															<option value="1">사용</option>
-															<option value="0">사용안함</option>
+															<option value="2">사용안함</option>
 														</select>
 														<div class="invalid-feedback">
 															사용여부을 선택해주세요.
@@ -539,8 +557,8 @@
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputOrder" class="form-label">순서</label>
-														<input type="text" class="form-control validate-this" id="inputOrder" name="groupOrder" placeholder="1부터 적어주세요" required>
+														<label for="inputProvince" class="form-label">순서</label>
+														<input type="text" class="form-control validate-this" id="inputProvince" name="codeOrder" placeholder="" required>
 														<div class="invalid-feedback">
 															순서를 적어주세요.
 														</div>
@@ -551,18 +569,122 @@
 												<div class="col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="inputMessage" class="form-label">설명</label>
-														<textarea class="form-control exclude-validation" id="inputMessage" name="groupDesc" placeholder="코드그룹에 대한 설명을 적어주세요" rows="3"></textarea>
+														<textarea class="form-control exclude-validation" id="inputMessage" name="codeDesc" placeholder="" rows="3"></textarea>
 													</div>
 												</div>
 											</div>
+											<!-- <div class="row">
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual1" class="form-label">다국어1</label>
+														<input type="text" class="form-control" id="inputmultilingual1">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual2" class="form-label">다국어2</label>
+														<input type="text" class="form-control" id="inputmultilingual2">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual3" class="form-label">다국어3</label>
+														<input type="text" class="form-control" id="inputmultilingual3">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual4" class="form-label">다국어4</label>
+														<input type="text" class="form-control" id="inputmultilingual4">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual5" class="form-label">다국어5</label>
+														<input type="text" class="form-control" id="inputmultilingual5">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual6" class="form-label">다국어6</label>
+														<input type="text" class="form-control" id="inputmultilingual6">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual7" class="form-label">다국어7</label>
+														<input type="text" class="form-control" id="inputmultilingual7">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputmultilingual8" class="form-label">다국어8</label>
+														<input type="text" class="form-control" id="inputmultilingual8">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary1" class="form-label">예비 (VARCHAR TYPE)1</label>
+														<input type="text" class="form-control" id="inputpreliminary1">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary2" class="form-label">예비 (VARCHAR TYPE)2</label>
+														<input type="text" class="form-control" id="inputpreliminary2">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary3" class="form-label">예비 (VARCHAR TYPE)3</label>
+														<input type="text" class="form-control" id="inputpreliminary3">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary4" class="form-label">예비 (VARCHAR TYPE)4</label>
+														<input type="text" class="form-control" id="inputpreliminary4">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary5" class="form-label">예비 (INT TYPE)1</label>
+														<input type="text" class="form-control" id="inputpreliminary5">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary6" class="form-label">예비 (INT TYPE)2</label>
+														<input type="text" class="form-control" id="inputpreliminary6">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary7" class="form-label">예비 (INT TYPE)3</label>
+														<input type="text" class="form-control" id="inputpreliminary7">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputpreliminary8" class="form-label">예비 (INT TYPE)4</label>
+														<input type="text" class="form-control" id="inputpreliminary8">
+													</div>
+												</div>
+											</div> -->
 											<!-- Row end -->
 											<!-- Form actions footer start -->
 											<div class="form-actions-footer justify-content-between bg-white">
-												<a class="btn btn-outline-dark" type="button" href="codeGroupXdmList"><i class="bi bi-list-ul"></i></a>
+												<a class="btn btn-outline-dark" type="button" href="codeXdmList"><i class="bi bi-list-ul"></i></a>
 												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
 											</div>
 											<!-- Form actions footer end -->
 										</form>
+										
+
 									</div>
 								</div>
 								<!-- Card end -->

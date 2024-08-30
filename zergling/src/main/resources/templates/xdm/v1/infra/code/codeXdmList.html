@@ -586,8 +586,8 @@
 														<td th:if="${listC.useNy eq 0}">N</td>
 														<td th:unless="${listC.useNy eq 0}">Y</td>
 														<td th:text="${listC.codeOrder}">1</td>
-														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd hh:mm:ss')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd hh:mm:ss')}">2023-10-12 16:02:31</td>
+														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>
+														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>
 													</tr>
 												</tbody>
 											</table>	
@@ -634,7 +634,7 @@
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="codeGroupXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												<a href="codeXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
 											</div>
 										</div>
 									</div>

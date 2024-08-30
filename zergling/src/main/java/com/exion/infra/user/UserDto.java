@@ -2,6 +2,7 @@ package com.exion.infra.user;
 
 import java.util.Date;
 
+
 public class UserDto {
 	private String seq;
 	private Integer admNy;
@@ -11,12 +12,12 @@ public class UserDto {
 	private String gender;
 	private Date dateOfBirth;
 	private String email;
-	private String  userDesc;
+	private String phoneNum;
+	private String userDesc;
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
-	
-	//--------------------------
+//--------------------------
 	public String getSeq() {
 		return seq;
 	}
@@ -65,6 +66,12 @@ public class UserDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
 	public String getUserDesc() {
 		return userDesc;
 	}
@@ -89,4 +96,6 @@ public class UserDto {
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
+	
+	
 }

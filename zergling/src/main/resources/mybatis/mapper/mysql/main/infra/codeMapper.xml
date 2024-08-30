@@ -25,4 +25,25 @@
 		ORDER BY
 			a.seq desc
 	</select>
+	<insert id="insert">
+		insert into commoncode(
+			codeName
+		    ,codeOrder
+		    ,codeDesc
+		    ,useNy
+		    ,regDate
+		    ,modDate
+		    ,delNy
+		    ,codeGroup_seq
+		)value(
+			#{codeName}
+		    ,#{codeOrder}
+		    ,#{codeDesc}
+		    ,#{useNy}
+		    ,now()
+		    ,now()
+		    ,0
+		    ,#{codeGroup_seq}
+		)
+	</insert>
 </mapper>

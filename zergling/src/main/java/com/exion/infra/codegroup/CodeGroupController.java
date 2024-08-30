@@ -14,9 +14,7 @@ import com.exion.infra.code.CodeService;
 public class CodeGroupController {
 	@Autowired
 	CodeGroupService codeGroupService;
-	
-//	@Autowired
-//	CodeService codeService;
+
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmList")
 	public String codeGroupXdmList(Model model) {
@@ -35,6 +33,14 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmForm")
 	public String codeGroupXdmForm() {
-		return "/xdm/v1/infra/codegroup/codeGroupXdmform";
+		return "/xdm/v1/infra/codegroup/codeGroupXdmForm";
+	}
+	 
+	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmInst")
+	public String codeGroupXdmInst(CodeGroupDto codeGroupDto) {
+		System.out.println("그룹이름: "+codeGroupDto.getCodeGroupName());	
+		
+		codeGroupService.insert(codeGroupDto);
+		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
 }
