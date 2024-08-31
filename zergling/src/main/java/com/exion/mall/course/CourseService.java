@@ -14,4 +14,7 @@ public class CourseService {
 		List<CourseDto> courses = courseDao.selectCourse();
 		return courses;
 	}
+	public int insert(CourseDto courseDto) {
+		return courseDao.insert(courseDto);
+	}
 }

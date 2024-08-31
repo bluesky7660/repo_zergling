@@ -42,8 +42,7 @@
 			    ,#{userId}
 				,#{userPassword}
 			    ,#{gender}
-				<!-- ,#{dateOfBirth} -->
-				,19991212
+				,#{dateOfBirth}
 			    ,#{email}
 			    ,#{phoneNum}
 			    ,#{userDesc}

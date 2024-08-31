@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CourseDao {
-	List<CourseDto> selectCourse();
+	public List<CourseDto> selectCourse();
+	public int insert(CourseDto courseDto);
 }

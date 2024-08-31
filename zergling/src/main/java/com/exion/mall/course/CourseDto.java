@@ -2,24 +2,28 @@ package com.exion.mall.course;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class CourseDto {
 	private String seq;
 	private String eduType;
 	private String courseName;
 	private Integer coursePrice;
 	private String  instructor;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date courseRegStart;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date courseRegEnd;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date studyStart;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date studyEnd;
 	private String location;
 	private String content;
-	private Integer delNy;
 	private Date regDate;
 	private Date modDate;
-	
+	private Integer delNy;
 //-------------------------------------
-	
 	public String getSeq() {
 		return seq;
 	}
@@ -104,6 +108,5 @@ public class CourseDto {
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
 	}
-	
 	
 }

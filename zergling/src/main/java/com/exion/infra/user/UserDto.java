@@ -2,6 +2,8 @@ package com.exion.infra.user;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class UserDto {
 	private String seq;
@@ -10,6 +12,7 @@ public class UserDto {
 	private String userId;
 	private String userPassword;
 	private String gender;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	private String email;
 	private String phoneNum;
@@ -96,6 +99,5 @@ public class UserDto {
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
-	
 	
 }

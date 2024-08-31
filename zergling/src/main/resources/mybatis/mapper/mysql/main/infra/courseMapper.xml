@@ -23,4 +23,35 @@
 			course d
 		order by d.seq desc
 	</select>
+	<insert id="insert">
+	  		insert into course(
+				eduType
+			    ,courseName
+			    ,coursePrice
+			    ,instructor
+			    ,courseRegStart
+			    ,courseRegEnd
+			    ,studyStart
+			    ,studyEnd
+			    ,location
+			    ,content
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			)value(
+				#{eduType}
+			    ,#{courseName}
+			    ,#{coursePrice}
+				,#{instructor}
+			    ,#{courseRegStart}
+				,#{courseRegEnd}
+			    ,#{studyStart}
+			    ,#{studyEnd}
+			    ,#{location}
+			    ,#{content}
+			    ,now()
+			    ,now()
+			    ,0
+			)
+	  </insert>
 </mapper>

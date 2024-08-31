@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 	<head>
 		<!-- Required meta tags -->
@@ -15,7 +15,7 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0//xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
+		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
 		<title>Bootstrap Admin Dashboards</title>
@@ -24,11 +24,13 @@
 		<!-- *************
 			************ Common Css Files *************
 		************ -->
+
 		<!-- Animated css -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/css/animate.css">
 
 		<!-- Bootstrap font icons css -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/fonts/bootstrap/bootstrap-icons.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 		<!-- Main css -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/css/main.min.css">
@@ -37,17 +39,20 @@
 		<!-- *************
 			************ Vendor Css Files *************
 		************ -->
-
+		<!--<div style="background-color: red;"></div>-->
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
-
-		<!-- Data Tables -->
-		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5.css" />
-		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5-custom.css" />
-		<!-- Date Range CSS -->
-		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
 		<style>
-
+			.form-label{
+				margin-left: 10px;
+			}
+			.required .form-label::after{
+				content: " *";
+				color: red;
+			}
+			/* .card{
+				border:1px;
+			} */
 		</style>
 	</head>
 
@@ -224,7 +229,7 @@
 									<span class="menu-text">Calendar</span>
 								</a>
 							</li>
-							<li class="sidebar-dropdown">
+							<li class="sidebar-dropdown active">
 								<a href="#">
 									<i class="bi bi-columns-gap"></i>
 									<span class="menu-text">Forms</span>
@@ -256,7 +261,7 @@
 											<a href="editor.html">Editor</a>
 										</li>
 										<li>
-											<a href="form-layout1.html">Form Layout</a>
+											<a href="form-layout1.html" class="current-page">Form Layout</a>
 										</li>
 										<li>
 											<a href="form-layout2.html">Form Layout 2</a>
@@ -267,13 +272,10 @@
 										<li>
 											<a href="form-layout4.html">Form Horizontal</a>
 										</li>
-										<li>
-											<a href="form-layout5.html">Form Layout Tabs</a>
-										</li>
 									</ul>
 								</div>
 							</li>
-							<li class="sidebar-dropdown active">
+							<li class="sidebar-dropdown">
 								<a href="#">
 									<i class="bi bi-window-split"></i>
 									<span class="menu-text">Tables</span>
@@ -284,7 +286,7 @@
 											<a href="tables.html">Tables</a>
 										</li>
 										<li>
-											<a href="data-tables.html" class="current-page">Data Tables</a>
+											<a href="data-tables.html">Data Tables</a>
 										</li>
 									</ul>
 								</div>
@@ -374,19 +376,19 @@
 					<div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
 
 					<!-- Breadcrumb start -->
-					<ol class="breadcrumb d-md-flex d-none">
+					<ol class="breadcrumb d-md-flex">
 						<li class="breadcrumb-item">
 							<i class="bi bi-house"></i>
 							<a href="index.html">Home</a>
 						</li>
-						<li class="breadcrumb-item">Page2</li>
-						<li class="breadcrumb-item breadcrumb-active" aria-current="page">Data</li>
+						<li class="breadcrumb-item">Page</li>
+						<li class="breadcrumb-item breadcrumb-active" aria-current="page">Form</li>
 					</ol>
 					<!-- Breadcrumb end -->
 
 					<!-- Header actions ccontainer start -->
+					<!-- <div class="header-actions-container order-md-2 order-1"> -->
 					<div class="header-actions-container">
-
 						<!-- Search container start -->
 						<div class="search-container">
 
@@ -467,183 +469,156 @@
 
 					<!-- Content wrapper start -->
 					<div class="content-wrapper">
-
+						<div class="page-title">
+							<div>
+								<div class="pb-4">
+									<!-- Breadcrumb start -->
+									<!-- <ol class="breadcrumb d-md-flex order-md-1 order-2">
+										<li class="breadcrumb-item">
+											<i class="bi bi-house"></i>
+											<a href="index.html">Home</a>
+										</li>
+										<li class="breadcrumb-item">Page</li>
+										<li class="breadcrumb-item breadcrumb-active" aria-current="page">Form</li>
+									</ol> -->
+									<!-- Breadcrumb end -->
+								</div>
+								<div class="pb-4">
+									<h2>강의</h2>
+								</div>
+							</div>
+						</div>
 						<!-- Row start -->
 						<div class="row">
 							<div class="col-sm-12 col-12">
+
 								<!-- Card start -->
 								<div class="card border">
-									<div class="card-header bg-light">
-										<h2 class="card-title">
-											강의
-										</h2>
-										<div>
-											<form class="row gx-3 align-items-center" action="">
-												<div class="row gy-3">
-													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref1">
-															<option value="N" selected>N</option>
-															<option value="Y">Y</option>
-														</select>
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref2">
-															<option value="Y" selected>Y</option>
-															<option value="N">N</option>
-														</select>
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref3">
-															<option selected>수정일</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
-														</select>
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName1">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName1" placeholder="" value="2024-06-05">
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName2" placeholder="" value="2024-07-05">
-													</div>
-												</div>
-												<div class="row gy-3 mt-0">
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref4">
-															<option selected>검색구분</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
-														</select>
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control" id="specificSizeInputName2" placeholder="검색어">
-													</div>
-													<div class="col-12 col-lg-4 col-xl ">
-														<button type="button" class="btn btn-info "><i class="bi bi-search"></i></button>
-														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
-													</div>
-													<div class="col">      
-													</div>
-													<div class="col">
-													</div>
-												</div>
-											</form>
-										</div>
+									<div class="card-header border-bottom">
+										<div class="card-title">기본정보</div>
 									</div>
 									<div class="card-body">
-										<div class="row justify-content-between">
-											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
-											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<select class="dataTable-selector form-select" name="" id="">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-												</select>
+										<form method="post" autocomplete="off" action="/v1/mall/course/courseXdmInst" class="needs-validation"  novalidate>
+											<!-- Row start -->
+											<div class="row">
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputCodeNumber" class="form-label">강의 코드</label>
+														<input type="text" class="form-control" id="inputCodeNumber" name="seq" placeholder="자동생성" readonly="readonly" disabled>
+													</div>
+												</div>
 											</div>
-										</div>
-										<div class="scrolltable">
-											<table class="table dataTable table-hover" id="">
-												<thead>
-													<tr>
-														<th>
-															<input type="checkbox">
-														</th>
-														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">교육형태</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">강의명</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">교육비</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">강사</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">수강신청기간(시작)</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">수강신청기간(끝)</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">학습기간(시작)</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">학습기간(끝)</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">교육장소</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">교육내용</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
-														<td colspan="14"><p>데이터가 없습니다.</p></td>
-													</tr>
-													<tr th:each="listC : ${list}" th:if="${!#lists.isEmpty(list)}">
-														<td><input type="checkbox"></td>
-														<td th:text="${listC.seq}">171</td>
-														<td th:text="${listC.eduType}">57</td>
-														<td th:text="${listC.courseName}" class="td_spotlight">테테테</td>
-														<td th:text="${listC.coursePrice}">278</td>
-														<td th:text="${listC.instructor}">ㅁㄴㅇㄹ</td>
-														<td th:text="${#dates.format(listC.courseRegStart,'yyyy-MM-dd')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.courseRegEnd,'yyyy-MM-dd')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.studyStart,'yyyy-MM-dd')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.studyEnd,'yyyy-MM-dd')}">2023-10-12 16:02:31</td>
-														<td th:text="${listC.location}">1</td>
-														<td th:text="${listC.content}">1</td>																
-														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd hh:mm:ss')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd hh:mm:ss')}">2023-10-12 16:02:31</td>
-													</tr>
-												</tbody>
-											</table>	
-										</div>
-										
-										<div class="dataTable-bottom">
-											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-													<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
-													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-												</ul>
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a></li>
-													<li class="page-item"><a class="page-link" href="#">1</a></li>
-													<li class="page-item active"><a class="page-link" href="#">2</a></li>
-													<li class="page-item"><a class="page-link" href="#">3</a></li>
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a></li>
-												</ul> -->
-											</nav>
-										</div>
-										<div class="btn-toolbar mt-5 justify-content-between">
-											<div>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+											<div class="row">
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">	
+													<label for="inputEduType" class="form-label">교육형태</label>
+													<select class="form-select validate-this" id="inputEduType" name="eduType" required>
+														<option value="" selected disabled>선택하세요</option>
+														<option value="온라인">온라인</option>
+														<option value="오프라인">오프라인</option>
+														<option value="온/오프라인">온/오프라인</option>
+													</select>
+													<div class="invalid-feedback">
+														교육형태를 선택해주세요.
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputName" class="form-label">강의이름</label>
+														<input type="text" class="form-control validate-this" id="inputName" name="courseName" placeholder="" required>
+														<div class="invalid-feedback">
+															강의이름을 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputPrice" class="form-label">교육비</label>
+														<input type="text" class="form-control validate-this" id="inputPrice" name="coursePrice" placeholder="" required>
+														<div class="invalid-feedback">
+															교육비를 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputInstructor" class="form-label">강사이름</label>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="한글, 영대소문자" required>
+														<div class="invalid-feedback">
+															강의이름을 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputCourseRegStart" class="form-label">신청기간[시작일]</label>
+														<input type="date" class="form-control validate-this" id="inputCourseRegStart" name="courseRegStart" required>
+														<div class="invalid-feedback">
+															신청기간[시작일]을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputCourseRegEnd" class="form-label">신청기간[마감일]</label>
+														<input type="date" class="form-control validate-this" id="inputCourseRegEnd" name="courseRegEnd" required>
+														<div class="invalid-feedback">
+															신청기간[마감일]을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputStudyStart" class="form-label">교육기간[시작일]</label>
+														<input type="date" class="form-control validate-this" id="inputStudyStart" name="studyStart" required>
+														<div class="invalid-feedback">
+															교육기간[시작일]을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputStudyEnd" class="form-label">교육기간[마감일]</label>
+														<input type="date" class="form-control validate-this" id="inputStudyEnd" name="studyEnd" required>
+														<div class="invalid-feedback">
+															교육기간[마감일]을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputLocation" class="form-label">강의장소</label>
+														<input type="text" class="form-control validate-this" id="inputLocation" name="location" placeholder="한글, 영대소문자" required>
+														<div class="invalid-feedback">
+															강의장소을 적어주세요.
+														</div>
+													</div>
+												</div>
 											</div>
-											<div>
-												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="courseXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+											<div class="row">
+												<div class="col-xl-6 col-md-8 col-12">
+													<div class="mb-3">
+														<label for="inputContent" class="form-label">강의내용</label>
+														<textarea class="form-control validate-this" id="inputContent" name="content" placeholder="강의내용을 적어주세요." rows="3" required></textarea>
+														<div class="invalid-feedback">
+															강의내용을 적어주세요.
+														</div>
+													</div>
+												</div>
 											</div>
-										</div>
+											<!-- Row end -->
+											<!-- Form actions footer start -->
+											<div class="form-actions-footer justify-content-between bg-white">
+												<a class="btn btn-outline-dark" type="button" href="courseXdmList"><i class="bi bi-list-ul"></i></a>
+												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+											</div>
+											<!-- Form actions footer end -->
+										</form>
 									</div>
 								</div>
 								<!-- Card end -->
+
 							</div>
+
 						</div>
 						<!-- Row end -->
 
@@ -670,65 +645,6 @@
 		<!-- *************
 			************ Required JavaScript Files *************
 		************* -->
-		<script>
-			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
-			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
-
-			// 이전 페이지 링크 클릭 이벤트 처리
-			document.getElementById('previousPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex > 0) {
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex--; // 이전 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
-
-			// 다음 페이지 링크 클릭 이벤트 처리
-			document.getElementById('nextPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex++; // 다음 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
-
-			// 페이지 번호 링크 클릭 이벤트 처리
-			pageItems.forEach(function(pageItem, index) {
-				pageItem.addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				}
-				});
-			});
-
-			// 초기 페이지네이션 상태 업데이트
-			updatePaginationState();
-
-			// 페이지네이션 버튼 상태 업데이트 함수
-			function updatePaginationState() {
-				// 이전 버튼 상태 업데이트
-				if (currentPageIndex === 0) {
-				document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
-				} else {
-				document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
-				}
-
-				// 다음 버튼 상태 업데이트
-				if (currentPageIndex === pageItems.length - 1) {
-				document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
-				} else {
-				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
-				}
-			}
-		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/bootstrap.bundle.min.js"></script>
@@ -743,19 +659,9 @@
 		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
 
-		<!-- Data Tables -->
-		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.min.js"></script>
-		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bootstrap.min.js"></script>
-
-		<!-- Custom Data tables -->
-		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/custom/custom-datatables.js"></script>
-
-		<!-- Date Range JS -->
-		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.js"></script>
-		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/custom-daterange.js"></script>
-
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
 
 	</body>
 
