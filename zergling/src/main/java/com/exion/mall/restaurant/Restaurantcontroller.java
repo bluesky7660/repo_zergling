@@ -12,15 +12,20 @@ public class Restaurantcontroller {
 	@Autowired
 	RestaurantService restaurantService;
 	
-	@RequestMapping(value = "/v1/mall/restaurant/restaurantXdm")
+	@RequestMapping(value = "/v1/mall/restaurant/restaurantXdmList")
 	public String restaurantXdm(Model model) {
-		List<RestaurantDto> rests =  restaurantService.selectRest();
-		for(RestaurantDto rest:rests) {
-			System.out.println("날짜: "+ rest.getBusinessHoursEnd());
-//			System.out.printf("|%-5s|%-5s|\n",codeGroup.getSeq(),codeGroup.getCodeGroupName());
-		}
 		model.addAttribute("list", restaurantService.selectRest()) ;
 		model.addAttribute("totalRows", restaurantService.selectRest().size()) ;
-		return "/xdm/v1/mall/restaurant/restaurantXdm";
+		return "xdm/v1/mall/restaurant/restaurantXdm";
+	}
+	@RequestMapping(value = "/v1/mall/restaurant/restaurantXdmForm")
+	public String restaurantXdmForm() {
+		
+		return"xdm/v1/mall/restaurant/restaurantXdmForm";
+	}
+	@RequestMapping(value = "/v1/mall/restaurant/restaurantXdmInst")
+	public String restaurantXdmInst(RestaurantDto restaurantDto) {
+		restaurantService.insert(restaurantDto);
+		return"redirect:/v1/mall/restaurant/restaurantXdmList";
 	}
 }

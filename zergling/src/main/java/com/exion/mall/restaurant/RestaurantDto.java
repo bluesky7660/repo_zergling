@@ -1,26 +1,30 @@
 package com.exion.mall.restaurant;
 
-import java.sql.Time;
+
+
+import java.time.LocalTime;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class RestaurantDto {
 	private String seq;
 	private String foodType;
 	private String name;
-	private Time businessHoursStart;
-	private Time businessHoursEnd;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime businessHoursStart;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime businessHoursEnd;
 	private String tel;
 	private String webAddress;
 	private Integer parkingNy;
 	private Integer bookingNy;
 	private Integer freeCorkageNy;
-	private String  intro;
+	private String intro;
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
-	
-	//------------------------------
-	
+//------------------------------
 	public String getSeq() {
 		return seq;
 	}
@@ -39,16 +43,16 @@ public class RestaurantDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Time getBusinessHoursStart() {
+	public LocalTime getBusinessHoursStart() {
 		return businessHoursStart;
 	}
-	public void setBusinessHoursStart(Time businessHoursStart) {
+	public void setBusinessHoursStart(LocalTime businessHoursStart) {
 		this.businessHoursStart = businessHoursStart;
 	}
-	public Time getBusinessHoursEnd() {
+	public LocalTime getBusinessHoursEnd() {
 		return businessHoursEnd;
 	}
-	public void setBusinessHoursEnd(Time businessHoursEnd) {
+	public void setBusinessHoursEnd(LocalTime businessHoursEnd) {
 		this.businessHoursEnd = businessHoursEnd;
 	}
 	public String getTel() {

@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 public class RestaurantService {
 	@Autowired
 	RestaurantDao restaurantDao;
+	
 	public List<RestaurantDto> selectRest(){
 		List<RestaurantDto> rests = restaurantDao.selectRest();
 		return rests;
+	}
+	public int insert(RestaurantDto restaurantDto) {
+		return restaurantDao.insert(restaurantDto);
 	}
 }

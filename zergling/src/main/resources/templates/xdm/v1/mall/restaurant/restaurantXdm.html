@@ -584,13 +584,13 @@
 													</tr>
 													<tr th:each="listC : ${list}" th:if="${!#lists.isEmpty(list)}">
 														<td><input type="checkbox"></td>
-														<td th:text="${listC.seq}">171</td>
-														<td th:text="${listC.foodType}">57</td>
+														<td th:text="${listC.seq}"></td>
+														<td th:text="${listC.foodType}"></td>
 														<td th:text="${listC.name}" class="td_spotlight">테테테</td>
-														<td th:text="${#dates.format(listC.businessHoursStart,'HH:mm')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.businessHoursEnd,'HH:mm')}">2023-10-12 16:02:31</td>
-														<td th:text="${listC.tel}">278</td>
-														<td th:text="${listC.webAddress}">ㅁㄴㅇㄹ</td>
+														<td th:text="${#temporals.format(listC.businessHoursStart,'HH:mm')}"></td>
+														<td th:text="${#temporals.format(listC.businessHoursEnd,'HH:mm')}"></td>
+														<td th:text="${listC.tel}"></td>
+														<td th:text="${listC.webAddress}"></td>
 														<td th:if="${listC.parkingNy eq 0}">N</td>
 														<td th:unless="${listC.parkingNy eq 0}">Y</td>
 														<td th:if="${listC.bookingNy eq 0}">N</td>
@@ -646,7 +646,7 @@
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="codeGroupXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												<a href="restaurantXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
 											</div>
 										</div>
 									</div>

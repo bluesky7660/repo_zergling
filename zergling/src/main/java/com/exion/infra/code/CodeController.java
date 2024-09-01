@@ -37,10 +37,15 @@ public class CodeController {
 	@RequestMapping(value = "/v1/infra/code/codeXdmInst")
 	public String codeXdmInst(CodeDto codeDto) {
 		codeService.insert(codeDto);
-		System.out.println("그룹이름: "+codeDto.getCodeGroup_seq());
 		return "redirect:/v1/infra/code/codeXdmList";
-
 	}
+	
+	//------------------------
+//	@RequestMapping(value = "/v1/infra/codeGroup/codeGroupXdmList")
+//	public String codeXdmForm() {
+//
+//		return "/xdm/v1/infra/codeGroup/codeGroupXdmList";
+//	}
 	
 
 }

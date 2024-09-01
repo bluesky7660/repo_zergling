@@ -22,4 +22,35 @@
 			restaurant d
 		order by d.seq desc
 	</select>
+	<insert id="insert">
+		insert into restaurant(
+			foodType
+		    ,name
+		    ,businessHoursStart
+		    ,businessHoursEnd
+		    ,tel
+		    ,webAddress
+		    ,parkingNy
+		    ,bookingNy
+		    ,freeCorkageNy
+		    ,intro
+		    ,regDate
+		    ,modDate
+		    ,delNy
+		)value(
+			#{foodType}
+		    ,#{name}
+		    ,#{businessHoursStart}
+		    ,#{businessHoursEnd}
+		    ,#{tel}
+		    ,#{webAddress}
+		    ,#{parkingNy}
+		    ,#{bookingNy}
+		    ,#{freeCorkageNy}
+		    ,#{intro}
+		    ,now()
+			,now()
+		    ,0
+		)
+	</insert>
 </mapper>
