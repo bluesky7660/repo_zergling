@@ -17,4 +17,7 @@ public class UserService {
 	public int insert(UserDto userDto) {
 		return userDao.insert(userDto);
 	}
+	public int insertUser(UserDto userDto) {
+		return userDao.insertUser(userDto);
+	}
 }

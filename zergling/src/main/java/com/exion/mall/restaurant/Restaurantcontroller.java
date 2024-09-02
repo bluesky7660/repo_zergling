@@ -28,4 +28,8 @@ public class Restaurantcontroller {
 		restaurantService.insert(restaurantDto);
 		return"redirect:/v1/mall/restaurant/restaurantXdmList";
 	}
+	@RequestMapping(value = "/v1/mall/restaurant/restaurantXdmMfom")
+	public String restaurantXdmMfom() {
+		return"xdm/v1/mall/restaurant/restaurantXdmMfom";
+	}
 }

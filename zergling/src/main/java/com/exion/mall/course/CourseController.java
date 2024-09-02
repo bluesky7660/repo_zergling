@@ -28,4 +28,8 @@ public class CourseController {
 		courseService.insert(courseDto);
 		return "redirect:/v1/mall/course/courseXdmList";
 	}
+	@RequestMapping(value = "/v1/mall/course/courseXdmMfom")
+	public String courseXdmMfom() {
+		return "xdm/v1/mall/course/courseXdmMfom";
+	}
 }

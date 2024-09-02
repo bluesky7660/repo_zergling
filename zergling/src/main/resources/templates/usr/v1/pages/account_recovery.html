@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="assets/css/reset.css">
+    
+    <link rel="stylesheet" href="assets/css/tiny-slider.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- another-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css" integrity="sha256-wiMI7buOV5UBzdWN4s4kXqE/LZ794hx5oJOOIQlDBaM=" crossorigin="anonymous">
+    
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/signup.css">
+    <link rel="stylesheet" href="assets/css/account_recovery.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="contentArea">
+            <div class="logo" onclick="window.location.href='index'">
+                <img src="./assets/images/img_logo_kyobo_member@2x.png" alt="">
+            </div>
+            <div>
+                <form>
+                    <div class="type_tab d-flex justify-content-between">
+                        <div class="findId_tab tab_button active" data-target="findId_wrapper">
+                            <span>아이디 찾기</span>
+                        </div>
+                        <div class="findPassword_tab tab_button" data-target="findPassword_wrapper">
+                            <span>비밀번호 찾기</span>
+                        </div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="tab_content active" id="findId_wrapper">
+                            <div class="accordion" id="accordionFindId">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseId1" aria-expanded="true" aria-controls="collapseId1">
+                                            본인인증으로 찾기
+                                        </button>
+                                    </h2>
+                                    <div id="collapseId1" class="accordion-collapse collapse show" data-bs-parent="#accordionFindId">
+                                        <div class="accordion-body">
+                                            <div class="accordion-body-button-box">
+                                                <button class="btn" type="button">
+                                                    <div>
+                                                        <img src="" alt="">
+                                                    </div>
+                                                    휴대폰 본인인증
+                                                </button>
+                                                <button class="btn" type="button">
+                                                    <div>
+                                                        <img src="" alt="">
+                                                    </div>  
+                                                    아이핀 본인인증
+                                                </button>
+                                            </div>
+                                            <p>* 본인명의 휴대폰이 아닌 경우, 인증이 불가합니다.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseId2" aria-expanded="false" aria-controls="collapseId2">
+                                            휴대폰번호로 찾기
+                                        </button>
+                                    </h2>
+                                    <div id="collapseId2" class="accordion-collapse collapse" data-bs-parent="#accordionFindId">
+                                        <div class="accordion-body">
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findId02_1">이름</label>
+                                                <input class="form-control" id="findId02_1" type="text" placeholder="이름을 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findId02_2">생년월일</label>
+                                                <input class="form-control" id="findId02_2" type="text" placeholder="생년월일 8자리를 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findId02_3">휴대폰번호</label>
+                                                <input class="form-control" id="findId02_3" type="tel" placeholder="숫자만 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <button class="btn" type="button">확인</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseId3" aria-expanded="false" aria-controls="collapseId3">
+                                            이메일로 찾기
+                                        </button>
+                                    </h2>
+                                    <div id="collapseId3" class="accordion-collapse collapse" data-bs-parent="#accordionFindId">
+                                        <div class="accordion-body">
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findId03_1">이름</label>
+                                                <input class="form-control" id="findId03_1" type="text" placeholder="이름을 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findId03_2">생년월일</label>
+                                                <input class="form-control" id="findId03_2" type="text" placeholder="생년월일 8자리를 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findId03_3">이메일</label>
+                                                <input class="form-control" id="findId03_3" type="email" placeholder="이메일을 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <button class="btn" type="button">확인</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <ul class="input_area input_box">
+                                <li>
+                                    <label for="">이름</label>
+                                    <input type="text" class="form-control" placeholder="이름을 입력하세요.">
+                                </li>
+                                <li>
+                                    <label for="">아이디</label>
+                                    <input type="text" class="form-control" placeholder="아이디를 입력하세요.">
+                                </li>
+                                <li>
+                                    <label for="">비밀번호</label>
+                                    <div class="password_box">
+                                        <input id="login_password" class="form-control login_password" type="password" placeholder="비밀번호를 입력해주세요.">
+                                        <span class="toggle-button toggle-password" id="togglePassword1"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="">비밀번호 확인</label>
+                                    <div class="password_box">
+                                        <input id="login_password_check" class="form-control login_password" type="password" placeholder="비밀번호를 입력해주세요.">
+                                        <span class="toggle-button toggle-password" id="togglePassword2"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="user_gender">성별</label>
+                                    <div>
+                                        <select class="form-select" name="" id="user_gender" >
+                                            <option value="0" disabled selected>선택해주세요</option>
+                                            <option value="1">남자</option>
+                                            <option value="2">여자</option>
+                                            <option value="3">기타</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="">생년월일</label>
+                                    <input type="text" class="form-control" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="19991212">
+                                </li>
+                            </ul> -->
+                            <!-- <div class="signup_btn">
+                                <button class="btn btn-blue w-100" type="button">회원가입</button>
+                            </div> -->
+                        </div>
+                        <div class="tab_content find_password" id="findPassword_wrapper">
+                            <div class="accordion" id="accordionFindPassword">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePassword1" aria-expanded="true" aria-controls="collapsePassword1">
+                                            본인인증으로 찾기
+                                        </button>
+                                    </h2>
+                                    <div id="collapsePassword1" class="accordion-collapse collapse show" data-bs-parent="#accordionFindPassword">
+                                        <div class="accordion-body">
+                                            <div class="accordion-body-button-box">
+                                                <button class="btn" type="button">
+                                                    <div>
+                                                        <img src="" alt="">
+                                                    </div>
+                                                    휴대폰 본인인증
+                                                </button>
+                                                <button class="btn" type="button">
+                                                    <div>
+                                                        <img src="" alt="">
+                                                    </div>  
+                                                    아이핀 본인인증
+                                                </button>
+                                            </div>
+                                            <p>* 본인명의 휴대폰이 아닌 경우, 인증이 불가합니다.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePassword2" aria-expanded="false" aria-controls="collapsePassword2">
+                                            휴대폰번호로 찾기
+                                        </button>
+                                    </h2>
+                                    <div id="collapsePassword2" class="accordion-collapse collapse" data-bs-parent="#accordionFindPassword">
+                                        <div class="accordion-body">
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword02_1">이름</label>
+                                                <input class="form-control" id="findPassword02_1" type="text" placeholder="이름을 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword02_2">생년월일</label>
+                                                <input class="form-control" id="findPassword02_2" type="text" placeholder="생년월일 8자리를 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword02_3">휴대폰번호</label>
+                                                <input class="form-control" id="findPassword02_3" type="tel" placeholder="숫자만 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword02_4">아이디</label>
+                                                <input class="form-control" id="findPassword02_4" type="text" placeholder="아이디를 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <button class="btn" type="button">확인</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePassword3" aria-expanded="false" aria-controls="collapsePassword3">
+                                            이메일로 찾기
+                                        </button>
+                                    </h2>
+                                    <div id="collapsePassword3" class="accordion-collapse collapse" data-bs-parent="#accordionFindPassword">
+                                        <div class="accordion-body">
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword03_1">이름</label>
+                                                <input class="form-control" id="findPassword03_1" type="text" placeholder="이름을 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword03_2">생년월일</label>
+                                                <input class="form-control" id="findPassword03_2" type="text" placeholder="생년월일 8자리를 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword03_3">이메일</label>
+                                                <input class="form-control" id="findPassword03_3" type="email" placeholder="이메일을 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <label class="form-label" for="findPassword03_4">아이디</label>
+                                                <input class="form-control" id="findPassword03_4" type="text" placeholder="아이디를 입력해 주세요.">
+                                            </div>
+                                            <div class="accordion-body-item">
+                                                <button class="btn" type="button">확인</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <ul class="simple_Signup flex-wrap d-flex justify-content-center gap-3">
+                                <li>
+                                    <a href="javascript:void(0);"><img src="./assets/images/ico_sns_naver@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="./assets/images/ico_sns_kakao@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="./assets/images/ico_sns_google@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="./assets/images/ico_sns_phone@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="./assets/images/ico_sns_mail@2x.png" alt=""></a>
+                                </li>
+                            </ul> -->
+                            <!-- <div class="sns_btn">
+                                <button class="btn btn-blue w-100" type="button">간편회원 가입하기</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <footer>
+            <div class="text-center">
+                <span style="color:#777;font:14px;">ⓒ 이창훈</span>
+            </div>
+        </footer>
+    </div>
+    <!-- Required jQuery first, then Bootstrap Bundle JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Bootstrap Select JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="./assets/js/custom.js"></script>
+</body>
+</html>

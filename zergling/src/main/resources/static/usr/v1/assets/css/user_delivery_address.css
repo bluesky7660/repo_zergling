@@ -53,6 +53,7 @@
 }
 .address_list tr td {
     vertical-align: middle;
+    padding:30px 20px;
 }
 
 .address_name ,.rec_name,.rec_phone{

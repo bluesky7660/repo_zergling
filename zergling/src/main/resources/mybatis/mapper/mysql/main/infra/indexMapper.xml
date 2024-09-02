@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.mall.product.DeliveryAddressDao">
+	  <resultMap type="com.exion.mall.product.DeliveryAddressDto" id="resultObj"></resultMap>
+	  <select id="selectList" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    <!-- ,a.member_seq -->
+			from
+				deliveryaddress a
+			order by a.seq desc
+	  </select>
+	  <insert id="insertAddr">
+	  		insert into deliveryaddress(
+				defaultNy
+			    ,addressName
+			    ,RecipientName
+			    ,RecipientPhone
+			    ,address
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			    <!-- ,member_seq -->
+			
+			)value(
+				#{defaultNy}
+				,#{addressName}
+			    ,#{RecipientName}
+			    ,#{RecipientPhone}
+			    ,#{address}
+			    ,now()
+			    ,now()
+			    ,0
+			    <!-- ,1 -->
+			)
+	  </insert>
+</mapper>

@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // 버튼 아이콘 변경
             this.style.backgroundImage = type === 'password' 
-                ? "url('./assets/images/ico_eye@2x.png')" 
-                : "url('./assets/images/ico_eye_active@2x.png')";
+                ? "url('/usr/v1/assets/images/ico_eye@2x.png')" 
+                : "url('/usr/v1/assets/images/ico_eye_active@2x.png')";
         });
     });
     

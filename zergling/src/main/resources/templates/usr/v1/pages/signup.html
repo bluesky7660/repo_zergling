@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/bootstrap.min.css" />
+    <link rel="shortcut icon" href="/usr/v1/assets/images/favicon.svg"> -->
+    
+    <link rel="stylesheet" href="/usr/v1/assets/css/reset.css">
+    
+    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/style.css"> -->
+    <link rel="stylesheet" href="/usr/v1/assets/css/tiny-slider.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- another-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css" integrity="sha256-wiMI7buOV5UBzdWN4s4kXqE/LZ794hx5oJOOIQlDBaM=" crossorigin="anonymous">
+    
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/signup.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="contentArea">
+            <div class="logo" onclick="window.location.href='index'">
+                <img src="/usr/v1/assets/images/img_logo_kyobo_member@2x.png" alt="">
+            </div>
+            <div>
+                <form method="post" autocomplete="off" action="signupInst">
+                    <div class="type_tab d-flex justify-content-between">
+                        <div class="individual_tab tab_button active" data-target="individual_member">
+                            <span>개인회원</span>
+                        </div>
+                        <div class="corporate_tab tab_button" data-target="corporate_member">
+                            <span>간편회원</span>
+                        </div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="tab_content active" id="individual_member">
+                            <ul class="input_area input_box">
+                                <li>
+                                    <label for="">이름</label>
+                                    <input type="text" class="form-control" name="name" placeholder="이름을 입력하세요." required>
+                                </li>
+                                <li>
+                                    <label for="">아이디</label>
+                                    <input type="text" class="form-control" name="userId" placeholder="아이디를 입력하세요." required>
+                                </li>
+                                <li>
+                                    <label for="">비밀번호</label>
+                                    <div class="password_box">
+                                        <input id="login_password" class="form-control login_password" name="userPassword" type="password" placeholder="비밀번호를 입력해주세요." required>
+                                        <span class="toggle-button toggle-password" id="togglePassword1"></span>
+                                    </div>
+                                </li>
+                                <!-- <li>
+                                    <label for="">비밀번호 확인</label>
+                                    <div class="password_box">
+                                        <input id="login_password_check" class="form-control login_password" name="userPassword" type="password" placeholder="비밀번호를 입력해주세요." required>
+                                        <span class="toggle-button toggle-password" id="togglePassword2"></span>
+                                    </div>
+                                </li> -->
+                                <li>
+                                    <label for="">이메일</label>
+                                    <input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요." required>
+                                </li>
+                                <li>
+                                    <label for="">전화번호</label>
+                                    <input type="tel" class="form-control" name="phoneNum" placeholder="전화번호를 입력해주세요." required>
+                                </li>
+                                <!-- <li>
+                                    <label for="">유저설명</label>
+                                    <textarea class="form-control exclude-validation" id="inputMessage" name="userDesc" placeholder="유저에 대한 설명을 적어주세요" rows="3"></textarea>
+                                </li> -->
+                                <li>
+                                    <label for="user_gender">성별</label>
+                                    <div>
+                                        <select class="form-select" name="gender" id="user_gender" required>
+                                            <option value="0" disabled selected>선택해주세요</option>
+                                            <option value="남자">남자</option>
+                                            <option value="여자">여자</option>
+                                            <option value="기타">기타</option>
+                                            <!-- <option value="1">남자</option>
+                                            <option value="2">여자</option>
+                                            <option value="3">기타</option> -->
+                                        </select>
+                                        <!-- <span>
+                                            <input class="form-check-input" type="radio" name="user_gender" id="user_gender_man">
+                                            <label class="form-check-label" for="user_gender_man">남자</label>
+                                        </span>
+                                        <span>
+                                            <input class="form-check-input" type="radio" name="user_gender" id="user_gender_woman">
+                                            <label class="form-check-label" for="user_gender_woman">여자</label>
+                                        </span>
+                                        <span>
+                                            <input class="form-check-input" type="radio" name="user_gender" id="user_gender_etc">
+                                            <label class="form-check-label" for="user_gender_etc">기타</label>
+                                        </span> -->
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="">생년월일</label>
+                                    <input type="date" class="form-control" name="dateOfBirth" placeholder="19991212" required>
+                                    <!-- <input type="text" class="form-control" name="dateOfBirth" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="19991212" required> -->
+                                </li>
+                                
+                            </ul>
+                            <div class="signup_btn">
+                                <button class="btn btn-blue w-100" type="submit">회원가입</button>
+                            </div>
+                        </div>
+                        <div class="tab_content" id="corporate_member">
+                            <ul class="simple_Signup flex-wrap d-flex justify-content-center gap-3">
+                                <li>
+                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_naver@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_kakao@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_google@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_phone@2x.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_mail@2x.png" alt=""></a>
+                                </li>
+                            </ul>
+                            <div class="sns_btn">
+                                <button class="btn btn-blue w-100" type="button">간편회원 가입하기</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <footer>
+            <div class="text-center">
+                <span style="color:#777;font:14px;">ⓒ 이창훈</span>
+            </div>
+        </footer>
+    </div>
+    <!-- Required jQuery first, then Bootstrap Bundle JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Bootstrap Select JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- <script src="/usr/v1/assets/js/tiny-slider.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tiny-slider@2.9.4/dist/tiny-slider.css">
+    <script src="https://cdn.jsdelivr.net/npm/tiny-slider@2.9.4/dist/tiny-slider.js"></script> -->
+    <!-- Initialize Bootstrap Select -->
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
+    <script src="/usr/v1/assets/js/custom.js"></script>
+</body>
+</html>

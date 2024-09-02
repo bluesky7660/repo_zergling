@@ -586,7 +586,9 @@
 														<td><input type="checkbox"></td>
 														<td th:text="${listC.seq}"></td>
 														<td th:text="${listC.foodType}"></td>
-														<td th:text="${listC.name}" class="td_spotlight">테테테</td>
+														<td class="td_spotlight">
+															<a th:href="@{/v1/mall/restaurant/restaurantXdmMfom(seq=${listC.seq})}" th:text="${listC.name}"></a>
+														</td>
 														<td th:text="${#temporals.format(listC.businessHoursStart,'HH:mm')}"></td>
 														<td th:text="${#temporals.format(listC.businessHoursEnd,'HH:mm')}"></td>
 														<td th:text="${listC.tel}"></td>
@@ -597,9 +599,9 @@
 														<td th:unless="${listC.bookingNy eq 0}">Y</td>
 														<td th:if="${listC.freeCorkageNy eq 0}">N</td>
 														<td th:unless="${listC.freeCorkageNy eq 0}">Y</td>
-														<td th:text="${listC.intro}" class="td_intro">1</td>
-														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd hh:mm:ss')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd hh:mm:ss')}">2023-10-12 16:02:31</td>
+														<td th:text="${listC.intro}" class="td_intro"></td>
+														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd hh:mm:ss')}"></td>
+														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd hh:mm:ss')}"></td>
 													</tr>
 												</tbody>
 											</table>	

@@ -51,4 +51,33 @@
 			    ,0
 			)
 	  </insert>
+	  <insert id="insertUser">
+	  		insert into user(
+				admNy
+			    ,name
+			    ,userId
+			    ,userPassword
+			    ,gender
+			    ,dateOfBirth
+			    ,email
+			    ,phoneNum
+			    ,userDesc
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			)value(
+				0
+			    ,#{name}
+			    ,#{userId}
+				,#{userPassword}
+			    ,#{gender}
+				,#{dateOfBirth}
+			    ,#{email}
+			    ,#{phoneNum}
+			    ,"신규유저입니다."
+			    ,now()
+			    ,now()
+			    ,0
+			)
+	  </insert>
 </mapper>

@@ -31,4 +31,9 @@ public class UserController {
 		userService.insert(userDto);
 		return "redirect:/v1/infra/user/userXdmList";
 	}
+	
+	@RequestMapping(value = "/v1/infra/user/userXdmMfom")
+	public String userXdmMFom() {
+		return "xdm/v1/infra/user/userXdmMfom";
+	}
 }

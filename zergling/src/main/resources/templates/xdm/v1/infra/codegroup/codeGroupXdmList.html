@@ -642,7 +642,12 @@
 														<!-- <td>171</td> -->
 														<td th:text="${listG.seq}"></td>
 														<td th:text="${listG.codeGroupOtherNum}"></td>
-														<td th:text="${listG.codeGroupName}" class="td_spotlight"></td>
+														<!-- <td class="td_spotlight">
+															<a href="/v1/infra/codegroup/codeGroupXdmForm?seq=1" th:text="${listG.codeGroupName}"></a>
+														</td> -->
+														<td class="td_spotlight">
+															<a th:href="@{/v1/infra/codegroup/codeGroupXdmForm(seq=${listG.seq})}" th:text="${listG.codeGroupName}"></a>
+														</td>
 														<td th:text="${listG.groupDesc}"></td>
 														<td th:if="${listG.useNy eq 0}">N</td>
 														<td th:unless="${listG.useNy eq 0}">Y</td>

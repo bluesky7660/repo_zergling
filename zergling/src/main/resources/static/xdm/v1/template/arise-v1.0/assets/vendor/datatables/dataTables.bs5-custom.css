@@ -64,9 +64,12 @@ table.dataTable td.highlight {
 table.dataTable tbody tr>*{
 	white-space: nowrap;
 }
-table .td_spotlight{
+table .td_spotlight,table .td_spotlight a{
 	color: rgb(0, 110, 255);
     font-weight: bold;
+}
+table .td_spotlight a:hover{
+	text-decoration: underline;
 }
 .btn .bi{
 	font-size: 1rem;
@@ -83,7 +86,7 @@ table .td_spotlight{
 	padding-left: 20px;
 }
 .table tr:not(thead tr,.data_empty){
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 .table tr>*{
 	padding:1rem;

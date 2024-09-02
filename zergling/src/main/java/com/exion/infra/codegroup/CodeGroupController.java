@@ -43,4 +43,10 @@ public class CodeGroupController {
 		codeGroupService.insert(codeGroupDto);
 		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
+	
+	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmMfom")
+	public String codeGroupXdmMfom(CodeGroupDto codeGroupDto) {
+//		codeGroupService.insert(codeGroupDto);
+		return "xdm/v1/infra/codegroup/codeGroupXdmMfom";
+	}
 }

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/bootstrap.min.css" />
+    <link rel="shortcut icon" href="/usr/v1/assets/images/favicon.svg"> -->
+    
+    <link rel="stylesheet" href="/usr/v1/assets/css/reset.css">
+    
+    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/style.css"> -->
+    <link rel="stylesheet" href="/usr/v1/assets/css/tiny-slider.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- another-->
+    <!-- kartik-v star rating -->
+    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" rel="stylesheet">
+    
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/product_detail.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <div class="navbar_pc">
+                <div class="customer_service_area d-flex justify-content-end">
+                    <div class="customer_service_box d-flex  align-items-center">
+                        <ul class="d-flex gap-3">
+                            <li class="">
+                                <a href="signup.html">회원가입</a>
+                            </li>
+                            <li class="">
+                                <a href="login.html">로그인</a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);">회원혜택</a>
+                            </li>
+                            <li class="">
+                                <a href="user_order_list.html">주문배송</a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);">매장안내</a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);">고객센터</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="scrolltable">
+                    <div class="gnb_search d-flex justify-content-between gap-5">
+                        <div class="search_wrapper d-flex align-items-center  gap-5">
+                            <div class="logo" onclick="window.location.href='index.html'">
+                                <img src="/usr/v1/assets/images/logo_book.svg" alt="">
+                            </div>
+                            <div class="search_area w-100">
+                                <div class="search_box d-flex align-items-center gap-3">
+                                    <input type="text" class="input-search">
+                                    <button class="search_btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user_box d-flex align-items-center gap-4">
+                            <div class="cart" onclick="window.location.href='user_cart.html'">
+                                <img src="/usr/v1/assets/images/btn_header_cart@2x.png" alt="">
+                            </div>
+                            <div class="user_my" onclick="window.location.href='user_account.html'">
+                                <img src="/usr/v1/assets/images/btn_header_my@2x.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="gnb_list d-flex justify-content-between">
+                        <div class="gnb_wrapper d-flex align-items-center gap-5">
+                            <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
+                            <ul class="gnb_link d-flex gap-5">
+                                <li onclick="window.location.href='product_list.html'">국내도서</li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="content_wrapper">
+                <div class="prod_detail_head">
+                    <div class="prod_detail_head_top">
+                        <div class="prod_title">
+                            <p><span class="gray_color pre_order"></span> <strong th:text="${product.title}">나쁜 검사들</strong></p>
+                        </div>
+                        <div class="prod_desc">
+                            <span>이중세 장편소설</span>
+                        </div>
+                    </div>
+                    <div class="prod_detail_head_bottom d-flex justify-content-between gap-5">
+                        <div class="prod_detail_view d-flex flex-column gap-3">
+                            <p>
+                                <strong>이중세 저자(글)</strong>
+                                <p class="gray_color"><span th:text="${product.publisher}">마이디어북스</span> · <span th:text="${product.makeDate}">2024년 08월 01일</span></p>
+                            </p>
+                            <div class="rating_box d-flex gap-3 align-items-center">
+                                <div class="user_rating d-flex flex-column gap-3">
+                                    <p class="rating_number">
+                                        <strong>9.1</strong>
+                                    </p>
+                                    <ul class="clover_box d-flex justify-content-between gap-3">
+                                        <li>
+                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                        </li>
+                                        <li>
+                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                        </li>
+                                        <li>
+                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                        </li>
+                                        <li>
+                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                        </li>
+                                    </ul>
+                                    <p class="total_reviews">(<span class="review_count">0</span>개의 리뷰)</p>
+                                </div>
+                                <div class="user_tags">
+                                    <p>평가된 감성태크가 없습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="img_slider_container">
+                            <div class="img-box">
+                                <img src="/usr/v1/assets/images/prod/9791193289273.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="prod_detail_info">
+                            <div class="badges_box">
+                                <span class="badge">무료배송</span>
+                                <span class="badge">소득공제</span>
+                            </div>
+                            <div class="prod_price">
+                                <strong class="saleP">10%</strong>
+                                <span class="sale_price">
+                                    <strong th:text="${Product.salePrice}">15,750</strong>원
+                                </span>
+                                <span class="regular_price"><span th:text="${Product.price}">17,500</span>원</span>
+                            </div>
+                            <div class="point_box d-flex justify-content-between">
+                                <strong>적립/혜택</strong>
+                                <span class="green_color"><span th:text="${Product.point}">870</span>P</span>
+                            </div>
+                            <div class="delivery_info d-flex justify-content-between">
+                                <div>
+                                    <strong>배송안내</strong>
+                                </div>
+                                <div>
+                                    <p>무료배송</p>
+                                    <p>8/3(토) 출고예정</p>
+                                    <p>기본배송지 기준</p>
+                                </div>
+                            </div>
+                            <div class="prod_detail_info_etc">
+                                <div class="number-input">
+                                    <button class="decrease-button">-</button>
+                                    <input type="number" min="1" max="999" value="1">
+                                    <button class="increase-button">+</button>
+                                </div>
+                                <div class="buy_btn_box">
+                                    <button class="btn">장바구니</button>
+                                    <button class="btn" onclick="window.location.href='product_buy.html'">바로구매</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prod_detail_tabs d-flex gap-3">
+                    <div class="detail_tabs prod_detail_info_tab">상품정보</div>
+                    <div class="detail_tabs prod_detail_review_tab" >리뷰 (<span class="review_count">0</span>)</div>
+                </div>
+                <div class="prod_detail_contents d-flex">
+                    <div class="prod_detail_info_wrap">
+                        <div class="info_img">
+                            <div class="img-box">
+                                <img src="/usr/v1/assets/images/info/i9791193289273.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="prod_about">
+                            <div class="prod_about_head d-flex flex-column gap-2 mb-3">
+                                <p class="box_title"><b>책 소개</b></p>
+                                <p>이 책이 속한 분야</p>
+                                <div>
+                                    국내도서 > 소설 > 한국소설
+                                </div>
+                            </div>
+                            <div>
+                                <p>
+                                    <strong>
+                                        “나쁜 것과 나쁜 게 아닌 것의 구분은 우리 검찰이 한다.”<br><br>휘몰아치는 전개! 압도적 몰입감! K-스토리 수상작가 이중세 신작 장편소설<br>대한민국 최고 권력 검찰을 향한 칼끝은 범죄인가, 개혁인가?
+                                    </strong>
+                                    <br><br>
+                                    K-스토리 최우수상 수상, 교보문고 스토리 공모전 수상, SF 오디오 스토리 어워즈 수상 등 화려한 수상 경력으로 수많은 독자들에게 눈도장을 찍은 이중세 작가가 신작 장편소설 『나쁜 검사들』을 출간했다. 한때는 세상을 뒤엎고 싶었던 반부패수사부 검사 출신의 변호사가 뜻밖의 범죄 사건에 휘말리게 되면서 결국 검찰을 향해 칼끝을 겨누게 되는 이 소설은, 대한민국 권력의 지도를 적나라하게 보여주는 웰메이드 누아르 수사 활극이다.<br>
+                                    실제로 작가는 이 소설을 쓰기 위해 수년에 걸쳐 관계자들을 조사하고 인터뷰했으며 그 노력은 고스란히 작품에 녹아들었다. 부패한 조직과 반부패를 부르짖는 이들의 팽팽한 긴장감은 현실보다 더 현실 같은 에피소드로 마지막까지 이 책을 손에서 놓지 못하게 만든다. 작가는 “부당한 처사를 당연하게 받아들이지 않는 선한 자들의 작은 목소리가 결국 큰 세상을 바꿀 것”이라며, 이 책이 독자들의 답답한 가슴을 시원하게 뚫어줄 소화제가 되기를 바랐다.<br>
+                                    휘몰아치는 전개와 생생한 묘사, 압도적 몰입감으로 마치 한 편의 영화를 보듯 단숨에 읽어내려갈 수 있는 소설 『나쁜 검사들』과 함께 무더운 여름을 시원하게 날려보자.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="author_info">
+                            <p class="box_title"><b>작가정보</b></p>
+                            <div class="author_info_box d-flex flex-column gap-3 ">
+                                <div class="d-flex justify-content-between">
+                                    <p><span>저자(글) </span> <strong> 이중세</strong></p>
+                                    <button class="btn">인물정보</button>
+                                </div>
+                                <div class="author_type">
+                                    <button class="btn">연극인＞희곡/극작가</button>
+                                </div>                                
+                                <p class="info_text info_desc">생물학과 문예창작을 전공했다. 오래 기억되는 글을 쓰고 싶어 한다.<br>소설 「그래서 그들은 강으로 갔다」로 2013년 평사리문학대상을, 같은 해 희곡 〈끈〉으로 목포문학상 희곡 본상을 받았다.<br>소설 「코의 무게」, 「오래된 미래」가 각각 2019 교보문고 스토리공모전, SF오디오스토리어워즈에 수상작으로 선정되었다.<br>2022년 K-스토리 공모전에서 최우수상을 받고 장편소설 『강철로 된 무지개』를 출간했다.<br>그 밖에 희곡 〈파국〉과 장편소설 『삼키는 칼』을 썼다.</p>
+                                <div class="collapse_btn">
+                                    <span>펼치기</span>
+                                </div>
+                                <div class="author_other_prod">
+                                    <div class="img-box">
+                                        <img src="/usr/v1/assets/images/prod/200/9788957868997.jpg" alt="">
+                                    </div>
+                                    <a href="javascript:void(0);" class="prod_title"><strong>강철로 된 무지개</strong></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book_contents">
+                            <p class="box_title"><b>목차</b></p>
+                            <ul class="info_text">
+                                <li>제1장. 붉은 옷을 입은 여인</li>
+                                <li>제2장. 남색 아반떼에 몸을 숨긴 수사관</li>
+                                <li>제3장. 갈색 보테가베네타 가방을 든 변호사</li>
+                                <li>제4장. 검은 하이힐을 신은 검사</li>
+                                <li>제5장. 황금 커프스단추를 단 칼잡이들</li>
+                                <li>제6장. 은빛 라이터를 딸깍거리는 깡패</li>
+                                <li>제7장. 보랏빛 행커치프를 착용한 보스</li>
+                                <li>제8장. 흰색 가루 속에서 춤을 추는 사람들</li>
+                                <li>제9장. 호두색 마호가니 책상에 앉은 얼간이들</li>
+                                <li>제10장. 푸른 재킷을 입은 사나이</li>
+                            </ul>
+                            <div class="collapse_btn ">
+                                <span>펼치기</span>
+                            </div>
+                        </div>
+                        <div class="book_info">
+                            <p class="box_title"><b>책 속으로</b></p>
+                            <p class="info_text">“서울중앙지방검찰청 반부패수사 제2부 김훈정 검사님. 저는 지금 검사님께 장진호가 20년 동안 검찰 고위층에 상납해온 뇌물장부와 여러 사업체를 확장시키며 벌여온 폭력과 협박과 범죄 교사의 혐의를 입증할 자료를 드리려 합니다. 맞습니까?”<br>김 검사가 입 떼려 할 때, 누군가 테이블 위에 놓인 그녀의 손을 확 잡았다. 수현이었다. 수현이 고개를 내저었다. 한편으로 그는 묻고 있었다. 김훈정이 보고 온 게, 장진호가 20년 동안 검찰 고위층에 상납해온 뇌물장부라는 게 사실이냐고.<br>“그래요.”<br>변호사가 수현과 김 검사를 번갈아 보았다. 수현에게도 같은 걸 물을지 곰곰 따져보던 변호사가 김 검사를 바라보았다.<br>“장진호를 구속시키고, 그 수하들까지 잡아들일 각오로 증거가 담긴 USB를 받아가시는 거, 맞죠?”<br>김 검사가 손가락을 뻗어 휴대폰 화면을 눌렀다. 녹음은 중단되었고, 변호사의 얼굴이 일그러졌다.<br>“당신이 내민 증거물이 당신을 보증한다 했지?”<br>그건 사실이었다.<br>“당신의 정체에 대해 묻지 않고 일을 진행해주겠어. 당신의 증거만을 믿고. 그러니 알량한 협박 따윈 하지 마. 나를 믿고 넘기려면 통째로 믿어. 나도 당신의 증거와 그게 일으킬 부작용까지 통째 받을 테니.”<br>- 〈제4장. 검은 하이힐을 심은 검사〉 중에서<br><br>윤종건은 세탁소 노릇만 한 건 아니었다고 강조했다.<br>“일종의 집합소예요. 회장님이 세금이나 밀수나 여러 가지 차명으로 돌리는 자금이 한 덩이고, 채권이나 미술품이나 귀금속까지 엄청나다 이겁니다.”<br>“단순 빨래방이 아니다? 그나저나 왜 튄 건데.” <br>윤종건은 한동안 말이 없었다.<br>“회장님 꼭지가 완전 돌았어요. 검찰수사관이 왔다 갔다니까 쎄했던 거지. 동맥경화 걸린 사람처럼 퍼덕거리더라고. 숍 당장 닫으라고, 자료 싹 다 폐기하라고 악을 쓰는데……. 이미 들어갈 때 자료 다 모아서 갔어요. 그건 다 넘겼고.”<br>“복사본 떠놨지?”<br>“적금이야 꾸준히 부어뒀죠.” <br>“돌아와서는 자료 폐기했다며.”<br>“팔 빠져라 파쇄기에 종이 넣고 있는데 전화가 와요. 하고 있냐고. 임 실장이라고, 장 회장 밑에 놈이야. 하는 중이라니까 알았다고 하는데, 깜빡이 소리가 나더라고요.”<br>“깜빡이?”<br>“틱톡틱톡.”<br>핸들 밑으로 손 가져가는 모양을 취하며 윤종건이 수현을 바라보았다.<br>“묘한 게 그 양반 탄 차가 저 아래 사거리에서 신호 대기 중인 느낌이 들더라 이겁니다.”<br>우리 종건이가 약쟁이 생활 수십 년 만에 정수리가 하늘로 뚫려 신묘불측한 예언력을 얻은 모양이었다.<br>- 〈제6장. 은빛 라이터를 딸깍거리는 깡패〉 중에서<br><br>덩어리가 계단으로 급히 내려가는 걸 확인한 백 수사관이 난간 위로 올라갔다. 난간에 매달렸다가 아래층 테라스로 내려가는 건 그리 어렵지 않았다. 테라스에서 안으로 이어지는 커다란 유리문 하나가 열려 있었고, 건축사무소로 보이는 너른 공간이 펼쳐졌다. 정리되지 않은 책상들과 커다란 도면이 걸린 벽이 오후의 빛 속에 잠겨 있었다. 사람은 하나도 없었다.<br>백 수사관이 위를 쳐다보았고, 고개 끄덕인 수현이 홱 몸을 돌렸다. 토끼몰이 하자는 거로구나.<br>건축사무소는 고요했다. 백 수사관의 눈이 빠르게 움직였다. CCTV가 하나도 보이지 않았다. 이런, 고맙기도 해라. 바깥 출입문은 닫혀 있었다. 잠긴 건가, 닫힌 건가. 나간 것 같진 않았다. 그러면 문고리를 잡을 즈음에 옆에서 덮칠 계획일까나. 아니나 다를까, 오른쪽 칸막이 뒤에 숨었던 윤종건이 요란한 기합 소리와 함께 와락 튀어나왔다. 아이고, 반갑습니다.<br>손목을 잡아채고 몸을 굴리면서, 백 수사관이 윤종건을 저리로 냅다 내던져버렸다. 거꾸로 떨어진 윤종건이 끼룩, 딸꾹질을 했다. 찌를 셈이었는지 손에는 검은 샤프가 쥐어져 있었다.<br>“이 마약사범 새끼께서 내 눈을 후빌라 하셨네.” <br>“아니에요, 그런 거 아니에요.”<br>윤종건의 접힌 목에서 꾸룩거리는 소리와 함께 울음이 터져 나왔다.<br>어흠, 목청 틔우는 소리와 함께 똑똑 노크 소리가 들렸다. 백 수사관이 잠금장치를 풀고 문을 열었다. 뒷짐 진 수현이 반가운 미소를 보이며 성큼 들어섰다.<br>“에고고, 많이 다쳤나 보네.”<br>- 〈제7장. 보랏빛 행커치프를 착용한 보스〉 중에서<br><br>김 검사가 우뚝 멈췄다. 두어 걸음 더 간 성진규 부장이 뒤를 돌아보았다. 그의 표정이 처음으로 맑아졌다고, 그를 안 지 1년 넘는 기간 중 처음 보는 정직한 얼굴이라는 생각이, 김훈정 검사에게 들었다. <br>“결탁이라고, 더러운 협잡이라고 생각하겠지. 그러나 세상은 회색이고, 더 묽거나 더 짙을 뿐이야. 완전한 흰색도 없고, 온전히 까맣지도 않아.”<br>“검사예요, 우리는.”<br>“하지만 어떤 칼잡이라도 못 잘라내는 게 존재해. 너무나 뒤엉켜서 암과 장기가 도저히 분리되지 않는 덩어리들이 세상에 널렸어. 때론 잘라내지만, 때론 다독이며 두고 보는 게 우리 일이기도 해.”<br>“뭘 잘라내고, 뭘 두고 볼지를 왜 우리가 판단하죠? 우리가 세상 꼭대기에 앉았나요?”<br>“왜 아니지?”<br>성진규 부장이 김훈정 검사 쪽으로 한 걸음 다가갔다.<br>“밝혀져야 할 거짓이 세상엔 존재하겠지. 하지만 덮여야 할 진실 또한 있는 법이야. 가라앉을 게 가라앉아야 물이 맑아지잖아. 그걸 누가 휘저으면…… 응?”<br>- 〈제9장. 호두색 마호가니 책상에 앉은 얼간이들〉 중에서</p>
+                            <div class="collapse_btn ">
+                                <span>펼치기</span>
+                            </div>
+                        </div>
+                        <div class="publishers_review">
+                            <p class="box_title"><b>출판사 서평</b></p>
+                            <p class="info_text">“무식한 귀신은 부적을 몰라보고, 모르면 당하는 게 세상 규칙이다!”<br><br>한때 세상을 뒤엎고 싶었던 속물 변호사 최수현<br>그가 두드린 판도라의 상자가 거대한 조직을 깨웠다<br><br>〈범죄도시〉의 주인공 마동석은 경찰이다. 하지만 무시무시한 주먹을 자랑하는 그는 때론 그 어떤 범죄자보다도 더 범죄자처럼 느껴진다. 불법과 합법 사이, 그 아슬아슬한 줄타기에 사람들은 열광한다. 여기, 무시무시한 주먹은 없지만 그보다 더 무서운 머리와 촉을 가진 변호사가 있다. 전직 반부패수사부 검사였던 그는 조직 안에서도 에이스로 꼽던 수사 전문가였다. 그의 이름은 최수현이다.<br>이야기는 최수현 변호사가 호텔에서 눈을 뜨는 장면으로 시작한다. 지난밤 붉은 옷을 입은 미모의 여성과 즐거운 밤을 보내려던 그는 약을 먹고 취해 잠이 들었다. 그리고 자신의 재킷 주머니 안에 들어있던 법원 제출용 증거가 사라진 걸 알게 된다. 그는 즉각 레이더를 돌린다. 검사 재직 시절, 여기저기 정보원과 빨대를 꽂아두었기에 가능한 일이다. 하지만 아무나 믿고 맡길 순 없다. “그들은 흘린 피 몇 방울에 상대방 살 두어 근을 받아내는 작자들이었고, 빚을 톡톡히 받아낸 뒤에도 수현의 뼈를 으드득 씹으려 들 게 분명했다.” 그는 자신과 함께 일했던 백태현 수사관을 파트너로 소환한다.<br>곧 레이더에 단서가 포착된다. 최근 청담동 사모님들과 인플루언서 사이에서 뜨고 있는 디자이너 윤종건이다. 최수현 변호사는 곧바로 그의 숍을 찾아가 문을 두드린다.<br><br><br>“비밀은 아는 놈이 적을수록 단단하게 지켜지는 법이야!”<br><br>각기 다른 색을 지닌 개성 만점 인물들이 자아내는 다채로운 스토리<br>치밀한 설계와 맛깔나는 대사를 통해 느낄 수 있는 압도적 몰입감<br><br>디자인숍 문이 열린 이후부터 이야기는 정신없이 흘러간다. 사실 그곳은 평범한 옷가게가 아니었다. 바로 거대 폭력 조직의 자금을 세탁하는 세탁소였다. 게다가 최수현 변호사가 쳐들어가기 전부터 그곳을 지켜보는 의문의 조직과 가짜 변호사도 있었다. 그렇게 최수현 변호사가 쏘아 올린 공은 범죄 조직을 거쳐 검찰 조직으로, 나아가 대한민국 전체를 뒤흔드는 트리거가 된다.<br>『나쁜 검사들』에는 등장인물이 많다. 하지만 굳이 이름을 외우거나 앞장을 뒤적일 필요는 없다. 눈 밝은 독자는 이미 알아차렸겠지만, 이 책의 목차는 각 등장인물의 성격을 특정 색상과 물건으로 표현하고 있다. 주인공 최수현 변호사는 ‘푸른 재킷’, 검찰 개혁을 꿈꾸는 김훈정 검사는 ‘검은 하이힐’, 백태현 검찰수사관은 ‘남색 아반떼’, 부패 검사들은 ‘황금 커프스 단추’, 검은 조직을 이끄는 보스는 ‘보랏빛 행거치프’ 식이다. 그만큼 각각의 인물은 절대 섞이지 않는 분명한 자기만의 색깔을 가지고 있으며, 이들이 날실과 씨실처럼 엮여 다채로운 이야기를 만들어낸다.<br>개성 강한 인물들 만큼이나 그들이 주고받는 대사 역시 재미가 일품이다. 검사들 사이에 통용되는 은어나 관행, 범죄자들이 쓰는 말투를 자연스럽게 표현하기 위해 이중세 작가는 꽤 오랫동안 공을 들여 자료를 조사하고 관계자들을 인터뷰했다. 현실보다 더 현실 같다는 표현은 바로 이럴 때 필요한 것이리라. 살아 있는 인물들이 엎치락뒤치락 하며 물리고 물려 서로의 등을 향해 칼끝을 겨누는 장면은 긴장 이상의 짜릿함과 스릴을 독자에게 제공한다. 결국 이 싸움의 승자는 누가 될 것인가, 독자들은 마지막 책장을 넘길 때까지 결코 책을 덮지 못할 것이다.<br><br>“당신들이 거기 버티고 서야 저 조직이 더러운 하수구로 안 쓸려나가.<br>당신 둘이 저기를 지탱하는 큰 닻이라고.”<br><br>권력을 지키기 위해 범죄자들과 손을 잡고 협잡을 서슴지 않는 부패 검사들,<br>그리고 이들에 맞서 검찰을 개혁하려는 자들의 수사 활극<br>작금의 현실에 대한 울분을 달래줄 웰메이드 누아르 소설<br><br>부패를 척결하고 정의를 지키려는 사람들이 권력을 갖게 되면서 다시 부패가 시작되는, 이 악의 순환을 우리는 어떻게 바라보아야 할까? 등장인물 중 한 명인 송태섭의 말처럼 “자기만의 피라미드 꼭짓점을 밟아본 사람들은 안다. 그 자리에 집착하는 게 아니라, 그 자리를 떠나지 못한다는 사실을.” 이미 썩을 대로 썩어 균열이 가고 무너진 질서를 지키기 위하여 다시, 더러운 거래는 계속된다.<br>사실 이 책은 오래전 작가가 써 놓았던 단편소설을 기반으로 한다. 그때까지만 해도 작가는 검찰 개혁에 관련된 이슈가 이렇게까지 노골적으로 대한민국을 쥐고 흔들게 될지 몰랐다. 하지만 소설을 써내려 갈수록 왠지 소설이 아닌 현실을 기록하는 기분이었다. 그러니까 『나쁜 검사들』은 작금의 현실에 대한 또 다른 형태의 기록이자, 김훈정 검사의 다짐처럼 부디 권력 기관이 다시 국민의 편으로 돌아오길 바라는 간절한 바람이다.<br>“처음부터 끝까지 진짜 숨 막히게 재밌다!”, “현란한 말솜씨! 정신없는 티키타카에 시간 가는 줄 몰랐다.”는 먼저 읽은 독자들의 말처럼 『나쁜 검사들』은 재미를 보장한다. 하지만 뒤로 갈수록 아직 우리에겐 풀어야 할 숙제가 있을 알려준다. 압도적 재미만큼이나 깊은 여운을 남기는 웰메이드 누아르 소설, 『나쁜 검사들』과 함께 무더위를 시원하게 날려보자!</p>
+                            <div class="collapse_btn ">
+                                <span>펼치기</span>
+                            </div>
+                        </div>
+                        <div class="book_review" id="book_review">
+                            <div class="box_title_area">
+                                <p class="box_title"><b>Klover 리뷰 (<span class="review_count">0</span>)</b></p>
+                            </div>
+                            <div class="review_box">
+                                <div class="d-flex justify-content-between">
+                                    <div class="rating_number_box ">
+                                        <p><strong>사용자총점</strong></p>
+                                        <div class="rating_total d-flex gap-3 justify-content-center mt-3">
+                                            <ul class="clover_box d-flex justify-content-between gap-3">
+                                                <li class="active">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                </li>
+                                                <li class="active">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                </li>
+                                                <li class="active">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                </li>
+                                                <li class="active">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                </li>
+                                            </ul>
+                                            <div>
+                                                <span class="rating_number"><strong>9.1</strong></span> / 
+                                                <span>10</span>
+                                            </div>
+                                        </div>
+                                        <ul class="scroll_box">
+                                            <li>
+                                                <ul class="clover_box d-flex justify-content-between gap-3">
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                </ul>
+                                                <div class="score_bar progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: calc((100%/3)*2)" aria-valuenow="(100/3)*2" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <div class="ratingP"><p><span>66</span>%</p></div>
+                                            </li>
+                                            <li>
+                                                <ul class="clover_box d-flex justify-content-between gap-3">
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                </ul>
+                                                <div class="score_bar progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: calc((100%/3)*1)" aria-valuenow="(100/3)*1" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <div class="ratingP"><p><span>33</span>%</p></div>
+                                            </li>
+                                            <li>
+                                                <ul class="clover_box d-flex justify-content-between gap-3">
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                </ul>
+                                                <div class="score_bar progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: calc((100%/3)*0)" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <div class="ratingP"><p><span>0</span>%</p></div>
+                                            </li>
+                                            <li>
+                                                <ul class="clover_box d-flex justify-content-between gap-3">
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                    <li>
+                                                        <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                    </li>
+                                                </ul>
+                                                <div class="score_bar progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: calc((100%/3)*0)" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <div class="ratingP"><p><span>0</span>%</p></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="review_tags">
+                                        <p>
+                                            평가된 감성태그가<br>
+                                            없습니다
+                                        </p>
+                                        <div class="review_tags_box">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review_list_box">
+                                <div class="review_tab_box">
+                                    <div>
+
+                                    </div>
+                                    <div class="sort_box">
+                                        <select class="form-select">
+                                            <option value="1">최신순</option>
+                                            <option value="2">좋아요순</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="review_list">
+                                    <ul>
+                                        <li>
+                                            <div class="review_head">
+                                                <div>
+                                                    <span class="user_id">jnbiuabiy23</span>
+                                                    <span class="line_space">|</span>
+                                                    <span class="day">2024.08.01</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="clover_box d-flex justify-content-between">
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                    </ul>
+                                                    <p class="user_review_num">10</p>
+                                                    <p class="user_select_tag">최고에요</p>
+                                                </div>
+                                            </div>
+                                            <div class="review_content">
+                                                마지막까지 재밌게 읽었습니다.
+                                            </div>
+                                            <div class="review_footer">
+                                                <div class="btn_like"><span>0</span></div>
+                                                <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="review_head">
+                                                <div>
+                                                    <span class="user_id">hong1234</span>
+                                                    <span class="line_space">|</span>
+                                                    <span class="day">2024.08.01</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="clover_box d-flex justify-content-between">
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                    </ul>
+                                                    <p class="user_review_num">10</p>
+                                                    <p class="user_select_tag">최고에요</p>
+                                                </div>
+                                            </div>
+                                            <div class="review_content">
+                                                진짜 너무 재밌어요..
+                                            </div>
+                                            <div class="review_footer">
+                                                <div class="btn_like"><span>0</span></div>
+                                                <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="review_head">
+                                                <div>
+                                                    <span class="user_id">kim1234</span>
+                                                    <span class="line_space">|</span>
+                                                    <span class="day">2024.08.02</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="clover_box d-flex justify-content-between">
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                                        </li>
+                                                        <li>
+                                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="" style="opacity: 0.3;">
+                                                        </li>
+                                                    </ul>
+                                                    <p class="user_review_num">7.5</p>
+                                                    <p class="user_select_tag">재밌어요</p>
+                                                </div>
+                                            </div>
+                                            <div class="review_content">
+                                                재밌어요.
+                                            </div>
+                                            <div class="review_footer">
+                                                <div class="btn_like"><span>0</span></div>
+                                                <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="pagination-container mt-5">
+                                        <div class="pagination-wrapper">
+                                            <div class="dataTable-bottom">
+                                                <nav class="dataTable-pagination" aria-label="dataTable-pagination">
+                                                    <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+                                                        <li class="paginate_button previous page-item" id="previousPage">
+                                                            <a class="page-link" href="javascript:void(0);">
+                                                                <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="active paginate_button page-item"><a href="javascript:void(0);" data-page="1" class="page-link">1</a></li>
+                                                        <li class="paginate_button page-item"><a href="javascript:void(0);" data-page="2" class="page-link">2</a></li>
+                                                        <li class="paginate_button page-item"><a href="javascript:void(0);" data-page="3" class="page-link">3</a></li>
+                                                        <li class="paginate_button page-item"><a href="javascript:void(0);" data-page="4" class="page-link">4</a></li>
+                                                        <li class="paginate_button page-item"><a href="javascript:void(0);" data-page="5" class="page-link">5</a></li>
+                                                        <li class="paginate_button next page-item" id="nextPage">
+                                                            <a class="page-link" href="javascript:void(0);">
+                                                                <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review_write_box d-flex flex-column gap-4 align-items-strat">
+                                <p class="box_title">리뷰작성</p>
+                                <div class="review_head d-flex align-items-center gap-4 ">
+                                    <div class="img-box">
+                                        <img src="/usr/v1/assets/images/prod/9791193289273.jpg" alt="">
+                                    </div>
+                                    <div class="user_rating_star_box">
+                                        <strong class="rating_prod_title">나쁜검사들</strong>
+                                        <div class="user_rating_star">
+                                            <input id="rating-input" name="rating" class="custom-star" value="10" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user_select_tags_box">
+                                    <p class="box_title">감성 태그</p>
+                                    <p class="mb-5">가장 와 닿는 하나의 키워드를 선택해주세요.</p>
+                                    <ul class="user_select_tags d-flex justify-content-between mt-3">
+                                        <li>
+                                            <input type="radio" name="select_tags" id="select_tag1">
+                                            <label for="select_tag1">고마워요</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="select_tags" id="select_tag2">
+                                            <label for="select_tag2">최고예요</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="select_tags" id="select_tag3">
+                                            <label for="select_tag3">공감돼요</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="select_tags" id="select_tag4">
+                                            <label for="select_tag4">재밌어요</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="select_tags" id="select_tag5">
+                                            <label for="select_tag5">힐링돼요</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="review_text_box">
+                                    <p class="box_title">리뷰 작성</p>
+                                    <textarea name="" class="form-control" id="review_text" rows="3" placeholder="내용을 50자 이상 입력해 주세요. 주제와 무관한 댓글, 악플, 배송문의 등의 글은 임의 삭제될 수 있습니다."></textarea>
+                                </div>
+                                <div class="review_btn_box d-flex gap-2 align-items-center justify-content-end">
+                                    <p>구매 후 리뷰 작성 시, e교환권 200원 적립</p>
+                                    <button class="btn btn-blue">리뷰작성</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod_detail_recommend">
+                        <div class="best_in_category">
+                            <div class="d-flex justify-content-between">
+                                <p class="box_title"><b>이 분야의 베스트</b></p>
+                                <a href="javascript:void(0);">더보기 ></a>
+                            </div>
+                            <ul class="d-flex flex-column gap-3 mt-4">
+                                <li>
+                                    <div class="img-box">
+                                        <img src="/usr/v1/assets/images/prod/200/9791170611561.jpg" alt="">
+                                    </div>
+                                    <div class="textArea">
+                                        <span>1</span>
+                                        <p class="prod_title"><strong>당신이 누군가를 죽였다</strong></p>
+                                        <p class="prod_author">히가시노 게이고</p>
+                                        <p class="prod_price">
+                                            <strong class="saleP">10%</strong>
+                                            <span class="sale_price">
+                                                <strong>17,820</strong>원
+                                            </span>
+                                        </p>            
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-box">
+                                        <img src="/usr/v1/assets/images/prod/200/9788998441012.jpg" alt="">
+                                    </div>
+                                    <div class="textArea">
+                                        <span>2</span>
+                                        <p class="prod_title"><strong>모순</strong></p>
+                                        <p class="prod_author">양귀자</p>
+                                        <p class="prod_price">
+                                            <strong class="saleP">10%</strong>
+                                            <span class="sale_price">
+                                                <strong>11,700</strong>원
+                                            </span>
+                                        </p>            
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-box">
+                                        <img src="/usr/v1/assets/images/prod/200/9788954681155.jpg" alt="">
+                                    </div>
+                                    <div class="textArea">
+                                        <span>3</span>
+                                        <p class="prod_title"> <strong>홍학의 자리</strong></p>
+                                        <p class="prod_author">정해연</p>
+                                        <p class="prod_price">
+                                            <strong class="saleP">10%</strong>
+                                            <span class="sale_price">
+                                                <strong>12,600</strong>원
+                                            </span>
+                                        </p>            
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-box">
+                                        <img src="/usr/v1/assets/images/prod/200/9788952776372.jpg" alt="">
+                                    </div>
+                                    <div class="textArea">
+                                        <span>4</span>
+                                        <p class="prod_title"><strong>리틀 라이프 1</strong></p>
+                                        <p class="prod_author">한야 야나기하라</p>
+                                        <p class="prod_price">
+                                            <strong class="saleP">10%</strong>
+                                            <span class="sale_price">
+                                                <strong>13,320</strong>원
+                                            </span>
+                                        </p>            
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-box">
+                                        <img src="/usr/v1/assets/images/prod/200/9791167902573.jpg" alt="">
+                                    </div>
+                                    <div class="textArea">
+                                        <span>5</span>
+                                        <p class="prod_title"><strong>마녀와의 7일</strong></p>
+                                        <p class="prod_author">히가시노 게이고</p>
+                                        <p class="prod_price">
+                                            <strong class="saleP">10%</strong>
+                                            <span class="sale_price">
+                                                <strong>16,920</strong>원
+                                            </span>
+                                        </p>            
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="top_btn"><i class="fa-solid fa-xl fa-chevron-up"></i></div>
+        <footer>
+            <div class="notice">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-3">
+                            <strong>공지사항</strong>
+                            <span class="notice_text">
+                                상품권(해피머니, 컬쳐캐쉬) 사용 일시 중지 안내
+                            </span>
+                        </div>
+                        <strong class="notice_more">더보기</strong>
+                    </div>
+                    <span class="line_space">|</span>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-3">
+                            <strong>당첨자발표</strong>
+                            <span class="notice_text">
+                                [로맨스/BL소설][24년 7/5] 먼슬리 교보💰캐시DREAM 당첨자 발표
+                            </span>
+                        </div>
+                        <strong class="notice_more">더보기</strong>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="footer mt-3">
+                <div class="footer-top d-flex justify-content-between">
+                    <div class="logo">
+                        <img src="/usr/v1/assets/images/img_logo_kyobo_member@2x.png" alt="">
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <select class="form-select" name="" id="">
+                            <option value="">Family Site</option>
+                        </select>
+                        <div class="icons d-flex gap-3">
+                            <div class="icon-box"><img src="/usr/v1/assets/images/btn_footer_sns_youtube_v2@2x.png" alt=""></div>
+                            <div class="icon-box"><img src="/usr/v1/assets/images/btn_footer_sns_fb_v2@2x.png" alt=""></div>
+                            <div class="icon-box"><img src="/usr/v1/assets/images/btn_footer_sns_insta_v2@2x.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom d-flex mt-3 gap-2">
+                    <div class="left-box">
+                        <ul class="footer_menu_list d-flex gap-3">
+                            <li>회사소개</li>
+                            <li>이용약관</li>
+                            <li>개인정보처리방침</li>
+                            <li>청소년보호정책</li>
+                            <li>대량주문안내</li>
+                            <li>협력사여러분</li>
+                            <li>채용정보</li>
+                            <li>광고소개</li>
+                        </ul>
+                        <ul class="footer_info_box d-flex flex-wrap gap-1 mt-3">
+                            <li>대표이사 : 안병현, 김상훈</li>
+                            <li>서울특별시 종로구 종로 1</li>
+                            <li>사업자등록번호 : 102-81-11670</li>
+                            <li>대표전화 : 1544-1900(발신자 부담전화)</li>
+                            <li>FAX : 0502-987-5711(지역번호 공통)</li>
+                            <li>서울특별시 통신판매업신고번호 : 제 653호</li>
+                            <li class="btn_footer">사업자정보확인</li>
+                        </ul>
+                        <div class="copyright"></div>
+                    </div>
+                    <div class="right-box">
+                        <div>
+                            <p>
+                                <span>토스페이먼츠 구매안전서비스</span>
+                                <span class="btn_footer">서비스 가입 확인</span>
+                            </p>
+                            <span>
+                                고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한<br>
+                                토스페이먼츠의 구매안전서비스를 이용하실 수 있습니다.
+                            </span>
+                        </div>
+
+                        <div class="d-flex mt-3 gap-3">
+                            <div class="d-flex gap-2">
+                                <div class="img-box">
+                                    <img src="/usr/v1/assets/images/img_mark_isms@2x.png" alt="">
+                                </div>
+                                <p>
+                                    정보보호관리체계<br>ISMS 인증획득
+                                </p>
+                            </div>
+                            <div>
+                                <p>
+                                    [인증범위] 인터넷 교보문고 및 브랜드 서비스 운영<br>
+                                    [유효기간] 2023.11.15 ~ 2026.11.14
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- another JS -->
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="/usr/v1/assets/js/rating.js"></script>
+    <script src="/usr/v1/assets/js/review.js"></script>
+    <script src="/usr/v1/assets/js/custom.js"></script>
+</body>
+</html>
