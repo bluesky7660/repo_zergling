@@ -37,16 +37,16 @@
                     <div class="customer_service_box d-flex  align-items-center">
                         <ul class="d-flex gap-3">
                             <li class="">
-                                <a href="signup.html">회원가입</a>
+                                <a href="signup">회원가입</a>
                             </li>
                             <li class="">
-                                <a href="login.html">로그인</a>
+                                <a href="login">로그인</a>
                             </li>
                             <li class="">
                                 <a href="javascript:void(0);">회원혜택</a>
                             </li>
                             <li class="">
-                                <a href="user_order_list.html">주문배송</a>
+                                <a href="user_order_list">주문배송</a>
                             </li>
                             <li class="">
                                 <a href="javascript:void(0);">매장안내</a>
@@ -60,7 +60,7 @@
                 <div class="scrolltable">
                     <div class="gnb_search d-flex justify-content-between gap-5">
                         <div class="search_wrapper d-flex align-items-center  gap-5">
-                            <div class="logo" onclick="window.location.href='index.html'">
+                            <div class="logo" onclick="window.location.href='index'">
                                 <img src="/usr/v1/assets/images/logo_book.svg" alt="">
                             </div>
                             <div class="search_area w-100">
@@ -71,10 +71,10 @@
                             </div>
                         </div>
                         <div class="user_box d-flex align-items-center gap-4">
-                            <div class="cart" onclick="window.location.href='user_cart.html'">
+                            <div class="cart" onclick="window.location.href='user_cart'">
                                 <img src="/usr/v1/assets/images/btn_header_cart@2x.png" alt="">
                             </div>
-                            <div class="user_my" onclick="window.location.href='user_account.html'">
+                            <div class="user_my" onclick="window.location.href='user_account'">
                                 <img src="/usr/v1/assets/images/btn_header_my@2x.png" alt="">
                             </div>
                         </div>
@@ -82,8 +82,8 @@
                     <nav class="gnb_list d-flex justify-content-between">
                         <div class="gnb_wrapper d-flex align-items-center gap-5">
                             <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
-                            <ul class="gnb_link d-flex gap-5">
-                                <li onclick="window.location.href='product_list.html'">국내도서</li>
+                            <ul class="gnb_link gap-5">
+                                <li onclick="window.location.href='product_list'">국내도서</li>
                             </ul>
                         </div>
                     </nav>
@@ -99,13 +99,15 @@
                         </div>
                         <div class="prod_desc">
                             <span>이중세 장편소설</span>
+                            <!-- <span><span th:text="${product.author}">이중세</span> 장편소설</span> -->
                         </div>
                     </div>
                     <div class="prod_detail_head_bottom d-flex justify-content-between gap-5">
                         <div class="prod_detail_view d-flex flex-column gap-3">
                             <p>
+                                <!-- <strong><span th:text="${product.author}">이중세</span> 저자(글)</strong> -->
                                 <strong>이중세 저자(글)</strong>
-                                <p class="gray_color"><span th:text="${product.publisher}">마이디어북스</span> · <span th:text="${product.makeDate}">2024년 08월 01일</span></p>
+                                <p class="gray_color"><span th:text="${product.publisher}">마이디어북스</span> · <span th:text="${#dates.format(product.makeDate, 'yyyy년 MM월 dd일')}"></span></p>
                             </p>
                             <div class="rating_box d-flex gap-3 align-items-center">
                                 <div class="user_rating d-flex flex-column gap-3">
@@ -144,15 +146,15 @@
                                 <span class="badge">소득공제</span>
                             </div>
                             <div class="prod_price">
-                                <strong class="saleP">10%</strong>
+                                <strong class="saleP"><span th:text="${product.sale}">10</span>%</strong>
                                 <span class="sale_price">
-                                    <strong th:text="${Product.salePrice}">15,750</strong>원
+                                    <strong th:text="${product.salePrice}">15,750</strong>원
                                 </span>
-                                <span class="regular_price"><span th:text="${Product.price}">17,500</span>원</span>
+                                <span class="regular_price"><span th:text="${product.price}">17,500</span>원</span>
                             </div>
                             <div class="point_box d-flex justify-content-between">
                                 <strong>적립/혜택</strong>
-                                <span class="green_color"><span th:text="${Product.point}">870</span>P</span>
+                                <span class="green_color"><span th:text="${product.point}">870</span>P</span>
                             </div>
                             <div class="delivery_info d-flex justify-content-between">
                                 <div>
@@ -160,7 +162,7 @@
                                 </div>
                                 <div>
                                     <p>무료배송</p>
-                                    <p>8/3(토) 출고예정</p>
+                                    <p><span th:text="${#dates.format(product.shipDate, 'M/d') + '(' + #dates.format(product.shipDate, 'E') + ')'}"></span> 출고예정</p>
                                     <p>기본배송지 기준</p>
                                 </div>
                             </div>
@@ -172,7 +174,7 @@
                                 </div>
                                 <div class="buy_btn_box">
                                     <button class="btn">장바구니</button>
-                                    <button class="btn" onclick="window.location.href='product_buy.html'">바로구매</button>
+                                    <button class="btn" onclick="window.location.href='product_buy'">바로구매</button>
                                 </div>
                                 
                             </div>

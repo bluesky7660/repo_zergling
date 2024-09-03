@@ -17,4 +17,7 @@ public class CourseService {
 	public int insert(CourseDto courseDto) {
 		return courseDao.insert(courseDto);
 	}
+	public CourseDto selectOne(CourseDto courseDto) {
+		return courseDao.selectOne(courseDto);
+	}
 }

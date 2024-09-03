@@ -15,7 +15,7 @@
 			,a.groupOrder
 			,a.groupDesc
 			,a.useNy
-<!-- 		    ,a.delNy -->
+		    ,a.delNy
 			,a.regDate
 			,a.modDate
 		FROM
@@ -45,4 +45,21 @@
 		    ,0
 		)
 	</insert>
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.seq
+			,a.codeGroupOtherNum
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		
+		WHERE 1 = 1
+			and a.seq = #{seq}
+	</select>
 </mapper>

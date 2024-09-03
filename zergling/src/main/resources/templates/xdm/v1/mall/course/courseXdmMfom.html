@@ -504,7 +504,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeNumber" class="form-label">강의 코드</label>
-														<input type="text" class="form-control" id="inputCodeNumber" name="seq" placeholder="자동생성" readonly="readonly" disabled>
+														<input type="text" class="form-control" id="inputCodeNumber" name="seq" th:value="${item?.seq}" placeholder="자동생성" readonly="readonly" disabled>
 													</div>
 												</div>
 											</div>
@@ -513,9 +513,9 @@
 													<label for="inputEduType" class="form-label">교육형태</label>
 													<select class="form-select validate-this" id="inputEduType" name="eduType" required>
 														<option value="" selected disabled>선택하세요</option>
-														<option value="온라인">온라인</option>
-														<option value="오프라인">오프라인</option>
-														<option value="온/오프라인">온/오프라인</option>
+														<option value="온라인" th:selected="${item?.eduType == '온라인'}">온라인</option>
+														<option value="오프라인" th:selected="${item?.eduType == '오프라인'}">오프라인</option>
+														<option value="온/오프라인" th:selected="${item?.eduType == '온/오프라인'}">온/오프라인</option>
 													</select>
 													<div class="invalid-feedback">
 														교육형태를 선택해주세요.
@@ -524,7 +524,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputName" class="form-label">강의이름</label>
-														<input type="text" class="form-control validate-this" id="inputName" name="courseName" placeholder="" required>
+														<input type="text" class="form-control validate-this" id="inputName" name="courseName" th:value="${item?.courseName}" placeholder="" required>
 														<div class="invalid-feedback">
 															강의이름을 적어주세요.
 														</div>
@@ -533,7 +533,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputPrice" class="form-label">교육비</label>
-														<input type="text" class="form-control validate-this" id="inputPrice" name="coursePrice" placeholder="" required>
+														<input type="text" class="form-control validate-this" id="inputPrice" name="coursePrice" th:value="${item?.coursePrice}" placeholder="" required>
 														<div class="invalid-feedback">
 															교육비를 적어주세요.
 														</div>
@@ -542,7 +542,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputInstructor" class="form-label">강사이름</label>
-														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="한글, 영대소문자" required>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" th:value="${item?.instructor}" placeholder="한글, 영대소문자" required>
 														<div class="invalid-feedback">
 															강사이름을 적어주세요.
 														</div>
@@ -551,7 +551,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCourseRegStart" class="form-label">신청기간[시작일]</label>
-														<input type="date" class="form-control validate-this" id="inputCourseRegStart" name="courseRegStart" required>
+														<input type="date" class="form-control validate-this" id="inputCourseRegStart" name="courseRegStart" th:value="${#dates.format(item?.courseRegStart,'yyyy-MM-dd')}" required>
 														<div class="invalid-feedback">
 															신청기간[시작일]을 선택해주세요.
 														</div>
@@ -560,7 +560,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCourseRegEnd" class="form-label">신청기간[마감일]</label>
-														<input type="date" class="form-control validate-this" id="inputCourseRegEnd" name="courseRegEnd" required>
+														<input type="date" class="form-control validate-this" id="inputCourseRegEnd" name="courseRegEnd" th:value="${#dates.format(item?.courseRegEnd,'yyyy-MM-dd')}" required>
 														<div class="invalid-feedback">
 															신청기간[마감일]을 선택해주세요.
 														</div>
@@ -569,7 +569,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputStudyStart" class="form-label">교육기간[시작일]</label>
-														<input type="date" class="form-control validate-this" id="inputStudyStart" name="studyStart" required>
+														<input type="date" class="form-control validate-this" id="inputStudyStart" name="studyStart" th:value="${#dates.format(item?.studyStart,'yyyy-MM-dd')}" required>
 														<div class="invalid-feedback">
 															교육기간[시작일]을 선택해주세요.
 														</div>
@@ -578,7 +578,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputStudyEnd" class="form-label">교육기간[마감일]</label>
-														<input type="date" class="form-control validate-this" id="inputStudyEnd" name="studyEnd" required>
+														<input type="date" class="form-control validate-this" id="inputStudyEnd" name="studyEnd" th:value="${#dates.format(item?.studyEnd,'yyyy-MM-dd')}" required>
 														<div class="invalid-feedback">
 															교육기간[마감일]을 선택해주세요.
 														</div>
@@ -587,7 +587,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputLocation" class="form-label">강의장소</label>
-														<input type="text" class="form-control validate-this" id="inputLocation" name="location" placeholder="한글, 영대소문자" required>
+														<input type="text" class="form-control validate-this" id="inputLocation" name="location" th:value="${item?.location}" placeholder="한글, 영대소문자" required>
 														<div class="invalid-feedback">
 															강의장소을 적어주세요.
 														</div>
@@ -598,7 +598,7 @@
 												<div class="required col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="inputContent" class="form-label">강의내용</label>
-														<textarea class="form-control validate-this" id="inputContent" name="content" placeholder="강의내용을 적어주세요." rows="3" required></textarea>
+														<textarea class="form-control validate-this" id="inputContent" name="content" th:text="${item?.content}" placeholder="강의내용을 적어주세요." rows="3" required></textarea>
 														<div class="invalid-feedback">
 															강의내용을 적어주세요.
 														</div>

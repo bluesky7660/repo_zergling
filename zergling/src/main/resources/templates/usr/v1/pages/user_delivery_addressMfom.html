@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/user_account.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/user_delivery_address_add.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 </head>
@@ -104,48 +105,45 @@
                     <ul class="d-flex flex-column gap-4">
                         <!-- <li onclick="window.location.href='user_account'">▶ 유저룸</li> -->
                         <li onclick="window.location.href='user_order_list'"><span>주문 / 배송목록</span></li>
-                        <li onclick="window.location.href='user_delivery_address'"><span>배송주소록</span></li>
-                        <li class="active" onclick="window.location.href='user_account'"><span>회원정보 수정</span></li>
+                        <li class="active" onclick="window.location.href='user_delivery_address'"><span>배송주소록</span></li>
+                        <li onclick="window.location.href='user_account'"><span>회원정보 수정</span></li>
                         <li onclick="window.location.href='user_password'"><span>비밀번호 변경</span></li>
                         <li onclick="window.location.href='login'">로그아웃</li>
                     </ul>
                 </div>
                 <div class="content_area">
                     <div>
-                        <p class="content_title">회원정보 수정</p>
+                        <p class="content_title">배송주소록</p>
                         <div class="content_box">
-                            <form>
-                                <p class="box_title">기본정보</p>
-                                <table class="modAccount">
-                                    <colgroup>
-                                        <col style="width: 264px;">
-                                        <col style="width: auto;">
-                                    </colgroup>
-                                    <tr>
-                                        <th><label for="">아이디</label></th>
-                                        <td><p class="user_id">abcd1234</p></td>
-                                    </tr>
-                                    <tr>
-                                        <th><label for="">이름</label></th>
-                                        <td><p class="user_name">홍길동</p></td>
-                                    </tr>
-                                    <tr>
-                                        <th><label for="">생년월일/성별</label></th>
-                                        <td><p class="user_brdyGndr">1998.11.04 / 남</p></td>
-                                    </tr>
-                                    <tr>
-                                        <th><label for="">이메일</label></th>
-                                        <td><input class="form-control" type="email" name="" id="" value="abcd1234@gmail.com"></td>
-                                    </tr>
-                                    <tr>
-                                        <th><label for="">휴대폰</label></th>
-                                        <td><input class="form-control" type="text" name="" id="" value="010-2539-7660"></td>
-                                    </tr>
-                                </table>
-                                <div class="btn-box mt-5">
-                                    <button class="btn" type="button">정보 수정</button>
-                                </div>
-                            </form>
+                            <div class="address_add_box">
+                                <form method="post" autocomplete="off" action="user_delivery_address_inst">
+                                    <p class="box_title">배송지 수정</p>
+                                    <ul>
+                                        <li>
+                                            <label for="">배송지명</label>
+                                            <input type="text" class="form-control" name="addressName" th:value="${item?.addressName}" maxlength="7" placeholder="최대 7글자까지 자유롭게 수정가능">
+                                        </li>
+                                        <li>
+                                            <label for="">받는 분</label>
+                                            <input type="text" class="form-control" name="RecipientName" th:value="${item?.RecipientName}" maxlength="7" placeholder="이름을 입력해 주세요.">
+                                            <input type="text" class="form-control" name="RecipientPhone" th:value="${item?.RecipientPhone}" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="휴대폰번호를 -없이 입력해 주세요.">
+                                        </li>
+                                        <li>
+                                            <label for="">주소</label>
+                                            <input type="text" class="form-control" name="address" th:value="${item?.address}">
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" class="form-check-input" name="defaultNy" id="default_address" value="1">
+                                            <input type="hidden" class="form-check-input" name="defaultNy" id="default_addressH" value="0">
+                                            <label for="default_address">기본배송지로 설정</label>
+                                        </li>
+                                    </ul>
+                                    <div class="btn-box mt-5">
+                                        <button class="btn address_add_btn" type="submit">저장</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

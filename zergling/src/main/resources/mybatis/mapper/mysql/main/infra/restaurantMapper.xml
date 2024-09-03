@@ -53,6 +53,27 @@
 		    ,0
 		)
 	</insert>
+	<select id="selectOne" resultMap="resultObj">
+		select
+			d.seq
+		    ,d.foodType
+		    ,d.name
+		    ,d.businessHoursStart
+		    ,d.businessHoursEnd
+		    ,d.tel
+		    ,d.webAddress
+		    ,d.parkingNy
+		    ,d.bookingNy
+		    ,d.freeCorkageNy
+		    ,d.intro
+		    ,d.regDate
+		    ,d.modDate
+		    ,d.delNy
+		from
+			restaurant d
+		where 1=1
+			and d.seq = #{seq}
+	</select>
 	<update id="update">
 		
 	</update>

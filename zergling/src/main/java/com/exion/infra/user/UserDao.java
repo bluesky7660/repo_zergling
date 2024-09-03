@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface UserDao {
 	public List<UserDto> selectUser();
 	public int insert(UserDto userDto);
+	public UserDto selectOne(UserDto userDto);
 	public int insertUser(UserDto userDto);
 }

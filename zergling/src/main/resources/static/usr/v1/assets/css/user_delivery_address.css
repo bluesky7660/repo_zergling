@@ -71,3 +71,10 @@
     border-color: #aaa;
     cursor: pointer;
 }
+.changeDefAddress{
+    display: flex;
+    justify-content: center;
+}
+.changeDefAddress button{
+    padding: 10px 20px;
+}

@@ -16,4 +16,7 @@ public class DeliveryAddressService {
 	public int insertAddr(DeliveryAddressDto deliveryAddressDto) {
 		return deliveryAddressDao.insertAddr(deliveryAddressDto);
 	}
+	public DeliveryAddressDto selectOne(DeliveryAddressDto deliveryAddressDto) {
+			return deliveryAddressDao.selectOne(deliveryAddressDto);
+	}
 }

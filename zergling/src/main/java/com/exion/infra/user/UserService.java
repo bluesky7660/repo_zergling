@@ -17,6 +17,10 @@ public class UserService {
 	public int insert(UserDto userDto) {
 		return userDao.insert(userDto);
 	}
+	
+	public UserDto selectOne(UserDto userDto) {
+		return userDao.selectOne(userDto);
+	}
 	public int insertUser(UserDto userDto) {
 		return userDao.insertUser(userDto);
 	}

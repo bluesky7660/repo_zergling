@@ -54,4 +54,25 @@
 			    ,0
 			)
 	  </insert>
+	  <select id="selectOne" resultMap="resultObj">
+		select
+			d.seq
+		    ,d.eduType
+		    ,d.courseName
+		    ,d.coursePrice
+		    ,d.instructor
+		    ,d.courseRegStart
+		    ,d.courseRegEnd
+		    ,d.studyStart
+		    ,d.studyEnd
+		    ,d.location
+		    ,d.content
+		    ,d.regDate
+		    ,d.modDate
+		    ,d.delNy
+		from
+			course d
+		where 1=1
+			and d.seq = #{seq}
+	</select>
 </mapper>

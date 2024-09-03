@@ -29,7 +29,8 @@ public class CourseController {
 		return "redirect:/v1/mall/course/courseXdmList";
 	}
 	@RequestMapping(value = "/v1/mall/course/courseXdmMfom")
-	public String courseXdmMfom() {
+	public String courseXdmMfom(CourseDto courseDto,Model model) {
+		model.addAttribute("item", courseService.selectOne(courseDto));
 		return "xdm/v1/mall/course/courseXdmMfom";
 	}
 }

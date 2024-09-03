@@ -15,7 +15,7 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
+		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0//xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
 		<title>Bootstrap Admin Dashboards</title>
@@ -47,7 +47,7 @@
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
 		<style>
-		
+
 		</style>
 	</head>
 
@@ -475,7 +475,7 @@
 								<div class="card border">
 									<div class="card-header bg-light">
 										<h2 class="card-title">
-											User
+											상품리스트
 										</h2>
 										<div>
 											<form class="row gx-3 align-items-center" action="">
@@ -558,38 +558,61 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">이름</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">ID</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">패스워드</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">성별</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저설명</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">관리자권한</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">상품종류</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">상품이름</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">출판사</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">출간일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">원가</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">할인률</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">할인가</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">포인트</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">재고량</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">소개글</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">리뷰점수</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">출고일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">목차</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">출판사 리뷰글</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">미리보기</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">조회수</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">구매수</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">베스트 여부</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">Today Pick 여부</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">슬라이드 텍스트</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:if="${#lists.isEmpty(list3)}" class="data_empty">
-														<td colspan="12"><p>데이터가 없습니다.</p></td>
+													<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
+														<td colspan="14"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr th:each="listU : ${list3}" th:if="${!#lists.isEmpty(list3)}">
+													<tr th:each="listP : ${list}" th:if="${!#lists.isEmpty(list)}">
 														<td><input type="checkbox"></td>
-														<td th:text="${listU.seq}"></td>
-														<td class="td_spotlight">
-															<a th:href="@{/v1/infra/user/userXdmMfom(seq=${listU.seq})}" th:text="${listU.name}"></a>
+														<td th:text="${listP.seq}"></td>
+														<td th:text="${listP.prodType}"></td>
+														<td  class="td_spotlight">
+															<a th:href="@{/v1/mall/product/productXdmMfom(seq=${listP.seq})}" th:text="${listP.title}"></a>
 														</td>
-														<td th:text="${listU.userId}"></td>
-														<td th:text="${listU.userPassword}"></td>
-														<td th:text="${listU.gender}"></td>
-														<td th:text="${#dates.format(listU.dateOfBirth,'yyyy-MM-dd')}"></td>
-														<td th:text="${listU.email}"></td>
-														<td th:text="${listU.userDesc}"></td>
-														<td th:if="${listU.admNy eq 0}">N</td>
-														<td th:unless="${listU.admNy eq 0}">Y</td>
-														<td th:text="${#dates.format(listU.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-														<td th:text="${#dates.format(listU.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:text="${listP.publisher}"></td>
+														<td th:text="${#dates.format(listP.makeDate,'yyyy-MM-dd')}"></td>
+														<td th:text="${listP.price}"></td>
+														<td th:text="${listP.sale}"></td>
+														<td th:text="${listP.salePrice}"></td>
+														<td th:text="${listP.point}"></td>
+														<td th:text="${listP.stockQty}"></td>
+														<td th:text="${listP.Intro}"></td>
+														<td th:text="${listP.reviewNum}"></td>
+														<td th:text="${#dates.format(listP.shipDate, 'M/d') + '(' + #dates.format(listP.shipDate, 'E') + ')'}"></td>
+														<td th:text="${listP.tableOfContents}"></td>
+														<td th:text="${listP.publisherReview}"></td>	
+														<td th:text="${listP.preivew}"></td>
+														<td th:text="${listP.viewNumber}"></td>
+														<td th:text="${listP.buyNumber}"></td>
+														<td th:text="${listP.bestNy}"></td>
+														<td th:text="${listP.todayPickNy}"></td>		
+														<td th:text="${listP.sliderText}"></td>													
+														<td th:text="${#dates.format(listP.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:text="${#dates.format(listP.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>
 												</tbody>
 											</table>	
@@ -636,7 +659,7 @@
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="userXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												<a href="productXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
 											</div>
 										</div>
 									</div>

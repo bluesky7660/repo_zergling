@@ -83,7 +83,7 @@
                     <nav class="gnb_list d-flex justify-content-between">
                         <div class="gnb_wrapper d-flex align-items-center gap-5">
                             <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
-                            <ul class="gnb_link d-flex gap-5">
+                            <ul class="gnb_link gap-5">
                                 <li onclick="window.location.href='product_list'">국내도서</li>
                             </ul>
                         </div>
@@ -119,15 +119,21 @@
                                 <div class="def_ship_addr_box">
                                     <ul class="def_ship_addr">
                                         <li>
-                                            <span class="address_name">집</span>
+                                            <span class="address_name" th:text="${item?.addressName}">집</span>
                                         </li>
                                         <li>
-                                            <span class="rec_name">홍길동</span>
+                                            <span class="rec_name" th:text="${item?.RecipientName}">홍길동</span>
                                             <span> / </span>
-                                            <span class="rec_phone">010-1234-5678</span>
+                                            <span class="rec_phone" th:text="${item.RecipientPhone.startsWith('02') ? 
+                                            #strings.substring(item.RecipientPhone, 0, 2) + '-' + 
+                                            #strings.substring(item.RecipientPhone, 2, 6) + '-' + 
+                                            #strings.substring(item.RecipientPhone, 6) : 
+                                            #strings.substring(item.RecipientPhone, 0, 3) + '-' + 
+                                            #strings.substring(item.RecipientPhone, 3, 7) + '-' + 
+                                            #strings.substring(item.RecipientPhone, 7)}">010-1234-5678</span>
                                         </li>
                                         <li>
-                                            <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                            <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${item?.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
                                         </li>
                                     </ul>
                                     <div class="btn-box">
@@ -153,7 +159,7 @@
                                     </tr>
                                     <tr th:each="list : ${addrList}" th:if="${!#lists.isEmpty(addrList)}">
                                         <td>
-                                            <input type="radio" class="form-check-input" name="def_ship_addr_chk" id="" checked>
+                                            <input type="radio" class="form-check-input" name="def_ship_addr_chk" th:checked="${list?.defaultNy == 1}" th:id="'defAddrChk'+${list?.seq}">
                                         </td>
                                         <td>
                                             <ul class="ship_addr">
@@ -171,7 +177,7 @@
                                             </ul>
                                         </td>
                                         <td class="btn-box">
-                                            <button class="btn" type="button">수정하기</button>
+                                            <a  class="btn"  th:href="@{user_delivery_addressMfom(seq=${list.seq})}">수정하기</a>
                                         </td>
                                     </tr>
                                     <!-- <tr>
@@ -244,6 +250,11 @@
                                         </td>
                                     </tr> -->
                                 </table>
+                                <div class="btn-box changeDefAddress">
+                                    <button class="btn btn-blue" type="button">
+                                        선택한 배송지로 기본배송지 변경
+                                    </button>
+                                </div>
                             </div>
                             
                         </div>

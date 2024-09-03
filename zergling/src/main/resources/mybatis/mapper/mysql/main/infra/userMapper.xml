@@ -51,6 +51,26 @@
 			    ,0
 			)
 	  </insert>
+	  <select id="selectOne" resultMap="resultObj">
+		  	select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = #{seq}
+	  </select>
 	  <insert id="insertUser">
 	  		insert into user(
 				admNy

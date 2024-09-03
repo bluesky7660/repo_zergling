@@ -45,8 +45,12 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmMfom")
-	public String codeGroupXdmMfom(CodeGroupDto codeGroupDto) {
+	public String codeGroupXdmMfom(Model model,CodeGroupDto codeGroupDto) {
 //		codeGroupService.insert(codeGroupDto);
+//		CodeGroupDto dto = codeGroupService.selectOne(codeGroupDto);
+//		model.addAttribute("item", dto);
+		model.addAttribute("item", codeGroupService.selectOne(codeGroupDto));
+		System.out.println("그룹이름: "+codeGroupService.selectOne(codeGroupDto).getGroupDesc());
 		return "xdm/v1/infra/codegroup/codeGroupXdmMfom";
 	}
 }

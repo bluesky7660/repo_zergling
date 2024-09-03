@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.mall.product.ProductDao">
+	  <resultMap type="com.exion.mall.product.ProductDto" id="resultObj"></resultMap>
+	  <select id="prodList" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+			order by a.seq desc
+	  </select>
+	  <insert id="insertProd">
+			insert into product(
+				title
+			    ,prodType
+			    ,publisher
+			    ,makeDate
+			    ,price
+			    ,sale
+			    ,salePrice
+			    ,point
+			    ,stockQty
+			    ,intro
+			    ,reviewNum
+			    ,shipDate
+			    ,tableOfContents
+			    ,publisherReview
+			    ,preivew
+			    ,viewNumber
+			    ,buyNumber
+			    ,bestNy
+			    ,todayPickNy
+			    ,sliderText
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			) value(
+				#{title}
+			    ,#{prodType}
+			    ,#{publisher}
+			    ,#{makeDate}
+			    ,#{price}
+			    ,#{sale}
+			    ,#{salePrice}
+			    ,#{point}
+			    ,#{stockQty}
+			    ,#{intro}
+			    ,#{reviewNum}
+			    ,#{shipDate}
+			    ,#{tableOfContents}
+				,#{publisherReview}
+			    ,#{preivew}
+			    ,0
+			    ,0
+			    ,#{bestNy}
+			    ,#{todayPickNy}
+			    ,#{sliderText}
+			    ,now()
+			    ,now()
+			    ,0
+			)
+	  </insert>
+	  <select id="prodOne" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = #{seq}
+	  </select>
+</mapper>

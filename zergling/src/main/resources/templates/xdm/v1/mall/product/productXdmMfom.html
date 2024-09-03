@@ -484,7 +484,7 @@
 									<!-- Breadcrumb end -->
 								</div>
 								<div class="pb-4">
-									<h2>식당 Mform</h2>
+									<h2>상품 등록</h2>
 								</div>
 							</div>
 						</div>
@@ -496,128 +496,208 @@
 								<div class="card border">
 									<div class="card-header border-bottom">
 										<div class="card-title">기본정보</div>
-									</div>	
+									</div>
 									<div class="card-body">
-										<form method="post" autocomplete="off" action="/v1/mall/restaurant/restaurantXdmInst" class="needs-validation"  novalidate>
+										<form method="post" autocomplete="off" action="/v1/mall/course/courseXdmInst" class="needs-validation"  novalidate>
 											<!-- Row start -->
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeNumber" class="form-label">코드</label>
-														<input type="text" class="form-control" id="inputCodeNumber" name="seq" th:value="${item?.seq}" placeholder="자동생성" readonly="readonly" disabled>
+														<input type="text" class="form-control" id="inputCodeNumber" name="seq" placeholder="자동생성" readonly="readonly" disabled>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">	
-													<label for="inputFoodType" class="form-label">요리 스타일</label>
-													<select class="form-select validate-this" id="inputFoodType" name="foodType" required>
+													<label for="inputEduType" class="form-label">상품종류</label>
+													<select class="form-select validate-this" id="inputEduType" name="eduType" required>
 														<option value="" selected disabled>선택하세요</option>
-														<option value="분식" th:selected="${item?.foodType == '분식'}">분식</option>
-														<option value="한식" th:selected="${item?.foodType == '한식'}">한식</option>
-														<option value="중식" th:selected="${item?.foodType == '중식'}">중식</option>
-														<option value="일식" th:selected="${item?.foodType == '일식'}">일식</option>
-														<option value="양식" th:selected="${item?.foodType == '양식'}">양식</option>
+														<option value="소설">소설</option>
+														<option value="시/에세이">시/에세이</option>
 													</select>
 													<div class="invalid-feedback">
-														요리 스타일을 선택해주세요.
+														상품종류를 선택해주세요.
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputName" class="form-label">식당이름</label>
-														<input type="text" class="form-control validate-this" id="inputName" name="name" th:value="${item?.name}" placeholder="" required>
+														<label for="inputName" class="form-label">상품이름</label>
+														<input type="text" class="form-control validate-this" id="inputName" name="courseName" placeholder="" required>
 														<div class="invalid-feedback">
-															식당이름을 적어주세요.
+															상품이름을 적어주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputBusinessHoursStart" class="form-label">영업시간[시작]</label>
-														<input type="time" class="form-control validate-this" id="inputBusinessHoursStart" name="businessHoursStart" th:value="${#temporals.format(item?.businessHoursStart,'HH:mm')}" required>
+														<label for="inputPrice" class="form-label">출판사</label>
+														<input type="text" class="form-control validate-this" id="inputPrice" name="coursePrice" placeholder="" required>
 														<div class="invalid-feedback">
-															영업시간[시작]을 선택해주세요.
+															출판사를 적어주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputBusinessHoursEnd" class="form-label">영업시간[마감]</label>
-														<input type="time" class="form-control validate-this" id="inputBusinessHoursEnd" name="businessHoursEnd" th:value="${#temporals.format(item?.businessHoursEnd,'HH:mm')}" required>
+														<label for="inputCourseRegStart" class="form-label">출간일</label>
+														<input type="date" class="form-control validate-this" id="inputCourseRegStart" name="courseRegStart" required>
 														<div class="invalid-feedback">
-															영업시간[마감]을 선택해주세요.
+															출간일을 선택해주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputTel" class="form-label">전화번호</label>
-														<input type="tel" class="form-control validate-this" id="inputTel" name="tel" th:value="${item?.tel}" placeholder="010-1234-5678" required>
+														<label for="inputInstructor" class="form-label">원가</label>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="숫자만" required>
 														<div class="invalid-feedback">
-															전화번호를 적어주세요.
+															원가를 적어주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputWebAddress" class="form-label">인터넷주소</label>
-														<input type="text" class="form-control validate-this" id="inputWebAddress" name="webAddress" th:value="${item?.webAddress}" placeholder="공백으로 두지마세요." required>
+														<label for="inputInstructor" class="form-label">할인률</label>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="숫자만" required>
 														<div class="invalid-feedback">
-															인터넷주소를 적어주세요.
-														</div>
-													</div>
-												</div>
-												
-											</div>
-											<div class="row">
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputParkingNy" class="form-label">주차가능여부</label>
-														<select class="form-select validate-this" id="inputParkingNy" name="parkingNy" required>
-															<option value="" selected disabled>선택하세요</option>
-															<option value="1" th:selected="${item?.parkingNy == 1}">가능</option>
-															<option value="0" th:selected="${item?.parkingNy == 0}">불가능</option>
-														</select>
-														<div class="invalid-feedback">
-															주차가능여부를 선택해주세요.
+															할인률을 적어주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputBookingNy" class="form-label">예약가능여부</label>
-														<select class="form-select validate-this" id="inputBookingNy" name="bookingNy" required>
-															<option value="" selected disabled>선택하세요</option>
-															<option value="1" th:selected="${item?.bookingNy == 1}">가능</option>
-															<option value="0" th:selected="${item?.bookingNy == 0}">불가능</option>
-														</select>
+														<label for="inputInstructor" class="form-label">할인가</label>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="숫자만" required>
 														<div class="invalid-feedback">
-															예약가능여부를 선택해주세요.
+															할인가를 적어주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputFreeCorkageNy" class="form-label">무료콜키지 가능여부</label>
-														<select class="form-select validate-this" id="inputFreeCorkageNy" name="freeCorkageNy" required>
-															<option value="" selected disabled>선택하세요</option>
-															<option value="1" th:selected="${item?.freeCorkageNy == 1}">가능</option>
-															<option value="0" th:selected="${item?.freeCorkageNy == 0}">불가능</option>
-														</select>
+														<label for="inputInstructor" class="form-label">포인트</label>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="" required>
 														<div class="invalid-feedback">
-															무료콜키지 가능여부를 선택해주세요.
+															포인트를 적어주세요.
 														</div>
 													</div>
 												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputInstructor" class="form-label">재고량</label>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="" required>
+														<div class="invalid-feedback">
+															재고량을 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputInstructor" class="form-label">리뷰점수</label>
+														<input type="text" class="form-control validate-this" id="inputInstructor" name="instructor" placeholder="" required>
+														<div class="invalid-feedback">
+															리뷰점수를 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputStudyStart" class="form-label">출고일</label>
+														<input type="date" class="form-control validate-this" id="inputStudyStart" name="studyStart" required>
+														<div class="invalid-feedback">
+															출고일을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xl-6 col-md-8 col-12">
+													<div class="mb-3">
+														<label for="inputInstructor" class="form-label">소개글</label>
+														<textarea class="form-control validate-this" id="inputContent" name="content" placeholder="상품에 대한 소개글을 적어주세요." rows="3" required></textarea>
+														<div class="invalid-feedback">
+															소개글을 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xl-6 col-md-8 col-12">
+													<div class="mb-3">
+														<label for="inputInstructor" class="form-label">목차</label>
+														<textarea class="form-control validate-this" id="inputContent" name="content" placeholder="상품에 대한 소개글을 적어주세요." rows="3" required></textarea>
+														<div class="invalid-feedback">
+															목차를 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xl-6 col-md-8 col-12">
+													<div class="mb-3">
+														<label for="inputInstructor" class="form-label">출판사 리뷰글</label>
+														<textarea class="form-control validate-this" id="inputContent" name="content" placeholder="상품에 대한 소개글을 적어주세요." rows="3" required></textarea>
+														<div class="invalid-feedback">
+															출판사 리뷰글을 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xl-6 col-md-8 col-12">
+													<div class="mb-3">
+														<label for="inputInstructor" class="form-label">미리보기</label>
+														<textarea class="form-control validate-this" id="inputContent" name="content" placeholder="상품에 대한 미리보기을 적어주세요." rows="3" required></textarea>
+														<div class="invalid-feedback">
+															미리보기을 적어주세요.
+														</div>
+													</div>
+												</div>
+												<!-- <div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputLocation" class="form-label">조회수</label>
+														<input type="text" class="form-control validate-this" id="inputLocation" name="location" placeholder="0" required>
+														<div class="invalid-feedback">
+															조회수을 적어주세요.
+														</div>
+													</div>
+												</div> -->
+												<!-- <div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputLocation" class="form-label">구매수</label>
+														<input type="text" class="form-control validate-this" id="inputLocation" name="location" placeholder="0" required>
+														<div class="invalid-feedback">
+															구매수을 적어주세요.
+														</div>
+													</div>
+												</div> -->
 											</div>
 											<div class="row">
 												<div class="required col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
-														<label for="inputIntro" class="form-label">소개글</label>
-														<textarea class="form-control validate-this" id="inputIntro" name="intro" th:text="${item?.intro}" placeholder="식당소개글을 적어주세요." rows="3" required></textarea>
+														<label for="inputContent" class="form-label">슬라이드 텍스트</label>
+														<textarea class="form-control validate-this" id="inputContent" name="content" placeholder="강의내용을 적어주세요." rows="3" required></textarea>
 														<div class="invalid-feedback">
-															소개글를 적어주세요.
+															슬라이드 텍스트를 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputIndustryType1" class="form-label">베스트 여부</label>
+														<select class="form-select validate-this" id="inputIndustryType1" name="admNy" required>
+															<option value="" selected disabled>선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+														<div class="invalid-feedback">
+															베스트 여부을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputIndustryType1" class="form-label">Today Pick 여부</label>
+														<select class="form-select validate-this" id="inputIndustryType1" name="admNy" required>
+															<option value="" selected disabled>선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+														<div class="invalid-feedback">
+															Today Pick 여부을 선택해주세요.
 														</div>
 													</div>
 												</div>
@@ -625,7 +705,7 @@
 											<!-- Row end -->
 											<!-- Form actions footer start -->
 											<div class="form-actions-footer justify-content-between bg-white">
-												<a class="btn btn-outline-dark" type="button" href="restaurantXdmList"><i class="bi bi-list-ul"></i></a>
+												<a class="btn btn-outline-dark" type="button" href="productXdmList"><i class="bi bi-list-ul"></i></a>
 												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
 											</div>
 											<!-- Form actions footer end -->

@@ -6,20 +6,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class ProductDto {
 	private String seq;
-	
 	private String title;
 	private String prodType;
 	private String publisher;
-	@DateTimeFormat(pattern = "yyyy년 MM월 dd일")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date makeDate;
 	private Integer price;
 	private Integer sale;
 	private Integer salePrice;
 	private Integer point;
-	private String Intro;
-	private Integer reviewNum;
-	@DateTimeFormat(pattern = "M/d('E')")
+	private Integer stockQty;
+	private String intro;
+	private Double reviewNum;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date shipDate;
+	private String tableOfContents;
 	private String publisherReview;
 	private String preivew;
 	private Integer viewNumber;
@@ -30,4 +31,150 @@ public class ProductDto {
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
+//---------------------------------
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getProdType() {
+		return prodType;
+	}
+	public void setProdType(String prodType) {
+		this.prodType = prodType;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	public Date getMakeDate() {
+		return makeDate;
+	}
+	public void setMakeDate(Date makeDate) {
+		this.makeDate = makeDate;
+	}
+	public Integer getPrice() {
+		return price;
+	}
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+	public Integer getSale() {
+		return sale;
+	}
+	public void setSale(Integer sale) {
+		this.sale = sale;
+	}
+	public Integer getSalePrice() {
+		return salePrice;
+	}
+	public void setSalePrice(Integer salePrice) {
+		this.salePrice = salePrice;
+	}
+	public Integer getPoint() {
+		return point;
+	}
+	public void setPoint(Integer point) {
+		this.point = point;
+	}
+	public Integer getStockQty() {
+		return stockQty;
+	}
+	public void setStockQty(Integer stockQty) {
+		this.stockQty = stockQty;
+	}
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+	public Double getReviewNum() {
+		return reviewNum;
+	}
+	public void setReviewNum(Double reviewNum) {
+		this.reviewNum = reviewNum;
+	}
+	public Date getShipDate() {
+		return shipDate;
+	}
+	public void setShipDate(Date shipDate) {
+		this.shipDate = shipDate;
+	}
+	public String getTableOfContents() {
+		return tableOfContents;
+	}
+	public void setTableOfContents(String tableOfContents) {
+		this.tableOfContents = tableOfContents;
+	}
+	public String getPublisherReview() {
+		return publisherReview;
+	}
+	public void setPublisherReview(String publisherReview) {
+		this.publisherReview = publisherReview;
+	}
+	public String getPreivew() {
+		return preivew;
+	}
+	public void setPreivew(String preivew) {
+		this.preivew = preivew;
+	}
+	public Integer getViewNumber() {
+		return viewNumber;
+	}
+	public void setViewNumber(Integer viewNumber) {
+		this.viewNumber = viewNumber;
+	}
+	public Integer getBuyNumber() {
+		return buyNumber;
+	}
+	public void setBuyNumber(Integer buyNumber) {
+		this.buyNumber = buyNumber;
+	}
+	public Integer getBestNy() {
+		return bestNy;
+	}
+	public void setBestNy(Integer bestNy) {
+		this.bestNy = bestNy;
+	}
+	public Integer getTodayPickNy() {
+		return todayPickNy;
+	}
+	public void setTodayPickNy(Integer todayPickNy) {
+		this.todayPickNy = todayPickNy;
+	}
+	public String getSliderText() {
+		return sliderText;
+	}
+	public void setSliderText(String sliderText) {
+		this.sliderText = sliderText;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public Date getModDate() {
+		return modDate;
+	}
+	public void setModDate(Date modDate) {
+		this.modDate = modDate;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	
 }

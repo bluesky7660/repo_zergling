@@ -29,7 +29,8 @@ public class Restaurantcontroller {
 		return"redirect:/v1/mall/restaurant/restaurantXdmList";
 	}
 	@RequestMapping(value = "/v1/mall/restaurant/restaurantXdmMfom")
-	public String restaurantXdmMfom() {
+	public String restaurantXdmMfom(RestaurantDto restaurantDto,Model model) {
+		model.addAttribute("item", restaurantService.selectOne(restaurantDto));
 		return"xdm/v1/mall/restaurant/restaurantXdmMfom";
 	}
 }

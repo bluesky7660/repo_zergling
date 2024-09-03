@@ -43,4 +43,21 @@
 			    <!-- ,1 -->
 			)
 	  </insert>
+	  <select id="selectOne" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    <!-- ,a.member_seq -->
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+	  </select>
 </mapper>

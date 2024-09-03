@@ -33,7 +33,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/v1/infra/user/userXdmMfom")
-	public String userXdmMFom() {
+	public String userXdmMFom(UserDto userDto,Model model) {
+		model.addAttribute("item", userService.selectOne(userDto));
 		return "xdm/v1/infra/user/userXdmMfom";
 	}
 }

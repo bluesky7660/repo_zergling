@@ -600,8 +600,8 @@
 														<td th:if="${listC.freeCorkageNy eq 0}">N</td>
 														<td th:unless="${listC.freeCorkageNy eq 0}">Y</td>
 														<td th:text="${listC.intro}" class="td_intro"></td>
-														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd hh:mm:ss')}"></td>
-														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd hh:mm:ss')}"></td>
+														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>
 												</tbody>
 											</table>	
