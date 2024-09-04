@@ -46,4 +46,34 @@
 		    ,#{codeGroup_seq}
 		)
 	</insert>
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.seq = #{seq}
+	</select>
+	<update id="update">
+		UPDATE commoncode
+		SET
+			codeName = #{codeName}
+			,codeOrder = #{codeOrder}
+			,codeDesc = #{codeDesc}
+			,useNy = #{useNy}
+			,codeGroup_seq = #{codeGroup_seq}
+			,modDate = now()
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
 </mapper>

@@ -42,9 +42,12 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/v1/infra/code/codeXdmMfom")
-	public String codeXdmMfom(CodeDto codeDto) {
-		codeService.insert(codeDto);
-		return "redirect:/v1/infra/code/codeXdmList";
+	public String codeXdmMfom(Model model,CodeDto codeDto) {
+		List<CodeGroupDto> codeGroups = codeGroupService.selectList();
+		model.addAttribute("codeGroups", codeGroups);
+		model.addAttribute("item",codeService.selectOne(codeDto));
+		System.out.println("그룹seq: "+codeService.selectOne(codeDto).getCodeGroup_seq());
+		return "xdm/v1/infra/code/codeXdmMfom";
 	}
 	//------------------------
 //	@RequestMapping(value = "/v1/infra/codeGroup/codeGroupXdmList")

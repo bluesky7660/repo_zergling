@@ -8,4 +8,5 @@ public interface CodeGroupDao {
 	public List<CodeGroupDto> selectList();
 	public int insert(CodeGroupDto codeGroupDto);
 	public CodeGroupDto selectOne(CodeGroupDto codeGroupDto);
+	public int update(CodeGroupDto codeGroupDto);
 }

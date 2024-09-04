@@ -36,7 +36,8 @@ public class indexController {
 	@RequestMapping(value = "signupInst")
 	public String signupInst(UserDto userDto) {
 		userService.insertUser(userDto);
-		return "redirect:/v1/infra/user/userXdmList";
+		return "redirect:login";
+//		return "redirect:/v1/infra/user/userXdmList";
 	}
 	@RequestMapping(value = "user_delivery_address")
 	public String deliveryAddress(Model model,DeliveryAddressDto deliveryAddressDto) {
@@ -60,15 +61,24 @@ public class indexController {
 		return "redirect:user_delivery_address";
 	}
 	@RequestMapping(value = "user_account")
-	public String userAccount() {
+	public String userAccount(Model model, UserDto userDto) {
+		model.addAttribute("item", userService.selectOne(userDto));
+		System.out.println("seq: "+userService.selectOne(userDto).getSeq());
 		return "/usr/v1/pages/user_account";
+	}
+	@RequestMapping(value = "user_accountUpdt")
+	public String user_accountUpdt(UserDto userDto) {
+		System.out.println("seq1: "+userDto.getSeq());
+		userService.update(userDto);
+		return "redirect:index";
 	}
 	@RequestMapping(value = "user_order_list")
 	public String userOrderList() {
 		return "/usr/v1/pages/user_order_list";
 	}
 	@RequestMapping(value = "user_password")
-	public String userPassword() {
+	public String userPassword(Model model,UserDto userDto) {
+		model.addAttribute("item", userService.selectOne(userDto));
 		return "/usr/v1/pages/user_password";
 	}
 	
@@ -92,5 +102,10 @@ public class indexController {
 	public String productBuy() {
 		
 		return "/usr/v1/pages/product_buy";
+	}
+	@RequestMapping(value = "account_recovery")
+	public String accountRecovery() {
+		
+		return "/usr/v1/pages/account_recovery";
 	}
 }

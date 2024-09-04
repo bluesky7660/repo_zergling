@@ -18,4 +18,10 @@ public class CodeService {
 	public int insert(CodeDto codeDto) {
 		return codeDao.insert(codeDto);
 	}
+	public CodeDto selectOne(CodeDto codeDto) {
+		return codeDao.selectOne(codeDto);
+	}
+	public int update(CodeDto codeDto) {
+		return codeDao.update(codeDto);
+	}
 }

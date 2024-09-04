@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface CodeDao {
 	public List<CodeDto> selectList();
 	public int insert(CodeDto codeDto);
+	public CodeDto selectOne(CodeDto codeDto);
+	public int update(CodeDto codeDto);
 }

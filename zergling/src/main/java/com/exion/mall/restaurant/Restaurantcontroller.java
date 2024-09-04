@@ -33,4 +33,9 @@ public class Restaurantcontroller {
 		model.addAttribute("item", restaurantService.selectOne(restaurantDto));
 		return"xdm/v1/mall/restaurant/restaurantXdmMfom";
 	}
+	@RequestMapping(value = "/v1/mall/restaurant/restaurantXdmUpdt")
+	public String restaurantXdmUpdt(RestaurantDto restaurantDto) {
+		restaurantService.update(restaurantDto);
+		return"redirect:/v1/mall/restaurant/restaurantXdmList";
+	}
 }

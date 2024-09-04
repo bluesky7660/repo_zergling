@@ -604,7 +604,7 @@ main>*{
 }
 
 /*user box*/
-.user_box>div{
+.user_box>*{
     width: 40px;
     cursor: pointer;
 }

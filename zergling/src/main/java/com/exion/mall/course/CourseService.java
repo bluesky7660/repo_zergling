@@ -20,4 +20,7 @@ public class CourseService {
 	public CourseDto selectOne(CourseDto courseDto) {
 		return courseDao.selectOne(courseDto);
 	}
+	public int update(CourseDto courseDto) {
+		return courseDao.update(courseDto);
+	}
 }

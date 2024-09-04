@@ -15,7 +15,7 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0//xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
+		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
 		<title>Bootstrap Admin Dashboards</title>
@@ -579,9 +579,10 @@
 														<th class="d-flex flex-nowrap justify-content-center">
 															<div class="sorting sorting_asc"><span class="dataTable-sorter">대체코드</span></div>
 															<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름</span></div>
-															<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름(영문)</span></div>
+															<!-- <div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름(영문)</span></div> -->
 														</th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">순서</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
@@ -595,11 +596,15 @@
 														<td><input type="checkbox"></td>
 														<td th:text="${listC.seq}">171</td>
 														<td th:text="${listC.codeGroup_seq}">57</td>
-														<td th:text="${listC.codeGroupName}">테테테</td>
+														<td th:text="${listC.codeGroupName}"></td>
 														<td th:text="${listC.seq}">278</td>
-														<td th:text="${listC.codeName}" class="td_spotlight">ㅁㄴㅇㄹ</td>
+														<td  class="td_spotlight">
+															<a th:href="@{/v1/infra/code/codeXdmMfom(seq=${listC.seq})}" th:text="${listC.codeName}"></a>
+														</td>
 														<td th:if="${listC.useNy eq 0}">N</td>
 														<td th:unless="${listC.useNy eq 0}">Y</td>
+														<td th:if="${listC.delNy eq 0}">N</td>
+														<td th:unless="${listC.delNy eq 0}">Y</td>
 														<td th:text="${listC.codeOrder}">1</td>
 														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>
 														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>

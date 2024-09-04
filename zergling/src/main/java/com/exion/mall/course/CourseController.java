@@ -33,4 +33,9 @@ public class CourseController {
 		model.addAttribute("item", courseService.selectOne(courseDto));
 		return "xdm/v1/mall/course/courseXdmMfom";
 	}
+	@RequestMapping(value = "/v1/mall/course/courseXdmUpdt")
+	public String courseXdmUpdt(CourseDto courseDto) {
+		courseService.update(courseDto);
+		return "redirect:/v1/mall/course/courseXdmList";
+	}
 }

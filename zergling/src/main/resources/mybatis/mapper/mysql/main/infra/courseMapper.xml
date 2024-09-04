@@ -75,4 +75,21 @@
 		where 1=1
 			and d.seq = #{seq}
 	</select>
+	<update id="update">
+		UPDATE course
+		SET
+			eduType = #{eduType}
+			,courseName = #{courseName}
+			,coursePrice = #{coursePrice}
+			,instructor = #{instructor}
+			,courseRegStart = #{courseRegStart}
+			,courseRegEnd = #{courseRegEnd}
+			,studyStart = #{studyStart}
+			,studyEnd = #{studyEnd}
+			,location = #{location}
+			,content = #{content}
+			,modDate = now()
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
 </mapper>

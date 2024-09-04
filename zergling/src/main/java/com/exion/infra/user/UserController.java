@@ -37,4 +37,9 @@ public class UserController {
 		model.addAttribute("item", userService.selectOne(userDto));
 		return "xdm/v1/infra/user/userXdmMfom";
 	}
+	@RequestMapping(value = "/v1/infra/user/userXdmUpdt")
+	public String userXdmUpdt(UserDto userDto) {
+		userService.update(userDto);
+		return "redirect:/v1/infra/user/userXdmList";
+	}
 }

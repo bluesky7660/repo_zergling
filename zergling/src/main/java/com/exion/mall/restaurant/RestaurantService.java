@@ -20,4 +20,7 @@ public class RestaurantService {
 	public RestaurantDto selectOne(RestaurantDto restaurantDto) {
 		return restaurantDao.selectOne(restaurantDto);
 	}
+	public int update(RestaurantDto restaurantDto) {
+		return restaurantDao.update(restaurantDto);
+	}
 }

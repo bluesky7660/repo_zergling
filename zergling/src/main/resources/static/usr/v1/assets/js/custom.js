@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //탭 메뉴
     const tabButtons = document.querySelectorAll('.tab_button');
     const tabContents = document.querySelectorAll('.tab_content');
+    const tabBox = document.querySelector('.type_tab');
 
     tabButtons.forEach(button => {
         button.addEventListener('click', function () {
@@ -42,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // 기본적으로 첫 번째 탭과 콘텐츠를 활성화
+    // if () {
+        
+    // }
     if (tabButtons.length > 0) {
         tabButtons[0].classList.add('active');
         tabContents[0].classList.add('active');

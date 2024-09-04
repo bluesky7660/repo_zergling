@@ -15,7 +15,7 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0//xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
+		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
 		<title>Bootstrap Admin Dashboards</title>
@@ -583,7 +583,8 @@
 														<td  class="td_spotlight">
 															<a th:href="@{/v1/mall/course/courseXdmMfom(seq=${listC.seq})}" th:text="${listC.courseName}"></a>
 														</td>
-														<td th:text="${listC.coursePrice}"></td>
+														<td th:text="${#numbers.formatInteger(listC.coursePrice,3,'COMMA')+'원'}"></td>
+														<!-- <td th:text="${listC.coursePrice}"></td> -->
 														<td th:text="${listC.instructor}"></td>
 														<td th:text="${#dates.format(listC.courseRegStart,'yyyy-MM-dd')}"></td>
 														<td th:text="${#dates.format(listC.courseRegEnd,'yyyy-MM-dd')}"></td>

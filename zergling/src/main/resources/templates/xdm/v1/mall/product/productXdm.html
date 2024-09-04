@@ -15,7 +15,7 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0//xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
+		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
 		<title>Bootstrap Admin Dashboards</title>
@@ -595,11 +595,11 @@
 														</td>
 														<td th:text="${listP.publisher}"></td>
 														<td th:text="${#dates.format(listP.makeDate,'yyyy-MM-dd')}"></td>
-														<td th:text="${listP.price}"></td>
-														<td th:text="${listP.sale}"></td>
-														<td th:text="${listP.salePrice}"></td>
-														<td th:text="${listP.point}"></td>
-														<td th:text="${listP.stockQty}"></td>
+														<td th:text="${#numbers.formatInteger(listP.price,3,'COMMA')+'원'}"></td>
+														<td th:text="${listP.sale +'%'}"></td>
+														<td th:text="${#numbers.formatInteger(listP.salePrice,3,'COMMA')+'원'}"></td>
+														<td th:text="${#numbers.formatInteger(listP.point,3,'COMMA')+'P'}"></td>
+														<td th:text="${#numbers.formatInteger(listP.stockQty,3,'COMMA')}"></td>
 														<td th:text="${listP.Intro}"></td>
 														<td th:text="${listP.reviewNum}"></td>
 														<td th:text="${#dates.format(listP.shipDate, 'M/d') + '(' + #dates.format(listP.shipDate, 'E') + ')'}"></td>

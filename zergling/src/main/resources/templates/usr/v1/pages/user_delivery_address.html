@@ -43,18 +43,18 @@
                             <li class="">
                                 <a href="login">로그인</a>
                             </li>
-                            <li class="">
+                            <!-- <li class="">
                                 <a href="javascript:void(0);">회원혜택</a>
-                            </li>
+                            </li> -->
                             <li class="">
                                 <a href="user_order_list">주문배송</a>
                             </li>
-                            <li class="">
+                            <!-- <li class="">
                                 <a href="javascript:void(0);">매장안내</a>
                             </li>
                             <li class="">
                                 <a href="javascript:void(0);">고객센터</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="gnb_search d-flex justify-content-between gap-5">
                         <div class="search_wrapper d-flex align-items-center  gap-5">
                             <div class="logo" onclick="window.location.href='index'">
-                                <img src="/usr/v1/assets/images/logo_book.svg" alt="">
+                                <img src="./usr/v1/assets/images/logo_book.svg" alt="">
                             </div>
                             <div class="search_area w-100">
                                 <div class="search_box d-flex align-items-center gap-3">
@@ -73,20 +73,53 @@
                         </div>
                         <div class="user_box d-flex align-items-center gap-4">
                             <div class="cart" onclick="window.location.href='user_cart'">
-                                <img src="/usr/v1/assets/images/btn_header_cart@2x.png" alt="">
+                                <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
                             </div>
                             <div class="user_my" onclick="window.location.href='user_account'">
-                                <img src="/usr/v1/assets/images/btn_header_my@2x.png" alt="">
+                                <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
                             </div>
                         </div>
                     </div>
-                    <nav class="gnb_list d-flex justify-content-between">
+                    <nav class="gnb_list d-flex align-items-center gap-4">
                         <div class="gnb_wrapper d-flex align-items-center gap-5">
                             <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
-                            <ul class="gnb_link gap-5">
-                                <li onclick="window.location.href='product_list'">국내도서</li>
-                            </ul>
+                            <div class="anb_wrapper">
+                                <div class="anb_wrapper_area">
+                                    <div class="anb_wrapper_list">
+                                        <h5 class="anb_category">국내도서</h5>
+                                        <ul>
+                                            <li onclick="window.location.href='product_list'">국내도서 - 소설</li>
+                                            <li onclick="window.location.href='product_list'">국내도서 - 시/에세이</li>
+                                            <li onclick="window.location.href='product_detail?seq=1'">도서 상세보기</li>
+                                            <li onclick="window.location.href='product_buy'">도서 구매</li>
+                                        </ul>
+                                    </div>
+                                    <div class="anb_wrapper_list">
+                                        <h5 class="anb_category">회원정보</h5>
+                                        <ul>
+                                            <li onclick="window.location.href='user_order_list'">주문/배송목록</li>
+                                            <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
+                                            <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
+                                            <li onclick="window.location.href='user_account'">회원정보 변경</li>
+                                            <li onclick="window.location.href='user_password?seq=1'">비밀번호 변경</li>
+                                        </ul>
+                                    </div>
+                                    <div class="anb_wrapper_list">
+                                        <h5 class="anb_category">그외 기타</h5>
+                                        <ul>
+                                            <li onclick="window.location.href='login'">로그인</li>
+                                            <li onclick="window.location.href='signup'">회원가입</li>
+                                            <li onclick="window.location.href='account_recovery'">비밀번호 찾기</li>
+                                            <li onclick="window.location.href='account_recovery'">아이디 찾기</li>
+                                            <li onclick="window.location.href='header_ver2'">헤더 다른버전2</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <ul class="gnb_link gap-3">
+                            <li onclick="window.location.href='product_list'">국내도서</li>
+                        </ul>
                     </nav>
                 </div>
             </div>
@@ -107,7 +140,7 @@
                         <li onclick="window.location.href='user_order_list'"><span>주문 / 배송목록</span></li>
                         <li class="active" onclick="window.location.href='user_delivery_address'"><span>배송주소록</span></li>
                         <li onclick="window.location.href='user_account'"><span>회원정보 수정</span></li>
-                        <li onclick="window.location.href='user_password'"><span>비밀번호 변경</span></li>
+                        <li onclick="window.location.href='user_password?seq=1'"><span>비밀번호 변경</span></li>
                         <li onclick="window.location.href='login'">로그아웃</li>
                     </ul>
                 </div>

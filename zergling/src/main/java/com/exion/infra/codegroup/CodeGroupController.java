@@ -38,8 +38,6 @@ public class CodeGroupController {
 	 
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmInst")
 	public String codeGroupXdmInst(CodeGroupDto codeGroupDto) {
-		System.out.println("그룹이름: "+codeGroupDto.getCodeGroupName());	
-		
 		codeGroupService.insert(codeGroupDto);
 		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
@@ -49,8 +47,14 @@ public class CodeGroupController {
 //		codeGroupService.insert(codeGroupDto);
 //		CodeGroupDto dto = codeGroupService.selectOne(codeGroupDto);
 //		model.addAttribute("item", dto);
+//		System.out.println("그룹이름: "+codeGroupService.selectOne(codeGroupDto).getGroupDesc());
+//		System.out.println("그룹이름1: "+codeGroupService.selectOne(codeGroupDto).getGroupDesc());
 		model.addAttribute("item", codeGroupService.selectOne(codeGroupDto));
-		System.out.println("그룹이름: "+codeGroupService.selectOne(codeGroupDto).getGroupDesc());
 		return "xdm/v1/infra/codegroup/codeGroupXdmMfom";
+	}
+	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmUpdt")
+	public String codeGroupXdmUpdt(CodeGroupDto codeGroupDto) {
+		codeGroupService.update(codeGroupDto);
+		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
 }

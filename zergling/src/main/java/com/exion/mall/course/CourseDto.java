@@ -13,7 +13,7 @@ public class CourseDto {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date courseRegStart;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date courseRegEnd;
+	private Date courseRegEnd;	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date studyStart;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

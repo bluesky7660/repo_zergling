@@ -558,6 +558,7 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">관리자권한</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">이름</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">ID</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">패스워드</span></th>
@@ -565,7 +566,6 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저설명</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">관리자권한</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
@@ -577,6 +577,8 @@
 													<tr th:each="listU : ${list3}" th:if="${!#lists.isEmpty(list3)}">
 														<td><input type="checkbox"></td>
 														<td th:text="${listU.seq}"></td>
+														<td th:if="${listU.admNy eq 0}">N</td>
+														<td th:unless="${listU.admNy eq 0}">Y</td>
 														<td class="td_spotlight">
 															<a th:href="@{/v1/infra/user/userXdmMfom(seq=${listU.seq})}" th:text="${listU.name}"></a>
 														</td>
@@ -586,8 +588,6 @@
 														<td th:text="${#dates.format(listU.dateOfBirth,'yyyy-MM-dd')}"></td>
 														<td th:text="${listU.email}"></td>
 														<td th:text="${listU.userDesc}"></td>
-														<td th:if="${listU.admNy eq 0}">N</td>
-														<td th:unless="${listU.admNy eq 0}">Y</td>
 														<td th:text="${#dates.format(listU.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 														<td th:text="${#dates.format(listU.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>

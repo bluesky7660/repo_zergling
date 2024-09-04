@@ -75,6 +75,20 @@
 			and d.seq = #{seq}
 	</select>
 	<update id="update">
-		
+		UPDATE restaurant
+		SET
+			foodType = #{foodType}
+			,name = #{name}
+			,businessHoursStart = #{businessHoursStart}
+			,businessHoursEnd = #{businessHoursEnd}
+			,tel = #{tel}
+			,webAddress = #{webAddress}
+			,parkingNy = #{parkingNy}
+			,bookingNy = #{bookingNy}
+			,freeCorkageNy = #{freeCorkageNy}
+			,intro = #{intro}
+			,modDate = now()
+		WHERE 1=1
+			AND seq = #{seq}
 	</update>
 </mapper>

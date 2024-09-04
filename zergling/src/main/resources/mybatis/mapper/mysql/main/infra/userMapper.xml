@@ -100,4 +100,39 @@
 			    ,0
 			)
 	  </insert>
+	  <update id="update">
+	  		update user
+	  		set
+	  			admNy = CASE WHEN #{admNy} IS NOT NULL THEN #{admNy} ELSE admNy END
+	  			,name = CASE WHEN #{name} IS NOT NULL THEN #{name} ELSE name END
+	  			,userId = CASE WHEN #{userId} IS NOT NULL THEN #{userId} ELSE userId END
+	  			,userPassword = CASE WHEN #{userPassword} IS NOT NULL THEN #{userPassword} ELSE userPassword END
+	  			,gender = CASE WHEN #{gender} IS NOT NULL THEN #{gender} ELSE gender END
+	  			,dateOfBirth = CASE WHEN #{dateOfBirth} IS NOT NULL THEN #{dateOfBirth} ELSE dateOfBirth END
+	  			,email = CASE WHEN #{email} IS NOT NULL THEN #{email} ELSE email END
+	  			,phoneNum = CASE WHEN #{phoneNum} IS NOT NULL THEN #{phoneNum} ELSE phoneNum END
+	  			,userDesc = CASE WHEN #{userDesc} IS NOT NULL THEN #{userDesc} ELSE userDesc END
+	  			,modDate = now()
+	  		where 1=1
+	  			and seq = #{seq}
+	  </update>
+	  <update id="updateU">
+	  		update user
+	  		set
+	  			,userPassword = #{userPassword}
+	  			,email = #{email}
+	  			,phoneNum = #{phoneNum}
+	  			,modDate = now()
+	  		where 1=1
+	  			and seq = #{seq}
+	  </update>
+	  <update id="updatePW">
+	  		update user
+	  		set
+	  			,userPassword = #{userPassword}
+	  			,modDate = now()
+	  		where 1=1
+	  			and seq = #{seq}
+	  </update>
+	  
 </mapper>

@@ -24,4 +24,8 @@ public class UserService {
 	public int insertUser(UserDto userDto) {
 		return userDao.insertUser(userDto);
 	}
+	public int update(UserDto userDto) {
+		System.out.println("그룹이름: "+userDto.getSeq());
+		return userDao.update(userDto);
+	}
 }

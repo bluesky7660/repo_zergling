@@ -10,4 +10,5 @@ public interface UserDao {
 	public int insert(UserDto userDto);
 	public UserDto selectOne(UserDto userDto);
 	public int insertUser(UserDto userDto);
+	public int update(UserDto userDto);
 }
