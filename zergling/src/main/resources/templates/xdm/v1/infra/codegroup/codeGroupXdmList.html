@@ -608,12 +608,17 @@
 										<div class="row justify-content-between">
 											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<select class="dataTable-selector form-select" name="" id="">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-												</select>
+												<form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
+													<!-- <select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" > -->
+													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
+														<option value="3" th:selected="${pageSize == 3}">3</option>
+														<option value="5" th:selected="${pageSize == 5}">5</option>
+														<option value="10" th:selected="${pageSize == 10}">10</option>
+														<option value="20" th:selected="${pageSize == 20}">20</option>
+														<option value="50" th:selected="${pageSize == 50}">50</option>
+													</select>
+													<input type="hidden" name="page" id="pageNumber" value="1" />
+												</form>
 											</div>
 										</div>
 										<div class="scrolltable">
@@ -660,9 +665,9 @@
 										
 										<div class="dataTable-bottom">
 											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
 													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
@@ -671,31 +676,71 @@
 													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
 													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
 													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-													<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
 													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+														</a>
+													</li>
+												</ul> -->
+												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+													<!-- First Page -->
+													<li class="paginate_button page-item">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1, size=${pageSize})}" th:if="${currentPage > 1}">
+															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+														</a>
+													</li>
+													<!-- Previous Page -->
+													<li class="paginate_button previous page-item" id="previousPage">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1}, size=${pageSize})}" th:if="${currentPage > 1}">
+															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+														</a>
+													</li>
+													<!-- Page Numbers -->
+													<li th:each="i : ${#numbers.sequence(1, totalPages)}"
+														class="paginate_button page-item"
+														th:classappend="${i == currentPage} ? 'active' : ''">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i}, size=${pageSize})}" th:text="${i}"></a>
+													</li>
+													<!-- Next Page -->
+													<li class="paginate_button next page-item" id="nextPage">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1}, size=${pageSize})}" th:if="${currentPage < totalPages}">
+															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+														</a>
+													</li>
+													<!-- Last Page -->
+													<li class="paginate_button page-item">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${totalPages}, size=${pageSize})}" th:if="${currentPage < totalPages}">
+															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
 													</li>
 												</ul>
 												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													
-													<li class="page-item"><a class="page-link" href="#">
+													<li class="paginate_button previous page-item" id="previousPage">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a></li>
-													<li class="page-item"><a class="page-link" href="#">1</a></li>
-													<li class="page-item active"><a class="page-link" href="#">2</a></li>
-													<li class="page-item"><a class="page-link" href="#">3</a></li>
-													<li class="page-item"><a class="page-link" href="#">
+														</a>
+													</li>
+													<li class="paginate_button page-item"><a th:each="i : ${#numbers.sequence(1, totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == currentPage} ? 'active' : ''"></a></li>
+													<li class="paginate_button next page-item" id="nextPage">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a></li>
+														</a>
+													</li>
 												</ul> -->
+												<!-- <a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">Previous</a>
+												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1)}" th:if="${currentPage > 1}">First</a>
+										
+												<a th:each="i : ${#numbers.sequence(1, totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == currentPage} ? 'active' : ''"></a>
+												
+												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">Next</a>
+												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${totalPages})}" th:if="${currentPage < totalPages}">Last</a> -->
 											</nav>
 										</div>
 										<div class="btn-toolbar mt-5 justify-content-between">
 											<div>
 												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+												<!-- <a href="javascript:void(0);" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></a> -->
+												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
@@ -720,7 +765,24 @@
 
 				</div>
 				<!-- Content wrapper scroll end -->
-
+				<!-- modals -->
+				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="deleteModalLabel">데이터 삭제</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<span>선택한 데이터를 삭제하시겠습니까?</span>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-success" data-bs-dismiss="modal">삭제 실행</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- *************
 				************ Main container end *************
@@ -733,6 +795,42 @@
 			************ Required JavaScript Files *************
 		************* -->
 		<script>
+			function updatePageSize() {
+				var form = document.getElementById('pagination-form');
+				var pageSizeSelect = document.getElementById('pageSizeSelect');
+
+				if (form && pageSizeSelect) {
+					// 선택된 pageSize 값을 가져옵니다.
+					var pageSize = pageSizeSelect.value;
+
+					// 현재 URL을 가져와 URL 객체를 생성합니다.
+					var url = new URL(window.location.href);
+					var currentPage = url.searchParams.get('page') || 1;
+
+					// URL의 쿼리 파라미터를 초기화합니다.
+					url.searchParams.delete('size');
+					// url.searchParams.delete('page');
+
+					// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
+					// url.searchParams.append('page', currentPage);
+					url.searchParams.append('size', pageSize);
+					console.log('url:'+url);
+					// URL을 폼의 action에 적용합니다.
+					form.action = url.toString();
+					form.submit();
+				} else {
+					console.error('Form or pageSizeSelect element not found.');
+				}
+			}
+
+			window.onload = function() {
+				var pageSizeSelect = document.getElementById('pageSizeSelect');
+				if (pageSizeSelect) {
+					pageSizeSelect.addEventListener('change', updatePageSize);
+				}
+			};
+		</script>
+		<!-- <script>
 			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
 			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
 
@@ -790,7 +888,7 @@
 				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
 				}
 			}
-		</script>
+		</script> -->
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/bootstrap.bundle.min.js"></script>

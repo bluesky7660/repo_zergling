@@ -19,4 +19,13 @@ public class DeliveryAddressService {
 	public DeliveryAddressDto selectOne(DeliveryAddressDto deliveryAddressDto) {
 			return deliveryAddressDao.selectOne(deliveryAddressDto);
 	}
+	public DeliveryAddressDto selectDefOne(DeliveryAddressDto deliveryAddressDto) {
+		return deliveryAddressDao.selectDefOne(deliveryAddressDto);
+}
+	public int update(DeliveryAddressDto deliveryAddressDto) {
+		return deliveryAddressDao.update(deliveryAddressDto);
+	}
+	public int updateDef(DeliveryAddressDto deliveryAddressDto) {
+		return deliveryAddressDao.updateDef(deliveryAddressDto);
+	}
 }

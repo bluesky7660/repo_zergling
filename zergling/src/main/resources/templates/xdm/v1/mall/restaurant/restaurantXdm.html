@@ -573,7 +573,7 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">주차가능여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">예약가능여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">무료콜키지가능 여부</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">소개글</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
@@ -599,7 +599,8 @@
 														<td th:unless="${listC.bookingNy eq 0}">Y</td>
 														<td th:if="${listC.freeCorkageNy eq 0}">N</td>
 														<td th:unless="${listC.freeCorkageNy eq 0}">Y</td>
-														<td th:text="${listC.intro}" class="td_intro"></td>
+														<td th:if="${listC.delNy eq 0}">N</td>
+														<td th:unless="${listC.delNy eq 0}">Y</td>
 														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>
@@ -644,7 +645,7 @@
 										<div class="btn-toolbar mt-5 justify-content-between">
 											<div>
 												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
@@ -669,7 +670,24 @@
 
 				</div>
 				<!-- Content wrapper scroll end -->
-
+				<!-- modals -->
+				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="deleteModalLabel">데이터 삭제</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<span>선택한 데이터를 삭제하시겠습니까?</span>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-success" data-bs-dismiss="modal">삭제 실행</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- *************
 				************ Main container end *************

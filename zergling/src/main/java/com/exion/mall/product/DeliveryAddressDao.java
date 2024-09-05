@@ -9,4 +9,7 @@ public interface DeliveryAddressDao {
 	public List<DeliveryAddressDto> selectList();
 	public int insertAddr(DeliveryAddressDto deliveryAddressDto);
 	public DeliveryAddressDto selectOne(DeliveryAddressDto deliveryAddressDto);
+	public DeliveryAddressDto selectDefOne(DeliveryAddressDto deliveryAddressDto);
+	public int update(DeliveryAddressDto deliveryAddressDto);
+	public int updateDef(DeliveryAddressDto deliveryAddressDto);
 }

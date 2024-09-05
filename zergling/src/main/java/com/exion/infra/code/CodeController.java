@@ -49,6 +49,12 @@ public class CodeController {
 		System.out.println("그룹seq: "+codeService.selectOne(codeDto).getCodeGroup_seq());
 		return "xdm/v1/infra/code/codeXdmMfom";
 	}
+	
+	@RequestMapping(value = "/v1/infra/code/codeXdmUpdt")
+	public String codeXdmUpdt(CodeDto codeDto) {
+		codeService.update(codeDto);
+		return "redirect:/v1/infra/code/codeXdmList";
+	}
 	//------------------------
 //	@RequestMapping(value = "/v1/infra/codeGroup/codeGroupXdmList")
 //	public String codeXdmForm() {

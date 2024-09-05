@@ -75,7 +75,7 @@
                             <div class="cart" onclick="window.location.href='user_cart'">
                                 <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
                             </div>
-                            <div class="user_my" onclick="window.location.href='user_account'">
+                            <div class="user_my" onclick="window.location.href='user_account?seq=1'">
                                 <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                             <li onclick="window.location.href='user_order_list'">주문/배송목록</li>
                                             <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
                                             <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
-                                            <li onclick="window.location.href='user_account'">회원정보 변경</li>
+                                            <li onclick="window.location.href='user_account?seq=1'">회원정보 변경</li>
                                             <li onclick="window.location.href='user_password?seq=1'">비밀번호 변경</li>
                                         </ul>
                                     </div>
@@ -136,10 +136,10 @@
             <div class="user_body d-flex justify-content-between">
                 <div class="aside_box">
                     <ul class="d-flex flex-column gap-4">
-                        <!-- <li onclick="window.location.href='user_account'">▶ 유저룸</li> -->
+                        <!-- <li onclick="window.location.href='user_account?seq=1'">▶ 유저룸</li> -->
                         <li onclick="window.location.href='user_order_list'"><span>주문 / 배송목록</span></li>
                         <li class="active" onclick="window.location.href='user_delivery_address'"><span>배송주소록</span></li>
-                        <li onclick="window.location.href='user_account'"><span>회원정보 수정</span></li>
+                        <li onclick="window.location.href='user_account?seq=1'"><span>회원정보 수정</span></li>
                         <li onclick="window.location.href='user_password?seq=1'"><span>비밀번호 변경</span></li>
                         <li onclick="window.location.href='login'">로그아웃</li>
                     </ul>
@@ -157,13 +157,13 @@
                                         <li>
                                             <span class="rec_name" th:text="${item?.RecipientName}">홍길동</span>
                                             <span> / </span>
-                                            <span class="rec_phone" th:text="${item.RecipientPhone.startsWith('02') ? 
+                                            <span class="rec_phone" th:text="${item.RecipientPhone != null ? (item.RecipientPhone.startsWith('02') ? 
                                             #strings.substring(item.RecipientPhone, 0, 2) + '-' + 
                                             #strings.substring(item.RecipientPhone, 2, 6) + '-' + 
                                             #strings.substring(item.RecipientPhone, 6) : 
                                             #strings.substring(item.RecipientPhone, 0, 3) + '-' + 
                                             #strings.substring(item.RecipientPhone, 3, 7) + '-' + 
-                                            #strings.substring(item.RecipientPhone, 7)}">010-1234-5678</span>
+                                            #strings.substring(item.RecipientPhone, 7)) : ''}">010-1234-5678</span>
                                         </li>
                                         <li>
                                             <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${item?.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
@@ -180,116 +180,124 @@
                             </div>
                             <div class="address_list_box">
                                 <div class="address_list_box_top">
-                                    <p class="address_count"><span class="green_color">4</span>개</p>
+                                    <p class="address_count"><span class="green_color" th:text="${size}">4</span>개</p>
                                     <div>
                                         <span>배송지는 최대 100개까지 등록 가능합니다.</span>
                                         <button class="btn" onclick="window.location.href='user_delivery_address_add'">+ 새 배송지 등록</button>
                                     </div>
                                 </div>
-                                <table class="address_list">
-                                    <tr th:if="${#lists.isEmpty(addrList)}" class="data_empty">
-                                        <td colspan="12"><p>현재 배송지정보가 없습니다.</p></td>
-                                    </tr>
-                                    <tr th:each="list : ${addrList}" th:if="${!#lists.isEmpty(addrList)}">
-                                        <td>
-                                            <input type="radio" class="form-check-input" name="def_ship_addr_chk" th:checked="${list?.defaultNy == 1}" th:id="'defAddrChk'+${list?.seq}">
-                                        </td>
-                                        <td>
-                                            <ul class="ship_addr">
-                                                <li>
-                                                    <span class="address_name" th:text="${list.addressName}">집</span>
-                                                </li>
-                                                <li>
-                                                    <span class="rec_name" th:text="${list.RecipientName}">홍길동</span>
-                                                    <span> / </span>
-                                                    <span class="rec_phone" th:text="${list.RecipientPhone}">010-1234-5678</span>
-                                                </li>
-                                                <li>
-                                                    <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${list.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="btn-box">
-                                            <a  class="btn"  th:href="@{user_delivery_addressMfom(seq=${list.seq})}">수정하기</a>
-                                        </td>
-                                    </tr>
-                                    <!-- <tr>
-                                        <td>
-                                            <input type="radio" class="form-check-input" name="def_ship_addr_chk" id="" >
-                                        </td>
-                                        <td>
-                                            <ul class="ship_addr">
-                                                <li>
-                                                    <span class="address_name">집1</span>
-                                                </li>
-                                                <li>
-                                                    <span class="rec_name">홍길동</span>
-                                                    <span> / </span>
-                                                    <span class="rec_phone">010-1234-5678</span>
-                                                </li>
-                                                <li>
-                                                    <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="btn-box">
-                                            <button class="btn" type="button">수정하기</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" class="form-check-input" name="def_ship_addr_chk" id="">
-                                        </td>
-                                        <td>
-                                            <ul class="ship_addr">
-                                                <li>
-                                                    <span class="address_name">집2</span>
-                                                </li>
-                                                <li>
-                                                    <span class="rec_name">홍길동</span>
-                                                    <span> / </span>
-                                                    <span class="rec_phone">010-1234-5678</span>
-                                                </li>
-                                                <li>
-                                                    <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="btn-box">
-                                            <button class="btn" type="button">수정하기</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" class="form-check-input" name="def_ship_addr_chk" id="">
-                                        </td>
-                                        <td>
-                                            <ul class="ship_addr">
-                                                <li>
-                                                    <span class="address_name">집3</span>
-                                                </li>
-                                                <li>
-                                                    <span class="rec_name">홍길동</span>
-                                                    <span> / </span>
-                                                    <span class="rec_phone">010-1234-5678</span>
-                                                </li>
-                                                <li>
-                                                    <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="btn-box">
-                                            <button class="btn" type="button">수정하기</button>
-                                        </td>
-                                    </tr> -->
-                                </table>
-                                <div class="btn-box changeDefAddress">
-                                    <button class="btn btn-blue" type="button">
-                                        선택한 배송지로 기본배송지 변경
-                                    </button>
-                                </div>
+                                <form method="post" autocomplete="off" action="user_delivery_address_Defupdt">
+                                    <table class="address_list">
+                                        <tr th:if="${#lists.isEmpty(addrList)}" class="data_empty">
+                                            <td colspan="12"><p>현재 배송지정보가 없습니다.</p></td>
+                                        </tr>
+                                        <tr th:each="list : ${addrList}" th:if="${!#lists.isEmpty(addrList)}">
+                                            <td>
+                                                    <input type="radio" class="form-check-input" name="defaultNy" th:checked="${list?.defaultNy == 1}" th:id="'defAddrChk'+${list?.seq}" value="1">
+                                                    <input type="hidden" name="defaultNy" value="0">
+                                            </td>
+                                            <td>
+                                                <ul class="ship_addr">
+                                                    <li>
+                                                        <span class="address_name" th:text="${list.addressName}">집</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rec_name" th:text="${list.RecipientName}">홍길동</span>
+                                                        <span> / </span>
+                                                        <span class="rec_phone" th:text="${list.RecipientPhone != null ? (list.RecipientPhone.startsWith('02') ? 
+                                                        #strings.substring(list.RecipientPhone, 0, 2) + '-' + 
+                                                        #strings.substring(list.RecipientPhone, 2, 5) + '-' + 
+                                                        #strings.substring(list.RecipientPhone, 5) : 
+                                                        #strings.substring(list.RecipientPhone, 0, 3) + '-' + 
+                                                        #strings.substring(list.RecipientPhone, 3, 7) + '-' + 
+                                                        #strings.substring(list.RecipientPhone, 7)) : ''}">010-1234-5678</span>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${list.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="btn-box">
+                                                <a  class="btn"  th:href="@{user_delivery_addressMfom(seq=${list.seq})}">수정하기</a>
+                                            </td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>
+                                                <input type="radio" class="form-check-input" name="def_ship_addr_chk" id="" >
+                                            </td>
+                                            <td>
+                                                <ul class="ship_addr">
+                                                    <li>
+                                                        <span class="address_name">집1</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rec_name">홍길동</span>
+                                                        <span> / </span>
+                                                        <span class="rec_phone">010-1234-5678</span>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="btn-box">
+                                                <button class="btn" type="button">수정하기</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="radio" class="form-check-input" name="def_ship_addr_chk" id="">
+                                            </td>
+                                            <td>
+                                                <ul class="ship_addr">
+                                                    <li>
+                                                        <span class="address_name">집2</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rec_name">홍길동</span>
+                                                        <span> / </span>
+                                                        <span class="rec_phone">010-1234-5678</span>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="btn-box">
+                                                <button class="btn" type="button">수정하기</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="radio" class="form-check-input" name="def_ship_addr_chk" id="">
+                                            </td>
+                                            <td>
+                                                <ul class="ship_addr">
+                                                    <li>
+                                                        <span class="address_name">집3</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rec_name">홍길동</span>
+                                                        <span> / </span>
+                                                        <span class="rec_phone">010-1234-5678</span>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="btn-box">
+                                                <button class="btn" type="button">수정하기</button>
+                                            </td>
+                                        </tr> -->
+                                    </table>
+                                    <div class="btn-box changeDefAddress">
+                                        <button class="btn btn-blue" type="submit">
+                                            선택한 배송지로 기본배송지 변경
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                            
                         </div>
                     </div>
                 </div>

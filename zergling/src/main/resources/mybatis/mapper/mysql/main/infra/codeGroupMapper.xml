@@ -23,6 +23,34 @@
 		ORDER BY
 			a.groupOrder desc
 	</select>
+	<select id="selectList2" resultMap="resultMapObj">
+		SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+			    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+		ORDER BY
+			a.groupOrder desc
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+	<select id="listCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+			    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+    </select>
 	<insert id="insert">
 		insert into codegroup(
 			codeGroupName

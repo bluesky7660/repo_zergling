@@ -58,6 +58,43 @@
 			from
 				deliveryaddress a
 			where 1=1
+				and a.seq = #{seq}
+	  </select>
+	  <select id="selectDefOne" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    <!-- ,a.member_seq -->
+			from
+				deliveryaddress a
+			where 1=1
 				and a.defaultNy = 1
 	  </select>
+	  <update id="update">
+		UPDATE deliveryaddress
+		SET
+			defaultNy = #{defaultNy}
+			,addressName = #{addressName}
+			,RecipientName = #{RecipientName}
+			,RecipientPhone = #{RecipientPhone}
+			,address = #{address}
+			,modDate = now()
+		WHERE 1=1
+			AND seq = #{seq}
+	  </update>
+		<update id="updateDef">
+			UPDATE deliveryaddress
+			SET
+				defaultNy = #{defaultNy}
+				,modDate = now()
+			WHERE 1=1
+				AND seq = #{seq}
+		</update>
 </mapper>

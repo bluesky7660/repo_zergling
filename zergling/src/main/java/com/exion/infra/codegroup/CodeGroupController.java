@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.exion.infra.code.CodeService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -17,7 +16,9 @@ public class CodeGroupController {
 
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmList")
-	public String codeGroupXdmList(Model model) {
+	public String codeGroupXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "size", defaultValue = "3") int size,
+            @RequestParam(value = "searchKeyword", required = false) String searchKeyword, Model model) {
 //		List<CodeGroupDto> codeGroups = codeGroupService.selectList();
 //		
 //		model.addAttribute("list", codeGroups);
@@ -25,9 +26,19 @@ public class CodeGroupController {
 //			System.out.println("날짜: "+codeGroup.getRegDate());
 //			System.out.printf("|%-5s|%-5s|\n",codeGroup.getSeq(),codeGroup.getCodeGroupName());
 //		}
-		model.addAttribute("list", codeGroupService.selectList());
-		model.addAttribute("totalRows", codeGroupService.selectList().size());
 		
+        
+//		List<CodeGroupDto> codeGroups = codeGroupService.findAll(page, size);
+		int total = codeGroupService.listCount(searchKeyword);
+		
+//		model.addAttribute("list", codeGroupService.selectList());
+		model.addAttribute("list", codeGroupService.findAll(page, size, searchKeyword));
+		model.addAttribute("totalRows", total);
+		model.addAttribute("total", total);
+		model.addAttribute("pageSize", size);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", (int) Math.ceil((double) total / size));
+		model.addAttribute("searchKeyword", searchKeyword);
 		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
 	

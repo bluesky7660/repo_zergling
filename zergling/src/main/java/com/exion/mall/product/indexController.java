@@ -41,13 +41,17 @@ public class indexController {
 	}
 	@RequestMapping(value = "user_delivery_address")
 	public String deliveryAddress(Model model,DeliveryAddressDto deliveryAddressDto) {
-		model.addAttribute("item", deliveryAddressService.selectOne(deliveryAddressDto));
+		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
+		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
 		model.addAttribute("addrList", deliveryAddressService.selectList());
+		int size = deliveryAddressService.selectList().size();
+		model.addAttribute("size", size); // 사이즈 추가
 		return "/usr/v1/pages/user_delivery_address";
 	}
 	@RequestMapping(value = "user_delivery_addressMfom")
 	public String deliveryAddressMfom(Model model,DeliveryAddressDto deliveryAddressDto) {
 		model.addAttribute("item", deliveryAddressService.selectOne(deliveryAddressDto));
+		System.out.println("MfomSeq: "+deliveryAddressService.selectOne(deliveryAddressDto).getSeq());
 		return "/usr/v1/pages/user_delivery_addressMfom";
 	}
 	@RequestMapping(value = "user_delivery_address_add")
@@ -56,8 +60,18 @@ public class indexController {
 		return "/usr/v1/pages/user_delivery_address_add";
 	}
 	@RequestMapping(value = "user_delivery_address_inst")
-	public String deliveryAddressAddForm(DeliveryAddressDto deliveryAddressDto) {
+	public String deliveryAddressInst(DeliveryAddressDto deliveryAddressDto) {
 		deliveryAddressService.insertAddr(deliveryAddressDto);
+		return "redirect:user_delivery_address";
+	}
+	@RequestMapping(value = "user_delivery_address_updt")
+	public String deliveryAddressUpdt(DeliveryAddressDto deliveryAddressDto) {
+		deliveryAddressService.update(deliveryAddressDto);
+		return "redirect:user_delivery_address";
+	}
+	@RequestMapping(value = "user_delivery_address_Defupdt")
+	public String deliveryAddressDefUpdt(DeliveryAddressDto deliveryAddressDto) {
+		deliveryAddressService.updateDef(deliveryAddressDto);
 		return "redirect:user_delivery_address";
 	}
 	@RequestMapping(value = "user_account")

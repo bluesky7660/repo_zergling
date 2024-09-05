@@ -23,7 +23,9 @@
 			commoncode a
 			join codegroup b on a.codeGroup_seq = b.seq
 		ORDER BY
-			a.seq desc
+			<!-- a.seq desc --> 
+			a.codeGroup_seq desc
+			, a.codeOrder desc
 	</select>
 	<insert id="insert">
 		insert into commoncode(
