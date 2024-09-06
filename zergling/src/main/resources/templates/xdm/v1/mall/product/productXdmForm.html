@@ -531,19 +531,19 @@
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputPublisher" class="form-label">출판사</label>
-														<input type="text" class="form-control validate-this" id="inputPublisher" name="publisher" placeholder="" required>
+														<label for="inputAuthorName" class="form-label">작가이름</label>
+														<input type="text" class="form-control validate-this" id="inputAuthorName" name="authorName" placeholder="" required>
 														<div class="invalid-feedback">
-															출판사를 적어주세요.
+															작가를 적어주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputMakeDate" class="form-label">출간일</label>
-														<input type="date" class="form-control validate-this" id="inputMakeDate" name="makeDate" required>
+														<label for="inputPublisher" class="form-label">출판사</label>
+														<input type="text" class="form-control validate-this" id="inputPublisher" name="publisher" placeholder="" required>
 														<div class="invalid-feedback">
-															출간일을 선택해주세요.
+															출판사를 적어주세요.
 														</div>
 													</div>
 												</div>
@@ -577,7 +577,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputPoint" class="form-label">포인트</label>
-														<input type="text" class="form-control validate-this" id="inputPoint" name="point" placeholder="" required>
+														<input type="text" class="form-control validate-this" id="inputPoint" name="point" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															포인트를 적어주세요.
 														</div>
@@ -586,7 +586,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputStockQty" class="form-label">재고량</label>
-														<input type="text" class="form-control validate-this" id="inputStockQty" name="stockQty" placeholder="" required>
+														<input type="text" class="form-control validate-this" id="inputStockQty" name="stockQty" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															재고량을 적어주세요.
 														</div>
@@ -595,9 +595,18 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputReviewNum" class="form-label">리뷰점수</label>
-														<input type="text" class="form-control validate-this" id="inputReviewNum" name="reviewNum" placeholder="" required>
+														<input type="text" class="form-control validate-this" id="inputReviewNum" name="reviewNum" placeholder="소수점 첫째자리까지만" required>
 														<div class="invalid-feedback">
 															리뷰점수를 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputMakeDate" class="form-label">출간일</label>
+														<input type="date" class="form-control validate-this" id="inputMakeDate" name="makeDate" required>
+														<div class="invalid-feedback">
+															출간일을 선택해주세요.
 														</div>
 													</div>
 												</div>
@@ -669,7 +678,7 @@
 												<div class="required col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="inputSliderText" class="form-label">슬라이드 텍스트</label>
-														<textarea class="form-control validate-this" id="inputSliderText" name="sliderText" placeholder="강의내용을 적어주세요." rows="3" required></textarea>
+														<textarea class="form-control validate-this" id="inputSliderText" name="sliderText" placeholder="슬라이드 텍스트를 적어주세요." rows="3" required></textarea>
 														<div class="invalid-feedback">
 															슬라이드 텍스트를 적어주세요.
 														</div>

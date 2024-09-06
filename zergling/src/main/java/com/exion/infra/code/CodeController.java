@@ -46,7 +46,12 @@ public class CodeController {
 		List<CodeGroupDto> codeGroups = codeGroupService.selectList();
 		model.addAttribute("codeGroups", codeGroups);
 		model.addAttribute("item",codeService.selectOne(codeDto));
-		System.out.println("그룹seq: "+codeService.selectOne(codeDto).getCodeGroup_seq());
+		System.out.println("코드그룹seq: "+codeService.selectOne(codeDto).getCodeGroup_seq());
+//		System.out.println("그룹정보: "+codeGroups);
+		for(CodeGroupDto codeGroup:codeGroups) {
+			System.out.println("그룹SEQ: "+codeGroup.getSeq());
+//			System.out.printf("|%-5s|%-5s|\n",codeGroup.getSeq(),codeGroup.getCodeGroupName());
+		} 
 		return "xdm/v1/infra/code/codeXdmMfom";
 	}
 	

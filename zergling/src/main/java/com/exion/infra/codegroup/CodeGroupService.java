@@ -35,14 +35,13 @@ public class CodeGroupService {
 	}
 	
 	public List<CodeGroupDto> findAll(int page, int size, String searchKeyword) {
-		// 페이지 번호와 페이지 크기 설정
+		// 리스트를 건너뛸 갯수 (1[현재페이지]-1)*5 = 0, (2-1)*5 = 5
+		//select 에서 OFFSET절에서 사용할 값으로 5면 리스트5번째까지 건너뛰고 6번째부터 출력
         int offset = (page - 1) * size;
+        //page 현재페이지,size 보여줄 리스트의 갯수 - PaginatedDto 의 int limit에 size값이 들어간다.
         PaginatedDto params = new PaginatedDto(size, offset ,searchKeyword);
-
-        List<CodeGroupDto> codeGroups = codeGroupDao.selectList2(params);
-
         // Set data for the view layer
-        return codeGroups;
+        return codeGroupDao.selectList2(params);
     }
 	public int listCount(String searchKeyword) {
 		PaginatedDto params = new PaginatedDto(0,0,searchKeyword);

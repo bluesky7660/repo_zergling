@@ -19,4 +19,7 @@ public class ProductService {
 	public ProductDto prodOne(ProductDto productDto){
 		return productDao.prodOne(productDto);
 	}
+	public int update(ProductDto productDto) {
+		return productDao.update(productDto);
+	}
 }

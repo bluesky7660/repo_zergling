@@ -31,6 +31,8 @@ public class ProductDto {
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
+	
+	private String name;
 //---------------------------------
 	public String getSeq() {
 		return seq;
@@ -175,6 +177,12 @@ public class ProductDto {
 	}
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

@@ -13,7 +13,7 @@ public class CodeDto {
 	private Integer delNy;
 	private Date regDate;
 	private Date modDate;
-	private Integer codeGroup_seq;
+	private String codeGroup_seq;
 	
 	//----------------------------------
 	public String getSeq() {
@@ -70,10 +70,10 @@ public class CodeDto {
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
 	}
-	public Integer getCodeGroup_seq() {
+	public String getCodeGroup_seq() {
 		return codeGroup_seq;
 	}
-	public void setCodeGroup_seq(Integer codeGroup_seq) {
+	public void setCodeGroup_seq(String codeGroup_seq) {
 		this.codeGroup_seq = codeGroup_seq;
 	}
 	

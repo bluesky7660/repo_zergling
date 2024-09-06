@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.mall.product.AuthorDao">
+	  <resultMap type="com.exion.mall.product.AuthorDto" id="resultObj"></resultMap>
+	  <select id="authorList" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				join productAuthor c on c.author_seq = a.seq
+				join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			order by a.seq desc
+	  </select>
+	 <!--  <insert id="insertAuthor">
+			insert into author(
+			    authorType
+			    ,name	
+			    ,authorInfo
+				,regDate
+				,modDate
+			    ,delNy
+			) value(
+				#{authorType}
+			    ,#{authorType}
+			    ,#{authorInfo}
+			    ,now()
+			    ,now()
+			    ,0
+			)
+	  </insert>
+	  <insert id="insertAuthorProd">
+			insert into author(
+			    
+			    ,delNy
+			) value(
+				#{authorType}
+			    ,#{authorType}
+			    ,#{authorInfo}
+			    ,now()
+			    ,now()
+			    ,0
+			)
+	  </insert> -->
+	  <select id="authorOne" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				join productAuthor c on c.author_seq = a.seq
+				join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1 = 1
+				and a.seq = #{seq}
+	  </select>
+</mapper>

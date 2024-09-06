@@ -9,4 +9,5 @@ public interface ProductDao {
 	public int insertProd(ProductDto productDto);
 	public List<ProductDto> prodList();
 	public ProductDto prodOne(ProductDto productDto);
+	public int update(ProductDto productDto);
 }

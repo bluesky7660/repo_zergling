@@ -506,7 +506,7 @@
 														<label for="inputIndustryType1" class="form-label">코드그룹</label>
 														<select class="form-select validate-this" id="inputIndustryType1" name="codeGroup_seq" required>
 															<option value="" disabled>선택하세요</option>
-															<option th:each="group : ${codeGroups}" th:value="${group.seq}" th:text="${group.codeGroupName}" th:selected="${group.seq} == ${item.codeGroup_seq}"></option>
+															<option th:each="group : ${codeGroups}" th:value="${group.seq}" th:text="${group.codeGroupName}" th:selected="${group.seq == item.codeGroup_seq}"></option>
 														</select>
 														<div class="invalid-feedback">
 															코드그룹을 선택해주세요.

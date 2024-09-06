@@ -8,6 +8,7 @@
 				a.seq
 			    ,a.title
 			    ,a.prodType
+			    ,b.name
 			    ,a.publisher
 			    ,a.makeDate
 			    ,a.price
@@ -31,6 +32,9 @@
 			    ,a.delNy
 			from
 				product a
+				join productAuthor c on c.product_seq = a.seq
+				join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
 			order by a.seq desc
 	  </select>
 	  <insert id="insertProd">
@@ -115,4 +119,29 @@
 			where 1 = 1
 				and a.seq = #{seq}
 	  </select>
+	  <update id="update">
+		  	UPDATE product
+			SET
+				title = #{title}
+			    ,prodType = #{prodType}
+			    ,publisher = #{publisher}
+			    ,makeDate = #{makeDate}
+			    ,price = #{price}
+			    ,sale = #{sale}
+			    ,salePrice = #{salePrice}
+			    ,point = #{point}
+			    ,stockQty = #{stockQty}
+			    ,intro = #{intro}
+			    ,reviewNum = #{reviewNum}
+			    ,shipDate = #{shipDate}
+			    ,tableOfContents = #{tableOfContents}
+			    ,publisherReview = #{publisherReview}
+			    ,preivew = #{preivew}
+			    ,bestNy = #{bestNy}
+			    ,todayPickNy = #{todayPickNy}
+			    ,sliderText = #{sliderText}]
+				,modDate = now()
+			WHERE 1=1
+				AND seq = #{seq}
+	  </update>
 </mapper>

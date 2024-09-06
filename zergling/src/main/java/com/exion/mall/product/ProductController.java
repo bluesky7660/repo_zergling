@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductController {
 	@Autowired
 	ProductService productService;
+	@Autowired
+	AuthorService authorService;
 	
 	@RequestMapping(value = "v1/mall/product/productXdmList")
 	public String productXdmList(Model model){
@@ -28,7 +30,15 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "v1/mall/product/productXdmMfom")
-	public String productXdmMfom() {
+	public String productXdmMfom(Model model, ProductDto productDto , AuthorDto authorDto) {
+		model.addAttribute("item", productService.prodOne(productDto));
+		model.addAttribute("author", authorService.authorOne(authorDto));
 		return "xdm/v1/mall/product/productXdmMfom";
+	}
+	
+	@RequestMapping(value = "v1/mall/product/productXdmUpdt")
+	public String productXdmUpdt(ProductDto productDto) {
+		productService.update(productDto);
+		return "redirect:productXdmList";
 	}
 }

@@ -47,93 +47,7 @@
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
 		<style>
-			/* 비활성화된 버튼 스타일 */
-			.dataTable-pagination-list .page-item.disabled {
-				opacity: 1; /* 버튼의 투명도 설정 */
-				cursor: default; /* 마우스 커서 스타일 */
-			}
 
-			.dataTable-pagination-list .page-item.disabled a {
-				pointer-events: none; /* 클릭 이벤트 비활성화 */
-			}
-
-			.dataTable-pagination-list .page-item.disabled span {
-				display: inline-block; /* 비활성화된 버튼의 내용을 표시 */
-			}
-			/* 현재 페이지의 링크를 비활성화 */
-			.dataTable-pagination-list .page-item.active a {
-				pointer-events: none; /* 클릭 이벤트 비활성화 */
-				cursor: default; /* 커서 스타일 */
-			}
-
-
-			/* .btn .bi{
-				font-size: 1rem;
-				vertical-align: baseline;
-			}
-			.table td{
-          		text-align: center;
-	
-			}
-			.table th{
-				
-				white-space: nowrap;
-				text-align: center;
-				padding-left: 20px;
-			}
-			.table tr>*{
-				padding:1rem;
-				vertical-align: middle;
-			}
-			.table th:not(.sorting_asc){
-				padding: .5rem;
-				padding-left: 20px;
-			}
-			.table th span{
-				font-size: 0.85rem;
-			}
-			th>div{
-				padding: .5rem;
-				padding-right: 20px;
-			}
-			.scrolltable{
-				overflow-x: auto;
-			}
-			.page-item .page-link{
-				border: 0;
-				padding:.6rem 1rem;
-			}
-			.page-item.disabled .page-link{
-				border: 0;
-				opacity: 0;
-			}
-			.page-item.active .page-link{
-				border: 0;
-			}
-			.btn{
-				width: 40px;
-			}
-			.page-item:not(:first-child,:last-child){
-				margin: 0 5px;
-			}
-			.page-item a{
-				border-radius: 10px;
-				transition: 0.3s ease-in-out;
-				opacity: 1;
-			}
-			.page-item.active a:hover{
-				background-color: #3688fa;
-				opacity: 1;
-				color:#fff;
-			}
-			.page-item.active a{
-				color:#fff;
-			}
-			.page-item:not(.active) a:hover{
-				background-color: #3688fa;
-				opacity: 0.5;
-				color:#fff;
-			} */
 		</style>
 	</head>
 
@@ -561,7 +475,7 @@
 								<div class="card border">
 									<div class="card-header bg-light">
 										<h2 class="card-title">
-											Code Group
+											작가 리스트
 										</h2>
 										<div>
 											<form class="row gx-3 align-items-center" action="">
@@ -584,7 +498,7 @@
 														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 														<select class="form-select" id="inlineFormSelectPref3">
 															<option selected>수정일</option>
-															<option value="1">등록일</option>
+															<option value="1">One</option>
 															<option value="2">Two</option>
 															<option value="3">Three</option>
 														</select>
@@ -628,18 +542,12 @@
 										<div class="row justify-content-between">
 											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
-													<!-- <select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" > -->
-													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
-														<option value="2" th:selected="${pageSize == 2}">2</option>
-														<option value="3" th:selected="${pageSize == 3}">3</option>
-														<option value="5" th:selected="${pageSize == 5}">5</option>
-														<option value="10" th:selected="${pageSize == 10}">10</option>
-														<option value="20" th:selected="${pageSize == 20}">20</option>
-														<option value="50" th:selected="${pageSize == 50}">50</option>
-													</select>
-													<input type="hidden" name="page" id="pageNumber" value="1" />
-												</form>
+												<select class="dataTable-selector form-select" name="" id="">
+													<option value="5">5</option>
+													<option value="10">10</option>
+													<option value="15">15</option>
+													<option value="20">20</option>
+												</select>
 											</div>
 										</div>
 										<div class="scrolltable">
@@ -650,35 +558,33 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 이름</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">작가직업</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">작가이름</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">작품</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">순서</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
-														<td colspan="8"><p>데이터가 없습니다.</p></td>
+														<td colspan="14"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr th:each="listG : ${list}" th:if="${!#lists.isEmpty(list)}">
+													<tr th:each="list : ${list}" th:if="${!#lists.isEmpty(list)}">
 														<td><input type="checkbox"></td>
-														<!-- <td>171</td> -->
-														<td th:text="${listG.seq}"></td>
-														<!-- <td class="td_spotlight">
-															<a href="/v1/infra/codegroup/codeGroupXdmForm?seq=1" th:text="${listG.codeGroupName}"></a>
-														</td> -->
-														<td class="td_spotlight">
-															<a th:href="@{/v1/infra/codegroup/codeGroupXdmMfom(seq=${listG.seq})}" th:text="${listG.codeGroupName}"></a>
+														<td th:text="${list.seq}"></td>
+														<td th:text="${list.codeName}"></td>
+														<td  class="td_spotlight">
+															<a th:href="@{/v1/mall/product/productXdmMfom(seq=${list.seq})}" th:text="${list.name}"></a>
 														</td>
-														<td th:if="${listG.useNy eq 0}">N</td>
-														<td th:unless="${listG.useNy eq 0}">Y</td>
-														<td th:if="${listG.delNy eq 0}">N</td>
-														<td th:unless="${listG.delNy eq 0}">Y</td>
-														<td th:text="${listG.groupOrder}"></td>
-														<td th:text="${#dates.format(listG.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-														<td th:text="${#dates.format(listG.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:text="${list.title}">
+															<!-- <span th:text="${list.title}"></span>
+                											<span th:if="${list.title.size() > 1}" th:text="'외 ' + (${list.title.size() - 1}) + '개'"></span> -->
+														</td>
+														<td th:if="${list.delNy eq 0}">N</td>
+														<td th:unless="${list.delNy eq 0}">Y</td>													
+														<td th:text="${#dates.format(list.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:text="${#dates.format(list.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>
 												</tbody>
 											</table>	
@@ -686,9 +592,9 @@
 										
 										<div class="dataTable-bottom">
 											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
 													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">
+														<a class="page-link" href="#">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
@@ -697,103 +603,35 @@
 													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
 													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
 													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
+													<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
 													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">
+														<a class="page-link" href="#">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-												</ul> -->
-												
-												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<!-- First Page -->
-													<li class="paginate_button page-item" th:classappend="${currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1, size=${pageSize})}" th:if="${currentPage > 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
-														</a>
-														<a class="page-link" th:if="${currentPage <= 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
-														</a>
-													</li>
-													<!-- Previous Page -->
-													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1}, size=${pageSize})}" th:if="${currentPage > 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-														<a class="page-link" th:if="${currentPage <= 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<!-- Page Numbers -->
-													<li th:each="i : ${#numbers.sequence(
-																		currentPage == 1 ? 1 : 
-																		currentPage == 2 ? 1 : 
-																		currentPage == totalPages - 1 ? currentPage - 3 : 
-																		currentPage == totalPages ? currentPage - 4 : 
-																		currentPage - 2, 
-																		
-																		currentPage == 1 ? 5 : 
-																		currentPage == 2 ? 5 : 
-																		currentPage == totalPages - 1 ? totalPages : 
-																		currentPage == totalPages ? totalPages : 
-																		currentPage + 2
-																	)}"
-														class="paginate_button page-item"
-														th:if="${i > 0 && i <= totalPages}" 
-														th:classappend="${i == currentPage} ? 'active' : ''">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i}, size=${pageSize})}" th:text="${i}"></a>
-													</li>
-													<!-- Next Page -->
-													<li class="paginate_button next page-item" id="nextPage" th:classappend="${currentPage < totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1}, size=${pageSize})}" th:if="${currentPage < totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-														<a class="page-link" th:if="${currentPage >= totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-													<!-- Last Page -->
-													<li class="paginate_button page-item" th:classappend="${currentPage < totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${totalPages}, size=${pageSize})}" th:if="${currentPage < totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
-														</a>
-														<a class="page-link" th:if="${currentPage >= totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
 													</li>
 												</ul>
-												
-												
 												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">
+													
+													<li class="page-item"><a class="page-link" href="#">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<li class="paginate_button page-item"><a th:each="i : ${#numbers.sequence(1, totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == currentPage} ? 'active' : ''"></a></li>
-													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">
+														</a></li>
+													<li class="page-item"><a class="page-link" href="#">1</a></li>
+													<li class="page-item active"><a class="page-link" href="#">2</a></li>
+													<li class="page-item"><a class="page-link" href="#">3</a></li>
+													<li class="page-item"><a class="page-link" href="#">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
+														</a></li>
 												</ul> -->
-												<!-- <a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">Previous</a>
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1)}" th:if="${currentPage > 1}">First</a>
-										
-												<a th:each="i : ${#numbers.sequence(1, totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == currentPage} ? 'active' : ''"></a>
-												
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">Next</a>
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${totalPages})}" th:if="${currentPage < totalPages}">Last</a> -->
 											</nav>
 										</div>
 										<div class="btn-toolbar mt-5 justify-content-between">
 											<div>
 												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<!-- <a href="javascript:void(0);" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></a> -->
 												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="codeGroupXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												<a href="productXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
 											</div>
 										</div>
 									</div>
@@ -844,127 +682,6 @@
 			************ Required JavaScript Files *************
 		************* -->
 		<script>
-			function updatePageSize() {
-				var form = document.getElementById('pagination-form');
-				var pageSizeSelect = document.getElementById('pageSizeSelect');
-
-				if (form && pageSizeSelect) {
-					// 선택된 pageSize 값을 가져옵니다.
-					var pageSize = pageSizeSelect.value;
-
-					// 현재 URL을 가져와 URL 객체를 생성합니다.
-					var url = new URL(window.location.href);
-					var currentPage = url.searchParams.get('page') || 1;
-
-					// URL의 쿼리 파라미터를 초기화합니다.
-					url.searchParams.delete('size');
-					// url.searchParams.delete('page');
-
-					// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
-					// url.searchParams.append('page', currentPage);
-					url.searchParams.append('size', pageSize);
-					console.log('url:'+url);
-					// URL을 폼의 action에 적용합니다.
-					form.action = url.toString();
-					form.submit();
-				} else {
-					console.error('Form or pageSizeSelect element not found.');
-				}
-			}
-
-			window.onload = function() {
-				var pageSizeSelect = document.getElementById('pageSizeSelect');
-				if (pageSizeSelect) {
-					pageSizeSelect.addEventListener('change', updatePageSize);
-				}
-
-				//
-				// var paginationItems = document.querySelectorAll('.pagination .page-item');
-				// var maxPagesToShow = 5;
-				// var totalPages = parseInt(document.getElementById('totalPages').value); // 페이지 총 수를 가져옵니다.
-				// var currentPage = parseInt(document.getElementById('currentPage').value); // 현재 페이지를 가져옵니다.
-
-				// // 페이지 번호의 범위를 설정합니다.
-				// var startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
-				// var endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
-
-				// if (endPage - startPage + 1 < maxPagesToShow) {
-				// 	startPage = Math.max(1, endPage - maxPagesToShow + 1);
-				// }
-
-				// paginationItems.forEach(function(item) {
-				// 	var pageNum = parseInt(item.textContent);
-				// 	if (pageNum < startPage || pageNum > endPage) {
-				// 		item.style.display = 'none';
-				// 	} else {
-				// 		item.style.display = 'inline-block';
-				// 	}
-				// });
-				// 페이지네이션 항목들을 선택합니다.
-				// var paginationItems = document.querySelectorAll('.pagination .page-item');
-
-				// // 한 번에 보여줄 최대 페이지 그룹 크기 설정 (5개씩 표시)
-				// var maxPagesToShow = 5;
-
-				// // 페이지 총 수를 가져옵니다.
-				// var totalPages = parseInt(document.getElementById('totalPages').value);
-
-				// // 현재 페이지를 가져옵니다.
-				// var currentPage = parseInt(document.getElementById('currentPage').value);
-
-				// // 페이지 그룹의 시작 페이지 설정
-				// var startPage;
-				// var endPage;
-
-				// // 첫 번째 페이지인 경우: 1, 2, 3, 4, 5
-				// if (currentPage === 1) {
-				// 	startPage = 1;
-				// 	endPage = Math.min(maxPagesToShow, totalPages);
-				// }
-				// // 두 번째 페이지인 경우: 1, 2, 3, 4, 5
-				// else if (currentPage === 2) {
-				// 	startPage = 1;
-				// 	endPage = Math.min(maxPagesToShow, totalPages);
-				// }
-				// // 마지막 두 번째 페이지인 경우: 뒤쪽으로 3개, 앞쪽으로 1개 (totalPages-4부터 totalPages)
-				// else if (currentPage === totalPages - 1) {
-				// 	startPage = Math.max(totalPages - maxPagesToShow + 1, 1);
-				// 	endPage = totalPages;
-				// }
-				// // 마지막 페이지인 경우: 뒤쪽으로 4개 (totalPages-4부터 totalPages)
-				// else if (currentPage === totalPages) {
-				// 	startPage = Math.max(totalPages - maxPagesToShow + 1, 1);
-				// 	endPage = totalPages;
-				// }
-				// // 중간 페이지들: 기준에 따라 범위 설정
-				// else {
-				// 	// 현재 페이지를 중심으로 5개의 그룹을 보여줌
-				// 	startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
-				// 	endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
-
-				// 	// endPage - startPage가 5 미만인 경우를 처리하여 startPage 조정
-				// 	if (endPage - startPage + 1 < maxPagesToShow) {
-				// 		startPage = Math.max(1, endPage - maxPagesToShow + 1);
-				// 	}
-				// }
-
-				// 각 페이지네이션 항목에 대해 반복문을 실행합니다.
-				// paginationItems.forEach(function(item) {
-				// 	// 항목의 페이지 번호를 가져옵니다.
-				// 	var pageNum = parseInt(item.textContent);
-
-				// 	// 현재 페이지 번호가 현재 그룹의 시작과 끝 페이지 범위 안에 있는 경우 표시합니다.
-				// 	if (pageNum >= startPage && pageNum <= endPage) {
-				// 		item.style.display = 'inline-block';
-				// 	} else {
-				// 		// 범위를 벗어난 경우 항목을 숨깁니다.
-				// 		item.style.display = 'none';
-				// 	}
-				// });
-
-			};
-		</script>
-		<!-- <script>
 			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
 			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
 
@@ -1022,7 +739,7 @@
 				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
 				}
 			}
-		</script> -->
+		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/bootstrap.bundle.min.js"></script>
