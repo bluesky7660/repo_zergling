@@ -631,12 +631,12 @@
 												<form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
 													<!-- <select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" > -->
 													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
-														<option value="2" th:selected="${response.pageSize == 2}">2</option>
-														<option value="3" th:selected="${response.pageSize == 3}">3</option>
-														<option value="5" th:selected="${response.pageSize == 5}">5</option>
-														<option value="10" th:selected="${response.pageSize == 10}">10</option>
-														<option value="20" th:selected="${response.pageSize == 20}">20</option>
-														<option value="50" th:selected="${response.pageSize == 50}">50</option>
+														<option value="2" th:selected="${pageSize == 2}">2</option>
+														<option value="3" th:selected="${pageSize == 3}">3</option>
+														<option value="5" th:selected="${pageSize == 5}">5</option>
+														<option value="10" th:selected="${pageSize == 10}">10</option>
+														<option value="20" th:selected="${pageSize == 20}">20</option>
+														<option value="50" th:selected="${pageSize == 50}">50</option>
 													</select>
 													<input type="hidden" name="page" id="pageNumber" value="1" />
 												</form>
@@ -659,10 +659,10 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:if="${#lists.isEmpty(response.list)}" class="data_empty">
+													<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
 														<td colspan="8"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr th:each="listG : ${response.list}" th:if="${!#lists.isEmpty(response.list)}">
+													<tr th:each="listG : ${list}" th:if="${!#lists.isEmpty(list)}">
 														<td><input type="checkbox"></td>
 														<!-- <td>171</td> -->
 														<td th:text="${listG.seq}"></td>
@@ -688,7 +688,7 @@
 											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
 												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
 													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1})}" th:if="${response.currentPage > 1}">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
@@ -698,7 +698,7 @@
 													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
 													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
 													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1})}" th:if="${response.currentPage < response.totalPages}">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 														</a>
 													</li>
@@ -706,57 +706,57 @@
 												
 												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
 													<!-- First Page -->
-													<li class="paginate_button page-item" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+													<li class="paginate_button page-item" th:classappend="${currentPage > 1} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1, size=${pageSize})}" th:if="${currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage <= 1}">
+														<a class="page-link" th:if="${currentPage <= 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
 														</a>
 													</li>
 													<!-- Previous Page -->
-													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1}, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${currentPage > 1} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1}, size=${pageSize})}" th:if="${currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage <= 1}">
+														<a class="page-link" th:if="${currentPage <= 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
 													<!-- Page Numbers -->
 													<li th:each="i : ${#numbers.sequence(
-																		response.currentPage == 1 ? 1 : 
-																		response.currentPage == 2 ? 1 : 
-																		response.currentPage == response.totalPages - 1 ? response.currentPage - 3 : 
-																		response.currentPage == response.totalPages ? response.currentPage - 4 : 
-																		response.currentPage - 2, 
+																		currentPage == 1 ? 1 : 
+																		currentPage == 2 ? 1 : 
+																		currentPage == totalPages - 1 ? currentPage - 3 : 
+																		currentPage == totalPages ? currentPage - 4 : 
+																		currentPage - 2, 
 																		
-																		response.currentPage == 1 ? 5 : 
-																		response.currentPage == 2 ? 5 : 
-																		response.currentPage == response.totalPages - 1 ? response.totalPages : 
-																		response.currentPage == response.totalPages ? response.totalPages : 
-																		response.currentPage + 2
+																		currentPage == 1 ? 5 : 
+																		currentPage == 2 ? 5 : 
+																		currentPage == totalPages - 1 ? totalPages : 
+																		currentPage == totalPages ? totalPages : 
+																		currentPage + 2
 																	)}"
 														class="paginate_button page-item"
-														th:if="${i > 0 && i <= response.totalPages}" 
-														th:classappend="${i == response.currentPage} ? 'active' : ''">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i}, size=${response.pageSize})}" th:text="${i}"></a>
+														th:if="${i > 0 && i <= totalPages}" 
+														th:classappend="${i == currentPage} ? 'active' : ''">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i}, size=${pageSize})}" th:text="${i}"></a>
 													</li>
 													<!-- Next Page -->
-													<li class="paginate_button next page-item" id="nextPage" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+													<li class="paginate_button next page-item" id="nextPage" th:classappend="${currentPage < totalPages} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1}, size=${pageSize})}" th:if="${currentPage < totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+														<a class="page-link" th:if="${currentPage >= totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 														</a>
 													</li>
 													<!-- Last Page -->
-													<li class="paginate_button page-item" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.totalPages}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+													<li class="paginate_button page-item" th:classappend="${currentPage < totalPages} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${totalPages}, size=${pageSize})}" th:if="${currentPage < totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+														<a class="page-link" th:if="${currentPage >= totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
 													</li>
@@ -765,24 +765,24 @@
 												
 												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
 													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1})}" th:if="${response.currentPage > 1}">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
-													<li class="paginate_button page-item"><a th:each="i : ${#numbers.sequence(1, response.totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == response.currentPage} ? 'active' : ''"></a></li>
+													<li class="paginate_button page-item"><a th:each="i : ${#numbers.sequence(1, totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == currentPage} ? 'active' : ''"></a></li>
 													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1})}" th:if="${response.currentPage < response.totalPages}">
+														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 														</a>
 													</li>
 												</ul> -->
-												<!-- <a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1})}" th:if="${response.currentPage > 1}">Previous</a>
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1)}" th:if="${response.currentPage > 1}">First</a>
+												<!-- <a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage - 1})}" th:if="${currentPage > 1}">Previous</a>
+												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1)}" th:if="${currentPage > 1}">First</a>
 										
-												<a th:each="i : ${#numbers.sequence(1, response.totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == response.currentPage} ? 'active' : ''"></a>
+												<a th:each="i : ${#numbers.sequence(1, totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == currentPage} ? 'active' : ''"></a>
 												
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1})}" th:if="${response.currentPage < response.totalPages}">Next</a>
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.totalPages})}" th:if="${response.currentPage < response.totalPages}">Last</a> -->
+												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">Next</a>
+												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${totalPages})}" th:if="${currentPage < totalPages}">Last</a> -->
 											</nav>
 										</div>
 										<div class="btn-toolbar mt-5 justify-content-between">
@@ -849,20 +849,20 @@
 				var pageSizeSelect = document.getElementById('pageSizeSelect');
 
 				if (form && pageSizeSelect) {
-					// 선택된 pageSizes 값을 가져옵니다.
-					var pageSizes = pageSizeSelect.value;
+					// 선택된 pageSize 값을 가져옵니다.
+					var pageSize = pageSizeSelect.value;
 
 					// 현재 URL을 가져와 URL 객체를 생성합니다.
 					var url = new URL(window.location.href);
-					// var response.currentPage = url.searchParams.get('page') || 1;
+					var currentPage = url.searchParams.get('page') || 1;
 
 					// URL의 쿼리 파라미터를 초기화합니다.
 					url.searchParams.delete('size');
 					// url.searchParams.delete('page');
 
 					// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
-					// url.searchParams.append('page', response.currentPage);
-					url.searchParams.append('size', pageSizes);
+					// url.searchParams.append('page', currentPage);
+					url.searchParams.append('size', pageSize);
 					console.log('url:'+url);
 					// URL을 폼의 action에 적용합니다.
 					form.action = url.toString();
@@ -881,12 +881,12 @@
 				//
 				// var paginationItems = document.querySelectorAll('.pagination .page-item');
 				// var maxPagesToShow = 5;
-				// var response.totalPages = parseInt(document.getElementById('response.totalPages').value); // 페이지 총 수를 가져옵니다.
-				// var response.currentPage = parseInt(document.getElementById('response.currentPage').value); // 현재 페이지를 가져옵니다.
+				// var totalPages = parseInt(document.getElementById('totalPages').value); // 페이지 총 수를 가져옵니다.
+				// var currentPage = parseInt(document.getElementById('currentPage').value); // 현재 페이지를 가져옵니다.
 
 				// // 페이지 번호의 범위를 설정합니다.
-				// var startPage = Math.max(1, response.currentPage - Math.floor(maxPagesToShow / 2));
-				// var endPage = Math.min(response.totalPages, startPage + maxPagesToShow - 1);
+				// var startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+				// var endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
 
 				// if (endPage - startPage + 1 < maxPagesToShow) {
 				// 	startPage = Math.max(1, endPage - maxPagesToShow + 1);
@@ -907,40 +907,40 @@
 				// var maxPagesToShow = 5;
 
 				// // 페이지 총 수를 가져옵니다.
-				// var response.totalPages = parseInt(document.getElementById('response.totalPages').value);
+				// var totalPages = parseInt(document.getElementById('totalPages').value);
 
 				// // 현재 페이지를 가져옵니다.
-				// var response.currentPage = parseInt(document.getElementById('response.currentPage').value);
+				// var currentPage = parseInt(document.getElementById('currentPage').value);
 
 				// // 페이지 그룹의 시작 페이지 설정
 				// var startPage;
 				// var endPage;
 
 				// // 첫 번째 페이지인 경우: 1, 2, 3, 4, 5
-				// if (response.currentPage === 1) {
+				// if (currentPage === 1) {
 				// 	startPage = 1;
-				// 	endPage = Math.min(maxPagesToShow, response.totalPages);
+				// 	endPage = Math.min(maxPagesToShow, totalPages);
 				// }
 				// // 두 번째 페이지인 경우: 1, 2, 3, 4, 5
-				// else if (response.currentPage === 2) {
+				// else if (currentPage === 2) {
 				// 	startPage = 1;
-				// 	endPage = Math.min(maxPagesToShow, response.totalPages);
+				// 	endPage = Math.min(maxPagesToShow, totalPages);
 				// }
-				// // 마지막 두 번째 페이지인 경우: 뒤쪽으로 3개, 앞쪽으로 1개 (response.totalPages-4부터 response.totalPages)
-				// else if (response.currentPage === response.totalPages - 1) {
-				// 	startPage = Math.max(response.totalPages - maxPagesToShow + 1, 1);
-				// 	endPage = response.totalPages;
+				// // 마지막 두 번째 페이지인 경우: 뒤쪽으로 3개, 앞쪽으로 1개 (totalPages-4부터 totalPages)
+				// else if (currentPage === totalPages - 1) {
+				// 	startPage = Math.max(totalPages - maxPagesToShow + 1, 1);
+				// 	endPage = totalPages;
 				// }
-				// // 마지막 페이지인 경우: 뒤쪽으로 4개 (response.totalPages-4부터 response.totalPages)
-				// else if (response.currentPage === response.totalPages) {
-				// 	startPage = Math.max(response.totalPages - maxPagesToShow + 1, 1);
-				// 	endPage = response.totalPages;
+				// // 마지막 페이지인 경우: 뒤쪽으로 4개 (totalPages-4부터 totalPages)
+				// else if (currentPage === totalPages) {
+				// 	startPage = Math.max(totalPages - maxPagesToShow + 1, 1);
+				// 	endPage = totalPages;
 				// }
 				// // 중간 페이지들: 기준에 따라 범위 설정
 				// else {
 				// 	// 현재 페이지를 중심으로 5개의 그룹을 보여줌
-				// 	startPage = Math.max(1, response.currentPage - Math.floor(maxPagesToShow / 2));
-				// 	endPage = Math.min(startPage + maxPagesToShow - 1, response.totalPages);
+				// 	startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+				// 	endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
 
 				// 	// endPage - startPage가 5 미만인 경우를 처리하여 startPage 조정
 				// 	if (endPage - startPage + 1 < maxPagesToShow) {
@@ -965,16 +965,16 @@
 			};
 		</script>
 		<!-- <script>
-			var response.currentPageIndex = 0; // 현재 페이지 번호 인덱스
+			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
 			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
 
 			// 이전 페이지 링크 클릭 이벤트 처리
 			document.getElementById('previousPage').addEventListener('click', function(event) {
 				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (response.currentPageIndex > 0) {
-				pageItems[response.currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				response.currentPageIndex--; // 이전 페이지 인덱스로 변경
-				pageItems[response.currentPageIndex].classList.add('active'); // 이전 페이지 활성화
+				if (currentPageIndex > 0) {
+				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+				currentPageIndex--; // 이전 페이지 인덱스로 변경
+				pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
 				}
 				updatePaginationState(); // 페이지네이션 상태 업데이트
 			});
@@ -982,10 +982,10 @@
 			// 다음 페이지 링크 클릭 이벤트 처리
 			document.getElementById('nextPage').addEventListener('click', function(event) {
 				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (response.currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-				pageItems[response.currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				response.currentPageIndex++; // 다음 페이지 인덱스로 변경
-				pageItems[response.currentPageIndex].classList.add('active'); // 다음 페이지 활성화
+				if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
+				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+				currentPageIndex++; // 다음 페이지 인덱스로 변경
+				pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
 				}
 				updatePaginationState(); // 페이지네이션 상태 업데이트
 			});
@@ -994,10 +994,10 @@
 			pageItems.forEach(function(pageItem, index) {
 				pageItem.addEventListener('click', function(event) {
 				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (response.currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-					pageItems[response.currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					response.currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-					pageItems[response.currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
+				if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
+					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+					currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
+					pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
 					updatePaginationState(); // 페이지네이션 상태 업데이트
 				}
 				});
@@ -1009,14 +1009,14 @@
 			// 페이지네이션 버튼 상태 업데이트 함수
 			function updatePaginationState() {
 				// 이전 버튼 상태 업데이트
-				if (response.currentPageIndex === 0) {
+				if (currentPageIndex === 0) {
 				document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
 				} else {
 				document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
 				}
 
 				// 다음 버튼 상태 업데이트
-				if (response.currentPageIndex === pageItems.length - 1) {
+				if (currentPageIndex === pageItems.length - 1) {
 				document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
 				} else {
 				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화

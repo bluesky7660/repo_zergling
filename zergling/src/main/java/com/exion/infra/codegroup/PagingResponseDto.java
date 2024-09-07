@@ -12,6 +12,12 @@ public class PagingResponseDto {
     private int limit;	//보여줄 페이지 갯수
     private int offset;	//페이지를 건너뛸 갯수
     
+    public PagingResponseDto(int limit, int offset, String searchKeyword) {
+    	this.limit = limit;
+    	this.offset = offset;
+        this.searchKeyword = searchKeyword;
+    }
+    
     public PagingResponseDto(List<CodeGroupDto> list, int totalRows, int totalPages, int currentPage, int pageSize, String searchKeyword) {
         this.list = list;
         this.totalRows = totalRows;
@@ -68,6 +74,22 @@ public class PagingResponseDto {
 
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
 	}
     
 }

@@ -39,7 +39,7 @@ public class CodeGroupService {
 		//select 에서 OFFSET절에서 사용할 값으로 5면 리스트5번째까지 건너뛰고 6번째부터 출력
         int offset = (page - 1) * size;
         //page 현재페이지,size 보여줄 리스트의 갯수 - PaginatedDto 의 int limit에 size값이 들어간다.
-        PaginatedDto params = new PaginatedDto(size, offset ,searchKeyword);
+        PagingResponseDto params = new PagingResponseDto(size, offset ,searchKeyword);
         // Set data for the view layer
         return codeGroupDao.selectList2(params);
     }
