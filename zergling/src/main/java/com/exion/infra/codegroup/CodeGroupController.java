@@ -27,26 +27,29 @@ public class CodeGroupController {
 //			System.out.printf("|%-5s|%-5s|\n",codeGroup.getSeq(),codeGroup.getCodeGroupName());
 //		}       
 //		List<CodeGroupDto> codeGroups = codeGroupService.findAll(page, size);
-		int total = codeGroupService.listCount(searchKeyword);
+//		int total = codeGroupService.listCount(searchKeyword);
 //		int totalPages = (int) Math.ceil((double) total / size);
 		
 //		model.addAttribute("list", codeGroupService.selectList());
 //		model.addAttribute("list", codeGroupService.findAll(page, size, searchKeyword));
-		model.addAttribute("totalRows", total);
-		model.addAttribute("total", total);
+//		model.addAttribute("totalRows", total);
+//		model.addAttribute("total", total);
 //		model.addAttribute("pageSize", size);
 //		model.addAttribute("currentPage", page);
 //		model.addAttribute("totalPages", totalPages);
 //		model.addAttribute("searchKeyword", searchKeyword);
 		
-		PagingResponseDto responseDto = new PagingResponseDto(
-	            codeGroupService.findAll(page, size, searchKeyword),
-	            codeGroupService.listCount(searchKeyword),
-	            (int) Math.ceil((double) codeGroupService.listCount(searchKeyword) / size),
-	            page,
-	            size,
-	            searchKeyword
-	    );
+//		PagingResponseDto responseDto = new PagingResponseDto(
+//	            codeGroupService.findAll(page, size, searchKeyword),
+//	            codeGroupService.listCount(searchKeyword),
+//	            (int) Math.ceil((double) codeGroupService.listCount(searchKeyword) / size),
+//	            page,
+//	            size,
+//	            searchKeyword
+//	    );
+        PagingResponseDto<CodeGroupDto> responseDto = codeGroupService.findAll(page, size, searchKeyword);
+
+		
 		 model.addAttribute("response", responseDto);
 		 
 		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
