@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exion.infra.codegroup.CodeGroupDto;
 import com.exion.infra.codegroup.CodeGroupService;
+import com.exion.infra.codegroup.PagingResponseDto;
 
 @Controller
 public class CodeController {
@@ -19,13 +21,16 @@ public class CodeController {
 	CodeGroupService codeGroupService;
 	
 	@RequestMapping(value = "/v1/infra/code/codeXdmList")
-	public String codeXdmList(Model model) {
-		List<CodeDto> commonCodes = codeService.selectList();
+	public String codeXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "size", defaultValue = "3") int size,
+            @RequestParam(value = "searchKeyword", required = false) String searchKeyword, Model model) {
+//		List<CodeDto> commonCodes = codeService.selectList();
 		
 		
-		model.addAttribute("list2", commonCodes);
-		
-		model.addAttribute("totalRows", commonCodes.size());
+//		model.addAttribute("list2", commonCodes);
+//		model.addAttribute("totalRows", commonCodes.size());
+		PagingResponseDto<CodeGroupDto> responseDto = codeGroupService.findAll(page, size, searchKeyword);
+		model.addAttribute("response", responseDto);
 		return "/xdm/v1/infra/code/codeXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmForm")

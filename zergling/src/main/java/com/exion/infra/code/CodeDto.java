@@ -2,7 +2,9 @@ package com.exion.infra.code;
 
 import java.util.Date;
 
-public class CodeDto {
+import com.exion.infra.codegroup.PagingResponseDto;
+
+public class CodeDto extends PagingResponseDto {
 	
 	private String seq;
 	private String codeName;
