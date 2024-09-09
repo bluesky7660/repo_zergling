@@ -19,17 +19,15 @@ public class CodeController {
 	
 	@Autowired
 	CodeGroupService codeGroupService;
-	
+	 
 	@RequestMapping(value = "/v1/infra/code/codeXdmList")
 	public String codeXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "3") int size,
             @RequestParam(value = "searchKeyword", required = false) String searchKeyword, Model model) {
-//		List<CodeDto> commonCodes = codeService.selectList();
-		
-		
+//		List<CodeDto> commonCodes = codeService.selectList();		
 //		model.addAttribute("list2", commonCodes);
 //		model.addAttribute("totalRows", commonCodes.size());
-		PagingResponseDto<CodeGroupDto> responseDto = codeGroupService.findAll(page, size, searchKeyword);
+		PagingResponseDto<CodeDto> responseDto = codeService.findAll(page, size, searchKeyword);
 		model.addAttribute("response", responseDto);
 		return "/xdm/v1/infra/code/codeXdmList";
 	}
@@ -63,6 +61,16 @@ public class CodeController {
 	@RequestMapping(value = "/v1/infra/code/codeXdmUpdt")
 	public String codeXdmUpdt(CodeDto codeDto) {
 		codeService.update(codeDto);
+		return "redirect:/v1/infra/code/codeXdmList";
+	}
+	@RequestMapping(value = "/v1/infra/code/codeXdmUelt")
+	public String codeXdmUelt(CodeDto codeDto) {
+		codeService.uelete(codeDto);
+		return "redirect:/v1/infra/code/codeXdmList";
+	}
+	@RequestMapping(value = "/v1/infra/code/codeXdmDelt")
+	public String codeXdmDelt(CodeDto codeDto) {
+		codeService.delete(codeDto);
 		return "redirect:/v1/infra/code/codeXdmList";
 	}
 	//------------------------

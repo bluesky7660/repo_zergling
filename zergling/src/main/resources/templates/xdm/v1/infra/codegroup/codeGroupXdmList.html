@@ -564,56 +564,59 @@
 											Code Group
 										</h2>
 										<div>
-											<form class="row gx-3 align-items-center" action="">
+											<form class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmList">
 												<div class="row gy-3">
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref1">
-															<option value="N" selected>N</option>
-															<option value="Y">Y</option>
+														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
+														<select class="form-select" id="selectDelNy" name="sDelNy">
+															<option value="" selected>삭제여부를 선택하세요</option>
+															<option value="0">Y</option>
+															<option value="1">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref2">
-															<option value="Y" selected>Y</option>
-															<option value="N">N</option>
+														<label class="visually-hidden" for="selectUseNy">사용검색</label>
+														<select class="form-select" id="selectUseNy" name="sUseNy">
+															<option value="" selected>사용여부를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref3">
-															<option selected>수정일</option>
+														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
+														<select class="form-select" id="selectDateType" name="dateType">
+															<option value="" selected>날짜종류 선택해주세요.</option>
 															<option value="1">등록일</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
+															<option value="2">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName1">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName1" placeholder="" value="2024-06-05">
+														<label class="visually-hidden" for="inputDateStart">시작일</label>
+														<input type="date" class="form-control" id="inputDateStart" name="" placeholder="" value="">
+														<!-- <input type="text" class="form-control datepicker" id="inputDateStart" name="" placeholder="" value=""> -->
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName2" placeholder="" value="2024-07-05">
+														<label class="visually-hidden" for="inputDateEnd">종료일</label>
+														<input type="date" class="form-control" id="inputDateEnd" name="" placeholder="" value="">
+														<!-- <input type="text" class="form-control datepicker" id="inputDateEnd" name="" placeholder="" value=""> -->
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref4">
-															<option selected>검색구분</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType">
+															<option value="" selected>검색구분</option>
+															<option value="1">코드번호</option>
+															<option value="2">코드그룹이름</option>
+															<option value="3">순서</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control" id="specificSizeInputName2" placeholder="검색어">
+														<label class="visually-hidden" for="inputKeyword">Preference</label>
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
-														<button type="button" class="btn btn-info "><i class="bi bi-search"></i></button>
+														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
 													<div class="col">      
@@ -626,7 +629,7 @@
 									</div>
 									<div class="card-body">
 										<div class="row justify-content-between">
-											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
+											<div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
 												<form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
 													<!-- <select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" > -->
@@ -873,6 +876,7 @@
 			}
 
 			window.onload = function() {
+				console.log('value: ');
 				var pageSizeSelect = document.getElementById('pageSizeSelect');
 				if (pageSizeSelect) {
 					pageSizeSelect.addEventListener('change', updatePageSize);

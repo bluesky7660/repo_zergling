@@ -112,4 +112,17 @@
 		WHERE 1=1
 			AND seq = #{seq}
 	</update>
+	<update id="uelete">
+		UPDATE commoncode
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
+	
+	<delete id="delete">
+		delete from commoncode
+		WHERE 1=1
+			AND seq = #{seq}
+	</delete>
 </mapper>

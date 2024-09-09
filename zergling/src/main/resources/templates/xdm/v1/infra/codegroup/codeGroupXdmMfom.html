@@ -498,7 +498,7 @@
 										<div class="card-title">기본정보</div>
 									</div>
 									<div class="card-body">
-										<form method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmUpdt" class="needs-validation"  novalidate>
+										<form id="form" name="form" method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmUpdt" class="needs-validation"  novalidate>
 											<!-- Row start -->
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -558,9 +558,17 @@
 											</div>
 											<!-- Row end -->
 											<!-- Form actions footer start -->
-											<div class="form-actions-footer justify-content-between bg-white">
-												<a class="btn btn-outline-dark" type="button" href="codeGroupXdmList"><i class="bi bi-list-ul"></i></a>
-												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+											<!-- <div class="form-actions-footer justify-content-between bg-white">
+											</div> -->
+											<div class="btn-toolbar mt-5 justify-content-between">
+												<div>
+													<a class="btn btn-outline-dark" type="button" href="codeGroupXdmList"><i class="bi bi-list-ul"></i></a>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-lg"></i></button>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ueleteModal"><i class="bi bi-trash"></i></button>
+												</div>
+												<div>
+													<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+												</div>
 											</div>
 											<!-- Form actions footer end -->
 										</form>
@@ -584,7 +592,63 @@
 
 				</div>
 				<!-- Content wrapper scroll end -->
-
+				<!-- delete modals -->
+				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="deleteModalLabel">데이터 완전 삭제</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-square	"></i></button>
+							</div>
+							<div class="modal-body">
+								<span>데이터를 삭제후 <strong>복구할수 없습니다</strong>.</span><br>
+								<span>그래도 삭제하시겠습니까?</span>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+								<button type="button" id="deleteBtn" class="btn btn-success">삭제 실행</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- uelete modals -->
+				<!-- <div class="modal fade" id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmUelt">
+								<div class="modal-header">
+									<h5 class="modal-title" id="ueleteModalLabel">데이터 삭제</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-square"></i></button>
+								</div>
+								<div class="modal-body">
+									<span>데이터를 삭제하시겠습니까?</span>
+									<input type="hidden" name="seq" th:value="${item?.seq}">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+									<button type="submit" id="ueleteBtn" class="btn btn-success">삭제 실행</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div> -->
+				<div class="modal fade" id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="ueleteModalLabel">데이터 삭제</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-square"></i></button>
+							</div>
+							<div class="modal-body">
+								<span>데이터를 삭제하시겠습니까?</span>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+								<button type="button" id="ueleteBtn" class="btn btn-success">삭제 실행</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- *************
 				************ Main container end *************
@@ -596,6 +660,29 @@
 		<!-- *************
 			************ Required JavaScript Files *************
 		************* -->
+		<script>
+			document.getElementById("ueleteBtn").onclick = function () {
+				console.log(this);
+				let form = document.querySelector("form[name=form]");
+				form.action = "/v1/infra/codegroup/codeGroupXdmUelt";
+				form.submit();
+			}
+			// document.getElementById("deleteBtn").onclick = function () {
+			// 	let form = document.querySelector("form[name=form]");
+			// 	form.action = "/v1/infra/codegroup/codeGroupXdmDelt";
+			// 	form.submit();
+			// }
+			
+			document.getElementById("deleteBtn").onclick = del;
+			function del() {
+				let form = document.querySelector("form[name=form]");
+				form.action = "/v1/infra/codegroup/codeGroupXdmDelt";
+				form.submit();
+			}
+			// document.querySelectorAll(".modal .btn-success").onclick = function () {
+				
+			// }
+		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/bootstrap.bundle.min.js"></script>

@@ -36,9 +36,18 @@
 		FROM
 			codegroup a
 		WHERE 1=1
-			<if test="searchKeyword != null and searchKeyword != ''">
+			(#{searchKeyword} IS NULL OR 
+                CASE 
+                    WHEN #{keywordType} = 0 THEN seq 
+                    WHEN #{keywordType} = 1 THEN code_group_name 
+                    WHEN #{keywordType} = 2 THEN group_order 
+                END LIKE CONCAT('%', #{searchKeyword}, '%'))
+            AND (#{sDelNy} IS NULL OR delNy = #{sDelNy})
+            AND (#{sUseNy} IS NULL OR useNy = #{sUseNy})
+            AND (#{dateType} IS NULL OR ${dateType} BETWEEN #{dateStart} AND #{dateEnd})
+			<!-- <if test="searchKeyword != null and searchKeyword != ''">
 			    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-			</if>
+			</if> -->
 		ORDER BY
 			a.groupOrder desc
 		LIMIT #{limit} OFFSET #{offset}
@@ -97,4 +106,17 @@
 		WHERE 1=1
 			AND seq = #{seq}
 	</update>
+	<update id="uelete">
+		UPDATE codegroup
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
+	
+	<delete id="delete">
+		delete from codegroup
+		WHERE 1=1
+			AND seq = #{seq}
+	</delete>
 </mapper>

@@ -671,9 +671,15 @@
 											</div> -->
 											<!-- Row end -->
 											<!-- Form actions footer start -->
-											<div class="form-actions-footer justify-content-between bg-white">
-												<a class="btn btn-outline-dark" type="button" href="codeXdmList"><i class="bi bi-list-ul"></i></a>
-												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+											<div class="btn-toolbar mt-5 justify-content-between">
+												<div>
+													<a class="btn btn-outline-dark" type="button" href="codeXdmList"><i class="bi bi-list-ul"></i></a>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-lg"></i></button>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ueleteModal"><i class="bi bi-trash"></i></button>
+												</div>
+												<div>
+													<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+												</div>
 											</div>
 											<!-- Form actions footer end -->
 										</form>
@@ -699,7 +705,49 @@
 
 				</div>
 				<!-- Content wrapper scroll end -->
-
+				<!-- delete modals -->
+				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form method="post" autocomplete="off" action="/v1/infra/code/codeXdmDelt">
+								<div class="modal-header">
+									<h5 class="modal-title" id="deleteModalLabel">데이터 완전 삭제</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-square	"></i></button>
+								</div>
+								<div class="modal-body">
+									<span>데이터를 삭제후 <strong>복구할수 없습니다</strong>.</span><br>
+									<span>그래도 삭제하시겠습니까?</span>
+									<input type="hidden" name="seq" th:value="${item?.seq}">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+									<button type="submit" class="btn btn-success">삭제 실행</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- uelete modals -->
+				<div class="modal fade" id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form method="post" autocomplete="off" action="/v1/infra/code/codeXdmUelt">
+								<div class="modal-header">
+									<h5 class="modal-title" id="ueleteModalLabel">데이터 삭제</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-square"></i></button>
+								</div>
+								<div class="modal-body">
+									<span>데이터를 삭제하시겠습니까?</span>
+									<input type="hidden" name="seq" th:value="${item?.seq}">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+									<button type="submit" class="btn btn-success">삭제 실행</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- *************
 				************ Main container end *************

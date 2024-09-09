@@ -493,7 +493,7 @@
 											Code
 										</h2>
 										<div>
-											<form class="row gx-3 align-items-center" action="">
+											<form class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/code/codeXdmSrch">
 												<div class="row gy-3">
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
 														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
@@ -538,11 +538,11 @@
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control" id="specificSizeInputName2" placeholder="검색어">
+														<label class="visually-hidden" for="inputKeyword">Preference</label>
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
-														<button type="button" class="btn btn-info "><i class="bi bi-search"></i></button>
+														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
 													<div class="col">      
@@ -555,14 +555,19 @@
 									</div>
 									<div class="card-body">
 										<div class="row justify-content-between">
-											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
+											<div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<select class="dataTable-selector form-select" name="" id="">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-												</select>
+												<form method="get" action="/v1/infra/code/codeXdmList" id="pagination-form">
+													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
+														<option value="2" th:selected="${response.pageSize == 2}">2</option>
+														<option value="3" th:selected="${response.pageSize == 3}">3</option>
+														<option value="5" th:selected="${response.pageSize == 5}">5</option>
+														<option value="10" th:selected="${response.pageSize == 10}">10</option>
+														<option value="20" th:selected="${response.pageSize == 20}">20</option>
+														<option value="50" th:selected="${response.pageSize == 50}">50</option>
+													</select>
+													<input type="hidden" name="page" id="pageNumber" value="1" />
+												</form>
 											</div>
 										</div>
 										<div class="scrolltable">
@@ -589,10 +594,10 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:if="${#lists.isEmpty(list2)}" class="data_empty">
+													<tr th:if="${#lists.isEmpty(response.list)}" class="data_empty">
 														<td colspan="12"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr th:each="listC : ${list2}" th:if="${!#lists.isEmpty(list2)}">
+													<tr th:each="listC : ${response.list}" th:if="${!#lists.isEmpty(response.list)}">
 														<td><input type="checkbox"></td>
 														<td th:text="${listC.seq}">171</td>
 														<td th:text="${listC.codeGroup_seq}">57</td>
@@ -616,20 +621,59 @@
 										<div class="dataTable-bottom">
 											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
 												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#">
+													<!-- First Page -->
+													<li class="paginate_button page-item" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=1, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+														</a>
+														<a class="page-link" th:if="${response.currentPage <= 1}">
+															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+														</a>
+													</li>
+													<!-- Previous Page -->
+													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage - 1}, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+														</a>
+														<a class="page-link" th:if="${response.currentPage <= 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
-													<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-													<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
-													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#">
+													<!-- Page Numbers -->
+													<li th:each="i : ${#numbers.sequence(
+																		response.currentPage == 1 ? 1 : 
+																		response.currentPage == 2 ? 1 : 
+																		response.currentPage == response.totalPages - 1 ? response.currentPage - 3 : 
+																		response.currentPage == response.totalPages ? response.currentPage - 4 : 
+																		response.currentPage - 2, 
+																		
+																		response.currentPage == 1 ? 5 : 
+																		response.currentPage == 2 ? 5 : 
+																		response.currentPage == response.totalPages - 1 ? response.totalPages : 
+																		response.currentPage == response.totalPages ? response.totalPages : 
+																		response.currentPage + 2
+																	)}"
+														class="paginate_button page-item"
+														th:if="${i > 0 && i <= response.totalPages}" 
+														th:classappend="${i == response.currentPage} ? 'active' : ''">
+														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${i}, size=${response.pageSize})}" th:text="${i}"></a>
+													</li>
+													<!-- Next Page -->
+													<li class="paginate_button next page-item" id="nextPage" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage + 1}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+														</a>
+														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+														</a>
+													</li>
+													<!-- Last Page -->
+													<li class="paginate_button page-item" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
+														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.totalPages}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+														</a>
+														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
 													</li>
 												</ul>
@@ -650,7 +694,7 @@
 										<div class="btn-toolbar mt-5 justify-content-between">
 											<div>
 												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
@@ -688,63 +732,47 @@
 			************ Required JavaScript Files *************
 		************* -->
 		<script>
-			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
-			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
+			
+			function updatePageSize() {
+				var form = document.getElementById('pagination-form');
+				var pageSizeSelect = document.getElementById('pageSizeSelect');
+				console.log("1");
+				if (form && pageSizeSelect) {
+					
+					// 선택된 pageSizes 값을 가져옵니다.
+					var pageSizes = pageSizeSelect.value;
 
-			// 이전 페이지 링크 클릭 이벤트 처리
-			document.getElementById('previousPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex > 0) {
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex--; // 이전 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
+					// 현재 URL을 가져와 URL 객체를 생성합니다.
+					var url = new URL(window.location.href);
 
-			// 다음 페이지 링크 클릭 이벤트 처리
-			document.getElementById('nextPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex++; // 다음 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
+					// URL의 쿼리 파라미터를 초기화합니다.
+					url.searchParams.delete('size');
 
-			// 페이지 번호 링크 클릭 이벤트 처리
-			pageItems.forEach(function(pageItem, index) {
-				pageItem.addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				}
-				});
-			});
-
-			// 초기 페이지네이션 상태 업데이트
-			updatePaginationState();
-
-			// 페이지네이션 버튼 상태 업데이트 함수
-			function updatePaginationState() {
-				// 이전 버튼 상태 업데이트
-				if (currentPageIndex === 0) {
-				document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
+					// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
+					url.searchParams.append('size', pageSizes);
+					console.log('url:'+url);
+					// URL을 폼의 action에 적용합니다.
+					form.action = url.toString();
+					form.submit();
 				} else {
-				document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
-				}
-
-				// 다음 버튼 상태 업데이트
-				if (currentPageIndex === pageItems.length - 1) {
-				document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
-				} else {
-				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
+					console.error('Form or pageSizeSelect element not found.');
 				}
 			}
+			// window.addEventListener('load', function() {
+
+			// });
+			window.onload = function() {
+				
+				var pageSizeSelect = document.getElementById('pageSizeSelect');
+				console.log('pageSizeSelect: '+pageSizeSelect);
+				if (pageSizeSelect) {
+					pageSizeSelect.addEventListener('change', updatePageSize);
+					
+				}
+			}
+			// $(document).ready(function(){
+
+			// });
 		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>

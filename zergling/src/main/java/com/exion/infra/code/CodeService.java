@@ -27,6 +27,12 @@ public class CodeService {
 	public int update(CodeDto codeDto) {
 		return codeDao.update(codeDto);
 	}
+	public int uelete(CodeDto codeDto) {
+		return codeDao.uelete(codeDto);
+	}
+	public int delete(CodeDto codeDto) {
+		return codeDao.delete(codeDto);
+	}
 	public PagingResponseDto<CodeDto> findAll(int page, int size, String searchKeyword) {
         int offset = (page - 1) * size;
         CodeDto params  = new CodeDto();
