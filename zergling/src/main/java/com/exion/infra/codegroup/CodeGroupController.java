@@ -20,12 +20,12 @@ public class CodeGroupController {
 	public String codeGroupXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "3") int size,
             @RequestParam(value = "searchKeyword", required = false) String searchKeyword, 
-            @RequestParam(value = "delNy", required = false) Integer sDelNy,
-            @RequestParam(value = "useNy", required = false) Integer sUseNy,
-            @RequestParam(value = "dateType", required = false) int dateType,
+            @RequestParam(value = "sDelNy", required = false) Integer sDelNy,
+            @RequestParam(value = "sUseNy", required = false) Integer sUseNy,
+            @RequestParam(value = "dateType", required = false) Integer dateType,
             @RequestParam(value = "dateStart", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart,
             @RequestParam(value = "dateEnd", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd,
-            @RequestParam(value = "keywordType", required = false) String keywordType,
+            @RequestParam(value = "keywordType", required = false) Integer keywordType,
             Model model) {
 //		List<CodeGroupDto> codeGroups = codeGroupService.selectList();
 //		
@@ -57,9 +57,10 @@ public class CodeGroupController {
 //	    );
         PagingResponseDto<CodeGroupDto> responseDto = codeGroupService.findAll(page, size, dateType, dateStart, dateEnd,
         		keywordType, sDelNy, sUseNy, searchKeyword);
-
+        
 		
 		 model.addAttribute("response", responseDto);
+		 
 		 
 		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}

@@ -6,30 +6,34 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class PagingResponseDto<T> {
+	
 	private List<T> list;  // 검색 결과 리스트
+	//페이지네이션
     private int listCount; // 리스트의 총 개수
     private int totalPages; // 총 페이지 수
     private int currentPage; // 현재 페이지
     private int pageSize; // 페이지 크기
+    private int limit;    // 보여줄 페이지 갯수
+    private int offset;   // 페이지를 건너뛸 갯수
     
+    //검색
     private String searchKeyword; // 검색 키워드
-    private int dateType;	//검색 날짜 종류
+    private Integer dateType;	//검색 날짜 종류
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateStart;		//날짜 시작일
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;		//날짜 종료일
-    private int keywordType;	//검색키워드 타입
-    private int sDelNy;			//검색 조건[삭제] 
-    private int sUseNy;			//검색 조건[사용]
+    private Integer keywordType;	//검색키워드 타입
+    private Integer sDelNy;			//검색 조건[삭제] 
+    private Integer sUseNy;			//검색 조건[사용]
     
-    private int limit;    // 보여줄 페이지 갯수
-    private int offset;   // 페이지를 건너뛸 갯수
+    
 
     // 기본 생성자
     public PagingResponseDto() {}
 
-    public PagingResponseDto(int limit, int offset, int dateType, Date dateStart, Date dateEnd,
-    		int keywordType, int sDelNy, int sUseNy, String searchKeyword ) {
+    public PagingResponseDto(int limit, int offset, Integer dateType, Date dateStart, Date dateEnd,
+    		Integer keywordType, Integer sDelNy, Integer sUseNy, String searchKeyword ) {
         this.limit = limit;
         this.offset = offset;
         this.dateType = dateType;
@@ -99,11 +103,11 @@ public class PagingResponseDto<T> {
 		this.searchKeyword = searchKeyword;
 	}
 
-	public int getDateType() {
+	public Integer getDateType() {
 		return dateType;
 	}
 
-	public void setDateType(int dateType) {
+	public void setDateType(Integer dateType) {
 		this.dateType = dateType;
 	}
 
@@ -123,27 +127,27 @@ public class PagingResponseDto<T> {
 		this.dateEnd = dateEnd;
 	}
 
-	public int getKeywordType() {
+	public Integer getKeywordType() {
 		return keywordType;
 	}
 
-	public void setKeywordType(int keywordType) {
+	public void setKeywordType(Integer keywordType) {
 		this.keywordType = keywordType;
 	}
 
-	public int getsDelNy() {
+	public Integer getsDelNy() {
 		return sDelNy;
 	}
 
-	public void setsDelNy(int sDelNy) {
+	public void setsDelNy(Integer sDelNy) {
 		this.sDelNy = sDelNy;
 	}
 
-	public int getsUseNy() {
+	public Integer getsUseNy() {
 		return sUseNy;
 	}
 
-	public void setsUseNy(int sUseNy) {
+	public void setsUseNy(Integer sUseNy) {
 		this.sUseNy = sUseNy;
 	}
 
@@ -163,4 +167,5 @@ public class PagingResponseDto<T> {
 		this.offset = offset;
 	}
 
+	
 }

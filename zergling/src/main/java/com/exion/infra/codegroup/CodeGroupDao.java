@@ -14,6 +14,7 @@ public interface CodeGroupDao {
 	public int update(CodeGroupDto codeGroupDto);
 //	public List<CodeGroupDto> findAll(@Param("limit") int limit, @Param("offset") int offset);
 	public int listCount(String searchKeyword);
+//	public int listCount(CodeGroupDto codeGroupDto);
 	public int uelete(CodeGroupDto codeGroupDto);
 	public int delete(CodeGroupDto codeGroupDto);
 }

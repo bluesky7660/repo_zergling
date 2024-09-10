@@ -4,16 +4,14 @@ import java.util.Date;
 
 public class CodeGroupDto extends PagingResponseDto {
 	private String seq;
-	private String codeGroupOtherNum;
 	private String codeGroupName;
 	private Integer groupOrder;
 	private String  groupDesc;
+	private Integer codeCount;
 	private Integer useNy;
 	private Integer delNy;
 	private Date regDate;
 	private Date modDate;
-	
-	
 //	public CodeGroupDto(int limit, int offset, String searchKeyword) {
 //        // 부모 클래스의 필드를 직접 설정하는 방식
 //        setLimit(limit);
@@ -47,12 +45,6 @@ public class CodeGroupDto extends PagingResponseDto {
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
-	public String getCodeGroupOtherNum() {
-		return codeGroupOtherNum;
-	}
-	public void setCodeGroupOtherNum(String codeGroupOtherNum) {
-		this.codeGroupOtherNum = codeGroupOtherNum;
-	}
 	public String getCodeGroupName() {
 		return codeGroupName;
 	}
@@ -70,6 +62,12 @@ public class CodeGroupDto extends PagingResponseDto {
 	}
 	public void setGroupDesc(String groupDesc) {
 		this.groupDesc = groupDesc;
+	}
+	public Integer getCodeCount() {
+		return codeCount;
+	}
+	public void setCodeCount(Integer codeCount) {
+		this.codeCount = codeCount;
 	}
 	public Integer getUseNy() {
 		return useNy;
@@ -95,6 +93,5 @@ public class CodeGroupDto extends PagingResponseDto {
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
 	}
-	
 	
 }

@@ -21,7 +21,7 @@
 			,a.codeGroup_seq
 		FROM
 			commoncode a
-			join codegroup b on a.codeGroup_seq = b.seq
+			left join codegroup b on a.codeGroup_seq = b.seq
 		ORDER BY
 			<!-- a.seq desc --> 
 			a.codeGroup_seq desc
@@ -41,7 +41,7 @@
 			,a.codeGroup_seq
 		FROM
 			commoncode a
-			join codegroup b on a.codeGroup_seq = b.seq
+			left join codegroup b on a.codeGroup_seq = b.seq
 		WHERE 1=1
 			<if test="searchKeyword != null and searchKeyword != ''">
 			    AND a.codeName LIKE CONCAT('%', #{searchKeyword}, '%')
