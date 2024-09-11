@@ -13,7 +13,22 @@ public class AuthorService {
 	public List<AuthorDto> authorList(){
 		return authorDao.authorList();
 	}
+	public List<AuthorDto> jobList(){
+		return authorDao.jobList();
+	}
 	public AuthorDto authorOne(AuthorDto authorDto) {
 		return authorDao.authorOne(authorDto);
+	}
+	public int insertAuthor(AuthorDto authorDto) {
+		return authorDao.insertAuthor(authorDto);
+	}
+	public int update(AuthorDto authorDto) {
+		return authorDao.update(authorDto);
+	}
+	public int uelete(AuthorDto authorDto) {
+		return authorDao.uelete(authorDto);
+	}
+	public int delete(AuthorDto authorDto) {
+		return authorDao.delete(authorDto);
 	}
 }

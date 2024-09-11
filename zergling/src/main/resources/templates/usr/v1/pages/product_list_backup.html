@@ -146,11 +146,11 @@
                     <div class="left-box">
                         <div class="list_fillter_box">
                             <div class="mb-4"><h3>국내도서</h3></div>
-                            <div class="prod_types_box mb-4">
-                                <div id="prodType1" class="prodType gap-1 active">
-                                    <h5>소설</h5>
+                            <div class="prod_types_box">
+                                <div class="mb-4 d-flex gap-1 active">
+                                    <h5>한국소설</h5>
                                 </div>
-                                <div id="prodType2" class="prodType gap-1">
+                                <div class="mb-4 d-flex gap-1">
                                     <h5>시/에세이</h5>
                                 </div>
                             </div>
@@ -263,9 +263,6 @@
                                     <label for="makeDate_fillter_4">
                                         <input class="form-check-input" type="radio" name="makeDate_fillter" id="makeDate_fillter_4"> 1년 이내
                                     </label>
-                                    <label for="makeDate_fillter_5">
-                                        <input class="form-check-input" type="radio" name="makeDate_fillter" id="makeDate_fillter_5"> 그외
-                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -316,36 +313,194 @@
                                 </div> -->
                             </div>
                             <ul class="contents">
-                                <li th:if="${#lists.isEmpty(list)}" class="data_empty">
-                                    <div colspan="14"><p>데이터가 없습니다.</p></div>
-                                </li>
-                                <li class="contents_items d-flex justify-content-between gap-3" th:each="listP : ${list}" th:if="${!#lists.isEmpty(list)}">
+                                <li class="contents_items d-flex justify-content-between gap-3">
                                     <div>
                                         <input type="checkbox" name="" id="">
                                     </div>
                                     <div class="prod_img">
                                         <a href="product_detail?seq=1" class="img-box ">
-                                            <img th:src="${'/usr/v1/assets/images/prod/300/'+listP.imgSrc+'.jpg'}" alt="">
+                                            <img src="/usr/v1/assets/images/prod/300/9791194198109.jpg" alt="">
                                             <img style="display: none;" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지">
                                         </a>
                                         <a href="product_detail?seq=1" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
                                     </div>
                                     <div class="content_info_box ">
                                         <div class="d-flex flex-column gap-3">
-                                            <p class="prod_title"><a href="product_detail?seq=1"><!--<span class="gray_color">예약판매</span>--> <strong th:text="${listP.title}">하늘나라 극락과 천국(상)</strong></a></p>
-                                            <p class="prod_author"><span th:text="${listP.name}">조창조</span> · <span th:text="${listP.publisher}">신아출판사</span> · <span th:text="${#dates.format(listP.makeDate,'yyyy.MM.dd')}" >2024.07.25</span></p>
-                                            <p class="prod_price d-flex gap-1"><strong class="saleP" th:text="${listP.sale +'%'}">10%</strong><span class="sale_price"><strong th:text="${#numbers.formatInteger(listP.salePrice,3,'COMMA')}">13,500</strong>원</span><span class="regular_price" th:text="${#numbers.formatInteger(listP.salePrice,3,'COMMA')+'원'}">15,000원</span> <span class="point" th:text="${#numbers.formatInteger(listP.point,3,'COMMA')+'p'}">750p</span> </p>
-                                            <p class="prod_intro" th:text="${listP.intro}"></p>
+                                            <p class="prod_title"><a href="product_detail?seq=1"><span class="gray_color">예약판매</span> <strong>하늘나라 극락과 천국(상)</strong></a></p>
+                                            <p class="prod_author">조창조 · 신아출판사 · 2024.07.25</p>
+                                            <p class="prod_price d-flex gap-1"><strong class="saleP">10%</strong><span class="sale_price"><strong>13,500</strong>원</span><span class="regular_price">15,000원</span> <span class="point">750p</span> </p>
+                                            <p class="prod_intro"></p>
                                             <div class="prod_review d-flex gap-1">
                                                 <span class="icon_box">
                                                     <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""> 
                                                 </span>
-                                                <strong class="review_num" th:text="${listP.reviewNum}">0.0</strong> 
+                                                <strong class="review_num">0.0</strong> 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="shipping_date d-flex flex-column gap-2">
-                                        <p><strong th:text="${#dates.format(listP.shipDate, 'M/d') + '(' + #dates.format(listP.shipDate, 'E') + ')'}">8/5(월)</strong></p>
+                                        <p><strong>8/5(월)</strong></p>
+                                        <p>출고예정</p>
+                                    </div>
+                                    <div class="button_box d-flex flex-column gap-2">
+                                        <span class="heart_icon">
+                                            <img src="/usr/v1/assets/images/ico_heart_h18@2x.png" alt="">
+                                        </span>
+                                        <button class="btn btn-gray">장바구니</button>
+                                        <button class="direct_buy_btn btn btn-blue">바로구매</button>
+                                    </div>
+                                </li>
+                                <li class="contents_items d-flex justify-content-between gap-3">
+                                    <div>
+                                        <input type="checkbox" name="" id="">
+                                    </div>
+                                    <div class="prod_img">
+                                        <a href="product_detail?seq=1" class="img-box ">
+                                            <img src="/usr/v1/assets/images/prod/300/9791193289273.jpg" alt="">
+                                            <img style="display: none;" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지">
+                                        </a>
+                                        <a href="product_detail?seq=1" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span> 새창보기</a>
+                                    </div>
+                                    <div class="content_info_box ">
+                                        <div class="d-flex flex-column gap-3">
+                                            <p class="prod_title"><a href="product_detail?seq=1"><span class="gray_color"></span> <strong>나쁜 검사들</strong></a></p>
+                                            <p class="prod_author">이중세 · 마이디어북스 · 2024.08.01</p>
+                                            <p class="prod_price d-flex gap-1"><strong class="saleP">10%</strong><span class="sale_price"><strong>15,750</strong>원</span><span class="regular_price">17,500원</span> <span class="point">870p</span> </p>
+                                            <p class="prod_intro">
+                                                K-스토리 최우수상 수상, 교보문고 스토리 공모전 수상, SF 오디오 스토리 어워즈 수상 등 화려한 수상 경력으로 수많은 독자들에게 눈도장을 찍은 이중세 작가가 신작 장편소설 『나쁜 검사들』을 출간했다. 한때는 세상을 뒤엎고 싶었던 반부패수사부 검사 출신의 변호사가 뜻밖의 범죄 사건에 휘말리게 되면서 결국 검찰을 향해 칼끝을 겨누게 되는 이 소설은, 대한민국 권력의 지도를 적나라하게 보여주는 웰메이드 누아르 수사 활극이다. 실제로 작가는 이 소설을 쓰기 위해 수년에 걸쳐 관계자들을 조사하고 인터뷰했으며 그 노력은 고스란히 작품에 녹아들었다. 부패한 조직과 반부패를 부르짖는 이들의 팽팽한 긴장감은 현실보다 더 현실 같은 에피소드로 마지막까지 이 책을 손에서 놓지 못하게 만든다. 작가는 “부당한 처사를 당연하게 받아들이지 않는 선한 자들의 작은 목소리가 결국 큰 세상을 바꿀 것”이라며, 이 책이 독자들의 답답한 가슴을 시원하게 뚫어줄 소화제가 되기를 바랐다. 휘몰아치는 전개와 생생한 묘사, 압도적 몰입감으로 마치 한 편의 영화를 보듯 단숨에 읽어내려갈 수 있는 소설 『나쁜 검사들』과 함께 무더운 여름을 시원하게 날려보자.
+                                            </p>
+                                            <div class="prod_review d-flex gap-1">
+                                                <span class="icon_box">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""> 
+                                                </span>
+                                                <strong class="review_num">0.0</strong> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shipping_date d-flex flex-column gap-2">
+                                        <p><strong>8/3(월)</strong></p>
+                                        <p>도착</p>
+                                    </div>
+                                    <div class="button_box d-flex flex-column gap-2">
+                                        <span class="heart_icon">
+                                            <img src="/usr/v1/assets/images/ico_heart_h18@2x.png" alt="">
+                                        </span>
+                                        <button class="btn btn-gray">장바구니</button>
+                                        <button class="direct_buy_btn btn btn-blue">바로구매</button>
+                                    </div>
+                                </li>
+                                <li class="contents_items d-flex justify-content-between gap-3">
+                                    <div>
+                                        <input type="checkbox" name="" id="">
+                                    </div>
+                                    <div class="prod_img">
+                                        <a href="product_detail?seq=1" class="img-box ">
+                                            <img src="/usr/v1/assets/images/prod/300/9791198787408.jpg" alt="">
+                                        </a>
+                                        <a href="product_detail?seq=1" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
+                                    </div>
+                                    <div class="content_info_box ">
+                                        <div class="d-flex flex-column gap-3">
+                                            <p class="prod_title">
+                                                <a href="product_detail?seq=1">
+                                                    <span class="gray_color">예약판매</span> <strong>훌리오</strong>
+                                                </a>
+                                            </p>
+                                            <p class="prod_author">연지 · 리마 · 2024.07.01</p>
+                                            <p class="prod_price d-flex gap-1"><strong class="saleP">10%</strong><span class="sale_price"><strong>9,900</strong>원</span><span class="regular_price">11,000원</span> <span class="point">550p</span> </p>
+                                            <p class="prod_intro">
+                                                쥐를 데려와 키우는 아내, 어느 날 갑자기 사라져버린 반려앵무새 훌리오, 목소리가 확성기처럼 커져버린 어느 연기 지망생 이야기까지. 『훌리오』에 수록된 세 편의 단편소설은 평범한 일상 속에 깃든 오해와 거짓, 환상을 그려낸다. 『훌리오』 속 인물들은 끊임없이 서로 의심하고 오해하면서도, 저마다의 진실을 마주하고자 애쓴다. 그들은 독자들에게 되묻는다. 사랑하는 것과 이해하는 것, 받아들이는 것은 서로 어떻게 다른지(「잭오랜턴의 구멍」), 불완전함을 온몸으로 받아들이는 삶이란 과연 어떤 모습인지(「지하철 정거장에서」). 이들의 고민과 분투, 그 과정에서 피할 수 없이 마주하게 되는 지극한 외로움(「훌리오」)은 우리에게도 결코 낯설지 않다. 우리는 모두 행복하기 위해 분투하지만, 그 행복을 지켜내기 위해 감수해야 할 장애물은 매 순간 모습을 달리하며 늘 존재할 것이기 때문이다. 그 속에서 우리는 과연 어떤 마음가짐과 태도를 갖고 나아가야 할까. 소설집 『훌리오』를 읽는 시간이 그에 대한 각자만의 답을 찾기 위해 잠시 숨을 고르는 기회가 될 수 있길 기대해 본다.
+                                            </p>
+                                            <div class="prod_review d-flex gap-1">
+                                                <span class="icon_box">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""> 
+                                                </span>
+                                                <strong class="review_num">0.0</strong> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shipping_date d-flex flex-column gap-2">
+                                        <p><strong>8/2(금)</strong></p>
+                                        <p>출고예정</p>
+                                    </div>
+                                    <div class="button_box d-flex flex-column gap-2">
+                                        <span class="heart_icon">
+                                            <img src="/usr/v1/assets/images/ico_heart_h18@2x.png" alt="">
+                                        </span>
+                                        <button class="btn btn-gray">장바구니</button>
+                                        <button class="direct_buy_btn btn btn-blue">바로구매</button>
+                                    </div>
+                                </li>
+                                <li class="contents_items d-flex justify-content-between gap-3">
+                                    <div>
+                                        <input type="checkbox" name="" id="">
+                                    </div>
+                                    <div class="prod_img">
+                                        <a href="product_detail?seq=1" class="img-box ">
+                                            <img src="/usr/v1/assets/images/prod/300/9791191570724.jpg" alt="">
+                                        </a>
+                                        <a href="product_detail?seq=1" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
+                                    </div>
+                                    <div class="content_info_box ">
+                                        <div class="d-flex flex-column gap-3">
+                                            <p class="prod_title">
+                                                <a href="product_detail?seq=1">
+                                                    <span class="gray_color"></span> <strong>아직 덜 마른 장작</strong>
+                                                </a>
+                                            </p>
+                                            <p class="prod_author">이지혜 · 이바구 · 2024.08.20</p>
+                                            <p class="prod_price d-flex gap-1"><strong class="saleP">10%</strong><span class="sale_price"><strong>18,000</strong>원</span><span class="regular_price">20,000원</span> <span class="point">1000p</span> </p>
+                                            <p class="prod_intro">
+                                                『아직 덜 마른 장작』은 이지혜 소설가의 첫 장편소설집이다. 소설가 스스로 “모든 이의 공통점은 누군가를 사랑한다는 점이다. 아직은 탈 준비가 되지 않은 그들은 모두 덜 마른 장작들이다. 이 작품 속 인물 중에서 제대로 탈 준비가 된 사람은 한 명도 없다. 미성숙하고 불완전하지만, 주어진 삶을 포기하지 않고 어떻게든 오늘의 삶을 살아 내는 사람들에게 조금 미스가 있다고 해서 과연 누가 돌을 던질 수 있을까? 법의 규율로 인해 돌을 맞는 이에게조차 주인공은 화해의 손길을 내민다.”라며 강조한다.
+                                            </p>
+                                            <div class="prod_review d-flex gap-1">
+                                                <span class="icon_box">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""> 
+                                                </span>
+                                                <strong class="review_num">0.0</strong> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shipping_date d-flex flex-column gap-2">
+                                        <p><strong>8/2(금)</strong></p>
+                                        <p>출고예정</p>
+                                    </div>
+                                    <div class="button_box d-flex flex-column gap-2">
+                                        <span class="heart_icon">
+                                            <img src="/usr/v1/assets/images/ico_heart_h18@2x.png" alt="">
+                                        </span>
+                                        <button class="btn btn-gray">장바구니</button>
+                                        <button class="direct_buy_btn btn btn-blue">바로구매</button>
+                                    </div>
+                                </li>
+                                <li class="contents_items d-flex justify-content-between gap-3">
+                                    <div>
+                                        <input type="checkbox" name="" id="">
+                                    </div>
+                                    <div class="prod_img">
+                                        <a href="product_detail?seq=1" class="img-box ">
+                                            <img src="/usr/v1/assets/images/prod/300/9788937456961.jpg" alt="">
+                                        </a>
+                                        <a href="product_detail?seq=1" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
+                                    </div>
+                                    <div class="content_info_box ">
+                                        <div class="d-flex flex-column gap-3">
+                                            <p class="prod_title"><a href="product_detail?seq=1"><span class="gray_color">예약판매</span> <strong>꿈과 토템</strong></a></p>
+                                            <p class="prod_author">은모든 · 민음사 · 2024.07.26</p>
+                                            <p class="prod_price d-flex gap-1"><strong class="saleP">10%</strong><span class="sale_price"><strong>13,500</strong>원</span><span class="regular_price">15,000원</span> <span class="point">750p</span> </p>
+                                            <p class="prod_intro">
+                                                은모든의 신작 소설집 『꿈과 토템』이 민음사에서 출간되었다. 『모두 너와 이야기하고 싶어 해』를 비롯해 SF 장편소설 『한 사람을 더하면』, 연작소설 『우주의 일곱 조각』 등 다수의 작품을 발표해 온 은모든은 유려한 필치로 일상을 그리며 그 위에 새로운 감각을 덧입히는 이야기꾼의 솜씨를 보여 주었다. 『꿈과 토템』에 실린 7편의 소설들 역시 여러 고민과 선택들 사이에 놓인 인물들의 이야기를 생생하게 풀어놓으며, 정신없이 흘러가는 일상에서 놓치기 쉬운 반짝이는 순간들을 포착해 낸다. 은모든 소설의 주인공은 더 이상 ‘사회 초년생’이 아닌 여성들이다. 이제는 방황도 실수도 사치가 되어 버린 나이이지만 이들에게는 여전히 고민이 많다. 쉽게 결정할 수 없는 선택지들은 결코 줄어들지 않는다. 이 일을 계속할 수 있을까? 이 결혼을 지속해도 될까? 이렇게 살아도 괜찮을까? 꼬리를 무는 질문과 불안, 권태 속에서 ‘꿈’은 도달하기 어려운 것을 넘어 떠올리기조차 힘든 먼 단어가 된 것 같다. 현실은 버겁고 꿈은 멀리 있지만 손끝에 만져지는 것이 있다. 꿈과 현실 사이에서 토템을 만지작거리는 여성들은 슬쩍 방향을 틀어 본다. 토템을 손에 단단히 쥐고 마음을 달리 먹어 보기, 그렇게 앞에 놓인 현실을 조금 다르게 보기. 작가의 말대로 소설 속 인물들은 이 “신통한 토템”을 “서로의 손에 슬며시 쥐여 주기”도 하므로, 『꿈과 토템』은 또한 우정의 이야기이기도 하다. 한 걸음 용기 내어 일상을 바꿔 나가는 인물들의 이야기를 읽고 나면, 독자들 역시 어느새 손에 쥐어진 토템과 함께 오늘을 살아갈 힘을 얻게 될 것이다.
+                                            </p>
+                                            <div class="prod_review d-flex gap-1">
+                                                <span class="icon_box">
+                                                    <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""> 
+                                                </span>
+                                                <strong class="review_num">0.0</strong> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shipping_date d-flex flex-column gap-2">
+                                        <p><strong>8/1(월)</strong></p>
                                         <p>출고예정</p>
                                     </div>
                                     <div class="button_box d-flex flex-column gap-2">

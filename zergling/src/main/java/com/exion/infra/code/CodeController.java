@@ -20,15 +20,23 @@ public class CodeController {
 	@Autowired
 	CodeGroupService codeGroupService;
 	 
+//	@RequestMapping(value = "/v1/infra/code/codeXdmList")
+//	public String codeXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
+//            @RequestParam(value = "size", defaultValue = "3") int size,
+//            @RequestParam(value = "searchKeyword", required = false) String searchKeyword, Model model) {
+////		List<CodeDto> commonCodes = codeService.selectList();		
+////		model.addAttribute("list2", commonCodes);
+////		model.addAttribute("totalRows", commonCodes.size());
+////		PagingResponseDto<CodeDto> responseDto = codeService.findAll(page, size, searchKeyword);
+//		model.addAttribute("response", responseDto);
+//		model.addAttribute("response", codeService.selectList());
+//		return "/xdm/v1/infra/code/codeXdmList";
+//	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmList")
-	public String codeXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "3") int size,
-            @RequestParam(value = "searchKeyword", required = false) String searchKeyword, Model model) {
-//		List<CodeDto> commonCodes = codeService.selectList();		
-//		model.addAttribute("list2", commonCodes);
-//		model.addAttribute("totalRows", commonCodes.size());
-		PagingResponseDto<CodeDto> responseDto = codeService.findAll(page, size, searchKeyword);
-		model.addAttribute("response", responseDto);
+	public String codeXdmList(CodeVo vo, Model model) {
+		System.out.println("1:"+ codeService.selectList(vo).getCurrentPage());
+		model.addAttribute("response", codeService.selectList(vo));
+//		model.addAttribute("count", codeService.listCount(vo));
 		return "/xdm/v1/infra/code/codeXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmForm")

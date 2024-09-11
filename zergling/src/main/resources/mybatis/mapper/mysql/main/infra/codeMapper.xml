@@ -22,6 +22,21 @@
 		FROM
 			commoncode a
 			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
+			<choose>
+				<when test="keywordType == null">
+					AND(
+						a.seq = #{searchKeyword}
+						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
+						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
+					)
+				</when>
+				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
+				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+			</choose>
 		ORDER BY
 			<!-- a.seq desc --> 
 			a.codeGroup_seq desc
@@ -57,10 +72,38 @@
 			commoncode a
 			join codegroup b on a.codeGroup_seq = b.seq
         WHERE 1=1
-			<if test="searchKeyword != null and searchKeyword != ''">
-			    AND a.codeName LIKE CONCAT('%', #{searchKeyword}, '%')
-			</if>
+			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
+			<choose>
+				<when test="keywordType == null">
+					AND(
+						a.seq = #{searchKeyword}
+						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
+						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
+					)
+				</when>
+				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
+				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+			</choose>
     </select>
+    <!-- <select id="listCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM commoncode a
+        left join codegroup b on a.codeGroup_seq = b.seq
+        WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+			    AND ( a.seq = #{searchKeyword})
+					    OR b.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+					    OR a.codeName LIKE CONCAT('%', #{searchKeyword}, '%'))
+			</if>
+			<if test="sUseNy != null and !sUseNy.equals('')">
+				AND a.useNy = #{sUseNy}
+			</if>
+			<if test="sDelNy != null and !sDelNy.equals('')">
+				AND a.delNy = #{sDelNy}
+			</if>
+    </select> -->
 	<insert id="insert">
 		insert into commoncode(
 			codeName

@@ -89,6 +89,9 @@
 } 
 .prod_types_box>div{
     cursor: pointer;
+    width: fit-content;
+    padding:10px;
+    display: flex;
 }
 .prod_types_box>div.active::before{
     content: "\f0da";

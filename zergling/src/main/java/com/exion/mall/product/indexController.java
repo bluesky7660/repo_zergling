@@ -107,8 +107,9 @@ public class indexController {
 		return "usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
-	public String productList() {
+	public String productList(Model model) {
 		
+		model.addAttribute("list", productService.prodList());
 		return "/usr/v1/pages/product_list";
 	}
 	

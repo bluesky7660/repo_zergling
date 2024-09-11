@@ -16,6 +16,7 @@
 			    ,a.salePrice
 			    ,a.point
 			    ,a.stockQty
+			    ,a.imgSrc
 			    ,a.intro
 			    ,a.reviewNum
 			    ,a.shipDate
@@ -32,8 +33,8 @@
 			    ,a.delNy
 			from
 				product a
-				join productAuthor c on c.product_seq = a.seq
-				join author b on c.author_seq = b.seq
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 			order by a.seq desc
 	  </select>
@@ -139,7 +140,7 @@
 			    ,preivew = #{preivew}
 			    ,bestNy = #{bestNy}
 			    ,todayPickNy = #{todayPickNy}
-			    ,sliderText = #{sliderText}]
+			    ,sliderText = #{sliderText}
 				,modDate = now()
 			WHERE 1=1
 				AND seq = #{seq}

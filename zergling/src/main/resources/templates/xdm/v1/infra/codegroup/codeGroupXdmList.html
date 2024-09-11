@@ -653,6 +653,7 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 코드</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 이름</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
@@ -666,9 +667,9 @@
 													<tr th:if="${#lists.isEmpty(response.list)}" class="data_empty">
 														<td colspan="8"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr th:each="listG : ${response.list}" th:if="${!#lists.isEmpty(response.list)}">
+													<tr th:each="listG,iter : ${response.list}" th:if="${!#lists.isEmpty(response.list)}">
 														<td><input type="checkbox"></td>
-														<!-- <td>171</td> -->
+														<td th:text="${iter.size - iter.index}"></td>
 														<td th:text="${listG.seq}"></td>
 														<!-- <td class="td_spotlight">
 															<a href="/v1/infra/codegroup/codeGroupXdmForm?seq=1" th:text="${listG.codeGroupName}"></a>

@@ -77,7 +77,7 @@
 		                    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
 		                </when> -->
 						<when test="keywordType == 1 and keywordType != null and keywordType != ''">
-						    a.seq LIKE CONCAT('%', #{searchKeyword}, '%')
+						    a.seq = #{searchKeyword}
 						</when>
 						<when test="keywordType == 2 and keywordType != null and keywordType != ''">
 						     a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -90,10 +90,10 @@
 					</choose>
 				</if>
 			</trim>
-			<if test="sUseNy != null and sUseNy != ''">
+			<if test="sUseNy != null and !sUseNy.equals('')">
 				AND a.useNy = #{sUseNy}
 			</if>
-			<if test="sDelNy != null and sDelNy != ''">
+			<if test="sDelNy != null and !sDelNy.equals('')">
 				AND a.delNy = #{sDelNy}
 			</if>
 			<!-- 날짜조건 -->
@@ -137,6 +137,12 @@
 			    AND ( a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
 					    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%'))
 			</if>
+			<!-- <if test="sUseNy != null and !sUseNy.equals('')">
+				AND a.useNy = #{sUseNy}
+			</if>
+			<if test="sDelNy != null and !sDelNy.equals('')">
+				AND a.delNy = #{sDelNy}
+			</if> -->
     </select>
 	<insert id="insert">
 		insert into codegroup(

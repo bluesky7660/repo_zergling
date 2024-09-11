@@ -16,6 +16,7 @@ public class ProductDto {
 	private Integer salePrice;
 	private Integer point;
 	private Integer stockQty;
+	private String imgSrc;
 	private String intro;
 	private Double reviewNum;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -93,6 +94,12 @@ public class ProductDto {
 	}
 	public void setStockQty(Integer stockQty) {
 		this.stockQty = stockQty;
+	}
+	public String getImgSrc() {
+		return imgSrc;
+	}
+	public void setImgSrc(String imgSrc) {
+		this.imgSrc = imgSrc;
 	}
 	public String getIntro() {
 		return intro;

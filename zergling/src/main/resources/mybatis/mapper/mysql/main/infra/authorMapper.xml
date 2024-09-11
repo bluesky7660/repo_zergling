@@ -16,12 +16,12 @@
 			    ,a.delNy
 			from
 				author a
-				join productAuthor c on c.author_seq = a.seq
-				join product b on c.product_seq = b.seq
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
 			order by a.seq desc
 	  </select>
-	 <!--  <insert id="insertAuthor">
+	  <insert id="insertAuthor">
 			insert into author(
 			    authorType
 			    ,name	
@@ -31,14 +31,14 @@
 			    ,delNy
 			) value(
 				#{authorType}
-			    ,#{authorType}
+			    ,#{name}
 			    ,#{authorInfo}
 			    ,now()
 			    ,now()
 			    ,0
 			)
 	  </insert>
-	  <insert id="insertAuthorProd">
+	  <!-- <insert id="insertAuthorProd">
 			insert into author(
 			    
 			    ,delNy
@@ -51,6 +51,16 @@
 			    ,0
 			)
 	  </insert> -->
+	  <select id="jobList" resultMap="resultObj">
+		  	select
+		  		a.seq
+			    ,a.codeName
+			from
+				commoncode a
+			where 1=1
+				AND a.codeGroup_seq = 10
+			order by a.seq desc
+	  </select>
 	  <select id="authorOne" resultMap="resultObj">
 		  	select
 				a.seq
@@ -58,16 +68,39 @@
 			    ,d.codeName
 			    ,a.name	
 			    ,a.authorInfo
-			    ,b.title
+			    <!-- ,b.title -->
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
 			from
 				author a
-				join productAuthor c on c.author_seq = a.seq
-				join product b on c.product_seq = b.seq
+				<!-- join productAuthor c on c.author_seq = a.seq
+				join product b on c.product_seq = b.seq -->
 				join commoncode d on a.authorType = d.seq
 			where 1 = 1
 				and a.seq = #{seq}
 	  </select>
+		<update id="update">
+			UPDATE author
+			SET
+				name = #{name}
+				,authorType = #{authorType}
+				,authorInfo = #{authorInfo}
+				,modDate = now()
+			WHERE 1=1
+				AND seq = #{seq}
+		</update>
+		<update id="uelete">
+			UPDATE author
+			SET
+				delNy = 1
+			WHERE 1=1
+				AND seq = #{seq}
+		</update>
+		
+		<delete id="delete">
+			delete from author
+			WHERE 1=1
+				AND seq = #{seq}
+		</delete>
 </mapper>

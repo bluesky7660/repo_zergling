@@ -762,7 +762,7 @@ main>*{
     text-align: center;
     align-items: center;
     justify-content: center;
-    position: sticky;
+    position: fixed;
     bottom: 100px;
     right: 30px;
     margin-left: auto;
