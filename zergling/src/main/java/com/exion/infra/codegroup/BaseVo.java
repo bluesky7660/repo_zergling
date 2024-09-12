@@ -13,6 +13,8 @@ public class BaseVo {
     private Date dateStart;		//날짜 시작일
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;		//날짜 종료일
+//    private String dateStart;		//날짜 시작일
+//    private String dateEnd;		//날짜 종료일
     private Integer keywordType;	//검색키워드 타입
     private Integer sDelNy;			//검색 조건[삭제] 
     private Integer sUseNy;			//검색 조건[사용]
@@ -49,6 +51,18 @@ public class BaseVo {
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
 	}
+	//	public String getDateStart() {
+//		return dateStart;
+//	}
+//	public void setDateStart(String dateStart) {
+//		this.dateStart = dateStart;
+//	}
+//	public String getDateEnd() {
+//		return dateEnd;
+//	}
+//	public void setDateEnd(String dateEnd) {
+//		this.dateEnd = dateEnd;
+//	}
 	public Integer getKeywordType() {
 		return keywordType;
 	}

@@ -61,21 +61,34 @@ public class CodeGroupController {
 // 
 //		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 //	}
+//	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmList")
+//	public String codeGroupXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
+//            @RequestParam(value = "size", defaultValue = "3") int size,
+//            @RequestParam(value = "searchKeyword", required = false) String searchKeyword, 
+//            @RequestParam(value = "sDelNy", required = false) Integer sDelNy,
+//            @RequestParam(value = "sUseNy", required = false) Integer sUseNy,
+//            @RequestParam(value = "dateType", required = false) Integer dateType,
+//            @RequestParam(value = "dateStart", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart,
+//            @RequestParam(value = "dateEnd", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd,
+//            @RequestParam(value = "keywordType", required = false) Integer keywordType,
+//            CodeGroupDto codeGroupDto, Model model) {
+//        PagingResponseDto<CodeGroupDto> responseDto = codeGroupService.findAll(page, size, dateType, dateStart, dateEnd,
+//        		keywordType, sDelNy, sUseNy, searchKeyword, codeGroupDto);
+//		 model.addAttribute("response", responseDto);
+//		 System.out.println("현재: "+responseDto.getCurrentPage());
+//		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
+//	}
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmList")
-	public String codeGroupXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "3") int size,
-            @RequestParam(value = "searchKeyword", required = false) String searchKeyword, 
-            @RequestParam(value = "sDelNy", required = false) Integer sDelNy,
-            @RequestParam(value = "sUseNy", required = false) Integer sUseNy,
-            @RequestParam(value = "dateType", required = false) Integer dateType,
-            @RequestParam(value = "dateStart", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart,
-            @RequestParam(value = "dateEnd", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd,
-            @RequestParam(value = "keywordType", required = false) Integer keywordType,
-            CodeGroupDto codeGroupDto, Model model) {
-        PagingResponseDto<CodeGroupDto> responseDto = codeGroupService.findAll(page, size, dateType, dateStart, dateEnd,
-        		keywordType, sDelNy, sUseNy, searchKeyword, codeGroupDto);
-		 model.addAttribute("response", responseDto);
-		 System.out.println("현재: "+responseDto.getCurrentPage());
+	public String codeGroupXdmList(CodeGroupVo vo, Model model) {
+		 model.addAttribute("response", codeGroupService.selectList(vo));
+//		 System.out.println("현재: "+responseDto.getCurrentPage());
+		 System.out.println("---------------------------------------------");
+			System.out.println("S1:"+vo.getDateStart());
+			System.out.println("E:"+vo.getDateEnd());
+			vo.setDateStart(vo.getDateStart()+" 00:00:00");
+			vo.setDateEnd(vo.getDateEnd()+" 00:00:00");
+			System.out.println("S2:"+vo.getDateStart());
+		 model.addAttribute("count", codeGroupService.listCount(vo));
 		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
 //	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmSrch")

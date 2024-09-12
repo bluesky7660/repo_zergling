@@ -46,6 +46,10 @@
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5-custom.css" />
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
+
+		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
 			/* 비활성화된 버튼 스타일 */
 			.dataTable-pagination-list .page-item.disabled {
@@ -592,12 +596,13 @@
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
-														<input type="date" class="form-control" id="inputDateStart" name="dateStart" placeholder="" value="">
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
+														<!-- <input type="date" class="form-control" id="inputDateStart" name="dateStart" placeholder="" value=""> -->
 														<!-- <input type="text" class="form-control datepicker" id="inputDateStart" name="" placeholder="" value=""> -->
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
-														<input type="date" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="" value="">
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
 														<!-- <input type="text" class="form-control datepicker" id="inputDateEnd" name="" placeholder="" value=""> -->
 													</div>
 												</div>
@@ -629,10 +634,14 @@
 									</div>
 									<div class="card-body">
 										<div class="row justify-content-between">
-											<div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div>
+											<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div> -->
+											<div class="col-6 col-lg-3">Total: <span th:text="${count}">171</span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
-													<!-- <select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" > -->
+												<select class="dataTable-selector form-select" id="pageSizeSelect">
+													<option value="">2</option>	
+												</select>
+												<!-- <form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
+													<select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" >
 													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
 														<option value="2" th:selected="${response.pageSize == 2}">2</option>
 														<option value="3" th:selected="${response.pageSize == 3}">3</option>
@@ -642,7 +651,7 @@
 														<option value="50" th:selected="${response.pageSize == 50}">50</option>
 													</select>
 													<input type="hidden" name="page" id="pageNumber" value="1" />
-												</form>
+												</form> -->
 											</div>
 										</div>
 										<div class="scrolltable">
@@ -664,10 +673,10 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:if="${#lists.isEmpty(response.list)}" class="data_empty">
-														<td colspan="8"><p>데이터가 없습니다.</p></td>
+													<tr th:if="${#lists.isEmpty(response)}" class="data_empty">
+														<td colspan="10"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr th:each="listG,iter : ${response.list}" th:if="${!#lists.isEmpty(response.list)}">
+													<tr th:each="listG,iter : ${response}" th:if="${!#lists.isEmpty(response)}">
 														<td><input type="checkbox"></td>
 														<td th:text="${iter.size - iter.index}"></td>
 														<td th:text="${listG.seq}"></td>
@@ -710,8 +719,7 @@
 													</li>
 												</ul> -->
 												
-												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<!-- First Page -->
+												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
 													<li class="paginate_button page-item" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
 														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
@@ -720,7 +728,6 @@
 															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
 														</a>
 													</li>
-													<!-- Previous Page -->
 													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
 														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1}, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
@@ -729,7 +736,6 @@
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
-													<!-- Page Numbers -->
 													<li th:each="i : ${#numbers.sequence(
 																		response.currentPage == 1 ? 1 : 
 																		response.currentPage == 2 ? 1 : 
@@ -748,7 +754,6 @@
 														th:classappend="${i == response.currentPage} ? 'active' : ''">
 														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i}, size=${response.pageSize})}" th:text="${i}"></a>
 													</li>
-													<!-- Next Page -->
 													<li class="paginate_button next page-item" id="nextPage" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
 														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
@@ -757,7 +762,6 @@
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 														</a>
 													</li>
-													<!-- Last Page -->
 													<li class="paginate_button page-item" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
 														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.totalPages}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
@@ -766,7 +770,7 @@
 															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
 													</li>
-												</ul>
+												</ul> -->
 												
 												
 												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
@@ -849,7 +853,21 @@
 		<!-- *************
 			************ Required JavaScript Files *************
 		************* -->
-		<script>
+		
+		<script type="text/javascript">
+			
+			// if ($.datetimepicker) {
+                
+            // } else {
+            //     console.error("datetimepicker 라이브러리가 로드되지 않았습니다.");
+            // }
+			window.addEventListener('load',function() {
+				$.datetimepicker.setLocale('ko');
+				$("#inputDateStart,#inputDateEnd").datetimepicker({
+					timepicker:false,
+					format:'Y-m-d'
+				});
+			});
 			function updatePageSize() {
 				var form = document.getElementById('pagination-form');
 				var pageSizeSelect = document.getElementById('pageSizeSelect');
@@ -877,8 +895,9 @@
 					console.error('Form or pageSizeSelect element not found.');
 				}
 			}
-
+			// // $('#date_timepicker_start').datetimepicker();
 			window.onload = function() {
+				
 				console.log('value: ');
 				var pageSizeSelect = document.getElementById('pageSizeSelect');
 				if (pageSizeSelect) {
@@ -969,6 +988,7 @@
 				// 	}
 				// });
 
+
 			};
 		</script>
 		<!-- <script>
@@ -1032,6 +1052,7 @@
 		</script> -->
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
+		<!-- <script src="/xdm/v1/jquery/jquery/jquery-3.7.1.min.js"></script> -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/bootstrap.bundle.min.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/modernizr.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/moment.js"></script>
@@ -1058,6 +1079,9 @@
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
 
+		<!-- by developer -->
+		<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 	</body>
 
 </html>

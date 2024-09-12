@@ -16,7 +16,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "v1/mall/product/productXdmList")
 	public String productXdmList(Model model){
-		model.addAttribute("list", productService.prodList());
+		model.addAttribute("list", productService.xdmProdList());
 		return "xdm/v1/mall/product/productXdm";
 	}
 	@RequestMapping(value = "v1/mall/product/productXdmForm")

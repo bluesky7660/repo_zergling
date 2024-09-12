@@ -14,7 +14,12 @@ public class CodeService {
 	@Autowired
 	CodeDao codeDao;
 	
-//	public List<CodeDto> selectList(CodeVo vo){
+	public List<CodeDto> selectList(CodeVo vo){
+		
+		List<CodeDto> commonCode = codeDao.selectList(vo);
+		return commonCode;
+	}
+//	public PagingResponseDto<CodeDto> selectList( CodeVo vo){
 //		CodeVo params  = new CodeVo();
 //        params.setLimit(vo.getLimit());
 //        params.setOffset(vo.getOffset());
@@ -25,26 +30,11 @@ public class CodeService {
 //        params.setsDelNy(vo.getsDelNy());
 //        params.setsUseNy(vo.getsUseNy());
 //        params.setSearchKeyword(vo.getSearchKeyword());
-//		List<CodeDto> commonCode = codeDao.selectList(params);
-//		System.out.println("vo: "+codeDao.selectList(vo).get(0).getLimit());
-//		return commonCode;
+//		List<CodeDto> list = codeDao.selectList(params);
+//		int listCount = codeDao.listCount(vo);
+//        int totalPages = (int) Math.ceil((double) listCount / vo.getPageSize());
+//		return new PagingResponseDto<>(list, listCount, totalPages, params.getCurrentPage(), params.getPageSize(), params.getSearchKeyword() );
 //	}
-	public PagingResponseDto<CodeDto> selectList( CodeVo vo){
-		CodeVo params  = new CodeVo();
-        params.setLimit(vo.getLimit());
-        params.setOffset(vo.getOffset());
-//        params.setDateType(vo.DateType);
-//        params.setDateStart(dateStart);
-//        params.setDateEnd(dateEnd);
-        params.setKeywordType(vo.getKeywordType());
-        params.setsDelNy(vo.getsDelNy());
-        params.setsUseNy(vo.getsUseNy());
-        params.setSearchKeyword(vo.getSearchKeyword());
-		List<CodeDto> list = codeDao.selectList(params);
-		int listCount = codeDao.listCount(vo);
-        int totalPages = (int) Math.ceil((double) listCount / vo.getPageSize());
-		return new PagingResponseDto<>(list, listCount, totalPages, params.getCurrentPage(), params.getPageSize(), params.getSearchKeyword() );
-	}
 	public int insert(CodeDto codeDto) {
 		return codeDao.insert(codeDto);
 	}

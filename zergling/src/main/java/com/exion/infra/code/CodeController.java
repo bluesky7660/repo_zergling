@@ -34,7 +34,10 @@ public class CodeController {
 //	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmList")
 	public String codeXdmList(CodeVo vo, Model model) {
-		System.out.println("1:"+ codeService.selectList(vo).getCurrentPage());
+//		System.out.println("1:"+ codeService.selectList(vo).getCurrentPage());
+		System.out.println("---------------------------------------------");
+		System.out.println("S:"+vo.getDateStart());
+		System.out.println("E:"+vo.getDateEnd());
 		model.addAttribute("response", codeService.selectList(vo));
 //		model.addAttribute("count", codeService.listCount(vo));
 		return "/xdm/v1/infra/code/codeXdmList";

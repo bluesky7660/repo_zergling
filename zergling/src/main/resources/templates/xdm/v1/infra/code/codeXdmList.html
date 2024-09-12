@@ -46,6 +46,9 @@
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5-custom.css" />
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
+		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
 			
 		</style>
@@ -521,12 +524,12 @@
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
-														<input type="date" class="form-control" id="inputDateStart" name="dateStart" placeholder="" value="">
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
 														<!-- <input type="text" class="form-control datepicker" id="inputDateStart" name="" placeholder="" value=""> -->
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
-														<input type="date" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="" value="">
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
 														<!-- <input type="text" class="form-control datepicker" id="inputDateEnd" name="" placeholder="" value=""> -->
 													</div>
 												</div>
@@ -735,7 +738,13 @@
 			************ Required JavaScript Files *************
 		************* -->
 		<script>
-			
+			window.addEventListener('load',function() {
+				$.datetimepicker.setLocale('ko');
+				$("#inputDateStart,#inputDateEnd").datetimepicker({
+					timepicker:false,
+					format:'Y-m-d'
+				});
+			});
 			function updatePageSize() {
 				var form = document.getElementById('pagination-form');
 				var pageSizeSelect = document.getElementById('pageSizeSelect');
@@ -804,7 +813,9 @@
 
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
-
+		<!-- by developer -->
+		<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 	</body>
 
 </html>

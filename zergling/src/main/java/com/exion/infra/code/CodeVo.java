@@ -15,6 +15,7 @@ public class CodeVo extends BaseVo {
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
+//--
 
 	@Override
 	public String getSearchKeyword() {
@@ -39,6 +40,30 @@ public class CodeVo extends BaseVo {
 		// TODO Auto-generated method stub
 		super.setDateType(dateType);
 	}
+
+//	@Override
+//	public String getDateStart() {
+//		// TODO Auto-generated method stub
+//		return super.getDateStart();
+//	}
+//
+//	@Override
+//	public void setDateStart(String dateStart) {
+//		// TODO Auto-generated method stub
+//		super.setDateStart(dateStart);
+//	}
+//
+//	@Override
+//	public String getDateEnd() {
+//		// TODO Auto-generated method stub
+//		return super.getDateEnd();
+//	}
+//
+//	@Override
+//	public void setDateEnd(String dateEnd) {
+//		// TODO Auto-generated method stub
+//		super.setDateEnd(dateEnd);
+//	}
 
 	@Override
 	public Date getDateStart() {

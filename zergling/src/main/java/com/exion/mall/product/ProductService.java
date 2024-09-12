@@ -13,8 +13,14 @@ public class ProductService {
 	public int insertProd(ProductDto productDto) {
 		return productDao.insertProd(productDto);
 	}
-	public List<ProductDto> prodList(){
-		return productDao.prodList();
+//	public List<ProductDto> prodList(){
+//		return productDao.prodList();
+//	}
+	public List<ProductDto> usrProdList(ProductVo vo){
+		return productDao.usrProdList(vo);
+	}
+	public List<ProductDto> xdmProdList(){
+		return productDao.xdmProdList();
 	}
 	public ProductDto prodOne(ProductDto productDto){
 		return productDao.prodOne(productDto);

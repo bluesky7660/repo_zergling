@@ -7,7 +7,7 @@
 
 	<resultMap type="com.exion.infra.codegroup.CodeGroupDto" id="resultMapObj"></resultMap>
 	
-	<select id="selectList" resultMap="resultMapObj">
+	<!-- <select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.seq
 			,a.codeGroupName
@@ -22,6 +22,59 @@
 		
 		ORDER BY
 			a.groupOrder desc
+	</select> -->
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+			<!-- 키워드조건 -->
+			<trim prefix="AND (" suffix=")" suffixOverrides="OR">
+				<if test="searchKeyword != null and searchKeyword != ''">
+					<choose>
+						<!-- <when test="keywordType == null">
+		                    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+		                </when> -->
+						<when test="keywordType == 1 and keywordType != null and keywordType != ''">
+						    a.seq = #{searchKeyword}
+						</when>
+						<when test="keywordType == 2 and keywordType != null and keywordType != ''">
+						     a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+						</when>
+						<otherwise>
+							a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+						    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%')
+						</otherwise>
+						
+					</choose>
+				</if>
+			</trim>
+			<if test="sUseNy != null and !sUseNy.equals('')">
+				AND a.useNy = #{sUseNy}
+			</if>
+			<if test="sDelNy != null and !sDelNy.equals('')">
+				AND a.delNy = #{sDelNy}
+			</if>
+			<choose>
+				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+			</choose>
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+		<!-- LIMIT #{limit} OFFSET #{offset} -->
 	</select>
 	<!-- <select id="selectList2" resultMap="resultMapObj">
 		SELECT
@@ -96,8 +149,12 @@
 			<if test="sDelNy != null and !sDelNy.equals('')">
 				AND a.delNy = #{sDelNy}
 			</if>
+			<choose>
+				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+			</choose>
 			<!-- 날짜조건 -->
-			<if test="dateType != null and dateType != ''">
+			<!-- <if test="dateType != null and dateType != ''">
 				<choose>
 					<when test="dateType == 1">
 						<if test="dateStart != null">
@@ -106,14 +163,14 @@
 						<if test="dateEnd != null">
 							AND a.regDate &lt;= #{dateEnd}
 						</if>
-						<!-- <if test="dateStart != null and dateEnd != null">
+						<if test="dateStart != null and dateEnd != null">
 							AND a.regDate &gt;= #{dateStart} AND a.regDate &lt;= #{dateEnd}
-						</if> -->
+						</if>
 					</when>
 					<when test="dateType == 2">
-						<!-- <if test="dateStart != null and dateEnd != null">
+						<if test="dateStart != null and dateEnd != null">
 							AND a.modDate &gt;= #{dateStart} AND a.modDate &gt;= #{dateStart}
-						</if> -->
+						</if>
 						<if test="dateStart != null">
 							AND a.modDate &gt;= #{dateStart}
 						</if>
@@ -122,7 +179,7 @@
 						</if>
 					</when>
 				</choose>
-			</if>
+			</if> -->
 		GROUP BY 
     		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
 		ORDER BY
@@ -137,12 +194,12 @@
 			    AND ( a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
 					    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%'))
 			</if>
-			<!-- <if test="sUseNy != null and !sUseNy.equals('')">
+			<if test="sUseNy != null and !sUseNy.equals('')">
 				AND a.useNy = #{sUseNy}
 			</if>
 			<if test="sDelNy != null and !sDelNy.equals('')">
 				AND a.delNy = #{sDelNy}
-			</if> -->
+			</if>
     </select>
 	<insert id="insert">
 		insert into codegroup(

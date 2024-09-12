@@ -107,9 +107,10 @@ public class indexController {
 		return "usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
-	public String productList(Model model) {
-		
-		model.addAttribute("list", productService.prodList());
+	public String productList(Model model,ProductVo vo) {
+		System.out.println("get: "+vo.getMakeDateFillter());
+		model.addAttribute("list", productService.usrProdList(vo));
+		model.addAttribute("checked", vo);
 		return "/usr/v1/pages/product_list";
 	}
 	

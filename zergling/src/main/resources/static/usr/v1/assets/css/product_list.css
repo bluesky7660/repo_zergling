@@ -106,24 +106,33 @@
     /* padding:20px 0; */
 }
 
-.makeDate_fillter_box{
+.makeDateFillterBox{
     border-top: 1px solid #ddd;
     padding:20px 0;
 }
-.makeDate_fillter_list{
+.makeDateFillterList{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.makeDate_fillter_list label{
+.makeDateFillterList label{
     cursor: pointer;
     line-height: 20px;
 }
-.makeDate_fillter_list input{
+.makeDateFillterList input{
     margin-right:10px ;
     width: 20px;
     height: 20px;
 }
+/* .makeDateFillterBox input[type="radio"]:checked,.makeDateFillterList input[type="radio"]:checked{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.disabled-label {
+    opacity: 0.5;
+    pointer-events: none;
+} */
 
 /*오른쪽*/
 .view_options{

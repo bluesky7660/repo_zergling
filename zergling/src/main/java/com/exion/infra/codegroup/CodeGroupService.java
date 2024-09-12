@@ -19,6 +19,9 @@ public class CodeGroupService {
 	public List<CodeGroupDto> selectList(){
 		return codeGroupDao.selectList();
 	}
+	public List<CodeGroupDto> selectList(CodeGroupVo vo){
+		return codeGroupDao.selectList(vo);
+	}
 	public int insert(CodeGroupDto codeGroupDto) {
 //		int result = codeGroupDao.insert(codeGroupDto);
 //		return result;
@@ -72,30 +75,29 @@ public class CodeGroupService {
 //      System.out.println("params: " +params.getKeywordType());
 //        return new PagingResponseDto<>(list, listCount, totalPages, page, size, searchKeyword);
 //    }
-	public PagingResponseDto<CodeGroupDto> findAll(int page, int size, Integer dateType, Date dateStart, Date dateEnd,
-			Integer keywordType, Integer sDelNy, Integer sUseNy, String searchKeyword, CodeGroupDto codeGroupDto) {
-		// 리스트를 건너뛸 갯수 (1[현재페이지]-1)*5 = 0, (2-1)*5 = 5
-		//select 에서 OFFSET절에서 사용할 값으로 5면 리스트5번째까지 건너뛰고 6번째부터 출력
-        int offset = (page - 1) * size;
-        CodeGroupDto params  = new CodeGroupDto();
-        params.setLimit(size);
-        params.setOffset(offset);
-        params.setDateType(dateType);
-        params.setDateStart(dateStart);
-        params.setDateEnd(dateEnd);
-        params.setKeywordType(keywordType);
-        params.setsDelNy(sDelNy);
-        params.setsUseNy(sUseNy);
-        params.setSearchKeyword(searchKeyword);
-        List<CodeGroupDto> list = codeGroupDao.selectList2(params);
-        int listCount = codeGroupDao.listCount(codeGroupDto);
-        int totalPages = (int) Math.ceil((double) listCount / size);
-        System.out.println("2: "+codeGroupDao.selectList2(params).get(0).getCurrentPage());
-        return new PagingResponseDto<>(list, listCount, totalPages, page, size, searchKeyword );
-    }
-//	public int listCount(String searchKeyword) {
-//		PagingResponseDto params = new PagingResponseDto(0,0,searchKeyword);
-//		return 
-//	}
+//	public PagingResponseDto<CodeGroupDto> findAll(int page, int size, Integer dateType, Date dateStart, Date dateEnd,
+//			Integer keywordType, Integer sDelNy, Integer sUseNy, String searchKeyword, CodeGroupDto codeGroupDto) {
+//		// 리스트를 건너뛸 갯수 (1[현재페이지]-1)*5 = 0, (2-1)*5 = 5
+//		//select 에서 OFFSET절에서 사용할 값으로 5면 리스트5번째까지 건너뛰고 6번째부터 출력
+//        int offset = (page - 1) * size;
+//        CodeGroupDto params  = new CodeGroupDto();
+//        params.setLimit(size);
+//        params.setOffset(offset);
+//        params.setDateType(dateType);
+//        params.setDateStart(dateStart);
+//        params.setDateEnd(dateEnd);
+//        params.setKeywordType(keywordType);
+//        params.setsDelNy(sDelNy);
+//        params.setsUseNy(sUseNy);
+//        params.setSearchKeyword(searchKeyword);
+//        List<CodeGroupDto> list = codeGroupDao.selectList2(params);
+//        int listCount = codeGroupDao.listCount(codeGroupDto);
+//        int totalPages = (int) Math.ceil((double) listCount / size);
+//        System.out.println("2: "+codeGroupDao.selectList2(params).get(0).getCurrentPage());
+//        return new PagingResponseDto<>(list, listCount, totalPages, page, size, searchKeyword );
+//    }
+	public int listCount(CodeGroupVo vo) {
+		return codeGroupDao.listCount(vo);
+	}
 
 }

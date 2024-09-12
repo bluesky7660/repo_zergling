@@ -28,7 +28,7 @@
 			<choose>
 				<when test="keywordType == null">
 					AND(
-						a.seq = #{searchKeyword}
+						a.seq Like CONCAT('%',#{searchKeyword},'%')
 						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
 						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
 					)
@@ -36,6 +36,10 @@
 				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
 				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
 				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+			</choose>
+			<choose>
+				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 			</choose>
 		ORDER BY
 			<!-- a.seq desc --> 
@@ -58,9 +62,24 @@
 			commoncode a
 			left join codegroup b on a.codeGroup_seq = b.seq
 		WHERE 1=1
-			<if test="searchKeyword != null and searchKeyword != ''">
-			    AND a.codeName LIKE CONCAT('%', #{searchKeyword}, '%')
-			</if>
+			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
+			<choose>
+				<when test="keywordType == null">
+					AND(
+						a.seq Like CONCAT('%',#{searchKeyword},'%')
+						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
+						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
+					)
+				</when>
+				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
+				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+			</choose>
+			<choose>
+				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+			</choose>
 		ORDER BY
 			a.codeGroup_seq desc
 			, a.codeOrder desc
@@ -77,7 +96,7 @@
 			<choose>
 				<when test="keywordType == null">
 					AND(
-						a.seq = #{searchKeyword}
+						a.seq Like CONCAT('%',#{searchKeyword},'%')
 						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
 						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
 					)
@@ -85,6 +104,10 @@
 				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
 				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
 				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+			</choose>
+			<choose>
+				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 			</choose>
     </select>
     <!-- <select id="listCount" resultType="int">
