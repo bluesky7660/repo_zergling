@@ -1,0 +1,547 @@
+2024-09-12T13:25:06.057 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN NULL AND '09/12/2024 00:00:00.000' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:06.066 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T13:25:13.212 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+			 AND a.delNy = 1 
+			 AND a.useNy = 1 
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:19.455 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+			 AND a.delNy = 1 
+			 AND a.useNy = 1 
+
+					AND(
+						a.seq Like CONCAT('%','00','%')
+						OR b.codeGroupName Like CONCAT('%','00','%')
+						OR a.codeName Like CONCAT('%','00','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 12 msec} 
+2024-09-12T13:25:39.243 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 2 msec} 
+2024-09-12T13:25:39.247 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T13:25:41.072 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:41.076 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T13:25:41.659 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T13:25:41.675 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 3 msec} 
+2024-09-12T13:25:42.058 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T13:25:42.074 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T13:25:42.574 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:42.578 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 3 msec} 
+2024-09-12T13:25:43.155 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:43.157 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T13:25:43.572 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 10 msec} 
+2024-09-12T13:25:43.573 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T13:25:44.060 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:44.060 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T13:25:44.622 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T13:25:44.637 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T13:25:45.074 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T13:25:45.074 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T13:25:45.474 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T13:25:45.488 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 14 msec} 
+2024-09-12T13:25:45.937 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:45.939 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T13:25:46.372 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T13:25:46.388 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T13:25:46.788 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 14 msec} 
+2024-09-12T13:25:46.791 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T13:25:47.323 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:47.325 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T13:25:47.890 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T13:25:47.890 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T13:25:48.381 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T13:25:48.381 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 

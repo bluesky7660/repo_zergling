@@ -1,0 +1,744 @@
+2024-09-12T17:00:39.525 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:00:41.067 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:00:42.560 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 1 msec} 
+2024-09-12T17:01:25.110 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:01:29.294 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 3 msec} 
+2024-09-12T17:01:30.841 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 1 msec} 
+2024-09-12T17:07:03.689 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:07:14.948 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 1 msec} 
+2024-09-12T17:07:16.777 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-12T17:11:26.850 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-12T17:12:49.454 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-12T17:12:51.226 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-12T17:13:31.183 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:13:34.359 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 3 msec} 
+2024-09-12T17:13:36.319 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-12T17:13:51.745 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:13:56.938 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:14:00.066 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:14:02.108 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate < DATE_SUB(NOW(), INTERVAL 12 MONTH)  
+			order by a.makeDate desc
+ {executed in 8 msec} 
+2024-09-12T17:14:22.171 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+			where 1=1
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-12T17:26:18.506 [RMI TCP Connection(44)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2024-09-12T17:26:18.510 [RMI TCP Connection(44)-127.0.0.1] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T17:26:18.753 [RMI TCP Connection(44)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated... 
+2024-09-12T17:26:18.762 [RMI TCP Connection(44)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed. 

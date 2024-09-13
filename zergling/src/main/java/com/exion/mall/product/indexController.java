@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exion.infra.code.CodeService;
 import com.exion.infra.user.UserDto;
 import com.exion.infra.user.UserService;
 
@@ -20,6 +21,9 @@ public class indexController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CodeService codeService;
 	
 	@RequestMapping(value = "index")
 	public String index() {
@@ -110,7 +114,10 @@ public class indexController {
 	public String productList(Model model,ProductVo vo) {
 		System.out.println("get: "+vo.getMakeDateFillter());
 		model.addAttribute("list", productService.usrProdList(vo));
-		model.addAttribute("checked", vo);
+		model.addAttribute("vo", vo);
+		model.addAttribute("bages", codeService.bageList());
+		System.out.println("최소: "+vo.getMinPrice());
+		System.out.println("최대: "+vo.getMaxPrice());
 		return "/usr/v1/pages/product_list";
 	}
 	

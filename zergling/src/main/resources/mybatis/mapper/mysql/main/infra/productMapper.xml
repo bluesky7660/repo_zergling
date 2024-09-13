@@ -73,6 +73,16 @@
 				join commoncode d on b.authorType = d.seq
 			where 1=1
 				<choose>
+					<when test="minPrice != null and maxPrice != null">
+				        AND a.salePrice BETWEEN #{minPrice} AND #{maxPrice}
+				    </when>
+				</choose>
+				<choose>
+					<when test="minPrice != null and maxReview != null">
+				        AND a.reviewNum BETWEEN #{minReview} AND #{maxReview}
+				    </when>
+				</choose>
+				<choose>
 					<!-- <when test="makeDateFillter == 0"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL  MONTH) AND NOW()</when> -->
 					<when test="makeDateFillter == 1"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 2"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW()</when>

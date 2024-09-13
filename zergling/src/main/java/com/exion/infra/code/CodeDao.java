@@ -9,6 +9,7 @@ public interface CodeDao {
 	public List<CodeDto> selectList2(CodeDto codeDto);
 	public int insert(CodeDto codeDto);
 	public CodeDto selectOne(CodeDto codeDto);
+	public List<CodeDto> bageList();
 	public int update(CodeDto codeDto);
 	public int listCount(CodeVo vo);
 	public int uelete(CodeDto codeDto);

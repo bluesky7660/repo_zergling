@@ -171,14 +171,16 @@ $(document).ready(function(){
          
     //  });
      
-     //가격 양방향 range
-     var slider1 = document.getElementById('price-slider');
-     var minPriceInput = document.getElementById('min-price');
-     var maxPriceInput = document.getElementById('max-price');
-     var margin = 5000;
+    //가격 양방향 range
+    var slider1 = document.getElementById('price-slider');
+    var minPriceInput = document.getElementById('min-price');
+    var maxPriceInput = document.getElementById('max-price');
+    var margin = 5000;
+    var defaultMinValue = 0;
+    var defaultMaxValue = 50000;
 
      noUiSlider.create(slider1, {
-         start: [0, 50000], // 초기값
+         start: [parseFloat(minPriceInput.value) || 0, parseFloat(maxPriceInput.value) || 50000], // 초기값
          connect: true,
          range: {
              'min': 0,
@@ -236,7 +238,7 @@ $(document).ready(function(){
      var margin2 = 1;
 
      noUiSlider.create(slider2, {
-         start: [0, 10], // 초기값
+         start: [parseFloat(minPriceInput2.value) || 0, parseFloat(maxPriceInput2.value) || 10], // 초기값
          connect: true,
          range: {
              'min': 0,
@@ -285,6 +287,12 @@ $(document).ready(function(){
          slider2.noUiSlider.set([null, this.value]);
      });
 
+     document.getElementById('resetBtn').addEventListener('click', function() {
+        slider1.noUiSlider.set([defaultMinValue, defaultMaxValue]); // 슬라이더를 초기값으로 설정
+        minPriceInput.value = defaultMinValue;
+        maxPriceInput.value = defaultMaxValue;
+        // document.getElementById('searchForm').reset(); // 폼 리셋
+    });
 
 
 });

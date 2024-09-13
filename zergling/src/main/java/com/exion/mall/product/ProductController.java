@@ -7,12 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exion.infra.code.CodeService;
+
 @Controller
 public class ProductController {
 	@Autowired
 	ProductService productService;
 	@Autowired
 	AuthorService authorService;
+	@Autowired
+	CodeService codeService;
 	
 	@RequestMapping(value = "v1/mall/product/productXdmList")
 	public String productXdmList(Model model){

@@ -19,6 +19,7 @@ public class CodeGroupVo {
     private Integer sDelNy;			//검색 조건[삭제] 
     private Integer sUseNy;			//검색 조건[사용]
     
+    
     //페이지네이션
 //    private int listCount; // 리스트의 총 개수
 //    private int totalPages; // 총 페이지 수
@@ -124,5 +125,6 @@ public class CodeGroupVo {
 //	public void setOffset(int offset) {
 //		this.offset = offset;
 //	}
+	
     
 }

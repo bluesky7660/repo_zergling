@@ -44,6 +44,9 @@ public class CodeService {
 	public CodeDto selectOne(CodeDto codeDto) {
 		return codeDao.selectOne(codeDto);
 	}
+	public List<CodeDto> bageList() {
+		return codeDao.bageList();
+	}
 	public int update(CodeDto codeDto) {
 		return codeDao.update(codeDto);
 	}

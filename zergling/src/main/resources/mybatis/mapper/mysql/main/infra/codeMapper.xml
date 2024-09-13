@@ -25,18 +25,20 @@
 		where 1=1
 			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
 			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
-			<choose>
-				<when test="keywordType == null">
-					AND(
-						a.seq Like CONCAT('%',#{searchKeyword},'%')
-						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
-						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
-					)
-				</when>
-				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
-				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
-				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
-			</choose>
+			<if test="searchKeyword != null and !searchKeyword.equals('')">
+				<choose>
+					<when test="keywordType == null">
+						AND(
+							a.seq Like CONCAT('%',#{searchKeyword},'%')
+							OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
+							OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
+						)
+					</when>
+					<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+					<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
+					<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+				</choose>
+			</if>
 			<choose>
 				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
@@ -64,22 +66,27 @@
 		WHERE 1=1
 			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
 			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
-			<choose>
-				<when test="keywordType == null">
-					AND(
-						a.seq Like CONCAT('%',#{searchKeyword},'%')
-						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
-						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
-					)
-				</when>
-				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
-				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
-				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
-			</choose>
-			<choose>
-				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-			</choose>
+			<if test="searchKeyword != null and !searchKeyword.equals('')">
+				<choose>
+					<when test="keywordType == null">
+						AND(
+							a.seq Like CONCAT('%',#{searchKeyword},'%')
+							OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
+							OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
+						)
+					</when>
+					<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+					<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
+					<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+				</choose>
+			</if>
+			<if test="(dateStart != null and !dateStart.equals(''))or(dateEnd != null and !dateEnd.equals(''))">
+				<choose>
+					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
+			</if>
+			
 		ORDER BY
 			a.codeGroup_seq desc
 			, a.codeOrder desc
@@ -165,6 +172,17 @@
 			join codegroup b on a.codeGroup_seq = b.seq
 		WHERE 1 = 1
 			and a.seq = #{seq}
+	</select>
+	<select id="bageList">
+		SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
 	</select>
 	<update id="update">
 		UPDATE commoncode

@@ -1,0 +1,1663 @@
+2024-09-12T14:04:07.314 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:04:08.003 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 13 msec} 
+2024-09-12T14:04:08.488 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:05:46.855 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:05:46.857 [Thread-51] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:05:46.940 [Thread-51] INFO c.z.h.HikariDataSource - HikariPool-3 - Shutdown initiated... 
+2024-09-12T14:05:46.943 [Thread-51] INFO c.z.h.HikariDataSource - HikariPool-3 - Shutdown completed. 
+2024-09-12T14:05:47.003 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:05:47.003 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:05:47.168 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:05:47.168 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:05:47.168 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:05:47.168 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:05:47.173 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:05:47.173 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 169 ms 
+2024-09-12T14:05:47.276 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:05:47.280 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:05:47.282 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:05:47.284 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.299 seconds (process running for 5944.444) 
+2024-09-12T14:05:47.286 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:06:18.479 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:06:18.479 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:06:18.479 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 0 ms 
+2024-09-12T14:06:18.479 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-4 - Starting... 
+2024-09-12T14:06:18.495 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-4 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2fa66416 
+2024-09-12T14:06:18.495 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-4 - Start completed. 
+2024-09-12T14:06:18.506 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:07:47.114 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:07:48.584 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:10:05.543 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:10:05.546 [Thread-55] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:05.627 [Thread-55] INFO c.z.h.HikariDataSource - HikariPool-4 - Shutdown initiated... 
+2024-09-12T14:10:05.629 [Thread-55] INFO c.z.h.HikariDataSource - HikariPool-4 - Shutdown completed. 
+2024-09-12T14:10:05.674 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:10:05.674 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:10:05.793 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:10:05.793 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:05.794 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:10:05.794 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:10:05.799 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:10:05.799 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 124 ms 
+2024-09-12T14:10:05.887 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:10:05.891 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:05.892 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:10:05.896 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.234 seconds (process running for 6203.055) 
+2024-09-12T14:10:05.897 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:10:35.737 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:10:35.739 [Thread-59] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:35.867 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:10:35.868 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:10:35.960 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:10:35.960 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:35.960 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:10:35.960 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:10:35.965 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:10:35.965 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 96 ms 
+2024-09-12T14:10:36.042 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:10:36.046 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:36.047 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:10:36.051 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.198 seconds (process running for 6233.211) 
+2024-09-12T14:10:36.052 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:10:51.786 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications) 
+2024-09-12T14:10:51.787 [Thread-63] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:51.913 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:10:51.913 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:10:52.004 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:10:52.004 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:52.004 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:10:52.004 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:10:52.010 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:10:52.010 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 96 ms 
+2024-09-12T14:10:52.093 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:10:52.096 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:10:52.099 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:10:52.102 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.2 seconds (process running for 6249.262) 
+2024-09-12T14:10:52.103 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:11:35.375 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:11:35.376 [Thread-67] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:11:35.521 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:11:35.521 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:11:35.629 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:11:35.631 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:11:35.631 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:11:35.631 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:11:35.637 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:11:35.637 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 114 ms 
+2024-09-12T14:11:35.714 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:11:35.718 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:11:35.720 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:11:35.725 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.223 seconds (process running for 6292.884) 
+2024-09-12T14:11:35.726 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:17:05.877 [http-nio-8080-exec-3] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:17:05.878 [http-nio-8080-exec-3] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:17:05.879 [http-nio-8080-exec-3] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-12T14:17:05.883 [http-nio-8080-exec-3] INFO c.z.h.HikariDataSource - HikariPool-5 - Starting... 
+2024-09-12T14:17:05.899 [http-nio-8080-exec-3] INFO c.z.h.p.HikariPool - HikariPool-5 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@30e05a69 
+2024-09-12T14:17:05.899 [http-nio-8080-exec-3] INFO c.z.h.HikariDataSource - HikariPool-5 - Start completed. 
+2024-09-12T14:17:05.901 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:17:07.795 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:17:07.795 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T14:17:14.083 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '09/01/2024 00:00:00.000' AND '09/09/2024 00:00:00.000' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 3 msec} 
+2024-09-12T14:17:14.085 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T14:17:36.337 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '09/01/2024 00:00:00.000' AND '09/09/2024 00:00:00.000' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:17:36.415 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 78 msec} 
+2024-09-12T14:17:37.137 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '09/01/2024 00:00:00.000' AND '09/09/2024 00:00:00.000' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:17:37.139 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T14:17:45.760 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '09/01/2024 00:00:00.000' AND '09/09/2024 00:00:00.000' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:17:45.760 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T14:18:04.806 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '09/01/2024 00:00:00.000' AND '09/09/2024 00:00:00.000' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:18:04.813 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 4 msec} 
+2024-09-12T14:18:26.325 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '09/01/2024 00:00:00.000' AND '09/12/2024 00:00:00.000' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:18:26.330 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 3 msec} 
+2024-09-12T14:19:11.319 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:19:11.320 [Thread-71] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:11.399 [Thread-71] INFO c.z.h.HikariDataSource - HikariPool-5 - Shutdown initiated... 
+2024-09-12T14:19:11.402 [Thread-71] INFO c.z.h.HikariDataSource - HikariPool-5 - Shutdown completed. 
+2024-09-12T14:19:11.447 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:19:11.447 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:19:11.551 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:19:11.551 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:11.551 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:19:11.551 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:19:11.557 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:19:11.557 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 109 ms 
+2024-09-12T14:19:11.647 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:19:11.651 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:11.653 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:19:11.658 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.225 seconds (process running for 6748.817) 
+2024-09-12T14:19:11.659 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:19:19.715 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:19:19.716 [Thread-75] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:19.833 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:19:19.834 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:19:19.933 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:19:19.934 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:19.934 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:19:19.934 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:19:19.938 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:19:19.938 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 104 ms 
+2024-09-12T14:19:20.014 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:19:20.018 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:20.019 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:19:20.023 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.199 seconds (process running for 6757.182) 
+2024-09-12T14:19:20.024 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:19:28.238 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:19:28.240 [Thread-79] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:28.366 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:19:28.367 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:19:28.482 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:19:28.482 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:28.482 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:19:28.482 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:19:28.488 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:19:28.488 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 120 ms 
+2024-09-12T14:19:28.565 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:19:28.568 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:28.569 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:19:28.573 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.221 seconds (process running for 6765.733) 
+2024-09-12T14:19:28.574 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:19:52.023 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:19:52.025 [Thread-83] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:52.163 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:19:52.163 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:19:52.291 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:19:52.293 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:52.293 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:19:52.293 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:19:52.308 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:19:52.308 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 144 ms 
+2024-09-12T14:19:52.386 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:19:52.390 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:19:52.391 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:19:52.394 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.247 seconds (process running for 6789.554) 
+2024-09-12T14:19:52.395 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:19:53.626 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:19:53.626 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:19:53.627 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-12T14:19:53.629 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-6 - Starting... 
+2024-09-12T14:19:53.635 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@336d2468 
+2024-09-12T14:19:53.635 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-6 - Start completed. 
+2024-09-12T14:19:53.637 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '2024-09-01' AND '2024-09-12' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 2 msec} 
+2024-09-12T14:19:53.640 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T14:20:04.014 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '2024-09-01' AND '2024-09-12' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:20:04.020 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 0 msec} 
+2024-09-12T14:20:13.886 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 13 msec} 
+2024-09-12T14:20:13.890 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 3 msec} 
+2024-09-12T14:20:26.601 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:20:26.615 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 13 msec} 
+2024-09-12T14:20:36.172 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '2024-09-01' AND '2024-09-06' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:20:36.189 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+81. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T14:21:19.755 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:21:19.756 [Thread-87] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:21:19.829 [Thread-87] INFO c.z.h.HikariDataSource - HikariPool-6 - Shutdown initiated... 
+2024-09-12T14:21:19.832 [Thread-87] INFO c.z.h.HikariDataSource - HikariPool-6 - Shutdown completed. 
+2024-09-12T14:21:19.882 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:21:19.883 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:21:20.005 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:21:20.005 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:21:20.005 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:21:20.005 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:21:20.012 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:21:20.012 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 128 ms 
+2024-09-12T14:21:20.107 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:21:20.111 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:21:20.112 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:21:20.116 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.246 seconds (process running for 6877.275) 
+2024-09-12T14:21:20.117 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:23:07.387 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:23:07.390 [Thread-91] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:23:07.509 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:23:07.509 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:23:07.681 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:23:07.682 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:23:07.682 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:23:07.682 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:23:07.692 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:23:07.692 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 180 ms 
+2024-09-12T14:23:07.837 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:23:07.841 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:23:07.843 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:23:07.848 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.35 seconds (process running for 6985.008) 
+2024-09-12T14:23:07.849 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:23:08.527 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:23:08.527 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:23:08.528 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-12T14:23:08.530 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-7 - Starting... 
+2024-09-12T14:23:08.540 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-7 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@4c6ba008 
+2024-09-12T14:23:08.540 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-7 - Start completed. 
+2024-09-12T14:23:08.541 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+91. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '2024-09-01' AND '2024-09-06' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:23:08.544 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+91. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T14:23:27.399 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+91. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:23:27.402 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+91. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T14:23:55.371 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:23:55.373 [Thread-95] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:23:55.456 [Thread-95] INFO c.z.h.HikariDataSource - HikariPool-7 - Shutdown initiated... 
+2024-09-12T14:23:55.459 [Thread-95] INFO c.z.h.HikariDataSource - HikariPool-7 - Shutdown completed. 
+2024-09-12T14:23:55.505 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:23:55.505 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:23:55.627 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:23:55.627 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:23:55.627 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:23:55.627 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:23:55.633 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:23:55.633 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 125 ms 
+2024-09-12T14:23:55.731 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:23:55.735 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:23:55.736 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:23:55.740 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.247 seconds (process running for 7032.899) 
+2024-09-12T14:23:55.742 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:24:04.849 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:24:04.851 [Thread-99] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:24:04.970 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:24:04.970 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:24:05.062 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:24:05.062 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:24:05.062 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:24:05.062 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:24:05.067 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:24:05.068 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 97 ms 
+2024-09-12T14:24:05.148 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:24:05.152 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:24:05.153 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:24:05.159 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.199 seconds (process running for 7042.319) 
+2024-09-12T14:24:05.159 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:24:05.823 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:24:05.823 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:24:05.824 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-12T14:24:05.826 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-8 - Starting... 
+2024-09-12T14:24:05.836 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-8 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6f63da31 
+2024-09-12T14:24:05.836 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-8 - Start completed. 
+2024-09-12T14:24:05.838 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:24:05.840 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T14:24:39.388 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:24:39.392 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T14:25:27.739 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:25:27.740 [Thread-103] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:25:27.817 [Thread-103] INFO c.z.h.HikariDataSource - HikariPool-8 - Shutdown initiated... 
+2024-09-12T14:25:27.821 [Thread-103] INFO c.z.h.HikariDataSource - HikariPool-8 - Shutdown completed. 
+2024-09-12T14:25:27.862 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:25:27.862 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:25:27.990 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:25:27.990 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:25:27.990 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:25:27.990 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:25:27.995 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:25:27.995 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 132 ms 
+2024-09-12T14:25:28.081 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:25:28.085 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:25:28.086 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:25:28.089 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.238 seconds (process running for 7125.249) 
+2024-09-12T14:25:28.091 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:25:28.103 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:25:28.103 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:25:28.103 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 0 ms 
+2024-09-12T14:25:28.105 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-9 - Starting... 
+2024-09-12T14:25:28.111 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-9 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@580bd37d 
+2024-09-12T14:25:28.111 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-9 - Start completed. 
+2024-09-12T14:25:28.113 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+111. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:25:28.116 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+111. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T14:25:46.476 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+111. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:25:46.491 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+111. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T14:25:56.763 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+111. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '2024-09-10' AND '2024-09-12' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:25:56.768 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+111. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 5 msec} 
+2024-09-12T14:27:36.411 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:27:36.412 [Thread-107] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:36.491 [Thread-107] INFO c.z.h.HikariDataSource - HikariPool-9 - Shutdown initiated... 
+2024-09-12T14:27:36.493 [Thread-107] INFO c.z.h.HikariDataSource - HikariPool-9 - Shutdown completed. 
+2024-09-12T14:27:36.542 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:27:36.542 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:27:36.651 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:27:36.651 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:36.652 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:27:36.652 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:27:36.657 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:27:36.657 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 114 ms 
+2024-09-12T14:27:36.742 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:27:36.746 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:36.748 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:27:36.751 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.223 seconds (process running for 7253.911) 
+2024-09-12T14:27:36.752 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:27:39.369 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:27:39.371 [Thread-111] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:39.499 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:27:39.499 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:27:39.590 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:27:39.590 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:39.590 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:27:39.590 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:27:39.595 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:27:39.595 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 95 ms 
+2024-09-12T14:27:39.674 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:27:39.677 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:39.679 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:27:39.684 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.196 seconds (process running for 7256.843) 
+2024-09-12T14:27:39.685 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:27:49.902 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:27:49.904 [Thread-115] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:50.037 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:27:50.037 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:27:50.132 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:27:50.133 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:50.133 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:27:50.133 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:27:50.138 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:27:50.138 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 100 ms 
+2024-09-12T14:27:50.218 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:27:50.222 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:27:50.224 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:27:50.228 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.206 seconds (process running for 7267.388) 
+2024-09-12T14:27:50.230 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:27:51.353 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:27:51.353 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:27:51.354 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-12T14:27:51.355 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-10 - Starting... 
+2024-09-12T14:27:51.363 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-10 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2efe3e41 
+2024-09-12T14:27:51.363 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-10 - Start completed. 
+2024-09-12T14:27:51.364 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+121. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '2024-09-10' AND '2024-09-12' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:27:51.367 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+121. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 2 msec} 
+2024-09-12T14:28:05.585 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+121. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+			  AND a.regDate BETWEEN '2024-08-12' AND '2024-09-01' 
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:28:05.588 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+121. SELECT COUNT(*) 
+        FROM codegroup a
+        WHERE 1=1
+ {executed in 1 msec} 
+2024-09-12T14:28:32.076 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:28:32.078 [Thread-119] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:32.153 [Thread-119] INFO c.z.h.HikariDataSource - HikariPool-10 - Shutdown initiated... 
+2024-09-12T14:28:32.155 [Thread-119] INFO c.z.h.HikariDataSource - HikariPool-10 - Shutdown completed. 
+2024-09-12T14:28:32.203 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:28:32.203 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:28:32.296 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:28:32.296 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:32.297 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:28:32.297 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:28:32.303 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:28:32.303 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 99 ms 
+2024-09-12T14:28:32.381 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:28:32.384 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:32.385 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:28:32.387 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.195 seconds (process running for 7309.547) 
+2024-09-12T14:28:32.388 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:28:53.804 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:28:53.805 [Thread-123] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:53.920 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:28:53.920 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:28:54.013 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:28:54.013 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:54.013 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:28:54.013 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:28:54.018 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:28:54.018 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 97 ms 
+2024-09-12T14:28:54.112 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:28:54.115 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:54.118 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:28:54.120 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.209 seconds (process running for 7331.28) 
+2024-09-12T14:28:54.121 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:28:57.862 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:28:57.864 [Thread-127] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:57.994 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:28:57.994 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:28:58.090 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:28:58.090 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:58.090 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:28:58.090 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:28:58.096 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:28:58.096 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 101 ms 
+2024-09-12T14:28:58.181 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:28:58.185 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:28:58.187 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:28:58.190 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.207 seconds (process running for 7335.35) 
+2024-09-12T14:28:58.191 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:29:29.244 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:29:29.245 [Thread-131] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:29.375 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:29:29.375 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:29:29.483 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:29:29.484 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:29.484 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:29:29.484 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:29:29.493 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:29:29.493 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 117 ms 
+2024-09-12T14:29:29.568 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:29:29.571 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:29.572 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:29:29.576 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.212 seconds (process running for 7366.735) 
+2024-09-12T14:29:29.577 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:29:33.772 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications) 
+2024-09-12T14:29:33.775 [Thread-135] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:33.892 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:29:33.892 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:29:34.005 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:29:34.005 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:34.006 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:29:34.006 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:29:34.017 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:29:34.017 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 125 ms 
+2024-09-12T14:29:34.113 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:29:34.117 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:34.118 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:29:34.121 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.241 seconds (process running for 7371.281) 
+2024-09-12T14:29:34.124 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:29:41.131 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:29:41.132 [Thread-139] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:41.251 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:29:41.251 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:29:41.362 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:29:41.362 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:41.362 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:29:41.362 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:29:41.367 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:29:41.367 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 114 ms 
+2024-09-12T14:29:41.446 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:29:41.449 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:41.451 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:29:41.455 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.216 seconds (process running for 7378.614) 
+2024-09-12T14:29:41.456 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:29:51.691 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications) 
+2024-09-12T14:29:51.693 [Thread-143] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:51.810 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:29:51.810 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:29:51.911 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:29:51.911 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:51.912 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:29:51.912 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:29:51.916 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:29:51.916 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 105 ms 
+2024-09-12T14:29:51.996 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:29:52.000 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:29:52.002 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:29:52.006 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.207 seconds (process running for 7389.166) 
+2024-09-12T14:29:52.007 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:30:13.425 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:30:13.427 [Thread-147] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:30:13.604 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:30:13.604 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:30:13.719 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:30:13.719 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:30:13.719 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:30:13.719 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:30:13.727 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:30:13.727 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 121 ms 
+2024-09-12T14:30:13.825 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:30:13.830 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:30:13.831 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:30:13.834 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.244 seconds (process running for 7410.993) 
+2024-09-12T14:30:13.835 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:30:20.842 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:30:20.843 [Thread-151] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:30:20.972 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:30:20.972 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:30:21.076 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:30:21.077 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:30:21.077 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:30:21.077 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:30:21.082 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:30:21.083 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 110 ms 
+2024-09-12T14:30:21.173 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:30:21.177 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:30:21.179 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:30:21.182 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.225 seconds (process running for 7418.342) 
+2024-09-12T14:30:21.184 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:30:42.059 [http-nio-8080-exec-4] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:30:42.060 [http-nio-8080-exec-4] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:30:42.061 [http-nio-8080-exec-4] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-12T14:30:42.088 [http-nio-8080-exec-4] WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public java.lang.String com.exion.infra.code.CodeController.codeXdmList(com.exion.infra.code.CodeVo,org.springframework.ui.Model) with 2 errors: [Field error in object 'codeVo' on field 'dateEnd': rejected value []; codes [methodInvocation.codeVo.dateEnd,methodInvocation.dateEnd,methodInvocation.java.lang.String,methodInvocation]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateEnd,dateEnd]; arguments []; default message [dateEnd]]; default message [Property 'dateEnd' threw exception]] [Field error in object 'codeVo' on field 'dateStart': rejected value []; codes [methodInvocation.codeVo.dateStart,methodInvocation.dateStart,methodInvocation.java.lang.String,methodInvocation]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateStart,dateStart]; arguments []; default message [dateStart]]; default message [Property 'dateStart' threw exception]] ] 
+2024-09-12T14:31:01.750 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications) 
+2024-09-12T14:31:01.752 [Thread-155] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:31:01.899 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:31:01.899 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:31:01.988 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:31:01.988 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:31:01.988 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:31:01.988 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:31:01.994 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:31:01.994 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 95 ms 
+2024-09-12T14:31:02.070 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:31:02.073 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:31:02.075 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:31:02.078 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.188 seconds (process running for 7459.237) 
+2024-09-12T14:31:02.079 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:31:19.801 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:31:19.802 [Thread-159] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:31:19.934 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 2308 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:31:19.934 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:31:20.031 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:31:20.032 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:31:20.032 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:31:20.032 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:31:20.038 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:31:20.039 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 104 ms 
+2024-09-12T14:31:20.114 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:31:20.117 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:31:20.119 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:31:20.121 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.197 seconds (process running for 7477.281) 
+2024-09-12T14:31:20.122 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:31:20.741 [http-nio-8080-exec-5] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:31:20.741 [http-nio-8080-exec-5] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:31:20.742 [http-nio-8080-exec-5] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-12T14:31:20.743 [http-nio-8080-exec-5] INFO c.z.h.HikariDataSource - HikariPool-11 - Starting... 
+2024-09-12T14:31:20.751 [http-nio-8080-exec-5] INFO c.z.h.p.HikariPool - HikariPool-11 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7efe960e 
+2024-09-12T14:31:20.751 [http-nio-8080-exec-5] INFO c.z.h.HikariDataSource - HikariPool-11 - Start completed. 
+2024-09-12T14:31:20.752 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+131. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:31:37.969 [http-nio-8080-exec-4] WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public java.lang.String com.exion.infra.code.CodeController.codeXdmList(com.exion.infra.code.CodeVo,org.springframework.ui.Model) with 2 errors: [Field error in object 'codeVo' on field 'dateEnd': rejected value [2024-09-12]; codes [typeMismatch.codeVo.dateEnd,typeMismatch.dateEnd,typeMismatch.java.util.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateEnd,dateEnd]; arguments []; default message [dateEnd]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'dateEnd'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.util.Date] for value [2024-09-12]]] [Field error in object 'codeVo' on field 'dateStart': rejected value [2024-09-01]; codes [typeMismatch.codeVo.dateStart,typeMismatch.dateStart,typeMismatch.java.util.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateStart,dateStart]; arguments []; default message [dateStart]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'dateStart'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.util.Date] for value [2024-09-01]]] ] 
+2024-09-12T14:32:51.017 [RMI TCP Connection(193)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2024-09-12T14:32:51.018 [RMI TCP Connection(193)-127.0.0.1] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:32:51.095 [RMI TCP Connection(193)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-11 - Shutdown initiated... 
+2024-09-12T14:32:51.099 [RMI TCP Connection(193)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-11 - Shutdown completed. 
+2024-09-12T14:32:58.775 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:32:58.777 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:32:58.807 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+2024-09-12T14:32:58.808 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+2024-09-12T14:32:59.396 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:32:59.401 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:32:59.403 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:32:59.404 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:32:59.435 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:32:59.437 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 629 ms 
+2024-09-12T14:32:59.867 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:32:59.888 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:32:59.898 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:32:59.904 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 1.36 seconds (process running for 1.795) 
+2024-09-12T14:33:05.731 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:33:05.734 [Thread-5] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:33:05.897 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:33:05.897 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:33:06.053 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:33:06.054 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:33:06.054 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:33:06.054 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:33:06.065 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:33:06.065 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 167 ms 
+2024-09-12T14:33:06.186 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:33:06.193 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:33:06.195 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:33:06.200 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.321 seconds (process running for 8.091) 
+2024-09-12T14:33:06.201 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:33:09.539 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:33:09.540 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:33:09.540 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 0 ms 
+2024-09-12T14:33:09.572 [http-nio-8080-exec-1] WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public java.lang.String com.exion.infra.code.CodeController.codeXdmList(com.exion.infra.code.CodeVo,org.springframework.ui.Model) with 2 errors: [Field error in object 'codeVo' on field 'dateEnd': rejected value [2024-09-12]; codes [typeMismatch.codeVo.dateEnd,typeMismatch.dateEnd,typeMismatch.java.util.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateEnd,dateEnd]; arguments []; default message [dateEnd]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'dateEnd'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.util.Date] for value [2024-09-12]]] [Field error in object 'codeVo' on field 'dateStart': rejected value [2024-09-01]; codes [typeMismatch.codeVo.dateStart,typeMismatch.dateStart,typeMismatch.java.util.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateStart,dateStart]; arguments []; default message [dateStart]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'dateStart'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.util.Date] for value [2024-09-01]]] ] 
+2024-09-12T14:33:12.933 [http-nio-8080-exec-4] INFO c.z.h.HikariDataSource - HikariPool-1 - Starting... 
+2024-09-12T14:33:13.122 [http-nio-8080-exec-4] INFO c.z.h.p.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3aaa3b45 
+2024-09-12T14:33:13.123 [http-nio-8080-exec-4] INFO c.z.h.HikariDataSource - HikariPool-1 - Start completed. 
+2024-09-12T14:33:13.142 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 5 msec} 
+2024-09-12T14:33:19.025 [http-nio-8080-exec-8] WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public java.lang.String com.exion.infra.code.CodeController.codeXdmList(com.exion.infra.code.CodeVo,org.springframework.ui.Model) with 2 errors: [Field error in object 'codeVo' on field 'dateEnd': rejected value [2024-09-12]; codes [typeMismatch.codeVo.dateEnd,typeMismatch.dateEnd,typeMismatch.java.util.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateEnd,dateEnd]; arguments []; default message [dateEnd]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'dateEnd'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.util.Date] for value [2024-09-12]]] [Field error in object 'codeVo' on field 'dateStart': rejected value [2024-09-10]; codes [typeMismatch.codeVo.dateStart,typeMismatch.dateStart,typeMismatch.java.util.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [codeVo.dateStart,dateStart]; arguments []; default message [dateStart]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'dateStart'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.util.Date] for value [2024-09-10]]] ] 
+2024-09-12T14:35:27.120 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:35:27.121 [Thread-7] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:35:27.201 [Thread-7] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated... 
+2024-09-12T14:35:27.208 [Thread-7] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed. 
+2024-09-12T14:35:27.260 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:35:27.260 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:35:27.393 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:35:27.394 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:35:27.394 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:35:27.394 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:35:27.401 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:35:27.401 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 140 ms 
+2024-09-12T14:35:27.508 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:35:27.513 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:35:27.515 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:35:27.518 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.273 seconds (process running for 149.409) 
+2024-09-12T14:35:27.519 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:35:28.802 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-12T14:35:28.802 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-12T14:35:28.803 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 0 ms 
+2024-09-12T14:35:28.809 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-2 - Starting... 
+2024-09-12T14:35:28.818 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-2 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6177d515 
+2024-09-12T14:35:28.819 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-2 - Start completed. 
+2024-09-12T14:35:28.824 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+			  AND a.regDate BETWEEN '09/10/2024 00:00:00.000' AND '09/12/2024 00:00:00.000' 
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 4 msec} 
+2024-09-12T14:35:31.265 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+			  AND a.regDate BETWEEN '09/10/2024 00:00:00.000' AND '09/12/2024 00:00:00.000' 
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:35:39.178 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+			  AND a.regDate BETWEEN '08/14/2024 00:00:00.000' AND '09/01/2024 00:00:00.000' 
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:35:58.464 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 2 msec} 
+2024-09-12T14:36:09.823 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:36:17.557 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+			  AND a.regDate BETWEEN '09/04/2024 00:00:00.000' AND '09/04/2024 00:00:00.000' 
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-12T14:36:29.187 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+					AND(
+						a.seq Like CONCAT('%','','%')
+						OR b.codeGroupName Like CONCAT('%','','%')
+						OR a.codeName Like CONCAT('%','','%')
+					)
+
+			  AND a.regDate BETWEEN '09/04/2024 00:00:00.000' AND '09/05/2024 00:00:00.000' 
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 1 msec} 
+2024-09-12T14:40:59.855 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications) 
+2024-09-12T14:40:59.859 [Thread-11] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:40:59.935 [Thread-11] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown initiated... 
+2024-09-12T14:40:59.940 [Thread-11] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown completed. 
+2024-09-12T14:40:59.993 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:40:59.995 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:41:00.105 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:41:00.106 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:41:00.106 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:41:00.106 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:41:00.112 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:41:00.112 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 116 ms 
+2024-09-12T14:41:00.212 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:41:00.218 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:41:00.219 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:41:00.223 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.245 seconds (process running for 482.113) 
+2024-09-12T14:41:00.225 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:41:07.215 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications) 
+2024-09-12T14:41:07.217 [Thread-15] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:41:07.334 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:41:07.334 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:41:07.426 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:41:07.426 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:41:07.426 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:41:07.426 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:41:07.433 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:41:07.433 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 97 ms 
+2024-09-12T14:41:07.519 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:41:07.523 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:41:07.525 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:41:07.529 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.208 seconds (process running for 489.42) 
+2024-09-12T14:41:07.530 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:42:02.761 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications) 
+2024-09-12T14:42:02.762 [Thread-19] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:42:02.878 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:42:02.879 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:42:02.989 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:42:02.989 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:42:02.989 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:42:02.989 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:42:02.995 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:42:02.995 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 115 ms 
+2024-09-12T14:42:03.093 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:42:03.097 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:42:03.099 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:42:03.102 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.239 seconds (process running for 544.992) 
+2024-09-12T14:42:03.103 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:44:09.402 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:44:09.404 [Thread-23] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:44:09.517 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:44:09.517 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:44:09.603 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:44:09.604 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:44:09.604 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:44:09.604 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:44:09.610 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:44:09.610 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 92 ms 
+2024-09-12T14:44:09.693 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:44:09.697 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:44:09.699 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:44:09.702 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.197 seconds (process running for 671.592) 
+2024-09-12T14:44:09.703 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-12T14:45:15.162 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-12T14:45:15.174 [Thread-27] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:45:15.318 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 16464 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-12T14:45:15.319 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-12T14:45:15.424 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-12T14:45:15.426 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:45:15.426 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-12T14:45:15.426 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-12T14:45:15.432 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-12T14:45:15.433 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 114 ms 
+2024-09-12T14:45:15.542 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-12T14:45:15.548 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-12T14:45:15.550 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-12T14:45:15.553 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.247 seconds (process running for 737.443) 
+2024-09-12T14:45:15.553 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 

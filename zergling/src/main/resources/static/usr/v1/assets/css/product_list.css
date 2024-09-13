@@ -36,7 +36,7 @@
 
 #review-slider ,#price-slider{
     height: 8px;
-    margin-top:20px;
+    /* margin-top:20px; */
 }
 
 #review-slider .noUi-connect ,#price-slider .noUi-connect {
@@ -80,6 +80,10 @@
 
 
 /*왼쪽*/
+.left-box{
+    max-width: 200px;
+    flex-basis: content;
+}
 .left-box li{
     color:#555;
 }
@@ -101,9 +105,32 @@
     align-items: center;
     margin-right: 10px;
 }
+.bage_search_box{
+    border-top: 1px solid #ddd;
+    padding:20px 0;
+}
+.bage_list{
+    /* width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.bage_item label{
+    border: 1px solid #aaa;
+    padding:8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.bage_item input{
+    display: none;
+}
 .search_ranges_box{
     border-top: 1px solid #ddd;
     /* padding:20px 0; */
+}
+.search_ranges_box label,.makeDateFillterBox>label,.bage_search_box>label{
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .makeDateFillterBox{
@@ -123,6 +150,11 @@
     margin-right:10px ;
     width: 20px;
     height: 20px;
+}
+.price_search_btn_box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 /* .makeDateFillterBox input[type="radio"]:checked,.makeDateFillterList input[type="radio"]:checked{
     pointer-events: none;
@@ -170,11 +202,34 @@
     height: auto;
 }
 
+.selectedBages_box{
+    padding: 20px;
+}
+.selectedBages_list{
+    display: flex;
+    gap: 10px;
+}
+.selected-item{
+    width: fit-content;
+    font-size: 12px;
+    font-weight: bold;
+    /* border: 1px solid #ddd; */
+    background-color: #676fff;
+    color: #fff;
+    padding:10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.selected-item::after{
+    content: "✕";
+    margin-left: 5px;
+}
+
 .prod_img img{
     width: 150px;
 }
 .list_result{
-    padding:20px 0;
+    padding:5px 0;
     border-bottom: 1px solid #aaa;
 }
 .contents li{
@@ -210,6 +265,12 @@
 }
 .form-check-input{
     margin: 0;
+    cursor: pointer;
+}
+.form-check-input[type=checkbox]{
+    border-radius: 50%;
+    padding:10px;
+    
 }
 .prod_img{
     text-align: center;
