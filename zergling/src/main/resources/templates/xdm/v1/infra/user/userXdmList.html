@@ -46,6 +46,9 @@
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5-custom.css" />
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
+		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
 		
 		</style>
@@ -473,174 +476,186 @@
 							<div class="col-sm-12 col-12">
 								<!-- Card start -->
 								<div class="card border">
-									<div class="card-header bg-light">
-										<h2 class="card-title">
-											User
-										</h2>
-										<div>
-											<form class="row gx-3 align-items-center" action="">
+									<form method="post" autocomplete="off" action="/v1/infra/user/userXdmList">
+										<div class="card-header bg-light">
+											<h2 class="card-title">
+												User
+											</h2>
+											<div>
 												<div class="row gy-3">
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref1">
-															<option value="N" selected>N</option>
-															<option value="Y">Y</option>
+														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
+														<select class="form-select" id="selectDelNy" name="sDelNy">
+															<option value="" selected>삭제여부를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref2">
-															<option value="Y" selected>Y</option>
-															<option value="N">N</option>
+														<label class="visually-hidden" for="selectAdmNy">관리자권한</label>
+														<select class="form-select" id="selectAdmNy" name="admNy">
+															<option value="" selected>관리자권한를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+													</div>
+													
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
+														<select class="form-select" id="selectDateType" name="dateType">
+															<option value="" selected>날짜종류 선택해주세요.</option>
+															<option value="1">등록일</option>
+															<option value="2">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref3">
-															<option selected>수정일</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
-														</select>
+														<label class="visually-hidden" for="inputDateStart">시작일</label>
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName1">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName1" placeholder="" value="2024-06-05">
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName2" placeholder="" value="2024-07-05">
+														<label class="visually-hidden" for="inputDateEnd">종료일</label>
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref4">
-															<option selected>검색구분</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
+														<label class="visually-hidden" for="selectGender">성별</label>
+														<select class="form-select" id="selectGender" name="gender">
+															<option value="" selected>성별를 선택하세요</option>
+															<option value="1">남자</option>
+															<option value="2">여자</option>
+															<option value="3">기타</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control" id="specificSizeInputName2" placeholder="검색어">
+														<label class="visually-hidden" for="inputDateOfBirth">생년월일</label>
+														<input type="text" class="form-control" id="inputDateOfBirth" name="dateOfBirth" placeholder="생년월일을 선택해주세요" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType" name="keywordType">
+															<option value="" selected>검색구분</option>
+															<option value="1">유저이름</option>
+															<option value="2">유저ID</option>
+															<option value="3">유저PassWord</option>
+															<option value="4">유저Email</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputKeyword">검색어</label>
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
-														<button type="button" class="btn btn-info "><i class="bi bi-search"></i></button>
+														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
-													<div class="col">      
-													</div>
-													<div class="col">
-													</div>
 												</div>
-											</form>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row justify-content-between">
-											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
-											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<select class="dataTable-selector form-select" name="" id="">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-												</select>
 											</div>
 										</div>
-										<div class="scrolltable">
-											<table class="table dataTable table-hover" id="">
-												<thead>
-													<tr>
-														<th>
-															<input type="checkbox">
-														</th>
-														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">관리자권한</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">이름</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">ID</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">패스워드</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">성별</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:if="${#lists.isEmpty(list3)}" class="data_empty">
-														<td colspan="12"><p>데이터가 없습니다.</p></td>
-													</tr>
-													<tr th:each="listU : ${list3}" th:if="${!#lists.isEmpty(list3)}">
-														<td><input type="checkbox"></td>
-														<td th:text="${listU.seq}"></td>
-														<td th:if="${listU.admNy eq 0}">N</td>
-														<td th:unless="${listU.admNy eq 0}">Y</td>
-														<td class="td_spotlight">
-															<a th:href="@{/v1/infra/user/userXdmMfom(seq=${listU.seq})}" th:text="${listU.name}"></a>
-														</td>
-														<td th:text="${listU.userId}"></td>
-														<td th:text="${listU.userPassword}"></td>
-														<td th:text="${listU.gender}"></td>
-														<td th:text="${#dates.format(listU.dateOfBirth,'yyyy-MM-dd')}"></td>
-														<td th:text="${listU.email}"></td>
-														<td th:if="${listU.delNy eq 0}">N</td>
-														<td th:unless="${listU.delNy eq 0}">Y</td>
-														<td th:text="${#dates.format(listU.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-														<td th:text="${#dates.format(listU.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-													</tr>
-												</tbody>
-											</table>	
-										</div>
-										
-										<div class="dataTable-bottom">
-											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-													<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
-													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-												</ul>
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a></li>
-													<li class="page-item"><a class="page-link" href="#">1</a></li>
-													<li class="page-item active"><a class="page-link" href="#">2</a></li>
-													<li class="page-item"><a class="page-link" href="#">3</a></li>
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a></li>
-												</ul> -->
-											</nav>
-										</div>
-										<div class="btn-toolbar mt-5 justify-content-between">
-											<div>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
+										<div class="card-body">
+											<div class="row justify-content-between">
+												<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
+												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
+													<select class="dataTable-selector form-select" name="" id="">
+														<option value="5">5</option>
+														<option value="10">10</option>
+														<option value="15">15</option>
+														<option value="20">20</option>
+													</select>
+												</div>
 											</div>
-											<div>
-												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="userXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+											<div class="scrolltable">
+												<table class="table dataTable table-hover" id="">
+													<thead>
+														<tr>
+															<th>
+																<input type="checkbox">
+															</th>
+															<th><span>#</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">관리자권한</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">이름</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">ID</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">패스워드</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">성별</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:if="${#lists.isEmpty(list3)}" class="data_empty">
+															<td colspan="12"><p>데이터가 없습니다.</p></td>
+														</tr>
+														<tr th:each="listU : ${list3}" th:if="${!#lists.isEmpty(list3)}">
+															<td><input type="checkbox"></td>
+															<td th:text="${listU.seq}"></td>
+															<td th:if="${listU.admNy eq 0}">N</td>
+															<td th:unless="${listU.admNy eq 0}">Y</td>
+															<td class="td_spotlight">
+																<a th:href="@{/v1/infra/user/userXdmMfom(seq=${listU.seq})}" th:text="${listU.name}"></a>
+															</td>
+															<td th:text="${listU.userId}"></td>
+															<td th:text="${listU.userPassword}"></td>
+															<td th:text="${listU.codeName}"></td>
+															<td th:text="${#dates.format(listU.dateOfBirth,'yyyy-MM-dd')}"></td>
+															<td th:text="${listU.email}"></td>
+															<td th:if="${listU.delNy eq 0}">N</td>
+															<td th:unless="${listU.delNy eq 0}">Y</td>
+															<td th:text="${#dates.format(listU.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(listU.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														</tr>
+													</tbody>
+												</table>	
+											</div>
+											
+											<div class="dataTable-bottom">
+												<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
+													<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														<li class="paginate_button previous page-item" id="previousPage">
+															<a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+														</li>
+														<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
+														<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
+														<li class="paginate_button next page-item" id="nextPage">
+															<a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+														</li>
+													</ul>
+													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														
+														<li class="page-item"><a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a></li>
+														<li class="page-item"><a class="page-link" href="#">1</a></li>
+														<li class="page-item active"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a></li>
+													</ul> -->
+												</nav>
+											</div>
+											<div class="btn-toolbar mt-5 justify-content-between">
+												<div>
+													<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
+													<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
+												</div>
+												<div>
+													<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
+													<a href="userXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												</div>
 											</div>
 										</div>
-									</div>
+									</form>
 								</div>
 								<!-- Card end -->
 							</div>
@@ -688,63 +703,72 @@
 			************ Required JavaScript Files *************
 		************* -->
 		<script>
-			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
-			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
-
-			// 이전 페이지 링크 클릭 이벤트 처리
-			document.getElementById('previousPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex > 0) {
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex--; // 이전 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
-
-			// 다음 페이지 링크 클릭 이벤트 처리
-			document.getElementById('nextPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex++; // 다음 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
-
-			// 페이지 번호 링크 클릭 이벤트 처리
-			pageItems.forEach(function(pageItem, index) {
-				pageItem.addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				}
+			window.addEventListener('load',function() {
+				$.datetimepicker.setLocale('ko');
+				$("#inputDateStart,#inputDateEnd,#inputDateOfBirth").datetimepicker({
+					timepicker:false,
+					format:'Y-m-d'
 				});
+
+				var currentPageIndex = 0; // 현재 페이지 번호 인덱스
+				var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
+
+				// 이전 페이지 링크 클릭 이벤트 처리
+				document.getElementById('previousPage').addEventListener('click', function(event) {
+					event.preventDefault(); // 기본 동작(링크 이동) 방지
+					if (currentPageIndex > 0) {
+					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+					currentPageIndex--; // 이전 페이지 인덱스로 변경
+					pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
+					}
+					updatePaginationState(); // 페이지네이션 상태 업데이트
+				});
+
+				// 다음 페이지 링크 클릭 이벤트 처리
+				document.getElementById('nextPage').addEventListener('click', function(event) {
+					event.preventDefault(); // 기본 동작(링크 이동) 방지
+					if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
+					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+					currentPageIndex++; // 다음 페이지 인덱스로 변경
+					pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
+					}
+					updatePaginationState(); // 페이지네이션 상태 업데이트
+				});
+
+				// 페이지 번호 링크 클릭 이벤트 처리
+				pageItems.forEach(function(pageItem, index) {
+					pageItem.addEventListener('click', function(event) {
+					event.preventDefault(); // 기본 동작(링크 이동) 방지
+					if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
+						pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+						currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
+						pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
+						updatePaginationState(); // 페이지네이션 상태 업데이트
+					}
+					});
+				});
+
+				// 초기 페이지네이션 상태 업데이트
+				updatePaginationState();
+
+				// 페이지네이션 버튼 상태 업데이트 함수
+				function updatePaginationState() {
+					// 이전 버튼 상태 업데이트
+					if (currentPageIndex === 0) {
+					document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
+					} else {
+					document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
+					}
+
+					// 다음 버튼 상태 업데이트
+					if (currentPageIndex === pageItems.length - 1) {
+					document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
+					} else {
+					document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
+					}
+				}
 			});
-
-			// 초기 페이지네이션 상태 업데이트
-			updatePaginationState();
-
-			// 페이지네이션 버튼 상태 업데이트 함수
-			function updatePaginationState() {
-				// 이전 버튼 상태 업데이트
-				if (currentPageIndex === 0) {
-				document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
-				} else {
-				document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
-				}
-
-				// 다음 버튼 상태 업데이트
-				if (currentPageIndex === pageItems.length - 1) {
-				document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
-				} else {
-				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
-				}
-			}
+			
 		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
@@ -773,6 +797,9 @@
 
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
+		<!-- by developer -->
+		<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 
 	</body>
 

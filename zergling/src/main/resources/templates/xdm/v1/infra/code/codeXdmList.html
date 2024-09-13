@@ -491,12 +491,12 @@
 							<div class="col-sm-12 col-12">
 								<!-- Card start -->
 								<div class="card border">
-									<div class="card-header bg-light">
-										<h2 class="card-title">
-											Code
-										</h2>
-										<div>
-											<form class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
+									<form method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
+										<div class="card-header bg-light">
+											<h2 class="card-title">
+												Code
+											</h2>
+											<div>
 												<div class="row gy-3">
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
 														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
@@ -557,157 +557,157 @@
 													<div class="col">
 													</div>
 												</div>
-											</form>
+											</div>
 										</div>
-									</div>
-									<div class="card-body">
-										<div class="row justify-content-between">
-											<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div> -->
-											<div class="col-6 col-lg-3">Total: <span th:text="${count}">171</span></div>
-											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<select name="" id="">
-													<option value="">2</option>	
-												</select>
-												<!-- <form method="get" action="/v1/infra/code/codeXdmList" id="pagination-form">
-													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
-														<option value="2" th:selected="${response.pageSize == 2}">2</option>
-														<option value="3" th:selected="${response.pageSize == 3}">3</option>
-														<option value="5" th:selected="${response.pageSize == 5}">5</option>
-														<option value="10" th:selected="${response.pageSize == 10}">10</option>
-														<option value="20" th:selected="${response.pageSize == 20}">20</option>
-														<option value="50" th:selected="${response.pageSize == 50}">50</option>
+										<div class="card-body">
+											<div class="row justify-content-between">
+												<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div> -->
+												<div class="col-6 col-lg-3">Total: <span th:text="${count}">171</span></div>
+												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
+													<select name="" id="">
+														<option value="">2</option>	
 													</select>
-													<input type="hidden" name="page" id="pageNumber" value="1" />
-												</form> -->
+													<!-- <form method="get" action="/v1/infra/code/codeXdmList" id="pagination-form">
+														<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
+															<option value="2" th:selected="${response.pageSize == 2}">2</option>
+															<option value="3" th:selected="${response.pageSize == 3}">3</option>
+															<option value="5" th:selected="${response.pageSize == 5}">5</option>
+															<option value="10" th:selected="${response.pageSize == 10}">10</option>
+															<option value="20" th:selected="${response.pageSize == 20}">20</option>
+															<option value="50" th:selected="${response.pageSize == 50}">50</option>
+														</select>
+														<input type="hidden" name="page" id="pageNumber" value="1" />
+													</form> -->
+												</div>
+											</div>
+											<div class="scrolltable">
+												<table class="table dataTable table-hover" id="">
+													<thead>
+														<tr>
+															<th>
+																<input type="checkbox">
+															</th>
+															<th><span>#</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 코드</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 이름</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
+															<th class="d-flex flex-nowrap justify-content-center">
+																<div class="sorting sorting_asc"><span class="dataTable-sorter">대체코드</span></div>
+																<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름</span></div>
+																<!-- <div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름(영문)</span></div> -->
+															</th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">순서</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:if="${#lists.isEmpty(response)}" class="data_empty">
+															<td colspan="12"><p>데이터가 없습니다.</p></td>
+														</tr>
+														<tr th:each="listC,iter : ${response}" th:if="${!#lists.isEmpty(response)}">
+															<td><input type="checkbox"></td>
+															<td th:text="${iter.size - iter.index}">171</td>
+															<td th:text="${listC.codeGroup_seq}">57</td>
+															<td th:text="${listC.codeGroupName}"></td>
+															<td th:text="${listC.seq}">278</td>
+															<td  class="td_spotlight">
+																<a th:href="@{/v1/infra/code/codeXdmMfom(seq=${listC.seq})}" th:text="${listC.codeName}"></a>
+															</td>
+															<td th:if="${listC.useNy eq 0}">N</td>
+															<td th:unless="${listC.useNy eq 0}">Y</td>
+															<td th:if="${listC.delNy eq 0}">N</td>
+															<td th:unless="${listC.delNy eq 0}">Y</td>
+															<td th:text="${listC.codeOrder}">1</td>
+															<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>
+															<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>
+														</tr>
+													</tbody>
+												</table>	
+											</div>
+											
+											<div class="dataTable-bottom">
+												<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
+													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														<li class="paginate_button page-item" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=1, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${response.currentPage <= 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button previous page-item" id="previousPage" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage - 1}, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${response.currentPage <= 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+														</li>
+														<li th:each="i : ${#numbers.sequence(
+																			response.currentPage == 1 ? 1 : 
+																			response.currentPage == 2 ? 1 : 
+																			response.currentPage == response.totalPages - 1 ? response.currentPage - 3 : 
+																			response.currentPage == response.totalPages ? response.currentPage - 4 : 
+																			response.currentPage - 2, 
+																			
+																			response.currentPage == 1 ? 5 : 
+																			response.currentPage == 2 ? 5 : 
+																			response.currentPage == response.totalPages - 1 ? response.totalPages : 
+																			response.currentPage == response.totalPages ? response.totalPages : 
+																			response.currentPage + 2
+																		)}"
+															class="paginate_button page-item"
+															th:if="${i > 0 && i <= response.totalPages}" 
+															th:classappend="${i == response.currentPage} ? 'active' : ''">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${i}, size=${response.pageSize})}" th:text="${i}"></a>
+														</li>
+														<li class="paginate_button next page-item" id="nextPage" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage + 1}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button page-item" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.totalPages}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+															</a>
+														</li>
+													</ul> -->
+													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														
+														<li class="page-item"><a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a></li>
+														<li class="page-item"><a class="page-link" href="#">1</a></li>
+														<li class="page-item active"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a></li>
+													</ul> -->
+												</nav>
+											</div>
+											<div class="btn-toolbar mt-5 justify-content-between">
+												<div>
+													<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
+													<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
+												</div>
+												<div>
+													<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
+													<a href="codeXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												</div>
 											</div>
 										</div>
-										<div class="scrolltable">
-											<table class="table dataTable table-hover" id="">
-												<thead>
-													<tr>
-														<th>
-															<input type="checkbox">
-														</th>
-														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 코드</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 이름</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
-														<th class="d-flex flex-nowrap justify-content-center">
-															<div class="sorting sorting_asc"><span class="dataTable-sorter">대체코드</span></div>
-															<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름</span></div>
-															<!-- <div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름(영문)</span></div> -->
-														</th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">순서</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:if="${#lists.isEmpty(response)}" class="data_empty">
-														<td colspan="12"><p>데이터가 없습니다.</p></td>
-													</tr>
-													<tr th:each="listC,iter : ${response}" th:if="${!#lists.isEmpty(response)}">
-														<td><input type="checkbox"></td>
-														<td th:text="${iter.size - iter.index}">171</td>
-														<td th:text="${listC.codeGroup_seq}">57</td>
-														<td th:text="${listC.codeGroupName}"></td>
-														<td th:text="${listC.seq}">278</td>
-														<td  class="td_spotlight">
-															<a th:href="@{/v1/infra/code/codeXdmMfom(seq=${listC.seq})}" th:text="${listC.codeName}"></a>
-														</td>
-														<td th:if="${listC.useNy eq 0}">N</td>
-														<td th:unless="${listC.useNy eq 0}">Y</td>
-														<td th:if="${listC.delNy eq 0}">N</td>
-														<td th:unless="${listC.delNy eq 0}">Y</td>
-														<td th:text="${listC.codeOrder}">1</td>
-														<td th:text="${#dates.format(listC.regDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>
-														<td th:text="${#dates.format(listC.modDate,'yyyy-MM-dd HH:mm:ss')}">2023-10-12 16:02:31</td>
-													</tr>
-												</tbody>
-											</table>	
-										</div>
-										
-										<div class="dataTable-bottom">
-											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button page-item" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=1, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
-														</a>
-														<a class="page-link" th:if="${response.currentPage <= 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
-														</a>
-													</li>
-													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage - 1}, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-														<a class="page-link" th:if="${response.currentPage <= 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<li th:each="i : ${#numbers.sequence(
-																		response.currentPage == 1 ? 1 : 
-																		response.currentPage == 2 ? 1 : 
-																		response.currentPage == response.totalPages - 1 ? response.currentPage - 3 : 
-																		response.currentPage == response.totalPages ? response.currentPage - 4 : 
-																		response.currentPage - 2, 
-																		
-																		response.currentPage == 1 ? 5 : 
-																		response.currentPage == 2 ? 5 : 
-																		response.currentPage == response.totalPages - 1 ? response.totalPages : 
-																		response.currentPage == response.totalPages ? response.totalPages : 
-																		response.currentPage + 2
-																	)}"
-														class="paginate_button page-item"
-														th:if="${i > 0 && i <= response.totalPages}" 
-														th:classappend="${i == response.currentPage} ? 'active' : ''">
-														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${i}, size=${response.pageSize})}" th:text="${i}"></a>
-													</li>
-													<li class="paginate_button next page-item" id="nextPage" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage + 1}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-													<li class="paginate_button page-item" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.totalPages}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
-														</a>
-														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
-														</a>
-													</li>
-												</ul> -->
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a></li>
-													<li class="page-item"><a class="page-link" href="#">1</a></li>
-													<li class="page-item active"><a class="page-link" href="#">2</a></li>
-													<li class="page-item"><a class="page-link" href="#">3</a></li>
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a></li>
-												</ul> -->
-											</nav>
-										</div>
-										<div class="btn-toolbar mt-5 justify-content-between">
-											<div>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
-											</div>
-											<div>
-												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="codeXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
-											</div>
-										</div>
-									</div>
+									</form>
 								</div>
 								<!-- Card end -->
 							</div>

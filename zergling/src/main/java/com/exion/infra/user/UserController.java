@@ -14,9 +14,10 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping(value = "/v1/infra/user/userXdmList")
-	public String userXdmList(Model model) {
-		model.addAttribute("list3", userService.selectUser()) ;
-		model.addAttribute("totalRows", userService.selectUser().size());
+	public String userXdmList(Model model,UserVo vo) {
+		model.addAttribute("list3", userService.selectUser(vo)) ;
+		model.addAttribute("totalRows", userService.selectUser(vo).size());
+		System.out.println("1: "+vo.getDateOfBirth());
 		return "/xdm/v1/infra/user/userXdmList";
 	}
 	

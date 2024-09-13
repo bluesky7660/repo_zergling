@@ -11,7 +11,8 @@ public class UserDto {
 	private String name;
 	private String userId;
 	private String userPassword;
-	private String gender;
+	private Integer gender;
+	private String codeName;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	private String email;
@@ -51,11 +52,18 @@ public class UserDto {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	public String getGender() {
+	
+	public Integer getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+	public void setGender(Integer gender) {
 		this.gender = gender;
+	}
+	public String getCodeName() {
+		return codeName;
+	}
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
 	}
 	public Date getDateOfBirth() {
 		return dateOfBirth;

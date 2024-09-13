@@ -10,8 +10,8 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 	
-	public List<UserDto> selectUser(){
-		List<UserDto> users = userDao.selectUser();
+	public List<UserDto> selectUser(UserVo vo){
+		List<UserDto> users = userDao.selectUser(vo);
 		return users;
 	}
 	public int insert(UserDto userDto) {
