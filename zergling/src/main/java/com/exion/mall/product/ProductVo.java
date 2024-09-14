@@ -1,7 +1,19 @@
 package com.exion.mall.product;
 
-public class ProductVo {
+import java.util.Date;
+
+import com.exion.infra.codegroup.BaseVo;
+
+public class ProductVo extends BaseVo{
 	private String seq;
+	private Integer prodType;
+	
+	private Date makeDate;
+	private Date shipDate;
+	private Integer bestNy;
+	private Integer todayPickNy;
+
+	
 	
 	//제조날짜
 	private Integer makeDateFillter;
@@ -27,6 +39,46 @@ public class ProductVo {
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
+	public Integer getProdType() {
+		return prodType;
+	}
+
+	public void setProdType(Integer prodType) {
+		this.prodType = prodType;
+	}
+
+	public Date getMakeDate() {
+		return makeDate;
+	}
+
+	public void setMakeDate(Date makeDate) {
+		this.makeDate = makeDate;
+	}
+
+	public Date getShipDate() {
+		return shipDate;
+	}
+
+	public void setShipDate(Date shipDate) {
+		this.shipDate = shipDate;
+	}
+
+	public Integer getBestNy() {
+		return bestNy;
+	}
+
+	public void setBestNy(Integer bestNy) {
+		this.bestNy = bestNy;
+	}
+
+	public Integer getTodayPickNy() {
+		return todayPickNy;
+	}
+
+	public void setTodayPickNy(Integer todayPickNy) {
+		this.todayPickNy = todayPickNy;
+	}
+
 	public Integer getMakeDateFillter() {
 		/*
 		 * if (makeDateFillter == null) { makeDateFillter = 1; }

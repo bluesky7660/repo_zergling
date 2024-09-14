@@ -473,196 +473,227 @@
 							<div class="col-sm-12 col-12">
 								<!-- Card start -->
 								<div class="card border">
-									<div class="card-header bg-light">
-										<h2 class="card-title">
-											상품리스트
-										</h2>
-										<div>
-											<form class="row gx-3 align-items-center" action="">
-												<div class="row gy-3">
+									<form method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
+										<div class="card-header bg-light">
+											<h2 class="card-title">
+												상품리스트
+											</h2>
+											<div>
+												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref1">
-															<option value="N" selected>N</option>
-															<option value="Y">Y</option>
+														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
+														<select class="form-select" id="selectDelNy" name="sDelNy">
+															<option value="" selected>삭제여부를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref2">
-															<option value="Y" selected>Y</option>
-															<option value="N">N</option>
+														<label class="visually-hidden" for="selectBestNy">베스트여부</label>
+														<select class="form-select" id="selectBestNy" name="bestNy">
+															<option value="" selected>베스트여부를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref3">
-															<option selected>수정일</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
+														<label class="visually-hidden" for="selectTodayPickNy">Today's pick</label>
+														<select class="form-select" id="selectTodayPickNy" name="todayPickNy">
+															<option value="" selected>Today's pick를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+													</div>
+													
+												</div>
+												<div class="row gy-3 mt-0">
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputMakeDate">출간일</label>
+														<input type="text" class="form-control" id="inputMakeDate" name="makeDate" placeholder="출간일를 선택해주세요" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputShipDate">출고일</label>
+														<input type="text" class="form-control" id="inputShipDate" name="shipDate" placeholder="출고일을 선택해주세요" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
+														<select class="form-select" id="selectDateType" name="dateType">
+															<option value="" selected>날짜종류 선택해주세요.</option>
+															<option value="1">등록일</option>
+															<option value="2">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName1">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName1" placeholder="" value="2024-06-05">
+														<label class="visually-hidden" for="inputDateStart">시작일</label>
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
+														<!-- <input type="text" class="form-control datepicker" id="inputDateStart" name="" placeholder="" value=""> -->
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control datepicker" id="specificSizeInputName2" placeholder="" value="2024-07-05">
+														<label class="visually-hidden" for="inputDateEnd">종료일</label>
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
+														<!-- <input type="text" class="form-control datepicker" id="inputDateEnd" name="" placeholder="" value=""> -->
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-														<select class="form-select" id="inlineFormSelectPref4">
-															<option selected>검색구분</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
+														<label class="visually-hidden" for="selectProdType">상품종류</label>
+														<select class="form-select" id="selectProdType" name="prodType">
+															<option value="" selected>상품종류를 선택하세요</option>
+															<option value="1">소설</option>
+															<option value="2">시/에세이</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="specificSizeInputName2">Preference</label>
-														<input type="text" class="form-control" id="specificSizeInputName2" placeholder="검색어">
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType" name="keywordType">
+															<option value="" selected>검색구분</option>
+															<option value="1">코드번호</option>
+															<option value="2">상품이름</option>
+															<option value="3">작가명</option>
+															<option value="4">출판사명</option>
+															<option value="3">리뷰점수</option>
+															<!-- <option value="3">순서</option> -->
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputKeyword">검색어</label>
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
-														<button type="button" class="btn btn-info "><i class="bi bi-search"></i></button>
+														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
 													<div class="col">      
 													</div>
-													<div class="col">
-													</div>
 												</div>
-											</form>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row justify-content-between">
-											<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
-											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<select class="dataTable-selector form-select" name="" id="">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-												</select>
 											</div>
 										</div>
-										<div class="scrolltable">
-											<table class="table dataTable table-hover" id="">
-												<thead>
-													<tr>
-														<th>
-															<input type="checkbox">
-														</th>
-														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">상품종류</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">상품이름</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">작가</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">출판사</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">출간일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">원가</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">할인률</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">할인가</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">포인트</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">재고량</span></th>
-												
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">리뷰점수</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">출고일</span></th>
-														
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">조회수</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">구매수</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">베스트 여부</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">Today Pick 여부</span></th>
-														
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
-														<td colspan="14"><p>데이터가 없습니다.</p></td>
-													</tr>
-													<tr th:each="listP : ${list}" th:if="${!#lists.isEmpty(list)}">
-														<td><input type="checkbox"></td>
-														<td th:text="${listP.seq}"></td>
-														<td th:text="${listP.prodType}"></td>
-														<td  class="td_spotlight">
-															<a th:href="@{/v1/mall/product/productXdmMfom(seq=${listP.seq})}" th:text="${listP.title}"></a>
-														</td>
-														<td th:text="${listP.name}"></td>
-														<td th:text="${listP.publisher}"></td>
-														<td th:text="${#dates.format(listP.makeDate,'yyyy-MM-dd')}"></td>
-														<td th:text="${#numbers.formatInteger(listP.price,3,'COMMA')+'원'}"></td>
-														<td th:text="${listP.sale +'%'}"></td>
-														<td th:text="${#numbers.formatInteger(listP.salePrice,3,'COMMA')+'원'}"></td>
-														<td th:text="${#numbers.formatInteger(listP.point,3,'COMMA')+'P'}"></td>
-														<td th:text="${#numbers.formatInteger(listP.stockQty,3,'COMMA')}"></td>
-														<td th:text="${listP.reviewNum}"></td>
-														<td th:text="${#dates.format(listP.shipDate, 'M/d') + '(' + #dates.format(listP.shipDate, 'E') + ')'}"></td>
-														<td th:text="${listP.viewNumber}"></td>
-														<td th:text="${listP.buyNumber}"></td>
-														<td th:if="${listP.bestNy eq 0}">N</td>
-														<td th:unless="${listP.bestNy eq 0}">Y</td>
-														<td th:if="${listP.todayPickNy eq 0}">N</td>
-														<td th:unless="${listP.todayPickNy eq 0}">Y</td>	
-														<td th:if="${listP.delNy eq 0}">N</td>
-														<td th:unless="${listP.delNy eq 0}">Y</td>													
-														<td th:text="${#dates.format(listP.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-														<td th:text="${#dates.format(listP.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-													</tr>
-												</tbody>
-											</table>	
-										</div>
-										
-										<div class="dataTable-bottom">
-											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-													<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
-													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-												</ul>
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+										<div class="card-body">
+											<div class="row justify-content-between">
+												<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
+												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
+													<select class="dataTable-selector form-select" name="" id="">
+														<option value="5">5</option>
+														<option value="10">10</option>
+														<option value="15">15</option>
+														<option value="20">20</option>
+													</select>
+												</div>
+											</div>
+											<div class="scrolltable">
+												<table class="table dataTable table-hover" id="">
+													<thead>
+														<tr>
+															<th>
+																<input type="checkbox">
+															</th>
+															<th><span>#</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">상품종류</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">상품이름</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">작가</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">출판사</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">출간일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">원가</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">할인률</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">할인가</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">포인트</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">재고량</span></th>
 													
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a></li>
-													<li class="page-item"><a class="page-link" href="#">1</a></li>
-													<li class="page-item active"><a class="page-link" href="#">2</a></li>
-													<li class="page-item"><a class="page-link" href="#">3</a></li>
-													<li class="page-item"><a class="page-link" href="#">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a></li>
-												</ul> -->
-											</nav>
-										</div>
-										<div class="btn-toolbar mt-5 justify-content-between">
-											<div>
-												<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
-												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">리뷰점수</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">출고일</span></th>
+															
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">조회수</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">구매수</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">베스트 여부</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">Today Pick 여부</span></th>
+															
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
+															<td colspan="14"><p>데이터가 없습니다.</p></td>
+														</tr>
+														<tr th:each="listP : ${list}" th:if="${!#lists.isEmpty(list)}">
+															<td><input type="checkbox"></td>
+															<td th:text="${listP.seq}"></td>
+															<td th:text="${listP.prodType}"></td>
+															<td  class="td_spotlight">
+																<a th:href="@{/v1/mall/product/productXdmMfom(seq=${listP.seq})}" th:text="${listP.title}"></a>
+															</td>
+															<td th:text="${listP.name}"></td>
+															<td th:text="${listP.publisher}"></td>
+															<td th:text="${#dates.format(listP.makeDate,'yyyy-MM-dd')}"></td>
+															<td th:text="${#numbers.formatInteger(listP.price,3,'COMMA')+'원'}"></td>
+															<td th:text="${listP.sale +'%'}"></td>
+															<td th:text="${#numbers.formatInteger(listP.salePrice,3,'COMMA')+'원'}"></td>
+															<td th:text="${#numbers.formatInteger(listP.point,3,'COMMA')+'P'}"></td>
+															<td th:text="${#numbers.formatInteger(listP.stockQty,3,'COMMA')}"></td>
+															<td th:text="${listP.reviewNum}"></td>
+															<td th:text="${#dates.format(listP.shipDate, 'M/d') + '(' + #dates.format(listP.shipDate, 'E') + ')'}"></td>
+															<td th:text="${listP.viewNumber}"></td>
+															<td th:text="${listP.buyNumber}"></td>
+															<td th:if="${listP.bestNy eq 0}">N</td>
+															<td th:unless="${listP.bestNy eq 0}">Y</td>
+															<td th:if="${listP.todayPickNy eq 0}">N</td>
+															<td th:unless="${listP.todayPickNy eq 0}">Y</td>	
+															<td th:if="${listP.delNy eq 0}">N</td>
+															<td th:unless="${listP.delNy eq 0}">Y</td>													
+															<td th:text="${#dates.format(listP.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(listP.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														</tr>
+													</tbody>
+												</table>	
 											</div>
-											<div>
-												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="productXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+											
+											<div class="dataTable-bottom">
+												<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
+													<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														<li class="paginate_button previous page-item" id="previousPage">
+															<a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+														</li>
+														<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
+														<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
+														<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
+														<li class="paginate_button next page-item" id="nextPage">
+															<a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+														</li>
+													</ul>
+													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														
+														<li class="page-item"><a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a></li>
+														<li class="page-item"><a class="page-link" href="#">1</a></li>
+														<li class="page-item active"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a></li>
+													</ul> -->
+												</nav>
+											</div>
+											<div class="btn-toolbar mt-5 justify-content-between">
+												<div>
+													<a href="javascript:void(0);" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
+													<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
+												</div>
+												<div>
+													<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
+													<a href="productXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												</div>
 											</div>
 										</div>
-									</div>
+									</form>
 								</div>
 								<!-- Card end -->
 							</div>
