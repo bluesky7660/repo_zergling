@@ -47,6 +47,9 @@ public class CodeService {
 	public List<CodeDto> bageList() {
 		return codeDao.bageList();
 	}
+	public List<CodeDto> prodTypeList() {
+		return codeDao.prodTypeList();
+	}
 	public int update(CodeDto codeDto) {
 		return codeDao.update(codeDto);
 	}

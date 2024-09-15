@@ -473,13 +473,13 @@
 							<div class="col-sm-12 col-12">
 								<!-- Card start -->
 								<div class="card border">
-									<form method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
+									<form method="post" autocomplete="off" action="/v1/mall/product/productXdmList">
 										<div class="card-header bg-light">
 											<h2 class="card-title">
 												상품리스트
 											</h2>
 											<div>
-												<div class="row gy-3 mt-0">
+												<!-- <div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
 														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
 														<select class="form-select" id="selectDelNy" name="sDelNy">
@@ -526,12 +526,10 @@
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
 														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
-														<!-- <input type="text" class="form-control datepicker" id="inputDateStart" name="" placeholder="" value=""> -->
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
 														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
-														<!-- <input type="text" class="form-control datepicker" id="inputDateEnd" name="" placeholder="" value=""> -->
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
@@ -552,7 +550,6 @@
 															<option value="3">작가명</option>
 															<option value="4">출판사명</option>
 															<option value="3">리뷰점수</option>
-															<!-- <option value="3">순서</option> -->
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -564,6 +561,80 @@
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
 													<div class="col">      
+													</div>
+												</div> -->
+												<div class="row gy-3 mt-0">
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectBestNy">베스트여부</label>
+														<select class="form-select" id="selectBestNy" name="bestNy">
+															<option value="" selected>베스트여부를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectTodayPickNy">Today's pick</label>
+														<select class="form-select" id="selectTodayPickNy" name="todayPickNy">
+															<option value="" selected>Today's pick를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
+														<select class="form-select" id="selectDateType" name="dateType">
+															<option value="" selected>날짜종류 선택해주세요.</option>
+															<option value="1">등록일</option>
+															<option value="2">수정일</option>
+															<option value="3">출간일</option>
+															<option value="4">출고일</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputDateStart">시작일</label>
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputDateEnd">종료일</label>
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
+													</div>
+												</div>
+												<div class="row gy-3 mt-0">
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectProdType">상품종류</label>
+														<select class="form-select" id="selectProdType" name="prodType">
+															<option value="" selected>상품종류를 선택하세요</option>
+															<!-- <option value="1">소설</option>
+															<option value="2">시/에세이</option> -->
+															<option th:each="group : ${groups}" th:value="${group.seq}" th:text="${group.codeName}"></option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl ">
+														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
+														<select class="form-select" id="selectDelNy" name="sDelNy">
+															<option value="" selected>삭제여부를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType" name="keywordType">
+															<option value="" selected>검색구분</option>
+															<option value="1">상품번호</option>
+															<option value="2">상품이름</option>
+															<option value="3">작가명</option>
+															<option value="4">출판사명</option>
+															<!-- <option value="3">리뷰점수</option> -->
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputKeyword">검색어</label>
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
+													</div>
+													<div class="col-12 col-lg-4 col-xl ">
+														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
+														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
 												</div>
 											</div>
@@ -619,12 +690,12 @@
 														<tr th:each="listP : ${list}" th:if="${!#lists.isEmpty(list)}">
 															<td><input type="checkbox"></td>
 															<td th:text="${listP.seq}"></td>
-															<td th:text="${listP.prodType}"></td>
+															<td th:text="${listP.prodTypeName}"></td>
 															<td  class="td_spotlight">
 																<a th:href="@{/v1/mall/product/productXdmMfom(seq=${listP.seq})}" th:text="${listP.title}"></a>
 															</td>
 															<td th:text="${listP.name}"></td>
-															<td th:text="${listP.publisher}"></td>
+															<td th:text="${listP.publisherName}"></td>
 															<td th:text="${#dates.format(listP.makeDate,'yyyy-MM-dd')}"></td>
 															<td th:text="${#numbers.formatInteger(listP.price,3,'COMMA')+'원'}"></td>
 															<td th:text="${listP.sale +'%'}"></td>

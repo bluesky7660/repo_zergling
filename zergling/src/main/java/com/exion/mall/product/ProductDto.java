@@ -7,8 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class ProductDto {
 	private String seq;
 	private String title;
-	private String prodType;
-	private String publisher;
+	private Integer prodType;
+	private Integer publisher;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date makeDate;
 	private Integer price;
@@ -34,6 +34,8 @@ public class ProductDto {
 	private Integer delNy;
 	
 	private String name;
+	private String prodTypeName;
+	private String publisherName;
 //---------------------------------
 	public String getSeq() {
 		return seq;
@@ -47,16 +49,17 @@ public class ProductDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getProdType() {
+	
+	public Integer getProdType() {
 		return prodType;
 	}
-	public void setProdType(String prodType) {
+	public void setProdType(Integer prodType) {
 		this.prodType = prodType;
 	}
-	public String getPublisher() {
+	public Integer getPublisher() {
 		return publisher;
 	}
-	public void setPublisher(String publisher) {
+	public void setPublisher(Integer publisher) {
 		this.publisher = publisher;
 	}
 	public Date getMakeDate() {
@@ -190,6 +193,18 @@ public class ProductDto {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getProdTypeName() {
+		return prodTypeName;
+	}
+	public void setProdTypeName(String prodTypeName) {
+		this.prodTypeName = prodTypeName;
+	}
+	public String getPublisherName() {
+		return publisherName;
+	}
+	public void setPublisherName(String publisherName) {
+		this.publisherName = publisherName;
 	}
 	
 }

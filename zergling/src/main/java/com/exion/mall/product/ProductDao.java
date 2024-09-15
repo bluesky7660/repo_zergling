@@ -9,7 +9,7 @@ public interface ProductDao {
 	public int insertProd(ProductDto productDto);
 //	public List<ProductDto> prodList();
 	public List<ProductDto> usrProdList(ProductVo vo);
-	public List<ProductDto> xdmProdList();
+	public List<ProductDto> xdmProdList(ProductVo vo);	
 	public ProductDto prodOne(ProductDto productDto);
 	public int update(ProductDto productDto);
 }

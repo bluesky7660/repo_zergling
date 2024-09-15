@@ -6,14 +6,16 @@ import com.exion.infra.codegroup.BaseVo;
 
 public class ProductVo extends BaseVo{
 	private String seq;
+	private String prodTypeName;
 	private Integer prodType;
-	
+	private String title;
+	private String name;
+	private String publisherName;
+	private Integer reviewNum;
 	private Date makeDate;
 	private Date shipDate;
 	private Integer bestNy;
 	private Integer todayPickNy;
-
-	
 	
 	//제조날짜
 	private Integer makeDateFillter;
@@ -32,53 +34,72 @@ public class ProductVo extends BaseVo{
         this.minReview = 0.; // 기본값 설정
         this.maxReview = 10.; // 기본값 설정
     }
-    
 	public String getSeq() {
 		return seq;
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
+	public String getProdTypeName() {
+		return prodTypeName;
+	}
+	public void setProdTypeName(String prodTypeName) {
+		this.prodTypeName = prodTypeName;
+	}
 	public Integer getProdType() {
 		return prodType;
 	}
-
 	public void setProdType(Integer prodType) {
 		this.prodType = prodType;
 	}
-
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPublisherName() {
+		return publisherName;
+	}
+	public void setPublisherName(String publisherName) {
+		this.publisherName = publisherName;
+	}
+	public Integer getReviewNum() {
+		return reviewNum;
+	}
+	public void setReviewNum(Integer reviewNum) {
+		this.reviewNum = reviewNum;
+	}
 	public Date getMakeDate() {
 		return makeDate;
 	}
-
 	public void setMakeDate(Date makeDate) {
 		this.makeDate = makeDate;
 	}
-
 	public Date getShipDate() {
 		return shipDate;
 	}
-
 	public void setShipDate(Date shipDate) {
 		this.shipDate = shipDate;
 	}
-
 	public Integer getBestNy() {
 		return bestNy;
 	}
-
 	public void setBestNy(Integer bestNy) {
 		this.bestNy = bestNy;
 	}
-
 	public Integer getTodayPickNy() {
 		return todayPickNy;
 	}
-
 	public void setTodayPickNy(Integer todayPickNy) {
 		this.todayPickNy = todayPickNy;
 	}
-
 	public Integer getMakeDateFillter() {
 		/*
 		 * if (makeDateFillter == null) { makeDateFillter = 1; }

@@ -184,6 +184,17 @@
 		WHERE 1 = 1
 			and a.codeGroup_seq = 4
 	</select>
+	<select id="prodTypeList">
+		SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+	</select>
 	<update id="update">
 		UPDATE commoncode
 		SET

@@ -19,8 +19,8 @@ public class ProductService {
 	public List<ProductDto> usrProdList(ProductVo vo){
 		return productDao.usrProdList(vo);
 	}
-	public List<ProductDto> xdmProdList(){
-		return productDao.xdmProdList();
+	public List<ProductDto> xdmProdList(ProductVo vo){
+		return productDao.xdmProdList(vo);
 	}
 	public ProductDto prodOne(ProductDto productDto){
 		return productDao.prodOne(productDto);

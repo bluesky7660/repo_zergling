@@ -10,6 +10,7 @@ public interface CodeDao {
 	public int insert(CodeDto codeDto);
 	public CodeDto selectOne(CodeDto codeDto);
 	public List<CodeDto> bageList();
+	public List<CodeDto> prodTypeList();
 	public int update(CodeDto codeDto);
 	public int listCount(CodeVo vo);
 	public int uelete(CodeDto codeDto);
