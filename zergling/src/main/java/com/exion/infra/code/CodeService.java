@@ -50,6 +50,9 @@ public class CodeService {
 	public List<CodeDto> prodTypeList() {
 		return codeDao.prodTypeList();
 	}
+	public List<CodeDto> authorTypeList() {
+		return codeDao.authorTypeList();
+	}
 	public int update(CodeDto codeDto) {
 		return codeDao.update(codeDto);
 	}

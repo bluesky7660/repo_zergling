@@ -6,6 +6,7 @@
 	  <select id="xdmProdList" resultMap="resultObj">
 		  	select
 				a.seq
+				<!-- ,count(*) as count -->
 			    ,a.title
 			    ,a.prodType
 			    ,b.name

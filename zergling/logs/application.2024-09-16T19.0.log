@@ -1,0 +1,86 @@
+2024-09-16T19:28:10.932 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 22344 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-16T19:28:10.933 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-16T19:28:10.960 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+2024-09-16T19:28:10.961 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+2024-09-16T19:28:11.591 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-16T19:28:11.599 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-16T19:28:11.601 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-16T19:28:11.601 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-16T19:28:11.637 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-16T19:28:11.637 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 676 ms 
+2024-09-16T19:28:12.144 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-16T19:28:12.157 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-16T19:28:12.169 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-16T19:28:12.175 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 1.49 seconds (process running for 2.053) 
+2024-09-16T19:28:32.268 [http-nio-8080-exec-2] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-16T19:28:32.268 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-16T19:28:32.268 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Completed initialization in 0 ms 
+2024-09-16T19:28:32.335 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-1 - Starting... 
+2024-09-16T19:28:32.563 [http-nio-8080-exec-2] INFO c.z.h.p.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7071036b 
+2024-09-16T19:28:32.563 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-1 - Start completed. 
+2024-09-16T19:28:32.583 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.admNy
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			    ,a.gender
+			    ,b.codeName
+			    ,a.dateOfBirth
+			    ,a.email
+			    ,a.phoneNum
+			    ,a.userDesc
+			    ,a.regDate
+			    ,a.modDate
+			    ,a.delNy
+			from
+				user a
+				join commoncode b on a.gender = b.seq
+				join codegroup c on b.codeGroup_seq = c.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-16T19:28:32.603 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.admNy
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			    ,a.gender
+			    ,b.codeName
+			    ,a.dateOfBirth
+			    ,a.email
+			    ,a.phoneNum
+			    ,a.userDesc
+			    ,a.regDate
+			    ,a.modDate
+			    ,a.delNy
+			from
+				user a
+				join commoncode b on a.gender = b.seq
+				join codegroup c on b.codeGroup_seq = c.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 10 msec} 
+2024-09-16T19:28:33.073 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			order by a.seq desc
+ {executed in 10 msec} 

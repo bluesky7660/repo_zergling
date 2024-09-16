@@ -16,6 +16,7 @@ public class ProductVo extends BaseVo{
 	private Date shipDate;
 	private Integer bestNy;
 	private Integer todayPickNy;
+	private Integer count;
 	
 	//제조날짜
 	private Integer makeDateFillter;
@@ -99,6 +100,12 @@ public class ProductVo extends BaseVo{
 	}
 	public void setTodayPickNy(Integer todayPickNy) {
 		this.todayPickNy = todayPickNy;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 	public Integer getMakeDateFillter() {
 		/*

@@ -8,17 +8,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exion.infra.code.CodeService;
+
 
 
 @Controller
 public class AuthorController {
 	@Autowired
 	AuthorService authorService;
-	
+	@Autowired
+	CodeService codeService;
 	
 	@RequestMapping(value = "v1/mall/product/authorXdmList")
 	public String authorXdmList(Model model){
 		model.addAttribute("list", authorService.authorList());
+		model.addAttribute("groups", codeService.authorTypeList());
 		return "xdm/v1/mall/product/authorXdm";
 	}
 	@RequestMapping(value = "v1/mall/product/authorXdmForm")
