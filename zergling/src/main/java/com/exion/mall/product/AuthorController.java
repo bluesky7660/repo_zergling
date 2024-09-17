@@ -20,8 +20,8 @@ public class AuthorController {
 	CodeService codeService;
 	
 	@RequestMapping(value = "v1/mall/product/authorXdmList")
-	public String authorXdmList(Model model){
-		model.addAttribute("list", authorService.authorList());
+	public String authorXdmList(Model model,AuthorVo vo){
+		model.addAttribute("list", authorService.authorList(vo));
 		model.addAttribute("groups", codeService.authorTypeList());
 		return "xdm/v1/mall/product/authorXdm";
 	}

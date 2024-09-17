@@ -10,8 +10,8 @@ public class AuthorService {
 	@Autowired
 	AuthorDao authorDao;
 	
-	public List<AuthorDto> authorList(){
-		return authorDao.authorList();
+	public List<AuthorDto> authorList(AuthorVo vo){
+		return authorDao.authorList(vo);
 	}
 	public List<AuthorDto> jobList(){
 		return authorDao.jobList();

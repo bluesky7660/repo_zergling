@@ -46,6 +46,9 @@
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/datatables/dataTables.bs5-custom.css" />
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/daterange/daterange.css">
+		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
 
 		</style>
@@ -509,7 +512,7 @@
 												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectGender">작가직업</label>
-														<select class="form-select" id="selectGender" name="gender">
+														<select class="form-select" id="selectGender" name="authorType">
 															<option value="" selected>작가직업을 선택하세요</option>
 															<option th:each="group : ${groups}" th:value="${group.seq}" th:text="${group.codeName}"></option>
 														</select>
@@ -680,63 +683,71 @@
 			************ Required JavaScript Files *************
 		************* -->
 		<script>
-			var currentPageIndex = 0; // 현재 페이지 번호 인덱스
-			var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
-
-			// 이전 페이지 링크 클릭 이벤트 처리
-			document.getElementById('previousPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex > 0) {
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex--; // 이전 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
-
-			// 다음 페이지 링크 클릭 이벤트 처리
-			document.getElementById('nextPage').addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-				pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				currentPageIndex++; // 다음 페이지 인덱스로 변경
-				pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
-				}
-				updatePaginationState(); // 페이지네이션 상태 업데이트
-			});
-
-			// 페이지 번호 링크 클릭 이벤트 처리
-			pageItems.forEach(function(pageItem, index) {
-				pageItem.addEventListener('click', function(event) {
-				event.preventDefault(); // 기본 동작(링크 이동) 방지
-				if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				}
+			window.addEventListener('load',function() {
+				$.datetimepicker.setLocale('ko');
+				$("#inputDateStart,#inputDateEnd,#inputDateOfBirth").datetimepicker({
+					timepicker:false,
+					format:'Y-m-d'
 				});
-			});
+				var currentPageIndex = 0; // 현재 페이지 번호 인덱스
+				var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
 
-			// 초기 페이지네이션 상태 업데이트
-			updatePaginationState();
+				// 이전 페이지 링크 클릭 이벤트 처리
+				document.getElementById('previousPage').addEventListener('click', function(event) {
+					event.preventDefault(); // 기본 동작(링크 이동) 방지
+					if (currentPageIndex > 0) {
+					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+					currentPageIndex--; // 이전 페이지 인덱스로 변경
+					pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
+					}
+					updatePaginationState(); // 페이지네이션 상태 업데이트
+				});
 
-			// 페이지네이션 버튼 상태 업데이트 함수
-			function updatePaginationState() {
-				// 이전 버튼 상태 업데이트
-				if (currentPageIndex === 0) {
-				document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
-				} else {
-				document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
+				// 다음 페이지 링크 클릭 이벤트 처리
+				document.getElementById('nextPage').addEventListener('click', function(event) {
+					event.preventDefault(); // 기본 동작(링크 이동) 방지
+					if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
+					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+					currentPageIndex++; // 다음 페이지 인덱스로 변경
+					pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
+					}
+					updatePaginationState(); // 페이지네이션 상태 업데이트
+				});
+
+				// 페이지 번호 링크 클릭 이벤트 처리
+				pageItems.forEach(function(pageItem, index) {
+					pageItem.addEventListener('click', function(event) {
+					event.preventDefault(); // 기본 동작(링크 이동) 방지
+					if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
+						pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
+						currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
+						pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
+						updatePaginationState(); // 페이지네이션 상태 업데이트
+					}
+					});
+				});
+
+				// 초기 페이지네이션 상태 업데이트
+				updatePaginationState();
+
+				// 페이지네이션 버튼 상태 업데이트 함수
+				function updatePaginationState() {
+					// 이전 버튼 상태 업데이트
+					if (currentPageIndex === 0) {
+					document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
+					} else {
+					document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
+					}
+
+					// 다음 버튼 상태 업데이트
+					if (currentPageIndex === pageItems.length - 1) {
+					document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
+					} else {
+					document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
+					}
 				}
-
-				// 다음 버튼 상태 업데이트
-				if (currentPageIndex === pageItems.length - 1) {
-				document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
-				} else {
-				document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
-				}
-			}
+			})
+			
 		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>
@@ -765,6 +776,9 @@
 
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
+		<!-- by developer -->
+		<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 
 	</body>
 

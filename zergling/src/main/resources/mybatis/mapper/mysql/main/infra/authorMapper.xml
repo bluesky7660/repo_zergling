@@ -19,6 +19,27 @@
 				left join productAuthor c on c.author_seq = a.seq
 				left join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
+			where 1=1
+				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+				<if test="authorType != null and !authorType.equals('')">AND a.authorType = #{authorType}</if>
+				<if test="searchKeyword != null and !searchKeyword.equals('')">
+					<choose>
+						<when test="keywordType == null">
+							AND(
+								a.seq Like CONCAT('%',#{searchKeyword},'%')
+								OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
+								OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
+							)
+						</when>
+						<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+						<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
+						<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+					</choose>
+				</if>
+				<choose>
+					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
 			order by a.seq desc
 	  </select>
 	  <insert id="insertAuthor">
