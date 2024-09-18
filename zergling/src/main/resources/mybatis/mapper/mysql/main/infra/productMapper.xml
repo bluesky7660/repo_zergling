@@ -106,6 +106,7 @@
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 			where 1=1
+				<if test="prodType != null and !prodType.equals('')">AND a.prodType = #{prodType}</if>
 				<choose>
 					<when test="minPrice != null and maxPrice != null">
 				        AND a.salePrice BETWEEN #{minPrice} AND #{maxPrice}

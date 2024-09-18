@@ -149,6 +149,7 @@
                             <div class="list_fillter_box">
                                 <div class="mb-4"><h3>국내도서</h3></div>
                                 <div class="prod_types_box mb-4">
+                                    <input id="inputProdType" type="hidden" name="prodType" value="33">
                                     <div id="prodType1" class="prodType gap-1 active">
                                         <h5>소설</h5>
                                     </div>
@@ -550,7 +551,28 @@
                     // }
                 });
             });
-            
+            const inputProdType = document.querySelector("#inputProdType"); 
+            const prodTypeBtn = document.querySelectorAll(".prod_types_box .prodType");
+            prodTypeBtn.forEach((prodType) => {
+                prodType.addEventListener("click", function(event) {
+                    var checkNum = this.id.slice(-1);
+                    if (checkNum == 1) {
+                        console.log("소설!");
+                        inputProdType.value = 33;
+                    }
+                    else{
+                        console.log("외!");
+                        inputProdType.value = 34;
+                    }
+                    // console.log(); 
+                    // inputProdType.value = 
+                    form.action = "product_list";
+                    
+                    form.submit();
+                })
+
+            });
+
             const bages = document.querySelectorAll(".bage_item input");
             const checkBageBox = document.querySelector(".selectedBages_list");
             bages.forEach((bage) => {
