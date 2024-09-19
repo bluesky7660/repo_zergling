@@ -599,6 +599,7 @@
 														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
 													</div>
 												</div>
+												
 												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectProdType">상품종류</label>
@@ -635,6 +636,37 @@
 													<div class="col-12 col-lg-4 col-xl ">
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
+													</div>
+												</div>
+												<div class="row gy-3 mt-0">
+													<h4>추가조건</h4>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="selectMakeDate">출간일 조회 기간</label>
+														<select class="form-select" id="selectMakeDate" name="makeDateFillter">
+															<option value="" selected>조회 기간을 선택해주세요.</option>
+															<option value="0">전체</option>
+															<option value="1">1개월 이내</option>
+															<option value="2">3개월 이내</option>
+															<option value="3">6개월 이내</option>
+															<option value="4">1년 이내</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMinPrice">최소가격</label>
+														<input type="text" class="form-control" id="inputMinPrice" name="minPrice" placeholder="숫자만 적어주세요" value="">
+													</div>
+													<!-- <span class="col-1 text-center"> ~ </span> -->
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMaxPrice">최대가격</label>
+														<input type="text" class="form-control" id="inputMaxPrice" name="maxPrice" placeholder="숫자만 적어주세요" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMinReview">최소 리뷰점수</label>
+														<input type="text" class="form-control" id="inputMinReview" name="minReview" placeholder="소수점 첫째자리까지만" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMaxReview">최소 리뷰점수</label>
+														<input type="text" class="form-control" id="inputMaxReview" name="maxReview" placeholder="소수점 첫째자리까지만" value="">
 													</div>
 												</div>
 											</div>

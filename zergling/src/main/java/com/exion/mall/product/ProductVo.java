@@ -8,8 +8,10 @@ public class ProductVo extends BaseVo{
 	private String seq;
 	private String prodTypeName;
 	private Integer prodType;
+	private Integer SlProdType;
 	private String title;
 	private String name;
+	private Integer publisher;
 	private String publisherName;
 	private Integer reviewNum;
 	private Date makeDate;
@@ -17,6 +19,8 @@ public class ProductVo extends BaseVo{
 	private Integer bestNy;
 	private Integer todayPickNy;
 	private Integer count;
+	
+	private Integer newNy;
 	
 	//제조날짜
 	private Integer makeDateFillter;
@@ -34,6 +38,10 @@ public class ProductVo extends BaseVo{
         this.maxPrice = 50000; // 기본값 설정
         this.minReview = 0.; // 기본값 설정
         this.maxReview = 10.; // 기본값 설정
+        this.bestNy = 0;
+        this.todayPickNy = 0;
+        this.newNy = 0;
+        this.prodType = 33;
     }
 	public String getSeq() {
 		return seq;
@@ -53,6 +61,12 @@ public class ProductVo extends BaseVo{
 	public void setProdType(Integer prodType) {
 		this.prodType = prodType;
 	}
+	public Integer getSlProdType() {
+		return SlProdType;
+	}
+	public void setSlProdType(Integer slProdType) {
+		SlProdType = slProdType;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -64,6 +78,12 @@ public class ProductVo extends BaseVo{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(Integer publisher) {
+		this.publisher = publisher;
 	}
 	public String getPublisherName() {
 		return publisherName;
@@ -106,6 +126,12 @@ public class ProductVo extends BaseVo{
 	}
 	public void setCount(Integer count) {
 		this.count = count;
+	}
+	public Integer getNewNy() {
+		return newNy;
+	}
+	public void setNewNy(Integer newNy) {
+		this.newNy = newNy;
 	}
 	public Integer getMakeDateFillter() {
 		/*
