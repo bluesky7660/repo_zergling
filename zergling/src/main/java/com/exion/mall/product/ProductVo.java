@@ -18,6 +18,9 @@ public class ProductVo extends BaseVo{
 	private Date shipDate;
 	private Integer bestNy;
 	private Integer todayPickNy;
+	private Integer mdPickNy;
+	private Integer freeShippingNy;
+	private Integer taxDeductionNy;
 	private Integer count;
 	
 	private Integer newNy;
@@ -38,10 +41,10 @@ public class ProductVo extends BaseVo{
         this.maxPrice = 50000; // 기본값 설정
         this.minReview = 0.; // 기본값 설정
         this.maxReview = 10.; // 기본값 설정
-        this.bestNy = 0;
-        this.todayPickNy = 0;
-        this.newNy = 0;
-        this.prodType = 33;
+//        this.bestNy = 0;
+//        this.todayPickNy = 0;
+//        this.newNy = 0;
+//        this.prodType = 33;
     }
 	public String getSeq() {
 		return seq;
@@ -120,6 +123,24 @@ public class ProductVo extends BaseVo{
 	}
 	public void setTodayPickNy(Integer todayPickNy) {
 		this.todayPickNy = todayPickNy;
+	}
+	public Integer getMdPickNy() {
+		return mdPickNy;
+	}
+	public void setMdPickNy(Integer mdPickNy) {
+		this.mdPickNy = mdPickNy;
+	}
+	public Integer getFreeShippingNy() {
+		return freeShippingNy;
+	}
+	public void setFreeShippingNy(Integer freeShippingNy) {
+		this.freeShippingNy = freeShippingNy;
+	}
+	public Integer getTaxDeductionNy() {
+		return taxDeductionNy;
+	}
+	public void setTaxDeductionNy(Integer taxDeductionNy) {
+		this.taxDeductionNy = taxDeductionNy;
 	}
 	public Integer getCount() {
 		return count;

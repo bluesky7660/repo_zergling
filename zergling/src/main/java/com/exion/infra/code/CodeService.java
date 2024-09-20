@@ -53,6 +53,12 @@ public class CodeService {
 	public List<CodeDto> authorTypeList() {
 		return codeDao.authorTypeList();
 	}
+	public List<CodeDto> publisherList() {
+		return codeDao.publisherList();
+	}
+	public List<CodeDto> genderList() {
+		return codeDao.genderList();
+	}
 	public int update(CodeDto codeDto) {
 		return codeDao.update(codeDto);
 	}

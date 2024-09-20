@@ -65,10 +65,10 @@
     cursor: pointer;
 }
 
-.left-box,.right-box{
+main .left-box,main .right-box{
     flex-basis:100%;
 }
-.left-box{
+main .left-box{
     flex-basis: content;
 }
 
@@ -80,14 +80,14 @@
 
 
 /*왼쪽*/
-.left-box{
+main .left-box{
     max-width: 200px;
     flex-basis: content;
 }
-.left-box li{
+main .left-box li{
     color:#555;
 }
-.left-box i{
+main .left-box i{
     display: flex;
     align-items: center;
 } 

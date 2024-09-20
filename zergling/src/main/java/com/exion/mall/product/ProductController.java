@@ -25,7 +25,10 @@ public class ProductController {
 		return "xdm/v1/mall/product/productXdm";
 	}
 	@RequestMapping(value = "v1/mall/product/productXdmForm")
-	public String productXdmForm() {
+	public String productXdmForm(Model model, AuthorVo vo) {
+		model.addAttribute("publishers", codeService.publisherList());
+		model.addAttribute("prodTypes", codeService.prodTypeList());
+		model.addAttribute("author", authorService.authorList(vo));
 		return "xdm/v1/mall/product/productXdmForm";
 	}
 	@RequestMapping(value = "v1/mall/product/productXdmInst")
@@ -38,6 +41,7 @@ public class ProductController {
 	public String productXdmMfom(Model model, ProductDto productDto , AuthorDto authorDto) {
 		model.addAttribute("item", productService.prodOne(productDto));
 		model.addAttribute("author", authorService.authorOne(authorDto));
+		model.addAttribute("prodTypes", codeService.prodTypeList());
 		return "xdm/v1/mall/product/productXdmMfom";
 	}
 	

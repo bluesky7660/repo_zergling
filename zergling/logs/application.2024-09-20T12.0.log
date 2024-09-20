@@ -1,0 +1,2742 @@
+2024-09-20T12:02:09.307 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.seq desc
+ {executed in 1 msec} 
+2024-09-20T12:02:09.314 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 1 msec} 
+2024-09-20T12:06:51.165 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T12:06:51.170 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T12:08:41.049 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 1 msec} 
+2024-09-20T12:08:41.052 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T12:10:40.759 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-20T12:10:40.759 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T12:10:56.017 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-20T12:10:56.017 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T12:10:56.336 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 10 msec} 
+2024-09-20T12:10:56.339 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T12:16:09.819 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-20T12:16:09.819 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T12:16:27.242 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T12:16:27.244 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T12:16:35.344 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:16:35.352 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:16:35.353 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:16:41.116 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:16:41.119 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:16:41.124 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:16:50.701 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 0 msec} 
+2024-09-20T12:16:50.701 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 0 msec} 
+2024-09-20T12:16:50.701 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:16:50.701 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:16:57.172 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:16:57.174 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:16:59.617 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:17:52.440 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-20T12:17:52.447 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 6 msec} 
+2024-09-20T12:19:36.878 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T12:19:36.880 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T12:20:32.231 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:20:32.231 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:20:32.236 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:21:16.423 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T12:21:16.427 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T12:22:13.083 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-20T12:22:13.083 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T12:23:36.712 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:23:36.712 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:23:36.712 [http-nio-8080-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null] with root cause 
+java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null
+	at com.exion.mall.product.indexController.userAccount(indexController.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-09-20T12:23:45.913 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:23:45.929 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 16 msec} 
+2024-09-20T12:23:45.929 [http-nio-8080-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null] with root cause 
+java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null
+	at com.exion.mall.product.indexController.userAccount(indexController.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-09-20T12:23:56.203 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:23:56.204 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 1 msec} 
+2024-09-20T12:23:56.204 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null] with root cause 
+java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null
+	at com.exion.mall.product.indexController.userAccount(indexController.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-09-20T12:24:04.069 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:24:04.069 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:24:04.069 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null] with root cause 
+java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null
+	at com.exion.mall.product.indexController.userAccount(indexController.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-09-20T12:24:41.003 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 15 msec} 
+2024-09-20T12:24:41.003 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 0 msec} 
+2024-09-20T12:24:41.003 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:24:41.008 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:24:45.712 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 1 msec} 
+2024-09-20T12:24:45.713 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 1 msec} 
+2024-09-20T12:24:45.714 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 1 msec} 
+2024-09-20T12:24:45.715 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:24:48.054 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:24:48.054 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:24:53.163 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:24:53.165 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 2 msec} 
+2024-09-20T12:24:56.997 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:24:56.997 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:24:56.997 [http-nio-8080-exec-10] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null] with root cause 
+java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null
+	at com.exion.mall.product.indexController.userAccount(indexController.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-09-20T12:25:02.876 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:25:02.877 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:25:05.486 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 0 msec} 
+2024-09-20T12:25:05.486 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 0 msec} 
+2024-09-20T12:25:05.491 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 1 msec} 
+2024-09-20T12:25:05.492 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:25:11.662 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 0 msec} 
+2024-09-20T12:25:11.663 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			where 1=1
+				and a.defaultNy = 1
+ {executed in 1 msec} 
+2024-09-20T12:25:11.663 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:25:11.664 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				a.seq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.address
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+
+			from
+				deliveryaddress a
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:25:16.573 [http-nio-8080-exec-10] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:25:25.326 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:25:25.326 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:25:42.197 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 0 msec} 
+2024-09-20T12:25:42.206 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = NULL
+ {executed in 1 msec} 
+2024-09-20T12:25:42.207 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null] with root cause 
+java.lang.NullPointerException: Cannot invoke "com.exion.infra.user.UserDto.getSeq()" because the return value of "com.exion.infra.user.UserService.selectOne(com.exion.infra.user.UserDto)" is null
+	at com.exion.mall.product.indexController.userAccount(indexController.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-09-20T12:25:45.386 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T12:25:45.389 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				user c
+			where 1=1
+				and c.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T12:26:51.434 [http-nio-8080-exec-8] WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public java.lang.String com.exion.mall.product.indexController.signupInst(com.exion.infra.user.UserDto): [Field error in object 'userDto' on field 'gender': rejected value [남자]; codes [typeMismatch.userDto.gender,typeMismatch.gender,typeMismatch.java.lang.Integer,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDto.gender,gender]; arguments []; default message [gender]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Integer' for property 'gender'; For input string: "남자"]] ] 
+2024-09-20T12:32:19.869 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:32:19.879 [Thread-5] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:32:19.952 [Thread-5] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated... 
+2024-09-20T12:32:19.957 [Thread-5] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed. 
+2024-09-20T12:32:20.063 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:32:20.063 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:32:20.192 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:32:20.194 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:32:20.194 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:32:20.194 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:32:20.202 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:32:20.202 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 139 ms 
+2024-09-20T12:32:20.329 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:32:20.334 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:32:20.336 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:32:20.341 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.307 seconds (process running for 4387.406) 
+2024-09-20T12:32:20.343 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:33:39.845 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:33:39.848 [Thread-7] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:33:40.007 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:33:40.007 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:33:40.159 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:33:40.159 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:33:40.160 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:33:40.160 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:33:40.170 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:33:40.170 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 162 ms 
+2024-09-20T12:33:40.309 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:33:40.316 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:33:40.319 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:33:40.327 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.344 seconds (process running for 4467.392) 
+2024-09-20T12:33:40.330 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:33:53.736 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:33:53.737 [Thread-11] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:33:54.063 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:33:54.064 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:33:54.378 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:33:54.380 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:33:54.380 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:33:54.380 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:33:54.399 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:33:54.399 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 332 ms 
+2024-09-20T12:33:54.679 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:33:54.688 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:33:54.690 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:33:54.701 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.691 seconds (process running for 4481.766) 
+2024-09-20T12:33:54.703 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:34:02.758 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:34:02.759 [Thread-15] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:02.877 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:34:02.877 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:34:02.984 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:34:02.984 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:02.984 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:34:02.984 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:34:02.990 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:34:02.990 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 112 ms 
+2024-09-20T12:34:03.083 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:34:03.087 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:03.090 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:34:03.094 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.231 seconds (process running for 4490.159) 
+2024-09-20T12:34:03.095 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:34:18.860 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:34:18.862 [Thread-19] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:18.985 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:34:18.985 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:34:19.100 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:34:19.100 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:19.100 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:34:19.100 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:34:19.106 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:34:19.106 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 120 ms 
+2024-09-20T12:34:19.208 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:34:19.214 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:19.215 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:34:19.218 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.246 seconds (process running for 4506.283) 
+2024-09-20T12:34:19.219 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:34:21.889 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:34:21.891 [Thread-23] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:22.017 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:34:22.017 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:34:22.127 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:34:22.127 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:22.127 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:34:22.127 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:34:22.133 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:34:22.133 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 115 ms 
+2024-09-20T12:34:22.227 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:34:22.231 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:22.233 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:34:22.238 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.238 seconds (process running for 4509.303) 
+2024-09-20T12:34:22.240 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:34:30.252 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:34:30.254 [Thread-27] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:30.383 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:34:30.383 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:34:30.498 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:34:30.498 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:30.498 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:34:30.498 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:34:30.503 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:34:30.503 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 118 ms 
+2024-09-20T12:34:30.596 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:34:30.600 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:30.601 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:34:30.607 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.241 seconds (process running for 4517.671) 
+2024-09-20T12:34:30.607 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:34:32.161 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:34:32.162 [Thread-31] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:32.289 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:34:32.289 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:34:32.399 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:34:32.399 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:32.399 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:34:32.399 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:34:32.404 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:34:32.404 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 114 ms 
+2024-09-20T12:34:32.492 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:34:32.496 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:32.497 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:34:32.502 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.225 seconds (process running for 4519.567) 
+2024-09-20T12:34:32.502 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:34:34.053 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:34:34.054 [Thread-35] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:34.169 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:34:34.169 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:34:34.259 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:34:34.259 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:34.259 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:34:34.259 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:34:34.264 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:34:34.264 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 95 ms 
+2024-09-20T12:34:34.353 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:34:34.357 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:34:34.359 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:34:34.365 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.209 seconds (process running for 4521.43) 
+2024-09-20T12:34:34.366 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:34:46.866 [http-nio-8080-exec-2] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-20T12:34:46.866 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-20T12:34:46.867 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-20T12:34:48.066 [http-nio-8080-exec-5] INFO c.z.h.HikariDataSource - HikariPool-2 - Starting... 
+2024-09-20T12:34:48.077 [http-nio-8080-exec-5] INFO c.z.h.p.HikariPool - HikariPool-2 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1259082b 
+2024-09-20T12:34:48.077 [http-nio-8080-exec-5] INFO c.z.h.HikariDataSource - HikariPool-2 - Start completed. 
+2024-09-20T12:34:48.080 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 1
+ {executed in 2 msec} 
+2024-09-20T12:35:23.591 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T12:35:23.591 [Thread-39] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:35:23.831 [Thread-39] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown initiated... 
+2024-09-20T12:35:23.838 [Thread-39] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown completed. 
+2024-09-20T12:35:23.959 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 13184 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T12:35:23.959 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T12:35:24.343 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T12:35:24.343 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:35:24.343 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T12:35:24.343 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T12:35:24.358 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T12:35:24.358 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 399 ms 
+2024-09-20T12:35:24.643 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T12:35:24.660 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T12:35:24.660 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T12:35:24.678 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.769 seconds (process running for 4571.743) 
+2024-09-20T12:35:24.680 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T12:35:24.710 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-20T12:35:24.710 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-20T12:35:24.710 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 0 ms 
+2024-09-20T12:35:24.714 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-3 - Starting... 
+2024-09-20T12:35:24.730 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-3 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1cc665b4 
+2024-09-20T12:35:24.730 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-3 - Start completed. 
+2024-09-20T12:35:24.730 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 1
+ {executed in 0 msec} 
+2024-09-20T12:36:02.242 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. insert into user(
+				admNy
+			    ,name
+			    ,userId
+			    ,userPassword
+			    ,gender
+			    ,dateOfBirth
+			    ,email
+			    ,phoneNum
+			    ,userDesc
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			)value(
+				0
+			    ,'박찬호'
+			    ,'dsjabuw2134'
+				,'125asnidiqhljda'
+			    ,1
+				,'11/12/1996 00:00:00.000'
+			    ,'sakndiash@djiashiduas.com'
+			    ,'01014569654'
+			    ,"신규유저입니다."
+			    ,now()
+			    ,now()
+			    ,0
+			)
+ {executed in 16 msec} 
+2024-09-20T12:36:08.606 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+				a.seq
+			    ,a.admNy
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			    ,a.gender
+			    ,b.codeName
+			    ,a.dateOfBirth
+			    ,a.email
+			    ,a.phoneNum
+			    ,a.userDesc
+			    ,a.regDate
+			    ,a.modDate
+			    ,a.delNy
+			from
+				user a
+				join commoncode b on a.gender = b.seq
+				join codegroup c on b.codeGroup_seq = c.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 4 msec} 
+2024-09-20T12:36:08.608 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+				a.seq
+			    ,a.admNy
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			    ,a.gender
+			    ,b.codeName
+			    ,a.dateOfBirth
+			    ,a.email
+			    ,a.phoneNum
+			    ,a.userDesc
+			    ,a.regDate
+			    ,a.modDate
+			    ,a.delNy
+			from
+				user a
+				join commoncode b on a.gender = b.seq
+				join codegroup c on b.codeGroup_seq = c.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:36:26.342 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 1
+ {executed in 3 msec} 
+2024-09-20T12:45:54.036 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+		  		a.seq
+			    ,a.codeName
+			from
+				commoncode a
+			where 1=1
+				AND a.codeGroup_seq = 10
+			order by a.seq desc
+ {executed in 1 msec} 
+2024-09-20T12:45:54.038 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+		  		a.seq
+			    ,a.codeName
+			from
+				commoncode a
+			where 1=1
+				AND a.codeGroup_seq = 10
+			order by a.seq desc
+ {executed in 1 msec} 
+2024-09-20T12:47:15.665 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. insert into author(
+			    authorType
+			    ,name	
+			    ,authorInfo
+				,regDate
+				,modDate
+			    ,delNy
+			) value(
+				21
+			    ,'강지영'
+			    ,'1978년 경기도 파주에서 태어났다. 숭의여대 문예창작과를 졸업하였다. 출판 편집자를 거쳐 현재 프리랜서 카피라이터로 활동 중이다. 온라인상에서 하루 평균 원고시 150매에 달하는 왕성한 집필 활동을 하고 있다. 비주얼 강한 묘사로 열혈 독자층을 형성하고 있다. 지은 책으로는 ''굿바이 파라다이스'', ''신문물검역소'', ''심여사는 킬러'', ''엘자의 하인'' 등이 있다.'
+			    ,now()
+			    ,now()
+			    ,0
+			)
+ {executed in 6 msec} 
+2024-09-20T12:47:15.680 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 4 msec} 
+2024-09-20T12:47:15.681 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 10
+ {executed in 0 msec} 
+2024-09-20T12:47:26.717 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 3
+ {executed in 0 msec} 
+2024-09-20T12:47:26.719 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 1 msec} 
+2024-09-20T12:47:26.722 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 1 msec} 
+2024-09-20T12:48:53.318 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. insert into product(
+				title
+			    ,prodType
+			    ,publisher
+			    ,makeDate
+			    ,price
+			    ,sale
+			    ,salePrice
+			    ,point
+			    ,stockQty
+			    ,intro
+			    ,reviewNum
+			    ,shipDate
+			    ,tableOfContents
+			    ,publisherReview
+			    ,preivew
+			    ,viewNumber
+			    ,buyNumber
+			    ,bestNy
+			    ,todayPickNy
+			    ,sliderText
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			) value(
+				'죽지 않고 어른이 되는 법'
+			    ,33
+			    ,7
+			    ,'09/05/2024 00:00:00.000'
+			    ,16800
+			    ,10
+			    ,15120
+			    ,840
+			    ,2454
+			    ,''
+			    ,8.6
+			    ,'09/25/2024 00:00:00.000'
+			    ,''
+				,''
+			    ,''
+			    ,0
+			    ,0
+			    ,0
+			    ,0
+			    ,''
+			    ,now()
+			    ,now()
+			    ,0
+			)
+ {executed in 9 msec} 
+2024-09-20T12:48:53.319 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+				a.seq
+
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:48:53.319 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 
+2024-09-20T12:49:13.099 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T12:49:13.116 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 10
+ {executed in 1 msec} 
+2024-09-20T12:49:13.750 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. select
+				a.seq
+
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.seq desc
+ {executed in 1 msec} 
+2024-09-20T12:49:13.760 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+41. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 

@@ -64,68 +64,74 @@
                     </div>
                 </div>
                 <div class="scrolltable">
-                    <div class="gnb_search d-flex justify-content-between gap-5">
-                        <div class="search_wrapper d-flex align-items-center  gap-5">
-                            <div class="logo" onclick="window.location.href='index'">
-                                <img src="./usr/v1/assets/images/logo_book.svg" alt="">
+                    <div class="scrolltable_area">
+                        
+                        <div class="gnb_search d-flex justify-content-between gap-5">
+                            <div class="search_wrapper d-flex align-items-center  gap-5">
+                                <div class="logo" onclick="window.location.href='index'">
+                                    <img src="./usr/v1/assets/images/logo_book.svg" alt="">
+                                </div>
+                                <div class="search_area w-100">
+                                    <div class="search_box d-flex align-items-center gap-3">
+                                        <input type="text" class="input-search">
+                                        <button class="search_btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="search_area w-100">
-                                <div class="search_box d-flex align-items-center gap-3">
-                                    <input type="text" class="input-search">
-                                    <button class="search_btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <div class="user_box d-flex align-items-center gap-4">
+                                <div class="cart" onclick="window.location.href='user_cart'">
+                                    <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
+                                </div>
+                                <div class="user_my" onclick="window.location.href='user_account'">
+                                    <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
                                 </div>
                             </div>
                         </div>
-                        <div class="user_box d-flex align-items-center gap-4">
-                            <div class="cart" onclick="window.location.href='user_cart'">
-                                <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
+                       
+    
+                        <nav class="gnb_list d-flex align-items-center gap-4">
+                            <div class="gnb_wrapper d-flex align-items-center gap-5">
+                                <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
+                                <div class="anb_wrapper">
+                                    <div class="anb_wrapper_area">
+                                        <div class="anb_wrapper_list">
+                                            <h5 class="anb_category">국내도서</h5>
+                                            <ul>
+                                                <li onclick="window.location.href='product_list'">국내도서 - 소설</li>
+                                                <li onclick="window.location.href='product_list'">국내도서 - 시/에세이</li>
+                                                <li onclick="window.location.href='product_detail?seq=1'">도서 상세보기</li>
+                                                <li onclick="window.location.href='product_buy'">도서 구매</li>
+                                            </ul>
+                                        </div>
+                                        <div class="anb_wrapper_list">
+                                            <h5 class="anb_category">회원정보</h5>
+                                            <ul>
+                                                <li onclick="window.location.href='user_order_list'">주문/배송목록</li>
+                                                <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
+                                                <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
+                                                <li onclick="window.location.href='user_account'">회원정보 변경</li>
+                                                <li onclick="window.location.href='user_password'">비밀번호 변경</li>
+                                            </ul>
+                                        </div>
+                                        <div class="anb_wrapper_list">
+                                            <h5 class="anb_category">그외 기타</h5>
+                                            <ul>
+                                                <li onclick="window.location.href='login'">로그인</li>
+                                                <li onclick="window.location.href='signup'">회원가입</li>
+                                                <li onclick="window.location.href='account_recovery'">비밀번호 찾기</li>
+                                                <li onclick="window.location.href='account_recovery'">아이디 찾기</li>
+                                                <li onclick="window.location.href='header_ver2'">헤더 다른버전2</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="user_my" onclick="window.location.href='user_account'">
-                                <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
-                            </div>
-                        </div>
+                            <ul class="gnb_link gap-3">
+                                <li onclick="window.location.href='product_list'">국내도서</li>
+                            </ul>
+                        </nav>
                     </div>
-                    <nav class="gnb_list d-flex align-items-center gap-4">
-                        <div class="gnb_wrapper d-flex align-items-center gap-5">
-                            <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
-                            <div class="anb_wrapper">
-                                <div class="anb_wrapper_area">
-                                    <div class="anb_wrapper_list">
-                                        <h5 class="anb_category">국내도서</h5>
-                                        <ul>
-                                            <li onclick="window.location.href='product_list'">국내도서 - 소설</li>
-                                            <li onclick="window.location.href='product_list'">국내도서 - 시/에세이</li>
-                                            <li onclick="window.location.href='product_detail?seq=1'">도서 상세보기</li>
-                                            <li onclick="window.location.href='product_buy'">도서 구매</li>
-                                        </ul>
-                                    </div>
-                                    <div class="anb_wrapper_list">
-                                        <h5 class="anb_category">회원정보</h5>
-                                        <ul>
-                                            <li onclick="window.location.href='user_order_list'">주문/배송목록</li>
-                                            <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
-                                            <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
-                                            <li onclick="window.location.href='user_account'">회원정보 변경</li>
-                                            <li onclick="window.location.href='user_password'">비밀번호 변경</li>
-                                        </ul>
-                                    </div>
-                                    <div class="anb_wrapper_list">
-                                        <h5 class="anb_category">그외 기타</h5>
-                                        <ul>
-                                            <li onclick="window.location.href='login'">로그인</li>
-                                            <li onclick="window.location.href='signup'">회원가입</li>
-                                            <li onclick="window.location.href='account_recovery'">비밀번호 찾기</li>
-                                            <li onclick="window.location.href='account_recovery'">아이디 찾기</li>
-                                            <li onclick="window.location.href='header_ver2'">헤더 다른버전2</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="gnb_link gap-3">
-                            <li onclick="window.location.href='product_list'">국내도서</li>
-                        </ul>
-                    </nav>
+                    
                 </div>
             </div>
         </header>
@@ -229,28 +235,10 @@
                                 <div class="bage_search_box">
                                     <label for="bage">혜택/조건</label>
                                     <ul class="bage_list" >
-                                        <!-- <li class="bage_item" th:each="bage : ${bages}" >
+                                        <li class="bage_item" th:each="bage : ${bages}" >
                                             <label th:for="'bageItem'+${bage.seq}">
                                                 <span th:text="${bage.codeName}"></span>
                                                 <input type="checkbox" name="seq" th:id="'bageItem'+${bage.seq}">
-                                            </label>
-                                        </li> -->
-                                        <li class="bage_item">
-                                            <label for="bageItem1">
-                                                <span>MD의 선택</span>
-                                                <input type="checkbox" name="mdPickNy" id="bageItem1" th:value="${vo.mdPickNy}">
-                                            </label>
-                                        </li>
-                                        <li class="bage_item">
-                                            <label for="bageItem2">
-                                                <span>무료배송</span>
-                                                <input type="checkbox" name="freeShippingNy" id="bageItem2" th:value="${vo.freeShippingNy}">
-                                            </label>
-                                        </li>
-                                        <li class="bage_item">
-                                            <label for="bageItem3">
-                                                <span>소득공제</span>
-                                                <input type="checkbox" name="taxDeductionNy" id="bageItem3" th:value="${vo.taxDeductionNy}">
                                             </label>
                                         </li>
                                     </ul>
@@ -692,7 +680,6 @@
             const checkBageBox = document.querySelector(".selectedBages_list");
             bages.forEach((bage) => {
                 bage.addEventListener("change", function(event) {
-                    this.value = 1;
                     const parentElement = this.parentElement;
                     if (this.checked) {
                         parentElement.querySelector("span").style.color = "#fff";
@@ -711,7 +698,6 @@
                             parentElement.style.borderColor = "#aaa";
                         });
                     } else {
-                        this.value = 0;
                         parentElement.querySelector("span").style.color = "#555";
                         parentElement.style.backgroundColor = "";
                         parentElement.style.borderColor = "#aaa";
@@ -723,9 +709,6 @@
                             }
                         });
                     }
-                    console.log("1");
-                    form.action = "product_list";
-                    form.submit();
                     
                 });
             });

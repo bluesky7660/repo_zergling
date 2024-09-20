@@ -12,6 +12,8 @@ public interface CodeDao {
 	public List<CodeDto> bageList();
 	public List<CodeDto> prodTypeList();
 	public List<CodeDto> authorTypeList();
+	public List<CodeDto> publisherList();
+	public List<CodeDto> genderList();
 	public int update(CodeDto codeDto);
 	public int listCount(CodeVo vo);
 	public int uelete(CodeDto codeDto);

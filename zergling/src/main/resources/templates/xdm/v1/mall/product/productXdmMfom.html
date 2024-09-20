@@ -513,8 +513,7 @@
 													<label for="inputEduType" class="form-label">상품종류</label>
 													<select class="form-select validate-this" id="inputEduType" name="prodType" required>
 														<option value="" selected disabled>선택하세요</option>
-														<option value="소설" th:selected="${item.prodType == '소설' }">소설</option>
-														<option value="시/에세이" th:selected="${item.prodType == '시/에세이' }">시/에세이</option>
+														<option th:each="group1 : ${prodTypes}" th:value="${group1.seq}" th:text="${group1.codeName}" th:selected="${item.prodType.toString() == group1.seq }"></option>
 													</select>
 													<div class="invalid-feedback">
 														상품종류를 선택해주세요.
@@ -680,6 +679,45 @@
 														</select>
 														<div class="invalid-feedback">
 															Today Pick 여부을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputMdPickNy" class="form-label"> MD Pick 여부</label>
+														<select class="form-select validate-this" id="inputMdPickNy" name="mdPickNy" required>
+															<option value="" disabled>선택하세요</option>
+															<option value="1" th:selected="${item.mdPickNy == 1 }">Y</option>
+															<option value="0" th:selected="${item.mdPickNy == 0 }">N</option>
+														</select>
+														<div class="invalid-feedback">
+															MD Pick 여부을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputTaxDeductionNy" class="form-label">소득공제 여부</label>
+														<select class="form-select validate-this" id="inputTaxDeductionNy" name="taxDeductionNy" required>
+															<option value="" disabled>선택하세요</option>
+															<option value="1" th:selected="${item.taxDeductionNy == 1 }">Y</option>
+															<option value="0" th:selected="${item.taxDeductionNy == 0 }">N</option>
+														</select>
+														<div class="invalid-feedback">
+															소득공제 여부을 선택해주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputFreeShippingNy" class="form-label">무료배송 여부</label>
+														<select class="form-select validate-this" id="inputFreeShippingNy" name="freeShippingNy" required>
+															<option value="" disabled>선택하세요</option>
+															<option value="1" th:selected="${item.freeShippingNy == 1 }">Y</option>
+															<option value="0" th:selected="${item.freeShippingNy == 0 }">N</option>
+														</select>
+														<div class="invalid-feedback">
+															무료배송 여부을 선택해주세요.
 														</div>
 													</div>
 												</div>

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // document.querySelector(".customer_service_area").style.padding ="0";
         // document.querySelector(".customer_service_area").style.visibility = "hidden";
         document.querySelector(".customer_service_area").classList.add('hidden');
-        document.querySelector("header").style.position = "sticky";
+        document.querySelector("header").style.position = "fixed";
     } 
 
 
@@ -18,25 +18,26 @@ document.addEventListener('DOMContentLoaded', function () {
         var currentScrollpos = window.scrollY;
         
         
-        if (prevScrollpos > currentScrollpos) { 
-            // 네비가 보임
-            // document.querySelector("header").style.top = "0"; 
-            // document.querySelector("header").style.paddingTop = "20px"; 
+        // if (prevScrollpos > currentScrollpos) { 
+        //     // 네비가 보임
+        //     // document.querySelector("header").style.top = "0"; 
+        //     // document.querySelector("header").style.paddingTop = "20px"; 
             
-        } else { 
-            // 네비가 안보임
-            // document.querySelector("header").style.top = "-225px"; 
-        }
+        // } else { 
+        //     // 네비가 안보임
+        //     // document.querySelector("header").style.top = "-225px"; 
+        // }
         
-        if(currentScrollpos <= 0){
+        if(currentScrollpos <= 300){
             document.querySelector("header").style.position = "relative";
-            // document.querySelector("header").style.paddingTop = "0";
+            document.querySelector("main").style.paddingTop = "0";
             
         } else{
-            document.querySelector("header").style.position = "sticky";
+            document.querySelector("header").style.position = "fixed";
+            document.querySelector("main").style.paddingTop = "196px";
         }
 
-        if(currentScrollpos <= 0){
+        if(currentScrollpos <= 300){
             // document.querySelector(".customer_service_area").style.position = "relative";
             // document.querySelector(".customer_service_area").style.top ="0";
             // document.querySelector(".customer_service_area").style.maxHeight ="none";
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
         }
         
-        if(currentScrollpos <= 0){
+        if(currentScrollpos <= 300){
             document.querySelector(".scrolltable").classList.remove('active');
             document.querySelector(".gnb_search").classList.remove('active');
         } else{

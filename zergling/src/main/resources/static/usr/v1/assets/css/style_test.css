@@ -333,14 +333,15 @@ section{
 }
 
 .content_wrapper{
-    padding:100px 150px 100px;
+    padding:50px 150px 100px;
 }
 .logo{
     width: 200px;
     cursor: pointer;
 }
-.navbar_pc{
-    padding:0 150px;
+.navbar_pc{}
+.navbar_pc>div>*{
+    /* margin:0 150px; */
 }
 .img-box{
     position: relative;
@@ -535,13 +536,28 @@ main>*{
 .scrolltable{
     height: auto;
     position: relative;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     gap: 20px;
     padding:20px 0;
 }
 .scrolltable.active{
+    position: fixed;
+    top:0;
     height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    /* flex-direction: row;
+    align-items: center; */
+}
+.scrolltable .scrolltable_area{
+    display: flex;
+    flex-direction: column;
+}
+.scrolltable.active .scrolltable_area{
+    position: relative;
+    width: 100%;
     flex-direction: row;
     align-items: center;
 }
@@ -550,16 +566,26 @@ main>*{
     /* padding-bottom: 20px; */
     
 }
+.gnb_search_wrapper{
+    position: relative;
+}
 .gnb_search{
     /* padding-top: 20px; */
     position: relative;
 }
+
 .gnb_search.active{
     position: absolute;
     left:60px;
     width: calc(100% - 60px);
     z-index: 2;
 }
+/* .gnb_search.active{
+    position: absolute;
+    left:60px;
+    width: calc(100% - 60px);
+    z-index: 2;
+} */
 .gnb_search .logo{
     width: 160px;
     max-width: 160px;
@@ -617,7 +643,12 @@ main>*{
 /*gnb wrap*/
 .gnb_list{
     position: relative;
-    width: 100%;
+    /* width: 100%; */
+}
+.scrolltable.active .gnb_list{
+    position: relative;
+    margin:0;
+    width: calc(100% - 300px) ;
 }
 .gnb_wrapper{
     /* position: relative;

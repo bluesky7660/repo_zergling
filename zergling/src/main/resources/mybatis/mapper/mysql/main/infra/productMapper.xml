@@ -28,6 +28,9 @@
 			    ,a.buyNumber
 			    ,a.bestNy
 			    ,a.todayPickNy
+			    ,a.mdPickNy
+			    ,a.freeShippingNy
+			    ,a.taxDeductionNy
 			    ,a.sliderText
 				,a.regDate
 				,a.modDate
@@ -47,6 +50,9 @@
 				<if test="bestNy != null and !bestNy.equals('')">AND a.bestNy = #{bestNy}</if>
 				<if test="todayPickNy != null and !todayPickNy.equals('')">AND a.todayPickNy = #{todayPickNy}</if>
 				<if test="prodType != null and !prodType.equals('')">AND a.prodType = #{prodType}</if>
+				<if test="freeShippingNy != null and !freeShippingNy.equals('') and freeShippingNy != 0">AND a.freeShippingNy = #{freeShippingNy}</if>
+				<if test="taxDeductionNy != null and !taxDeductionNy.equals('') and taxDeductionNy != 0">AND a.taxDeductionNy = #{taxDeductionNy}</if>
+				<if test="mdPickNy != null and !mdPickNy.equals('') and mdPickNy != 0">AND a.mdPickNy = #{mdPickNy}</if>
 				<if test="searchKeyword != null and !searchKeyword.equals('')">
 					<choose>
 						<when test="keywordType == null">
@@ -86,7 +92,8 @@
 					<when test="makeDateFillter == 2"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 3"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 4"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW()</when>
-					<when test="makeDateFillter == 5"> AND a.makeDate &lt; DATE_SUB(NOW(), INTERVAL 12 MONTH) </when>
+					<when test="makeDateFillter == 5"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 36 MONTH) AND NOW()</when>
+					<when test="makeDateFillter == 6"> AND a.makeDate &lt; DATE_SUB(NOW(), INTERVAL 36 MONTH) </when>
 				</choose>
 			order by a.seq desc
 	  </select>
@@ -114,6 +121,9 @@
 			    ,a.buyNumber
 			    ,a.bestNy
 			    ,a.todayPickNy
+			    ,a.mdPickNy
+			    ,a.freeShippingNy
+			    ,a.taxDeductionNy
 			    ,a.sliderText
 				,a.regDate
 				,a.modDate
@@ -134,6 +144,9 @@
 				<if test="newNy != null and !newNy.equals('') and newNy != 0">AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()</if>
 				<if test="prodType != null and !prodType.equals('')">AND a.prodType = #{prodType}</if>
 				<if test="bestNy != null and !bestNy.equals('') and bestNy != 0">AND a.bestNy = #{bestNy}</if>
+				<if test="freeShippingNy != null and !freeShippingNy.equals('') and freeShippingNy != 0">AND a.freeShippingNy = #{freeShippingNy}</if>
+				<if test="taxDeductionNy != null and !taxDeductionNy.equals('') and taxDeductionNy != 0">AND a.taxDeductionNy = #{taxDeductionNy}</if>
+				<if test="mdPickNy != null and !mdPickNy.equals('') and mdPickNy != 0">AND a.mdPickNy = #{mdPickNy}</if>
 				<choose>
 					<when test="minPrice != null and maxPrice != null">
 				        AND a.salePrice BETWEEN #{minPrice} AND #{maxPrice}
@@ -176,6 +189,9 @@
 			    ,buyNumber
 			    ,bestNy
 			    ,todayPickNy
+			    ,mdPickNy
+			    ,freeShippingNy
+			    ,taxDeductionNy
 			    ,sliderText
 			    ,regDate
 			    ,modDate
@@ -200,6 +216,9 @@
 			    ,0
 			    ,#{bestNy}
 			    ,#{todayPickNy}
+			    ,#{mdPickNy}
+			    ,#{freeShippingNy}
+			    ,#{taxDeductionNy}
 			    ,#{sliderText}
 			    ,now()
 			    ,now()
@@ -228,6 +247,9 @@
 			    ,a.buyNumber
 			    ,a.bestNy
 			    ,a.todayPickNy
+			    ,a.mdPickNy
+			    ,a.freeShippingNy
+			    ,a.taxDeductionNy
 			    ,a.sliderText
 				,a.regDate
 				,a.modDate
@@ -257,6 +279,9 @@
 			    ,preivew = #{preivew}
 			    ,bestNy = #{bestNy}
 			    ,todayPickNy = #{todayPickNy}
+			    ,mdPickNy = #{mdPickNy}
+			    ,freeShippingNy = #{freeShippingNy}
+			    ,taxDeductionNy = #{taxDeductionNy}
 			    ,sliderText = #{sliderText}
 				,modDate = now()
 			WHERE 1=1

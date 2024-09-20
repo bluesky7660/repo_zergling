@@ -34,7 +34,8 @@ public class indexController {
 		return "/usr/v1/pages/login";
 	}
 	@RequestMapping(value = "signup")
-	public String signup() {
+	public String signup(Model model) {
+		model.addAttribute("genders", codeService.genderList());
 		return "/usr/v1/pages/signup";
 	}
 	@RequestMapping(value = "signupInst")
@@ -116,15 +117,16 @@ public class indexController {
 		model.addAttribute("list", productService.usrProdList(vo));
 		model.addAttribute("vo", vo);
 		model.addAttribute("bages", codeService.bageList());
-		List<ProductDto> prods = productService.usrProdList(vo);
-		for(ProductDto prod : prods) {
-			System.out.println("출판사: "+prod.getPublisherName());
-			System.out.println("타입: "+prod.getTitle()	);
-		}
+//		List<ProductDto> prods = productService.usrProdList(vo);
+//		for(ProductDto prod : prods) {
+//			System.out.println("출판사: "+prod.getPublisherName());
+//			System.out.println("타입: "+prod.getTitle()	);
+//		}
 			
 		System.out.println("최소: "+vo.getMinPrice());
 		System.out.println("베스트: " +vo.getBestNy());
 		System.out.println("투데이: " +vo.getTodayPickNy());
+		System.out.println("타입: " +vo.getProdType());
 		System.out.println("최대: "+vo.getMaxPrice());
 		return "/usr/v1/pages/product_list";
 	}

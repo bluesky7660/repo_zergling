@@ -1,0 +1,838 @@
+2024-09-20T10:01:24.750 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T10:01:24.751 [Thread-79] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:01:24.827 [Thread-79] INFO c.z.h.HikariDataSource - HikariPool-6 - Shutdown initiated... 
+2024-09-20T10:01:24.829 [Thread-79] INFO c.z.h.HikariDataSource - HikariPool-6 - Shutdown completed. 
+2024-09-20T10:01:24.884 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 20728 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T10:01:24.884 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T10:01:25.017 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T10:01:25.018 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:01:25.018 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T10:01:25.018 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T10:01:25.023 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T10:01:25.023 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 137 ms 
+2024-09-20T10:01:25.120 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T10:01:25.123 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:01:25.125 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T10:01:25.128 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.261 seconds (process running for 3696.253) 
+2024-09-20T10:01:25.129 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T10:01:28.831 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T10:01:28.832 [Thread-83] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:01:28.961 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 20728 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T10:01:28.961 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T10:01:29.060 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T10:01:29.061 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:01:29.061 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T10:01:29.061 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T10:01:29.066 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T10:01:29.066 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 104 ms 
+2024-09-20T10:01:29.149 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T10:01:29.152 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:01:29.155 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T10:01:29.158 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.214 seconds (process running for 3700.282) 
+2024-09-20T10:01:29.159 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T10:03:03.132 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-20T10:03:03.132 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-20T10:03:03.133 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-20T10:03:03.135 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-7 - Starting... 
+2024-09-20T10:03:03.153 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-7 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6c76598e 
+2024-09-20T10:03:03.153 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-7 - Start completed. 
+2024-09-20T10:03:03.153 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 3
+ {executed in 0 msec} 
+2024-09-20T10:03:03.153 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 
+2024-09-20T10:03:03.169 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T10:03:20.117 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 3
+ {executed in 0 msec} 
+2024-09-20T10:03:20.117 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 
+2024-09-20T10:03:20.117 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T10:03:42.638 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 3
+ {executed in 0 msec} 
+2024-09-20T10:03:42.638 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 
+2024-09-20T10:03:42.638 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T10:04:04.198 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-20T10:04:09.577 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 5 msec} 
+2024-09-20T10:04:35.283 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. insert into commoncode(
+			codeName
+		    ,codeOrder
+		    ,codeDesc
+		    ,useNy
+		    ,regDate
+		    ,modDate
+		    ,delNy
+		    ,codeGroup_seq
+		)value(
+			'은행나무'
+		    ,1
+		    ,'은행나무 출판사'
+		    ,1
+		    ,now()
+		    ,now()
+		    ,0
+		    ,'3'
+		)
+ {executed in 6 msec} 
+2024-09-20T10:04:35.297 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-20T10:04:45.530 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		FROM
+			codegroup a
+		left JOIN
+			commoncode b ON b.codeGroup_seq = a.seq
+		WHERE 1=1
+
+		GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		ORDER BY
+			a.groupOrder desc
+ {executed in 1 msec} 
+2024-09-20T10:04:45.534 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.seq = '40'
+ {executed in 0 msec} 
+2024-09-20T10:04:45.535 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.seq = '40'
+ {executed in 1 msec} 
+2024-09-20T10:04:49.259 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. UPDATE commoncode
+		SET
+			codeName = '은행나무'
+			,codeOrder = 10
+			,codeDesc = '은행나무 출판사'
+			,useNy = 1
+			,codeGroup_seq = '3'
+			,modDate = now()
+		WHERE 1=1
+			AND seq = '40'
+ {executed in 16 msec} 
+2024-09-20T10:04:49.259 [http-nio-8080-exec-5] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeOrder
+			,a.codeDesc
+			,b.codeGroupName
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			left join codegroup b on a.codeGroup_seq = b.seq
+		where 1=1
+
+		ORDER BY
+
+			a.codeGroup_seq desc
+			, a.codeOrder desc
+ {executed in 0 msec} 
+2024-09-20T10:04:55.725 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 3
+ {executed in 0 msec} 
+2024-09-20T10:04:55.725 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 
+2024-09-20T10:04:55.725 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T10:05:41.355 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. insert into product(
+				title
+			    ,prodType
+			    ,publisher
+			    ,makeDate
+			    ,price
+			    ,sale
+			    ,salePrice
+			    ,point
+			    ,stockQty
+			    ,intro
+			    ,reviewNum
+			    ,shipDate
+			    ,tableOfContents
+			    ,publisherReview
+			    ,preivew
+			    ,viewNumber
+			    ,buyNumber
+			    ,bestNy
+			    ,todayPickNy
+			    ,sliderText
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			) value(
+				'영원한 천국'
+			    ,33
+			    ,40
+			    ,'08/28/2024 00:00:00.000'
+			    ,19800
+			    ,10
+			    ,17820
+			    ,990
+			    ,3152
+			    ,''
+			    ,9.6
+			    ,'09/24/2024 00:00:00.000'
+			    ,''
+				,''
+			    ,''
+			    ,0
+			    ,0
+			    ,0
+			    ,1
+			    ,''
+			    ,now()
+			    ,now()
+			    ,0
+			)
+ {executed in 12 msec} 
+2024-09-20T10:05:41.358 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. select
+				a.seq
+
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T10:05:41.358 [http-nio-8080-exec-3] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 
+2024-09-20T10:10:06.325 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T10:10:06.327 [Thread-87] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:10:06.405 [Thread-87] INFO c.z.h.HikariDataSource - HikariPool-7 - Shutdown initiated... 
+2024-09-20T10:10:06.411 [Thread-87] INFO c.z.h.HikariDataSource - HikariPool-7 - Shutdown completed. 
+2024-09-20T10:10:06.457 [restartedMain] INFO c.e.ZerglingApplication - Starting ZerglingApplication using Java 17.0.11 with PID 20728 (C:\factory\ws_sts4_4240\repo_zergling\zergling\bin\main started by chlee in C:\factory\ws_sts4_4240\repo_zergling\zergling) 
+2024-09-20T10:10:06.457 [restartedMain] INFO c.e.ZerglingApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T10:10:06.603 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T10:10:06.603 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:10:06.603 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T10:10:06.603 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T10:10:06.609 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T10:10:06.609 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 150 ms 
+2024-09-20T10:10:06.714 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T10:10:06.718 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:10:06.719 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T10:10:06.722 [restartedMain] INFO c.e.ZerglingApplication - Started ZerglingApplication in 0.276 seconds (process running for 4217.846) 
+2024-09-20T10:10:06.722 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T10:16:31.966 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-20T10:16:31.966 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-20T10:16:31.973 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 7 ms 
+2024-09-20T10:16:31.977 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-8 - Starting... 
+2024-09-20T10:16:32.007 [http-nio-8080-exec-1] INFO c.z.h.p.HikariPool - HikariPool-8 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3677a255 
+2024-09-20T10:16:32.007 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-8 - Start completed. 
+2024-09-20T10:16:32.007 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-20T10:16:32.020 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 13 msec} 
+2024-09-20T10:22:39.337 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1=1
+
+			order by a.seq desc
+ {executed in 17 msec} 
+2024-09-20T10:22:39.337 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 10
+ {executed in 0 msec} 
+2024-09-20T10:22:41.871 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T10:22:41.887 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 0 msec} 
+2024-09-20T10:22:45.660 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T10:22:45.663 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T10:23:35.994 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 5 msec} 
+2024-09-20T10:23:35.999 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T10:24:30.030 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 0 msec} 
+2024-09-20T10:24:30.030 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 

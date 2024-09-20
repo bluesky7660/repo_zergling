@@ -1,0 +1,692 @@
+2024-09-20T14:03:48.825 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. select
+				a.seq
+
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.seq desc
+ {executed in 0 msec} 
+2024-09-20T14:03:48.838 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+61. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 12
+ {executed in 1 msec} 
+2024-09-20T14:04:30.117 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+67. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+				  AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+			order by a.makeDate desc
+ {executed in 3 msec} 
+2024-09-20T14:04:30.117 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+67. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T14:04:34.672 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+67. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 1 msec} 
+2024-09-20T14:04:34.674 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+67. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T14:11:47.007 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 1 msec} 
+2024-09-20T14:11:47.008 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T14:11:47.012 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				product a 
+			where 1 = 1
+				and a.seq = '1'
+ {executed in 0 msec} 
+2024-09-20T14:14:30.966 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.prodType = 33 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 5 msec} 
+2024-09-20T14:14:30.970 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T14:14:32.376 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.prodType = 34 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T14:14:32.378 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 
+2024-09-20T14:14:34.516 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.prodType = 33 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T14:14:34.518 [http-nio-8080-exec-4] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T14:15:14.114 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.prodType = 33 
+				 AND a.bestNy = 1 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 1 msec} 
+2024-09-20T14:15:14.116 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T14:15:15.923 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+				 AND a.prodType = 33 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 1 msec} 
+2024-09-20T14:15:15.924 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T14:15:20.902 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+				 AND a.todayPickNy = 1 
+
+				 AND a.prodType = 33 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 3 msec} 
+2024-09-20T14:15:20.904 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 1 msec} 
+2024-09-20T14:15:22.979 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. select
+				a.seq
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preivew
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+			where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+
+				 AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() 
+				 AND a.prodType = 33 
+
+				        AND a.salePrice BETWEEN 0 AND 50000
+
+				        AND a.reviewNum BETWEEN 0.0 AND 10.0
+
+			order by a.makeDate desc
+ {executed in 2 msec} 
+2024-09-20T14:15:22.981 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+71. SELECT
+			a.seq
+			,a.codeName
+			,a.codeGroup_seq
+		FROM
+			commoncode a
+			join codegroup b on a.codeGroup_seq = b.seq
+		WHERE 1 = 1
+			and a.codeGroup_seq = 4
+ {executed in 0 msec} 

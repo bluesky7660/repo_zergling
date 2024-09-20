@@ -1,0 +1,4 @@
+2024-09-19T17:22:08.970 [RMI TCP Connection(644)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2024-09-19T17:22:08.986 [RMI TCP Connection(644)-127.0.0.1] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-19T17:22:09.154 [RMI TCP Connection(644)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-27 - Shutdown initiated... 
+2024-09-19T17:22:09.158 [RMI TCP Connection(644)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-27 - Shutdown completed. 
