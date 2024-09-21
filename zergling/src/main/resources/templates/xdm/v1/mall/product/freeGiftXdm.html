@@ -517,13 +517,6 @@
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
-													<!-- <div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="selectGender">작가직업</label>
-														<select class="form-select" id="selectGender" name="authorType">
-															<option value="" selected>작가직업을 선택하세요</option>
-															<option th:each="group : ${groups}" th:value="${group.seq}" th:text="${group.codeName}"></option>
-														</select>
-													</div> -->
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="keywordType">
@@ -540,6 +533,28 @@
 													<div class="col-12 col-lg-4 col-xl ">
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
+												</div>
+												<div class="row gy-3 mt-0">
+													<h4>추가조건</h4>
+													<div class="col-12 col-md-6 col-lg-4 col-xl ">
+														<label class="visually" for="selectStockQtyNy">재고유무</label>
+														<select class="form-select" id="selectStockQtyNy" name="fgStockQtyNy">
+															<option value="" selected>재고유무를 선택하세요</option>
+															<option value="1">Y</option>
+															<option value="0">N</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMinPrice">최소가격</label>
+														<input type="text" class="form-control" id="inputMinPrice" name="minPrice" placeholder="숫자만 적어주세요" value="">
+													</div>
+													<!-- <span class="col-1 text-center"> ~ </span> -->
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMaxPrice">최대가격</label>
+														<input type="text" class="form-control" id="inputMaxPrice" name="maxPrice" placeholder="숫자만 적어주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>

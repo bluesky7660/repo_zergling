@@ -12,8 +12,8 @@ public class FreeGiftController {
 	FreeGiftService freeGiftService;
 	
 	@RequestMapping(value = "v1/mall/product/freeGiftXdmList")
-	public String freeGiftXdmList(Model model){
-		model.addAttribute("list", freeGiftService.fgList());
+	public String freeGiftXdmList(Model model, FreeGiftVo vo){
+		model.addAttribute("list", freeGiftService.fgList(vo));
 		return "xdm/v1/mall/product/freeGiftXdm";
 	}
 	
@@ -31,6 +31,22 @@ public class FreeGiftController {
 	@RequestMapping(value = "v1/mall/product/freeGiftXdmInst")
 	public String freeGiftXdmInst(FreeGiftDto freeGiftDto){
 		freeGiftService.insert(freeGiftDto);
+		return "redirect:freeGiftXdmList";
+	}
+	
+	@RequestMapping(value = "v1/mall/product/freeGiftXdmUpdt")
+	public String freeGiftXdmUpdt(FreeGiftDto freeGiftDto) {
+		freeGiftService.update(freeGiftDto);
+		return "redirect:freeGiftXdmList";
+	}
+	@RequestMapping(value = "v1/mall/product/freeGiftXdmUelt")
+	public String freeGiftXdmUelt(FreeGiftDto freeGiftDto) {
+		freeGiftService.uelete(freeGiftDto);
+		return "redirect:freeGiftXdmList";
+	}
+	@RequestMapping(value = "v1/mall/product/freeGiftXdmDelt")
+	public String freeGiftXdmDelt(FreeGiftDto freeGiftDto) {
+		freeGiftService.delete(freeGiftDto);
 		return "redirect:freeGiftXdmList";
 	}
 

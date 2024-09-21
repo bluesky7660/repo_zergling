@@ -498,7 +498,7 @@
 										<div class="card-title">기본정보</div>
 									</div>
 									<div class="card-body">
-										<form name="form" method="post" autocomplete="off" action="/v1/mall/product/authorXdmUpdt" class="needs-validation"  novalidate>
+										<form name="form" method="post" autocomplete="off" action="/v1/mall/product/freeGiftXdmUpdt" class="needs-validation"  novalidate>
 											<!-- Row start -->
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -533,6 +533,19 @@
 														<input type="text" class="form-control validate-this" id="inputStockQty" name="fgStockQty" th:value="${item.fgStockQty}" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															사은품 재고량을 적어주세요.
+														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">	
+														<label for="inputUseNy" class="form-label">사용여부</label>
+														<select class="form-select validate-this" id="inputUseNy" name="fgUseNy" required>
+															<option value="" selected disabled>선택하세요</option>
+															<option value="1" th:selected="${item.fgUseNy == 1}">사용</option>
+															<option value="0" th:selected="${item.fgUseNy == 0}">사용안함</option>
+														</select>
+														<div class="invalid-feedback">
+															사용여부을 선택해주세요.
 														</div>
 													</div>
 												</div>

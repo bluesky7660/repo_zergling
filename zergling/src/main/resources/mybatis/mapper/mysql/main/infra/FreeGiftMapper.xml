@@ -15,6 +15,44 @@
 			    ,a.fgUseNy
 			from
 				freegift a
+			where 1=1
+				<if test="sDelNy != null and !sDelNy.equals('')">AND a.fgDelNy = #{sDelNy}</if>
+				<if test="sUseNy != null and !sUseNy.equals('')">AND a.fgUseNy = #{sUseNy}</if>
+				<if test="fgStockQtyNy != null and !fgStockQtyNy.equals('')">
+					<choose>
+						<when test="fgStockQtyNy == 1">AND a.fgStockQty >	 0</when>
+						<when test="fgStockQtyNy == 0">AND a.fgStockQty = 0</when>
+					</choose>
+				</if>
+				<if test="searchKeyword != null and !searchKeyword.equals('')">
+					<choose>
+						<!-- <when test="keywordType == null">
+							AND(
+								a.seq Like CONCAT('%',#{searchKeyword},'%')
+								OR a.title Like CONCAT('%',#{searchKeyword},'%')
+								OR b.name Like CONCAT('%',#{searchKeyword},'%')
+								OR publisher.codeName Like CONCAT('%',#{searchKeyword},'%')
+							)
+						</when> -->
+						<when test="keywordType == 1">AND a.fgSeq = #{searchKeyword}</when>
+						<when test="keywordType == 2">AND a.fgName Like CONCAT('%',#{searchKeyword},'%') </when>
+					</choose>
+				</if>
+				<choose>
+					<when test="dateType == 1"> AND a.fgRegDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.fgModDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
+				<choose>
+					<when test="minPrice != null and maxPrice != null">
+				        AND a.fgPrice BETWEEN #{minPrice} AND #{maxPrice}
+				    </when>
+				    <when test="minPrice != null and maxPrice == null">
+				        AND a.fgPrice >= #{minPrice} 
+				    </when>
+				    <when test="minPrice == null and maxPrice != null">
+				        AND a.fgPrice &lt;= #{maxPrice}
+				    </when>
+				</choose>
 			order by a.fgSeq desc
 	  </select>
 	  <select id="fgOne" resultMap="resultObj">
@@ -23,6 +61,7 @@
 			    ,a.fgName
 			    ,a.fgPrice
 			    ,a.fgStockQty
+			    ,a.freeGiftInfo
 			    ,a.fgRegDate
 			    ,a.fgModDate
 			    ,a.fgDelNy
@@ -53,4 +92,30 @@
 			    ,0
 			)
 		</insert>
+		<update id="update">
+			UPDATE freegift
+			SET
+				fgName = #{fgName}
+				,fgPrice = #{fgPrice}
+				,fgStockQty = #{fgStockQty}
+				,freeGiftInfo = #{freeGiftInfo}
+				,fgUseNy = #{fgUseNy}
+			<!-- 	,fgDelNy = #{fgDelNy} -->
+				,fgModDate = now()
+			WHERE 1=1
+				AND fgSeq = #{fgSeq}
+		</update>
+		<update id="uelete">
+			UPDATE freegift
+			SET
+				fgDelNy = 1
+			WHERE 1=1
+				AND fgSeq = #{fgSeq}
+		</update>
+		
+		<delete id="delete">
+			delete from freegift
+			WHERE 1=1
+				AND fgSeq = #{fgSeq}
+		</delete>
 </mapper>
