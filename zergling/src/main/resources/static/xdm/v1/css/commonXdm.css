@@ -1,0 +1,26 @@
+/*작가리스트관련*/
+.authorList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.authorTag{
+    width: fit-content;
+    padding: 5px 10px;
+    border: 1px solid #c3cbd6;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+.authorTag:hover{
+    background-color: #000;
+    border-color: #000;
+    color:#fff;
+}
+.authorTag:after{
+    content: "✕";
+    margin-left: 5px;
+    vertical-align: text-bottom;
+}

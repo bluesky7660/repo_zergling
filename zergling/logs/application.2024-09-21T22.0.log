@@ -2449,3 +2449,7 @@ java.sql.SQLSyntaxErrorException: Unknown column 'a.modDate' in 'where clause'
 
 			order by a.fgSeq desc
  {executed in 1 msec} 
+2024-09-21T22:25:09.205 [RMI TCP Connection(71)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2024-09-21T22:25:09.205 [RMI TCP Connection(71)-127.0.0.1] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-21T22:25:09.297 [RMI TCP Connection(71)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-12 - Shutdown initiated... 
+2024-09-21T22:25:09.301 [RMI TCP Connection(71)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-12 - Shutdown completed. 

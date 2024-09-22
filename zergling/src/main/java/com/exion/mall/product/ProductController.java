@@ -38,9 +38,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "v1/mall/product/productXdmMfom")
-	public String productXdmMfom(Model model, ProductDto productDto , AuthorDto authorDto) {
+	public String productXdmMfom(Model model, ProductDto productDto , AuthorDto authorDto, AuthorVo vo) {
 		model.addAttribute("item", productService.prodOne(productDto));
 		model.addAttribute("author", authorService.authorOne(authorDto));
+		model.addAttribute("authorList", authorService.authorList(vo));
 		model.addAttribute("prodTypes", codeService.prodTypeList());
 		return "xdm/v1/mall/product/productXdmMfom";
 	}
