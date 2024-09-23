@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,26 +21,23 @@ public class CodeController {
 	@Autowired
 	CodeGroupService codeGroupService;
 	 
-//	@RequestMapping(value = "/v1/infra/code/codeXdmList")
-//	public String codeXdmList(@RequestParam(value = "page", defaultValue = "1") int page,
-//            @RequestParam(value = "size", defaultValue = "3") int size,
-//            @RequestParam(value = "searchKeyword", required = false) String searchKeyword, Model model) {
-////		List<CodeDto> commonCodes = codeService.selectList();		
-////		model.addAttribute("list2", commonCodes);
-////		model.addAttribute("totalRows", commonCodes.size());
-////		PagingResponseDto<CodeDto> responseDto = codeService.findAll(page, size, searchKeyword);
-//		model.addAttribute("response", responseDto);
-//		model.addAttribute("response", codeService.selectList());
-//		return "/xdm/v1/infra/code/codeXdmList";
-//	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmList")
-	public String codeXdmList(CodeVo vo, Model model) {
-//		System.out.println("1:"+ codeService.selectList(vo).getCurrentPage());
+	public String codeXdmList(@ModelAttribute("count") CodeVo vo, Model model) {
+		vo.setParamsPaging(codeService.listCount(vo));
 		System.out.println("---------------------------------------------");
-		System.out.println("S:"+vo.getDateStart());
-		System.out.println("E:"+vo.getDateEnd());
-		model.addAttribute("response", codeService.selectList(vo));
-//		model.addAttribute("count", codeService.listCount(vo));
+		System.out.println("번호thisPage: " + vo.getThisPage());
+		System.out.println("번호StartPage: " + vo.getStartPage());
+		System.out.println("번호EndPage: " + vo.getEndPage());
+		System.out.println("번호TotalPages: " + vo.getTotalPages());
+		System.out.println("번호TotalRows: " + vo.getTotalRows());
+		System.out.println("번호PageNumToShow: " + vo.getPageNumToShow());
+		System.out.println("번호RowNumToShow: " + vo.getRowNumToShow());
+		System.out.println("번호StartRnumForMysql: " + vo.getStartRnumForMysql());
+		System.out.println("---------------------------------------------");
+		if(vo.getTotalRows() > 0) {
+			model.addAttribute("response", codeService.selectList(vo));
+		}
+//		model.addAttribute("count", vo);
 		return "/xdm/v1/infra/code/codeXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmForm")

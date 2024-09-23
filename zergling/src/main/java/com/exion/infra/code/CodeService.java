@@ -38,9 +38,9 @@ public class CodeService {
 	public int insert(CodeDto codeDto) {
 		return codeDao.insert(codeDto);
 	}
-//	public int listCount(CodeVo vo) {
-//		return codeDao.listCount(vo);
-//	}
+	public int listCount(CodeVo vo) {
+		return codeDao.listCount(vo);
+	}
 	public CodeDto selectOne(CodeDto codeDto) {
 		return codeDao.selectOne(codeDto);
 	}

@@ -32,14 +32,16 @@ public class ProductController {
 		return "xdm/v1/mall/product/productXdmForm";
 	}
 	@RequestMapping(value = "v1/mall/product/productXdmInst")
-	public String productXdmInst(ProductDto productDto) {
-		productService.insertProd(productDto);
+	public String productXdmInst(ProductDto productDto,ProductAuthorDto productAuthorDto) {
+		productService.insertProd(productDto,productAuthorDto);
 		return "redirect:productXdmList";
 	}
 	
 	@RequestMapping(value = "v1/mall/product/productXdmMfom")
 	public String productXdmMfom(Model model, ProductDto productDto , AuthorDto authorDto, AuthorVo vo) {
 		model.addAttribute("item", productService.prodOne(productDto));
+//		System.out.println("1: "+productService.prodOne(productDto).getProduct_seq());
+		model.addAttribute("publishers", codeService.publisherList());
 		model.addAttribute("author", authorService.authorOne(authorDto));
 		model.addAttribute("authorList", authorService.authorList(vo));
 		model.addAttribute("prodTypes", codeService.prodTypeList());

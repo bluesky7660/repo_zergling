@@ -254,8 +254,10 @@
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
+			    ,c.author_seq
 			from
 				product a 
+				left join productAuthor c on c.product_seq = a.seq
 			where 1 = 1
 				and a.seq = #{seq}
 	  </select>

@@ -23,43 +23,30 @@
 		ORDER BY
 			a.groupOrder desc
 	</select> -->
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.seq
-			,a.codeGroupName
-			,a.groupOrder
-			,a.groupDesc
-			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
-			,a.useNy
-		    ,a.delNy
-			,a.regDate
-			,a.modDate
+	<sql id="selectCommon">
 		FROM
 			codegroup a
-		left JOIN
-			commoncode b ON b.codeGroup_seq = a.seq
+			<!-- left JOIN commoncode b ON b.codeGroup_seq = a.seq -->
 		WHERE 1=1
 			<!-- 키워드조건 -->
-			<trim prefix="AND (" suffix=")" suffixOverrides="OR">
-				<if test="searchKeyword != null and searchKeyword != ''">
-					<choose>
-						<!-- <when test="keywordType == null">
-		                    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-		                </when> -->
-						<when test="keywordType == 1 and keywordType != null and keywordType != ''">
-						    a.seq = #{searchKeyword}
-						</when>
-						<when test="keywordType == 2 and keywordType != null and keywordType != ''">
-						     a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-						</when>
-						<otherwise>
-							a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-						    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%')
-						</otherwise>
-						
-					</choose>
-				</if>
-			</trim>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<choose>
+					<!-- <when test="keywordType == null">
+	                    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when> -->
+					<when test="keywordType == 1 and keywordType != null and keywordType != ''">
+					    a.seq = #{searchKeyword}
+					</when>
+					<when test="keywordType == 2 and keywordType != null and keywordType != ''">
+					     a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+					</when>
+					<otherwise>
+						a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+					    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%')
+					</otherwise>
+					
+				</choose>
+			</if>
 			<if test="sUseNy != null and !sUseNy.equals('')">
 				AND a.useNy = #{sUseNy}
 			</if>
@@ -70,10 +57,26 @@
 				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 			</choose>
+		
+	</sql>
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.seq
+			,a.codeGroupName
+			,a.groupOrder
+			,a.groupDesc
+			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
+			,a.useNy
+		    ,a.delNy
+			,a.regDate
+			,a.modDate
+		<include refid="selectCommon"/>
 		GROUP BY 
     		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
 		ORDER BY
 			a.groupOrder desc
+		<include refid="base.selectListLowerForMysql"/>
 		<!-- LIMIT #{limit} OFFSET #{offset} -->
 	</select>
 	<!-- <select id="selectList2" resultMap="resultMapObj">
@@ -153,33 +156,7 @@
 				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 			</choose>
-			<!-- 날짜조건 -->
-			<!-- <if test="dateType != null and dateType != ''">
-				<choose>
-					<when test="dateType == 1">
-						<if test="dateStart != null">
-							AND a.regDate &gt;= #{dateStart}
-						</if>
-						<if test="dateEnd != null">
-							AND a.regDate &lt;= #{dateEnd}
-						</if>
-						<if test="dateStart != null and dateEnd != null">
-							AND a.regDate &gt;= #{dateStart} AND a.regDate &lt;= #{dateEnd}
-						</if>
-					</when>
-					<when test="dateType == 2">
-						<if test="dateStart != null and dateEnd != null">
-							AND a.modDate &gt;= #{dateStart} AND a.modDate &gt;= #{dateStart}
-						</if>
-						<if test="dateStart != null">
-							AND a.modDate &gt;= #{dateStart}
-						</if>
-						<if test="dateEnd != null">
-							AND a.modDate &lt;= #{dateEnd}
-						</if>
-					</when>
-				</choose>
-			</if> -->
+			
 		GROUP BY 
     		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
 		ORDER BY
@@ -188,18 +165,7 @@
 	</select>
 	<select id="listCount" resultType="int">
         SELECT COUNT(*) 
-        FROM codegroup a
-        WHERE 1=1
-			<if test="searchKeyword != null and searchKeyword != ''">
-			    AND ( a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-					    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%'))
-			</if>
-			<if test="sUseNy != null and !sUseNy.equals('')">
-				AND a.useNy = #{sUseNy}
-			</if>
-			<if test="sDelNy != null and !sDelNy.equals('')">
-				AND a.delNy = #{sDelNy}
-			</if>
+        <include refid="selectCommon"/>
     </select>
 	<insert id="insert">
 		insert into codegroup(
@@ -219,6 +185,9 @@
 		    ,now()
 		    ,0
 		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+				SELECT last_insert_id()
+		 </selectKey>
 	</insert>
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT

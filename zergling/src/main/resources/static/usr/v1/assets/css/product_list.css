@@ -171,11 +171,23 @@ main .left-box i{
     border: 1px solid #aaa;
     padding:8px 12px;
     border-radius: 10px;
+    background-color: transparent;
     cursor: pointer;
 }
 .bage_item input{
     display: none;
 }
+.bage_item label span{
+    color: #555;
+}
+.bage_item label.active{
+    background-color:  #545bb3;
+    border-color:  #545bb3;
+}
+.bage_item label.active span{
+    color: #fff;
+}
+
 .search_ranges_box{
     border-top: 1px solid #ddd;
     /* padding:20px 0; */

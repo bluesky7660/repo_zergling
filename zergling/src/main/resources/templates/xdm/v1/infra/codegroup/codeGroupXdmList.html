@@ -51,24 +51,7 @@
 		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
 		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
-			/* 비활성화된 버튼 스타일 */
-			.dataTable-pagination-list .page-item.disabled {
-				opacity: 1; /* 버튼의 투명도 설정 */
-				cursor: default; /* 마우스 커서 스타일 */
-			}
-
-			.dataTable-pagination-list .page-item.disabled a {
-				pointer-events: none; /* 클릭 이벤트 비활성화 */
-			}
-
-			.dataTable-pagination-list .page-item.disabled span {
-				display: inline-block; /* 비활성화된 버튼의 내용을 표시 */
-			}
-			/* 현재 페이지의 링크를 비활성화 */
-			.dataTable-pagination-list .page-item.active a {
-				pointer-events: none; /* 클릭 이벤트 비활성화 */
-				cursor: default; /* 커서 스타일 */
-			}
+			
 
 
 			/* .btn .bi{
@@ -568,7 +551,9 @@
 											Code Group
 										</h2>
 										<div>
-											<form class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmList">
+											<form name class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmList">
+												<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+												<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 												<div class="row gy-3">
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
 														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
@@ -635,11 +620,16 @@
 									<div class="card-body">
 										<div class="row justify-content-between">
 											<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div> -->
-											<div class="col-6 col-lg-3">Total: <span th:text="${count}">171</span></div>
+											<div class="col-6 col-lg-3">Total: <span th:text="${vo.totalRows}">171</span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-												<select class="dataTable-selector form-select" id="pageSizeSelect">
-													<option value="">2</option>	
-												</select>
+												<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
+													<option value="2" th:selected="${vo.rowNumToShow == 2}">2</option>
+													<option value="3" th:selected="${vo.rowNumToShow == 3}">3</option>
+													<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
+													<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
+													<option value="20" th:selected="${vo.rowNumToShow == 20}">20</option>
+													<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
+											</select>
 												<!-- <form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
 													<select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" >
 													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
@@ -678,7 +668,7 @@
 													</tr>
 													<tr th:each="listG,iter : ${response}" th:if="${!#lists.isEmpty(response)}">
 														<td><input type="checkbox"></td>
-														<td th:text="${iter.size - iter.index}"></td>
+														<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) +iter.index)}"></td>
 														<td th:text="${listG.seq}"></td>
 														<!-- <td class="td_spotlight">
 															<a href="/v1/infra/codegroup/codeGroupXdmForm?seq=1" th:text="${listG.codeGroupName}"></a>
@@ -701,98 +691,72 @@
 										
 										<div class="dataTable-bottom">
 											<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1})}" th:if="${response.currentPage > 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-													<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1})}" th:if="${response.currentPage < response.totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-												</ul> -->
-												
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button page-item" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+												<!-- paging s  -->
+												<!-- <input type="hidden" name="thisPage" value="1" th:value="${vo.thisPage}">				 -->
+												<!-- <div class="container-fluid px-0 mt-2 mb-2">
+													<div class="row">
+														<div class="col">
+															<ul class="pagination justify-content-center mb-0">
+																<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="bi bi-chevron-left"></i></a></li>
+																<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a></li>
+																<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="bi bi-chevron-right"></i></a></li>
+															</ul>
+														</div>
+													</div>
+												</div> -->
+												<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+													<li class="paginate_button page-item" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+														<a class="page-link" th:attr="onclick=|goList('1')|" href="javascript:goList(1)" th:if="${vo.thisPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage <= 1}">
+														<a class="page-link" th:if="${vo.thisPage <= 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
 														</a>
 													</li>
-													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1}, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+													<li class="paginate_button previous page-item" id="previousPage" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+														<a class="page-link" th:attr="onclick=|goList('${vo.thisPage - 1}')|" href="javascript:goList(${vo.thisPage - 1})" th:if="${vo.thisPage > 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage <= 1}">
+														<a class="page-link" th:if="${vo.thisPage <= 1}">
 															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 														</a>
 													</li>
 													<li th:each="i : ${#numbers.sequence(
-																		response.currentPage == 1 ? 1 : 
-																		response.currentPage == 2 ? 1 : 
-																		response.currentPage == response.totalPages - 1 ? response.currentPage - 3 : 
-																		response.currentPage == response.totalPages ? response.currentPage - 4 : 
-																		response.currentPage - 2, 
+																		vo.thisPage == 1 ? 1 : 
+																		vo.thisPage == 2 ? 1 : 
+																		vo.thisPage == vo.totalPages - 1 ? vo.thisPage - 3 : 
+																		vo.thisPage == vo.totalPages ? vo.thisPage - 4 : 
+																		vo.thisPage - 2, 
 																		
-																		response.currentPage == 1 ? 5 : 
-																		response.currentPage == 2 ? 5 : 
-																		response.currentPage == response.totalPages - 1 ? response.totalPages : 
-																		response.currentPage == response.totalPages ? response.totalPages : 
-																		response.currentPage + 2
+																		vo.thisPage == 1 ? 5 : 
+																		vo.thisPage == 2 ? 5 : 
+																		vo.thisPage == vo.totalPages - 1 ? vo.totalPages : 
+																		vo.thisPage == vo.totalPages ? vo.totalPages : 
+																		vo.thisPage + 2
 																	)}"
 														class="paginate_button page-item"
-														th:if="${i > 0 && i <= response.totalPages}" 
-														th:classappend="${i == response.currentPage} ? 'active' : ''">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i}, size=${response.pageSize})}" th:text="${i}"></a>
+														th:if="${i > 0 && i <= vo.totalPages}" 
+														th:classappend="${i == vo.thisPage} ? 'active' : ''">
+														<a class="page-link" th:attr="onclick=|goList('${i}')|" th:text="${i}"></a>
 													</li>
-													<li class="paginate_button next page-item" id="nextPage" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+													<li class="paginate_button next page-item" id="nextPage" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+														<a class="page-link" th:attr="onclick=|goList('${vo.thisPage + 1}')|" href="javascript:goList(${vo.thisPage + 1})" th:if="${vo.thisPage < vo.totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+														<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 														</a>
 													</li>
-													<li class="paginate_button page-item" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-														<a class="page-link" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.totalPages}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+													<li class="paginate_button page-item" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+														<a class="page-link" th:attr="onclick=|goList('${vo.totalPages}')|" href="javascript:goList(${vo.totalPages})" th:if="${vo.thisPage < vo.totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
-														<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+														<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
 															<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 														</a>
 													</li>
-												</ul> -->
-												
-												
-												<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-													<li class="paginate_button previous page-item" id="previousPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1})}" th:if="${response.currentPage > 1}">
-															<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-														</a>
-													</li>
-													<li class="paginate_button page-item"><a th:each="i : ${#numbers.sequence(1, response.totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == response.currentPage} ? 'active' : ''"></a></li>
-													<li class="paginate_button next page-item" id="nextPage">
-														<a class="page-link" href="#" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1})}" th:if="${response.currentPage < response.totalPages}">
-															<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-														</a>
-													</li>
-												</ul> -->
-												<!-- <a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage - 1})}" th:if="${response.currentPage > 1}">Previous</a>
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=1)}" th:if="${response.currentPage > 1}">First</a>
-										
-												<a th:each="i : ${#numbers.sequence(1, response.totalPages)}" th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${i})}" th:text="${i}" th:classappend="${i == response.currentPage} ? 'active' : ''"></a>
-												
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.currentPage + 1})}" th:if="${response.currentPage < response.totalPages}">Next</a>
-												<a th:href="@{/v1/infra/codegroup/codeGroupXdmList(page=${response.totalPages})}" th:if="${response.currentPage < response.totalPages}">Last</a> -->
+												</ul>
+												<!-- paging e  -->	
 											</nav>
 										</div>
 										<div class="btn-toolbar mt-5 justify-content-between">
@@ -867,129 +831,141 @@
 					timepicker:false,
 					format:'Y-m-d'
 				});
-			});
-			function updatePageSize() {
-				var form = document.getElementById('pagination-form');
-				var pageSizeSelect = document.getElementById('pageSizeSelect');
+				var form = document.querySelector("form");
+				var pageSizeSelect = document.getElementById('rowNumToShowSelect');
+				var rowNumToShow = document.querySelector("input[name=rowNumToShow]");
+				var url = form.action;
+				function updatePageSize() {
+					if (form && pageSizeSelect) {
+						// 선택된 pageSizes 값을 가져옵니다.
+						var pageSizes = pageSizeSelect.value;
+						rowNumToShow.value = pageSizes;
 
-				if (form && pageSizeSelect) {
-					// 선택된 pageSizes 값을 가져옵니다.
-					var pageSizes = pageSizeSelect.value;
+						// 현재 URL을 가져와 URL 객체를 생성합니다.
+						// var url = new URL(window.location.href);
+						// var response.currentPage = url.searchParams.get('page') || 1;
 
-					// 현재 URL을 가져와 URL 객체를 생성합니다.
-					var url = new URL(window.location.href);
-					// var response.currentPage = url.searchParams.get('page') || 1;
+						// URL의 쿼리 파라미터를 초기화합니다.
+						// url.searchParams.delete('rowNumToShow');
+						// url.searchParams.delete('page');
 
-					// URL의 쿼리 파라미터를 초기화합니다.
-					url.searchParams.delete('size');
-					// url.searchParams.delete('page');
-
-					// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
-					// url.searchParams.append('page', response.currentPage);
-					url.searchParams.append('size', pageSizes);
-					console.log('url:'+url);
-					// URL을 폼의 action에 적용합니다.
-					form.action = url.toString();
-					form.submit();
-				} else {
-					console.error('Form or pageSizeSelect element not found.');
+						// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
+						// url.searchParams.append('page', response.currentPage);
+						// url.searchParams.append('rowNumToShow', pageSizes);
+						// console.log('url:'+url);
+						// URL을 폼의 action에 적용합니다.
+						form.action = url;
+						form.submit();
+					} else {
+						console.error('Form or pageSizeSelect element not found.');
+					}
 				}
-			}
-			// // $('#date_timepicker_start').datetimepicker();
-			window.onload = function() {
-				
+
 				console.log('value: ');
-				var pageSizeSelect = document.getElementById('pageSizeSelect');
+				
 				if (pageSizeSelect) {
 					pageSizeSelect.addEventListener('change', updatePageSize);
 				}
 
-				//
-				// var paginationItems = document.querySelectorAll('.pagination .page-item');
-				// var maxPagesToShow = 5;
-				// var response.totalPages = parseInt(document.getElementById('response.totalPages').value); // 페이지 총 수를 가져옵니다.
-				// var response.currentPage = parseInt(document.getElementById('response.currentPage').value); // 현재 페이지를 가져옵니다.
+				goList = function (thisPage) {
+					console.log("값: "+thisPage);
+					document.querySelector("input[name=thisPage]").value = thisPage;
+					console.log("thisPage값: "+document.querySelector("input[name=thisPage]").value);
+					form.action = url;
+					form.submit();
+				}
+			});
+			
+			// // $('#date_timepicker_start').datetimepicker();
+			// window.onload = function() {
+				
+				
+			// 	//
+			// 	// var paginationItems = document.querySelectorAll('.pagination .page-item');
+			// 	// var maxPagesToShow = 5;
+			// 	// var response.totalPages = parseInt(document.getElementById('response.totalPages').value); // 페이지 총 수를 가져옵니다.
+			// 	// var response.currentPage = parseInt(document.getElementById('response.currentPage').value); // 현재 페이지를 가져옵니다.
 
-				// // 페이지 번호의 범위를 설정합니다.
-				// var startPage = Math.max(1, response.currentPage - Math.floor(maxPagesToShow / 2));
-				// var endPage = Math.min(response.totalPages, startPage + maxPagesToShow - 1);
+			// 	// // 페이지 번호의 범위를 설정합니다.
+			// 	// var startPage = Math.max(1, response.currentPage - Math.floor(maxPagesToShow / 2));
+			// 	// var endPage = Math.min(response.totalPages, startPage + maxPagesToShow - 1);
 
-				// if (endPage - startPage + 1 < maxPagesToShow) {
-				// 	startPage = Math.max(1, endPage - maxPagesToShow + 1);
-				// }
+			// 	// if (endPage - startPage + 1 < maxPagesToShow) {
+			// 	// 	startPage = Math.max(1, endPage - maxPagesToShow + 1);
+			// 	// }
 
-				// paginationItems.forEach(function(item) {
-				// 	var pageNum = parseInt(item.textContent);
-				// 	if (pageNum < startPage || pageNum > endPage) {
-				// 		item.style.display = 'none';
-				// 	} else {
-				// 		item.style.display = 'inline-block';
-				// 	}
-				// });
-				// 페이지네이션 항목들을 선택합니다.
-				// var paginationItems = document.querySelectorAll('.pagination .page-item');
+			// 	// paginationItems.forEach(function(item) {
+			// 	// 	var pageNum = parseInt(item.textContent);
+			// 	// 	if (pageNum < startPage || pageNum > endPage) {
+			// 	// 		item.style.display = 'none';
+			// 	// 	} else {
+			// 	// 		item.style.display = 'inline-block';
+			// 	// 	}
+			// 	// });
+			// 	// 페이지네이션 항목들을 선택합니다.
+			// 	// var paginationItems = document.querySelectorAll('.pagination .page-item');
 
-				// // 한 번에 보여줄 최대 페이지 그룹 크기 설정 (5개씩 표시)
-				// var maxPagesToShow = 5;
+			// 	// // 한 번에 보여줄 최대 페이지 그룹 크기 설정 (5개씩 표시)
+			// 	// var maxPagesToShow = 5;
 
-				// // 페이지 총 수를 가져옵니다.
-				// var response.totalPages = parseInt(document.getElementById('response.totalPages').value);
+			// 	// // 페이지 총 수를 가져옵니다.
+			// 	// var response.totalPages = parseInt(document.getElementById('response.totalPages').value);
 
-				// // 현재 페이지를 가져옵니다.
-				// var response.currentPage = parseInt(document.getElementById('response.currentPage').value);
+			// 	// // 현재 페이지를 가져옵니다.
+			// 	// var response.currentPage = parseInt(document.getElementById('response.currentPage').value);
 
-				// // 페이지 그룹의 시작 페이지 설정
-				// var startPage;
-				// var endPage;
+			// 	// // 페이지 그룹의 시작 페이지 설정
+			// 	// var startPage;
+			// 	// var endPage;
 
-				// // 첫 번째 페이지인 경우: 1, 2, 3, 4, 5
-				// if (response.currentPage === 1) {
-				// 	startPage = 1;
-				// 	endPage = Math.min(maxPagesToShow, response.totalPages);
-				// }
-				// // 두 번째 페이지인 경우: 1, 2, 3, 4, 5
-				// else if (response.currentPage === 2) {
-				// 	startPage = 1;
-				// 	endPage = Math.min(maxPagesToShow, response.totalPages);
-				// }
-				// // 마지막 두 번째 페이지인 경우: 뒤쪽으로 3개, 앞쪽으로 1개 (response.totalPages-4부터 response.totalPages)
-				// else if (response.currentPage === response.totalPages - 1) {
-				// 	startPage = Math.max(response.totalPages - maxPagesToShow + 1, 1);
-				// 	endPage = response.totalPages;
-				// }
-				// // 마지막 페이지인 경우: 뒤쪽으로 4개 (response.totalPages-4부터 response.totalPages)
-				// else if (response.currentPage === response.totalPages) {
-				// 	startPage = Math.max(response.totalPages - maxPagesToShow + 1, 1);
-				// 	endPage = response.totalPages;
-				// }
-				// // 중간 페이지들: 기준에 따라 범위 설정
-				// else {
-				// 	// 현재 페이지를 중심으로 5개의 그룹을 보여줌
-				// 	startPage = Math.max(1, response.currentPage - Math.floor(maxPagesToShow / 2));
-				// 	endPage = Math.min(startPage + maxPagesToShow - 1, response.totalPages);
+			// 	// // 첫 번째 페이지인 경우: 1, 2, 3, 4, 5
+			// 	// if (response.currentPage === 1) {
+			// 	// 	startPage = 1;
+			// 	// 	endPage = Math.min(maxPagesToShow, response.totalPages);
+			// 	// }
+			// 	// // 두 번째 페이지인 경우: 1, 2, 3, 4, 5
+			// 	// else if (response.currentPage === 2) {
+			// 	// 	startPage = 1;
+			// 	// 	endPage = Math.min(maxPagesToShow, response.totalPages);
+			// 	// }
+			// 	// // 마지막 두 번째 페이지인 경우: 뒤쪽으로 3개, 앞쪽으로 1개 (response.totalPages-4부터 response.totalPages)
+			// 	// else if (response.currentPage === response.totalPages - 1) {
+			// 	// 	startPage = Math.max(response.totalPages - maxPagesToShow + 1, 1);
+			// 	// 	endPage = response.totalPages;
+			// 	// }
+			// 	// // 마지막 페이지인 경우: 뒤쪽으로 4개 (response.totalPages-4부터 response.totalPages)
+			// 	// else if (response.currentPage === response.totalPages) {
+			// 	// 	startPage = Math.max(response.totalPages - maxPagesToShow + 1, 1);
+			// 	// 	endPage = response.totalPages;
+			// 	// }
+			// 	// // 중간 페이지들: 기준에 따라 범위 설정
+			// 	// else {
+			// 	// 	// 현재 페이지를 중심으로 5개의 그룹을 보여줌
+			// 	// 	startPage = Math.max(1, response.currentPage - Math.floor(maxPagesToShow / 2));
+			// 	// 	endPage = Math.min(startPage + maxPagesToShow - 1, response.totalPages);
 
-				// 	// endPage - startPage가 5 미만인 경우를 처리하여 startPage 조정
-				// 	if (endPage - startPage + 1 < maxPagesToShow) {
-				// 		startPage = Math.max(1, endPage - maxPagesToShow + 1);
-				// 	}
-				// }
+			// 	// 	// endPage - startPage가 5 미만인 경우를 처리하여 startPage 조정
+			// 	// 	if (endPage - startPage + 1 < maxPagesToShow) {
+			// 	// 		startPage = Math.max(1, endPage - maxPagesToShow + 1);
+			// 	// 	}
+			// 	// }
 
-				// 각 페이지네이션 항목에 대해 반복문을 실행합니다.
-				// paginationItems.forEach(function(item) {
-				// 	// 항목의 페이지 번호를 가져옵니다.
-				// 	var pageNum = parseInt(item.textContent);
+			// 	// 각 페이지네이션 항목에 대해 반복문을 실행합니다.
+			// 	// paginationItems.forEach(function(item) {
+			// 	// 	// 항목의 페이지 번호를 가져옵니다.
+			// 	// 	var pageNum = parseInt(item.textContent);
 
-				// 	// 현재 페이지 번호가 현재 그룹의 시작과 끝 페이지 범위 안에 있는 경우 표시합니다.
-				// 	if (pageNum >= startPage && pageNum <= endPage) {
-				// 		item.style.display = 'inline-block';
-				// 	} else {
-				// 		// 범위를 벗어난 경우 항목을 숨깁니다.
-				// 		item.style.display = 'none';
-				// 	}
-				// });
+			// 	// 	// 현재 페이지 번호가 현재 그룹의 시작과 끝 페이지 범위 안에 있는 경우 표시합니다.
+			// 	// 	if (pageNum >= startPage && pageNum <= endPage) {
+			// 	// 		item.style.display = 'inline-block';
+			// 	// 	} else {
+			// 	// 		// 범위를 벗어난 경우 항목을 숨깁니다.
+			// 	// 		item.style.display = 'none';
+			// 	// 	}
+			// 	// });
+				
 
-
-			};
+			// };
 		</script>
 		<!-- <script>
 			var response.currentPageIndex = 0; // 현재 페이지 번호 인덱스

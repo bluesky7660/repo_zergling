@@ -6,19 +6,7 @@
 <!-- xml에서 주석 단축키 : ctrl + shift + c -->
 
 	<resultMap type="com.exion.infra.code.CodeDto" id="resultMapObj"></resultMap>
-	
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.seq
-			,a.codeName
-			,a.codeOrder
-			,a.codeDesc
-			,b.codeGroupName
-			,a.useNy
-		    ,a.delNy
-			,a.regDate
-			,a.modDate
-			,a.codeGroup_seq
+	<sql id="selectCommon">
 		FROM
 			commoncode a
 			left join codegroup b on a.codeGroup_seq = b.seq
@@ -43,12 +31,10 @@
 				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 			</choose>
-		ORDER BY
-			<!-- a.seq desc --> 
-			a.codeGroup_seq desc
-			, a.codeOrder desc
-	</select>
-	<select id="selectList2" resultMap="resultMapObj">
+	</sql>
+	<select id="selectList" resultMap="resultMapObj">
+		<!-- select aa.* from ( -->
+		<include refid="base.selectListUpperForMysql"/>
 		SELECT
 			a.seq
 			,a.codeName
@@ -60,80 +46,19 @@
 			,a.regDate
 			,a.modDate
 			,a.codeGroup_seq
-		FROM
-			commoncode a
-			left join codegroup b on a.codeGroup_seq = b.seq
-		WHERE 1=1
-			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
-			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
-			<if test="searchKeyword != null and !searchKeyword.equals('')">
-				<choose>
-					<when test="keywordType == null">
-						AND(
-							a.seq Like CONCAT('%',#{searchKeyword},'%')
-							OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
-							OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
-						)
-					</when>
-					<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
-					<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
-					<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
-				</choose>
-			</if>
-			<if test="(dateStart != null and !dateStart.equals(''))or(dateEnd != null and !dateEnd.equals(''))">
-				<choose>
-					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				</choose>
-			</if>
-			
+		<include refid="selectCommon"/>
 		ORDER BY
+			<!-- a.seq desc --> 
 			a.codeGroup_seq desc
 			, a.codeOrder desc
-		LIMIT #{limit} OFFSET #{offset}
+		<include refid="base.selectListLowerForMysql"/>
 	</select>
-	<select id="listCount" resultType="int">
-        SELECT COUNT(*) 
-        FROM 
-			commoncode a
-			join codegroup b on a.codeGroup_seq = b.seq
-        WHERE 1=1
-			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
-			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
-			<choose>
-				<when test="keywordType == null">
-					AND(
-						a.seq Like CONCAT('%',#{searchKeyword},'%')
-						OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
-						OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
-					)
-				</when>
-				<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
-				<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
-				<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
-			</choose>
-			<choose>
-				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-			</choose>
+	
+	<select id="listCount">
+        SELECT COUNT(*)
+        <include refid="selectCommon"/>
     </select>
-    <!-- <select id="listCount" resultType="int">
-        SELECT COUNT(*) 
-        FROM commoncode a
-        left join codegroup b on a.codeGroup_seq = b.seq
-        WHERE 1=1
-			<if test="searchKeyword != null and searchKeyword != ''">
-			    AND ( a.seq = #{searchKeyword})
-					    OR b.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-					    OR a.codeName LIKE CONCAT('%', #{searchKeyword}, '%'))
-			</if>
-			<if test="sUseNy != null and !sUseNy.equals('')">
-				AND a.useNy = #{sUseNy}
-			</if>
-			<if test="sDelNy != null and !sDelNy.equals('')">
-				AND a.delNy = #{sDelNy}
-			</if>
-    </select> -->
+    
 	<insert id="insert">
 		insert into commoncode(
 			codeName

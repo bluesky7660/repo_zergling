@@ -4,17 +4,17 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class CodeGroupVo {
+public class CodeGroupVo extends BaseVo {
 	private String seq;
 	//검색
 	private String searchKeyword; // 검색 키워드
     private Integer dateType;	//검색 날짜 종류
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    private Date dateStart;		//날짜 시작일
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    private Date dateEnd;		//날짜 종료일
-    private String dateStart;		//날짜 시작일
-    private String dateEnd;		//날짜 종료일
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateStart;		//날짜 시작일
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateEnd;		//날짜 종료일
+//    private String dateStart;		//날짜 시작일
+//    private String dateEnd;		//날짜 종료일
     private Integer keywordType;	//검색키워드 타입
     private Integer sDelNy;			//검색 조건[삭제] 
     private Integer sUseNy;			//검색 조건[사용]
@@ -47,30 +47,30 @@ public class CodeGroupVo {
 		this.dateType = dateType;
 	}
 	
-	public String getDateStart() {
-		return dateStart;
-	}
-	public void setDateStart(String dateStart) {
-		this.dateStart = dateStart;
-	}
-	public String getDateEnd() {
-		return dateEnd;
-	}
-	public void setDateEnd(String dateEnd) {
-		this.dateEnd = dateEnd;
-	}
-	//	public Date getDateStart() {
+//	public String getDateStart() {
 //		return dateStart;
 //	}
-//	public void setDateStart(Date dateStart) {
+//	public void setDateStart(String dateStart) {
 //		this.dateStart = dateStart;
 //	}
-//	public Date getDateEnd() {
+//	public String getDateEnd() {
 //		return dateEnd;
 //	}
-//	public void setDateEnd(Date dateEnd) {
+//	public void setDateEnd(String dateEnd) {
 //		this.dateEnd = dateEnd;
 //	}
+	public Date getDateStart() {
+		return dateStart;
+	}
+	public void setDateStart(Date dateStart) {
+		this.dateStart = dateStart;
+	}
+	public Date getDateEnd() {
+		return dateEnd;
+	}
+	public void setDateEnd(Date dateEnd) {
+		this.dateEnd = dateEnd;
+	}
 	public Integer getKeywordType() {
 		return keywordType;
 	}

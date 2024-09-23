@@ -10,8 +10,15 @@ public class ProductService {
 	@Autowired
 	ProductDao productDao;
 	
-	public int insertProd(ProductDto productDto) {
-		return productDao.insertProd(productDto);
+	@Autowired
+	ProductAuthorDao productAuthorDao;
+	
+	public int insertProd(ProductDto productDto,ProductAuthorDto productAuthorDto) {
+		int a = productDao.insertProd(productDto);
+		productAuthorDto.setProduct_seq(productDto.getSeq());
+		productAuthorDto.setAuthor_seq(productDto.getAuthor_seq());
+		productAuthorDao.insert(productAuthorDto);
+		return a;
 	}
 //	public List<ProductDto> prodList(){
 //		return productDao.prodList();

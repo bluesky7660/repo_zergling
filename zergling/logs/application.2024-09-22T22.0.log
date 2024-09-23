@@ -1596,3 +1596,7 @@
 		WHERE 1 = 1
 			and a.codeGroup_seq = 12
  {executed in 1 msec} 
+2024-09-22T22:34:40.910 [RMI TCP Connection(109)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2024-09-22T22:34:40.912 [RMI TCP Connection(109)-127.0.0.1] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-22T22:34:40.993 [RMI TCP Connection(109)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown initiated... 
+2024-09-22T22:34:40.996 [RMI TCP Connection(109)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown completed. 

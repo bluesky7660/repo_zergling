@@ -491,7 +491,7 @@
 							<div class="col-sm-12 col-12">
 								<!-- Card start -->
 								<div class="card border">
-									<form method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
+									<form id="form" method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
 										<div class="card-header bg-light">
 											<h2 class="card-title">
 												Code
@@ -562,19 +562,24 @@
 										<div class="card-body">
 											<div class="row justify-content-between">
 												<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div> -->
-												<div class="col-6 col-lg-3">Total: <span th:text="${count}">171</span></div>
+												<div class="col-6 col-lg-3">Total: <span th:text="${count.totalRows}">171</span></div>
 												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-													<select name="" id="">
-														<option value="">2</option>	
+													<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
+															<option value="2" th:selected="${count.rowNumToShow == 2}">2</option>
+															<option value="3" th:selected="${count.rowNumToShow == 3}">3</option>
+															<option value="5" th:selected="${count.rowNumToShow == 5}">5</option>
+															<option value="10" th:selected="${count.rowNumToShow == 10}">10</option>
+															<option value="20" th:selected="${count.rowNumToShow == 20}">20</option>
+															<option value="50" th:selected="${count.rowNumToShow == 50}">50</option>
 													</select>
 													<!-- <form method="get" action="/v1/infra/code/codeXdmList" id="pagination-form">
-														<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
-															<option value="2" th:selected="${response.pageSize == 2}">2</option>
-															<option value="3" th:selected="${response.pageSize == 3}">3</option>
-															<option value="5" th:selected="${response.pageSize == 5}">5</option>
-															<option value="10" th:selected="${response.pageSize == 10}">10</option>
-															<option value="20" th:selected="${response.pageSize == 20}">20</option>
-															<option value="50" th:selected="${response.pageSize == 50}">50</option>
+														<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="size">
+															<option value="2" th:selected="${response.rowNumToShow == 2}">2</option>
+															<option value="3" th:selected="${response.rowNumToShow == 3}">3</option>
+															<option value="5" th:selected="${response.rowNumToShow == 5}">5</option>
+															<option value="10" th:selected="${response.rowNumToShow == 10}">10</option>
+															<option value="20" th:selected="${response.rowNumToShow == 20}">20</option>
+															<option value="50" th:selected="${response.rowNumToShow == 50}">50</option>
 														</select>
 														<input type="hidden" name="page" id="pageNumber" value="1" />
 													</form> -->
@@ -609,7 +614,7 @@
 														</tr>
 														<tr th:each="listC,iter : ${response}" th:if="${!#lists.isEmpty(response)}">
 															<td><input type="checkbox"></td>
-															<td th:text="${iter.size - iter.index}">171</td>
+															<td th:text="${count.totalRows - (((count.thisPage -1) * count.rowNumToShow) +iter.index)}">171</td>
 															<td th:text="${listC.codeGroup_seq}">57</td>
 															<td th:text="${listC.codeGroupName}"></td>
 															<td th:text="${listC.seq}">278</td>
@@ -630,54 +635,106 @@
 											
 											<div class="dataTable-bottom">
 												<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
-													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-														<li class="paginate_button page-item" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=1, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+													<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														<li class="paginate_button page-item" th:classappend="${count.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(thisPage=1, rowNumToShow=${count.rowNumToShow})}" th:if="${count.thisPage > 1}">
 																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
 															</a>
-															<a class="page-link" th:if="${response.currentPage <= 1}">
+															<a class="page-link" th:if="${count.thisPage <= 1}">
 																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
 															</a>
 														</li>
-														<li class="paginate_button previous page-item" id="previousPage" th:classappend="${response.currentPage > 1} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage - 1}, size=${response.pageSize})}" th:if="${response.currentPage > 1}">
+														<li class="paginate_button previous page-item" id="previousPage" th:classappend="${count.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(thisPage=${count.thisPage - 1}, rowNumToShow=${count.rowNumToShow})}" th:if="${count.thisPage > 1}">
 																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 															</a>
-															<a class="page-link" th:if="${response.currentPage <= 1}">
+															<a class="page-link" th:if="${count.thisPage <= 1}">
 																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 															</a>
 														</li>
 														<li th:each="i : ${#numbers.sequence(
-																			response.currentPage == 1 ? 1 : 
-																			response.currentPage == 2 ? 1 : 
-																			response.currentPage == response.totalPages - 1 ? response.currentPage - 3 : 
-																			response.currentPage == response.totalPages ? response.currentPage - 4 : 
-																			response.currentPage - 2, 
+																			count.thisPage == 1 ? 1 : 
+																			count.thisPage == 2 ? 1 : 
+																			count.thisPage == count.totalPages - 1 ? count.thisPage - 3 : 
+																			count.thisPage == count.totalPages ? count.thisPage - 4 : 
+																			count.thisPage - 2, 
 																			
-																			response.currentPage == 1 ? 5 : 
-																			response.currentPage == 2 ? 5 : 
-																			response.currentPage == response.totalPages - 1 ? response.totalPages : 
-																			response.currentPage == response.totalPages ? response.totalPages : 
-																			response.currentPage + 2
+																			count.thisPage == 1 ? 5 : 
+																			count.thisPage == 2 ? 5 : 
+																			count.thisPage == count.totalPages - 1 ? count.totalPages : 
+																			count.thisPage == count.totalPages ? count.totalPages : 
+																			count.thisPage + 2
 																		)}"
 															class="paginate_button page-item"
-															th:if="${i > 0 && i <= response.totalPages}" 
-															th:classappend="${i == response.currentPage} ? 'active' : ''">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${i}, size=${response.pageSize})}" th:text="${i}"></a>
+															th:if="${i > 0 && i <= count.totalPages}" 
+															th:classappend="${i == count.thisPage} ? 'active' : ''">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(thisPage=${i}, rowNumToShow=${count.rowNumToShow})}" th:text="${i}"></a>
 														</li>
-														<li class="paginate_button next page-item" id="nextPage" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.currentPage + 1}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+														<li class="paginate_button next page-item" id="nextPage" th:classappend="${count.thisPage < count.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(thisPage=${count.thisPage + 1}, rowNumToShow=${count.rowNumToShow})}" th:if="${count.thisPage < count.totalPages}">
 																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 															</a>
-															<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+															<a class="page-link" th:if="${count.thisPage >= count.totalPages}">
 																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
 															</a>
 														</li>
-														<li class="paginate_button page-item" th:classappend="${response.currentPage < response.totalPages} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${response.totalPages}, size=${response.pageSize})}" th:if="${response.currentPage < response.totalPages}">
+														<li class="paginate_button page-item" th:classappend="${count.thisPage < count.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(thisPage=${count.totalPages}, rowNumToShow=${count.rowNumToShow})}" th:if="${count.thisPage < count.totalPages}">
 																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 															</a>
-															<a class="page-link" th:if="${response.currentPage >= response.totalPages}">
+															<a class="page-link" th:if="${count.thisPage >= count.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+															</a>
+														</li>
+													</ul>
+													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+														<li class="paginate_button page-item" th:classappend="${count.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=1, size=${count.rowNumToShow})}" th:if="${count.thisPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${count.thisPage <= 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button previous page-item" id="previousPage" th:classappend="${count.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${count.thisPage - 1}, size=${count.rowNumToShow})}" th:if="${count.thisPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${count.thisPage <= 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+														</li>
+														<li th:each="i : ${#numbers.sequence(
+																			count.thisPage == 1 ? 1 : 
+																			count.thisPage == 2 ? 1 : 
+																			count.thisPage == count.totalPages - 1 ? count.thisPage - 3 : 
+																			count.thisPage == count.totalPages ? count.thisPage - 4 : 
+																			count.thisPage - 2, 
+																			
+																			count.thisPage == 1 ? 5 : 
+																			count.thisPage == 2 ? 5 : 
+																			count.thisPage == count.totalPages - 1 ? count.totalPages : 
+																			count.thisPage == count.totalPages ? count.totalPages : 
+																			count.thisPage + 2
+																		)}"
+															class="paginate_button page-item"
+															th:if="${i > 0 && i <= count.totalPages}" 
+															th:classappend="${i == count.thisPage} ? 'active' : ''">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${i}, size=${count.rowNumToShow})}" th:text="${i}"></a>
+														</li>
+														<li class="paginate_button next page-item" id="nextPage" th:classappend="${count.thisPage < count.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${count.thisPage + 1}, size=${count.rowNumToShow})}" th:if="${count.thisPage < count.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${count.thisPage >= count.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button page-item" th:classappend="${count.thisPage < count.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${count.totalPages}, size=${count.rowNumToShow})}" th:if="${count.thisPage < count.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${count.thisPage >= count.totalPages}">
 																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 															</a>
 														</li>
@@ -744,43 +801,46 @@
 					timepicker:false,
 					format:'Y-m-d'
 				});
-			});
-			function updatePageSize() {
-				var form = document.getElementById('pagination-form');
-				var pageSizeSelect = document.getElementById('pageSizeSelect');
-				console.log("1");
-				if (form && pageSizeSelect) {
-					
-					// 선택된 pageSizes 값을 가져옵니다.
-					var pageSizes = pageSizeSelect.value;
+				function updaterowNumToShow() {
+					var form = document.getElementById('form');
+					var rowNumToShowSelect = document.getElementById('rowNumToShowSelect');
+					console.log(form);
+					console.log(rowNumToShowSelect);
+					if (form && rowNumToShowSelect) {
+						
+						// 선택된 rowNumToShows 값을 가져옵니다.
+						var rowNumToShows = rowNumToShowSelect.value;
 
-					// 현재 URL을 가져와 URL 객체를 생성합니다.
-					var url = new URL(window.location.href);
+						// 현재 URL을 가져와 URL 객체를 생성합니다.
+						var url = new URL(window.location.href);
 
-					// URL의 쿼리 파라미터를 초기화합니다.
-					url.searchParams.delete('size');
+						// URL의 쿼리 파라미터를 초기화합니다.
+						url.searchParams.delete('rowNumToShow');
 
-					// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
-					url.searchParams.append('size', pageSizes);
-					console.log('url:'+url);
-					// URL을 폼의 action에 적용합니다.
-					form.action = url.toString();
-					form.submit();
-				} else {
-					console.error('Form or pageSizeSelect element not found.');
+						// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
+						url.searchParams.append('rowNumToShow', rowNumToShows);
+						console.log('url:'+url);
+						// URL을 폼의 action에 적용합니다.
+						form.action = url.toString();
+						form.submit();
+					} else {
+						console.error('Form or rowNumToShowSelect element not found.');
+					}
 				}
-			}
+				if (rowNumToShowSelect) {
+					rowNumToShowSelect.addEventListener('change', updaterowNumToShow);
+					
+				}
+			});
+			
 			// window.addEventListener('load', function() {
 
 			// });
 			window.onload = function() {
 				
-				var pageSizeSelect = document.getElementById('pageSizeSelect');
-				console.log('pageSizeSelect: '+pageSizeSelect);
-				if (pageSizeSelect) {
-					pageSizeSelect.addEventListener('change', updatePageSize);
-					
-				}
+				var rowNumToShowSelect = document.getElementById('rowNumToShowSelect');
+				console.log('rowNumToShowSelect: '+rowNumToShowSelect);
+				
 			}
 			// $(document).ready(function(){
 

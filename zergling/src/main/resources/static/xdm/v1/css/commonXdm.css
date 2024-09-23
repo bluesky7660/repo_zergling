@@ -1,3 +1,8 @@
+/*페이징관련*/
+.page-item .page-link {
+    cursor: pointer;
+}
+
 /*작가리스트관련*/
 .authorList{
     display: flex;

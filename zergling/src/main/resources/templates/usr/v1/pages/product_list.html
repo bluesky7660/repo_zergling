@@ -213,17 +213,17 @@
                                     <li class="bsetNyBtn" th:classappend="${vo.bestNy == 1} ? 'active' : '' ">
                                         <label for="inputBestNy">베스트셀러</label>
                                         <!-- <input id="inputBestNy" type="radio" name="bestNy" value="1" th:checked="${vo.bestNy==1}"> -->
-                                        <input id="inputBestNy" type="hidden" name="bestNy"  value="0">
+                                        <input id="inputBestNy" type="hidden" name="bestNy"  value="0" th:value="${vo.bestNy}">
                                     </li>
                                     <li class="newNyBtn" th:classappend="${vo.newNy == 1} ? 'active' : '' ">
                                         <label for="inputNewNy">신상품</label>
                                         <!-- <input id="inputTodayPickNy" type="radio" name="newNy" value="1" th:checked="${vo.newNy==1}"> -->
-                                        <input id="inputNewNy" type="hidden" name="newNy"  value="0">
+                                        <input id="inputNewNy" type="hidden" name="newNy"  value="0" th:value="${vo.newNy}">
                                     </li>
                                     <li class="todayPickNyBtn" th:classappend="${vo.todayPickNy == 1} ? 'active' : '' ">
                                         <label for="inputTodayPickNy">Today's Pick</label>
                                         <!-- <input id="inputTodayPickNy" type="radio" name="todayPickNy" value="1" th:checked="${vo.todayPickNy==1}"> -->
-                                        <input id="inputTodayPickNy" type="hidden" name="todayPickNy"  value="0">
+                                        <input id="inputTodayPickNy" type="hidden" name="todayPickNy"  value="0" th:value="${vo.todayPickNy}">
                                     </li>
                                 </ul>
                                 <div class="bage_search_box">
@@ -236,19 +236,19 @@
                                             </label>
                                         </li> -->
                                         <li class="bage_item">
-                                            <label for="bageItem1">
+                                            <label for="bageItem1" th:classappend="${vo.mdPickNy == 1} ? 'active' : '' ">
                                                 <span>MD의 선택</span>
                                                 <input type="checkbox" name="mdPickNy" id="bageItem1" th:value="${vo.mdPickNy}">
                                             </label>
                                         </li>
                                         <li class="bage_item">
-                                            <label for="bageItem2">
+                                            <label for="bageItem2" th:classappend="${vo.freeShippingNy == 1} ? 'active' : '' ">
                                                 <span>무료배송</span>
                                                 <input type="checkbox" name="freeShippingNy" id="bageItem2" th:value="${vo.freeShippingNy}">
                                             </label>
                                         </li>
                                         <li class="bage_item">
-                                            <label for="bageItem3">
+                                            <label for="bageItem3" th:classappend="${vo.taxDeductionNy == 1} ? 'active' : '' ">
                                                 <span>소득공제</span>
                                                 <input type="checkbox" name="taxDeductionNy" id="bageItem3" th:value="${vo.taxDeductionNy}">
                                             </label>
@@ -690,32 +690,63 @@
 
             const bages = document.querySelectorAll(".bage_item input");
             const checkBageBox = document.querySelector(".selectedBages_list");
+            
             bages.forEach((bage) => {
-                bage.addEventListener("change", function(event) {
-                    this.value = 1;
+                if(bage.value == 1){
+                    bage.checked = true;
+                    bage.value = 1;
+                    const parentElement = bage.parentElement;
+                    const selectedItem = document.createElement("div");
+                    selectedItem.className = "selected-item";
+                    selectedItem.textContent = parentElement.textContent;
+                    checkBageBox.appendChild(selectedItem);
+
+                    // const selectedItem = document.createElement("div");
+                    // selectedItem.className = "selected-item";
+                    // selectedItem.textContent = parentElement.textContent;
+                    // checkBageBox.appendChild(selectedItem);
+
+                    // 선택된 항목 클릭 시 제거
+                    selectedItem.addEventListener("click", function(event) {
+                        this.remove();
+                        parentElement.classList.remove("active");
+                        bage.checked = false;
+                        form.action = "product_list";
+                        form.submit();
+                    });
+                }
+                
+
+                bage.addEventListener("click", function(event) {
+                    
                     const parentElement = this.parentElement;
                     if (this.checked) {
-                        parentElement.querySelector("span").style.color = "#fff";
-                        parentElement.style.backgroundColor = "#545bb3";
-                        parentElement.style.borderColor = "#545bb3";
+                        this.value = 1;
+                        // parentElement.querySelector("span").style.color = "#fff";
+                        // parentElement.style.backgroundColor = "#545bb3";
+                        // parentElement.style.borderColor = "#545bb3";
+                        parentElement.classList.add("active");
                         const selectedItem = document.createElement("div");
                         selectedItem.className = "selected-item";
                         selectedItem.textContent = parentElement.textContent;
+                        // selectedItem.dataset.value = this.value;
                         checkBageBox.appendChild(selectedItem);
 
                         selectedItem.addEventListener("click", function(event) {
+                            bage.value = 0;
                             this.remove();
                             bage.checked = false;
-                            parentElement.querySelector("span").style.color = "#555";
-                            parentElement.style.backgroundColor = "";
-                            parentElement.style.borderColor = "#aaa";
+                            parentElement.classList.remove("active");
+                            // parentElement.querySelector("span").style.color = "#555";
+                            // parentElement.style.backgroundColor = "";
+                            // parentElement.style.borderColor = "#aaa";
                         });
                     } else {
                         this.value = 0;
-                        parentElement.querySelector("span").style.color = "#555";
-                        parentElement.style.backgroundColor = "";
-                        parentElement.style.borderColor = "#aaa";
-
+                        // parentElement.querySelector("span").style.color = "#555";
+                        // parentElement.style.backgroundColor = "";
+                        // parentElement.style.borderColor = "#aaa";
+                        parentElement.classList.remove("active");
                         const selectedItems = checkBageBox.querySelectorAll(".selected-item");
                         selectedItems.forEach(item => {
                             if (item.textContent === parentElement.textContent) {
