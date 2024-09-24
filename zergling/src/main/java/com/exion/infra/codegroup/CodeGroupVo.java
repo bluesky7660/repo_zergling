@@ -9,10 +9,10 @@ public class CodeGroupVo extends BaseVo {
 	//검색
 	private String searchKeyword; // 검색 키워드
     private Integer dateType;	//검색 날짜 종류
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateStart;		//날짜 시작일
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateEnd;		//날짜 종료일
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    private Date dateStart;		//날짜 시작일
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    private Date dateEnd;		//날짜 종료일
 //    private String dateStart;		//날짜 시작일
 //    private String dateEnd;		//날짜 종료일
     private Integer keywordType;	//검색키워드 타입
@@ -59,18 +59,18 @@ public class CodeGroupVo extends BaseVo {
 //	public void setDateEnd(String dateEnd) {
 //		this.dateEnd = dateEnd;
 //	}
-	public Date getDateStart() {
-		return dateStart;
-	}
-	public void setDateStart(Date dateStart) {
-		this.dateStart = dateStart;
-	}
-	public Date getDateEnd() {
-		return dateEnd;
-	}
-	public void setDateEnd(Date dateEnd) {
-		this.dateEnd = dateEnd;
-	}
+//	public Date getDateStart() {
+//		return dateStart;
+//	}
+//	public void setDateStart(Date dateStart) {
+//		this.dateStart = dateStart;
+//	}
+//	public Date getDateEnd() {
+//		return dateEnd;
+//	}
+//	public void setDateEnd(Date dateEnd) {
+//		this.dateEnd = dateEnd;
+//	}
 	public Integer getKeywordType() {
 		return keywordType;
 	}

@@ -14,6 +14,13 @@ public class UserService {
 		List<UserDto> users = userDao.selectUser(vo);
 		return users;
 	}
+	public List<UserDto> selectXdmUser(UserVo vo){
+		List<UserDto> users = userDao.selectXdmUser(vo);
+		return users;
+	}
+	public int listCount(UserVo vo) {
+		return userDao.listCount(vo);
+	}
 	public int insert(UserDto userDto) {
 		return userDao.insert(userDto);
 	}

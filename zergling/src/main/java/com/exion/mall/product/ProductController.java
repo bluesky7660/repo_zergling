@@ -17,6 +17,8 @@ public class ProductController {
 	AuthorService authorService;
 	@Autowired
 	CodeService codeService;
+	@Autowired
+	ProductAuthorService productAuthorService ;
 	
 	@RequestMapping(value = "v1/mall/product/productXdmList")
 	public String productXdmList(Model model,ProductVo vo){
@@ -34,23 +36,26 @@ public class ProductController {
 	@RequestMapping(value = "v1/mall/product/productXdmInst")
 	public String productXdmInst(ProductDto productDto,ProductAuthorDto productAuthorDto) {
 		productService.insertProd(productDto,productAuthorDto);
+		
 		return "redirect:productXdmList";
 	}
 	
 	@RequestMapping(value = "v1/mall/product/productXdmMfom")
-	public String productXdmMfom(Model model, ProductDto productDto , AuthorDto authorDto, AuthorVo vo) {
+	public String productXdmMfom(Model model, ProductDto productDto , AuthorDto authorDto, AuthorVo vo,ProductAuthorDto productAuthorDto) {
+//		System.out.println("리스트1: "+productService.prodOne(productDto).getAuthor_seq());
 		model.addAttribute("item", productService.prodOne(productDto));
-//		System.out.println("1: "+productService.prodOne(productDto).getProduct_seq());
+		System.out.println("리스트: "+productAuthorService.productAuthorSelected(productAuthorDto).get(0).getAuthor_seq());
 		model.addAttribute("publishers", codeService.publisherList());
-		model.addAttribute("author", authorService.authorOne(authorDto));
+//		model.addAttribute("author", authorService.authorOne(authorDto));
+		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
 		model.addAttribute("authorList", authorService.authorList(vo));
 		model.addAttribute("prodTypes", codeService.prodTypeList());
 		return "xdm/v1/mall/product/productXdmMfom";
 	}
 	
 	@RequestMapping(value = "v1/mall/product/productXdmUpdt")
-	public String productXdmUpdt(ProductDto productDto) {
-		productService.update(productDto);
+	public String productXdmUpdt(ProductDto productDto,ProductAuthorDto productAuthorDto) {
+		productService.update(productDto,productAuthorDto);
 		return "redirect:productXdmList";
 	}
 }

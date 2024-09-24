@@ -2,7 +2,8 @@ package com.exion.infra.codegroup;
 
 import java.util.Date;
 
-public class CodeGroupDto extends PagingResponseDto {
+public class CodeGroupDto {
+//public class CodeGroupDto extends PagingResponseDto {
 	private String seq;
 	private String codeGroupName;
 	private Integer groupOrder;

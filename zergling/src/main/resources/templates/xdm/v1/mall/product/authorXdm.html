@@ -476,7 +476,9 @@
 							<div class="col-sm-12 col-12">
 								<!-- Card start -->
 								<div class="card border">
-									<form method="post" autocomplete="off" action="/v1/mall/product/authorXdmList">
+									<form id="form" method="post" autocomplete="off" action="/v1/mall/product/authorXdmList">
+										<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+										<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 										<div class="card-header bg-light">
 											<h2 class="card-title">
 												작가 리스트
@@ -540,13 +542,15 @@
 										</div>
 										<div class="card-body">
 											<div class="row justify-content-between">
-												<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
+												<div class="col-6 col-lg-3">Total: <span th:text="${vo.totalRows}"></span></div>
 												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-													<select class="dataTable-selector form-select" name="" id="">
-														<option value="5">5</option>
-														<option value="10">10</option>
-														<option value="15">15</option>
-														<option value="20">20</option>
+													<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
+														<option value="2" th:selected="${vo.rowNumToShow == 2}">2</option>
+														<option value="3" th:selected="${vo.rowNumToShow == 3}">3</option>
+														<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
+														<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
+														<option value="20" th:selected="${vo.rowNumToShow == 20}">20</option>
+														<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
 													</select>
 												</div>
 											</div>
@@ -558,6 +562,7 @@
 																<input type="checkbox">
 															</th>
 															<th><span>#</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">작가직업</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">작가이름</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">작품</span></th>
@@ -570,8 +575,9 @@
 														<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
 															<td colspan="14"><p>데이터가 없습니다.</p></td>
 														</tr>
-														<tr th:each="list : ${list}" th:if="${!#lists.isEmpty(list)}">
+														<tr th:each="list,iter : ${list}" th:if="${!#lists.isEmpty(list)}">
 															<td><input type="checkbox"></td>
+															<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) + iter.index)}"></td>
 															<td th:text="${list.seq}"></td>
 															<td th:text="${list.codeName}"></td>
 															<td  class="td_spotlight">
@@ -593,35 +599,57 @@
 											<div class="dataTable-bottom">
 												<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
 													<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-														<li class="paginate_button previous page-item" id="previousPage">
-															<a class="page-link" href="#">
+														<li class="paginate_button page-item" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('1')|" href="javascript:goList(1)" th:if="${vo.thisPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage <= 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button previous page-item" id="previousPage" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('${vo.thisPage - 1}')|" href="javascript:goList(${vo.thisPage - 1})" th:if="${vo.thisPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage <= 1}">
 																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 															</a>
 														</li>
-														<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-														<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
-														<li class="paginate_button next page-item" id="nextPage">
-															<a class="page-link" href="#">
+														<li th:each="i : ${#numbers.sequence(
+																			vo.thisPage == 1 ? 1 : 
+																			vo.thisPage == 2 ? 1 : 
+																			vo.thisPage == vo.totalPages - 1 ? vo.thisPage - 3 : 
+																			vo.thisPage == vo.totalPages ? vo.thisPage - 4 : 
+																			vo.thisPage - 2, 
+																			
+																			vo.thisPage == 1 ? 5 : 
+																			vo.thisPage == 2 ? 5 : 
+																			vo.thisPage == vo.totalPages - 1 ? vo.totalPages : 
+																			vo.thisPage == vo.totalPages ? vo.totalPages : 
+																			vo.thisPage + 2
+																		)}"
+															class="paginate_button page-item"
+															th:if="${i > 0 && i <= vo.totalPages}" 
+															th:classappend="${i == vo.thisPage} ? 'active' : ''">
+															<a class="page-link" th:attr="onclick=|goList('${i}')|" th:text="${i}"></a>
+														</li>
+														<li class="paginate_button next page-item" id="nextPage" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('${vo.thisPage + 1}')|" href="javascript:goList(${vo.thisPage + 1})" th:if="${vo.thisPage < vo.totalPages}">
 																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button page-item" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('${vo.totalPages}')|" href="javascript:goList(${vo.totalPages})" th:if="${vo.thisPage < vo.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 															</a>
 														</li>
 													</ul>
-													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-														
-														<li class="page-item"><a class="page-link" href="#">
-																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-															</a></li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item active"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item"><a class="page-link" href="#">
-																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-															</a></li>
-													</ul> -->
 												</nav>
 											</div>
 											<div class="btn-toolbar mt-5 justify-content-between">
@@ -689,62 +717,34 @@
 					timepicker:false,
 					format:'Y-m-d'
 				});
-				var currentPageIndex = 0; // 현재 페이지 번호 인덱스
-				var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
-
-				// 이전 페이지 링크 클릭 이벤트 처리
-				document.getElementById('previousPage').addEventListener('click', function(event) {
-					event.preventDefault(); // 기본 동작(링크 이동) 방지
-					if (currentPageIndex > 0) {
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex--; // 이전 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
-					}
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				});
-
-				// 다음 페이지 링크 클릭 이벤트 처리
-				document.getElementById('nextPage').addEventListener('click', function(event) {
-					event.preventDefault(); // 기본 동작(링크 이동) 방지
-					if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex++; // 다음 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
-					}
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				});
-
-				// 페이지 번호 링크 클릭 이벤트 처리
-				pageItems.forEach(function(pageItem, index) {
-					pageItem.addEventListener('click', function(event) {
-					event.preventDefault(); // 기본 동작(링크 이동) 방지
-					if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-						pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-						currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-						pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
-						updatePaginationState(); // 페이지네이션 상태 업데이트
-					}
-					});
-				});
-
-				// 초기 페이지네이션 상태 업데이트
-				updatePaginationState();
-
-				// 페이지네이션 버튼 상태 업데이트 함수
-				function updatePaginationState() {
-					// 이전 버튼 상태 업데이트
-					if (currentPageIndex === 0) {
-					document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
+				var form = document.querySelector("form");
+				var pageSizeSelect = document.getElementById('rowNumToShowSelect');
+				var rowNumToShow = document.querySelector("input[name=rowNumToShow]");
+				var url = form.action;
+				function updatePageSize() {
+					if (form && pageSizeSelect) {
+						// 선택된 pageSizes 값을 가져옵니다.
+						var pageSizes = pageSizeSelect.value;
+						rowNumToShow.value = pageSizes;
+						form.action = url;
+						form.submit();
 					} else {
-					document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
+						console.error('Form or pageSizeSelect element not found.');
 					}
+				}
 
-					// 다음 버튼 상태 업데이트
-					if (currentPageIndex === pageItems.length - 1) {
-					document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
-					} else {
-					document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
-					}
+				console.log('value: ');
+				
+				if (pageSizeSelect) {
+					pageSizeSelect.addEventListener('change', updatePageSize);
+				}
+
+				goList = function (thisPage) {
+					console.log("값: "+thisPage);
+					document.querySelector("input[name=thisPage]").value = thisPage;
+					console.log("thisPage값: "+document.querySelector("input[name=thisPage]").value);
+					form.action = url;
+					form.submit();
 				}
 			})
 			

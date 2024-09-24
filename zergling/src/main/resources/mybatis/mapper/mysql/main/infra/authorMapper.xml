@@ -3,7 +3,59 @@
 
 <mapper namespace="com.exion.mall.product.AuthorDao">
 	  <resultMap type="com.exion.mall.product.AuthorDto" id="resultObj"></resultMap>
+	  <sql id="selectCommon">
+	  		
+			where 1=1
+				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+				<if test="authorType != null and !authorType.equals('')">AND a.authorType = #{authorType}</if>
+				<if test="searchKeyword != null and !searchKeyword.equals('')">
+					<choose>
+						<when test="keywordType == null">
+							AND(
+								a.seq Like CONCAT('%',#{searchKeyword},'%')
+								OR a.name Like CONCAT('%',#{searchKeyword},'%')
+								OR b.title Like CONCAT('%',#{searchKeyword},'%')
+							)
+						</when>
+						<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+						<when test="keywordType == 2">AND a.name Like CONCAT('%',#{searchKeyword},'%') </when>
+						<when test="keywordType == 3">AND b.title Like CONCAT('%',#{searchKeyword},'%')</when>
+					</choose>
+				</if>
+				<choose>
+					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
+	  </sql>
+	  <select id="authorUsrList" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			from
+				author a
+				<!-- left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq -->
+				join commoncode d on a.authorType = d.seq
+			<include refid="selectCommon"/>
+			order by a.seq desc
+	  </select>
 	  <select id="authorList" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.name
+			from
+				author a
+			order by a.seq desc
+	  </select>
+	  <select id="authorXdmList" resultMap="resultObj">
+		  	<include refid="base.selectListUpperForMysql"/>
 		  	select
 				a.seq
 			    ,a.authorType
@@ -19,29 +71,19 @@
 				left join productAuthor c on c.author_seq = a.seq
 				left join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
-			where 1=1
-				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
-				<if test="authorType != null and !authorType.equals('')">AND a.authorType = #{authorType}</if>
-				<if test="searchKeyword != null and !searchKeyword.equals('')">
-					<choose>
-						<when test="keywordType == null">
-							AND(
-								a.seq Like CONCAT('%',#{searchKeyword},'%')
-								OR b.codeGroupName Like CONCAT('%',#{searchKeyword},'%')
-								OR a.codeName Like CONCAT('%',#{searchKeyword},'%')
-							)
-						</when>
-						<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
-						<when test="keywordType == 2">AND b.codeGroupName Like CONCAT('%',#{searchKeyword},'%') </when>
-						<when test="keywordType == 3">AND a.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
-					</choose>
-				</if>
-				<choose>
-					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				</choose>
+			<include refid="selectCommon"/>
 			order by a.seq desc
+			<include refid="base.selectListLowerForMysql"/>
 	  </select>
+	  <select id="listCount" resultType="int">
+        	SELECT COUNT(*) 
+        	from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+        	<include refid="selectCommon"/>
+   	  </select>
 	  <insert id="insertAuthor">
 			insert into author(
 			    authorType
@@ -101,6 +143,20 @@
 			where 1 = 1
 				and a.seq = #{seq}
 	  </select>
+	  <!-- <select id="authorSelected" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,d.codeName
+			    ,a.name	
+			    ,c.
+			from
+				author a
+				join productAuthor c on c.author_seq = a.seq
+				join product b on c.product_seq = b.seq
+				join commoncode d on a.authorType = d.seq
+			where 1 = 1
+				and a.seq = #{seq}
+	  </select> -->
 		<update id="update">
 			UPDATE author
 			SET

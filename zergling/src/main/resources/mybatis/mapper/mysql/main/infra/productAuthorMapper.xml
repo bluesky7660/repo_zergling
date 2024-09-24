@@ -3,6 +3,17 @@
 
 <mapper namespace="com.exion.mall.product.ProductAuthorDao">
 	<resultMap type="com.exion.mall.product.ProductAuthorDto" id="resultMapObj"></resultMap>
+	<select id="productAuthorSelected" resultMap="resultMapObj">
+		select 
+			a.author_seq
+			,b.name
+			from
+				productAuthor a 
+				left join product c on a.product_seq = c.seq
+				join author b on a.author_seq = b.seq
+			where 1 = 1
+				and c.seq = #{seq}
+	</select>
 	<insert id="insert">
 		insert into productAuthor(
 			product_seq
@@ -12,6 +23,14 @@
 		    ,#{author_seq}
 		)
 	</insert>
+	<update id="update">
+		UPDATE productAuthor
+		SET
+			product_seq = #{product_seq}
+			,author_seq = #{author_seq}
+		WHERE 1=1
+			AND product_seq = #{product_seq}
+	</update>
 </mapper>	
 	
 	

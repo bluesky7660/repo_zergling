@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.exion.infra.code.CodeService;
@@ -20,8 +21,9 @@ public class AuthorController {
 	CodeService codeService;
 	
 	@RequestMapping(value = "v1/mall/product/authorXdmList")
-	public String authorXdmList(Model model,AuthorVo vo){
-		model.addAttribute("list", authorService.authorList(vo));
+	public String authorXdmList(Model model,@ModelAttribute("vo") AuthorVo vo){
+		vo.setParamsPaging(authorService.listCount(vo));
+		model.addAttribute("list", authorService.authorXdmList(vo));
 		model.addAttribute("groups", codeService.authorTypeList());
 		return "xdm/v1/mall/product/authorXdm";
 	}

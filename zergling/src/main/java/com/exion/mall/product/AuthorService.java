@@ -13,11 +13,17 @@ public class AuthorService {
 	public List<AuthorDto> authorList(AuthorVo vo){
 		return authorDao.authorList(vo);
 	}
+	public List<AuthorDto> authorXdmList(AuthorVo vo){
+		return authorDao.authorXdmList(vo);
+	}
 	public List<AuthorDto> jobList(){
 		return authorDao.jobList();
 	}
 	public AuthorDto authorOne(AuthorDto authorDto) {
 		return authorDao.authorOne(authorDto);
+	}
+	public int listCount(AuthorVo vo){
+		return authorDao.listCount(vo);
 	}
 	public int insertAuthor(AuthorDto authorDto) {
 		return authorDao.insertAuthor(authorDto);

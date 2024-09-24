@@ -72,8 +72,8 @@
 			,a.regDate
 			,a.modDate
 		<include refid="selectCommon"/>
-		GROUP BY 
-    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		<!-- GROUP BY 
+    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate -->
 		ORDER BY
 			a.groupOrder desc
 		<include refid="base.selectListLowerForMysql"/>
@@ -114,54 +114,13 @@
 			,a.codeGroupName
 			,a.groupOrder
 			,a.groupDesc
-			<!-- ,count(b.codeGroup_seq) as codeCount -->
-			,(select count(aa.codeGroup_seq) from commoncode aa  where 1=1 and aa.codeGroup_seq = a.seq) as codeCount
 			,a.useNy
 		    ,a.delNy
 			,a.regDate
 			,a.modDate
-		FROM
-			codegroup a
-		left JOIN
-			commoncode b ON b.codeGroup_seq = a.seq
-		WHERE 1=1
-			<!-- 키워드조건 -->
-			<trim prefix="AND (" suffix=")" suffixOverrides="OR">
-				<if test="searchKeyword != null and searchKeyword != ''">
-					<choose>
-						<!-- <when test="keywordType == null">
-		                    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-		                </when> -->
-						<when test="keywordType == 1 and keywordType != null and keywordType != ''">
-						    a.seq = #{searchKeyword}
-						</when>
-						<when test="keywordType == 2 and keywordType != null and keywordType != ''">
-						     a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-						</when>
-						<otherwise>
-							a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-						    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%')
-						</otherwise>
-						
-					</choose>
-				</if>
-			</trim>
-			<if test="sUseNy != null and !sUseNy.equals('')">
-				AND a.useNy = #{sUseNy}
-			</if>
-			<if test="sDelNy != null and !sDelNy.equals('')">
-				AND a.delNy = #{sDelNy}
-			</if>
-			<choose>
-				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-			</choose>
-			
-		GROUP BY 
-    		a.seq, a.codeGroupName, a.groupOrder, a.groupDesc, a.useNy, a.delNy, a.regDate, a.modDate
+		<include refid="selectCommon"/>
 		ORDER BY
 			a.groupOrder desc
-		LIMIT #{limit} OFFSET #{offset}
 	</select>
 	<select id="listCount" resultType="int">
         SELECT COUNT(*) 

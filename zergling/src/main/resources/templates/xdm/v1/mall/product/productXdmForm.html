@@ -42,6 +42,9 @@
 		<!--<div style="background-color: red;"></div>-->
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
+		
+		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
 			.form-label{
 				margin-left: 10px;
@@ -522,8 +525,9 @@
 												</div>
 												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
+														<label for="authorList" class="form-label">선택된 작가들</label>
 														<div class="authorList">
-															<label for="authorList" class="form-label">선택된 작가들</label>
+															
 
 														</div>
 													</div>
@@ -574,7 +578,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputSale" class="form-label">할인률</label>
-														<input type="text" class="form-control validate-this" id="inputSale" name="sale" placeholder="숫자만" required>
+														<input type="text" class="form-control validate-this" id="inputSale" name="sale" value="10" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															할인률을 적어주세요.
 														</div>
@@ -822,24 +826,71 @@
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
-		<script>
-			const authorSelect = document.querySelector("#inputAuthorName");
-			const authorSelectBox = document.querySelector(".authorList");
-			authorSelect.addEventListener("change",function() {
-				const selectedValue = this.value;
-				const selectedText = this.textContent;
 
-				// 새로운 태그(div) 생성
-				const newTag = document.createElement('div');
-				newTag.className = 'tag';
-				newTag.value = selectedValue;
-				newTag.textContent = selectedText;
-				
-				newTag.addEventListener("click",function() {
-					this.remove();
-				})
-				authorSelectBox.appendChild(newTag);
-			});
+		<!-- by developer -->
+		<script src="/xdm/v1/js/commonXdm.js"></script>
+		<script>
+			window.addEventListener('load', function() {
+				const authorSelect = document.querySelector("#inputAuthorName");
+				const authorSelectBox = document.querySelector(".authorList");
+
+				const selectedValue = authorSelect.value;
+				if (selectedValue) {
+					const selectedText = authorSelect.options[authorSelect.selectedIndex].text;
+					const existingTag = Array.from(authorSelectBox.children).find(tag => tag.dataset.value === selectedValue);
+					if (existingTag) {
+						alert("이미 선택된 항목입니다!");
+						return;
+					}
+					const newTag = document.createElement('div');
+					const tagInput = document.createElement('input');
+					newTag.className = 'authorTag';
+					newTag.textContent = selectedText;
+					tagInput.name = 'ListAuthor_seq';
+					tagInput.type = 'hidden';
+					tagInput.value = selectedValue;
+					
+
+					newTag.addEventListener("click",function() {
+						this.remove();
+						authorSelect.value = ''; // 선택 초기화
+						
+					});
+					authorSelectBox.appendChild(newTag);
+					newTag.appendChild(tagInput);
+				}
+
+				authorSelect.addEventListener("change",function() {
+					const selectedValue = this.value;
+					const selectedText = this.options[this.selectedIndex].text;
+					
+					// 아무 것도 선택하지 않았을 때는 동작하지 않도록 처리
+					if (!selectedValue) return;
+
+					// 중복된 태그가 있는지 확인
+					const existingTag = Array.from(authorSelectBox.children).find(tag => tag.dataset.value === selectedValue);
+					if (existingTag) {
+						alert("이미 선택된 항목입니다!");
+						return;
+					}
+					// 새로운 태그(div) 생성
+					const newTag = document.createElement('div');
+					const tagInput = document.createElement('input');
+					newTag.className = 'authorTag';
+					newTag.textContent = selectedText;
+					tagInput.name = 'ListAuthor_seq';
+					tagInput.type = 'hidden';
+					tagInput.value = selectedValue;
+					
+					newTag.addEventListener("click",function() {
+						this.remove();
+						authorSelect.value = ''; // 선택 초기화
+					})
+					authorSelectBox.appendChild(newTag);
+					newTag.appendChild(tagInput);
+				});
+
+			})
 		</script>
 	</body>
 

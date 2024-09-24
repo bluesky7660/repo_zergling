@@ -42,7 +42,7 @@ public class CodeController {
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmForm")
 	public String codeXdmForm(Model model) {
-		List<CodeGroupDto> codeGroups = codeGroupService.selectList();
+		List<CodeGroupDto> codeGroups = codeGroupService.selectList2();
 		model.addAttribute("codeGroups", codeGroups);
 		return "/xdm/v1/infra/code/codeXdmForm";
 	}
@@ -55,7 +55,7 @@ public class CodeController {
 	
 	@RequestMapping(value = "/v1/infra/code/codeXdmMfom")
 	public String codeXdmMfom(Model model,CodeDto codeDto) {
-		List<CodeGroupDto> codeGroups = codeGroupService.selectList();
+		List<CodeGroupDto> codeGroups = codeGroupService.selectList2();
 		model.addAttribute("codeGroups", codeGroups);
 		model.addAttribute("item",codeService.selectOne(codeDto));
 		System.out.println("코드그룹seq: "+codeService.selectOne(codeDto).getCodeGroup_seq());

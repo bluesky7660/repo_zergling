@@ -502,7 +502,7 @@
 										<div class="card-title">기본정보</div>
 									</div>
 									<div class="card-body">
-										<form method="post" autocomplete="off" action="/v1/mall/product/productXdmUpdt" class="needs-validation"  novalidate>
+										<form name="form" method="post" autocomplete="off" action="/v1/mall/product/productXdmUpdt" class="needs-validation"  novalidate>
 											<!-- Row start -->
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -517,7 +517,8 @@
 														<!-- <input type="text" class="form-control validate-this" id="inputAuthorName" name="authorName" placeholder="" required> -->
 														<select class="form-select validate-this" id="inputAuthorName" name="authorName" required>
 															<option value="" selected disabled>선택하세요</option>
-															<option th:each="group2 : ${authorList}" th:value="${group2.seq}" th:text="${group2.name}" th:selected="${item.author_seq.toString() == group2.seq}"></option>
+															<!-- <option th:each="group2 : ${authorList}" th:value="${group2.seq}" th:text="${group2.name}" th:selected="${item.author_seq == group2.seq}"></option> -->
+															<option th:each="group2 : ${authorList}" th:value="${group2.seq}" th:text="${group2.name}" ></option>
 														</select>
 														<div class="invalid-feedback">
 															작가를 선택하세요.
@@ -527,6 +528,7 @@
 												<div class="col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="authorList" class="form-label">선택된 작가들</label>
+														<input th:each="authors : ${authors}" type="text" name="author_seq" th:value="${authors.author_seq}"th:text="${authors.name}">
 														<div class="authorList">
 															
 															
@@ -763,9 +765,21 @@
 											</div>
 											<!-- Row end -->
 											<!-- Form actions footer start -->
-											<div class="form-actions-footer justify-content-between bg-white">
-												<a class="btn btn-outline-dark" type="button" href="productXdmList"><i class="bi bi-list-ul"></i></a>
+											<!-- <div class="form-actions-footer justify-content-between bg-white">
+												
+												<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-lg"></i></button>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ueleteModal"><i class="bi bi-trash"></i></button>
 												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+											</div> -->
+											<div class="btn-toolbar mt-5 justify-content-between">
+												<div>
+													<a class="btn btn-outline-dark" type="button" href="productXdmList"><i class="bi bi-list-ul"></i></a>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-lg"></i></button>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ueleteModal"><i class="bi bi-trash"></i></button>
+												</div>
+												<div>
+													<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+												</div>
 											</div>
 											<!-- Form actions footer end -->
 										</form>
@@ -854,8 +868,7 @@
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
 
-		<!-- by developer -->
-		<script src="/xdm/v1/js/commonXdm.js"></script>
+		
 
 		<script>
 			window.addEventListener('load', function() {
@@ -871,15 +884,19 @@
 						return;
 					}
 					const newTag = document.createElement('div');
+					const tagInput = document.createElement('input');
 					newTag.className = 'authorTag';
-					newTag.dataset.value = selectedValue;
 					newTag.textContent = selectedText;
+					tagInput.name = 'author_seq';
+					tagInput.type = 'hidden';
+					tagInput.value = selectedValue;
 
 					newTag.addEventListener("click",function() {
 						this.remove();
 						authorSelect.value = ''; // 선택 초기화
 					});
 					authorSelectBox.appendChild(newTag);
+					newTag.appendChild(tagInput);
 				}
 
 
@@ -899,20 +916,26 @@
 					}
 					// 새로운 태그(div) 생성
 					const newTag = document.createElement('div');
+					const tagInput = document.createElement('input');
 					newTag.className = 'authorTag';
-					newTag.dataset.value = selectedValue;
 					newTag.textContent = selectedText;
+					tagInput.name = 'author_seq';
+					tagInput.type = 'hidden';
+					tagInput.value = selectedValue;
 					
 					newTag.addEventListener("click",function() {
 						this.remove();
 						authorSelect.value = ''; // 선택 초기화
 					})
 					authorSelectBox.appendChild(newTag);
+					newTag.appendChild(tagInput);
 				});
 
 			})
 			
 		</script>
+		<!-- by developer -->
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 	</body>
 
 </html>

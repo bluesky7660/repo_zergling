@@ -1,5 +1,7 @@
 package com.exion.mall.product;
 
+//import java.util.Arrays;
+//import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,27 @@ public class ProductService {
 	
 	public int insertProd(ProductDto productDto,ProductAuthorDto productAuthorDto) {
 		int a = productDao.insertProd(productDto);
-		productAuthorDto.setProduct_seq(productDto.getSeq());
-		productAuthorDto.setAuthor_seq(productDto.getAuthor_seq());
-		productAuthorDao.insert(productAuthorDto);
+		
+//		List<String> authorLists = Arrays.asList(productAuthorDto.getAuthor_seq());
+		List<String> authorLists = productAuthorDto.getListAuthor_seq();
+//		System.out.println("리스트: "+productAuthorDto.getAuthor_seq());
+		System.out.println("리스트2: "+authorLists);
+		
+//		for (int i = 0;i>authorLists.size(); i++) {
+//			System.out.println("상품번호: "+productDto.getSeq());
+//			System.out.println("작가번호: "+authorLists.get(i));
+////			productAuthorDto.setProduct_seq(productDto.getSeq());
+////			productAuthorDto.setAuthor_seq(author);
+////			productAuthorDao.insert(productAuthorDto);
+//		}
+		for(String author: authorLists) {
+			System.out.println("상품번호: "+productDto.getSeq());
+			System.out.println("작가번호: "+author);
+			productAuthorDto.setProduct_seq(productDto.getSeq());
+			productAuthorDto.setAuthor_seq(author);
+			productAuthorDao.insert(productAuthorDto);
+		}
+		
 		return a;
 	}
 //	public List<ProductDto> prodList(){
@@ -30,9 +50,20 @@ public class ProductService {
 		return productDao.xdmProdList(vo);
 	}
 	public ProductDto prodOne(ProductDto productDto){
+//		System.out.println("리스트1: "+productDto.getAuthor_seq());
 		return productDao.prodOne(productDto);
 	}
-	public int update(ProductDto productDto) {
-		return productDao.update(productDto);
+	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) {
+		int a = productDao.update(productDto);
+//		List<String> authorLists = Arrays.asList(productAuthorDto.getAuthor_seq());
+//		System.out.println("리스트: "+authorLists);
+//		for(String author: authorLists) {
+//			System.out.println("상품번호: "+productDto.getSeq());
+//			System.out.println("작가번호: "+author);
+//			productAuthorDto.setProduct_seq(productDto.getSeq());
+//			productAuthorDto.setAuthor_seq(author);
+//			productAuthorDao.update(productAuthorDto);
+//		}
+		return a;
 	}
 }

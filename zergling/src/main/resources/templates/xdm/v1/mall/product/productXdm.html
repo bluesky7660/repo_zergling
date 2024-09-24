@@ -703,7 +703,7 @@
 										</div>
 										<div class="card-body">
 											<div class="row justify-content-between">
-												<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}">171</span></div>
+												<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}"></span></div>
 												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
 													<select class="dataTable-selector form-select" name="" id="">
 														<option value="5">5</option>
@@ -758,7 +758,7 @@
 															<td  class="td_spotlight">
 																<a th:href="@{/v1/mall/product/productXdmMfom(seq=${listP.seq})}" th:text="${listP.title}"></a>
 															</td>
-															<td th:text="${listP.name}"></td>
+															<td th:text="${listP.authorCount > 1 ? listP.name+' 외 '+(listP.authorCount - 1)+'명':listP.name}"></td>
 															<td th:text="${listP.publisherName}"></td>
 															<td th:text="${#dates.format(listP.makeDate,'yyyy-MM-dd')}"></td>
 															<td th:text="${#numbers.formatInteger(listP.price,3,'COMMA')+'원'}"></td>

@@ -575,19 +575,19 @@
 														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
 														<select class="form-select" id="selectDateType" name="dateType">
 															<option value="" selected>날짜종류 선택해주세요.</option>
-															<option value="1">등록일</option>
-															<option value="2">수정일</option>
+															<option value="1" th:selected="${vo.dateType == 1}">등록일</option>
+															<option value="2" th:selected="${vo.dateType == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
-														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" th:value="${#strings.substring(vo.dateStart, 0, 10)}" placeholder="시작일을 선택해주세요" value="">
 														<!-- <input type="date" class="form-control" id="inputDateStart" name="dateStart" placeholder="" value=""> -->
 														<!-- <input type="text" class="form-control datepicker" id="inputDateStart" name="" placeholder="" value=""> -->
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
-														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" th:value="${#strings.substring(vo.dateEnd, 0, 10)}" placeholder="종료일을 선택해주세요" value="">
 														<!-- <input type="text" class="form-control datepicker" id="inputDateEnd" name="" placeholder="" value=""> -->
 													</div>
 												</div>
@@ -619,8 +619,8 @@
 									</div>
 									<div class="card-body">
 										<div class="row justify-content-between">
-											<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}">171</span></div> -->
-											<div class="col-6 col-lg-3">Total: <span th:text="${vo.totalRows}">171</span></div>
+											<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}"></span></div> -->
+											<div class="col-6 col-lg-3">Total: <span th:text="${vo.totalRows}"></span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
 												<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
 													<option value="2" th:selected="${vo.rowNumToShow == 2}">2</option>
@@ -629,7 +629,7 @@
 													<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
 													<option value="20" th:selected="${vo.rowNumToShow == 20}">20</option>
 													<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
-											</select>
+												</select>
 												<!-- <form method="get" action="/v1/infra/codegroup/codeGroupXdmList" id="pagination-form">
 													<select class="dataTable-selector form-select" id="listSize" name="size" onchange="updatePageSize()" >
 													<select class="dataTable-selector form-select" id="pageSizeSelect" name="size">
@@ -840,20 +840,6 @@
 						// 선택된 pageSizes 값을 가져옵니다.
 						var pageSizes = pageSizeSelect.value;
 						rowNumToShow.value = pageSizes;
-
-						// 현재 URL을 가져와 URL 객체를 생성합니다.
-						// var url = new URL(window.location.href);
-						// var response.currentPage = url.searchParams.get('page') || 1;
-
-						// URL의 쿼리 파라미터를 초기화합니다.
-						// url.searchParams.delete('rowNumToShow');
-						// url.searchParams.delete('page');
-
-						// 페이지와 사이즈 파라미터를 설정합니다. 순서에 주의합니다.
-						// url.searchParams.append('page', response.currentPage);
-						// url.searchParams.append('rowNumToShow', pageSizes);
-						// console.log('url:'+url);
-						// URL을 폼의 action에 적용합니다.
 						form.action = url;
 						form.submit();
 					} else {

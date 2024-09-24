@@ -1,14 +1,12 @@
 package com.exion.infra.codegroup;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.exion.common.util.UtilDateTime;
 
 
 @Controller
@@ -18,6 +16,9 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
+		
+		vo.setDateStart(vo.getDateStart() == null || vo.getDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getDateStart()));
+		vo.setDateEnd(vo.getDateEnd() == null || vo.getDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getDateEnd()));
 		vo.setParamsPaging(codeGroupService.listCount(vo));
 		System.out.println("---------------------------------------------");
 		System.out.println("번호thisPage: " + vo.getThisPage());
@@ -25,7 +26,8 @@ public class CodeGroupController {
 		System.out.println("번호EndPage: " + vo.getEndPage());
 //		vo.setDateStart(vo.getDateStart()+" 00:00:00");
 //		vo.setDateEnd(vo.getDateEnd()+" 00:00:00");
-		System.out.println("S2:"+vo.getDateStart());
+		System.out.println("S1:"+vo.getDateStart());
+		System.out.println("S2:"+vo.getDateEnd());
 		System.out.println("---------------------------------------------");
 		if(vo.getTotalRows() > 0) {
 			model.addAttribute("response", codeGroupService.selectList(vo));

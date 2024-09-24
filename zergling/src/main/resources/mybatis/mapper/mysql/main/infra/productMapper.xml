@@ -6,7 +6,7 @@
 	  <select id="xdmProdList" resultMap="resultObj">
 		  	select
 				a.seq
-				<!-- ,count(*) as count -->
+				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -39,13 +39,14 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq
+				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				left join commoncode prodType on a.prodType = prodType.seq
 				left join commoncode publisher on a.publisher = publisher.seq
 			where 1=1
 				AND prodType.codeGroup_seq = 12
 				AND publisher.codeGroup_seq = 3
+				
 				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
 				<if test="bestNy != null and !bestNy.equals('')">AND a.bestNy = #{bestNy}</if>
 				<if test="todayPickNy != null and !todayPickNy.equals('')">AND a.todayPickNy = #{todayPickNy}</if>
@@ -76,7 +77,7 @@
 					<when test="dateType == 3"> AND a.makeDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 					<when test="dateType == 4"> AND a.shipDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 				</choose>
-				<choose>
+				<!-- <choose>
 					<when test="minPrice != null and maxPrice != null">
 				        AND a.salePrice BETWEEN #{minPrice} AND #{maxPrice}
 				    </when>
@@ -85,7 +86,7 @@
 					<when test="minReview != null and maxReview != null">
 				        AND a.reviewNum BETWEEN #{minReview} AND #{maxReview}
 				    </when>
-				</choose>
+				</choose> -->
 				<choose>
 					<!-- <when test="makeDateFillter == 0"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL  MONTH) AND NOW()</when> -->
 					<when test="makeDateFillter == 1"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()</when>
@@ -224,6 +225,9 @@
 			    ,now()
 			    ,0
 			)
+			<selectKey resultType="String" keyProperty="seq" order="AFTER">
+				SELECT last_insert_id()
+		 	</selectKey>
 	  </insert>
 	  <select id="prodOne" resultMap="resultObj">
 		  	select
@@ -260,6 +264,7 @@
 				left join productAuthor c on c.product_seq = a.seq
 			where 1 = 1
 				and a.seq = #{seq}
+				limit 1
 	  </select>
 	  <update id="update">
 		  	UPDATE product
@@ -289,4 +294,17 @@
 			WHERE 1=1
 				AND seq = #{seq}
 	  </update>
+	  <update id="uelete">
+			UPDATE product
+			SET
+				delNy = 1
+			WHERE 1=1
+				AND seq = #{seq}
+		</update>
+		
+		<delete id="delete">
+			delete from product
+			WHERE 1=1
+				AND seq = #{seq}
+		</delete>
 </mapper>

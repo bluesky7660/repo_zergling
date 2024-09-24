@@ -12,4 +12,6 @@ public interface ProductDao {
 	public List<ProductDto> xdmProdList(ProductVo vo);	
 	public ProductDto prodOne(ProductDto productDto);
 	public int update(ProductDto productDto);
+	public int uelete(ProductDto productDto);
+	public int delete(ProductDto productDto);
 }
