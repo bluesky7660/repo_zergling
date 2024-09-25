@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 public class DeliveryAddressDto {
-	private String seq;
+	private String daSeq;
 	private Integer defaultNy;
 	private String addressName;
 	private String RecipientName;
@@ -13,12 +13,16 @@ public class DeliveryAddressDto {
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
+	private String member_seq;
+	
+	private String seq;
 //-------------------------------------------
-	public String getSeq() {
-		return seq;
+	
+	public String getDaSeq() {
+		return daSeq;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setDaSeq(String daSeq) {
+		this.daSeq = daSeq;
 	}
 	public Integer getDefaultNy() {
 		return defaultNy;
@@ -67,5 +71,17 @@ public class DeliveryAddressDto {
 	}
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
+	}
+	public String getMember_seq() {
+		return member_seq;
+	}
+	public void setMember_seq(String member_seq) {
+		this.member_seq = member_seq;
+	}
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 }

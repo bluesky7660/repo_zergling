@@ -548,3 +548,6 @@ section.kyobo_casting{
 .main-slider-wrapper .swiper-pagination-bullet-active {
 	background-color: transparent;
 }
+.paginate_button{
+    border: none;
+}

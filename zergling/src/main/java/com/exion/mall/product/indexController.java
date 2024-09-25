@@ -4,6 +4,7 @@ import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.exion.infra.code.CodeService;
@@ -52,12 +53,12 @@ public class indexController {
 //		return "redirect:login";
 //	}
 	@RequestMapping(value = "user_delivery_address")
-	public String deliveryAddress(Model model,DeliveryAddressDto deliveryAddressDto) {
+	public String deliveryAddress(Model model,DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
 		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
 		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
-		model.addAttribute("addrList", deliveryAddressService.selectList());
-		int size = deliveryAddressService.selectList().size();
-		model.addAttribute("size", size); // 사이즈 추가
+		model.addAttribute("addrList", deliveryAddressService.selectList(vo));
+//		int size = deliveryAddressService.selectList().size();
+//		model.addAttribute("size", size); // 사이즈 추가
 		return "/usr/v1/pages/user_delivery_address";
 	}
 	@RequestMapping(value = "user_delivery_addressMfom")
@@ -74,17 +75,17 @@ public class indexController {
 	@RequestMapping(value = "user_delivery_address_inst")
 	public String deliveryAddressInst(DeliveryAddressDto deliveryAddressDto) {
 		deliveryAddressService.insertAddr(deliveryAddressDto);
-		return "redirect:user_delivery_address";
+		return "redirect:user_delivery_address?seq=1";
 	}
 	@RequestMapping(value = "user_delivery_address_updt")
-	public String deliveryAddressUpdt(DeliveryAddressDto deliveryAddressDto) {
-		deliveryAddressService.update(deliveryAddressDto);
-		return "redirect:user_delivery_address";
+	public String deliveryAddressUpdt(DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
+		deliveryAddressService.update(deliveryAddressDto, vo);
+		return "redirect:user_delivery_address?seq=1";
 	}
 	@RequestMapping(value = "user_delivery_address_Defupdt")
 	public String deliveryAddressDefUpdt(DeliveryAddressDto deliveryAddressDto) {
 		deliveryAddressService.updateDef(deliveryAddressDto);
-		return "redirect:user_delivery_address";
+		return "redirect:user_delivery_address?seq=1";
 	}
 	@RequestMapping(value = "user_account")
 	public String userAccount(Model model, MemberDto memberDto) {
@@ -136,10 +137,10 @@ public class indexController {
 		return "usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
-	public String productList(Model model,ProductVo vo) {
+	public String productList(Model model,@ModelAttribute("vo") ProductVo vo) {
+		vo.setParamsPaging(productService.listCount(vo));
 		System.out.println("get: "+vo.getMakeDateFillter());
 		model.addAttribute("list", productService.usrProdList(vo));
-		model.addAttribute("vo", vo);
 		model.addAttribute("bages", codeService.bageList());
 //		List<ProductDto> prods = productService.usrProdList(vo);
 //		for(ProductDto prod : prods) {

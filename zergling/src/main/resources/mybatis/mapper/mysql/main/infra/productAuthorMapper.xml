@@ -28,23 +28,7 @@
      	)
 	</insert>
 	<update id="defaultUpdt">
-		<!-- UPDATE productAuthor a
-		JOIN (
-		    SELECT MIN(paSeq) AS min_paSeq, product_seq
-		    FROM productAuthor
-		    GROUP BY product_seq
-		) AS b ON a.paSeq = b.min_paSeq
-		SET a.aDefaultNy = 1
-		WHERE a.aDefaultNy != 1
 		
-		UPDATE productAuthor a
-		JOIN (
-		    SELECT MIN(paSeq) AS min_paSeq, author_seq
-		    FROM productAuthor
-		    GROUP BY author_seq
-		) AS b ON a.paSeq = b.min_paSeq
-		SET a.pDefaultNy = 1
-		WHERE a.pDefaultNy != 1 -->
 	</update>
 	<update id="update">
 		UPDATE productAuthor

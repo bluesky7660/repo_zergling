@@ -80,9 +80,9 @@
                             <div class="cart" onclick="window.location.href='user_cart'">
                                 <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
                             </div>
-                            <div class="user_my" onclick="window.location.href='user_account'">
+                            <a class="user_my" href="user_account?seq=1">
                                 <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <nav class="gnb_list d-flex align-items-center gap-4">
@@ -144,6 +144,8 @@
             </div> -->
             <div class="content_wrapper">
                 <form id="searchForm" name="searchFrom" autocomplete="off" method="post" action="product_list">
+                    <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+                    <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
                     <div class="d-flex gap-5">
                         <div class="left-box">
                             <div class="list_fillter_box">
@@ -334,8 +336,9 @@
                         </div>
                         <div class="right-box">
                             <div class="view_options d-flex justify-content-between gap-3">
-                                <div class="d-flex  align-items-center">
-                                    <p class="gray_color">최근 2개월 기준으로 등록된 신상품이 집계됩니다.</p>
+                                <div class="d-flex flex-column justify-content-between">
+                                    <p id="listTotalRow">전체 <span th:text="${#numbers.formatInteger(vo.totalRows,1,'COMMA')}"></span> 건</p>
+                                    <p id="newDay" class="gray_color">최근 2개월 기준으로 등록된 신상품이 집계됩니다.</p>
                                 </div>
                                 <div class="d-flex justify-content-between gap-3">
                                     <div>
@@ -347,11 +350,11 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="" class="form-select" id="views_number" >
-                                            <option value="5">5개씩 보기</option>
-                                            <option value="20">10개씩 보기</option>
-                                            <option value="20">20개씩 보기</option>
-                                            <option value="50">50개씩 보기</option>
+                                        <select class="form-select" id="rowNumToShowSelect" name="rowNumToShow">
+                                            <option value="5" th:selected="${vo.rowNumToShow == 5}">5개씩 보기</option>
+                                            <option value="10" th:selected="${vo.rowNumToShow == 10}">10개씩 보기</option>
+                                            <option value="20" th:selected="${vo.rowNumToShow == 20}">20개씩 보기</option>
+                                            <option value="50" th:selected="${vo.rowNumToShow == 50}">50개씩 보기</option>
                                         </select>
                                     </div>
                                 </div>
@@ -407,7 +410,7 @@
                                             <div class="d-flex flex-column gap-3">
                                                 <p class="prod_title"><a href="product_detail?seq=1"><!--<span class="gray_color">예약판매</span>--> <strong th:text="${listP.title}">하늘나라 극락과 천국(상)</strong></a></p>
                                                 <p class="prod_author"><span th:text="${listP.authorCount > 1 ? listP.name+' 외 '+(listP.authorCount - 1)+'명':listP.name}">조창조</span> · <span th:text="${listP.publisherName}">신아출판사</span> · <span th:text="${#dates.format(listP.makeDate,'yyyy.MM.dd')}" >2024.07.25</span></p>
-                                                <p class="prod_price d-flex gap-1"><strong class="saleP" th:text="${listP.sale +'%'}">10%</strong><span class="sale_price"><strong th:text="${#numbers.formatInteger(listP.salePrice,3,'COMMA')}">13,500</strong>원</span><span class="regular_price" th:text="${#numbers.formatInteger(listP.price,3,'COMMA')+'원'}">15,000원</span> <span class="point" th:text="${#numbers.formatInteger(listP.point,3,'COMMA')+'p'}">750p</span> </p>
+                                                <p class="prod_price d-flex gap-1"><strong class="saleP" th:text="${listP.sale +'%'}">10%</strong><span class="sale_price"><strong th:text="${#numbers.formatInteger(listP.salePrice,1,'COMMA')}">13,500</strong>원</span><span class="regular_price" th:text="${#numbers.formatInteger(listP.price,1,'COMMA')+'원'}">15,000원</span> <span class="point" th:text="${#numbers.formatInteger(listP.point,1,'COMMA')+'p'}">750p</span> </p>
                                                 <p class="prod_intro" th:text="${listP.intro}"></p>
                                                 <div class="prod_review d-flex gap-1">
                                                     <span class="icon_box">
@@ -435,6 +438,58 @@
                                         <div class="dataTable-bottom">
                                             <nav class="dataTable-pagination" aria-label="dataTable-pagination">
                                                 <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+                                                    <li class="paginate_button page-item" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+                                                        <a class="page-link" th:attr="onclick=|goList('1')|" href="javascript:goList(1)" th:if="${vo.thisPage > 1}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+                                                        </a>
+                                                        <a class="page-link" th:if="${vo.thisPage <= 1}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button previous page-item" id="previousPage" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+                                                        <a class="page-link" th:attr="onclick=|goList('${vo.thisPage - 1}')|" href="javascript:goList(${vo.thisPage - 1})" th:if="${vo.thisPage > 1}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                                        </a>
+                                                        <a class="page-link" th:if="${vo.thisPage <= 1}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                                        </a>
+                                                    </li>
+                                                    <li th:each="i : ${#numbers.sequence(
+                                                                        vo.thisPage == 1 ? 1 : 
+                                                                        vo.thisPage == 2 ? 1 : 
+                                                                        vo.thisPage == vo.totalPages - 1 ? vo.thisPage - 3 : 
+                                                                        vo.thisPage == vo.totalPages ? vo.thisPage - 4 : 
+                                                                        vo.thisPage - 2, 
+                                                                        
+                                                                        vo.thisPage == 1 ? 5 : 
+                                                                        vo.thisPage == 2 ? 5 : 
+                                                                        vo.thisPage == vo.totalPages - 1 ? vo.totalPages : 
+                                                                        vo.thisPage == vo.totalPages ? vo.totalPages : 
+                                                                        vo.thisPage + 2
+                                                                    )}"
+                                                        class="paginate_button page-item"
+                                                        th:if="${i > 0 && i <= vo.totalPages}" 
+                                                        th:classappend="${i == vo.thisPage} ? 'active' : ''">
+                                                        <a class="page-link" th:attr="onclick=|goList('${i}')|" th:text="${i}"></a>
+                                                    </li>
+                                                    <li class="paginate_button next page-item" id="nextPage" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+                                                        <a class="page-link" th:attr="onclick=|goList('${vo.thisPage + 1}')|" href="javascript:goList(${vo.thisPage + 1})" th:if="${vo.thisPage < vo.totalPages}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                                        </a>
+                                                        <a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button page-item" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+                                                        <a class="page-link" th:attr="onclick=|goList('${vo.totalPages}')|" href="javascript:goList(${vo.totalPages})" th:if="${vo.thisPage < vo.totalPages}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                                                        </a>
+                                                        <a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+                                                            <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
                                                     <li class="paginate_button previous page-item" id="previousPage">
                                                         <a class="page-link" href="#">
                                                             <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
@@ -450,7 +505,7 @@
                                                             <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
                                                         </a>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
                                             </nav>
                                         </div>
                                     </div>
@@ -760,6 +815,32 @@
                     
                 });
             });
+            var pageSizeSelect = document.getElementById('rowNumToShowSelect');
+            var rowNumToShow = document.querySelector("input[name=rowNumToShow]");
+            var url = form.action;
+            function updatePageSize() {
+                if (form && pageSizeSelect) {
+                    // 선택된 pageSizes 값을 가져옵니다.
+                    var pageSizes = pageSizeSelect.value;
+                    rowNumToShow.value = pageSizes;
+                    form.action = url;
+                    form.submit();
+                } else {
+                    console.error('Form or pageSizeSelect element not found.');
+                }
+            }
+            
+            if (pageSizeSelect) {
+                pageSizeSelect.addEventListener('change', updatePageSize);
+            }
+
+            goList = function (thisPage) {
+                console.log("값: "+thisPage);
+                document.querySelector("input[name=thisPage]").value = thisPage;
+                console.log("thisPage값: "+document.querySelector("input[name=thisPage]").value);
+                form.action = url;
+                form.submit();
+            }
 
             // const checkBages = document.querySelectorAll(".selected-item");
 

@@ -237,6 +237,13 @@ main .left-box i{
     
     background-color: #eee;
 }
+#listTotalRow{
+
+}
+#newDay{
+    font-size:14px ;
+    opacity: 0.5;
+}
 .view_type>*{
     display: inline-flex;
     flex-direction: column;

@@ -5,7 +5,7 @@
 	  <resultMap type="com.exion.mall.product.DeliveryAddressDto" id="resultObj"></resultMap>
 	  <select id="selectList" resultMap="resultObj">
 		  	select
-				a.seq
+				a.daSeq
 			    ,a.defaultNy
 			    ,a.addressName
 			    ,a.RecipientName
@@ -14,10 +14,13 @@
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
-			    <!-- ,a.member_seq -->
+			    ,a.member_seq
 			from
 				deliveryaddress a
-			order by a.seq desc
+				join member b on b.seq = a.member_seq
+			where 1=1
+				and b.seq = #{seq}
+			order by a.daSeq desc
 	  </select>
 	  <insert id="insertAddr">
 	  		insert into deliveryaddress(
@@ -40,12 +43,12 @@
 			    ,now()
 			    ,now()
 			    ,0
-			    <!-- ,1 -->
+			    <!-- ,#{member_seq} -->
 			)
 	  </insert>
 	  <select id="selectOne" resultMap="resultObj">
 		  	select
-				a.seq
+				a.daSeq
 			    ,a.defaultNy
 			    ,a.addressName
 			    ,a.RecipientName
@@ -54,15 +57,17 @@
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
-			    <!-- ,a.member_seq -->
+			    ,a.member_seq
 			from
 				deliveryaddress a
+				join member b on b.seq = a.member_seq
 			where 1=1
-				and a.seq = #{seq}
+				<!-- and b.seq = #{member_seq} -->
+				and a.daSeq = #{daSeq}
 	  </select>
 	  <select id="selectDefOne" resultMap="resultObj">
 		  	select
-				a.seq
+				a.daSeq
 			    ,a.defaultNy
 			    ,a.addressName
 			    ,a.RecipientName
@@ -74,6 +79,7 @@
 			    <!-- ,a.member_seq -->
 			from
 				deliveryaddress a
+				<!-- join member b on b.seq = a.member_seq -->
 			where 1=1
 				and a.defaultNy = 1
 	  </select>
@@ -87,14 +93,21 @@
 			,address = #{address}
 			,modDate = now()
 		WHERE 1=1
-			AND seq = #{seq}
+			AND daSeq = #{daSeq}
 	  </update>
-		<update id="updateDef">
+	  <update id="updateDefUsr">
 			UPDATE deliveryaddress
 			SET
 				defaultNy = #{defaultNy}
 				,modDate = now()
 			WHERE 1=1
-				AND seq = #{seq}
+				AND daSeq = #{daSeq}
+		</update>
+		<update id="updateDef">
+			UPDATE deliveryaddress
+			SET
+				defaultNy = #{defaultNy}
+			WHERE 1=1
+				AND daSeq = #{daSeq}
 		</update>
 </mapper>

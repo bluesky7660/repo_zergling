@@ -515,7 +515,8 @@
 													<div class="mb-3">
 														<label for="inputAuthorName" class="form-label">작가이름</label>
 														<!-- <input type="text" class="form-control validate-this" id="inputAuthorName" name="authorName" placeholder="" required> -->
-														<select class="form-select validate-this" id="inputAuthorName" name="authorName" required>
+														<!-- <select class="form-select validate-this" id="inputAuthorName" name="authorName" required> -->
+														<select class="form-select exclude-validation" id="inputAuthorName" name="authorName" >
 															<option value="" selected disabled>선택하세요</option>
 															<!-- <option th:each="group2 : ${authorList}" th:value="${group2.seq}" th:text="${group2.name}" th:selected="${item.author_seq == group2.seq}"></option> -->
 															<option th:each="group2 : ${authorList}" th:value="${group2.seq}" th:text="${group2.name}" ></option>

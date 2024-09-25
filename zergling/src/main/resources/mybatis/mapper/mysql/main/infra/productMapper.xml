@@ -106,6 +106,7 @@
 			<include refid="base.selectListLowerForMysql"/>
 	  </select>
 	  <select id="usrProdList" resultMap="resultObj">
+	  	<include refid="base.selectListUpperForMysql"/>
 		  	select
 				a.seq
 				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
@@ -147,6 +148,7 @@
 				left join commoncode prodType on a.prodType = prodType.seq
 				left join commoncode publisher on a.publisher = publisher.seq
 			<include refid="selectCommon"/>
+			
 			<!-- where 1=1
 				AND prodType.codeGroup_seq = 12
 				AND publisher.codeGroup_seq = 3
@@ -177,6 +179,7 @@
 					<when test="makeDateFillter == 6"> AND a.makeDate &lt; DATE_SUB(NOW(), INTERVAL 36 MONTH) </when>
 				</choose> -->
 			order by a.makeDate desc
+		<include refid="base.selectListLowerForMysql"/>
 	  </select>
 	  <insert id="insertProd">
 			insert into product(
