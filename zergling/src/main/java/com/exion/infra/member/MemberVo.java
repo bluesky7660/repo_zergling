@@ -1,4 +1,4 @@
-package com.exion.infra.user;
+package com.exion.infra.member;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.exion.infra.codegroup.BaseVo;
 
-public class UserVo extends BaseVo{
+public class MemberVo extends BaseVo{
 	private String seq;
 	private String codeName;
 	private Integer gender;
@@ -20,9 +20,6 @@ public class UserVo extends BaseVo{
 //    private Date dateStart;		//날짜 시작일
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
 //    private Date dateEnd;		//날짜 종료일
-//    private Integer keywordType;	//검색키워드 타입
-//    private Integer sDelNy;			//검색 조건[삭제] 
-//    private Integer sUseNy;			//검색 조건[사용]
 //-----------------------------------------
 	public String getSeq() {
 		return seq;

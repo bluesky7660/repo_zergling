@@ -13,6 +13,8 @@ public class AuthorDto {
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
+	
+	private Integer productCount;
 //-------------------------------------------------
 	public String getSeq() {
 		return seq;
@@ -67,6 +69,12 @@ public class AuthorDto {
 	}
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
+	}
+	public Integer getProductCount() {
+		return productCount;
+	}
+	public void setProductCount(Integer productCount) {
+		this.productCount = productCount;
 	}
 	
 }

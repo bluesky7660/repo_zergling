@@ -583,10 +583,7 @@
 															<td  class="td_spotlight">
 																<a th:href="@{/v1/mall/product/authorXdmMfom(seq=${list.seq})}" th:text="${list.name}"></a>
 															</td>
-															<td th:text="${list.title}">
-																<!-- <span th:text="${list.title}"></span>
-																<span th:if="${list.title.size() > 1}" th:text="'외 ' + (${list.title.size() - 1}) + '개'"></span> -->
-															</td>
+															<td th:text="${list.productCount > 1 ? list.title+' 외 '+(list.productCount - 1)+'개':list.title}"></td>	
 															<td th:if="${list.delNy eq 0}">N</td>
 															<td th:unless="${list.delNy eq 0}">Y</td>													
 															<td th:text="${#dates.format(list.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>

@@ -559,16 +559,16 @@
 														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
 														<select class="form-select" id="selectDelNy" name="sDelNy">
 															<option value="" selected>삭제여부를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.sDelNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.sDelNy == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectUseNy">사용검색</label>
 														<select class="form-select" id="selectUseNy" name="sUseNy">
 															<option value="" selected>사용여부를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.sUseNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.sUseNy == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -596,14 +596,14 @@
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="keywordType">
 															<option value="" selected>검색구분</option>
-															<option value="1">코드번호</option>
-															<option value="2">코드그룹이름</option>
+															<option value="1" th:selected="${vo.keywordType == 1}">코드번호</option>
+															<option value="2" th:selected="${vo.keywordType == 2}">코드그룹이름</option>
 															<!-- <option value="3">순서</option> -->
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputKeyword">검색어</label>
-														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" th:value="${searchKeyword}" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>

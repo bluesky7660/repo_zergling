@@ -11,6 +11,7 @@ public interface ProductDao {
 	public List<ProductDto> usrProdList(ProductVo vo);
 	public List<ProductDto> xdmProdList(ProductVo vo);	
 	public ProductDto prodOne(ProductDto productDto);
+	public int listCount(ProductVo vo);
 	public int update(ProductDto productDto);
 	public int uelete(ProductDto productDto);
 	public int delete(ProductDto productDto);

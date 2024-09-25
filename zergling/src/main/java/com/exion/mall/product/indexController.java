@@ -1,13 +1,14 @@
 package com.exion.mall.product;
 
-import java.util.List;
-
+import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.exion.infra.code.CodeService;
+import com.exion.infra.member.MemberDto;
+import com.exion.infra.member.MemberService;
 import com.exion.infra.user.UserDto;
 import com.exion.infra.user.UserService;
 
@@ -16,8 +17,10 @@ public class indexController {
 	@Autowired
 	DeliveryAddressService deliveryAddressService;
 	
+//	@Autowired
+//	UserService userService;
 	@Autowired
-	UserService userService;
+	MemberService memberService;
 	
 	@Autowired
 	ProductService productService;
@@ -39,11 +42,15 @@ public class indexController {
 		return "/usr/v1/pages/signup";
 	}
 	@RequestMapping(value = "signupInst")
-	public String signupInst(UserDto userDto) {
-		userService.insertUser(userDto);
+	public String signupInst(MemberDto memberDto) {
+		memberService.insertUsr(memberDto);
 		return "redirect:login";
-//		return "redirect:/v1/infra/user/userXdmList";
 	}
+//	@RequestMapping(value = "signupInst")
+//	public String signupInst(UserDto userDto) {
+//		userService.insertUser(userDto);
+//		return "redirect:login";
+//	}
 	@RequestMapping(value = "user_delivery_address")
 	public String deliveryAddress(Model model,DeliveryAddressDto deliveryAddressDto) {
 		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
@@ -80,26 +87,43 @@ public class indexController {
 		return "redirect:user_delivery_address";
 	}
 	@RequestMapping(value = "user_account")
-	public String userAccount(Model model, UserDto userDto) {
-		model.addAttribute("item", userService.selectOne(userDto));
-		System.out.println("seq: "+userService.selectOne(userDto).getSeq());
+	public String userAccount(Model model, MemberDto memberDto) {
+		model.addAttribute("item", memberService.selectOne(memberDto));
+		System.out.println("seq: "+memberService.selectOne(memberDto).getSeq());
 		return "/usr/v1/pages/user_account";
 	}
 	@RequestMapping(value = "user_accountUpdt")
-	public String user_accountUpdt(UserDto userDto) {
-		System.out.println("seq1: "+userDto.getSeq());
-		userService.update(userDto);
+	public String user_accountUpdt(MemberDto memberDto) {
+		System.out.println("seq1: "+memberDto.getSeq());
+		memberService.update(memberDto);
 		return "redirect:index";
 	}
+//	@RequestMapping(value = "user_account")
+//	public String userAccount(Model model, UserDto userDto) {
+//		model.addAttribute("item", userService.selectOne(userDto));
+//		System.out.println("seq: "+userService.selectOne(userDto).getSeq());
+//		return "/usr/v1/pages/user_account";
+//	}
+//	@RequestMapping(value = "user_accountUpdt")
+//	public String user_accountUpdt(UserDto userDto) {
+//		System.out.println("seq1: "+userDto.getSeq());
+//		userService.update(userDto);
+//		return "redirect:index";
+//	}
 	@RequestMapping(value = "user_order_list")
 	public String userOrderList() {
 		return "/usr/v1/pages/user_order_list";
 	}
 	@RequestMapping(value = "user_password")
-	public String userPassword(Model model,UserDto userDto) {
-		model.addAttribute("item", userService.selectOne(userDto));
+	public String userPassword(Model model,MemberDto memberDto) {
+		model.addAttribute("item", memberService.selectOne(memberDto));
 		return "/usr/v1/pages/user_password";
 	}
+//	@RequestMapping(value = "user_password")
+//	public String userPassword(Model model,UserDto userDto) {
+//		model.addAttribute("item", userService.selectOne(userDto));
+//		return "/usr/v1/pages/user_password";
+//	}
 	
 	@RequestMapping(value = "product_detail")
 	public String productDetail(Model model,ProductDto productDto) {

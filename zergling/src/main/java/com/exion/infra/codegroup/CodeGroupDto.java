@@ -13,32 +13,7 @@ public class CodeGroupDto {
 	private Integer delNy;
 	private Date regDate;
 	private Date modDate;
-//	public CodeGroupDto(int limit, int offset, String searchKeyword) {
-//        // 부모 클래스의 필드를 직접 설정하는 방식
-//        setLimit(limit);
-//        setOffset(offset);
-//        setSearchKeyword(searchKeyword);
-//    }
-//	public CodeGroupDto(int totalRows, int totalPages, int currentPage, int pageSize, String searchKeyword) {
-//        setTotalRows(totalRows);
-//        setTotalPages(totalPages);
-//        setCurrentPage(currentPage);
-//        setPageSize(pageSize);
-//        setSearchKeyword(searchKeyword);
-//    }
-//	public CodeGroupDto() {}
-//
-//    public CodeGroupDto(String seq, String codeGroupOtherNum, String codeGroupName, Integer groupOrder, String groupDesc, Integer useNy, Integer delNy, Date regDate, Date modDate) {
-//        this.seq = seq;
-//        this.codeGroupOtherNum = codeGroupOtherNum;
-//        this.codeGroupName = codeGroupName;
-//        this.groupOrder = groupOrder;
-//        this.groupDesc = groupDesc;
-//        this.useNy = useNy;
-//        this.delNy = delNy;
-//        this.regDate = regDate;
-//        this.modDate = modDate;
-//    }
+
 	//------------------------------
 	public String getSeq() {
 		return seq;

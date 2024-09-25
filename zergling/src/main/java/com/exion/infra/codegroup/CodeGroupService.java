@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
+
 @Service
 public class CodeGroupService {
 	@Autowired
@@ -15,6 +17,10 @@ public class CodeGroupService {
 //		List<CodeGroupDto> codeGroup = codeGroupDao.selectList();
 //		return codeGroup;
 //	}
+	@PostConstruct
+	public void selectListCachedCodeArrayList(){
+		System.out.println("1");
+	}
 	
 	public List<CodeGroupDto> selectList(){
 		return codeGroupDao.selectList();

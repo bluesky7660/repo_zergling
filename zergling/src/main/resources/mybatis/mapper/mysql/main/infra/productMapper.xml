@@ -3,7 +3,65 @@
 
 <mapper namespace="com.exion.mall.product.ProductDao">
 	  <resultMap type="com.exion.mall.product.ProductDto" id="resultObj"></resultMap>
+	  <sql id="selectCommon">
+	  	where 1=1
+				AND prodType.codeGroup_seq = 12
+				AND publisher.codeGroup_seq = 3
+				
+				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+				<if test="bestNy != null and !bestNy.equals('')">AND a.bestNy = #{bestNy}</if>
+				<if test="todayPickNy != null and !todayPickNy.equals('')">AND a.todayPickNy = #{todayPickNy}</if>
+				<if test="prodType != null and !prodType.equals('')">AND a.prodType = #{prodType}</if>
+				<if test="freeShippingNy != null and !freeShippingNy.equals('') and freeShippingNy != 0">AND a.freeShippingNy = #{freeShippingNy}</if>
+				<if test="taxDeductionNy != null and !taxDeductionNy.equals('') and taxDeductionNy != 0">AND a.taxDeductionNy = #{taxDeductionNy}</if>
+				<if test="mdPickNy != null and !mdPickNy.equals('') and mdPickNy != 0">AND a.mdPickNy = #{mdPickNy}</if>
+				<if test="searchKeyword != null and !searchKeyword.equals('')">
+					<choose>
+						<when test="keywordType == null">
+							AND(
+								a.seq Like CONCAT('%',#{searchKeyword},'%')
+								OR a.title Like CONCAT('%',#{searchKeyword},'%')
+								OR b.name Like CONCAT('%',#{searchKeyword},'%')
+								OR publisher.codeName Like CONCAT('%',#{searchKeyword},'%')
+							)
+						</when>
+						<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
+						<when test="keywordType == 2">AND a.title Like CONCAT('%',#{searchKeyword},'%') </when>
+						<when test="keywordType == 3">AND b.name Like CONCAT('%',#{searchKeyword},'%')</when>
+						<when test="keywordType == 4">AND publisher.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
+						<!-- <when test="keywordType == 5">AND a.reviewNum Like CONCAT('%',#{searchKeyword},'%')</when> -->
+					</choose>
+				</if>
+				<if test="(dateStart != null and !dateStart.equals(''))and (dateEnd != null and !dateEnd.equals(''))">
+					<choose>
+						<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+						<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+						<when test="dateType == 3"> AND a.makeDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+						<when test="dateType == 4"> AND a.shipDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					</choose>
+				</if>
+				<choose>
+					<when test="minPrice != null and maxPrice != null">
+				        AND a.salePrice BETWEEN #{minPrice} AND #{maxPrice}
+				    </when>
+				</choose>
+				<choose>
+					<when test="minReview != null and maxReview != null">
+				        AND a.reviewNum BETWEEN #{minReview} AND #{maxReview}
+				    </when>
+				</choose>
+				<choose>
+					<!-- <when test="makeDateFillter == 0"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL  MONTH) AND NOW()</when> -->
+					<when test="makeDateFillter == 1"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()</when>
+					<when test="makeDateFillter == 2"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW()</when>
+					<when test="makeDateFillter == 3"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()</when>
+					<when test="makeDateFillter == 4"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW()</when>
+					<when test="makeDateFillter == 5"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 36 MONTH) AND NOW()</when>
+					<when test="makeDateFillter == 6"> AND a.makeDate &lt; DATE_SUB(NOW(), INTERVAL 36 MONTH) </when>
+				</choose>
+	  </sql>
 	  <select id="xdmProdList" resultMap="resultObj">
+	  	<include refid="base.selectListUpperForMysql"/>
 		  	select
 				a.seq
 				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
@@ -43,64 +101,14 @@
 				left join author b on c.author_seq = b.seq
 				left join commoncode prodType on a.prodType = prodType.seq
 				left join commoncode publisher on a.publisher = publisher.seq
-			where 1=1
-				AND prodType.codeGroup_seq = 12
-				AND publisher.codeGroup_seq = 3
-				
-				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
-				<if test="bestNy != null and !bestNy.equals('')">AND a.bestNy = #{bestNy}</if>
-				<if test="todayPickNy != null and !todayPickNy.equals('')">AND a.todayPickNy = #{todayPickNy}</if>
-				<if test="prodType != null and !prodType.equals('')">AND a.prodType = #{prodType}</if>
-				<if test="freeShippingNy != null and !freeShippingNy.equals('') and freeShippingNy != 0">AND a.freeShippingNy = #{freeShippingNy}</if>
-				<if test="taxDeductionNy != null and !taxDeductionNy.equals('') and taxDeductionNy != 0">AND a.taxDeductionNy = #{taxDeductionNy}</if>
-				<if test="mdPickNy != null and !mdPickNy.equals('') and mdPickNy != 0">AND a.mdPickNy = #{mdPickNy}</if>
-				<if test="searchKeyword != null and !searchKeyword.equals('')">
-					<choose>
-						<when test="keywordType == null">
-							AND(
-								a.seq Like CONCAT('%',#{searchKeyword},'%')
-								OR a.title Like CONCAT('%',#{searchKeyword},'%')
-								OR b.name Like CONCAT('%',#{searchKeyword},'%')
-								OR publisher.codeName Like CONCAT('%',#{searchKeyword},'%')
-							)
-						</when>
-						<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
-						<when test="keywordType == 2">AND a.title Like CONCAT('%',#{searchKeyword},'%') </when>
-						<when test="keywordType == 3">AND b.name Like CONCAT('%',#{searchKeyword},'%')</when>
-						<when test="keywordType == 4">AND publisher.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
-						<!-- <when test="keywordType == 5">AND a.reviewNum Like CONCAT('%',#{searchKeyword},'%')</when> -->
-					</choose>
-				</if>
-				<choose>
-					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-					<when test="dateType == 3"> AND a.makeDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-					<when test="dateType == 4"> AND a.shipDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				</choose>
-				<!-- <choose>
-					<when test="minPrice != null and maxPrice != null">
-				        AND a.salePrice BETWEEN #{minPrice} AND #{maxPrice}
-				    </when>
-				</choose>
-				<choose>
-					<when test="minReview != null and maxReview != null">
-				        AND a.reviewNum BETWEEN #{minReview} AND #{maxReview}
-				    </when>
-				</choose> -->
-				<choose>
-					<!-- <when test="makeDateFillter == 0"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL  MONTH) AND NOW()</when> -->
-					<when test="makeDateFillter == 1"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()</when>
-					<when test="makeDateFillter == 2"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW()</when>
-					<when test="makeDateFillter == 3"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()</when>
-					<when test="makeDateFillter == 4"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW()</when>
-					<when test="makeDateFillter == 5"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 36 MONTH) AND NOW()</when>
-					<when test="makeDateFillter == 6"> AND a.makeDate &lt; DATE_SUB(NOW(), INTERVAL 36 MONTH) </when>
-				</choose>
+			<include refid="selectCommon"/>
 			order by a.seq desc
+			<include refid="base.selectListLowerForMysql"/>
 	  </select>
 	  <select id="usrProdList" resultMap="resultObj">
 		  	select
 				a.seq
+				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -133,12 +141,13 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq
+				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 				left join commoncode prodType on a.prodType = prodType.seq
 				left join commoncode publisher on a.publisher = publisher.seq
-			where 1=1
+			<include refid="selectCommon"/>
+			<!-- where 1=1
 				AND prodType.codeGroup_seq = 12
 				AND publisher.codeGroup_seq = 3
 				<if test="todayPickNy != null and !todayPickNy.equals('') and todayPickNy != 0">AND a.todayPickNy = #{todayPickNy}</if>
@@ -159,14 +168,14 @@
 				    </when>
 				</choose>
 				<choose>
-					<!-- <when test="makeDateFillter == 0"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL  MONTH) AND NOW()</when> -->
+					<when test="makeDateFillter == 0"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL  MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 1"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 2"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 3"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 4"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 5"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 36 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 6"> AND a.makeDate &lt; DATE_SUB(NOW(), INTERVAL 36 MONTH) </when>
-				</choose>
+				</choose> -->
 			order by a.makeDate desc
 	  </select>
 	  <insert id="insertProd">
@@ -294,6 +303,16 @@
 			WHERE 1=1
 				AND seq = #{seq}
 	  </update>
+	  <select id="listCount" resultType="int">
+        	SELECT COUNT(*) 
+        	from
+				product a
+				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join author b on c.author_seq = b.seq
+				left join commoncode prodType on a.prodType = prodType.seq
+				left join commoncode publisher on a.publisher = publisher.seq
+        	<include refid="selectCommon"/>
+   	  </select>
 	  <update id="uelete">
 			UPDATE product
 			SET

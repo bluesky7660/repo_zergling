@@ -1,6 +1,8 @@
 package com.exion.infra.code;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.exion.infra.codegroup.PagingResponseDto;
 
@@ -16,6 +18,9 @@ public class CodeDto extends PagingResponseDto {
 	private Date regDate;
 	private Date modDate;
 	private String codeGroup_seq;
+	
+//	for cache
+	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
 	
 	//----------------------------------
 	public String getSeq() {
@@ -77,6 +82,12 @@ public class CodeDto extends PagingResponseDto {
 	}
 	public void setCodeGroup_seq(String codeGroup_seq) {
 		this.codeGroup_seq = codeGroup_seq;
+	}
+	public static List<CodeDto> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<CodeDto> cachedCodeArrayList) {
+		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
 	}
 	
 }

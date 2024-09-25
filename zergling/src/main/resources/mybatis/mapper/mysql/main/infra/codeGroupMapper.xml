@@ -35,13 +35,13 @@
 	                    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
 	                </when> -->
 					<when test="keywordType == 1 and keywordType != null and keywordType != ''">
-					    a.seq = #{searchKeyword}
+					    AND a.seq = #{searchKeyword}
 					</when>
 					<when test="keywordType == 2 and keywordType != null and keywordType != ''">
-					     a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+					    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
 					</when>
 					<otherwise>
-						a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+						AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
 					    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%')
 					</otherwise>
 					

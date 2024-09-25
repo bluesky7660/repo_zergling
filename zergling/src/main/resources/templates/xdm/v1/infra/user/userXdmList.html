@@ -481,7 +481,7 @@
 										<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 										<div class="card-header bg-light">
 											<h2 class="card-title">
-												User
+												Member
 											</h2>
 											<div>
 												<div class="row gy-3">
@@ -489,16 +489,16 @@
 														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
 														<select class="form-select" id="selectDelNy" name="sDelNy">
 															<option value="" selected>삭제여부를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.sDelNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.sDelNy == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectAdmNy">관리자권한</label>
 														<select class="form-select" id="selectAdmNy" name="admNy">
 															<option value="" selected>관리자권한를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.admNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.admNy == 0}">N</option>
 														</select>
 													</div>
 													
@@ -506,17 +506,17 @@
 														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
 														<select class="form-select" id="selectDateType" name="dateType">
 															<option value="" selected>날짜종류 선택해주세요.</option>
-															<option value="1">등록일</option>
-															<option value="2">수정일</option>
+															<option value="1" th:selected="${vo.dateType == 1}">등록일</option>
+															<option value="2" th:selected="${vo.dateType == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
-														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" th:value="${vo.dateStart}" placeholder="시작일을 선택해주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
-														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" th:value="${vo.dateEnd}" placeholder="종료일을 선택해주세요" value="">
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
@@ -524,28 +524,26 @@
 														<label class="visually-hidden" for="selectGender">성별</label>
 														<select class="form-select" id="selectGender" name="gender">
 															<option value="" selected>성별를 선택하세요</option>
-															<option value="1">남자</option>
-															<option value="2">여자</option>
-															<option value="3">기타</option>
+															<option th:each="list : ${@codeService.selectListCachedCode(1)}" th:value="${list.seq}" th:text="${list.codeName}" th:selected="${list.seq} == ${vo.gender}"></option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateOfBirth">생년월일</label>
-														<input type="text" class="form-control" id="inputDateOfBirth" name="dateOfBirth" placeholder="생년월일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateOfBirth" name="dateOfBirth" th:value="${vo.dateOfBirth}" placeholder="생년월일을 선택해주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="keywordType">
 															<option value="" selected>검색구분</option>
-															<option value="1">유저이름</option>
-															<option value="2">유저ID</option>
-															<option value="3">유저PassWord</option>
-															<option value="4">유저Email</option>
+															<option value="1" th:selected="${vo.keywordType == 1}">유저이름</option>
+															<option value="2" th:selected="${vo.keywordType == 2}">유저ID</option>
+															<option value="3" th:selected="${vo.keywordType == 3}">유저PassWord</option>
+															<option value="4" th:selected="${vo.keywordType == 4}">유저Email</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputKeyword">검색어</label>
-														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" th:value="${vo.searchKeyword}" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
@@ -604,7 +602,9 @@
 															</td>
 															<td th:text="${listU.userId}"></td>
 															<td th:text="${listU.userPassword}"></td>
-															<td th:text="${listU.codeName}"></td>
+															<!-- <td th:text="${listU.codeName}"></td> -->
+															<td th:if="${listU.gender != null}" th:text="${@codeService.selectOneCachedCode(listU.gender)}" class="ifmmGenderCd align-middle"></td>
+															<td th:unless="${listU.gender != null}" class="ifmmGenderCd align-middle"></td>
 															<td th:text="${#dates.format(listU.dateOfBirth,'yyyy-MM-dd')}"></td>
 															<td th:text="${listU.email}"></td>
 															<td th:if="${listU.delNy eq 0}">N</td>

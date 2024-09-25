@@ -22,7 +22,7 @@ public class CodeController {
 	CodeGroupService codeGroupService;
 	 
 	@RequestMapping(value = "/v1/infra/code/codeXdmList")
-	public String codeXdmList(@ModelAttribute("count") CodeVo vo, Model model) {
+	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) {
 		vo.setParamsPaging(codeService.listCount(vo));
 		System.out.println("---------------------------------------------");
 		System.out.println("번호thisPage: " + vo.getThisPage());

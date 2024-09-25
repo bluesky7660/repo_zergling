@@ -528,7 +528,9 @@
 												<div class="col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="authorList" class="form-label">선택된 작가들</label>
-														<input th:each="authors : ${authors}" type="text" name="author_seq" th:value="${authors.author_seq}"th:text="${authors.name}">
+														<div class="authorListH">
+															<input class="selectAuthorH" th:each="authors : ${authors}" type="hidden" name="author_seq" th:value="${authors.author_seq}">
+														</div>
 														<div class="authorList">
 															
 															
@@ -874,11 +876,19 @@
 			window.addEventListener('load', function() {
 				const authorSelect = document.querySelector("#inputAuthorName");
 				const authorSelectBox = document.querySelector(".authorList");
-
+				const authorSelectH = document.querySelector(".authorListH");
 				const selectedValue = authorSelect.value;
+				// 페이지 로드 시 authorSelectH 안에 있는 input 값을 기반으로 태그 생성
+				const hiddenInputs = document.querySelectorAll(".authorListH input");
+				hiddenInputs.forEach(input => {
+					addAuthorTagByValue(input.value); // 히든 인풋의 값을 기반으로 태그 생성
+				});
+
 				if (selectedValue) {
 					const selectedText = authorSelect.options[authorSelect.selectedIndex].text;
-					const existingTag = Array.from(authorSelectBox.children).find(tag => tag.dataset.value === selectedValue);
+					// const existingTag = Array.from(authorSelectBox.children).find(tag => tag.dataset.value === selectedValue);
+					const existingTag = Array.from(authorSelectH.children).find(tag => tag.value === selectedValue);
+					
 					if (existingTag) {
 						alert("이미 선택된 항목입니다!");
 						return;
@@ -887,16 +897,19 @@
 					const tagInput = document.createElement('input');
 					newTag.className = 'authorTag';
 					newTag.textContent = selectedText;
+					newTag.dataset.value = selectedValue;
 					tagInput.name = 'author_seq';
 					tagInput.type = 'hidden';
 					tagInput.value = selectedValue;
 
 					newTag.addEventListener("click",function() {
 						this.remove();
+						const num = this.dataset.value = selectedValue;
+						removeHiddenInput(num); 
 						authorSelect.value = ''; // 선택 초기화
 					});
 					authorSelectBox.appendChild(newTag);
-					newTag.appendChild(tagInput);
+					authorSelectH.appendChild(tagInput);
 				}
 
 
@@ -904,33 +917,96 @@
 				authorSelect.addEventListener("change",function() {
 					const selectedValue = this.value;
 					const selectedText = this.options[this.selectedIndex].text;
-					
+					const existingTag = Array.from(authorSelectH.children).find(tag => tag.value === selectedValue);
 					// 아무 것도 선택하지 않았을 때는 동작하지 않도록 처리
 					if (!selectedValue) return;
 
-					// 중복된 태그가 있는지 확인
-					const existingTag = Array.from(authorSelectBox.children).find(tag => tag.dataset.value === selectedValue);
 					if (existingTag) {
 						alert("이미 선택된 항목입니다!");
 						return;
 					}
-					// 새로운 태그(div) 생성
 					const newTag = document.createElement('div');
 					const tagInput = document.createElement('input');
 					newTag.className = 'authorTag';
 					newTag.textContent = selectedText;
+					newTag.dataset.value = selectedValue;
 					tagInput.name = 'author_seq';
 					tagInput.type = 'hidden';
 					tagInput.value = selectedValue;
-					
+
 					newTag.addEventListener("click",function() {
 						this.remove();
+						const num = this.dataset.value = selectedValue;
+						removeHiddenInput(num); 
+						// const existingTag2 = Array.from(authorSelectH.children).find(tag => tag.value === num);
+						// if (existingTag2) {
+						// 	existingTag2.remove();
+						// }
 						authorSelect.value = ''; // 선택 초기화
-					})
+					});
 					authorSelectBox.appendChild(newTag);
-					newTag.appendChild(tagInput);
-				});
+					authorSelectH.appendChild(tagInput);
+					// const selectedValue = this.value;
+					// const selectedText = this.options[this.selectedIndex].text;
+					
+					// // 아무 것도 선택하지 않았을 때는 동작하지 않도록 처리
+					// if (!selectedValue) return;
 
+					// // 중복된 태그가 있는지 확인
+					// const existingTag = Array.from(authorSelectBox.children).find(tag => tag.dataset.value === selectedValue);
+					// if (existingTag) {
+					// 	alert("이미 선택된 항목입니다!");
+					// 	return;
+					// }
+					// // 새로운 태그(div) 생성
+					// const newTag = document.createElement('div');
+					// const tagInput = document.createElement('input');
+					// newTag.className = 'authorTag';
+					// newTag.textContent = selectedText;
+					// tagInput.name = 'author_seq';
+					// tagInput.type = 'hidden';
+					// tagInput.value = selectedValue;
+					
+					// newTag.addEventListener("click",function() {
+					// 	this.remove();
+					// 	authorSelect.value = ''; // 선택 초기화
+					// })
+					// authorSelectBox.appendChild(newTag);
+					// newTag.appendChild(tagInput);
+				});
+				function addAuthorTagByValue(value) {
+					// 태그가 이미 존재하는지 확인
+					const existingTag = Array.from(authorSelectBox.children).find(tag => tag.dataset.value === value);
+					if (existingTag) {
+						return; // 이미 존재하면 중복으로 추가하지 않음
+					}
+
+					// 셀렉트 박스에서 해당 value 값을 가진 옵션을 찾음
+					const option = Array.from(authorSelect.options).find(opt => opt.value === value);
+					if (option) {
+						// 태그 생성
+						const newTag = document.createElement('div');
+						newTag.className = 'authorTag';
+						newTag.textContent = option.textContent; // 옵션의 텍스트
+						newTag.dataset.value = value; // 셀렉트 옵션의 value 저장
+
+						// 태그 클릭 시 해당하는 히든 input만 제거
+						newTag.addEventListener("click", function() {
+							const num = this.dataset.value; // 태그의 value 값
+							removeHiddenInput(num); // 히든 필드 삭제
+							this.remove(); // 태그 삭제
+						});
+
+						authorSelectBox.appendChild(newTag); // 태그를 authorList에 추가
+					}
+				}
+				function removeHiddenInput(value) {
+					
+					const existingTag2 = Array.from(authorSelectH.children).find(tag => tag.value === value);
+					if (existingTag2) {
+						existingTag2.remove();
+					}
+			}
 			})
 			
 		</script>

@@ -153,6 +153,17 @@
 		WHERE 1 = 1
 			and a.codeGroup_seq = 10
 	</select>
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			seq
+			, codeName
+			, codeGroup_seq
+		FROM
+			commoncode
+		WHERE 1=1
+			AND delNy = 0
+		    AND useNy = 1
+   	</select>
 	<update id="update">
 		UPDATE commoncode
 		SET

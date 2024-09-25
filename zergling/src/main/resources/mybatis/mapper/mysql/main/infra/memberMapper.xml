@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.infra.member.MemberDao">
+	  <resultMap type="com.exion.infra.member.MemberDto" id="resultObj"></resultMap>
+	  <sql id="selectCommon">
+	  		from
+				member a
+				join commoncode b on a.gender = b.seq
+				join codegroup c on b.codeGroup_seq = c.seq
+			where 1=1
+				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+				<if test="admNy != null and !admNy.equals('')">AND a.admNy = #{admNy}</if>
+				<if test="gender != null and !gender.equals('')">AND a.gender = #{gender}</if>
+				<if test="searchKeyword != null and !searchKeyword.equals('')">
+					<choose>
+						<when test="keywordType == null">
+							AND(
+								a.name Like CONCAT('%',#{searchKeyword},'%')
+								OR a.userId Like CONCAT('%',#{searchKeyword},'%')
+								OR a.userPassword Like CONCAT('%',#{searchKeyword},'%')
+								OR a.email Like CONCAT('%',#{searchKeyword},'%')
+							)
+						</when>
+						<when test="keywordType == 1">AND a.name = #{searchKeyword}</when>
+						<when test="keywordType == 2">AND a.userId Like CONCAT('%',#{searchKeyword},'%') </when>
+						<when test="keywordType == 3">AND a.userPassword Like CONCAT('%',#{searchKeyword},'%')</when>
+						<when test="keywordType == 4">AND a.email Like CONCAT('%',#{searchKeyword},'%')</when>
+					</choose>
+				</if>
+				<if test="dateOfBirth != null and !dateOfBirth.equals('')">
+					AND a.dateOfBirth = #{dateOfBirth}
+				</if>
+				<choose>
+					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
+	  </sql>
+	  <select id="selectMember" resultMap="resultObj">
+		  	select
+				a.seq
+			    ,a.admNy
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			    ,a.gender
+			    ,b.codeName
+			    ,a.dateOfBirth
+			    ,a.email
+			    ,a.phoneNum
+			    ,a.userDesc
+			    ,a.regDate
+			    ,a.modDate
+			    ,a.delNy
+			from
+				member a
+				join commoncode b on a.gender = b.seq
+				join codegroup c on b.codeGroup_seq = c.seq
+			where 1=1
+				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+				<if test="admNy != null and !admNy.equals('')">AND a.admNy = #{admNy}</if>
+				<if test="gender != null and !gender.equals('')">AND a.gender = #{gender}</if>
+				<if test="searchKeyword != null and !searchKeyword.equals('')">
+					<choose>
+						<when test="keywordType == null">
+							AND(
+								a.name Like CONCAT('%',#{searchKeyword},'%')
+								OR a.userId Like CONCAT('%',#{searchKeyword},'%')
+								OR a.userPassword Like CONCAT('%',#{searchKeyword},'%')
+								OR a.email Like CONCAT('%',#{searchKeyword},'%')
+							)
+						</when>
+						<when test="keywordType == 1">AND a.name = #{searchKeyword}</when>
+						<when test="keywordType == 2">AND a.userId Like CONCAT('%',#{searchKeyword},'%') </when>
+						<when test="keywordType == 3">AND a.userPassword Like CONCAT('%',#{searchKeyword},'%')</when>
+						<when test="keywordType == 4">AND a.email Like CONCAT('%',#{searchKeyword},'%')</when>
+					</choose>
+				</if>
+				<if test="dateOfBirth != null and !dateOfBirth.equals('')">
+					AND a.dateOfBirth = #{dateOfBirth}
+				</if>
+				<choose>
+					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
+			order by a.seq desc
+	  </select>
+	  
+	  <select id="selectXdmMember" resultMap="resultObj">
+	  		<include refid="base.selectListUpperForMysql"/>
+		  	select
+				a.seq
+			    ,a.admNy
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			    ,a.gender
+			    ,b.codeName
+			    ,a.dateOfBirth
+			    ,a.email
+			    ,a.phoneNum
+			    ,a.userDesc
+			    ,a.regDate
+			    ,a.modDate
+			    ,a.delNy
+			<include refid="selectCommon"/>
+			order by a.seq desc
+			<include refid="base.selectListLowerForMysql"/>
+	  </select>
+	  <select id="listCount">
+        SELECT COUNT(*)
+        <include refid="selectCommon"/>
+    </select>
+	  <insert id="insert">
+	  		insert into member(
+				admNy
+			    ,name
+			    ,userId
+			    ,userPassword
+			    ,gender
+			    ,dateOfBirth
+			    ,email
+			    ,phoneNum
+			    ,userDesc
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			)value(
+				#{admNy}
+			    ,#{name}
+			    ,#{userId}
+				,#{userPassword}
+			    ,#{gender}
+				,#{dateOfBirth}
+			    ,#{email}
+			    ,#{phoneNum}
+			    ,#{userDesc}
+			    ,now()
+			    ,now()
+			    ,0
+			)
+	  </insert>
+	  <select id="selectOne" resultMap="resultObj">
+		  	select
+				c.seq
+			    ,c.admNy
+			    ,c.name
+			    ,c.userId
+			    ,c.userPassword
+			    ,c.gender
+			    ,c.dateOfBirth
+			    ,c.email
+			    ,c.phoneNum
+			    ,c.userDesc
+			    ,c.regDate
+			    ,c.modDate
+			    ,c.delNy
+			from
+				member c
+			where 1=1
+				and c.seq = #{seq}
+	  </select>
+	  <insert id="insertUsr">
+	  		insert into member(
+				admNy
+			    ,name
+			    ,userId
+			    ,userPassword
+			    ,gender
+			    ,dateOfBirth
+			    ,email
+			    ,phoneNum
+			    ,userDesc
+			    ,regDate
+			    ,modDate
+			    ,delNy
+			)value(
+				0
+			    ,#{name}
+			    ,#{userId}
+				,#{userPassword}
+			    ,#{gender}
+				,#{dateOfBirth}
+			    ,#{email}
+			    ,#{phoneNum}
+			    ,"신규유저입니다."
+			    ,now()
+			    ,now()
+			    ,0
+			)
+	  </insert>
+	  <update id="update">
+	  		update member
+	  		set
+	  			admNy = CASE WHEN #{admNy} IS NOT NULL THEN #{admNy} ELSE admNy END
+	  			,name = CASE WHEN #{name} IS NOT NULL THEN #{name} ELSE name END
+	  			,userId = CASE WHEN #{userId} IS NOT NULL THEN #{userId} ELSE userId END
+	  			,userPassword = CASE WHEN #{userPassword} IS NOT NULL THEN #{userPassword} ELSE userPassword END
+	  			,gender = CASE WHEN #{gender} IS NOT NULL THEN #{gender} ELSE gender END
+	  			,dateOfBirth = CASE WHEN #{dateOfBirth} IS NOT NULL THEN #{dateOfBirth} ELSE dateOfBirth END
+	  			,email = CASE WHEN #{email} IS NOT NULL THEN #{email} ELSE email END
+	  			,phoneNum = CASE WHEN #{phoneNum} IS NOT NULL THEN #{phoneNum} ELSE phoneNum END
+	  			,userDesc = CASE WHEN #{userDesc} IS NOT NULL THEN #{userDesc} ELSE userDesc END
+	  			,modDate = now()
+	  		where 1=1
+	  			and seq = #{seq}
+	  </update>
+	  <update id="updateU">
+	  		update member
+	  		set
+	  			,userPassword = #{userPassword}
+	  			,email = #{email}
+	  			,phoneNum = #{phoneNum}
+	  			,modDate = now()
+	  		where 1=1
+	  			and seq = #{seq}
+	  </update>
+	  <update id="updatePW">
+	  		update member
+	  		set
+	  			,userPassword = #{userPassword}
+	  			,modDate = now()
+	  		where 1=1
+	  			and seq = #{seq}
+	  </update>
+	  
+</mapper>

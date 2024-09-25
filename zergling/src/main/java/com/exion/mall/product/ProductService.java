@@ -18,21 +18,14 @@ public class ProductService {
 	public int insertProd(ProductDto productDto,ProductAuthorDto productAuthorDto) {
 		int a = productDao.insertProd(productDto);
 		
-//		List<String> authorLists = Arrays.asList(productAuthorDto.getAuthor_seq());
+
 		List<String> authorLists = productAuthorDto.getListAuthor_seq();
-//		System.out.println("리스트: "+productAuthorDto.getAuthor_seq());
-		System.out.println("리스트2: "+authorLists);
-		
-//		for (int i = 0;i>authorLists.size(); i++) {
-//			System.out.println("상품번호: "+productDto.getSeq());
-//			System.out.println("작가번호: "+authorLists.get(i));
-////			productAuthorDto.setProduct_seq(productDto.getSeq());
-////			productAuthorDto.setAuthor_seq(author);
-////			productAuthorDao.insert(productAuthorDto);
-//		}
+
+		System.out.println("리스트: "+authorLists);
+
 		for(String author: authorLists) {
-			System.out.println("상품번호: "+productDto.getSeq());
-			System.out.println("작가번호: "+author);
+//			System.out.println("상품번호: "+productDto.getSeq());
+//			System.out.println("작가번호: "+author);
 			productAuthorDto.setProduct_seq(productDto.getSeq());
 			productAuthorDto.setAuthor_seq(author);
 			productAuthorDao.insert(productAuthorDto);
@@ -55,15 +48,18 @@ public class ProductService {
 	}
 	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) {
 		int a = productDao.update(productDto);
-//		List<String> authorLists = Arrays.asList(productAuthorDto.getAuthor_seq());
-//		System.out.println("리스트: "+authorLists);
-//		for(String author: authorLists) {
-//			System.out.println("상품번호: "+productDto.getSeq());
-//			System.out.println("작가번호: "+author);
-//			productAuthorDto.setProduct_seq(productDto.getSeq());
-//			productAuthorDto.setAuthor_seq(author);
-//			productAuthorDao.update(productAuthorDto);
-//		}
+		List<String> authorLists = productAuthorDto.getListAuthor_seq();
+		System.out.println("리스트2: "+authorLists);
+		for(String author: authorLists) {
+			System.out.println("상품번호: "+productDto.getSeq());
+			System.out.println("작가번호: "+author);
+			productAuthorDto.setProduct_seq(productDto.getSeq());
+			productAuthorDto.setAuthor_seq(author);
+			productAuthorDao.update(productAuthorDto);
+		}
 		return a;
+	}
+	public int listCount(ProductVo vo) {
+		return productDao.listCount(vo);
 	}
 }

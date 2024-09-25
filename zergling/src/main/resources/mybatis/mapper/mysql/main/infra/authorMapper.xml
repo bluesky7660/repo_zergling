@@ -59,6 +59,7 @@
 		  	select
 				a.seq
 			    ,a.authorType
+			    ,(select count(aa.author_seq) from productAuthor aa  where 1=1 and aa.author_seq = a.seq) as productCount
 			    ,d.codeName
 			    ,a.name	
 			    ,a.authorInfo
@@ -68,7 +69,7 @@
 			    ,a.delNy
 			from
 				author a
-				left join productAuthor c on c.author_seq = a.seq
+				left join productAuthor c on c.author_seq = a.seq and pDefaultNy = 1 
 				left join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
 			<include refid="selectCommon"/>
@@ -79,7 +80,7 @@
         	SELECT COUNT(*) 
         	from
 				author a
-				left join productAuthor c on c.author_seq = a.seq
+				left join productAuthor c on c.author_seq = a.seq and pDefaultNy = 1 
 				left join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
         	<include refid="selectCommon"/>

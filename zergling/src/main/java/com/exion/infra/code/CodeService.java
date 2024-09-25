@@ -1,12 +1,12 @@
 package com.exion.infra.code;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.exion.infra.codegroup.CodeGroupDto;
-import com.exion.infra.codegroup.PagingResponseDto;
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class CodeService {
@@ -19,22 +19,6 @@ public class CodeService {
 		List<CodeDto> commonCode = codeDao.selectList(vo);
 		return commonCode;
 	}
-//	public PagingResponseDto<CodeDto> selectList( CodeVo vo){
-//		CodeVo params  = new CodeVo();
-//        params.setLimit(vo.getLimit());
-//        params.setOffset(vo.getOffset());
-////        params.setDateType(vo.DateType);
-////        params.setDateStart(dateStart);
-////        params.setDateEnd(dateEnd);
-//        params.setKeywordType(vo.getKeywordType());
-//        params.setsDelNy(vo.getsDelNy());
-//        params.setsUseNy(vo.getsUseNy());
-//        params.setSearchKeyword(vo.getSearchKeyword());
-//		List<CodeDto> list = codeDao.selectList(params);
-//		int listCount = codeDao.listCount(vo);
-//        int totalPages = (int) Math.ceil((double) listCount / vo.getPageSize());
-//		return new PagingResponseDto<>(list, listCount, totalPages, params.getCurrentPage(), params.getPageSize(), params.getSearchKeyword() );
-//	}
 	public int insert(CodeDto codeDto) {
 		return codeDao.insert(codeDto);
 	}
@@ -68,15 +52,43 @@ public class CodeService {
 	public int delete(CodeDto codeDto) {
 		return codeDao.delete(codeDto);
 	}
-//	public PagingResponseDto<CodeDto> findAll(int page, int size, String searchKeyword) {
-//        int offset = (page - 1) * size;
-//        CodeDto params  = new CodeDto();
-//        params.setLimit(size);
-//        params.setOffset(offset);
-//        params.setSearchKeyword(searchKeyword);
-//        List<CodeDto> list = codeDao.selectList2(params);
-//        int listCount = codeDao.listCount(searchKeyword);
-//        int totalPages = (int) Math.ceil((double) listCount / size);
-//        return new PagingResponseDto<>(list, listCount, totalPages, page, size, searchKeyword);
-//    }
+	
+	@PostConstruct
+	public void selectListCachedCodeArrayList() throws Exception {
+		List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) codeDao.selectListCachedCodeArrayList();
+//		codeListFromDb = (ArrayList<Code>) codeDao.selectListCachedCodeArrayList();
+		CodeDto.cachedCodeArrayList.clear(); 
+		CodeDto.cachedCodeArrayList.addAll(codeListFromDb);
+		System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
+	}
+	
+	public static void clear() throws Exception {
+		CodeDto.cachedCodeArrayList.clear();
+	}
+	
+	
+	public static List<CodeDto> selectListCachedCode(String ifcgSeq) throws Exception {
+		List<CodeDto> rt = new ArrayList<CodeDto>();
+		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+			if (codeRow.getCodeGroup_seq().equals(ifcgSeq)) {
+				rt.add(codeRow);
+			} else {
+				// by pass
+			}
+		}
+		return rt;
+	}
+
+	
+	public static String selectOneCachedCode(int code) throws Exception {
+		String rt = "";
+		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+			if (codeRow.getSeq().equals(Integer.toString(code))) {
+				rt = codeRow.getCodeName();
+			} else {
+				// by pass
+			}
+		}
+		return rt;
+	}
 }
