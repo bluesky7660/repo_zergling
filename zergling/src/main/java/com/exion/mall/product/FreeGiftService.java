@@ -20,6 +20,9 @@ public class FreeGiftService {
 	public int insert(FreeGiftDto freeGiftDto) {
 		return freeGiftDao.insert(freeGiftDto);
 	}
+	public int listCount(FreeGiftVo vo) {
+		return freeGiftDao.listCount(vo);
+	}
 	public int update(FreeGiftDto freeGiftDto) {
 		return freeGiftDao.update(freeGiftDto);
 	}

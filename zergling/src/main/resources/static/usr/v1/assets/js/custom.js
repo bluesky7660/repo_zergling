@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    //
 
     //비밀번호 on/off
     const togglePasswordElements = document.querySelectorAll('.toggle-password');
@@ -749,13 +750,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
 
-    //바로구매링크
-    const directBuyBtn = document.querySelectorAll('.direct_buy_btn');
+    // //바로구매링크
+    // const directBuyBtn = document.querySelectorAll('.direct_buy_btn');
 
-    directBuyBtn.forEach((item,index)=>{
-        item.addEventListener('click',function(){
-            window.location.href = 'product_buy.html';
-        });
+    // directBuyBtn.forEach((item,index)=>{
+    //     item.addEventListener('click',function(){
+    //         window.location.href = 'product_buy.html';
+    //     });
         
-    });    
+    // });    
 });

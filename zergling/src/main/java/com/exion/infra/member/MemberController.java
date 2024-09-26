@@ -44,4 +44,9 @@ public class MemberController {
 		memberService.update(memberDto);
 		return "redirect:/v1/infra/member/memberXdmList";
 	}
+	@RequestMapping(value = "/v1/infra/member/memberXdmLogin")
+	public String memberXdmLogin(MemberDto memberDto,Model model) {
+		model.addAttribute("item", memberService.selectOne(memberDto));
+		return "xdm/v1/infra/member/memberXdmLogin";
+	}
 }

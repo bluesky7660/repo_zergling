@@ -3,19 +3,8 @@
 
 <mapper namespace="com.exion.mall.product.FreeGiftDao">
 	  <resultMap type="com.exion.mall.product.FreeGiftDto" id="resultObj"></resultMap>
-	  <select id="fgList" resultMap="resultObj">
-	  		select
-				a.fgSeq
-			    ,a.fgName
-			    ,a.fgPrice
-			    ,a.fgStockQty
-			    ,a.fgRegDate
-			    ,a.fgModDate
-			    ,a.fgDelNy
-			    ,a.fgUseNy
-			from
-				freegift a
-			where 1=1
+	  <sql id="selectCommon">
+	  	where 1=1
 				<if test="sDelNy != null and !sDelNy.equals('')">AND a.fgDelNy = #{sDelNy}</if>
 				<if test="sUseNy != null and !sUseNy.equals('')">AND a.fgUseNy = #{sUseNy}</if>
 				<if test="fgStockQtyNy != null and !fgStockQtyNy.equals('')">
@@ -53,7 +42,23 @@
 				        AND a.fgPrice &lt;= #{maxPrice}
 				    </when>
 				</choose>
+	  </sql>
+	  <select id="fgList" resultMap="resultObj">
+	  	<include refid="base.selectListUpperForMysql"/>
+	  		select
+				a.fgSeq
+			    ,a.fgName
+			    ,a.fgPrice
+			    ,a.fgStockQty
+			    ,a.fgRegDate
+			    ,a.fgModDate
+			    ,a.fgDelNy
+			    ,a.fgUseNy
+			from
+				freegift a
+			<include refid="selectCommon"/>
 			order by a.fgSeq desc
+		<include refid="base.selectListLowerForMysql"/>
 	  </select>
 	  <select id="fgOne" resultMap="resultObj">
 	  		select
@@ -91,7 +96,16 @@
 			    ,1
 			    ,0
 			)
+			<selectKey resultType="String" keyProperty="fgSeq" order="AFTER">
+				SELECT last_insert_id()
+		 	</selectKey>
 		</insert>
+		<select id="listCount" resultType="int">
+        	SELECT COUNT(*) 
+        	from
+				freegift a
+        	<include refid="selectCommon"/>
+   	  </select>
 		<update id="update">
 			UPDATE freegift
 			SET

@@ -97,7 +97,7 @@
                                     <div class="anb_wrapper_list">
                                         <h5 class="anb_category">회원정보</h5>
                                         <ul>
-                                            <li onclick="window.location.href='user_order_list'">주문/배송목록</li>
+                                            <li onclick="window.location.href='user_order_list?seq=1'">주문/배송목록</li>
                                             <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
                                             <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
                                             <li onclick="window.location.href='user_account?seq=1'">회원정보 변경</li>
@@ -130,14 +130,14 @@
                     <div class="img-box">
                         <img src="/usr/v1/assets/images/img_no_profile@2x.png" alt="">
                     </div>
-                    <p class="user_name"><span>이창훈</span>님</p>
+                    <p class="user_name"><span th:text="${member.name}"></span>님</p>
                 </div>
             </div>
             <div class="user_body d-flex justify-content-between">
                 <div class="aside_box">
                     <ul class="d-flex flex-column gap-4">
                         <!-- <li onclick="window.location.href='user_account?seq=1'">▶ 유저룸</li> -->
-                        <li onclick="window.location.href='user_order_list'"><span>주문 / 배송목록</span></li>
+                        <li onclick="window.location.href='user_order_list?seq=1'"><span>주문 / 배송목록</span></li>
                         <li class="active" onclick="window.location.href='user_delivery_address?seq=1'"><span>배송주소록</span></li>
                         <li onclick="window.location.href='user_account?seq=1'"><span>회원정보 수정</span></li>
                         <li onclick="window.location.href='user_password?seq=1'"><span>비밀번호 변경</span></li>
@@ -152,10 +152,10 @@
                                 <div class="def_ship_addr_box">
                                     <ul class="def_ship_addr">
                                         <li>
-                                            <span class="address_name" th:text="${item?.addressName}">집</span>
+                                            <span class="address_name" th:text="${item.addressName}">집</span>
                                         </li>
                                         <li>
-                                            <span class="rec_name" th:text="${item?.RecipientName}">홍길동</span>
+                                            <span class="rec_name" th:text="${item.RecipientName}">홍길동</span>
                                             <span> / </span>
                                             <span class="rec_phone" th:text="${item.RecipientPhone != null ? (item.RecipientPhone.startsWith('02') ? 
                                             #strings.substring(item.RecipientPhone, 0, 2) + '-' + 
@@ -166,7 +166,7 @@
                                             #strings.substring(item.RecipientPhone, 7)) : ''}">010-1234-5678</span>
                                         </li>
                                         <li>
-                                            <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${item?.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                            <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${item.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
                                         </li>
                                     </ul>
                                     <div class="btn-box">
@@ -187,14 +187,17 @@
                                     </div>
                                 </div>
                                 <form method="post" autocomplete="off" action="user_delivery_address_Defupdt">
+                                    <input type="hidden" name="seq" th:value="${vo.seq}">
+                                    <input type="hidden" name="chSeq" value="">
                                     <table class="address_list">
                                         <tr th:if="${#lists.isEmpty(addrList)}" class="data_empty">
                                             <td colspan="12"><p>현재 배송지정보가 없습니다.</p></td>
                                         </tr>
                                         <tr th:each="list : ${addrList}" th:if="${!#lists.isEmpty(addrList)}">
                                             <td>
-                                                    <input type="radio" class="form-check-input" name="defaultNy" th:checked="${list?.defaultNy == 1}" th:id="'defAddrChk'+${list?.daSeq}" value="1">
-                                                    <input type="hidden" name="defaultNy" value="0">
+                                                <input type="hidden" name="daSeq" th:value="${list.daSeq}">
+                                                <input type="radio" class="form-check-input" name="defaultNy" th:checked="${list.defaultNy == 1}" th:id="'defAddrChk'+${list.daSeq}" value="0"  onclick="handleRadioClick(this)">
+                                                <!-- <input type="hidden" name="defaultNy" value="0"> -->
                                             </td>
                                             <td>
                                                 <ul class="ship_addr">
@@ -218,7 +221,7 @@
                                                 </ul>
                                             </td>
                                             <td class="btn-box">
-                                                <a  class="btn"  th:href="@{user_delivery_addressMfom(daSeq=${list.daSeq})}">수정하기</a>
+                                                <a  class="btn"  th:href="@{user_delivery_addressMfom(daSeq=${list.daSeq},seq=${list.member_seq})}">수정하기</a>
                                             </td>
                                         </tr>
                                         <!-- <tr>
@@ -410,6 +413,22 @@
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/usr/v1/assets/js/custom.js"></script>
     <script src="/usr/v1/assets/js/header.js"></script>
-
+    <script>
+        function handleRadioClick(radio) {
+            const radios = document.querySelectorAll('input[type="radio"][name="defaultNy"]');
+            const chSeq = document.querySelector('input[name="chSeq"]');
+        
+            radios.forEach((r) => {
+                if (r === radio) {
+                    r.value = 1;  // 클릭한 라디오 버튼의 값은 1로 설정
+                    chSeq.value = r.id.slice(10); 
+                    console.log(r.id.slice(10));
+                    console.log(typeof(chSeq.value));
+                } else {
+                    r.value = 0;  // 나머지는 0으로 설정
+                }
+            });
+        }
+    </script>
 </body>
 </html>

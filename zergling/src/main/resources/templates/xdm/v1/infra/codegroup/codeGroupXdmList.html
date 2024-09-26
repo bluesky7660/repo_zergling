@@ -668,7 +668,7 @@
 													</tr>
 													<tr th:each="listG,iter : ${response}" th:if="${!#lists.isEmpty(response)}">
 														<td><input type="checkbox"></td>
-														<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) +iter.index)}"></td>
+														<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) +listGStat.index)}"></td>
 														<td th:text="${listG.seq}"></td>
 														<!-- <td class="td_spotlight">
 															<a href="/v1/infra/codegroup/codeGroupXdmForm?seq=1" th:text="${listG.codeGroupName}"></a>

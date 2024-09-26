@@ -79,6 +79,9 @@
 		    ,0
 		    ,#{codeGroup_seq}
 		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+				SELECT last_insert_id()
+		</selectKey>
 	</insert>
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT

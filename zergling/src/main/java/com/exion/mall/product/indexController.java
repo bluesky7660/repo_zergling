@@ -53,7 +53,8 @@ public class indexController {
 //		return "redirect:login";
 //	}
 	@RequestMapping(value = "user_delivery_address")
-	public String deliveryAddress(Model model,DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
+	public String deliveryAddress(Model model, MemberDto memberDto, DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
+		model.addAttribute("member", memberService.selectOne(memberDto));
 		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
 		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
 		model.addAttribute("addrList", deliveryAddressService.selectList(vo));
@@ -83,8 +84,10 @@ public class indexController {
 		return "redirect:user_delivery_address?seq=1";
 	}
 	@RequestMapping(value = "user_delivery_address_Defupdt")
-	public String deliveryAddressDefUpdt(DeliveryAddressDto deliveryAddressDto) {
-		deliveryAddressService.updateDef(deliveryAddressDto);
+	public String deliveryAddressDefUpdt(DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
+//		deliveryAddressService.updateDef(deliveryAddressDto);
+		System.out.println("DeliveryAddressVo: " + vo);
+		deliveryAddressService.updateDefUsr(deliveryAddressDto,vo);
 		return "redirect:user_delivery_address?seq=1";
 	}
 	@RequestMapping(value = "user_account")
@@ -112,7 +115,8 @@ public class indexController {
 //		return "redirect:index";
 //	}
 	@RequestMapping(value = "user_order_list")
-	public String userOrderList() {
+	public String userOrderList(Model model, MemberDto memberDto) {
+		model.addAttribute("member", memberService.selectOne(memberDto));
 		return "/usr/v1/pages/user_order_list";
 	}
 	@RequestMapping(value = "user_password")

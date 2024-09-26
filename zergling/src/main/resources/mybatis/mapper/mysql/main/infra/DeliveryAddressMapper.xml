@@ -45,6 +45,9 @@
 			    ,0
 			    <!-- ,#{member_seq} -->
 			)
+			<selectKey resultType="String" keyProperty="daSeq" order="AFTER">
+				SELECT last_insert_id()
+		 	</selectKey>
 	  </insert>
 	  <select id="selectOne" resultMap="resultObj">
 		  	select
@@ -76,10 +79,10 @@
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
-			    <!-- ,a.member_seq -->
+			    ,a.member_seq
 			from
 				deliveryaddress a
-				<!-- join member b on b.seq = a.member_seq -->
+				join member b on b.seq = a.member_seq
 			where 1=1
 				and a.defaultNy = 1
 	  </select>

@@ -26,6 +26,9 @@
 		    ,0
 		    ,0
      	)
+     	<selectKey resultType="String" keyProperty="paSeq" order="AFTER">
+				SELECT last_insert_id()
+		 </selectKey>
 	</insert>
 	<update id="defaultUpdt">
 		

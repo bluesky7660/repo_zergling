@@ -575,9 +575,9 @@
 														<tr th:if="${#lists.isEmpty(list)}" class="data_empty">
 															<td colspan="14"><p>데이터가 없습니다.</p></td>
 														</tr>
-														<tr th:each="list,iter : ${list}" th:if="${!#lists.isEmpty(list)}">
+														<tr th:each="list : ${list}" th:if="${!#lists.isEmpty(list)}">
 															<td><input type="checkbox"></td>
-															<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) + iter.index)}"></td>
+															<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) + listStat.index)}"></td>
 															<td th:text="${list.seq}"></td>
 															<td th:text="${list.codeName}"></td>
 															<td  class="td_spotlight">

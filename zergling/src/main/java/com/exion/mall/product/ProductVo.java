@@ -13,6 +13,8 @@ public class ProductVo extends BaseVo{
 	private String name;
 	private Integer publisher;
 	private String publisherName;
+	private Integer stockQty;
+	private Integer stockQtyNy;
 	private Integer reviewNum;
 	private Date makeDate;
 	private Date shipDate;
@@ -93,6 +95,18 @@ public class ProductVo extends BaseVo{
 	}
 	public void setPublisherName(String publisherName) {
 		this.publisherName = publisherName;
+	}
+	public Integer getStockQty() {
+		return stockQty;
+	}
+	public void setStockQty(Integer stockQty) {
+		this.stockQty = stockQty;
+	}
+	public Integer getStockQtyNy() {
+		return stockQtyNy;
+	}
+	public void setStockQtyNy(Integer stockQtyNy) {
+		this.stockQtyNy = stockQtyNy;
 	}
 	public Integer getReviewNum() {
 		return reviewNum;

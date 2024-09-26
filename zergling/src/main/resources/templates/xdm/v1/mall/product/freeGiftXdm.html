@@ -477,6 +477,8 @@
 								<!-- Card start -->
 								<div class="card border">
 									<form method="post" autocomplete="off" action="/v1/mall/product/freeGiftXdmList">
+										<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+										<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 										<div class="card-header bg-light">
 											<h2 class="card-title">
 												사은품 리스트
@@ -487,33 +489,33 @@
 														<label class="visually-hidden" for="selectUseNy">사용검색</label>
 														<select class="form-select" id="selectUseNy" name="sUseNy">
 															<option value="" selected>사용여부를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.sUseNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.sUseNy == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
 														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
 														<select class="form-select" id="selectDelNy" name="sDelNy">
 															<option value="" selected>삭제여부를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.sDelNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.sDelNy == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
 														<select class="form-select" id="selectDateType" name="dateType">
 															<option value="" selected>날짜종류 선택해주세요.</option>
-															<option value="1">등록일</option>
-															<option value="2">수정일</option>
+															<option value="1" th:selected="${vo.dateType == 1}">등록일</option>
+															<option value="2" th:selected="${vo.dateType == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
-														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" th:value="${vo.dateStart}" placeholder="시작일을 선택해주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
-														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" th:value="${vo.dateEnd}" placeholder="종료일을 선택해주세요" value="">
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
@@ -521,14 +523,14 @@
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="keywordType">
 															<option value="" selected>검색구분</option>
-															<option value="1">사은품번호</option>
-															<option value="2">사은품이름</option>
+															<option value="1" th:selected="${vo.keywordType == 1}">사은품번호</option>
+															<option value="2" th:selected="${vo.keywordType == 2}">사은품이름</option>
 															<!-- <option value="3">작품이름</option> -->
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputKeyword">검색어</label>
-														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" th:value="${vo.searchKeyword}" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
@@ -543,18 +545,18 @@
 														<label class="visually" for="selectStockQtyNy">재고유무</label>
 														<select class="form-select" id="selectStockQtyNy" name="fgStockQtyNy">
 															<option value="" selected>재고유무를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.fgStockQtyNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.fgStockQtyNy == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually" for="inputMinPrice">최소가격</label>
-														<input type="text" class="form-control" id="inputMinPrice" name="minPrice" placeholder="숫자만 적어주세요" value="">
+														<input type="text" class="form-control" id="inputMinPrice" name="minPrice" th:value="${vo.minPrice}" placeholder="숫자만 적어주세요" value="">
 													</div>
 													<!-- <span class="col-1 text-center"> ~ </span> -->
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually" for="inputMaxPrice">최대가격</label>
-														<input type="text" class="form-control" id="inputMaxPrice" name="maxPrice" placeholder="숫자만 적어주세요" value="">
+														<input type="text" class="form-control" id="inputMaxPrice" name="maxPrice" th:value="${vo.maxPrice}" placeholder="숫자만 적어주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
@@ -565,11 +567,13 @@
 											<div class="row justify-content-between">
 												<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}"></span></div>
 												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
-													<select class="dataTable-selector form-select" name="" id="">
-														<option value="5">5</option>
-														<option value="10">10</option>
-														<option value="15">15</option>
-														<option value="20">20</option>
+													<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
+														<option value="2" th:selected="${vo.rowNumToShow == 2}">2</option>
+														<option value="3" th:selected="${vo.rowNumToShow == 3}">3</option>
+														<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
+														<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
+														<option value="20" th:selected="${vo.rowNumToShow == 20}">20</option>
+														<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
 													</select>
 												</div>
 											</div>
@@ -597,7 +601,7 @@
 														</tr>
 														<tr th:each="list : ${list}" th:if="${!#lists.isEmpty(list)}">
 															<td><input type="checkbox"></td>
-															<td th:text="${list.fgSeq}"></td>
+															<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) + listStat.index)}"></td>
 															<td th:text="${list.fgSeq}"></td>
 															<td  class="td_spotlight">
 																<a th:href="@{/v1/mall/product/freeGiftXdmMfom(fgSeq=${list.fgSeq})}" th:text="${list.fgName}"></a>
@@ -618,35 +622,57 @@
 											<div class="dataTable-bottom">
 												<nav class="dataTable-pagination mt-5" aria-label="dataTable-pagination">
 													<ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-														<li class="paginate_button previous page-item" id="previousPage">
-															<a class="page-link" href="#">
+														<li class="paginate_button page-item" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('1')|" href="javascript:goList(1)" th:if="${vo.thisPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage <= 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button previous page-item" id="previousPage" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('${vo.thisPage - 1}')|" href="javascript:goList(${vo.thisPage - 1})" th:if="${vo.thisPage > 1}">
+																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage <= 1}">
 																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
 															</a>
 														</li>
-														<li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-														<li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-														<!-- <li class="pager page-item"><a href="#" data-page="2" class="page-link">›</a></li> -->
-														<li class="paginate_button next page-item" id="nextPage">
-															<a class="page-link" href="#">
+														<li th:each="i : ${#numbers.sequence(
+																			vo.thisPage == 1 ? 1 : 
+																			vo.thisPage == 2 ? 1 : 
+																			vo.thisPage == vo.totalPages - 1 ? vo.thisPage - 3 : 
+																			vo.thisPage == vo.totalPages ? vo.thisPage - 4 : 
+																			vo.thisPage - 2, 
+																			
+																			vo.thisPage == 1 ? 5 : 
+																			vo.thisPage == 2 ? 5 : 
+																			vo.thisPage == vo.totalPages - 1 ? vo.totalPages : 
+																			vo.thisPage == vo.totalPages ? vo.totalPages : 
+																			vo.thisPage + 2
+																		)}"
+															class="paginate_button page-item"
+															th:if="${i > 0 && i <= vo.totalPages}" 
+															th:classappend="${i == vo.thisPage} ? 'active' : ''">
+															<a class="page-link" th:attr="onclick=|goList('${i}')|" th:text="${i}"></a>
+														</li>
+														<li class="paginate_button next page-item" id="nextPage" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('${vo.thisPage + 1}')|" href="javascript:goList(${vo.thisPage + 1})" th:if="${vo.thisPage < vo.totalPages}">
 																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+															</a>
+														</li>
+														<li class="paginate_button page-item" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+															<a class="page-link" th:attr="onclick=|goList('${vo.totalPages}')|" href="javascript:goList(${vo.totalPages})" th:if="${vo.thisPage < vo.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+															</a>
+															<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
 															</a>
 														</li>
 													</ul>
-													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-														
-														<li class="page-item"><a class="page-link" href="#">
-																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-															</a></li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item active"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item"><a class="page-link" href="#">
-																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-															</a></li>
-													</ul> -->
 												</nav>
 											</div>
 											<div class="btn-toolbar mt-5 justify-content-between">
@@ -710,69 +736,38 @@
 		<script>
 			window.addEventListener('load',function() {
 				$.datetimepicker.setLocale('ko');
-				$("#inputDateStart,#inputDateEnd,#inputDateOfBirth").datetimepicker({
+				$("#inputDateStart,#inputDateEnd").datetimepicker({
 					timepicker:false,
 					format:'Y-m-d'
 				});
-				var currentPageIndex = 0; // 현재 페이지 번호 인덱스
-				var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
-
-				// 이전 페이지 링크 클릭 이벤트 처리
-				document.getElementById('previousPage').addEventListener('click', function(event) {
-					event.preventDefault(); // 기본 동작(링크 이동) 방지
-					if (currentPageIndex > 0) {
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex--; // 이전 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
-					}
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				});
-
-				// 다음 페이지 링크 클릭 이벤트 처리
-				document.getElementById('nextPage').addEventListener('click', function(event) {
-					event.preventDefault(); // 기본 동작(링크 이동) 방지
-					if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-					pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-					currentPageIndex++; // 다음 페이지 인덱스로 변경
-					pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
-					}
-					updatePaginationState(); // 페이지네이션 상태 업데이트
-				});
-
-				// 페이지 번호 링크 클릭 이벤트 처리
-				pageItems.forEach(function(pageItem, index) {
-					pageItem.addEventListener('click', function(event) {
-					event.preventDefault(); // 기본 동작(링크 이동) 방지
-					if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-						pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-						currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-						pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
-						updatePaginationState(); // 페이지네이션 상태 업데이트
-					}
-					});
-				});
-
-				// 초기 페이지네이션 상태 업데이트
-				updatePaginationState();
-
-				// 페이지네이션 버튼 상태 업데이트 함수
-				function updatePaginationState() {
-					// 이전 버튼 상태 업데이트
-					if (currentPageIndex === 0) {
-					document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
+				var form = document.querySelector("form");
+				var pageSizeSelect = document.getElementById('rowNumToShowSelect');
+				var rowNumToShow = document.querySelector("input[name=rowNumToShow]");
+				var url = form.action;
+				function updatePageSize() {
+					if (form && pageSizeSelect) {
+						// 선택된 pageSizes 값을 가져옵니다.
+						var pageSizes = pageSizeSelect.value;
+						rowNumToShow.value = pageSizes;
+						form.action = url;
+						form.submit();
 					} else {
-					document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
-					}
-
-					// 다음 버튼 상태 업데이트
-					if (currentPageIndex === pageItems.length - 1) {
-					document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
-					} else {
-					document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
+						console.error('Form or pageSizeSelect element not found.');
 					}
 				}
-			})
-			
+				
+				if (pageSizeSelect) {
+					pageSizeSelect.addEventListener('change', updatePageSize);
+				}
+
+				goList = function (thisPage) {
+					console.log("값: "+thisPage);
+					document.querySelector("input[name=thisPage]").value = thisPage;
+					console.log("thisPage값: "+document.querySelector("input[name=thisPage]").value);
+					form.action = url;
+					form.submit();
+				}
+			});
 		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>

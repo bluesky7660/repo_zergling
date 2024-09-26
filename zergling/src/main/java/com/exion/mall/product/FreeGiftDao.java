@@ -10,6 +10,7 @@ import com.exion.infra.code.CodeDto;
 public interface FreeGiftDao {
 	public List<FreeGiftDto> fgList(FreeGiftVo vo);
 	public FreeGiftDto fgOne(FreeGiftDto freeGiftDto);
+	public int listCount(FreeGiftVo vo);
 	public int insert(FreeGiftDto freeGiftDto);
 	public int update(FreeGiftDto freeGiftDto);
 	public int uelete(FreeGiftDto freeGiftDto);

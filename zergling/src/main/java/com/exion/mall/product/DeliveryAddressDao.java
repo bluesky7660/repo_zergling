@@ -13,4 +13,5 @@ public interface DeliveryAddressDao {
 	public DeliveryAddressDto selectDefOne(DeliveryAddressDto deliveryAddressDto);
 	public int update(DeliveryAddressDto deliveryAddressDto);
 	public int updateDef(DeliveryAddressDto deliveryAddressDto);
+	public int updateDefUsr(DeliveryAddressDto deliveryAddressDto);
 }

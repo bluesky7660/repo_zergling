@@ -1,5 +1,19 @@
 /*xdm용*/
-
+/*로그인*/
+.login-box .login-form .login-form-actions{
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.login-box .login-form .btn{
+    width: 100%;
+    padding: 5px 15px 5px 3px;
+}
+.login-box .login-form .btn img.login-icon{
+    margin-right: 10px;
+}
+#kakaoLoginBtn{
+    background-color: rgba(254, 229, 0,0.5);
+}
 /*페이징관련*/
 .page-item .page-link {
     cursor: pointer;
