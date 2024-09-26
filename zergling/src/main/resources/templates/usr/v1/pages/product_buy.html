@@ -142,19 +142,25 @@
                                     <td>
                                         <div class="address_name_box">
                                             <p>
-                                                <span class="address_name">집</span>
+                                                <span class="address_name" th:text="${item.addressName}">집</span>
                                             </p>
                                             <button type="button" class="btn">변경</button>
                                         </div>
                                         <div class="address_Info">
                                             <p>
-                                                <span class="rec_name">홍길동</span>
+                                                <span class="rec_name" th:text="${item.RecipientName}">홍길동</span>
                                                 <span> / </span>
-                                                <span class="rec_phone">010-1234-5678</span>
+                                                <span class="rec_phone" th:text="${item.RecipientPhone != null ? (item.RecipientPhone.startsWith('02') ? 
+                                                #strings.substring(item.RecipientPhone, 0, 2) + '-' + 
+                                                #strings.substring(item.RecipientPhone, 2, 6) + '-' + 
+                                                #strings.substring(item.RecipientPhone, 6) : 
+                                                #strings.substring(item.RecipientPhone, 0, 3) + '-' + 
+                                                #strings.substring(item.RecipientPhone, 3, 7) + '-' + 
+                                                #strings.substring(item.RecipientPhone, 7)) : ''}" >010-1234-5678</span>
                                             </p>
                                         </div>
                                         <div class="detail_address">
-                                            <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                            <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${item.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
                                         </div>
                                     </td>
                                 </tr>
@@ -189,8 +195,10 @@
                             <div class="orderList_box">
                                 <ul>
                                     <li>
-                                        <div class="img-box">
-                                            <img src="/usr/v1/assets/images/prod/200/9791193289273.jpg" alt="">
+                                        <div class="prod_img">
+                                            <div class="img-box">
+                                                <img src="/usr/v1/assets/images/prod/200/9791193289273.jpg" alt="">
+                                            </div>
                                         </div>
                                         <div class="prod_title_box">
                                             <p class="prod_title" onclick="window.location.href='product_detail'">

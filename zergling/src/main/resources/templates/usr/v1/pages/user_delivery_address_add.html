@@ -161,9 +161,18 @@
                                             <input type="text" class="form-control" name="RecipientName" maxlength="7" placeholder="이름을 입력해 주세요.">
                                             <input type="text" class="form-control" name="RecipientPhone" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="휴대폰번호를 -없이 입력해 주세요.">
                                         </li>
-                                        <li>
+                                        <li class="address_box">
                                             <label for="">주소</label>
-                                            <input type="text" class="form-control" name="address">
+                                            <div class="postcode_box">
+                                                <input type="text" id="sample4_postcode" class="form-control" name="daZonecode" placeholder="우편번호">
+                                                <input type="button" onclick="sample4_execDaumPostcode()" class="form-control" value="우편번호 찾기">
+                                            </div>
+                                            
+                                            <input type="text" id="sample4_roadAddress" class="form-control" name="daRoadAddress" placeholder="도로명주소">
+                                            <input type="text" id="sample4_jibunAddress" class="form-control" name="daAddress" placeholder="지번주소">
+                                            <span id="guide" style="color:#999;display:none"></span>
+                                            <input type="text" id="sample4_detailAddress" class="form-control" name="daDetailAddress" placeholder="상세주소">
+                                            <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목">
                                         </li>
                                         <li>
                                             <input type="checkbox" class="form-check-input" name="defaultNy" id="default_address" value="1">
@@ -287,8 +296,13 @@
     <!-- Bootstrap Select JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- 카카오 우편번호 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <!-- by developer -->
     <script src="/usr/v1/assets/js/custom.js"></script>
     <script src="/usr/v1/assets/js/header.js"></script>
-
+    <script src="/usr/v1/assets/js/address.js"></script>
+    
 </body>
 </html>

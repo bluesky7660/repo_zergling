@@ -16,3 +16,20 @@
 .def_ship_addr{
     
 }
+.content_area form ul li.address_box{
+    width: 100%;
+    max-width: none;
+}
+.postcode_box{
+    width: 400px;
+    display: flex;
+    gap: 10px;
+    /* justify-content: space-between; */
+}
+.postcode_box input[type="text"]{
+    width: 200px;
+}
+
+.postcode_box input[type="button"]{
+    width: fit-content;
+}

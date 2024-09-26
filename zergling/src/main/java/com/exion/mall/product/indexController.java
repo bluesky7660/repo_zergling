@@ -161,8 +161,8 @@ public class indexController {
 	}
 	
 	@RequestMapping(value = "product_buy")
-	public String productBuy() {
-		
+	public String productBuy(Model model, DeliveryAddressDto deliveryAddressDto) {
+		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
 		return "/usr/v1/pages/product_buy";
 	}
 	@RequestMapping(value = "account_recovery")
