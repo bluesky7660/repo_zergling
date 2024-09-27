@@ -29,22 +29,40 @@ public class DeliveryAddressService {
 //		System.out.println("리스트: "+deliveryAddressDao.selectList(vo).get(1).getMember_seq());
 //		System.out.println("리스트: "+deliveryAddressDao.selectList(vo));
 		String thisNum = deliveryAddressDao.selectOne(deliveryAddressDto).getDaSeq();
+		int def = deliveryAddressDto.getDefaultNy();
 //		System.out.println("유저번호2: "+deliveryAddressDao.selectOne(deliveryAddressDto).getMember_seq());
-		for(DeliveryAddressDto list:lists) {
-			System.out.println("유저번호: "+list.getDaSeq());
-			System.out.println("유저번호one: "+thisNum);
-			if(list.getDaSeq().equals(String.valueOf(thisNum))) {
-				deliveryAddressDto.setDefaultNy(1);
-				System.out.println("디폴트1: "+deliveryAddressDto.getDefaultNy());
-				deliveryAddressDto.setDaSeq(list.getDaSeq());
-			}else {
-				deliveryAddressDto.setDefaultNy(0);
-				System.out.println("디폴트2: "+deliveryAddressDto.getDefaultNy());
-				deliveryAddressDto.setDaSeq(list.getDaSeq());
+		if(def==1) {
+			for(DeliveryAddressDto list:lists) {
+				System.out.println("유저번호: "+list.getDaSeq());
+				System.out.println("유저번호one: "+thisNum);
+				int defNum = list.getDefaultNy();
+				if(defNum == 1) {
+					if(list.getDaSeq().equals(String.valueOf(thisNum))) {
+						System.out.println("선택한 주소번호2: "+list.getDaSeq());
+						deliveryAddressDto.setDefaultNy(1);
+						System.out.println("디폴트2: "+deliveryAddressDto.getDefaultNy());
+						deliveryAddressDto.setDaSeq(list.getDaSeq());
+					}else {
+						System.out.println("바뀌는 주소번호: "+list.getDaSeq());
+						deliveryAddressDto.setDefaultNy(0);
+						System.out.println("디폴트3: "+deliveryAddressDto.getDefaultNy());
+						deliveryAddressDto.setDaSeq(list.getDaSeq());
+					}
+					deliveryAddressDao.updateDefUsr(deliveryAddressDto);
+				}
+//				if(list.getDaSeq().equals(String.valueOf(thisNum))) {
+//					deliveryAddressDto.setDefaultNy(1);
+//					System.out.println("디폴트1: "+deliveryAddressDto.getDefaultNy());
+//					deliveryAddressDto.setDaSeq(list.getDaSeq());
+//				}else {
+//					deliveryAddressDto.setDefaultNy(0);
+//					System.out.println("디폴트2: "+deliveryAddressDto.getDefaultNy());
+//					deliveryAddressDto.setDaSeq(list.getDaSeq());
+//				}
+				deliveryAddressDao.updateDef(deliveryAddressDto);
 			}
-			deliveryAddressDao.updateDef(deliveryAddressDto);
-			
 		}
+		
 		return a;
 	}
 	public int updateDef(DeliveryAddressDto deliveryAddressDto) {

@@ -52,6 +52,43 @@
                 guideTextBox.innerHTML = '';
                 guideTextBox.style.display = 'none';
             }
+
+            // 위도 및 경도 좌푯값 구하기
+            const geocoder = new kakao.maps.services.Geocoder();
+            var x = 0;
+            var y = 0;
+            
+            geocoder.addressSearch(data.roadAddress, (result, status) => {
+                if (status === kakao.maps.services.Status.OK) {
+                    console.log('위도 : ' + result[0].y);
+                    console.log('경도 : ' + result[0].x);
+                    x = result[0].x;
+                    y = result[0].y;
+                    console.log("안의 x: "+ x +", y: "+y);
+                    document.getElementById("def_longitude").value = x;
+                    document.getElementById("def_latitude").value = y;
+
+                    //지도api
+                    var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+                    container.style.width = "100%";
+                    container.style.height = "200px";
+                    container.style.border = "1px solid #000";
+                    var options = { //지도를 생성할 때 필요한 기본 옵션
+                        center: new kakao.maps.LatLng(y, x), //지도의 중심좌표.
+                        level: 3 //지도의 레벨(확대, 축소 정도)
+                    };
+
+                    // 지도를 생성구문 
+                    var map = new kakao.maps.Map(container, options); 
+
+                    // 지도에 마커를 생성하고 표시한다
+                    var marker = new kakao.maps.Marker({
+                        position: new kakao.maps.LatLng(y, x), // 마커의 좌표
+                        map: map // 마커를 표시할 지도 객체
+                    });
+                }
+            });
+            console.log("밖의 x: "+ x +", y: "+y);
         }
     }).open();
 }

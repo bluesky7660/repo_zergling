@@ -666,7 +666,7 @@
 													<tr th:if="${#lists.isEmpty(response)}" class="data_empty">
 														<td colspan="10"><p>데이터가 없습니다.</p></td>
 													</tr>
-													<tr th:each="listG,iter : ${response}" th:if="${!#lists.isEmpty(response)}">
+													<tr th:each="listG : ${response}" th:if="${!#lists.isEmpty(response)}">
 														<td><input type="checkbox"></td>
 														<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) +listGStat.index)}"></td>
 														<td th:text="${listG.seq}"></td>

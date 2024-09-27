@@ -8,6 +8,8 @@ public class DeliveryAddressVo extends BaseVo{
 	private String member_seq;
 	private Integer defaultNy;
 	private Integer chSeq;
+	private Double longitude;
+	private Double latitude;
 //---------------------------
 	public String getSeq() {
 		return seq;
@@ -47,6 +49,22 @@ public class DeliveryAddressVo extends BaseVo{
 
 	public void setChSeq(Integer chSeq) {
 		this.chSeq = chSeq;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
 	}
 	
 }

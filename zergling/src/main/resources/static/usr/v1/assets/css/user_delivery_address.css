@@ -6,11 +6,16 @@
     justify-content: space-between;
     margin-bottom: 30px;
 }
-
+.def_ship_addr{
+    width: calc(100% - 100px);
+}
 .def_ship_addr,.ship_addr{
      display: flex;
      flex-direction: column;
      gap: 15px;
+}
+#map{
+    border: 1px solid #000;
 }
 .content_top>ul li{
     list-style-type: disc;

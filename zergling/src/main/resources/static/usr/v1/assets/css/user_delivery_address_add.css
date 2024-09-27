@@ -6,7 +6,7 @@
 .content_area form ul li{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     max-width: 400px;
 }
 .content_area form ul li:last-child{
@@ -16,9 +16,14 @@
 .def_ship_addr{
     
 }
-.content_area form ul li.address_box{
+/* .content_area form ul li.address_area{
     width: 100%;
     max-width: none;
+} */
+.content_area form ul li .address_box{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 .postcode_box{
     width: 400px;

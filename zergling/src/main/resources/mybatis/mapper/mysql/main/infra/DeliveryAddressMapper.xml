@@ -10,7 +10,11 @@
 			    ,a.addressName
 			    ,a.RecipientName
 			    ,a.RecipientPhone
-			    ,a.address
+			    ,a.daZonecode
+			    ,a.daRoadAddress
+			    ,a.daJibunAddress
+			    ,a.daDetailAddress
+			    ,a.daExtraAddress
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
@@ -28,7 +32,11 @@
 			    ,addressName
 			    ,RecipientName
 			    ,RecipientPhone
-			    ,address
+			    ,daZonecode
+			    ,daRoadAddress
+			    ,daJibunAddress
+			    ,daDetailAddress
+			    ,daExtraAddress
 			    ,regDate
 			    ,modDate
 			    ,delNy
@@ -39,7 +47,11 @@
 				,#{addressName}
 			    ,#{RecipientName}
 			    ,#{RecipientPhone}
-			    ,#{address}
+			    ,#{daZonecode}
+			    ,#{daRoadAddress}
+			    ,#{daJibunAddress}
+			    ,#{daDetailAddress}
+			    ,#{daExtraAddress}
 			    ,now()
 			    ,now()
 			    ,0
@@ -56,7 +68,13 @@
 			    ,a.addressName
 			    ,a.RecipientName
 			    ,a.RecipientPhone
-			    ,a.address
+			    ,a.daZonecode
+			    ,a.daRoadAddress
+			    ,a.daJibunAddress
+			    ,a.daDetailAddress
+			    ,a.daExtraAddress
+			    ,a.longitude
+			    ,a.latitude
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
@@ -75,7 +93,13 @@
 			    ,a.addressName
 			    ,a.RecipientName
 			    ,a.RecipientPhone
-			    ,a.address
+			    ,a.daZonecode
+			    ,a.daRoadAddress
+			    ,a.daJibunAddress
+			    ,a.daDetailAddress
+			    ,a.daExtraAddress
+			    ,a.longitude
+			    ,a.latitude
 				,a.regDate
 				,a.modDate
 			    ,a.delNy
@@ -93,7 +117,13 @@
 			,addressName = #{addressName}
 			,RecipientName = #{RecipientName}
 			,RecipientPhone = #{RecipientPhone}
-			,address = #{address}
+			,daZonecode = #{daZonecode}
+		    ,daRoadAddress = #{daRoadAddress}
+		    ,daJibunAddress = #{daJibunAddress}
+		    ,daDetailAddress = #{daDetailAddress}
+		    ,daExtraAddress = #{daExtraAddress}
+		    ,longitude = #{longitude}
+			,latitude = #{latitude}
 			,modDate = now()
 		WHERE 1=1
 			AND daSeq = #{daSeq}

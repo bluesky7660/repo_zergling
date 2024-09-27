@@ -553,7 +553,7 @@
 											<!-- Form actions footer start -->
 											<div class="form-actions-footer justify-content-between bg-white">
 												<a class="btn btn-outline-dark" type="button" href="codeGroupXdmList"><i class="bi bi-list-ul"></i></a>
-												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+												<button type="button" id="btnSubmit" class="btn btn-info" ><i class="bi bi-database"></i></button>
 											</div>
 											<!-- Form actions footer end -->
 										</form>
@@ -606,7 +606,43 @@
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
-
+		<!-- <script>
+			const form = document.querySelector("form");
+       		const formUrl = form.action;
+			document.getElementById("btnSubmit").onclick = function (){
+				var objs = document.querySelectorAll(".validate-this");
+				var i= 0;
+				var validateChk = false;
+				for(let element of objs){
+					var objValue = element.value.trim();
+					if (objValue == "" || objValue == null) {
+						const feedback = element.parentElement.querySelector(".invalid-feedback");
+						var waring = feedback.textContent.trim();
+						alert(waring);
+						if(i==0){
+							element.focus();
+						}
+						i++;
+						validateChk = false;
+						element.classList.add('is-invalid');
+					} else {
+						//by pass
+						validateChk = true;
+						element.classList.remove('is-invalid');
+						element.classList.add('is-valid');
+					}
+				};
+				if(validateChk == false){
+					alert("검사실패");
+					return false;
+				}
+				alert("통과!");
+				form.action = formUrl;
+				form.submit();
+			}
+		</script> -->
+		<!-- by developer -->
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 	</body>
 
 </html>

@@ -503,8 +503,8 @@
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputIndustryType1" class="form-label">코드그룹</label>
-														<select class="form-select validate-this" id="inputIndustryType1" name="codeGroup_seq" required>
+														<label for="inputCodeGroup" class="form-label">코드그룹</label>
+														<select class="form-select validate-this" id="inputCodeGroup" name="codeGroup_seq" required>
 															<option value="" selected disabled>선택하세요</option>
 															<option th:each="group : ${codeGroups}" th:value="${group.seq}" th:text="${group.codeGroupName}"></option>
 														</select>
@@ -523,8 +523,8 @@
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputName" class="form-label">코드이름</label>
-														<input type="text" class="form-control validate-this" id="inputName" name="codeName" placeholder="한글, 영대소문자, 숫자" required>
+														<label for="inputCodeName" class="form-label">코드이름</label>
+														<input type="text" class="form-control validate-this" id="inputCodeName" name="codeName" placeholder="한글, 영대소문자, 숫자" required>
 														<div class="invalid-feedback">
 															코드이름을 적어주세요.
 														</div>
@@ -673,7 +673,7 @@
 											<!-- Form actions footer start -->
 											<div class="form-actions-footer justify-content-between bg-white">
 												<a class="btn btn-outline-dark" type="button" href="codeXdmList"><i class="bi bi-list-ul"></i></a>
-												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+												<button type="button" id="btnSubmit" class="btn btn-info" ><i class="bi bi-database"></i></button>
 											</div>
 											<!-- Form actions footer end -->
 										</form>
@@ -728,7 +728,83 @@
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
+		<script>
+			
+			const form = document.querySelector("form");
+       		const formUrl = form.action;
+			document.getElementById("btnSubmit").onclick = function (){
+				var objs = document.querySelectorAll(".validate-this");
+				var i= 0;
+				var validateChk = false;
+				for(let element of objs){
+					var objValue = element.value.trim();
+					if (objValue == "" || objValue == null) {
+						const feedback = element.parentElement.querySelector(".invalid-feedback");
+						var waring = feedback.textContent.trim();
+						alert(waring);
+						if(i==0){
+							element.focus();
+						}
+						i++;
+						validateChk = false;
+						element.classList.add('is-invalid');
+					} else {
+			// 			by pass
+						validateChk = true;
+						element.classList.remove('is-invalid');
+						element.classList.add('is-valid');
+					}
+					// if (!element.checkValidity()) {
+					// 	allValid = false;
+					// 	element.classList.add('is-invalid');
+					// } else {
+					// 	element.classList.remove('is-invalid');
+					// 	element.classList.add('is-valid');
+					// }
+				};
+				if(validateChk == false){
+					alert("검사실패");
+					return false;
+				}
+				alert("통과!");
+				form.action = formUrl;
+				form.submit();
 
+		//		var ifcgName = document.getElementById("inputCodeName");
+		//		var ifcgNameValue = document.getElementById("inputCodeName").value.trim();
+		// 		if (ifcgNameValue == "" || ifcgNameValue == null) {
+		// 			alert("이름을 입력해 주세요");
+		// 			ifcgName.focus();
+		// 			return false;
+		// 		} else {
+		// // 			by pass
+		// 		}
+				
+		// 		var ifcgNameEng = document.getElementById("ifcgNameEng");
+		// 		var ifcgNameEngValue = document.getElementById("ifcgNameEng").value.trim();
+				
+		// 		if (ifcgNameEngValue == "" || ifcgNameEngValue == null) {
+		// 			alert("이름(영문을)을 입력해 주세요");
+		// 			ifcgNameEng.focus();
+		// 			return false;
+		// 		} else {
+		// // 			by pass
+		// 		}
+				
+		// 		var ifcgUseNy = document.getElementById("ifcgUseNy");
+		// 		var ifcgUseNyValue = document.getElementById("ifcgUseNy").value.trim();
+
+		// 		if (ifcgUseNyValue == "" || ifcgUseNyValue == null) {
+		// 			alert("사용여부를 선택해 주세요");
+		// 			ifcgUseNy.focus();
+		// 			return false;
+		// 		} else {
+		// // 			by pass
+		// 		}
+			}
+		</script>
+		<!-- by developer -->
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 	</body>
 
 </html>

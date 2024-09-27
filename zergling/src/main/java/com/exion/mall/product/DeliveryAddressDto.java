@@ -9,7 +9,13 @@ public class DeliveryAddressDto {
 	private String addressName;
 	private String RecipientName;
 	private String RecipientPhone;
-	private String address;
+	private String daZonecode;
+	private String daRoadAddress;
+	private String daJibunAddress;
+	private String daDetailAddress;
+	private String daExtraAddress;
+	private Double longitude;
+	private Double latitude;
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
@@ -48,11 +54,48 @@ public class DeliveryAddressDto {
 	public void setRecipientPhone(String recipientPhone) {
 		RecipientPhone = recipientPhone;
 	}
-	public String getAddress() {
-		return address;
+	
+	public String getDaZonecode() {
+		return daZonecode;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setDaZonecode(String daZonecode) {
+		this.daZonecode = daZonecode;
+	}
+	public String getDaRoadAddress() {
+		return daRoadAddress;
+	}
+	public void setDaRoadAddress(String daRoadAddress) {
+		this.daRoadAddress = daRoadAddress;
+	}
+	public String getDaJibunAddress() {
+		return daJibunAddress;
+	}
+	public void setDaJibunAddress(String daJibunAddress) {
+		this.daJibunAddress = daJibunAddress;
+	}
+	public String getDaDetailAddress() {
+		return daDetailAddress;
+	}
+	public void setDaDetailAddress(String daDetailAddress) {
+		this.daDetailAddress = daDetailAddress;
+	}
+	public String getDaExtraAddress() {
+		return daExtraAddress;
+	}
+	public void setDaExtraAddress(String daExtraAddress) {
+		this.daExtraAddress = daExtraAddress;
+	}
+	public Double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+	public Double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
 	}
 	public Date getRegDate() {
 		return regDate;
