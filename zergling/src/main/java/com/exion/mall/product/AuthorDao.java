@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface AuthorDao {
 	public List<AuthorDto> authorList(AuthorVo vo);
 	public List<AuthorDto> authorXdmList(AuthorVo vo);
+	public List<AuthorDto> authorUsrList(AuthorVo vo);
 	public AuthorDto authorOne(AuthorDto authorDto);
 	public List<AuthorDto> jobList();
 	public int listCount(AuthorVo vo);

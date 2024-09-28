@@ -400,15 +400,15 @@
                                             <input type="checkbox" class="form-check-input" name="prodListCheck" id="">
                                         </div>
                                         <div class="prod_img">
-                                            <a href="product_detail?seq=1" class="img-box ">
+                                            <a th:href="@{product_detail(seq=${listP.seq})}" class="img-box ">
                                                 <img th:src="${'/usr/v1/assets/images/prod/300/'+listP.imgSrc+'.jpg'}" alt="">
                                                 <img style="display: none;" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지">
                                             </a>
-                                            <a href="product_detail?seq=1" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
+                                            <a th:href="@{product_detail(seq=${listP.seq})}" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
                                         </div>
                                         <div class="content_info_box ">
                                             <div class="d-flex flex-column gap-3">
-                                                <p class="prod_title"><a href="product_detail?seq=1"><!--<span class="gray_color">예약판매</span>--> <strong th:text="${listP.title}">하늘나라 극락과 천국(상)</strong></a></p>
+                                                <p class="prod_title"><a th:href="@{product_detail(seq=${listP.seq})}"><!--<span class="gray_color">예약판매</span>--> <strong th:text="${listP.title}">하늘나라 극락과 천국(상)</strong></a></p>
                                                 <p class="prod_author"><span th:text="${listP.authorCount > 1 ? listP.name+' 외 '+(listP.authorCount - 1)+'명':listP.name}">조창조</span> · <span th:text="${listP.publisherName}">신아출판사</span> · <span th:text="${#dates.format(listP.makeDate,'yyyy.MM.dd')}" >2024.07.25</span></p>
                                                 <p class="prod_price d-flex gap-1"><strong class="saleP" th:text="${listP.sale +'%'}">10%</strong><span class="sale_price"><strong th:text="${#numbers.formatInteger(listP.salePrice,1,'COMMA')}">13,500</strong>원</span><span class="regular_price" th:text="${#numbers.formatInteger(listP.price,1,'COMMA')+'원'}">15,000원</span> <span class="point" th:text="${#numbers.formatInteger(listP.point,1,'COMMA')+'p'}">750p</span> </p>
                                                 <p class="prod_intro" th:text="${listP.intro}"></p>

@@ -16,6 +16,9 @@ import com.exion.infra.user.UserService;
 @Controller
 public class indexController {
 	@Autowired
+	CodeService codeService;
+	
+	@Autowired
 	DeliveryAddressService deliveryAddressService;
 	
 //	@Autowired
@@ -27,7 +30,10 @@ public class indexController {
 	ProductService productService;
 	
 	@Autowired
-	CodeService codeService;
+	AuthorService authorService;
+	
+	@Autowired
+	ProductAuthorService productAuthorService;
 	
 	@RequestMapping(value = "index")
 	public String index() {
@@ -131,13 +137,16 @@ public class indexController {
 //	}
 	
 	@RequestMapping(value = "product_detail")
-	public String productDetail(Model model,ProductDto productDto) {
+	public String productDetail(Model model,ProductDto productDto,@ModelAttribute("vo") ProductVo vo,AuthorVo authorVo,ProductAuthorDto productAuthorDto) {
 //		List<ProductDto> prodLists = productService.prodList();
 //		for(ProductDto prodList:prodLists) {
 //			System.out.println("SEQ: "+prodList.getSeq()+" , 제목: "+prodList.getTitle());
 //		}
 		System.out.println("SEQ: "+productService.prodOne(productDto).getSeq()+" , 제목: "+productService.prodOne(productDto).getTitle());
-		model.addAttribute("product", productService.prodOne(productDto));
+		model.addAttribute("product", productService.prodUsrOne(vo));
+		model.addAttribute("authors", authorService.authorUsrList(authorVo));
+//		model.addAttribute("author", authorService.authorOne(authorDto));
+//		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
 		return "usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")

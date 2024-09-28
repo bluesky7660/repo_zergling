@@ -593,7 +593,7 @@
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
-													<div class="col-12 col-md-6 col-lg-4 col-xl "></div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl ">
 														<label class="visually" for="selectStockQtyNy">재고유무</label>
 														<select class="form-select" id="selectStockQtyNy" name="stockQtyNy">
 															<option value="" selected>재고유무를 선택하세요</option>
@@ -602,7 +602,7 @@
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="selectMdPickNy">MD Pick</label>
+														<label class="visually" for="selectMdPickNy">MD Pick</label>
 														<select class="form-select" id="selectMdPickNy" name="mdPickNy">
 															<option value="" selected>MD Pick여부를 선택하세요</option>
 															<option value="1" th:selected="${vo.mdPickNy == 1}">Y</option>
@@ -610,7 +610,7 @@
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="selectFreeShippingNy">무료배송</label>
+														<label class="visually" for="selectFreeShippingNy">무료배송</label>
 														<select class="form-select" id="selectFreeShippingNy" name="freeShippingNy">
 															<option value="" selected>무료배송여부를 선택하세요</option>
 															<option value="1" th:selected="${vo.freeShippingNy == 1}">Y</option>
@@ -618,14 +618,13 @@
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="selectTaxDeductionNy">소득공제</label>
+														<label class="visually" for="selectTaxDeductionNy">소득공제</label>
 														<select class="form-select" id="selectTaxDeductionNy" name="taxDeductionNy">
 															<option value="" selected>소득공제여부를 선택하세요</option>
 															<option value="1" th:selected="${vo.taxDeductionNy == 1}">Y</option>
 															<option value="0" th:selected="${vo.taxDeductionNy == 0}">N</option>
 														</select>
 													</div>
-													<div class="col"></div>
 													<div class="col"></div>
 												</div>
 											</div>

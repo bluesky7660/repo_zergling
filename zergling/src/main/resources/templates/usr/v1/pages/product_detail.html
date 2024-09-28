@@ -132,7 +132,7 @@
                             <p><span class="gray_color pre_order"></span> <strong th:text="${product.title}">나쁜 검사들</strong></p>
                         </div>
                         <div class="prod_desc">
-                            <span>이중세 장편소설</span>
+                            <span th:text="${product.name +' '+ product.prodTypeName}">이중세 장편소설</span>
                             <!-- <span><span th:text="${product.author}">이중세</span> 장편소설</span> -->
                         </div>
                     </div>
@@ -140,8 +140,8 @@
                         <div class="prod_detail_view d-flex flex-column gap-3">
                             <p>
                                 <!-- <strong><span th:text="${product.author}">이중세</span> 저자(글)</strong> -->
-                                <strong>이중세 저자(글)</strong>
-                                <p class="gray_color"><span th:text="${product.publisher}">마이디어북스</span> · <span th:text="${#dates.format(product.makeDate, 'yyyy년 MM월 dd일')}"></span></p>
+                                <strong th:text="${product.name + ' 저자(글)'}">이중세 </strong>
+                                <p class="gray_color"><span th:text="${product.publisherName}">마이디어북스</span> · <span th:text="${#dates.format(product.makeDate, 'yyyy년 MM월 dd일')}"></span></p>
                             </p>
                             <div class="rating_box d-flex gap-3 align-items-center">
                                 <div class="user_rating d-flex flex-column gap-3">
@@ -246,27 +246,37 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="author_info">
+                        <div class="author_info_area">
                             <p class="box_title"><b>작가정보</b></p>
-                            <div class="author_info_box d-flex flex-column gap-3 ">
-                                <div class="d-flex justify-content-between">
-                                    <p><span>저자(글) </span> <strong> 이중세</strong></p>
-                                    <button class="btn">인물정보</button>
-                                </div>
-                                <div class="author_type">
-                                    <button class="btn">연극인＞희곡/극작가</button>
-                                </div>                                
-                                <p class="info_text info_desc">생물학과 문예창작을 전공했다. 오래 기억되는 글을 쓰고 싶어 한다.<br>소설 「그래서 그들은 강으로 갔다」로 2013년 평사리문학대상을, 같은 해 희곡 〈끈〉으로 목포문학상 희곡 본상을 받았다.<br>소설 「코의 무게」, 「오래된 미래」가 각각 2019 교보문고 스토리공모전, SF오디오스토리어워즈에 수상작으로 선정되었다.<br>2022년 K-스토리 공모전에서 최우수상을 받고 장편소설 『강철로 된 무지개』를 출간했다.<br>그 밖에 희곡 〈파국〉과 장편소설 『삼키는 칼』을 썼다.</p>
-                                <div class="collapse_btn">
-                                    <span>펼치기</span>
-                                </div>
-                                <div class="author_other_prod">
-                                    <div class="img-box">
-                                        <img src="/usr/v1/assets/images/prod/200/9788957868997.jpg" alt="">
-                                    </div>
-                                    <a href="javascript:void(0);" class="prod_title"><strong>강철로 된 무지개</strong></a>
+                            <div>
+                                <div th:each="author : ${authors}">
+                                    <p class="aa"  th:text="${author.name}"></p>
+                                    <br>
+                                    <p class="aa"  th:text="${author.title}"></p>
                                 </div>
                             </div>
+                            <!-- <div class="author_info" th:each="author : ${authors}">
+                                
+                                <div class="author_info_box d-flex flex-column gap-3 ">
+                                    <div class="d-flex justify-content-between">
+                                        <p><span>저자(글) </span> <strong th:text="${author.name}"> 이중세</strong></p>
+                                        <button class="btn">인물정보</button>
+                                    </div>
+                                    <div class="author_type">
+                                        <button class="btn" th:text="${author.codeName}">연극인＞희곡/극작가</button>
+                                    </div>                                
+                                    <p class="info_text info_desc" th:text="${author.authorInfo}">생물학과 문예창작을 전공했다. 오래 기억되는 글을 쓰고 싶어 한다.<br>소설 「그래서 그들은 강으로 갔다」로 2013년 평사리문학대상을, 같은 해 희곡 〈끈〉으로 목포문학상 희곡 본상을 받았다.<br>소설 「코의 무게」, 「오래된 미래」가 각각 2019 교보문고 스토리공모전, SF오디오스토리어워즈에 수상작으로 선정되었다.<br>2022년 K-스토리 공모전에서 최우수상을 받고 장편소설 『강철로 된 무지개』를 출간했다.<br>그 밖에 희곡 〈파국〉과 장편소설 『삼키는 칼』을 썼다.</p>
+                                    <div class="collapse_btn">
+                                        <span>펼치기</span>
+                                    </div>
+                                    <div class="author_other_prod">
+                                        <div class="img-box">
+                                            <img src="/usr/v1/assets/images/prod/200/9788957868997.jpg" alt="">
+                                        </div>
+                                        <a href="javascript:void(0);" class="prod_title"><strong>강철로 된 무지개</strong></a>
+                                    </div>
+                                </div>
+                            </div> -->
                         </div>
                         <div class="book_contents">
                             <p class="box_title"><b>목차</b></p>

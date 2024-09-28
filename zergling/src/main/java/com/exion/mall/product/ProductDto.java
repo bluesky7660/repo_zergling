@@ -37,8 +37,11 @@ public class ProductDto {
 	private Integer delNy;
 	
 	private String name;
+	private String authorInfo;
 	private String prodTypeName;
 	private String publisherName;
+	private String authorTypeName;
+	
 	private Integer authorCount;
 //	private String author_seq;
 //---------------------------------
@@ -217,6 +220,12 @@ public class ProductDto {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getAuthorInfo() {
+		return authorInfo;
+	}
+	public void setAuthorInfo(String authorInfo) {
+		this.authorInfo = authorInfo;
+	}
 	public String getProdTypeName() {
 		return prodTypeName;
 	}
@@ -229,7 +238,13 @@ public class ProductDto {
 	public void setPublisherName(String publisherName) {
 		this.publisherName = publisherName;
 	}
-//	public String getAuthor_seq() {
+	public String getAuthorTypeName() {
+		return authorTypeName;
+	}
+	public void setAuthorTypeName(String authorTypeName) {
+		this.authorTypeName = authorTypeName;
+	}
+	//	public String getAuthor_seq() {
 //		return author_seq;
 //	}
 //	public void setAuthor_seq(String author_seq) {

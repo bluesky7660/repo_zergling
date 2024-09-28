@@ -46,6 +46,9 @@ public class ProductService {
 //		System.out.println("리스트1: "+productDto.getAuthor_seq());
 		return productDao.prodOne(productDto);
 	}
+	public ProductDto prodUsrOne(ProductVo vo){
+		return productDao.prodUsrOne(vo);
+	}
 	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) {
 		int a = productDao.update(productDto);
 		List<String> authorLists = productAuthorDto.getListAuthor_seq();

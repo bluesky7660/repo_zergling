@@ -13,6 +13,9 @@ public class AuthorService {
 	public List<AuthorDto> authorList(AuthorVo vo){
 		return authorDao.authorList(vo);
 	}
+	public List<AuthorDto> authorUsrList(AuthorVo vo){
+		return authorDao.authorUsrList(vo);
+	}
 	public List<AuthorDto> authorXdmList(AuthorVo vo){
 		return authorDao.authorXdmList(vo);
 	}
