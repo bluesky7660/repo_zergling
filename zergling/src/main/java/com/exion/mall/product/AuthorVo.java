@@ -1,6 +1,7 @@
 package com.exion.mall.product;
 
 import java.util.Date;
+import java.util.List;
 
 import com.exion.infra.codegroup.BaseVo;
 
@@ -10,6 +11,7 @@ public class AuthorVo extends BaseVo{
 	private Integer authorType;
 	private String name;
 	
+	private List<String> titleList;
 //--------------------
 	public String getSeq() {
 		return seq;
@@ -34,6 +36,12 @@ public class AuthorVo extends BaseVo{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public List<String> getTitleList() {
+		return titleList;
+	}
+	public void setTitleList(List<String> titleList) {
+		this.titleList = titleList;
 	}
 	
 	

@@ -1,6 +1,8 @@
 package com.exion.mall.product;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AuthorDto {
 	private String seq;
@@ -15,6 +17,24 @@ public class AuthorDto {
 	private Integer delNy;
 	
 	private Integer productCount;
+	private String imgSrc;
+	private Map<String, String> titleImageMap = new HashMap<>();
+	
+	public void addTitleImage(String title, String imgSrc) {
+        titleImageMap.put(title, imgSrc);
+    }
+//	public void addTitle(String title) {
+//        if (this.titleList == null) {
+//            this.titleList = new ArrayList<>();
+//        }
+//        this.titleList.add(title);
+//    }
+//	public void addImgSrc(String imgSrc) {
+//        if (this.imgSrcList == null) {
+//            this.imgSrcList = new ArrayList<>();
+//        }
+//        this.imgSrcList.add(imgSrc);
+//    }
 //-------------------------------------------------
 	public String getSeq() {
 		return seq;
@@ -76,5 +96,18 @@ public class AuthorDto {
 	public void setProductCount(Integer productCount) {
 		this.productCount = productCount;
 	}
+	public String getImgSrc() {
+		return imgSrc;
+	}
+	public void setImgSrc(String imgSrc) {
+		this.imgSrc = imgSrc;
+	}
+	public Map<String, String> getTitleImageMap() {
+		return titleImageMap;
+	}
+	public void setTitleImageMap(Map<String, String> titleImageMap) {
+		this.titleImageMap = titleImageMap;
+	}
+	
 	
 }

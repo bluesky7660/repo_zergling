@@ -248,16 +248,16 @@
                         </div>
                         <div class="author_info_area">
                             <p class="box_title"><b>작가정보</b></p>
-                            <div>
+                            <!-- <div>
                                 <div th:each="author : ${authors}">
-                                    <p class="aa"  th:text="${author.name}"></p>
+                                    <p class="aa"  th:text="'작가이름: '+${author.name}"></p>
                                     <br>
-                                    <p class="aa"  th:text="${author.title}"></p>
+                                    <p th:each="title: ${author.titleList}" th:text="${title}"></p>
                                 </div>
-                            </div>
-                            <!-- <div class="author_info" th:each="author : ${authors}">
+                            </div> -->
+                            <div class="author_info">
                                 
-                                <div class="author_info_box d-flex flex-column gap-3 ">
+                                <div class="author_info_box d-flex flex-column gap-3 "  th:each="author : ${authors}">
                                     <div class="d-flex justify-content-between">
                                         <p><span>저자(글) </span> <strong th:text="${author.name}"> 이중세</strong></p>
                                         <button class="btn">인물정보</button>
@@ -269,14 +269,16 @@
                                     <div class="collapse_btn">
                                         <span>펼치기</span>
                                     </div>
-                                    <div class="author_other_prod">
-                                        <div class="img-box">
-                                            <img src="/usr/v1/assets/images/prod/200/9788957868997.jpg" alt="">
+                                    <div class="author_other_prod_area">
+                                        <div class="author_other_prod" th:each="entry: ${author.titleImageMap}">
+                                            <div class="img-box">
+                                                <img th:src="${'/usr/v1/assets/images/prod/200/'+entry.value+'.jpg'}" alt="">
+                                            </div>
+                                            <a href="javascript:void(0);" class="prod_title" ><strong th:text="${entry.key}">강철로 된 무지개</strong></a>
                                         </div>
-                                        <a href="javascript:void(0);" class="prod_title"><strong>강철로 된 무지개</strong></a>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="book_contents">
                             <p class="box_title"><b>목차</b></p>

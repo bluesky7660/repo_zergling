@@ -28,7 +28,7 @@
 				</choose>
 	  </sql>
 	  <select id="authorUsrList" resultMap="resultObj">
-		  	select
+		  	<!-- select
 				a.seq
 			    ,a.authorType
 			    ,d.codeName
@@ -45,7 +45,28 @@
 				join commoncode d on a.authorType = d.seq
 			<include refid="selectCommon"/>
 				and c.product_seq = #{seq}
-			order by a.seq desc
+			order by a.seq desc -->
+			SELECT 
+				a.seq
+			    ,a.authorType
+			    ,d.codeName
+			    ,a.name	
+			    ,a.authorInfo
+			    ,b.title
+			    ,b.imgSrc
+			    <!-- ,b.title as titleList    -->       
+				<!-- ,c.product_seq   -->      
+			FROM 
+				productAuthor c  
+				JOIN author a ON c.author_seq = a.seq  
+				JOIN productAuthor paOther ON a.seq = paOther.author_seq
+				JOIN product b ON paOther.product_seq = b.seq 
+				join commoncode d on a.authorType = d.seq
+			WHERE 
+				c.product_seq = #{seq}   
+				AND paOther.product_seq != #{seq} 
+			ORDER BY 
+				a.seq;
 	  </select>
 	  <select id="authorList" resultMap="resultObj">
 		  	select
