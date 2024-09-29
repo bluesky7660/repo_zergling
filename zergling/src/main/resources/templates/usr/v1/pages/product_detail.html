@@ -140,7 +140,7 @@
                         <div class="prod_detail_view d-flex flex-column gap-3">
                             <p>
                                 <!-- <strong><span th:text="${product.author}">이중세</span> 저자(글)</strong> -->
-                                <strong th:text="${product.name + ' 저자(글)'}">이중세 </strong>
+                                <p><strong th:each="author : ${authors}" th:text="${author.name + (authorStat.index < authorStat.size - 1 ? ', ' : '')}"></strong> 저자(글)</p>
                                 <p class="gray_color"><span th:text="${product.publisherName}">마이디어북스</span> · <span th:text="${#dates.format(product.makeDate, 'yyyy년 MM월 dd일')}"></span></p>
                             </p>
                             <div class="rating_box d-flex gap-3 align-items-center">
@@ -171,7 +171,7 @@
                         </div>
                         <div class="img_slider_container">
                             <div class="img-box">
-                                <img src="/usr/v1/assets/images/prod/9791193289273.jpg" alt="">
+                                <img th:src="${'/usr/v1/assets/images/prod/300/'+ product.imgSrc+'.jpg'}" alt="">
                             </div>
                         </div>
                         <div class="prod_detail_info">
@@ -182,13 +182,13 @@
                             <div class="prod_price">
                                 <strong class="saleP"><span th:text="${product.sale}">10</span>%</strong>
                                 <span class="sale_price">
-                                    <strong th:text="${product.salePrice}">15,750</strong>원
+                                    <strong th:text="${#numbers.formatInteger(product.salePrice,1,'COMMA')}">15,750</strong>원
                                 </span>
-                                <span class="regular_price"><span th:text="${product.price}">17,500</span>원</span>
+                                <span class="regular_price"><span th:text="${#numbers.formatInteger(product.price,1,'COMMA')}">17,500</span>원</span>
                             </div>
                             <div class="point_box d-flex justify-content-between">
                                 <strong>적립/혜택</strong>
-                                <span class="green_color"><span th:text="${product.point}">870</span>P</span>
+                                <span class="green_color"><span th:text="${#numbers.formatInteger(product.point,1,'COMMA')}">870</span>P</span>
                             </div>
                             <div class="delivery_info d-flex justify-content-between">
                                 <div>
@@ -582,7 +582,7 @@
                                 <p class="box_title">리뷰작성</p>
                                 <div class="review_head d-flex align-items-center gap-4 ">
                                     <div class="img-box">
-                                        <img src="/usr/v1/assets/images/prod/9791193289273.jpg" alt="">
+                                        <img th:src="${'/usr/v1/assets/images/prod/200/'+ product.imgSrc+'.jpg'}" alt="">
                                     </div>
                                     <div class="user_rating_star_box">
                                         <strong class="rating_prod_title">나쁜검사들</strong>

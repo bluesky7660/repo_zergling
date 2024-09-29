@@ -253,6 +253,7 @@
 			    ,a.salePrice
 			    ,a.point
 			    ,a.stockQty
+			    ,a.imgSrc
 			    ,a.intro
 			    ,a.reviewNum
 			    ,a.shipDate
@@ -293,6 +294,7 @@
 			    ,a.salePrice
 			    ,a.point
 			    ,a.stockQty
+			    ,a.imgSrc
 			    ,a.intro
 			    ,a.reviewNum
 			    ,a.shipDate
