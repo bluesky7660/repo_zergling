@@ -36,7 +36,7 @@ public class AuthorService {
             }
 
             // 제목과 이미지 소스를 추가
-            existingAuthor.addTitleImage(author.getTitle(), author.getImgSrc());
+            existingAuthor.addTitleImage(author.getOtherTitle(), author.getOtherImgSrc());
         }
         // Map의 값들을 리스트로 변환
         List<AuthorDto> resultList = new ArrayList<>(authorMap.values());
@@ -52,6 +52,9 @@ public class AuthorService {
 	}
 	public List<AuthorDto> authorXdmList(AuthorVo vo){
 		return authorDao.authorXdmList(vo);
+	}
+	public List<AuthorDto> prodAuthorList(AuthorVo vo){
+		return authorDao.prodAuthorList(vo);
 	}
 	public List<AuthorDto> jobList(){
 		return authorDao.jobList();

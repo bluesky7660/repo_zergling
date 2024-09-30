@@ -27,6 +27,19 @@
 					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
 				</choose>
 	  </sql>
+	  <select id="prodAuthorList" resultMap="resultObj">
+			select
+				a.seq
+			    ,a.name
+			from
+				author a
+				left join productAuthor c on c.author_seq = a.seq
+				left join product b on c.product_seq = b.seq
+			WHERE 
+				c.product_seq = #{seq}
+			ORDER BY 
+				a.seq
+	  </select>
 	  <select id="authorUsrList" resultMap="resultObj">
 		  	<!-- select
 				a.seq
@@ -55,18 +68,27 @@
 			    ,b.title
 			    ,b.imgSrc
 			    <!-- ,b.title as titleList    -->       
-				<!-- ,c.product_seq   -->      
+				<!-- ,c.product_seq   --> 
+				,CASE
+					WHEN paOther.product_seq IS NOT NULL THEN b2.title
+					ELSE NULL
+				END AS otherTitle
+				,CASE
+					WHEN paOther.product_seq IS NOT NULL THEN b2.imgSrc
+					ELSE NULL
+				END AS otherImgSrc     
 			FROM 
 				productAuthor c  
 				JOIN author a ON c.author_seq = a.seq  
-				JOIN productAuthor paOther ON a.seq = paOther.author_seq
-				JOIN product b ON paOther.product_seq = b.seq 
+				left JOIN product b ON c.product_seq = b.seq 
+				left JOIN productAuthor paOther ON a.seq = paOther.author_seq AND paOther.product_seq != #{seq} 
+				left JOIN product b2 ON paOther.product_seq = b2.seq 
 				join commoncode d on a.authorType = d.seq
 			WHERE 
 				c.product_seq = #{seq}   
-				AND paOther.product_seq != #{seq} 
+				
 			ORDER BY 
-				a.seq;
+				a.seq
 	  </select>
 	  <select id="authorList" resultMap="resultObj">
 		  	select
@@ -165,7 +187,6 @@
 				author a
 				<!-- join productAuthor c on c.author_seq = a.seq
 				join product b on c.product_seq = b.seq -->
-				join product b on c.product_seq = b.seq 
 				join commoncode d on a.authorType = d.seq
 			where 1 = 1
 				and a.seq = #{seq}

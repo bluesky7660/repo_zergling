@@ -201,6 +201,9 @@
 .author_other_prod{
     width: 110px;
 }
+.prod_detail_head_top .prod_type{
+    margin-bottom: 20px;
+}
 .author_other_prod .prod_title{
     font-size: 14px;
 }

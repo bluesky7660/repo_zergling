@@ -593,7 +593,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputPrice" class="form-label">원가</label>
-														<input type="text" class="form-control validate-this" id="inputPrice" name="price" th:value="${item.price}" placeholder="숫자만" required>
+														<input type="text" class="form-control valid-numeric validate-this" id="inputPrice" name="price" th:value="${item.price}" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															원가를 적어주세요.
 														</div>
@@ -602,7 +602,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputSale" class="form-label">할인률</label>
-														<input type="text" class="form-control validate-this" id="inputSale" name="sale" th:value="${item.sale}" placeholder="숫자만" required>
+														<input type="text" class="form-control valid-numeric validate-this" id="inputSale" name="sale" th:value="${item.sale}" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															할인률을 적어주세요.
 														</div>
@@ -611,7 +611,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputSalePrice" class="form-label">할인가</label>
-														<input type="text" class="form-control validate-this" id="inputSalePrice" name="salePrice" th:value="${item.salePrice}" placeholder="숫자만" required>
+														<input type="text" class="form-control valid-numeric validate-this" id="inputSalePrice" name="salePrice" th:value="${item.salePrice}" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															할인가를 적어주세요.
 														</div>
@@ -620,7 +620,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputPoint" class="form-label">포인트</label>
-														<input type="text" class="form-control validate-this" id="inputPoint" name="point" th:value="${item.point}" placeholder="" required>
+														<input type="text" class="form-control valid-numeric validate-this" id="inputPoint" name="point" th:value="${item.point}" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															포인트를 적어주세요.
 														</div>
@@ -629,7 +629,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputStockQty" class="form-label">재고량</label>
-														<input type="text" class="form-control validate-this" id="inputStockQty" name="stockQty" th:value="${item.stockQty}" placeholder="" required>
+														<input type="text" class="form-control valid-numeric validate-this" id="inputStockQty" name="stockQty" th:value="${item.stockQty}" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															재고량을 적어주세요.
 														</div>

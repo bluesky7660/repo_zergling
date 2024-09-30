@@ -144,6 +144,7 @@ public class indexController {
 //		}
 		System.out.println("SEQ: "+productService.prodOne(productDto).getSeq()+" , 제목: "+productService.prodOne(productDto).getTitle());
 		model.addAttribute("product", productService.prodUsrOne(vo));
+		model.addAttribute("prodAuthor", authorService.prodAuthorList(authorVo));
 		model.addAttribute("authors", authorService.authorUsrList(authorVo));
 //		model.addAttribute("author", authorService.authorOne(authorDto));
 //		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));

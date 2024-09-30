@@ -534,7 +534,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputId" class="form-label">아이디</label>
-														<input type="text" class="form-control validate-this" id="inputId" name="userId" th:value="${item?.userId}" placeholder="영대소문자, 숫자" required>
+														<input type="text" class="form-control valid-alpha-num validate-this" id="inputId" name="userId" th:value="${item?.userId}" placeholder="영대소문자, 숫자" required>
 														<div class="invalid-feedback">
 															아이디을 입력해주세요.
 														</div>
@@ -543,7 +543,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputPassword" class="form-label">패스워드</label>
-														<input type="password" class="form-control validate-this" id="inputPassword" name="userPassword" th:value="${item?.userPassword}" placeholder="영대소문자, 숫자" required>
+														<input type="password" class="form-control valid-alpha-num validate-this" id="inputPassword" name="userPassword" th:value="${item?.userPassword}" placeholder="영대소문자, 숫자" required>
 														<div class="invalid-feedback">
 															패스워드을 입력해주세요.
 														</div>

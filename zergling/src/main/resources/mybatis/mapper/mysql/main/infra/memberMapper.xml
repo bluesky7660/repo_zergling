@@ -163,6 +163,20 @@
 			where 1=1
 				and c.seq = #{seq}
 	  </select>
+	  <select id="selectXdmOne" resultMap="resultObj">
+			select
+				a.seq
+			    ,a.admNy
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			from
+				member a
+			where 1 = 1
+				and a.userId = #{userId}
+				and a.userPassword = #{userPassword}
+				and a.admNy = 1
+	</select>
 	  <insert id="insertUsr">
 	  		insert into member(
 				admNy

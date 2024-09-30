@@ -524,7 +524,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">코드이름</label>
-														<input type="text" class="form-control validate-this" id="inputCodeName" name="codeName" placeholder="한글, 영대소문자, 숫자" required>
+														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputCodeName" name="codeName" placeholder="한글, 영대소문자, 숫자" required>
 														<div class="invalid-feedback">
 															코드이름을 적어주세요.
 														</div>
@@ -552,7 +552,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeOrder" class="form-label">순서</label>
-														<input type="text" class="form-control validate-this" id="inputCodeOrder" name="codeOrder" placeholder="" required>
+														<input type="text" class="form-control valid-numeric validate-this" id="inputCodeOrder" name="codeOrder" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															순서를 적어주세요.
 														</div>
@@ -730,55 +730,66 @@
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
 		<script>
 			
-			const form = document.querySelector("form");
-       		const formUrl = form.action;
-			document.getElementById("btnSubmit").onclick = function (){
-				var objs = document.querySelectorAll(".validate-this");
-				var i= 0;
-				var validateChk = false;
-				for(let element of objs){
-					var objValue = element.value.trim();
-					if (objValue == "" || objValue == null) {
-						const feedback = element.parentElement.querySelector(".invalid-feedback");
-						var waring = feedback.textContent.trim();
-						alert(waring);
-						if(i==0){
-							element.focus();
-						}
-						i++;
-						validateChk = false;
-						element.classList.add('is-invalid');
-					} else {
-			// 			by pass
-						validateChk = true;
-						element.classList.remove('is-invalid');
-						element.classList.add('is-valid');
-					}
-					// if (!element.checkValidity()) {
-					// 	allValid = false;
-					// 	element.classList.add('is-invalid');
-					// } else {
-					// 	element.classList.remove('is-invalid');
-					// 	element.classList.add('is-valid');
-					// }
-				};
-				if(validateChk == false){
-					alert("검사실패");
-					return false;
-				}
-				alert("통과!");
-				form.action = formUrl;
-				form.submit();
+			// const form = document.querySelector("form");
+       		// const formUrl = form.action;
+			// document.getElementById("btnSubmit").onclick = function (){
+			// 	var objs = document.querySelectorAll(".validate-this");
+			// 	var i= 0;
+			// 	var validateChk = false;
+			// 	for(let element of objs){
+			// 		var objValue = element.value.trim();
+			// 		if (objValue == "" || objValue == null) {
+			// 			const feedback = element.parentElement.querySelector(".invalid-feedback");
+			// 			var waring = feedback.textContent.trim();
+			// 			alert(waring);
+			// 			if(i==0){
+			// 				element.focus();
+			// 			}
+			// 			i++;
+			// 			validateChk = false;
+			// 			element.classList.add('is-invalid');
+			// 		} else {
+			// // 			by pass
+			// 			validateChk = true;
+			// 			element.classList.remove('is-invalid');
+			// 			element.classList.add('is-valid');
+			// 		}
+			// 		// if (!element.checkValidity()) {
+			// 		// 	allValid = false;
+			// 		// 	element.classList.add('is-invalid');
+			// 		// } else {
+			// 		// 	element.classList.remove('is-invalid');
+			// 		// 	element.classList.add('is-valid');
+			// 		// }
+			// 	};
+			// 	if(validateChk == false){
+			// 		alert("검사실패");
+			// 		return false;
+			// 	}
+			// 	alert("통과!");
+			// 	form.action = formUrl;
+			// 	form.submit();
 
 		//		var ifcgName = document.getElementById("inputCodeName");
+		// 		var ifcgNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
 		//		var ifcgNameValue = document.getElementById("inputCodeName").value.trim();
 		// 		if (ifcgNameValue == "" || ifcgNameValue == null) {
 		// 			alert("이름을 입력해 주세요");
 		// 			ifcgName.focus();
+		//			ifcgName.classList.remove('is-invalid');
 		// 			return false;
 		// 		} else {
-		// // 			by pass
+		// // 		if(!ifcgNameRegExp.test(ifcgNameValue)){
+			// 			alert("이름은 한국, 영대소문자, 숮자만 입력해 주세요");
+			// 			ifcgName.focus();
+			// 			return false;
+						// ifcgName.classList.remove('is-invalid');
+						// ifcgName.classList.add('is-valid');
+			// 		} else {
+			// 			//by pass
+			// 		}
 		// 		}
+		// 		
 				
 		// 		var ifcgNameEng = document.getElementById("ifcgNameEng");
 		// 		var ifcgNameEngValue = document.getElementById("ifcgNameEng").value.trim();
@@ -801,7 +812,7 @@
 		// 		} else {
 		// // 			by pass
 		// 		}
-			}
+			// }
 		</script>
 		<!-- by developer -->
 		<script src="/xdm/v1/js/commonXdm.js"></script>

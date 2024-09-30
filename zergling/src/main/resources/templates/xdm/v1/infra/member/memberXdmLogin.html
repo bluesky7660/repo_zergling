@@ -54,7 +54,7 @@
 		<!-- Loading wrapper end -->
 
 		<!-- Login box start -->
-		<form name="form" method="post" action="">
+		<form name="form" method="post" action="loginProc" class="needs-validation" novalidate>
 			<div class="login-box">
 				<div class="login-form">
 					<a href="index" class="login-logo">
@@ -64,29 +64,35 @@
 						다시 오신 것을 환영합니다, <br />Arise 관리자 계정에 로그인하세요.
 					</div>
 					<div class="mb-3">
-						<label class="form-label">Username</label>
-						<input type="text" class="form-control">
+						<label class="form-label">Id</label>
+						<input id="userId" type="text" class="form-control validate-this" name="userId" required>
+						<div class="invalid-feedback">
+							아이디를 입력해주세요.
+						</div>
 					</div>
 					<div class="mb-3">
 						<div class="d-flex justify-content-between">
 							<label class="form-label">Password</label>
 							<a href="forgot-password" class="btn-link ml-auto">Forgot password?</a>
 						</div>
-						<input type="password" class="form-control">
+						<input id="userPassword" type="password" class="form-control valid-password validate-this" name="userPassword" required>
+						<div class="invalid-feedback">
+							비밀번호를 입력해주세요.
+						</div>
 					</div>
 					<div class="login-form-actions">
-						<button type="submit" class="btn"> 
+						<button type="button" id="loginBtn" class="btn"> 
 							<span class="icon"> <i class="bi bi-arrow-right-circle"></i> </span>
 							로그인
 						</button>
 					</div>
 					<div class="login-form-actions">
-						<button type="submit" id="googleLoginBtn" class="btn"> 
+						<button type="button" id="googleLoginBtn" class="btn"> 
 							<img src="/xdm/v1/template/arise-v1.0/assets/images/google.svg" class="login-icon"
 								alt="Login with Google">
 							구글 로그인
 						</button>
-						<button type="submit" id="kakaoLoginBtn" class="btn"> 
+						<button type="button" id="kakaoLoginBtn" class="btn"> 
 							<img src="/xdm/v1/template/arise-v1.0/assets/images/kakao.svg" class="login-icon"
 								alt="Login with Kakao">
 							카카오 로그인
@@ -104,6 +110,23 @@
 			</div>
 		</form>
 		<!-- Login box end -->
+		<!-- modals -->
+		<div class="modal fade" id="modalAlert" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalAlertTitle"></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-square	"></i></button>
+					</div>
+					<div class="modal-body" >
+						<p id="modalAlertBody"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button"  class="btn btn-success" data-bs-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- *************
 			************ Required JavaScript Files *************
@@ -120,8 +143,23 @@
 
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
 		<!-- by developer -->
 		<script src="/xdm/v1/js/commonXdm.js"></script>
+		<script>
+			window.addEventListener('load', function() {
+				// var ifcgNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+				// if(!ifcgNameRegExp.test(ifcgNameValue)){
+				// 	alert("이름은 한국, 영대소문자, 숮자만 입력해 주세요");
+				// 	ifcgName.focus();
+				// 	return false;
+				// } else {
+				// 	//by pass
+				// }
+
+			})
+			
+		</script>
 	</body>
 
 </html>

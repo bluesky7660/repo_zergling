@@ -28,6 +28,9 @@ public class MemberService {
 	public MemberDto selectOne(MemberDto memberDto) {
 		return memberDao.selectOne(memberDto);
 	}
+	public MemberDto selectXdmOne(MemberDto memberDto) {
+		return memberDao.selectXdmOne(memberDto);
+	}
 	public int insertUsr(MemberDto memberDto) {
 		return memberDao.insertUsr(memberDto);
 	}

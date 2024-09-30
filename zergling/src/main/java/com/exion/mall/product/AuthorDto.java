@@ -18,10 +18,15 @@ public class AuthorDto {
 	
 	private Integer productCount;
 	private String imgSrc;
+	private String otherTitle;
+	private String otherImgSrc;
 	private Map<String, String> titleImageMap = new HashMap<>();
 	
-	public void addTitleImage(String title, String imgSrc) {
-        titleImageMap.put(title, imgSrc);
+	public void addTitleImage(String otherTitle, String otherImgSrc) {
+		if(otherTitle!=null && otherImgSrc!=null) {
+			titleImageMap.put(otherTitle, otherImgSrc);
+		}
+        
     }
 //	public void addTitle(String title) {
 //        if (this.titleList == null) {
@@ -101,6 +106,18 @@ public class AuthorDto {
 	}
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
+	}
+	public String getOtherTitle() {
+		return otherTitle;
+	}
+	public void setOtherTitle(String otherTitle) {
+		this.otherTitle = otherTitle;
+	}
+	public String getOtherImgSrc() {
+		return otherImgSrc;
+	}
+	public void setOtherImgSrc(String otherImgSrc) {
+		this.otherImgSrc = otherImgSrc;
 	}
 	public Map<String, String> getTitleImageMap() {
 		return titleImageMap;

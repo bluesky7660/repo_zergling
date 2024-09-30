@@ -534,7 +534,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputId" class="form-label">아이디</label>
-														<input type="text" class="form-control validate-this" id="inputId" name="userId" placeholder="영대소문자, 숫자" required>
+														<input type="text" class="form-control valid-alpha-num validate-this" id="inputId" name="userId" placeholder="영대소문자, 숫자" required>
 														<div class="invalid-feedback">
 															아이디을 입력해주세요.
 														</div>
@@ -543,7 +543,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputPassword" class="form-label">패스워드</label>
-														<input type="password" class="form-control validate-this" id="inputPassword" name="userPassword" placeholder="영대소문자, 숫자" required>
+														<input type="password" class="form-control valid-password validate-this" id="inputPassword" name="userPassword" placeholder="8~15자, 최소 1개의 숫자, 영문자, 특수문자포함해야함" required>
 														<div class="invalid-feedback">
 															패스워드을 입력해주세요.
 														</div>
@@ -551,8 +551,8 @@
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputIndustryType1" class="form-label">성별</label>
-														<select class="form-select validate-this" id="inputIndustryType1" name="gender" required>
+														<label for="inputGender" class="form-label">성별</label>
+														<select class="form-select validate-this" id="inputGender" name="gender" required>
 															<option value="" selected disabled>선택하세요</option>
 															<option value="남자">남자</option>
 															<option value="여자">여자</option>
@@ -566,7 +566,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputDateOfBirth" class="form-label">생년월일</label>
-														<input type="date" class="form-control validate-this" id="inputDateOfBirth" name="dateOfBirth" placeholder="19901122" required>
+														<input type="date" class="form-control valid-birth-num validate-this" id="inputDateOfBirth" name="dateOfBirth" placeholder="19901122" required>
 														<div class="invalid-feedback">
 															생년월일를 입력해주세요.
 														</div>
@@ -575,7 +575,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputEmail" class="form-label">이메일</label>
-														<input type="email" class="form-control validate-this" id="inputEmail" name="email" placeholder="" required>
+														<input type="email" class="form-control valid-email validate-this" id="inputEmail" name="email" placeholder="example@example.com" required>
 														<div class="invalid-feedback">
 															이메일을 입력해주세요.
 														</div>
@@ -584,7 +584,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputPhoneNum" class="form-label">전화번호</label>
-														<input type="tel" class="form-control validate-this" id="inputPhoneNum" name="phoneNum" placeholder="" required>
+														<input type="tel" class="form-control valid-phone-num validate-this" id="inputPhoneNum" name="phoneNum" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															전화번호를 입력해주세요.
 														</div>
@@ -604,7 +604,7 @@
 											<!-- Form actions footer start -->
 											<div class="form-actions-footer justify-content-between bg-white">
 												<a class="btn btn-outline-dark" type="button" href="memberXdmList"><i class="bi bi-list-ul"></i></a>
-												<button class="btn btn-info" type="submit"><i class="bi bi-database"></i></button>
+												<button id="btnSubmit" class="btn btn-info" type="button"><i class="bi bi-database"></i></button>
 											</div>
 											<!-- Form actions footer end -->
 										</form>

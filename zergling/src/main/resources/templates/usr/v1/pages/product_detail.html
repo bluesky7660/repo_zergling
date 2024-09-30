@@ -128,11 +128,14 @@
             <div class="content_wrapper">
                 <div class="prod_detail_head">
                     <div class="prod_detail_head_top">
+                        <div class="prod_type">
+                            <p><span th:text="${product.prodTypeName}"></span></p>
+                        </div>
                         <div class="prod_title">
                             <p><span class="gray_color pre_order"></span> <strong th:text="${product.title}">나쁜 검사들</strong></p>
                         </div>
                         <div class="prod_desc">
-                            <span th:text="${product.name +' '+ product.prodTypeName}">이중세 장편소설</span>
+                            <span th:if="${#lists.size(prodAuthor) == 1}" th:text="${product.name +' '+ product.prodTypeName}">이중세 장편소설</span>
                             <!-- <span><span th:text="${product.author}">이중세</span> 장편소설</span> -->
                         </div>
                     </div>
@@ -140,7 +143,7 @@
                         <div class="prod_detail_view d-flex flex-column gap-3">
                             <p>
                                 <!-- <strong><span th:text="${product.author}">이중세</span> 저자(글)</strong> -->
-                                <p><strong th:each="author : ${authors}" th:text="${author.name + (authorStat.index < authorStat.size - 1 ? ', ' : '')}"></strong> 저자(글)</p>
+                                <p><strong th:each="prodAuthor : ${prodAuthor}" th:text="${prodAuthor.name + (prodAuthorStat.index < prodAuthorStat.size - 1 ? ', ' : '')}"></strong> 저자(글)</p>
                                 <p class="gray_color"><span th:text="${product.publisherName}">마이디어북스</span> · <span th:text="${#dates.format(product.makeDate, 'yyyy년 MM월 dd일')}"></span></p>
                             </p>
                             <div class="rating_box d-flex gap-3 align-items-center">
@@ -270,7 +273,9 @@
                                         <span>펼치기</span>
                                     </div>
                                     <div class="author_other_prod_area">
-                                        <div class="author_other_prod" th:each="entry: ${author.titleImageMap}">
+                                        <div class="author_other_prod"  th:each="entry: ${author.titleImageMap}">
+                                            <!-- th:if="${#lists.size(author.titleImageMap) > 0}" -->
+                                            <!-- <p th:text="${#lists.size(author.titleImageMap)}"></p> -->
                                             <div class="img-box">
                                                 <img th:src="${'/usr/v1/assets/images/prod/200/'+entry.value+'.jpg'}" alt="">
                                             </div>
@@ -585,7 +590,7 @@
                                         <img th:src="${'/usr/v1/assets/images/prod/200/'+ product.imgSrc+'.jpg'}" alt="">
                                     </div>
                                     <div class="user_rating_star_box">
-                                        <strong class="rating_prod_title">나쁜검사들</strong>
+                                        <strong class="rating_prod_title" th:text="${product.title}"></strong>
                                         <div class="user_rating_star">
                                             <input id="rating-input" name="rating" class="custom-star" value="10" />
                                         </div>

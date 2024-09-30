@@ -1,12 +1,15 @@
 package com.exion.infra.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
@@ -44,9 +47,28 @@ public class MemberController {
 		memberService.update(memberDto);
 		return "redirect:/v1/infra/member/memberXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/member/memberXdmLogin")
-	public String memberXdmLogin(MemberDto memberDto,Model model) {
-		model.addAttribute("item", memberService.selectOne(memberDto));
+	@RequestMapping(value = "/v1/infra/member/loginXdm")
+	public String loginXdm(MemberDto memberDto) {
+//		model.addAttribute("item", memberService.selectOne(memberDto));
+		
 		return "xdm/v1/infra/member/memberXdmLogin";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "v1/infra/member/loginProc")
+	public Map<String, Object> loginProc(MemberDto memberDto) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		MemberDto rtMember = memberService.selectXdmOne(memberDto);
+		
+		if (rtMember != null) {
+			System.out.println("성공");
+			returnMap.put("rt", "success");
+
+		} else {
+			System.out.println("실패");
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
 	}
 }
