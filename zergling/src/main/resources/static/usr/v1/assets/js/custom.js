@@ -1,6 +1,133 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     //
+    const userId = document.getElementById("userId");
+    const userPassword = document.getElementById("userPassword");
+    const feedbackChk = document.querySelector(".invalid-child");
+    const feedback = document.querySelector(".invalid-feedback");
+
+    //정규식
+    var idRegExp = /^[a-zA-Z0-9]{5,15}$/;
+    var passwordRegExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    var krAlphaNumRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+    var alphaNumRegExp = /^[a-zA-Z0-9]+$/;
+    var numericRegExp = /^[0-9]+$/;
+    var emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    var birthRegExp =  /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    var phoneRegExp = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+
+    //로그인
+    const loginBtn = document.querySelector("#loginBtn");
+    console.log("loginBtn: "+loginBtn);
+    if(loginBtn){
+        loginBtn.addEventListener("click", function() {
+            // const loginBoxParent = element.closest('.login-box');
+            
+            let idValid = true;
+            let pwValid = true;
+            let idValue = userId.value.trim();
+            let PasswordValue = userPassword.value.trim();
+    
+            // 아이디 필드 체크
+            if (idValue == "" || idValue == null) {
+                feedback.textContent = "아이디를 입력해 주세요.";
+                userId.classList.add('is-invalid');
+                feedbackChk.classList.add('is-invalid');
+                idValid = false;
+            } else {
+                
+                if(!idRegExp.test(idValue)){
+                    userId.classList.add('is-invalid');
+                    userPassword.classList.add('is-invalid');
+                    feedbackChk.classList.add('is-invalid');
+                    feedback.textContent = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                    idValid = false; 
+                    return false;
+                }else{
+                    userId.classList.remove('is-invalid');
+                    feedbackChk.classList.remove('is-invalid');
+                }
+                
+            }
+    
+            // 비밀번호 필드 체크
+            if (PasswordValue == "" || PasswordValue == null) {
+                feedback.textContent = "비밀번호를 입력해 주세요.";
+                userPassword.classList.add('is-invalid');
+                feedbackChk.classList.add('is-invalid');
+                pwValid = false;
+            } else {
+                userPassword.classList.remove('is-invalid');
+                feedbackChk.classList.remove('is-invalid');
+            }
+    
+            // 아이디와 비밀번호 모두 입력하지 않은 경우 처리
+            if (!idValid && !pwValid) {
+                feedback.textContent = "아이디와 비밀번호를 입력해 주세요.";
+            }
+    
+            // 둘 다 중에 하나라도 유효하지 않으면 submit 방지
+            if (!idValid || !pwValid) {
+                feedbackChk.classList.add('is-invalid');
+                return false;
+            }
+            
+            userId.classList.remove('is-invalid');
+            userPassword.classList.remove('is-invalid');
+            feedbackChk.classList.remove('is-invalid');
+            feedback.textContent = "";
+    
+            //ajax 로그인
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: "/v1/infra/member/loginUsrProc"
+                /* ,data : $("#formLogin").serialize() */
+                ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                ,success: function(response) {
+                    if(response.rt == "success") {
+                        userId.classList.remove('is-invalid');
+                        userPassword.classList.remove('is-invalid');
+                        feedbackChk.classList.remove('is-invalid');
+                        location.href = "index";
+                    } else {
+                        userId.classList.add('is-invalid');
+                        userPassword.classList.add('is-invalid');
+                        feedbackChk.classList.add('is-invalid');
+                        document.getElementById("invalid-feedback").innerText = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        })
+    }
+
+    //로그아웃
+    const logoutBtn = document.getElementById("logoutBtn");
+    console.log("logoutBtn: "+logoutBtn);
+    if (logoutBtn) {
+        logoutBtn.onclick = function (){
+            //ajax 로그아웃
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: "/v1/infra/member/logoutUsrProc"
+                /* ,data : $("#formLogin").serialize() */
+                // ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                ,success: function(response) {
+                    location.href = "index";
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        }
+    }
 
     //비밀번호 on/off
     const togglePasswordElements = document.querySelectorAll('.toggle-password');

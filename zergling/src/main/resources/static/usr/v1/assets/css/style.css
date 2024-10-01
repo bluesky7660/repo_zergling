@@ -50,11 +50,11 @@ textarea.form-control{
 }
 
 .password_box .form-control {
-    padding-right: 40px; /* 버튼 크기와 위치를 고려한 여백 */
+    padding-right: 60px; /* 버튼 크기와 위치를 고려한 여백 */
 }
 .toggle-button {
     position: absolute;
-    right: 10px;
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
@@ -508,7 +508,7 @@ a.img-box{
     top:-48px;
     visibility: hidden;
 }
-.customer_service_box ul li a{
+.customer_service_box ul li>*{
     font-size: 13px;
 }
 
@@ -604,12 +604,18 @@ main>*{
 }
 
 /*user box*/
-.user_box>*{
-    width: 40px;
-    cursor: pointer;
+.user_box>{
+    
+    /* cursor: pointer; */
 }
-
 .user_my{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user_my .usr-imgbox{
+    display: block;
+    width: 40px;
     box-shadow: 0 0 10px 5px #ddd;
     border-radius: 50%;
 }

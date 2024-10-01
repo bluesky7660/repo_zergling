@@ -37,17 +37,20 @@
                 <div class="customer_service_area d-flex justify-content-end">
                     <div class="customer_service_box d-flex  align-items-center">
                         <ul class="d-flex gap-3">
-                            <li class="">
+                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
                                 <a href="signup">회원가입</a>
                             </li>
-                            <li class="">
+                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
                                 <a href="login">로그인</a>
                             </li>
                             <!-- <li class="">
                                 <a href="javascript:void(0);">회원혜택</a>
                             </li> -->
-                            <li class="">
-                                <a href="user_order_list">주문배송</a>
+                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
+                                <a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문배송</a>
+                            </li>
+                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
+                                <span id="logoutBtn">로그아웃</span>
                             </li>
                             <!-- <li class="">
                                 <a href="javascript:void(0);">매장안내</a>
@@ -71,13 +74,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="user_box d-flex align-items-center gap-4">
-                            <div class="cart" onclick="window.location.href='user_cart'">
-                                <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
-                            </div>
-                            <div class="user_my" onclick="window.location.href='user_account?seq=1'">
-                                <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
-                            </div>
+                        <div class="user_box">
+                            <a class="user_my" th:href="${session != null and session.sessNameXdm != null} ? @{user_account(seq=${session.sessSeqXdm})} : @{login}">
+                                <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
+                                <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userIdSeq" name="seq" th:value="${session.sessSeqXdm}">
+                                <span class="usr-imgbox">
+                                    <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
+                                </span>
+                            </a>
                         </div>
                     </div>
                     <nav class="gnb_list d-flex align-items-center gap-4">
@@ -97,8 +101,9 @@
                                     <div class="anb_wrapper_list">
                                         <h5 class="anb_category">회원정보</h5>
                                         <ul>
-                                            <li onclick="window.location.href='user_order_list?seq=1'">주문/배송목록</li>
-                                            <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
+                                            <!-- <li th:onclick="'window.location.href=\'user_order_list?seq=' + ${session.sessSeqXdm} + '\''">주문/배송목록</li> -->
+                                            <!-- <li th:onclick="'window.location.href=\'user_delivery_address?seq=' + ${session.sessSeqXdm} + '\''">배송주소록</li> -->
+                                            <li><a th:href="${session != null and session.sessNameXdm != null} ? @{user_account(seq=${session.sessSeqXdm})} : @{login}">배송주소록</a></li>
                                             <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
                                             <li onclick="window.location.href='user_account?seq=1'">회원정보 변경</li>
                                             <li onclick="window.location.href='user_password?seq=1'">비밀번호 변경</li>
@@ -137,12 +142,12 @@
                 <div class="aside_box">
                     <ul class="d-flex flex-column gap-4">
                         <!-- <li onclick="window.location.href='user_account?seq=1'">▶ 유저룸</li> -->
-                        <li onclick="window.location.href='user_order_list?seq=1'"><span>주문 / 배송목록</span></li>
-                        <li onclick="window.location.href='user_delivery_address?seq=1'"><span>배송주소록</span></li>
-                        <li class="active" onclick="window.location.href='user_account?seq=1'"><span>회원정보 수정</span></li>
-                        <li onclick="window.location.href='user_password?seq=1'"><span>비밀번호 변경</span></li>
-                        <!-- <li><a th:href="@{user_password?seq=1}">비밀번호 변경</a></li> -->
-                        <li onclick="window.location.href='login'">로그아웃</li>
+                        <!-- <li><a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문 / 배송목록</a></li> -->
+                        <li><a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문 / 배송목록</a></li>
+                        <li><a th:href="@{user_delivery_address(seq=${session.sessSeqXdm})}">배송주소록</a></li>
+                        <li class="active"><a th:href="@{user_account(seq=${session.sessSeqXdm})}">회원정보 수정</a></li>
+                        <li><a th:href="@{user_password(seq=${session.sessSeqXdm})}">비밀번호 변경</a></li>
+                        <li id="logoutBtn">로그아웃</li>
                     </ul>
                 </div>
                 <div class="content_area">

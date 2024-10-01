@@ -37,17 +37,20 @@
                 <div class="customer_service_area d-flex justify-content-end">
                     <div class="customer_service_box d-flex  align-items-center">
                         <ul class="d-flex gap-3">
-                            <li class="">
+                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
                                 <a href="signup">회원가입</a>
                             </li>
-                            <li class="">
+                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
                                 <a href="login">로그인</a>
                             </li>
                             <!-- <li class="">
                                 <a href="javascript:void(0);">회원혜택</a>
                             </li> -->
-                            <li class="">
-                                <a href="user_order_list">주문배송</a>
+                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
+                                <a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문배송</a>
+                            </li>
+                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
+                                <span id="logoutBtn">로그아웃</span>
                             </li>
                             <!-- <li class="">
                                 <a href="javascript:void(0);">매장안내</a>
@@ -71,12 +74,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="user_box d-flex align-items-center gap-4">
-                            <div class="cart" onclick="window.location.href='user_cart'">
-                                <img src="./usr/v1/assets/images/btn_header_cart@2x.png" alt="">
-                            </div>
-                            <a class="user_my" href="user_account?seq=1">
-                                <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
+                        <div class="user_box">
+                            <a class="user_my" th:href="${session != null and session.sessNameXdm != null} ? @{user_account(seq=${session.sessSeqXdm})} : @{login}">
+                                <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
+                                <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userIdSeq" name="seq" th:value="${session.sessSeqXdm}">
+                                <span class="usr-imgbox">
+                                    <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
+                                </span>
                             </a>
                         </div>
                     </div>
@@ -140,7 +144,11 @@
                                 </colgroup>
                                 <tr>
                                     <th>배송지 정보</th>
-                                    <td>
+                                    <td class="notaddress" th:if="${(item == null||item == '')}">
+                                        <p>기본배송지가 없습니다. 배송지를 추가해 주세요.</p>
+                                        <button type="button" class="btn">배송지 추가</button>
+                                    </td>
+                                    <td th:if="${!(item == null||item == '')}">
                                         <div class="address_name_box">
                                             <p>
                                                 <span class="address_name" th:text="${item.addressName}">집</span>

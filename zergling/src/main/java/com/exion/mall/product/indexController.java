@@ -37,6 +37,7 @@ public class indexController {
 	
 	@RequestMapping(value = "index")
 	public String index() {
+		
 		return "/usr/v1/pages/index";
 	}
 	@RequestMapping(value = "login")
@@ -61,8 +62,9 @@ public class indexController {
 	@RequestMapping(value = "user_delivery_address")
 	public String deliveryAddress(Model model, MemberDto memberDto, DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
 		model.addAttribute("member", memberService.selectOne(memberDto));
+		model.addAttribute("count", deliveryAddressService.listCount(vo));
 		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
-		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
+//		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
 		model.addAttribute("addrList", deliveryAddressService.selectList(vo));
 //		int size = deliveryAddressService.selectList().size();
 //		model.addAttribute("size", size); // 사이즈 추가

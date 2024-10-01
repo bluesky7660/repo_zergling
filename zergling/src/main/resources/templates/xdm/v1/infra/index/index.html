@@ -41,6 +41,8 @@
 
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
+		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 
 	</head>
 
@@ -67,7 +69,7 @@
 
 				<!-- Sidebar brand starts -->
 				<div class="sidebar-brand">
-					<a href="index.html" class="logo">
+					<a href="../../infra/index/indexXdmView" class="logo">
 						<img src="/xdm/v1/template/arise-v1.0/assets/images/logo.svg" alt="Admin Dashboards" />
 					</a>
 				</div>
@@ -85,7 +87,7 @@
 								<div class="sidebar-submenu">
 									<ul>
 										<li>
-											<a href="index.html" class="current-page">Analytics</a>
+											<a href="../../infra/index/indexXdmView" class="current-page">Analytics</a>
 										</li>
 										<li>
 											<a href="reports.html">Reports</a>
@@ -325,10 +327,10 @@
 								<div class="sidebar-submenu">
 									<ul>
 										<li>
-											<a href="login.html">Login</a>
+											<a href="../member/loginXdm">Login</a>
 										</li>
 										<li>
-											<a href="signup.html">Signup</a>
+											<a href="../member/signupXdm.html">Signup</a>
 										</li>
 										<li>
 											<a href="error.html">Error</a>
@@ -367,7 +369,7 @@
 					<ol class="breadcrumb d-md-flex d-none">
 						<li class="breadcrumb-item">
 							<i class="bi bi-house"></i>
-							<a href="index.html">Home</a>
+							<a href="../../infra/index/indexXdmView">Home</a>
 						</li>
 						<li class="breadcrumb-item breadcrumb-active" aria-current="page">Sales</li>
 					</ol>
@@ -408,19 +410,19 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-end mini" aria-labelledby="countries">
 									<div class="country-container">
-										<a href="index.html">
+										<a href="../../infra/index/indexXdmView">
 											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/us.svg" alt="Clean Admin Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../../infra/index/indexXdmView">
 											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/in.svg" alt="Google Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../../infra/index/indexXdmView">
 											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/gb.svg" alt="AI Admin Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../../infra/index/indexXdmView">
 											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/tr.svg" alt="Modern Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../../infra/index/indexXdmView">
 											<img src="/xdm/v1/template/arise-v1.0/assets/images/flags/1x1/ca.svg" alt="Best Admin Dashboards" />
 										</a>
 									</div>
@@ -428,7 +430,8 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-									<span class="user-name d-none d-md-block">Abigale Heaney</span>
+									<span class="user-name d-none d-md-block" th:text="${session.sessNameXdm}">Abigale Heaney</span>
+									<!-- <h6 class="mt-2 text-black" ></h6> -->
 									<span class="avatar">
 										<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" alt="Admin Templates">
 										<span class="status online"></span>
@@ -438,7 +441,7 @@
 									<div class="header-profile-actions">
 										<a href="profile.html">Profile</a>
 										<a href="account-settings.html">Settings</a>
-										<a href="login.html">Logout</a>
+										<button class="btn" type="button" id="logoutBtn">Logout</button>
 									</div>
 								</div>
 							</li>
@@ -456,7 +459,15 @@
 
 					<!-- Content wrapper start -->
 					<div class="content-wrapper">
-
+						<div class="pageCategory">
+							<div><a href="../code/codeXdmList">코드</a></div>
+							<div><a href="../codegroup/codeGroupXdmList">코드그룹</a></div>
+							<div><a href="../member/memberXdmList">Member</a></div>
+							<div><a href="../../mall/product/productXdmList">상품</a></div>
+							<div><a href="../../mall/product/authorXdmList">작가</a></div>
+							<div><a href="../../mall/product/freeGiftXdmList">사은품</a></div>
+							<!-- <div><a href="../../mall/product/productXdmList"></a></div> -->
+						</div>
 						<!-- Row start -->
 						<div class="row">
 							<div class="col-xxl-3 col-sm-6 col-12">
@@ -994,7 +1005,8 @@
 
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
-
+		<!-- by developer -->
+		<script src="/xdm/v1/js/commonXdm.js"></script>
 	</body>
 
 </html>

@@ -33,7 +33,9 @@ table{
 .header_box i{
     font-size: 30px;
 }
-
+.notaddress .btn{
+    width: fit-content;
+}
 
 .content_wrapper{
     /* position: relative; */

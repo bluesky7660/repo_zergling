@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 
 	<head>
 		<!-- Required meta tags -->
@@ -54,85 +54,47 @@
 		<!-- Loading wrapper end -->
 
 		<!-- Login box start -->
-		<form name="form" method="post" action="loginProc" class="needs-validation" novalidate>
+		<form action="index.html">
 			<div class="login-box">
 				<div class="login-form">
 					<div class="login-logo">
 						<img src="/xdm/v1/template/arise-v1.0/assets/images/logo.svg" alt="Vico Admin" />
 					</div>
 					<div class="login-welcome">
-						다시 오신 것을 환영합니다, <br />Arise 관리자 계정에 로그인하세요.
+						다시 오신 것을 환영합니다. <br/>귀하의 Arise 관리 계정을 생성해 주세요.
 					</div>
 					<div class="mb-3">
-						<label class="form-label">Id</label>
-						<input id="userId" type="text" class="form-control valid-id validate-this" name="userId" required>
+						<label class="form-label">Email</label>
+						<input type="email" class="form-control valid-email" required>
 					</div>
 					<div class="mb-3">
-						<div class="d-flex justify-content-between">
-							<label class="form-label">Password</label>
-							<a href="forgot-password" class="btn-link ml-auto">Forgot password?</a>
-						</div>
-						<input id="userPassword" type="password" class="form-control valid-password validate-this" name="userPassword" required>
-						
+						<label class="form-label">Username</label>
+						<input type="text" class="form-control " required>
 					</div>
-					<div class="invalid-box mb-3">
-						<div class="invalid-child"></div>
-						<div class="invalid-feedback">
-							아이디(로그인 전화번호, 로그인 전용 아이디) 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.
-						</div>
+					<div class="mb-3">
+						<label class="form-label">Password</label>
+						<input type="password" class="form-control valid-password" required>
 					</div>
 					<div class="login-form-actions">
-						
-						<button type="button" id="loginBtn" class="btn"> 
+						<button type="submit" class="btn"> 
 							<span class="icon"> <i class="bi bi-arrow-right-circle"></i> </span>
-							로그인loginBtn
+							회원가입
 						</button>
-						<!-- <button type="button" id="btnSubmit" class="btn"> 
-							<span class="icon"> <i class="bi bi-arrow-right-circle"></i> </span>
-							로그인btnSubmit
-						</button> -->
 					</div>
-					<div class="login-form-actions">
-						<button type="button" id="googleLoginBtn" class="btn"> 
-							<img src="/xdm/v1/template/arise-v1.0/assets/images/google.svg" class="login-icon"
-								alt="Login with Google">
-							구글 로그인
-						</button>
-						<button type="button" id="kakaoLoginBtn" class="btn"> 
-							<img src="/xdm/v1/template/arise-v1.0/assets/images/kakao.svg" class="login-icon"
-								alt="Login with Kakao">
-							카카오 로그인
-						</button>
-						<!-- <button type="submit" class="btn"> <img src="/xdm/v1/template/arise-v1.0/assets/images/facebook.svg" class="login-icon"
-								alt="Login with Facebook">
-							Login with Facebook</button> -->
-					</div>
+					<!-- <div class="login-form-actions">
+						<button type="submit" class="btn"> <img src="/xdm/v1/template/arise-v1.0/assets/images/google.svg" class="login-icon"
+								alt="../member/signupXdm using Gmail">
+							Signup using Gmail</button>
+					</div> -->
 					<div class="login-form-footer">
 						<div class="additional-link">
-							아직 계정이 없으신가요? <a href="../member/signupXdm"> 회원가입</a>
+							이미 계정이 있으신가요? <a href='../member/loginXdm'>로그인</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
 		<!-- Login box end -->
-		<!-- modals -->
-		<div class="modal fade" id="modalAlert" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="modalAlertTitle"></h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-square	"></i></button>
-					</div>
-					<div class="modal-body" >
-						<p id="modalAlertBody"></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button"  class="btn btn-success" data-bs-dismiss="modal">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<!-- *************
 			************ Required JavaScript Files *************
@@ -152,20 +114,6 @@
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
 		<!-- by developer -->
 		<script src="/xdm/v1/js/commonXdm.js"></script>
-		<script>
-			window.addEventListener('load', function() {
-				// var ifcgNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
-				// if(!ifcgNameRegExp.test(ifcgNameValue)){
-				// 	alert("이름은 한국, 영대소문자, 숮자만 입력해 주세요");
-				// 	ifcgName.focus();
-				// 	return false;
-				// } else {
-				// 	//by pass
-				// }
-
-			})
-			
-		</script>
 	</body>
 
 </html>

@@ -1,6 +1,5 @@
 package com.exion.mall.product;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +66,9 @@ public class DeliveryAddressService {
 	}
 	public int updateDef(DeliveryAddressDto deliveryAddressDto) {
 		return deliveryAddressDao.updateDef(deliveryAddressDto);
+	}
+	public int listCount(DeliveryAddressVo vo) {
+		return deliveryAddressDao.listCount(vo);
 	}
 	public int updateDefUsr(DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
 		

@@ -177,6 +177,18 @@
 				and a.userPassword = #{userPassword}
 				and a.admNy = 1
 	</select>
+	<select id="selectUsrOne" resultMap="resultObj">
+			select
+				a.seq
+			    ,a.name
+			    ,a.userId
+			    ,a.userPassword
+			from
+				member a
+			where 1 = 1
+				and a.userId = #{userId}
+				and a.userPassword = #{userPassword}
+	</select>
 	  <insert id="insertUsr">
 	  		insert into member(
 				admNy

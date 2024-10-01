@@ -11,6 +11,7 @@ public interface DeliveryAddressDao {
 	public int insertAddr(DeliveryAddressDto deliveryAddressDto);
 	public DeliveryAddressDto selectOne(DeliveryAddressDto deliveryAddressDto);
 	public DeliveryAddressDto selectDefOne(DeliveryAddressDto deliveryAddressDto);
+	public int listCount(DeliveryAddressVo vo);
 	public int update(DeliveryAddressDto deliveryAddressDto);
 	public int updateDef(DeliveryAddressDto deliveryAddressDto);
 	public int updateDefUsr(DeliveryAddressDto deliveryAddressDto);

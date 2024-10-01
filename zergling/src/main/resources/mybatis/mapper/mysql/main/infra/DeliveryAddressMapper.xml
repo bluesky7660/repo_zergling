@@ -108,8 +108,17 @@
 				deliveryaddress a
 				join member b on b.seq = a.member_seq
 			where 1=1
+				and b.seq = #{seq}
 				and a.defaultNy = 1
 	  </select>
+	  <select id="listCount">
+        SELECT COUNT(*)
+        from
+			deliveryaddress a
+			join member b on b.seq = a.member_seq
+		where 1=1
+			and b.seq = #{seq}
+      </select>
 	  <update id="update">
 		UPDATE deliveryaddress
 		SET

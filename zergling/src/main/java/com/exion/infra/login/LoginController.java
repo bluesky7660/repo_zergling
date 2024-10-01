@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 	@Autowired
@@ -31,7 +33,7 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value = "v1/infra/member/loginProc1")
-	public Map<String, Object> loginProc1(MemberDto memberDto) throws Exception {
+	public Map<String, Object> loginProc1(MemberDto memberDto, HttpSession httpSession) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<>();
 		MemberDto rtMember = loginService.selectXdmOne(memberDto);
