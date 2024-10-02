@@ -1,6 +1,10 @@
 
 window.addEventListener('load', function() {
     const form = document.querySelector("form");
+    var formUrl;
+    if(form){
+        formUrl = form.action;
+    }
     
 
     //밸리데이션 변수

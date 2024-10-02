@@ -10,6 +10,8 @@ public class ProductAuthorDto {
 	private String author_seq;
 	private String seq;
 	private String name;
+	private Integer aDefaultNy;
+	private Integer pDefaultNy;
 //------------------------------
 	public String getPaSeq() {
 		return paSeq;
@@ -52,6 +54,18 @@ public class ProductAuthorDto {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getaDefaultNy() {
+		return aDefaultNy;
+	}
+	public void setaDefaultNy(Integer aDefaultNy) {
+		this.aDefaultNy = aDefaultNy;
+	}
+	public Integer getpDefaultNy() {
+		return pDefaultNy;
+	}
+	public void setpDefaultNy(Integer pDefaultNy) {
+		this.pDefaultNy = pDefaultNy;
 	}
 	
 }

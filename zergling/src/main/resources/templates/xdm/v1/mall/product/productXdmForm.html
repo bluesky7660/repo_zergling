@@ -444,7 +444,7 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-									<span class="user-name d-none d-md-block">Abigale Heaney</span>
+									<span class="user-name d-none d-md-block" th:text="${session.sessNameXdm}"></span>
 									<span class="avatar">
 										<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" alt="Admin Templates">
 										<span class="status online"></span>
@@ -454,7 +454,7 @@
 									<div class="header-profile-actions">
 										<a href="profile.html">Profile</a>
 										<a href="account-settings.html">Settings</a>
-										<button type="button" id="logoutBtn">Logout</button>
+										<button class="btn" type="button" id="logoutBtn">Logout</button>
 									</div>
 								</div>
 							</li>
@@ -523,7 +523,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+												<div class="col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="authorList" class="form-label">선택된 작가들</label>
 														<div class="authorList">

@@ -106,27 +106,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //로그아웃
-    const logoutBtn = document.getElementById("logoutBtn");
+    const logoutBtn = document.querySelectorAll(".logoutBtn");
     console.log("logoutBtn: "+logoutBtn);
     if (logoutBtn) {
-        logoutBtn.onclick = function (){
-            //ajax 로그아웃
-            $.ajax({
-                async: true 
-                ,cache: false
-                ,type: "post"
-                /* ,dataType:"json" */
-                ,url: "/v1/infra/member/logoutUsrProc"
-                /* ,data : $("#formLogin").serialize() */
-                // ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
-                ,success: function(response) {
-                    location.href = "index";
-                }
-                ,error : function(jqXHR, textStatus, errorThrown){
-                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-                }
-            });
-        }
+        logoutBtn.forEach(element => {
+            element.onclick = function (){
+                //ajax 로그아웃
+                $.ajax({
+                    async: true 
+                    ,cache: false
+                    ,type: "post"
+                    /* ,dataType:"json" */
+                    ,url: "/v1/infra/member/logoutUsrProc"
+                    /* ,data : $("#formLogin").serialize() */
+                    // ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                    ,success: function(response) {
+                        location.href = "index";
+                    }
+                    ,error : function(jqXHR, textStatus, errorThrown){
+                        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                    }
+                });
+            }
+        });
     }
 
     //비밀번호 on/off

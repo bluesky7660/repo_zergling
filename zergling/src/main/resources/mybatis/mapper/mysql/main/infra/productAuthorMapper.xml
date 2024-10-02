@@ -31,7 +31,22 @@
 		 </selectKey>
 	</insert>
 	<update id="defaultUpdt">
-		
+		UPDATE productAuthor a
+		JOIN (
+		    SELECT 
+		        paSeq,
+		        CASE 
+		            WHEN ROW_NUMBER() OVER (PARTITION BY product_seq ORDER BY paSeq) = 1 THEN 1 
+		            ELSE 0 
+		        END AS aDefaultNy,
+		        CASE 
+		            WHEN ROW_NUMBER() OVER (PARTITION BY author_seq ORDER BY paSeq) = 1 THEN 1 
+		            ELSE 0 
+		        END AS pDefaultNy
+		    FROM productAuthor
+		) AS b ON a.paSeq = b.paSeq
+		SET a.aDefaultNy = b.aDefaultNy, 
+		    a.pDefaultNy = b.pDefaultNy
 	</update>
 	<update id="update">
 		UPDATE productAuthor

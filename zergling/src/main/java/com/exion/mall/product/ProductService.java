@@ -22,15 +22,21 @@ public class ProductService {
 		List<String> authorLists = productAuthorDto.getListAuthor_seq();
 
 		System.out.println("리스트: "+authorLists);
-
+		int i=0;
 		for(String author: authorLists) {
 //			System.out.println("상품번호: "+productDto.getSeq());
 //			System.out.println("작가번호: "+author);
 			productAuthorDto.setProduct_seq(productDto.getSeq());
 			productAuthorDto.setAuthor_seq(author);
+//			if(i == 0) {
+//				productAuthorDto.setaDefaultNy(1);
+//			}else {
+//				productAuthorDto.setaDefaultNy(0);
+//			}
 			productAuthorDao.insert(productAuthorDto);
+			i++;
 		}
-		
+		productAuthorDao.defaultUpdt(productAuthorDto);
 		return a;
 	}
 //	public List<ProductDto> prodList(){

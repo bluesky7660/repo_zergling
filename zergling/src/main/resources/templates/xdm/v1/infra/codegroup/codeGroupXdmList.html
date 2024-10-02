@@ -512,7 +512,7 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-									<span class="user-name d-none d-md-block">Abigale Heaney</span>
+									<span class="user-name d-none d-md-block" th:text="${session.sessNameXdm}"></span>
 									<span class="avatar">
 										<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" alt="Admin Templates">
 										<span class="status online"></span>
@@ -522,7 +522,7 @@
 									<div class="header-profile-actions">
 										<a href="profile.html">Profile</a>
 										<a href="account-settings.html">Settings</a>
-										<button type="button" id="logoutBtn">Logout</button>
+										<button class="btn" type="button" id="logoutBtn">Logout</button>
 									</div>
 								</div>
 							</li>
@@ -603,7 +603,7 @@
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputKeyword">검색어</label>
-														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" th:value="${searchKeyword}" placeholder="검색어">
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" th:value="${vo.searchKeyword}" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>

@@ -51,7 +51,7 @@
                                 <a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문배송</a>
                             </li>
                             <li class="" th:if="${session != null and session.sessNameXdm != null}">
-                                <span id="logoutBtn">로그아웃</span>
+                                <span class="logoutBtn">로그아웃</span>
                             </li>
                             <!-- <li class="">
                                 <a href="javascript:void(0);">매장안내</a>
@@ -146,7 +146,7 @@
                         <li><a th:href="@{user_delivery_address(seq=${session.sessSeqXdm})}">배송주소록</a></li>
                         <li><a th:href="@{user_account(seq=${session.sessSeqXdm})}">회원정보 수정</a></li>
                         <li><a th:href="@{user_password(seq=${session.sessSeqXdm})}">비밀번호 변경</a></li>
-                        <li id="logoutBtn">로그아웃</li>
+                        <li class="logoutBtn">로그아웃</li>
                     </ul>
                 </div>
                 <div class="content_area">

@@ -1,4 +1,8 @@
 /*xdm용*/
+#logoutBtn{
+    width: 100%;
+    font-weight: bold;
+}
 /*index*/
 .pageCategory{
     display: flex;

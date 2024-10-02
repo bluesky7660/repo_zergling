@@ -442,7 +442,7 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-									<span class="user-name d-none d-md-block">Abigale Heaney</span>
+									<span class="user-name d-none d-md-block" th:text="${session.sessNameXdm}"></span>
 									<span class="avatar">
 										<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" alt="Admin Templates">
 										<span class="status online"></span>
@@ -452,7 +452,7 @@
 									<div class="header-profile-actions">
 										<a href="profile.html">Profile</a>
 										<a href="account-settings.html">Settings</a>
-										<button type="button" id="logoutBtn">Logout</button>
+										<button class="btn" type="button" id="logoutBtn">Logout</button>
 									</div>
 								</div>
 							</li>
@@ -489,25 +489,25 @@
 														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
 														<select class="form-select" id="selectDelNy" name="sDelNy">
 															<option value="" selected>삭제여부를 선택하세요</option>
-															<option value="1">Y</option>
-															<option value="0">N</option>
+															<option value="1" th:selected="${vo.sDelNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.sDelNy == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
 														<select class="form-select" id="selectDateType" name="dateType">
 															<option value="" selected>날짜종류 선택해주세요.</option>
-															<option value="1">등록일</option>
-															<option value="2">수정일</option>
+															<option value="1" th:selected="${vo.dateType == 1}">등록일</option>
+															<option value="2" th:selected="${vo.dateType == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
-														<input type="text" class="form-control" id="inputDateStart" name="dateStart" placeholder="시작일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateStart" name="dateStart" th:value="${vo.dateStart}" placeholder="시작일을 선택해주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
-														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" placeholder="종료일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" th:value="${vo.dateEnd}" placeholder="종료일을 선택해주세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
 												</div>
@@ -516,21 +516,21 @@
 														<label class="visually-hidden" for="selectGender">작가직업</label>
 														<select class="form-select" id="selectGender" name="authorType">
 															<option value="" selected>작가직업을 선택하세요</option>
-															<option th:each="group : ${groups}" th:value="${group.seq}" th:text="${group.codeName}"></option>
+															<option th:each="group : ${groups}" th:value="${group.seq}" th:text="${group.codeName}" th:selected="${group.seq == vo.authorType}"></option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="keywordType">
 															<option value="" selected>검색구분</option>
-															<option value="1">작가번호</option>
-															<option value="2">작가이름</option>
-															<option value="3">작품이름</option>
+															<option value="1" th:selected="${vo.keywordType == 1}">작가번호</option>
+															<option value="2" th:selected="${vo.keywordType == 2}">작가이름</option>
+															<option value="3" th:selected="${vo.keywordType == 3}">작품이름</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputKeyword">검색어</label>
-														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" placeholder="검색어">
+														<input type="text" class="form-control" id="inputKeyword" name="searchKeyword" th:value="${vo.searchKeyword}" placeholder="검색어">
 													</div>
 													<div class="col-12 col-lg-4 col-xl ">
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
