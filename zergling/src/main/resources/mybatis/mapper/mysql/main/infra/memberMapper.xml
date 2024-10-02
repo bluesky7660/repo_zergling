@@ -31,10 +31,12 @@
 				<if test="dateOfBirth != null and !dateOfBirth.equals('')">
 					AND a.dateOfBirth = #{dateOfBirth}
 				</if>
-				<choose>
-					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				</choose>
+				<if test="((dateStart != null)and(dateStart != null))and((!dateStart.equals(''))and(!dateStart.equals('')))">
+					<choose>
+						<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+						<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					</choose>
+				</if>
 	  </sql>
 	  <select id="selectMember" resultMap="resultObj">
 		  	select
@@ -79,10 +81,12 @@
 				<if test="dateOfBirth != null and !dateOfBirth.equals('')">
 					AND a.dateOfBirth = #{dateOfBirth}
 				</if>
-				<choose>
-					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				</choose>
+				<if test="((dateStart != null)and(dateStart != null))and((!dateStart.equals(''))and(!dateStart.equals('')))">
+					<choose>
+						<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+						<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					</choose>
+				</if>
 			order by a.seq desc
 	  </select>
 	  

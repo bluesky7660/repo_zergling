@@ -174,7 +174,7 @@
                                     </tr>
                                     <tr>
                                         <th><label for="">생년월일/성별</label></th>
-                                        <td><p class="user_brdyGndr" ><span th:text="${#dates.format(item?.dateOfBirth, 'yyyy.MM.dd')}">1998.11.04</span> / <span th:text="${item?.gender}">남</span> </p></td>
+                                        <td><p class="user_brdyGndr" ><span th:text="${#dates.format(item?.dateOfBirth, 'yyyy.MM.dd')}">1998.11.04</span> / <span th:each="gender : ${gender}" th:if="${gender.seq} == ${item.gender}" th:text="${gender.codeName}">남</span> </p></td>
                                     </tr>
                                     <tr>
                                         <th><label for="">이메일</label></th>

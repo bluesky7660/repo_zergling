@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exion.infra.code.CodeDto;
 import com.exion.infra.code.CodeService;
 import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
@@ -99,9 +100,14 @@ public class indexController {
 		return "redirect:user_delivery_address?seq=1";
 	}
 	@RequestMapping(value = "user_account")
-	public String userAccount(Model model, MemberDto memberDto) {
+	public String userAccount(Model model, MemberDto memberDto,CodeDto codeDto) {
 		model.addAttribute("item", memberService.selectOne(memberDto));
 		System.out.println("seq: "+memberService.selectOne(memberDto).getSeq());
+		for(CodeDto item:codeService.genderList()) {
+			System.out.println("코드이름: "+item.getCodeName());
+		}
+		model.addAttribute("gender", codeService.genderList());
+//		System.out.println("seq: "+.get());
 		return "/usr/v1/pages/user_account";
 	}
 	@RequestMapping(value = "user_accountUpdt")
