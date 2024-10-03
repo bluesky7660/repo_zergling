@@ -1,9 +1,9 @@
 package com.exion.mall.product;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exion.common.util.DateUtil;
 import com.exion.infra.code.CodeDto;
 import com.exion.infra.code.CodeService;
 import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
-import com.exion.infra.user.UserDto;
-import com.exion.infra.user.UserService;
 import com.exion.infra.util.Constants;
 
 import jakarta.servlet.http.HttpSession;
@@ -219,8 +218,14 @@ public class indexController {
 	}
 	
 	@RequestMapping(value = "product_buy")
-	public String productBuy(Model model, DeliveryAddressDto deliveryAddressDto) {
-		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
+	public String productBuy(Model model, DeliveryAddressDto deliveryAddressDto,ProductVo productVo, HttpSession session) {
+		
+		String mmSeq = (String) session.getAttribute("sessSeqXdm");
+		deliveryAddressDto.setMember_seq(mmSeq);
+		model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));
+		model.addAttribute("item", productService.prodUsrOne(productVo));
+		Date deliveryDate = DateUtil.getDeliveryDate(2);
+		model.addAttribute("deliveryDate",deliveryDate);
 		return "/usr/v1/pages/product_buy";
 	}
 	@RequestMapping(value = "account_recovery")

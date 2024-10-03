@@ -77,7 +77,7 @@
                         <div class="user_box">
                             <a class="user_my" th:href="${session != null and session.sessNameXdm != null} ? @{user_account(seq=${session.sessSeqXdm})} : @{login}">
                                 <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
-                                <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userIdSeq" name="seq" th:value="${session.sessSeqXdm}">
+                                <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="mmSeq" name="mmSeq" th:value="${session.sessSeqXdm}">
                                 <span class="usr-imgbox">
                                     <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
                                 </span>
@@ -95,7 +95,7 @@
                                             <li onclick="window.location.href='product_list'">국내도서 - 소설</li>
                                             <li onclick="window.location.href='product_list'">국내도서 - 시/에세이</li>
                                             <li onclick="window.location.href='product_detail?seq=1'">도서 상세보기</li>
-                                            <li onclick="window.location.href='product_buy'">도서 구매</li>
+                                            <li onclick="window.location.href='product_buy?seq=1'">도서 구매</li>
                                         </ul>
                                     </div>
                                     <div class="anb_wrapper_list">
@@ -144,32 +144,32 @@
                                 </colgroup>
                                 <tr>
                                     <th>배송지 정보</th>
-                                    <td class="notaddress" th:if="${(item == null||item == '')}">
+                                    <td class="notaddress" th:if="${(user == null||user == '')}">
                                         <p>기본배송지가 없습니다. 배송지를 추가해 주세요.</p>
                                         <button type="button" class="btn">배송지 추가</button>
                                     </td>
-                                    <td th:if="${!(item == null||item == '')}">
+                                    <td th:if="${!(user == null||user == '')}">
                                         <div class="address_name_box">
                                             <p>
-                                                <span class="address_name" th:text="${item.addressName}">집</span>
+                                                <span class="address_name" th:text="${user.addressName}">집</span>
                                             </p>
                                             <button type="button" class="btn">변경</button>
                                         </div>
                                         <div class="address_Info">
                                             <p>
-                                                <span class="rec_name" th:text="${item.RecipientName}">홍길동</span>
+                                                <span class="rec_name" th:text="${user.RecipientName}">홍길동</span>
                                                 <span> / </span>
-                                                <span class="rec_phone" th:text="${item.RecipientPhone != null ? (item.RecipientPhone.startsWith('02') ? 
-                                                #strings.substring(item.RecipientPhone, 0, 2) + '-' + 
-                                                #strings.substring(item.RecipientPhone, 2, 6) + '-' + 
-                                                #strings.substring(item.RecipientPhone, 6) : 
-                                                #strings.substring(item.RecipientPhone, 0, 3) + '-' + 
-                                                #strings.substring(item.RecipientPhone, 3, 7) + '-' + 
-                                                #strings.substring(item.RecipientPhone, 7)) : ''}" >010-1234-5678</span>
+                                                <span class="rec_phone" th:text="${user.RecipientPhone != null ? (user.RecipientPhone.startsWith('02') ? 
+                                                #strings.substring(user.RecipientPhone, 0, 2) + '-' + 
+                                                #strings.substring(user.RecipientPhone, 2, 6) + '-' + 
+                                                #strings.substring(user.RecipientPhone, 6) : 
+                                                #strings.substring(user.RecipientPhone, 0, 3) + '-' + 
+                                                #strings.substring(user.RecipientPhone, 3, 7) + '-' + 
+                                                #strings.substring(user.RecipientPhone, 7)) : ''}" >010-1234-5678</span>
                                             </p>
                                         </div>
                                         <div class="detail_address">
-                                            <p class="ship_address_box"><span class="post_number">[01717]</span> <span class="ship_address" th:text="${item.address}">서울특별시 노원구 한글비석로14길 42 (중계동, 중앙하이츠아파트)</span> <span class="detail_address">101동101호</span></p>
+                                            <p class="ship_address_box">[<span class="post_number" th:text="${user.daZonecode}"></span>] <span class="ship_address" th:text="${user.daRoadAddress}">서울특별시 노원구 한글비석로14길 42</span> <span class="daExtraAddress" th:text="${user.daExtraAddress}">(중계동, 중앙하이츠아파트)</span> <span class="detail_address" th:text="${user.daDetailAddress}"></span></p>
                                         </div>
                                     </td>
                                 </tr>
@@ -205,29 +205,29 @@
                                 <ul>
                                     <li>
                                         <div class="prod_img">
-                                            <div class="img-box">
-                                                <img src="/usr/v1/assets/images/prod/200/9791193289273.jpg" alt="">
+                                            <div class="img-box" th:onclick="|location.href='@{/product_detail(seq=${item.seq})}'|">
+                                                <img th:src="${'/usr/v1/assets/images/prod/200/'+item.imgSrc+'.jpg'}" alt="">
                                             </div>
                                         </div>
                                         <div class="prod_title_box">
-                                            <p class="prod_title" onclick="window.location.href='product_detail'">
-                                                [<span class="prod_type">국내도서</span>]
-                                                <span >나쁜 검사들</span>
+                                            <p class="title" th:onclick="|location.href='@{/product_detail(seq=${item.seq})}'|">
+                                                [<span>국내도서</span> · <span class="prod_type" th:text="${item.prodTypeName}"></span>]
+                                                <span th:text="${item.title}">나쁜 검사들</span>
                                             </p>
                                         </div>
                                         <div class="pord_quantity">
                                             <span>1</span>개
                                         </div>
                                         <div class="prod_price">
-                                            <p class="disc_price"><span >15,750</span>원</p>
-                                            <p class="regular_price"><span >17,500</span>원</p>
+                                            <p class="disc_price"><span th:text="${#numbers.formatInteger(item.salePrice,1,'COMMA') + ' 원'}"></span></p>
+                                            <p class="regular_price"><span th:text="${#numbers.formatInteger(item.price,1,'COMMA') + ' 원'}"></span></p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="delivery_date_box">
                                 <p>교보문고 배송</p>
-                                <p><span class="delivery_date">8/17(토)</span><span>도착</span></p>
+                                <p><span class="delivery_date" th:text="${#dates.format(deliveryDate, 'M/d') + ' (' + #dates.format(deliveryDate, 'E') + ')'}"></span> <span>도착</span></p>
                             </div>
                         </div>
                         <div class="discount_coupon_area">

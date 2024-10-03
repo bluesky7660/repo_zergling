@@ -142,10 +142,16 @@ table{
 .orderList_box li>div.prod_title_box{
     width:calc(100% - 500px);
     text-align: start;
+    padding: 0;
 }
-.prod_title{
+.prod_title_box .title{
     width: fit-content;
+    
+    transition: font-weight .5s ease;
     cursor: pointer;
+}
+.prod_title_box .title:hover{
+    font-weight: bold;  
 }
 .disc_price{
     margin-bottom: 10px;

@@ -95,7 +95,7 @@
                                             <li onclick="window.location.href='product_list'">국내도서 - 소설</li>
                                             <li onclick="window.location.href='product_list'">국내도서 - 시/에세이</li>
                                             <li onclick="window.location.href='product_detail?seq=1'">도서 상세보기</li>
-                                            <li onclick="window.location.href='product_buy'">도서 구매</li>
+                                            <li onclick="window.location.href='product_buy?seq=1'">도서 구매</li>
                                         </ul>
                                     </div>
                                     <div class="anb_wrapper_list">
@@ -215,7 +215,7 @@
                                 </div>
                                 <div class="buy_btn_box">
                                     <button class="btn">장바구니</button>
-                                    <button class="btn" onclick="window.location.href='product_buy'">바로구매</button>
+                                    <button class="btn" th:onclick="|location.href='@{/product_buy(seq=${product.seq})}'|">바로구매</button>
                                 </div>
                                 
                             </div>
