@@ -82,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 ,cache: false
                 ,type: "post"
                 /* ,dataType:"json" */
-                ,url: "/v1/infra/member/loginUsrProc"
+                // ,url: "/v1/infra/member/loginUsrProc"
+                ,url: "/loginUsrProc"
                 /* ,data : $("#formLogin").serialize() */
                 ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
                 ,success: function(response) {
@@ -117,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ,cache: false
                     ,type: "post"
                     /* ,dataType:"json" */
-                    ,url: "/v1/infra/member/logoutUsrProc"
+                    ,url: "/logoutUsrProc"
                     /* ,data : $("#formLogin").serialize() */
                     // ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
                     ,success: function(response) {

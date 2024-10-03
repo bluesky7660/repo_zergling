@@ -1,11 +1,15 @@
 package com.exion.mall.product;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exion.infra.code.CodeDto;
 import com.exion.infra.code.CodeService;
@@ -13,6 +17,9 @@ import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
 import com.exion.infra.user.UserDto;
 import com.exion.infra.user.UserService;
+import com.exion.infra.util.Constants;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class indexController {
@@ -45,6 +52,39 @@ public class indexController {
 	public String login() {
 		return "/usr/v1/pages/login";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "loginUsrProc")
+	public Map<String, Object> loginUsrProc(MemberDto memberDto, HttpSession httpSession) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		MemberDto rtMember = memberService.selectUsrOne(memberDto);
+		System.out.println("rtMember: " + rtMember);
+		
+		if (rtMember != null) {
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+			httpSession.setAttribute("sessSeqXdm", rtMember.getSeq());
+			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
+			httpSession.setAttribute("sessNameXdm", rtMember.getName());
+			System.out.println("성공");
+			returnMap.put("rt", "success");
+
+		} else {
+			System.out.println("실패");
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutUsrProc")
+	public Map<String, Object> logoutUsrProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
 	@RequestMapping(value = "signup")
 	public String signup(Model model) {
 		model.addAttribute("genders", codeService.genderList());

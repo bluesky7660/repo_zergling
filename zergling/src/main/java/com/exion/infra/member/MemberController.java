@@ -81,28 +81,28 @@ public class MemberController {
 		}
 		return returnMap;
 	}
-	@ResponseBody
-	@RequestMapping(value = "v1/infra/member/loginUsrProc")
-	public Map<String, Object> loginUsrProc(MemberDto memberDto, HttpSession httpSession) throws Exception {
-		
-		Map<String, Object> returnMap = new HashMap<>();
-		MemberDto rtMember = memberService.selectUsrOne(memberDto);
-		System.out.println("rtMember: " + rtMember);
-		
-		if (rtMember != null) {
-			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
-			httpSession.setAttribute("sessSeqXdm", rtMember.getSeq());
-			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
-			httpSession.setAttribute("sessNameXdm", rtMember.getName());
-			System.out.println("성공");
-			returnMap.put("rt", "success");
-
-		} else {
-			System.out.println("실패");
-			returnMap.put("rt", "fail");
-		}
-		return returnMap;
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "v1/infra/member/loginUsrProc")
+//	public Map<String, Object> loginUsrProc(MemberDto memberDto, HttpSession httpSession) throws Exception {
+//		
+//		Map<String, Object> returnMap = new HashMap<>();
+//		MemberDto rtMember = memberService.selectUsrOne(memberDto);
+//		System.out.println("rtMember: " + rtMember);
+//		
+//		if (rtMember != null) {
+//			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+//			httpSession.setAttribute("sessSeqXdm", rtMember.getSeq());
+//			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
+//			httpSession.setAttribute("sessNameXdm", rtMember.getName());
+//			System.out.println("성공");
+//			returnMap.put("rt", "success");
+//
+//		} else {
+//			System.out.println("실패");
+//			returnMap.put("rt", "fail");
+//		}
+//		return returnMap;
+//	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/v1/infra/member/logoutXdmProc")
@@ -113,12 +113,12 @@ public class MemberController {
 		return returnMap;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/v1/infra/member/logoutUsrProc")
-	public Map<String, Object> logoutUsrProc(HttpSession httpSession) throws Exception {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		httpSession.invalidate();
-		returnMap.put("rt", "success");
-		return returnMap;
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/v1/infra/member/logoutUsrProc")
+//	public Map<String, Object> logoutUsrProc(HttpSession httpSession) throws Exception {
+//		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		httpSession.invalidate();
+//		returnMap.put("rt", "success");
+//		return returnMap;
+//	}
 }
