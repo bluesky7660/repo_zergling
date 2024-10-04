@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="user_box">
-                            <a class="user_my" th:href="${session != null and session.sessNameXdm != null} ? @{user_account(seq=${session.sessSeqXdm})} : @{login}">
+                            <a class="user_my" href="user_account">
                                 <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
                                 <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userIdSeq" name="seq" th:value="${session.sessSeqXdm}">
                                 <span class="usr-imgbox">
@@ -433,7 +433,7 @@
                                                 <img src="/usr/v1/assets/images/ico_heart_h18@2x.png" alt="">
                                             </span>
                                             <button class="btn btn-gray">장바구니</button>
-                                            <button type="button" class="direct_buy_btn btn btn-blue" onclick="window.location.href='product_buy?seq=1'">바로구매</button>
+                                            <button type="button" class="direct_buy_btn btn btn-blue" th:onclick="|location.href='@{/product_buy(seq=${listP.seq})}'|">바로구매</button>
                                         </div>
                                     </li>
                                 </ul>

@@ -340,7 +340,7 @@
     position: relative;
     color:#0d1357;
 }
-.user_select_tag::before{
+.user_select_tag::before,.selected_tag::before{
     content: "";
     position: absolute;
     left: 0;
@@ -370,6 +370,45 @@
 .review_list .clover_box li{
     width: 15px;
     
+}
+
+/*리뷰토탈박스*/
+.review_total_tag_area{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    justify-content: space-between;
+}
+.review_tags_area .review_tags_box {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* 수직 중앙 정렬 */
+    text-align: center;
+}
+.review_tags_box div{
+
+}
+.tagName{
+    margin-top: 10px;
+}
+
+.review_tags_area .score_bar {
+    width: 8px;
+    height: 100px; 
+    margin: 0 auto;
+    border: 1px solid #ccc; /* 경계선 추가 (선택 사항) */
+    border-radius: 4px;
+    position: relative; /* 절대 위치 지정에 필요 */
+    overflow: hidden; /* 자식 요소가 범위를 넘지 않도록 설정 */
+}
+
+.review_tags_area .progress-bar {
+    position: absolute; /* 바를 절대 위치로 설정 */
+    background-color: rgba(80, 85, 177, 0.8);
+    width: 8px;
+    bottom: 0; /* 바의 아래쪽에 위치하게 설정 */
+    transition: height 0.3s ease; /* 높이 변화에 애니메이션 추가 (선택 사항) */
 }
 /*리뷰작성박스*/
 .review_write_box{

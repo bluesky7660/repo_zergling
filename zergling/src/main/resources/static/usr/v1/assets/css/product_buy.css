@@ -51,7 +51,7 @@ table{
 }
 .contentArea .right-box{
     position:sticky;
-    top:30px;
+    top:150px;
     width: 100%;
     max-width: 300px;
     flex-shrink: 0;
@@ -101,6 +101,14 @@ table{
     align-items: center;
     gap: 10px;
 }
+.address_name_box div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#addressdefSelected{
+    width: 200px;
+}
 .address_name_box p{
     display: flex;
     align-items: center;
@@ -117,6 +125,14 @@ table{
 }
 .ship_address_box{
     color: #777;
+}
+
+/*배송요청사항*/
+.deliveryRequest_box th{
+    vertical-align: top;
+}
+.deliveryRequest_box div.active{
+    margin-top: 30px;
 }
 
 /* 구매상품리스트*/
@@ -137,7 +153,7 @@ table{
     text-align: center;
 }
 .orderList_box .img-box{
-    width: 120px;
+    width: 80px;
 }
 .orderList_box li>div.prod_title_box{
     width:calc(100% - 500px);

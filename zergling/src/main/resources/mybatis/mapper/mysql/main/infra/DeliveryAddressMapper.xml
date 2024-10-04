@@ -26,6 +26,29 @@
 				and b.seq = #{seq}
 			order by a.daSeq desc
 	  </select>
+	  <select id="selectUsrList" resultMap="resultObj">
+		  	select
+				a.daSeq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.daZonecode
+			    ,a.daRoadAddress
+			    ,a.daJibunAddress
+			    ,a.daDetailAddress
+			    ,a.daExtraAddress
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,a.member_seq
+			from
+				deliveryaddress a
+				join member b on b.seq = a.member_seq
+			where 1=1
+				and b.seq = #{seq}
+			order by a.daSeq desc
+	  </select>
 	  <insert id="insertAddr">
 	  		insert into deliveryaddress(
 				defaultNy
@@ -108,7 +131,7 @@
 				deliveryaddress a
 				join member b on b.seq = a.member_seq
 			where 1=1
-				and b.seq = #{member_seq}
+				and b.seq = #{seq}
 				and a.defaultNy = 1
 	  </select>
 	  <select id="listCount">

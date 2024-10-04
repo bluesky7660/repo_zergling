@@ -28,7 +28,9 @@
     <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/product_detail.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+    <style>
+        
+    </style>
 </head>
 <body>
     <div class="page-wrapper">
@@ -75,7 +77,7 @@
                             </div>
                         </div>
                         <div class="user_box">
-                            <a class="user_my" th:href="${session != null and session.sessNameXdm != null} ? @{user_account(seq=${session.sessSeqXdm})} : @{login}">
+                            <a class="user_my" href="user_account">
                                 <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
                                 <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userIdSeq" name="seq" th:value="${session.sessSeqXdm}">
                                 <span class="usr-imgbox">
@@ -101,11 +103,11 @@
                                     <div class="anb_wrapper_list">
                                         <h5 class="anb_category">회원정보</h5>
                                         <ul>
-                                            <li onclick="window.location.href='user_order_list?seq=1'">주문/배송목록</li>
-                                            <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
-                                            <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
-                                            <li onclick="window.location.href='user_account'">회원정보 변경</li>
-                                            <li onclick="window.location.href='user_password'">비밀번호 변경</li>
+                                            <li th:onclick="|location.href='@{/user_order_list(seq=${session.sessSeqXdm})}'|">주문/배송목록</li>
+                                            <li th:onclick="|location.href='@{/user_delivery_address(seq=${session.sessSeqXdm})}'|">배송주소록</li>
+                                            <li th:onclick="|location.href='@{/user_delivery_address_add(seq=${session.sessSeqXdm})}'|">배송지추가</li>
+                                            <li th:onclick="|location.href='@{/user_account(seq=${session.sessSeqXdm})}'|">회원정보 변경</li>
+                                            <li th:onclick="|location.href='@{/user_password(seq=${session.sessSeqXdm})}'|">비밀번호 변경</li>
                                         </ul>
                                     </div>
                                     <div class="anb_wrapper_list">
@@ -432,14 +434,65 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="review_tags">
-                                        <p>
-                                            평가된 감성태그가<br>
-                                            없습니다
-                                        </p>
-                                        <div class="review_tags_box">
-
+                                    <div class="review_tags_area">
+                                        <div class="mostTag" th:if="${(rvList == null||rvList == '')}">
+                                            <p>
+                                                평가된 감성태그가<br>
+                                                없습니다
+                                            </p>
                                         </div>
+                                        <div class="review_total_tag_area"  th:if="${!(rvList == null||rvList == '')}">
+                                            <div class="mostTag">
+                                                <p>
+                                                    의 구매자가<br>
+                                                    <span class="selected_tag">고마워요</span>라고 응답했어요
+                                                </p>
+                                            </div>
+                                            <div class="review_tags_box">
+                                                <div>
+                                                    <div class="score_bar progress">
+                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="tagName">
+                                                        <p>고마워요</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="score_bar progress" >
+                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="tagName">
+                                                        <p>최고예요</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="score_bar progress" >
+                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="tagName">
+                                                        <p>공감돼요</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="score_bar progress" >
+                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="tagName">
+                                                        <p>재밌어요</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="score_bar progress" >
+                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="tagName">
+                                                        <p>힐링돼요</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -457,12 +510,15 @@
                                 </div>
                                 <div class="review_list">
                                     <ul>
-                                        <li>
+                                        <li class="notReview" th:if="${(rvList == null||rvList == '')}">
+                                            <p>작성된 리뷰가 없습니다.</p>
+                                        </li>
+                                        <li th:each="rvList : ${rvList}" th:if="${!(rvList == null||rvList == '')}">
                                             <div class="review_head">
                                                 <div>
-                                                    <span class="user_id">jnbiuabiy23</span>
+                                                    <span class="user_id" th:text="${rvList.rvName}">jnbiuabiy23</span>
                                                     <span class="line_space">|</span>
-                                                    <span class="day">2024.08.01</span>
+                                                    <span class="day" th:text="${#dates.format(rvList.rvRegDate, 'yyyy.MM.dd')}">2024.08.01</span>
                                                 </div>
                                                 <div>
                                                     <ul class="clover_box d-flex justify-content-between">
@@ -479,11 +535,11 @@
                                                             <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
                                                         </li>
                                                     </ul>
-                                                    <p class="user_review_num">10</p>
-                                                    <p class="user_select_tag">최고에요</p>
+                                                    <p class="user_review_num" th:text="${rvList.rvScore}">10</p>
+                                                    <p class="user_select_tag" th:text="${rvList.rvSelectTagName}">최고에요</p>
                                                 </div>
                                             </div>
-                                            <div class="review_content">
+                                            <div class="review_content" th:text="${rvList.rvContent}">
                                                 마지막까지 재밌게 읽었습니다.
                                             </div>
                                             <div class="review_footer">
@@ -491,7 +547,7 @@
                                                 <div class="btn_reply">답글<span class="reply_num">0</span></div>
                                             </div>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <div class="review_head">
                                                 <div>
                                                     <span class="user_id">hong1234</span>
@@ -558,7 +614,7 @@
                                                 <div class="btn_like"><span>0</span></div>
                                                 <div class="btn_reply">답글<span class="reply_num">0</span></div>
                                             </div>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                     <div class="pagination-container mt-5">
                                         <div class="pagination-wrapper">

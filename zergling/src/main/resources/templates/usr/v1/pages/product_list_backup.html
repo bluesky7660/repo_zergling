@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="user_box">
-                            <a class="user_my" th:href="${session != null and session.sessNameXdm != null} ? @{user_account(seq=${session.sessSeqXdm})} : @{login}">
+                            <a class="user_my" href="user_account">
                                 <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
                                 <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userIdSeq" name="seq" th:value="${session.sessSeqXdm}">
                                 <span class="usr-imgbox">

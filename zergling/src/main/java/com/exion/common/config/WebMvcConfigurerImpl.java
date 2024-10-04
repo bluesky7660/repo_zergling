@@ -25,13 +25,14 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						
 		);
 		registry.addInterceptor(new UsrSessionInterceptor())
-		//		.order(1)
+//				.order(2)
 				.addPathPatterns("/**")
 				.excludePathPatterns(
 						"/resources/**"
 						,"/usr/v1/assets/**"
 						,"/xdm/**"
 						,"/*/*/*/*Xdm*"
+						,"/error"
 						,"/signup"
 						,"/login"
 						,"/index"

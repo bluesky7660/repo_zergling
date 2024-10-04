@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.mall.product.ReviewDao">
+	<resultMap type="com.exion.mall.product.ReviewDto" id="resultObj"></resultMap>
+	<sql id="selectCommon">
+		from
+				review a
+				join commoncode b on b.seq = a.rvSelectTag and b.codeGroup_seq = 6 
+				join product c on c.seq = a.product_seq
+				join member d on d.seq = a.member_seq
+			where 1 = 1
+				and c.seq = #{seq}
+	</sql>
+	<select id="selectUsrList" resultMap="resultObj">
+			select
+				a.rvSeq
+			    ,a.rvScore
+			    ,a.rvContent
+			    ,a.rvSelectTag
+			    ,a.rvRegDate
+			    ,a.delNy
+			    ,a.product_seq
+			    ,a.member_seq
+			    ,b.codeName as rvSelectTagName
+			    ,d.name as rvName
+			<include refid="selectCommon"/>
+	</select>
+	<select id="listCount" resultType="int">
+        	SELECT COUNT(*) 
+        	<include refid="selectCommon"/>
+   	</select>
+	<insert id="insert">
+		insert  into review(
+			rvScore
+		    ,rvContent
+		    ,rvSelectTag
+		    ,rvRegDate
+		    ,delNy
+		    ,product_seq
+		    ,member_seq
+		) value(
+			#{rvScore}
+		    ,#{rvContent}
+		    ,#{rvSelectTag}
+		    ,now()
+		    ,0
+		    ,#{product_seq}
+		    ,#{member_seq}
+		)
+	</insert>
+</mapper>

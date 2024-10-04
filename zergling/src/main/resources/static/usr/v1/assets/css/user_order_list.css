@@ -84,3 +84,82 @@ tr.order_head{
 .order_delete_btn{
     cursor: pointer;
 }
+
+/**/
+.order_list_box .order_item{
+    width: 100%;
+    border-top: 2px solid #777;
+}
+
+.order_summary{
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+.order_summary div{
+    padding: 20px;
+    padding-top: 20px !important;
+}
+.order_summary div span{
+    font-weight: bold;
+}
+
+.order_summary span:nth-child(2){
+    font-size: 14px;
+    margin-left: 20px;
+    font-weight: 400;
+}
+.order_summary span.order-detail-btn::after{
+    content: " 〉";
+}
+.order_product{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    /* gap: 10px; */
+}
+.order_product>*{
+    padding: 20px;
+}
+.order_product * *{
+    align-content: center;
+}
+
+.product_info{
+    
+    display: flex;
+    justify-content: space-between;
+    /* gap: 10px; */
+}
+.order_product .img-box{
+    width: 80px;
+    /* padding: 0; */
+}
+.order_list_box .order_product div:nth-child(2) *{
+    line-height: 30px;
+}
+.prod_title_box>*{
+    font-size: 15px;
+    font-weight: bolder;
+}
+.order_list_box .order_product div:nth-child(4),.order_list_box .order_product div:nth-child(3){
+    text-align: center;
+}
+.order_list_box .order_product div *{
+    font-size: 14px;
+    line-height: 20px;
+}
+.prod_price,.prod_price span{
+    font-size: 16px;
+}
+.prod_price span{
+    font-weight: bolder;
+}
+
+.order_list_box .order_product div:nth-child(4) .blue_color{
+    font-weight: bolder;
+}
+
+.order_delete_btn{
+    cursor: pointer;
+}

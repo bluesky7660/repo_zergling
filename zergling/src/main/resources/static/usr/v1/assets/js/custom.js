@@ -91,7 +91,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         userId.classList.remove('is-invalid');
                         userPassword.classList.remove('is-invalid');
                         feedbackChk.classList.remove('is-invalid');
+                        // console.log("response:"+response.rt);
+                        // if(response.rtp == "buy"){
+                        //     location.href = "product_buy";
+                        // }else{
+                            
+                        // }
                         location.href = "index";
+                        
                     } else {
                         userId.classList.add('is-invalid');
                         userPassword.classList.add('is-invalid');
