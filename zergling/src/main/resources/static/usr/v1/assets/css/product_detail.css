@@ -245,11 +245,15 @@
 .review_box *{
     text-align: center;
 }
-.rating_number_box{
+/* .rating_number_box{
     border-right: 1px solid #ccc;
-}
-.rating_number_box,.review_tags{
+} */
+.rating_number_box,.review_tags_area{
     width: 50%;
+    padding: 10px;
+}
+.line_space{
+    border-right: 1px solid #ccc;
 }
 .rating_number_box .scroll_box{
     
@@ -263,6 +267,9 @@
     margin: 10px;
 }
 .rating_number_box .clover_box li{
+    width: 16px;
+}
+.rating_total .clover_box li{
     width: 20px;
 }
 .rating_total li.active{
@@ -340,12 +347,19 @@
 .user_review_num{
     display: none;
 }
-.user_select_tag{
+.most_tag_box p{
+    line-height: 24px;
+}
+.most_tag{
+    color:#0d1357;
+    font-weight: bold;
+}
+.user_select_tag,.most_tag{
     padding-left:20px ;
     position: relative;
     color:#0d1357;
 }
-.user_select_tag::before,.selected_tag::before{
+.user_select_tag::before,.most_tag::before{
     content: "";
     position: absolute;
     left: 0;
@@ -388,6 +402,7 @@
 .review_tags_area .review_tags_box {
     display: flex;
     gap: 10px;
+    justify-content: center;
     align-items: center; /* 수직 중앙 정렬 */
     text-align: center;
 }
@@ -396,6 +411,19 @@
 }
 .tagName{
     margin-top: 10px;
+}
+.tag_percent{
+    margin-bottom: 10px;
+}
+.tagName,.tag_percent ,.ratingP span{
+    font-size: 14px;
+    color: #777;
+}
+.ratingP p{
+    white-space: nowrap;
+}
+.review_box .clover_box{
+    gap: 10px;
 }
 
 .review_tags_area .score_bar {
@@ -410,7 +438,7 @@
 
 .review_tags_area .progress-bar {
     position: absolute; /* 바를 절대 위치로 설정 */
-    background-color: rgba(80, 85, 177, 0.8);
+    background-color: #aaa;
     width: 8px;
     bottom: 0; /* 바의 아래쪽에 위치하게 설정 */
     transition: height 0.3s ease; /* 높이 변화에 애니메이션 추가 (선택 사항) */

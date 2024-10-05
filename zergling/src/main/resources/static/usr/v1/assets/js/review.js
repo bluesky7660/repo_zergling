@@ -90,11 +90,12 @@ $(document).ready(function(){
         count: 0
     };
     const tagCounts = {
-        "힐링돼요": 0,
-        "재밌어요": 0,
+        "고마워요": 0,
         "최고예요": 0,
         "공감돼요": 0,
-        "고마워요": 0
+        "재밌어요": 0,
+        "힐링돼요": 0
+        
     };
     const totalReviews = reviews.length;
 
@@ -177,7 +178,7 @@ $(document).ready(function(){
 
         // 클로버 박스 생성
         const cloverBox = document.createElement("ul");
-        cloverBox.className = "clover_box d-flex justify-content-between gap-3";
+        cloverBox.className = "clover_box d-flex justify-content-between";
         
         for (let i = 0; i < 4; i++) {
             const cloverItem = document.createElement("li");
@@ -209,7 +210,7 @@ $(document).ready(function(){
         const ratingP = document.createElement("div");
         ratingP.className = "ratingP";
         const pElement = document.createElement("p");
-        pElement.innerHTML = `<span>${percentage}</span>%`;
+        pElement.innerHTML = `<span>${percentage}</span> %`;
         ratingP.appendChild(pElement);
         
         liElement.appendChild(ratingP);
@@ -221,7 +222,7 @@ $(document).ready(function(){
     
     const tagPercentages = {};
     for (let tag in tagCounts) {
-        tagPercentages[tag] = ((tagCounts[tag] / totalReviews) * 100).toFixed(1);
+        tagPercentages[tag] = ((tagCounts[tag] / totalReviews) * 100);
     }
 
     // 평균 점수와 클로버 표시
@@ -246,35 +247,6 @@ $(document).ready(function(){
         cloverBox.appendChild(cloverItem);
     }
 
-
-    // 태그 비율을 표시할 영역
-    // const tagContainer = document.querySelector(".tag_distribution_container");
-    const tagContainer = document.querySelector(".review_tags_box");
-    tagContainer.innerHTML = ''; // 기존 내용 초기화
-
-    for (const tag in tagPercentages) {
-        const tagPercentage = tagPercentages[tag];
-
-        // 태그 표시 요소 생성
-        const tagElement = document.createElement("div");
-        tagElement.className = "tag_percentage";
-
-        // 태그 이름을 Thymeleaf로 사용하기 위해 `th:text` 속성을 추가합니다.
-        tagElement.innerHTML = `
-            <span>${tagPercentage}%</span>
-            <div class="score_bar progress">
-                <div class="progress-bar" role="progressbar" style="height: ${tagPercentage}%;"
-                    aria-valuenow="${tagPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="tagName">
-                <p th:text="${tag}">${tag}</p> <!-- Thymeleaf 변수를 사용 -->
-            </div>
-        `;
-
-        // 태그 요소를 태그 분포 컨테이너에 추가
-        tagContainer.appendChild(tagElement);
-    }
-
     // 클로버 박스 추가
     ratingTotal.appendChild(cloverBox);
 
@@ -283,11 +255,50 @@ $(document).ready(function(){
     averageElement.innerHTML = `<span class="rating_number"><strong>${averageScore}</strong></span> / <span>10</span>`;
     ratingTotal.appendChild(averageElement);
 
+    // 태그 비율을 표시할 영역
+    // const tagDistributionContainer = document.querySelector(".tag_distribution_container");
+    const tagDistributionContainer = document.querySelector(".review_tags_box");
+    const tagNames = document.querySelectorAll(".tagName p");
+    // const tagpercent = tagNames.p .querySelectorAll(".tag_percent p");
+    // tagDistributionContainer.innerHTML = ''; // 기존 내용 초기화
+    let mostSelectedTag = Object.keys(tagCounts).reduce((a, b) => tagCounts[a] > tagCounts[b] ? a : b);
+
+    for (const tag in tagPercentages) {
+        const tagPercentage = tagPercentages[tag];
+        console.log(tag+": "+tagPercentage);
+        for (const tagName of tagNames) {
+            const tagParent  = tagName.parentElement.parentElement;
+            console.log(tagParent);
+            const tagpercent = tagParent.querySelector(".tag_percent span");
+            const progressBar = tagParent.querySelector(".progress-bar");
+            console.log(progressBar);
+            const name = tagName.textContent
+            if(tag == name){
+                tagpercent.textContent = tagPercentage;
+                
+                progressBar.style.height = tagPercentage+"%";
+                if(tag == mostSelectedTag){
+                    tagpercent.parentElement.style.color = "rgba(80, 85, 177, 0.8)";
+                    tagpercent.parentElement.style.fontWeight = "bold";
+                    document.querySelector(".most_tag_parcent").textContent = tagPercentage+"%";
+                    tagName.style.color = "rgba(80, 85, 177, 0.8)";
+                    tagName.style.fontWeight = "bold";
+                    progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
+                }
+            }
+            
+        }
+        
+    }
+    
+    const selectedTagElement = document.querySelector(".review_total_tag_area .most_tag");
+    selectedTagElement.textContent = mostSelectedTag; 
+
     // 결과 출력
     console.log("점수 분포:", percentageResults);
     console.log("평균 점수:", averageScore);
     console.log("태그 분포:", tagCounts);
-    console.log("태그 탑:"+tagPercentages);
+    console.log("태그 탑:", mostSelectedTag);
 
     // // 태그 분포를 위한 HTML 생성
     // const tagDistributionContainer = document.querySelector(".tag_distribution_container");

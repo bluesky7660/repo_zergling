@@ -66,7 +66,8 @@
         	commoncode a
         	join codegroup b on a.codeGroup_seq = b.seq and a.codeGroup_seq = 6
         where 1=1
-        	
+        ORDER BY
+        	a.codeOrder desc
     </select>
 	<insert id="insert">
 		insert into commoncode(

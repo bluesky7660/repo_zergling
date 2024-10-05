@@ -339,7 +339,7 @@
                                     <div class="rating_number_box ">
                                         <p><strong>사용자총점</strong></p>
                                         <div class="rating_total d-flex gap-3 justify-content-center mt-3">
-                                            <ul class="clover_box d-flex justify-content-between gap-3">
+                                            <ul class="clover_box d-flex justify-content-between">
                                                 <li class="active">
                                                     <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
                                                 </li>
@@ -353,7 +353,7 @@
                                                     <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
                                                 </li>
                                             </ul>
-                                            <div class="rating_number_text_box">
+                                            <div class="rating_number_box">
                                                 <span class="rating_number"><strong>9.1</strong></span> / 
                                                 <span>10</span>
                                             </div>
@@ -444,37 +444,32 @@
                                             </li>
                                         </ul> -->
                                     </div>
-                                    <div class="tag_distribution_container"></div>
+                                    <div class="line_space"></div>
                                     <div class="review_tags_area">
-                                        <div class="mostTag" th:if="${(rvList == null||rvList == '')}">
+                                        <div class="most_tag_box" th:if="${(rvList == null||rvList == '')}">
                                             <p>
                                                 평가된 감성태그가<br>
                                                 없습니다
                                             </p>
                                         </div>
                                         <div class="review_total_tag_area"  th:if="${!(rvList == null||rvList == '')}">
-                                            <div class="mostTag">
+                                            <div class="most_tag_box">
                                                 <p>
-                                                    의 구매자가<br>
-                                                    <span class="selected_tag">고마워요</span>라고 응답했어요
+                                                    <span class="most_tag_parcent"></span>의 구매자가<br>
+                                                    <span class="most_tag"></span> 라고 응답했어요
                                                 </p>
                                             </div>
-                                            <div class="tag_distribution_container"></div>
                                             <div class="review_tags_box">
                                                 <div class="" th:each="rvTag : ${rvTags}">
+                                                    <p class="tag_percent"><span></span>%</p>
                                                     <div class="score_bar progress" >
-                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar" role="progressbar"   aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="tagName">
                                                         <p th:text="${rvTag.codeName}">최고예요</p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div>
+                                                <!-- <div>
                                                     <div class="score_bar progress">
                                                         <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
@@ -514,6 +509,11 @@
                                                         <p>힐링돼요</p>
                                                     </div>
                                                 </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="review_list_box">
                                 <div class="review_tab_box">
                                     <div>
