@@ -23,7 +23,7 @@ public class ProductDto {
 	private Date shipDate;
 	private String tableOfContents;
 	private String publisherReview;
-	private String preivew;
+	private String preview;
 	private Integer viewNumber;
 	private Integer buyNumber;
 	private Integer bestNy;
@@ -142,11 +142,11 @@ public class ProductDto {
 	public void setPublisherReview(String publisherReview) {
 		this.publisherReview = publisherReview;
 	}
-	public String getPreivew() {
-		return preivew;
+	public String getPreview() {
+		return preview;
 	}
-	public void setPreivew(String preivew) {
-		this.preivew = preivew;
+	public void setPreview(String preview) {
+		this.preview = preview;
 	}
 	public Integer getViewNumber() {
 		return viewNumber;

@@ -81,7 +81,7 @@
 			    ,a.shipDate
 			    ,a.tableOfContents
 			    ,a.publisherReview
-			    ,a.preivew
+			    ,a.preview
 			    ,a.viewNumber
 			    ,a.buyNumber
 			    ,a.bestNy
@@ -126,7 +126,7 @@
 			    ,a.shipDate
 			    ,a.tableOfContents
 			    ,a.publisherReview
-			    ,a.preivew
+			    ,a.preview
 			    ,a.viewNumber
 			    ,a.buyNumber
 			    ,a.bestNy
@@ -197,7 +197,7 @@
 			    ,shipDate
 			    ,tableOfContents
 			    ,publisherReview
-			    ,preivew
+			    ,preview
 			    ,viewNumber
 			    ,buyNumber
 			    ,bestNy
@@ -224,7 +224,7 @@
 			    ,#{shipDate}
 			    ,#{tableOfContents}
 				,#{publisherReview}
-			    ,#{preivew}
+			    ,#{preview}
 			    ,0
 			    ,0
 			    ,#{bestNy}
@@ -259,7 +259,7 @@
 			    ,a.shipDate
 			    ,a.tableOfContents
 			    ,a.publisherReview
-			    ,a.preivew
+			    ,a.preview
 			    ,a.viewNumber
 			    ,a.buyNumber
 			    ,a.bestNy
@@ -300,7 +300,7 @@
 			    ,a.shipDate
 			    ,a.tableOfContents
 			    ,a.publisherReview
-			    ,a.preivew
+			    ,a.preview
 			    ,a.viewNumber
 			    ,a.buyNumber
 			    ,a.bestNy
@@ -344,7 +344,7 @@
 			    ,shipDate = #{shipDate}
 			    ,tableOfContents = #{tableOfContents}
 			    ,publisherReview = #{publisherReview}
-			    ,preivew = #{preivew}
+			    ,preview = #{preview}
 			    ,bestNy = #{bestNy}
 			    ,todayPickNy = #{todayPickNy}
 			    ,mdPickNy = #{mdPickNy}

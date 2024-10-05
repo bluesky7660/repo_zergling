@@ -58,7 +58,16 @@
         SELECT COUNT(*)
         <include refid="selectCommon"/>
     </select>
-    
+    <select id="tagsList">
+        SELECT 
+        	a.seq
+        	,a.codeName
+        from 
+        	commoncode a
+        	join codegroup b on a.codeGroup_seq = b.seq and a.codeGroup_seq = 6
+        where 1=1
+        	
+    </select>
 	<insert id="insert">
 		insert into commoncode(
 			codeName

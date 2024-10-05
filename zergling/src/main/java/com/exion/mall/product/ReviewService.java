@@ -16,4 +16,7 @@ public class ReviewService {
 	public int insert(ReviewDto reviewDto) {
 		return reviewDao.insert(reviewDto);
 	}
+	public int listCount(ReviewVo vo) {
+		return reviewDao.listCount(vo);
+	}
 }

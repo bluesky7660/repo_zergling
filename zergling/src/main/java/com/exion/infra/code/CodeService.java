@@ -43,6 +43,9 @@ public class CodeService {
 	public List<CodeDto> genderList() {
 		return codeDao.genderList();
 	}
+	public List<CodeDto> tagsList() {
+		return codeDao.tagsList();
+	}
 	public int update(CodeDto codeDto) {
 		return codeDao.update(codeDto);
 	}

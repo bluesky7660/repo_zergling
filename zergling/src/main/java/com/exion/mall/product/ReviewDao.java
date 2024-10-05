@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ReviewDao {
 	public List<ReviewDto> selectUsrList(ReviewDto reviewDto);
 	public int insert(ReviewDto reviewDto);
+	public int listCount(ReviewVo vo);
 }

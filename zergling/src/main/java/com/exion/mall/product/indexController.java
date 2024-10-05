@@ -219,7 +219,7 @@ public class indexController {
 //	}
 	
 	@RequestMapping(value = "product_detail")
-	public String productDetail(Model model, ReviewDto reviewDto, ProductDto productDto,@ModelAttribute("vo") ProductVo vo,AuthorVo authorVo,ProductAuthorDto productAuthorDto) {
+	public String productDetail(Model model, ReviewVo reviewVo, ReviewDto reviewDto, ProductDto productDto,@ModelAttribute("vo") ProductVo vo,AuthorVo authorVo,ProductAuthorDto productAuthorDto) {
 		List<ReviewDto> lists = reviewService.selectUsrList(reviewDto);
 		for(ReviewDto list:lists) {
 			System.out.println("점수: "+list.getRvScore()+" , 이름: "+list.getRvName());
@@ -228,8 +228,10 @@ public class indexController {
 		model.addAttribute("product", productService.prodUsrOne(vo));
 		model.addAttribute("prodAuthor", authorService.prodAuthorList(authorVo));
 		model.addAttribute("authors", authorService.authorUsrList(authorVo));
-		
+		model.addAttribute("rvTags", codeService.tagsList());
+		model.addAttribute("rvCount", reviewService.listCount(reviewVo));
 		model.addAttribute("rvList", reviewService.selectUsrList(reviewDto));
+		System.out.println("목차: "+productService.prodOne(productDto).getIntro());
 //		model.addAttribute("author", authorService.authorOne(authorDto));
 //		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
 		return "usr/v1/pages/product_detail";

@@ -179,10 +179,15 @@
 }
 
 .info_text{
+
     position: relative;
     overflow: hidden;
     padding-bottom: 30px;
     
+}
+.book_info .info_text,.publishers_review .info_text,.book_contents .info_text,.prod_about .info_text{
+    line-height: 25px;
+    white-space: pre-wrap
 }
 .info_text:not(.info_desc)::after{
     content: "";
