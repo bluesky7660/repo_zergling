@@ -72,12 +72,22 @@ public class ReviewVo extends BaseVo{
 	public String getSeq() {
 		return seq;
 	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
 	public String getRvName() {
 		return rvName;
+	}
+	public void setRvName(String rvName) {
+		this.rvName = rvName;
 	}
 	public String getRvSelectTagName() {
 		return rvSelectTagName;
 	}
+	public void setRvSelectTagName(String rvSelectTagName) {
+		this.rvSelectTagName = rvSelectTagName;
+	}
+	
 	
     
 }

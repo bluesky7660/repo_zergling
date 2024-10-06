@@ -152,30 +152,46 @@
                                 <p><strong th:each="prodAuthor : ${prodAuthor}" th:text="${prodAuthor.name + (prodAuthorStat.index < prodAuthorStat.size - 1 ? ', ' : '')}"></strong> 저자(글)</p>
                                 <p class="gray_color"><span th:text="${product.publisherName}">마이디어북스</span> · <span th:text="${#dates.format(product.makeDate, 'yyyy년 MM월 dd일')}"></span></p>
                             </p>
-                            <div class="rating_box d-flex gap-3 align-items-center">
-                                <div class="user_rating d-flex flex-column gap-3">
+                            <div class="rating_box d-flex align-items-center">
+                                <div class="user_rating rating_number_box d-flex flex-column gap-3">
                                     <p class="rating_number">
                                         <strong>9.1</strong>
                                     </p>
-                                    <ul class="clover_box d-flex justify-content-between gap-3">
-                                        <li>
-                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
-                                        </li>
-                                        <li>
-                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
-                                        </li>
-                                        <li>
-                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
-                                        </li>
-                                        <li>
-                                            <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
-                                        </li>
-                                    </ul>
+                                    <div class="total_clover_box">
+                                        <ul class="clover_box d-flex justify-content-between gap-3">
+                                            <li>
+                                                <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                            </li>
+                                            <li>
+                                                <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                            </li>
+                                            <li>
+                                                <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                            </li>
+                                            <li>
+                                                <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <p class="total_reviews">(<span class="review_count" th:text="${rvCount}"></span>개의 리뷰)</p>
                                 </div>
-                                <div class="user_tags">
-                                    <p>평가된 감성태크가 없습니다.</p>
+                                <div></div>
+                                <div class="review_tags_area">
+                                    <div class="most_tag_box user_tags" th:if="${(rvList == null||rvList == ''||rvCount == 0)}">
+                                        <p>
+                                            평가된 감성태그가<br>
+                                            없습니다
+                                        </p>
+                                    </div>
+                                    <div class="most_tag_box" th:if="${!(rvList == null||rvList == ''||rvCount == 0)}">
+                                        <p>
+                                            <span class="most_tag_parcent"></span>의 구매자가<br>
+                                            <span class="most_tag"></span> 라고 응답했어요
+                                        </p>
+                                    </div>
                                 </div>
+                                
+                                
                             </div>
                         </div>
                         <div class="img_slider_container">
@@ -240,7 +256,7 @@
                                 <p class="box_title"><b>책 소개</b></p>
                                 <p>이 책이 속한 분야</p>
                                 <div>
-                                    국내도서 > 소설 > 한국소설
+                                    <p><span>국내도서</span> > <span th:text="${product.prodTypeName}"></span></p>
                                 </div>
                             </div>
                             <div>
@@ -446,13 +462,13 @@
                                     </div>
                                     <div class="line_space"></div>
                                     <div class="review_tags_area">
-                                        <div class="most_tag_box" th:if="${(rvList == null||rvList == '')}">
+                                        <div class="most_tag_box notReviw" th:if="${(rvList == null||rvList == ''||rvCount == 0)}">
                                             <p>
                                                 평가된 감성태그가<br>
                                                 없습니다
                                             </p>
                                         </div>
-                                        <div class="review_total_tag_area"  th:if="${!(rvList == null||rvList == '')}">
+                                        <div class="review_total_tag_area"  th:if="${!(rvList == null||rvList == ''||rvCount == 0)}">
                                             <div class="most_tag_box">
                                                 <p>
                                                     <span class="most_tag_parcent"></span>의 구매자가<br>
@@ -528,10 +544,10 @@
                                 </div>
                                 <div class="review_list">
                                     <ul>
-                                        <li class="notReview" th:if="${(rvList == null||rvList == '')}">
+                                        <li class="notReview" th:if="${(rvList == null||rvList == ''||rvCount == 0)}">
                                             <p>작성된 리뷰가 없습니다.</p>
                                         </li>
-                                        <li class="user_review_box" th:each="rvList : ${rvList}" th:if="${!(rvList == null||rvList == '')}">
+                                        <li class="user_review_box" th:each="rvList : ${rvList}" th:if="${!(rvList == null||rvList == ''||rvCount == 0)}">
                                             <div class="review_head">
                                                 <div>
                                                     <span class="user_id" th:text="${rvList.rvName}">jnbiuabiy23</span>

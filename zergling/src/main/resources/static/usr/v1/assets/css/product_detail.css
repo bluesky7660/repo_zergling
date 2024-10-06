@@ -272,10 +272,10 @@
 .rating_total .clover_box li{
     width: 20px;
 }
-.rating_total li.active{
+.rating_total li.active, .total_clover_box li.active{
     opacity: 1;
 }
-.rating_total li{
+.rating_total li, .total_clover_box li{
     opacity: 0.3;
 }
 .scroll_box li:nth-child(2) .clover_box li:not(:nth-child(1),:nth-child(2),:nth-child(3)){
@@ -354,6 +354,7 @@
     color:#0d1357;
     font-weight: bold;
 }
+
 .user_select_tag,.most_tag{
     padding-left:20px ;
     position: relative;
@@ -369,7 +370,17 @@
     background: url(../images/ico_quotes@2x.png) center no-repeat;
     background-size: 13px 13px;
 }
-
+.notReviw{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notReviw p{  
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: bold;
+}
 .btn_like::before{
     content: "좋아요 ";
 }

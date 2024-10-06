@@ -10,7 +10,7 @@
 				join product c on c.seq = a.product_seq
 				join member d on d.seq = a.member_seq
 			where 1 = 1
-				and c.seq = #{seq}
+				and a.product_seq = #{seq}
 	</sql>
 	<select id="selectUsrList" resultMap="resultObj">
 			select

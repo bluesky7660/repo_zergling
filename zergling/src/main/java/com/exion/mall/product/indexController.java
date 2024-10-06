@@ -231,6 +231,7 @@ public class indexController {
 		model.addAttribute("rvTags", codeService.tagsList());
 		model.addAttribute("rvCount", reviewService.listCount(reviewVo));
 		model.addAttribute("rvList", reviewService.selectUsrList(reviewDto));
+		System.out.println("rvCount:" +reviewService.listCount(reviewVo));
 		System.out.println("목차: "+productService.prodOne(productDto).getIntro());
 //		model.addAttribute("author", authorService.authorOne(authorDto));
 //		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));

@@ -1,22 +1,22 @@
 $(document).ready(function(){
-    // .review_list 요소와 모든 span 요소를 선택합니다.
-    const reviewListElement = document.querySelector('.review_list>ul');
-    const spans = document.querySelectorAll('.review_count');
+    // // .review_list 요소와 모든 span 요소를 선택합니다.
+    // const reviewListElement = document.querySelector('.review_list>ul');
+    // const spans = document.querySelectorAll('.review_count');
 
-    // .review_list의 직접 자식 <li> 요소만을 선택하여 개수를 셉니다.
-    function countDirectChildren(element) {
-        // 자식 요소 중 <li>만 선택
-        const directLiItems = Array.from(element.children).filter(child => child.tagName === 'LI');
-        return directLiItems.length;
-    }
+    // // .review_list의 직접 자식 <li> 요소만을 선택하여 개수를 셉니다.
+    // function countDirectChildren(element) {
+    //     // 자식 요소 중 <li>만 선택
+    //     const directLiItems = Array.from(element.children).filter(child => child.tagName === 'LI');
+    //     return directLiItems.length;
+    // }
 
-    // .review_list 내부의 직접 자식 <li> 요소의 개수를 계산합니다.
-    const itemCount = countDirectChildren(reviewListElement);
+    // // .review_list 내부의 직접 자식 <li> 요소의 개수를 계산합니다.
+    // const itemCount = countDirectChildren(reviewListElement);
     
-    // span 요소에 개수를 출력합니다.
-    spans.forEach(span => {
-        span.textContent = itemCount;
-    });
+    // // span 요소에 개수를 출력합니다.
+    // spans.forEach(span => {
+    //     span.textContent = itemCount;
+    // });
 
     //리뷰점수
     // const reviews = document.querySelectorAll(".user_review_box");
@@ -157,7 +157,7 @@ $(document).ready(function(){
     });
 
     // 퍼센트 계산 및 평균 점수 출력
-    const averageScore = scoreCounts.count > 0 ? (scoreCounts.total / scoreCounts.count).toFixed(1) : 0;
+    var averageScore = scoreCounts.count > 0 ? (scoreCounts.total / scoreCounts.count).toFixed(1) : 0;
     const percentageResults = {
         10: Math.floor((scoreCounts[10] / scoreCounts.count) * 100), // 소수점 버리기
         7.5: Math.floor((scoreCounts[7.5] / scoreCounts.count) * 100), // 소수점 버리기
@@ -171,9 +171,14 @@ $(document).ready(function(){
 
     // 각 점수에 대해 li 요소 생성
     for (const score in percentageResults) {
-        const percentage = percentageResults[score];
+        var percentage = percentageResults[score];
         const numClover = Math.round((percentage / 100) * 4); // 4개 클로버 중 몇 개를 보여줄지 계산
-
+        console.log("dsa:"+percentage);
+        if (isNaN(percentage)) {
+            percentage = 0;
+            console.log("percentage:"+percentage);
+        }
+        console.log("percentage2:"+percentage);
         const liElement = document.createElement("li");
 
         // 클로버 박스 생성
@@ -231,7 +236,9 @@ $(document).ready(function(){
 
     // 클로버 박스 생성
     const cloverBox = document.createElement("ul");
+    const cloverBoxTop = document.createElement("ul");
     cloverBox.className = "clover_box d-flex justify-content-between gap-3";
+    cloverBoxTop.className = "clover_box d-flex justify-content-between gap-3";
 
     const numAverageClover = Math.round((averageScore / 10) * 4); // 평균 점수에 따라 클로버 개수 계산
 
@@ -250,8 +257,30 @@ $(document).ready(function(){
     // 클로버 박스 추가
     ratingTotal.appendChild(cloverBox);
 
+    for (let i = 0; i < 4; i++) {
+        const cloverItem = document.createElement("li");
+        const cloverImg = document.createElement("img");
+        cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
+        cloverImg.alt = "";
+        if (i < numAverageClover) {
+            cloverItem.classList.add("active"); // 평균 점수에 따라 활성화
+        }
+        cloverItem.appendChild(cloverImg);
+        cloverBoxTop.appendChild(cloverItem);
+    }
+    const reviewTotalTop = document.querySelector(".prod_detail_view ");
+    const reviewTotalTopC = reviewTotalTop.querySelector(".total_clover_box");
+    reviewTotalTopC.innerHTML = ''; // 기존 내용 초기화
+    reviewTotalTopC.appendChild(cloverBoxTop);
+
     // 평균 점수 출력
     const averageElement = document.createElement("div");
+    const reviewTotalTopT = reviewTotalTop.querySelector(".rating_number strong");
+    console.log("averageScore: "+averageScore);
+    if(averageScore == 0){
+        averageScore = "0.0";
+    }
+    reviewTotalTopT.textContent = averageScore;
     averageElement.innerHTML = `<span class="rating_number"><strong>${averageScore}</strong></span> / <span>10</span>`;
     ratingTotal.appendChild(averageElement);
 
@@ -280,7 +309,9 @@ $(document).ready(function(){
                 if(tag == mostSelectedTag){
                     tagpercent.parentElement.style.color = "rgba(80, 85, 177, 0.8)";
                     tagpercent.parentElement.style.fontWeight = "bold";
-                    document.querySelector(".most_tag_parcent").textContent = tagPercentage+"%";
+                    document.querySelectorAll(".most_tag_parcent").forEach(function(tag) {
+                        tag.textContent = tagPercentage+"%";
+                    });
                     tagName.style.color = "rgba(80, 85, 177, 0.8)";
                     tagName.style.fontWeight = "bold";
                     progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
@@ -291,8 +322,16 @@ $(document).ready(function(){
         
     }
     
-    const selectedTagElement = document.querySelector(".review_total_tag_area .most_tag");
-    selectedTagElement.textContent = mostSelectedTag; 
+    const selectedTagElement = document.querySelectorAll(" .most_tag");
+    if(selectedTagElement){
+        if(mostSelectedTag != null){
+            selectedTagElement.forEach(function(tag) {
+                tag.textContent = mostSelectedTag; 
+            })
+        }
+    }
+    
+    
 
     // 결과 출력
     console.log("점수 분포:", percentageResults);
