@@ -134,6 +134,31 @@
 				and b.seq = #{seq}
 				and a.defaultNy = 1
 	  </select>
+	  <select id="buySelectOne" resultMap="resultObj">
+		  	select
+				a.daSeq
+			    ,a.defaultNy
+			    ,a.addressName
+			    ,a.RecipientName
+			    ,a.RecipientPhone
+			    ,a.daZonecode
+			    ,a.daRoadAddress
+			    ,a.daJibunAddress
+			    ,a.daDetailAddress
+			    ,a.daExtraAddress
+			    ,a.longitude
+			    ,a.latitude
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,a.member_seq
+			from
+				deliveryaddress a
+				join member b on b.seq = a.member_seq
+			where 1=1
+				<!-- and b.seq = #{member_seq} -->
+				and a.daSeq = #{daSeq}
+	  </select>
 	  <select id="listCount">
         SELECT COUNT(*)
         from

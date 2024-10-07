@@ -136,7 +136,75 @@ $(document).ready(function(){
             directInputBox.classList.remove("active");
             directInputBox.children[0].remove();
         }
-    })
+    });
+    
+    //
+    const AddrChangeBtn = document.getElementById("addressSelected");
+    if(AddrChangeBtn){
+        AddrChangeBtn.addEventListener('change', function(){
+            const form = document.querySelector("form");
+            const checked = document.querySelector('input[name="isSelected"]');
+            checked.value = true;
+            const isSelected = checked.value;
+            sessionStorage.setItem("isSelected", isSelected);
+            const selectedProduct = document.querySelector('select[id="addressSelected"]').value;
+            sessionStorage.setItem("selectedProduct", selectedProduct);
+            form.action = "product_buy";
+            form.submit();
+            // $.ajax({
+            //     async: true 
+            //     ,cache: false
+            //     ,type: "post"
+            //     /* ,dataType:"json" */
+            //     // ,url: "/v1/infra/member/loginUsrProc"
+            //     ,url: "/buyAddressChange"
+            //     /* ,data : $("#formLogin").serialize() */
+            //     ,data : { "daSeq" : $("#addressSelected").val().trim(), "seq" : $("#prod_seq").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
+            //     ,success: function(response) {
+            //         if(response.rt == "success") {
+            //             alert("성공");
+            //             // 성공적으로 응답을 받았을 때
+            //             const user = response.data; // 업데이트된 사용자 정보
+            //             console.log(user);
+                        
+            //             // 사용자 정보가 유효한지 확인
+            //             if (user) {
+            //                 document.querySelector(".address_name").innerText = user.addressName || '주소 없음';
+            //                 console.log(user.RecipientName);
+            //                 document.querySelector(".rec_name").innerText = user.recipientName || '수신자 없음';
+    
+            //                 // 전화번호 형식 변경
+            //                 const phoneNumber = user.recipientPhone;
+            //                 let formattedPhone = '';
+    
+            //                 if (phoneNumber) {
+            //                     formattedPhone = phoneNumber.startsWith('02') 
+            //                         ? `${phoneNumber.substring(0, 2)}-${phoneNumber.substring(2, 6)}-${phoneNumber.substring(6)}`
+            //                         : `${phoneNumber.substring(0, 3)}-${phoneNumber.substring(3, 7)}-${phoneNumber.substring(7)}`;
+            //                 } else {
+            //                     formattedPhone = '전화번호 없음'; // 또는 다른 적절한 기본값
+            //                 }
+            //                 console.log(user.recipientName);
+    
+            //                 document.querySelector(".rec_phone").innerText = formattedPhone;
+    
+            //                 // 나머지 주소 정보 업데이트
+            //                 document.querySelector(".post_number").innerText = user.daZonecode || '우편번호 없음';
+            //                 document.querySelector(".ship_address").innerText = user.daRoadAddress || '도로명 주소 없음';
+            //                 document.querySelector(".daExtraAddress").innerText = user.daExtraAddress || '추가 주소 없음';
+            //                 document.querySelector(".detail_address").innerText = user.daDetailAddress || '상세 주소 없음';
+            //             }
+                        
+            //         } else {
+            //             alert("실패");
+            //         }
+            //     }
+            //     ,error : function(jqXHR, textStatus, errorThrown){
+            //         alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+            //     }
+            // });
+        });
+    }
     
 
     // 페이지 로드 시 초기 계산 수행

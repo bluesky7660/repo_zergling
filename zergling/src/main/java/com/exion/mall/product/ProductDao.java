@@ -9,6 +9,8 @@ public interface ProductDao {
 	public int insertProd(ProductDto productDto);
 //	public List<ProductDto> prodList();
 	public List<ProductDto> usrProdList(ProductVo vo);
+	public List<ProductDto> newProdList(ProductVo vo);
+	public List<ProductDto> bestProdList(ProductVo vo);
 	public List<ProductDto> xdmProdList(ProductVo vo);	
 	public ProductDto prodOne(ProductDto productDto);
 	public ProductDto prodUsrOne(ProductVo vo);

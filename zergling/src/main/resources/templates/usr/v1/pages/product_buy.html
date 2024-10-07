@@ -137,64 +137,70 @@
                 <div class="contentArea">
                     <div class="left-box">
                         <div class="delivery_Info_area">
-                            <table>
-                                <colgroup>
-                                    <col style="width: 200px;">
-                                    <col style="width: auto;">
-                                </colgroup>
-                                <tr>
-                                    <th>배송지 정보</th>
-                                    <td class="notaddress" th:if="${(user == null||user == '')}">
-                                        <p>기본배송지가 없습니다. 배송지를 추가해 주세요.</p>
-                                        <button type="button" class="btn" id="addressAdd" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지 추가</button>
-                                    </td>
-                                    <td th:if="${!(user == null||user == '')}">
-                                        <div class="address_name_box">
-                                            <div>
-                                                <p>
-                                                    <span class="address_name" th:text="${user.addressName}">집</span>
-                                                </p>
-                                                <button type="button" class="btn" id="addressChange" data-bs-toggle="modal" data-bs-target="#addressChangeModal">변경</button>
+                            <form autocomplete="off" method="post" action="">
+                                <input type="hidden" id="prod_seq" name="seq" th:value="${item.seq}">
+                                <!-- <input type="hidden" id="prod_seq" name="daSeq" th:value="${user.daSeq}"> -->
+                                <table>
+                                    <colgroup>
+                                        <col style="width: 200px;">
+                                        <col style="width: auto;">
+                                    </colgroup>
+                                    <tr>
+                                        <th>배송지 정보</th>
+                                        <td class="notaddress" th:if="${(user == null||user == '')}">
+                                            <p>기본배송지가 없습니다. 배송지를 추가해 주세요.</p>
+                                            <button type="button" class="btn" id="addressAdd" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지 추가</button>
+                                        </td>
+                                        <td class="isaddress" th:if="${!(user == null||user == '')}">
+                                            <div class="address_name_box">
+                                                <div>
+                                                    <p>
+                                                        <span class="address_name" th:text="${user.addressName}">집</span>
+                                                    </p>
+                                                    <button type="button" class="btn" id="addressChange" data-bs-toggle="modal" data-bs-target="#addressChangeModal">변경</button>
+                                                </div>
+                                                <input type="hidden" name="isSelected" value="false" th:value="${isSelected}">
+                                                <select name="daSeq" id="addressSelected" class="form-select">
+                                                    <option th:each="AddrList : ${addrList}" th:value="${AddrList.daSeq}" th:text="${AddrList.addressName}" th:selected="${AddrList.daSeq == user.daSeq}"></option>
+                                                </select>
                                             </div>
-                                            <select name="daSeq" id="addressdefSelected" class="form-select">
-                                                <option th:each="AddrList : ${addrList}" th:value="${AddrList.daSeq}" th:text="${AddrList.addressName}" th:selected="${AddrList.defaultNy == 1}"></option>
+                                            <div class="address_Info">
+                                                <p>
+                                                    <span class="rec_name" th:text="${user.RecipientName}">홍길동</span>
+                                                    <span> / </span>
+                                                    <span class="rec_phone" th:text="${user.RecipientPhone != null ? (user.RecipientPhone.startsWith('02') ? 
+                                                    #strings.substring(user.RecipientPhone, 0, 2) + '-' + 
+                                                    #strings.substring(user.RecipientPhone, 2, 6) + '-' + 
+                                                    #strings.substring(user.RecipientPhone, 6) : 
+                                                    #strings.substring(user.RecipientPhone, 0, 3) + '-' + 
+                                                    #strings.substring(user.RecipientPhone, 3, 7) + '-' + 
+                                                    #strings.substring(user.RecipientPhone, 7)) : ''}" >010-1234-5678</span>
+                                                </p>
+                                            </div>
+                                            <div class="delivery_address">
+                                                <p class="ship_address_box">[<span class="post_number" th:text="${user.daZonecode}"></span>] <span class="ship_address" th:text="${user.daRoadAddress}">서울특별시 노원구 한글비석로14길 42</span> <span class="daExtraAddress" th:text="${user.daExtraAddress}">(중계동, 중앙하이츠아파트)</span> <span class="detail_address" th:text="${user.daDetailAddress}"></span></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="deliveryRequest_box">
+                                        <th>배송요청사항</th>
+                                        <td>
+                                            <select class="form-select" name="" id="deliveryRequest">
+                                                <option value="1">현관앞에 가져다주세요</option>
+                                                <option value="2">경비실에 맡겨주세요</option>
+                                                <option value="3">배송전에 연락주세요</option>
+                                                <option value="4">직접입력</option>
                                             </select>
-                                        </div>
-                                        <div class="address_Info">
-                                            <p>
-                                                <span class="rec_name" th:text="${user.RecipientName}">홍길동</span>
-                                                <span> / </span>
-                                                <span class="rec_phone" th:text="${user.RecipientPhone != null ? (user.RecipientPhone.startsWith('02') ? 
-                                                #strings.substring(user.RecipientPhone, 0, 2) + '-' + 
-                                                #strings.substring(user.RecipientPhone, 2, 6) + '-' + 
-                                                #strings.substring(user.RecipientPhone, 6) : 
-                                                #strings.substring(user.RecipientPhone, 0, 3) + '-' + 
-                                                #strings.substring(user.RecipientPhone, 3, 7) + '-' + 
-                                                #strings.substring(user.RecipientPhone, 7)) : ''}" >010-1234-5678</span>
-                                            </p>
-                                        </div>
-                                        <div class="detail_address">
-                                            <p class="ship_address_box">[<span class="post_number" th:text="${user.daZonecode}"></span>] <span class="ship_address" th:text="${user.daRoadAddress}">서울특별시 노원구 한글비석로14길 42</span> <span class="daExtraAddress" th:text="${user.daExtraAddress}">(중계동, 중앙하이츠아파트)</span> <span class="detail_address" th:text="${user.daDetailAddress}"></span></p>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="deliveryRequest_box">
-                                    <th>배송요청사항</th>
-                                    <td>
-                                        <select class="form-select" name="" id="deliveryRequest">
-                                            <option value="1">현관앞에 가져다주세요</option>
-                                            <option value="2">경비실에 맡겨주세요</option>
-                                            <option value="3">배송전에 연락주세요</option>
-                                            <option value="4">직접입력</option>
-                                        </select>
-                                        <div id="directInput_box"></div>
-                                    </td>
-                                </tr>
-                                <!-- <tr>
-                                    <th>공동현관 출입방법</th>
-                                    <td></td>
-                                </tr> -->
-                            </table>
+                                            <div id="directInput_box"></div>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th>공동현관 출입방법</th>
+                                        <td></td>
+                                    </tr> -->
+                                </table>
+                            </form>
+                            
                             <!-- <div><span>편의점 배송, 해외배송으로 받기</span></div> -->
                         </div>
                         <div class="order_products_area">
@@ -529,7 +535,7 @@
         </footer>
     </div>
     <!-- modals -->
-    <div class="modal fade" id="addressAddModal" tabindex="-1" aria-labelledby="addressAddModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="addressAddModal" tabindex="-1" aria-labelledby="addressAddModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -597,7 +603,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -607,6 +613,25 @@
     <script src="/usr/v1/assets/js/custom.js"></script>
     <script src="/usr/v1/assets/js/buy.js"></script>
     <script src="/usr/v1/assets/js/header.js"></script>
-
+    <script>
+        window.onload = function() {
+            const isaddress = document.querySelector(".isaddress");
+            
+            if(isaddress){
+                const isSelected = localStorage.getItem("isSelected");
+                const selectedProduct = localStorage.getItem("selectedProduct");
+                if(isSelected == true){
+                        if (isSelected) {
+                        document.querySelector('input[name="isSelected"]').value = true;
+                    }
+                    if (selectedProduct) {
+                        document.querySelector('select[id="addressSelected"]').value = selectedProduct;
+                    }
+                }
+                
+            }
+            
+        }
+    </script>
 </body>
 </html>

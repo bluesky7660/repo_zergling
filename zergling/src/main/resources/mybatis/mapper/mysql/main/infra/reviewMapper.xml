@@ -30,6 +30,12 @@
         	SELECT COUNT(*) 
         	<include refid="selectCommon"/>
    	</select>
+   	<select id="totalNum">
+   		select 
+   			a.rvSeq
+   			,a.rvScore
+   		<include refid="selectCommon"/>
+   	</select>
 	<insert id="insert">
 		insert  into review(
 			rvScore

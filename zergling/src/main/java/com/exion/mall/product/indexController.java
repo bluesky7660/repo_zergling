@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exion.common.util.DateUtil;
@@ -50,7 +51,9 @@ public class indexController {
 	ReviewService reviewService;
 	
 	@RequestMapping(value = "index")
-	public String index() {
+	public String index(Model model, ProductVo productVo) {
+		model.addAttribute("newProd", productService.newProdList(productVo));
+		model.addAttribute("bestProd", productService.bestProdList(productVo));
 		System.out.println("index");
 		return "/usr/v1/pages/index";
 	}
@@ -76,16 +79,22 @@ public class indexController {
 			if(httpSession.getAttribute("prevPage") != null) {
 //				returnMap.put("rtp", "buy");
 				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
+				
+				
 				System.out.println("구매성공");
 			}else {
 //				returnMap.put("rtp", "fail");
 				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
 				System.out.println("구매실패");
 			}
+			String prevPage = (String) httpSession.getAttribute("prevPage");
+			httpSession.removeAttribute("prevPage"); 
+			returnMap.put("redirectUrl", prevPage != null ? prevPage : "/index");
 			
 			System.out.println("성공");
+			
 			returnMap.put("rt", "success");
-
+			
 		} else {
 			System.out.println("실패");
 			returnMap.put("rt", "fail");
@@ -238,37 +247,74 @@ public class indexController {
 		return "usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
-	public String productList(Model model,@ModelAttribute("vo") ProductVo vo) {
-		vo.setParamsPaging(productService.listCount(vo));
-		System.out.println("get: "+vo.getMakeDateFillter());
-		model.addAttribute("list", productService.usrProdList(vo));
+	public String productList(Model model,@ModelAttribute("vo") ProductVo productVo,ReviewVo reviewVo) {
+		productVo.setParamsPaging(productService.listCount(productVo));
+		System.out.println("get: "+productVo.getMakeDateFillter());
+		model.addAttribute("list", productService.usrProdList(productVo));
 		model.addAttribute("bages", codeService.bageList());
-//		List<ProductDto> prods = productService.usrProdList(vo);
+//		List<ProductDto> prods = productService.usrProdList(productVo);
 //		for(ProductDto prod : prods) {
 //			System.out.println("출판사: "+prod.getPublisherName());
 //			System.out.println("타입: "+prod.getTitle()	);
 //		}
-			
-		System.out.println("최소: "+vo.getMinPrice());
-		System.out.println("베스트: " +vo.getBestNy());
-		System.out.println("투데이: " +vo.getTodayPickNy());
-		System.out.println("타입: " +vo.getProdType());
-		System.out.println("최대: "+vo.getMaxPrice());
+//		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
+		System.out.println("최소: "+productVo.getMinPrice());
+		System.out.println("베스트: " +productVo.getBestNy());
+		System.out.println("투데이: " +productVo.getTodayPickNy());
+		System.out.println("타입: " +productVo.getProdType());
+		System.out.println("최대: "+productVo.getMaxPrice());
 		return "/usr/v1/pages/product_list";
 	}
 	
 	@RequestMapping(value = "product_buy")
-	public String productBuy(Model model, DeliveryAddressDto deliveryAddressDto,ProductVo productVo, DeliveryAddressVo addressVo, HttpSession session) {
+	public String productBuy(Model model, @RequestParam(value = "isSelected", required = false) Boolean isSelected, @RequestParam(value="daSeq", required = false) String daSeq, DeliveryAddressDto deliveryAddressDto,ProductVo productVo, DeliveryAddressVo addressVo, HttpSession session) {
 		
 		String mmSeq = (String) session.getAttribute("sessSeqXdm");
-		deliveryAddressDto.setMember_seq(mmSeq);
-		model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));
+		deliveryAddressDto.setSeq(mmSeq);
+		addressVo.setSeq(mmSeq);
+		System.out.println("isSelected: " +isSelected +" , daSeq: "+daSeq);
+		
+		if(Boolean.TRUE.equals(isSelected)) {
+			System.out.println("셀렉트");
+			model.addAttribute("user", deliveryAddressService.selectOne(deliveryAddressDto));
+		}else {
+			System.out.println("usr.daseq: " +deliveryAddressService.selectDefOne(deliveryAddressDto).getDaSeq());
+			model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));
+		}
+//		model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));
 		model.addAttribute("item", productService.prodUsrOne(productVo));
 		Date deliveryDate = DateUtil.getDeliveryDate(2);
 		model.addAttribute("deliveryDate",deliveryDate);
 		model.addAttribute("addrList", deliveryAddressService.selectList(addressVo));
 		System.out.println("product_buy");
 		return "/usr/v1/pages/product_buy";
+	}
+	@ResponseBody
+	@RequestMapping(value = "buyAddressChange")
+	public Map<String, Object> buyAddressChange(Model model,@RequestParam("daSeq") String daSeq,@RequestParam("seq") String seq, DeliveryAddressDto deliveryAddressDto) {
+		deliveryAddressDto.setDaSeq(daSeq);
+		Map<String, Object> returnMap = new HashMap<>();
+		DeliveryAddressDto addr = deliveryAddressService.selectOne(deliveryAddressDto);
+		if(addr != null) {
+//			model.addAttribute("user", deliveryAddressService.selectOne(deliveryAddressDto));
+			System.out.println("성공");
+			returnMap.put("rt", "success");
+			returnMap.put("data", addr);
+		}
+		else {
+			System.out.println("실패");
+			returnMap.put("rt", "fail");
+		}
+		System.out.println("주소이름: "+addr.getAddressName());
+		System.out.println("도로명: "+addr.getDaRoadAddress());
+		System.out.println("참조: "+addr.getDaExtraAddress());
+		System.out.println("우편번호: "+addr.getDaZonecode());
+		System.out.println("우편번호: "+addr.getRecipientPhone());
+		System.out.println("우편번호: "+addr.getRecipientName());
+//		System.out.println("우편번호: "+addr.getDaZonecode());
+		System.out.println("상품seq: "+seq);
+		
+		return returnMap;
 	}
 	@RequestMapping(value = "account_recovery")
 	public String accountRecovery() {

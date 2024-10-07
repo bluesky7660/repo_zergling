@@ -51,33 +51,45 @@
                             <ul class="input_area input_box">
                                 <li>
                                     <label for="">이름</label>
-                                    <input type="text" class="form-control" name="name" placeholder="이름을 입력하세요." required>
+                                    <div>
+                                        <input type="text" class="form-control validate-this valid-user-name" name="name" placeholder="이름을 입력하세요." required>
+                                        <div class="invalid-box mb-3">
+                                            <div class="invalid-child"></div>
+                                            <div id="invalid-feedback" class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li>
                                     <label for="">아이디</label>
-                                    <input type="text" class="form-control" name="userId" placeholder="아이디를 입력하세요." required>
+                                    <div>
+                                        <input type="text" class="form-control validate-this valid-id" name="userId" placeholder="아이디를 입력하세요." required>
+                                    </div>
                                 </li>
                                 <li>
                                     <label for="">비밀번호</label>
                                     <div class="password_box">
-                                        <input id="login_password" class="form-control login_password" name="userPassword" type="password" placeholder="비밀번호를 입력해주세요." required>
+                                        <input id="signup_password" class="form-control signup_password validate-this valid-password" name="userPassword" type="password" placeholder="비밀번호를 입력해주세요." required>
                                         <span class="toggle-button toggle-password" id="togglePassword1"></span>
                                     </div>
                                 </li>
-                                <!-- <li>
+                                <li>
                                     <label for="">비밀번호 확인</label>
                                     <div class="password_box">
-                                        <input id="login_password_check" class="form-control login_password" name="userPassword" type="password" placeholder="비밀번호를 입력해주세요." required>
+                                        <input id="signup_password_check" class="form-control signup_password validate-this valid-passwordCk" name="userPwCheck" type="password" placeholder="비밀번호를 입력해주세요." required>
                                         <span class="toggle-button toggle-password" id="togglePassword2"></span>
                                     </div>
-                                </li> -->
+                                </li>
                                 <li>
                                     <label for="">이메일</label>
-                                    <input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요." required>
+                                    <div>
+                                        <input type="email" class="form-control validate-this valid-email" name="email" placeholder="이메일을 입력해주세요." required>
+                                    </div>
                                 </li>
                                 <li>
                                     <label for="">전화번호</label>
-                                    <input type="tel" class="form-control" name="phoneNum" placeholder="전화번호를 입력해주세요." required>
+                                    <div>
+                                        <input type="tel" class="form-control validate-this valid-phone-num" name="phoneNum" placeholder="전화번호를 입력해주세요. 숫자만" required>
+                                    </div>
                                 </li>
                                 <!-- <li>
                                     <label for="">유저설명</label>
@@ -86,36 +98,26 @@
                                 <li>
                                     <label for="user_gender">성별</label>
                                     <div>
-                                        <select class="form-select" name="gender" id="user_gender" required>
-                                            <option value="0" disabled selected>선택해주세요</option>
+                                        <select class="form-select validate-this valid-gender" name="gender" id="user_gender" required>
+                                            <option value="" disabled selected>선택해주세요</option>
                                             <option th:each="gender : ${genders}" th:value="${gender.seq}" th:text="${gender.codeName}"></option>
                                             <!-- <option value="1">남자</option>
                                             <option value="2">여자</option>
                                             <option value="3">기타</option> -->
                                         </select>
-                                        <!-- <span>
-                                            <input class="form-check-input" type="radio" name="user_gender" id="user_gender_man">
-                                            <label class="form-check-label" for="user_gender_man">남자</label>
-                                        </span>
-                                        <span>
-                                            <input class="form-check-input" type="radio" name="user_gender" id="user_gender_woman">
-                                            <label class="form-check-label" for="user_gender_woman">여자</label>
-                                        </span>
-                                        <span>
-                                            <input class="form-check-input" type="radio" name="user_gender" id="user_gender_etc">
-                                            <label class="form-check-label" for="user_gender_etc">기타</label>
-                                        </span> -->
                                     </div>
                                 </li>
                                 <li>
                                     <label for="">생년월일</label>
-                                    <input type="date" class="form-control" name="dateOfBirth" placeholder="19991212" required>
+                                    <div>
+                                        <input type="date" id="signup_dateOfBirth" class="signup_dateOfBirth valid-birth-num form-control validate-this" name="dateOfBirth" placeholder="19991212" required>
+                                    </div>
                                     <!-- <input type="text" class="form-control" name="dateOfBirth" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="19991212" required> -->
                                 </li>
                                 
                             </ul>
                             <div class="signup_btn">
-                                <button class="btn btn-blue w-100" type="submit">회원가입</button>
+                                <button id="btnSubmit" class="btn btn-blue w-100" type="button">회원가입</button>
                             </div>
                         </div>
                         <div class="tab_content" id="corporate_member">
@@ -165,5 +167,6 @@
     <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
     <script src="/usr/v1/assets/js/custom.js"></script>
+    <!-- <script src="/usr/v1/assets/js/validations.js"></script> -->
 </body>
 </html>

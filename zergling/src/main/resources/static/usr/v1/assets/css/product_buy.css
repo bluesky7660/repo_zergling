@@ -106,7 +106,7 @@ table{
     align-items: center;
     gap: 10px;
 }
-#addressdefSelected{
+#addressSelected{
     width: 200px;
 }
 .address_name_box p{

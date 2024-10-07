@@ -728,15 +728,15 @@
                     <div class="contentArea">
                         <div class="slider-container swiper-container"id="slider6">
                             <div class="swiper-wrapper">
-                                <div>
+                                <div th:each="newProd:${newProd}">
                                     <div class="img-box">
-                                        <img src="./usr/v1/assets/images/prod/300/9791191570724.jpg" alt="Image 1"/>
+                                        <img th:src="'./usr/v1/assets/images/prod/300/' +${newProd.imgSrc} +'.jpg'" alt="Image 1"/>
                                     </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                    <span class="book-type" th:text="${newProd.prodTypeName}">경제/경영</span>
+                                    <p class="book-title" th:text="${newProd.title}">읽고 쓰고 소유하다</p>
+                                    <p><span class="author" th:text="${newProd.authorCount > 1 ? newProd.name+' 외 '+(newProd.authorCount - 1)+'명':newProd.name}">크리스 딕슨</span> · <span th:text="${newProd.publisherName}">어크로스</span></p>
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <div class="img-box">
                                         <img src="./usr/v1/assets/images/prod/300/9788936439569.jpg" alt="Image 1"/>
                                     </div>
@@ -791,7 +791,7 @@
                                     <span class="book-type">소설</span>
                                     <p class="book-title">없는 사람들을 생각해</p>
                                     <span class="author">정지혜 · 자이언트북스</span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="swiper-button swiper-button-next"></div>
@@ -982,12 +982,12 @@
                     </div>                    
                     <div class="contentArea">
                         <ul class="best-content gap-5">
-                            <li>
+                            <li th:each=" bestProd: ${bestProd}">
                                 <div class="img-box">
-                                    <img src="./usr/v1/assets/images/prod/300/9791170611561.jpg" alt="">
+                                    <img th:src="'./usr/v1/assets/images/prod/300/'+ ${bestProd.imgSrc} +'.jpg'" alt="">
                                 </div>
-                                <p class="title">당신이 누군가를 죽였다</p>
-                                <p class="author">히가시노 게이고 · 북다</p>
+                                <p class="title" th:text="${bestProd.title}">당신이 누군가를 죽였다</p>
+                                <p><span class="author" th:text="${bestProd.authorCount > 1 ? bestProd.name+' 외 '+(bestProd.authorCount - 1)+'명':bestProd.name}">히가시노 게이고</span> · <span></span>북다</p></p>
                             </li>
                             <li>
                                 <div class="img-box">

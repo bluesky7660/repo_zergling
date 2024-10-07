@@ -77,14 +77,19 @@ form>*{
 .input_area li>label{
     margin-bottom: 20px;
 }
+/* .input_box input:not(input[type="radio"]){ */
 .input_box input:not(input[type="radio"]){
     display: inline-block;
     width: 100%;
-    /*  */
     font-size: 13px;
     line-height: 30px;
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 15px;   
+}
+.input_box input:not(input[type="radio"]).signup_dateOfBirth{
+    padding-right: 30px;
+}
+.form-control input:not(input[type="radio"]){
     border-color: #ccc;
 }
 .verify_desc *{
@@ -96,6 +101,7 @@ form>*{
 .input_area li{
     margin-bottom: 20px;
 }
+
 /* .input_area li>label{
     display: inline-block;
     margin-bottom: 20px;

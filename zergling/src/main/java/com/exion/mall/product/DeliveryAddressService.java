@@ -19,6 +19,9 @@ public class DeliveryAddressService {
 	public DeliveryAddressDto selectOne(DeliveryAddressDto deliveryAddressDto) {
 			return deliveryAddressDao.selectOne(deliveryAddressDto);
 	}
+	public DeliveryAddressDto buySelectOne(DeliveryAddressDto deliveryAddressDto) {
+		return deliveryAddressDao.buySelectOne(deliveryAddressDto);
+}
 	public DeliveryAddressDto selectDefOne(DeliveryAddressDto deliveryAddressDto) {
 		return deliveryAddressDao.selectDefOne(deliveryAddressDto);
 	}

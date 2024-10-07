@@ -45,6 +45,12 @@ public class ProductService {
 	public List<ProductDto> usrProdList(ProductVo vo){
 		return productDao.usrProdList(vo);
 	}
+	public List<ProductDto> newProdList(ProductVo vo){
+		return productDao.newProdList(vo);
+	}
+	public List<ProductDto> bestProdList(ProductVo vo){
+		return productDao.bestProdList(vo);
+	}
 	public List<ProductDto> xdmProdList(ProductVo vo){
 		return productDao.xdmProdList(vo);
 	}

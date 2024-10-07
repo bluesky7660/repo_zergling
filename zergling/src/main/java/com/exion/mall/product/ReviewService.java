@@ -19,4 +19,18 @@ public class ReviewService {
 	public int listCount(ReviewVo vo) {
 		return reviewDao.listCount(vo);
 	}
+	public Double totalNum(ReviewVo vo) {
+		List<ReviewDto> reviews = reviewDao.totalNum(vo);
+		Double total = 0.0;
+		int count = 0;
+		for(ReviewDto review: reviews) {
+			total += review.getRvScore();
+			count++;
+		}
+		System.out.println("total: " +total );
+		Double result = total/count;
+		System.out.println("result: " +result );
+		
+		return result;
+	}
 }
