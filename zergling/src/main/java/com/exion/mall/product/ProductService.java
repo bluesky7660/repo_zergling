@@ -51,6 +51,9 @@ public class ProductService {
 	public List<ProductDto> bestProdList(ProductVo vo){
 		return productDao.bestProdList(vo);
 	}
+	public List<ProductDto> mdPickProdList(ProductVo vo){
+		return productDao.mdPickProdList(vo);
+	}
 	public List<ProductDto> xdmProdList(ProductVo vo){
 		return productDao.xdmProdList(vo);
 	}

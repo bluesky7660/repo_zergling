@@ -135,302 +135,309 @@
                     <div></div>
                 </div>
                 <div class="contentArea">
-                    <div class="left-box">
-                        <div class="delivery_Info_area">
-                            <form autocomplete="off" method="post" action="">
-                                <input type="hidden" id="prod_seq" name="seq" th:value="${item.seq}">
-                                <!-- <input type="hidden" id="prod_seq" name="daSeq" th:value="${user.daSeq}"> -->
-                                <table>
-                                    <colgroup>
-                                        <col style="width: 200px;">
-                                        <col style="width: auto;">
-                                    </colgroup>
-                                    <tr>
-                                        <th>배송지 정보</th>
-                                        <td class="notaddress" th:if="${(user == null||user == '')}">
-                                            <p>기본배송지가 없습니다. 배송지를 추가해 주세요.</p>
-                                            <button type="button" class="btn" id="addressAdd" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지 추가</button>
-                                        </td>
-                                        <td class="isaddress" th:if="${!(user == null||user == '')}">
-                                            <div class="address_name_box">
-                                                <div>
-                                                    <p>
-                                                        <span class="address_name" th:text="${user.addressName}">집</span>
-                                                    </p>
-                                                    <button type="button" class="btn" id="addressChange" data-bs-toggle="modal" data-bs-target="#addressChangeModal">변경</button>
+                    <form autocomplete="off" method="post" action="/payment/request">
+                        <div class="order_area">
+                            <div class="left-box order_box">
+                                <div class="delivery_Info_area">
+                                    
+                                        <input type="hidden" id="prod_seq" name="seq" th:value="${item.seq}">
+                                        <!-- <input type="hidden" id="prod_seq" name="daSeq" th:value="${user.daSeq}"> -->
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 200px;">
+                                                <col style="width: auto;">
+                                            </colgroup>
+                                            <tr>
+                                                <th>배송지 정보</th>
+                                                <td class="notaddress" th:if="${(user == null||user == '')}">
+                                                    <p>기본배송지가 없습니다. 배송지를 추가해 주세요.</p>
+                                                    <button type="button" class="btn" id="addressAdd" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지 추가</button>
+                                                </td>
+                                                <td class="isaddress" th:if="${!(user == null||user == '')}">
+                                                    <div class="address_name_box">
+                                                        <div>
+                                                            <p>
+                                                                <span class="address_name" th:text="${user.addressName}">집</span>
+                                                            </p>
+                                                            <button type="button" class="btn" id="addressChange" data-bs-toggle="modal" data-bs-target="#addressChangeModal">변경</button>
+                                                        </div>
+                                                        <input type="hidden" name="isSelected" value="false" th:value="${isSelected}">
+                                                        <select name="daSeq" id="addressSelected" class="form-select">
+                                                            <option th:each="AddrList : ${addrList}" th:value="${AddrList.daSeq}" th:text="${AddrList.addressName}" th:selected="${AddrList.daSeq == user.daSeq}"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="address_Info">
+                                                        <p>
+                                                            <span class="rec_name" th:text="${user.RecipientName}">홍길동</span>
+                                                            <span> / </span>
+                                                            <span class="rec_phone" th:text="${user.RecipientPhone != null ? (user.RecipientPhone.startsWith('02') ? 
+                                                            #strings.substring(user.RecipientPhone, 0, 2) + '-' + 
+                                                            #strings.substring(user.RecipientPhone, 2, 6) + '-' + 
+                                                            #strings.substring(user.RecipientPhone, 6) : 
+                                                            #strings.substring(user.RecipientPhone, 0, 3) + '-' + 
+                                                            #strings.substring(user.RecipientPhone, 3, 7) + '-' + 
+                                                            #strings.substring(user.RecipientPhone, 7)) : ''}" >010-1234-5678</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="delivery_address">
+                                                        <p class="ship_address_box">[<span class="post_number" th:text="${user.daZonecode}"></span>] <span class="ship_address" th:text="${user.daRoadAddress}">서울특별시 노원구 한글비석로14길 42</span> <span class="daExtraAddress" th:text="${user.daExtraAddress}">(중계동, 중앙하이츠아파트)</span> <span class="detail_address" th:text="${user.daDetailAddress}"></span></p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="deliveryRequest_box">
+                                                <th>배송요청사항</th>
+                                                <td>
+                                                    <select class="form-select" name="" id="deliveryRequest">
+                                                        <option value="1">현관앞에 가져다주세요</option>
+                                                        <option value="2">경비실에 맡겨주세요</option>
+                                                        <option value="3">배송전에 연락주세요</option>
+                                                        <option value="4">직접입력</option>
+                                                    </select>
+                                                    <div id="directInput_box"></div>
+                                                </td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <th>공동현관 출입방법</th>
+                                                <td></td>
+                                            </tr> -->
+                                        </table>
+                                    
+                                    
+                                    <!-- <div><span>편의점 배송, 해외배송으로 받기</span></div> -->
+                                </div>
+                                <div class="order_products_area">
+                                    <div class="header_box">
+                                        <div>
+                                            <h5>주문상품</h5>
+                                            <p class="total_qty">총 <span>1</span>개</p>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-chevron-up"></i>
+                                        </div>
+                                    </div>
+                                    <div class="orderList_box">
+                                        <ul>
+                                            <li>
+                                                <div class="prod_img">
+                                                    <div class="img-box" th:onclick="|location.href='@{/product_detail(seq=${item.seq})}'|">
+                                                        <img th:src="${'/usr/v1/assets/images/prod/200/'+item.imgSrc+'.jpg'}" alt="">
+                                                    </div>
                                                 </div>
-                                                <input type="hidden" name="isSelected" value="false" th:value="${isSelected}">
-                                                <select name="daSeq" id="addressSelected" class="form-select">
-                                                    <option th:each="AddrList : ${addrList}" th:value="${AddrList.daSeq}" th:text="${AddrList.addressName}" th:selected="${AddrList.daSeq == user.daSeq}"></option>
-                                                </select>
-                                            </div>
-                                            <div class="address_Info">
-                                                <p>
-                                                    <span class="rec_name" th:text="${user.RecipientName}">홍길동</span>
-                                                    <span> / </span>
-                                                    <span class="rec_phone" th:text="${user.RecipientPhone != null ? (user.RecipientPhone.startsWith('02') ? 
-                                                    #strings.substring(user.RecipientPhone, 0, 2) + '-' + 
-                                                    #strings.substring(user.RecipientPhone, 2, 6) + '-' + 
-                                                    #strings.substring(user.RecipientPhone, 6) : 
-                                                    #strings.substring(user.RecipientPhone, 0, 3) + '-' + 
-                                                    #strings.substring(user.RecipientPhone, 3, 7) + '-' + 
-                                                    #strings.substring(user.RecipientPhone, 7)) : ''}" >010-1234-5678</span>
-                                                </p>
-                                            </div>
-                                            <div class="delivery_address">
-                                                <p class="ship_address_box">[<span class="post_number" th:text="${user.daZonecode}"></span>] <span class="ship_address" th:text="${user.daRoadAddress}">서울특별시 노원구 한글비석로14길 42</span> <span class="daExtraAddress" th:text="${user.daExtraAddress}">(중계동, 중앙하이츠아파트)</span> <span class="detail_address" th:text="${user.daDetailAddress}"></span></p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="deliveryRequest_box">
-                                        <th>배송요청사항</th>
-                                        <td>
-                                            <select class="form-select" name="" id="deliveryRequest">
-                                                <option value="1">현관앞에 가져다주세요</option>
-                                                <option value="2">경비실에 맡겨주세요</option>
-                                                <option value="3">배송전에 연락주세요</option>
-                                                <option value="4">직접입력</option>
-                                            </select>
-                                            <div id="directInput_box"></div>
-                                        </td>
-                                    </tr>
-                                    <!-- <tr>
-                                        <th>공동현관 출입방법</th>
-                                        <td></td>
-                                    </tr> -->
-                                </table>
-                            </form>
-                            
-                            <!-- <div><span>편의점 배송, 해외배송으로 받기</span></div> -->
-                        </div>
-                        <div class="order_products_area">
-                            <div class="header_box">
-                                <div>
-                                    <h5>주문상품</h5>
-                                    <p class="total_qty">총 <span>1</span>개</p>
+                                                <div class="prod_title_box">
+                                                    <p class="title" th:onclick="|location.href='@{/product_detail(seq=${item.seq})}'|">
+                                                        [<span>국내도서</span> · <span class="prod_type" th:text="${item.prodTypeName}"></span>]
+                                                        <span class="prod_title" th:text="${item.title}">나쁜 검사들</span>
+                                                    </p>
+                                                </div>
+                                                <div class="pord_quantity">
+                                                    <span>1</span>개
+                                                </div>
+                                                <div class="prod_price">
+                                                    <p class="disc_price"><span th:text="${#numbers.formatInteger(item.salePrice,1,'COMMA') + ' 원'}"></span></p>
+                                                    <p class="regular_price"><span th:text="${#numbers.formatInteger(item.price,1,'COMMA') + ' 원'}"></span></p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="delivery_date_box">
+                                        <p>교보문고 배송</p>
+                                        <p><span class="delivery_date" th:text="${#dates.format(deliveryDate, 'M/d') + ' (' + #dates.format(deliveryDate, 'E') + ')'}"></span> <span>도착</span></p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <i class="fa-solid fa-chevron-up"></i>
+                                <!-- <div class="discount_coupon_area">
+                                    <h5 class="box_label">할인쿠폰</h5>
+                                    <div class="coupons">없음.</div>
                                 </div>
-                            </div>
-                            <div class="orderList_box">
-                                <ul>
-                                    <li>
-                                        <div class="prod_img">
-                                            <div class="img-box" th:onclick="|location.href='@{/product_detail(seq=${item.seq})}'|">
-                                                <img th:src="${'/usr/v1/assets/images/prod/200/'+item.imgSrc+'.jpg'}" alt="">
+                                <div class="cash_point">
+                                    <div class="header_box">
+                                        <div>
+                                            <h5 class="box_label">포인트</h5>
+                                            <div class="cash_point_total">
+                                                <p>사용 <span>0</span> 원</p>
                                             </div>
                                         </div>
-                                        <div class="prod_title_box">
-                                            <p class="title" th:onclick="|location.href='@{/product_detail(seq=${item.seq})}'|">
-                                                [<span>국내도서</span> · <span class="prod_type" th:text="${item.prodTypeName}"></span>]
-                                                <span th:text="${item.title}">나쁜 검사들</span>
+                                        <div>
+                                            <i class="fa-solid fa-chevron-up"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cash_point_list">
+                                        <table>
+                                            <tr>
+                                                <th>포인트</th>
+                                                <td class="available_box">
+                                                    <p class="available"><span>1,000</span> 원</p>
+                                                </td>
+                                                <td>
+                                                    <div class="use_number">
+                                                        <input type="number" class="form-control" step="10" name="" id="" value="0">
+                                                        <span>원</span>
+                                                    </div>
+                                                    <button class="use_all btn">전액사용</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div> -->
+                                <div class="payment_type_box">
+                                    <div class="header_box">
+                                        <div>
+                                            <h5>결제 수단</h5>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="quick_payment unchecked-parent">
+                                        <input type="radio" class="form-radio-input" name="payment_type" id="quick_pay" disabled>
+                                        <label for="quick_pay">간편결제</label>
+                                    </div>
+                                    <div class="other_payment">
+                                        <input type="radio" class="form-radio-input" name="payment_type" id="other_pay" checked>
+                                        <label for="other_pay">다른 결제 수단</label>
+                                    </div> -->
+                                    <ul class="other_payment_list">
+                                        <li>
+                                            <!-- <input type="radio" name="payment_list" id="payment_kakaopay" > -->
+                                            
+                                            <label for="payment_kakaopay">
+                                                KakaoPay로 결제하기
+                                            </label>
+                                            <div>
+                                                <button class="btn" id="KakaoPayBtn" type="button"></button>
+                                            </div>
+                                        </li>
+                                        <!-- <li>
+                                            <input type="radio" name="payment_list" id="payment_card" >
+                                            <label for="payment_card">
+                                                신용/체크카드
+                                            </label>
+                                            
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="payment_list" id="payment_direct_bank_transfer">
+                                            <label for="payment_direct_bank_transfer">
+                                                무통장 결제
+                                            </label>
+                                            
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="payment_list" id="payment_phone">
+                                            <label for="payment_phone">
+                                                휴대폰 결제
+                                            </label>
+                                            
+                                        </li> -->
+                                    </ul>
+                                    <ul class="other_payment_detail">
+                                        <!-- <li class="payment_list_checked">
+                                            <div class="payment_list_box">
+                                                <div>
+                                                    <select class="form-select" name="" id="">
+                                                        <option value="0" selected>카드를 선택해주세요</option>
+                                                        <option value="1">신한카드</option>
+                                                        <option value="2">KB국민카드</option>
+                                                        <option value="3">BC카드(페이북)</option>
+                                                        <option value="4">현대카드</option>
+                                                        <option value="5">롯데카드</option>
+                                                        <option value="6">하나카드</option>
+                                                        <option value="7">삼성카드</option>
+                                                        <option value="8">우리카드</option>
+                                                        <option value="9">씨티카드</option>
+                                                        <option value="10">NH카드</option>
+                                                        <option value="11">카카오뱅크카드</option>
+                                                        <option value="12">케이뱅크카드</option>
+                                                        <option value="13">외환카드</option>
+                                                        <option value="14">기타</option>
+                                                    </select>
+                                                </div>
+                                                <input type="checkbox" class="form-check-input" name="" id="use_for_future">
+                                                <label for="use_for_future">이 결제수단을 다음에도 사용</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="payment_list_box">
+                                                <div>
+                                                    <select class="form-select" name="" id="">
+                                                        <option value="0" selected>은행를 선택해주세요</option>
+                                                        <option value="1">국민은행</option>
+                                                        <option value="2">기업은행</option>
+                                                        <option value="3">농협은행</option>
+                                                        <option value="4">신한은행</option>
+                                                        <option value="5">우리은행</option>
+                                                        <option value="6">우체국</option>
+                                                        <option value="7">하나은행</option>
+                                                    </select>
+                                                </div>
+                                                <input type="checkbox" class="form-check-input" name="" id="use_for_future">
+                                                <label for="use_for_future">이 결제수단을 다음에도 사용</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="payment_list_box">
+                                                <input type="checkbox" class="form-check-input" name="" id="use_for_future">
+                                                <label for="use_for_future">이 결제수단을 다음에도 사용</label>
+                                            </div>
+                                        </li> -->
+                                        <li class="active">
+                                            <div class="payment_list_box">
+                                                <div>Kakaopay</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- <div class="request_cash_receipt_box">
+                                    <input type="checkbox" class="form-check-input" name="" id="request_cash_receipt">
+                                    <label for="request_cash_receipt">현금영수증 신청</label>
+                                </div> -->
+                            </div>
+                            <div class="right-box order_box">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <p>상품 금액</p>
+                                            <p class="prod_total_price">
+                                                <span>0</span> 원
                                             </p>
-                                        </div>
-                                        <div class="pord_quantity">
-                                            <span>1</span>개
-                                        </div>
-                                        <div class="prod_price">
-                                            <p class="disc_price"><span th:text="${#numbers.formatInteger(item.salePrice,1,'COMMA') + ' 원'}"></span></p>
-                                            <p class="regular_price"><span th:text="${#numbers.formatInteger(item.price,1,'COMMA') + ' 원'}"></span></p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="delivery_date_box">
-                                <p>교보문고 배송</p>
-                                <p><span class="delivery_date" th:text="${#dates.format(deliveryDate, 'M/d') + ' (' + #dates.format(deliveryDate, 'E') + ')'}"></span> <span>도착</span></p>
-                            </div>
-                        </div>
-                        <!-- <div class="discount_coupon_area">
-                            <h5 class="box_label">할인쿠폰</h5>
-                            <div class="coupons">없음.</div>
-                        </div>
-                        <div class="cash_point">
-                            <div class="header_box">
-                                <div>
-                                    <h5 class="box_label">포인트</h5>
-                                    <div class="cash_point_total">
-                                        <p>사용 <span>0</span> 원</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <i class="fa-solid fa-chevron-up"></i>
-                                </div>
-                            </div>
-                            <div class="cash_point_list">
-                                <table>
-                                    <tr>
-                                        <th>포인트</th>
-                                        <td class="available_box">
-                                            <p class="available"><span>1,000</span> 원</p>
-                                        </td>
-                                        <td>
-                                            <div class="use_number">
-                                                <input type="number" class="form-control" step="10" name="" id="" value="0">
-                                                <span>원</span>
-                                            </div>
-                                            <button class="use_all btn">전액사용</button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div> -->
-                        <div class="payment_type_box">
-                            <div class="header_box">
-                                <div>
-                                    <h5>결제 수단</h5>
+                                        </li>
+                                        <li>
+                                            <p>배송비</p>
+                                            <p class="delivery_price">
+                                                <span>0</span> 원
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>상품 할인</p>
+                                            <p class="sale_price">
+                                                <span>0</span> 원
+                                            </p>
+                                        </li>
+                                        <!-- <li>
+                                            <p>쿠폰 할인</p>
+                                            <p class="coupon_price">
+                                                <span>0</span> 원
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>포인트 사용</p>
+                                            <p class="point_price">
+                                                <span>0</span> 원
+                                            </p>
+                                        </li> -->
+                                        <li class="total_box">
+                                            <p>최종 결제 금액</p>
+                                            <p class="order_total_price">
+                                                <span>0</span> 원
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>적립 예정 포인트</p>
+                                            <p class="pending_points">
+                                                <span>0</span> p
+                                            </p>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-blue w-100">결제하기</button>
                                 </div>
                             </div>
-                            <!-- <div class="quick_payment unchecked-parent">
-                                <input type="radio" class="form-radio-input" name="payment_type" id="quick_pay" disabled>
-                                <label for="quick_pay">간편결제</label>
-                            </div>
-                            <div class="other_payment">
-                                <input type="radio" class="form-radio-input" name="payment_type" id="other_pay" checked>
-                                <label for="other_pay">다른 결제 수단</label>
-                            </div> -->
-                            <ul class="other_payment_list">
-                                <li></li>
-                                    <input type="radio" name="payment_list" id="payment_kakaopay" >
-                                    <label for="payment_kakaopay">
-                                        KakaoPay
-                                    </label>
-                                    
-                                </li>
-                                <!-- <li>
-                                    <input type="radio" name="payment_list" id="payment_card" >
-                                    <label for="payment_card">
-                                        신용/체크카드
-                                    </label>
-                                    
-                                </li>
-                                <li>
-                                    <input type="radio" name="payment_list" id="payment_direct_bank_transfer">
-                                    <label for="payment_direct_bank_transfer">
-                                        무통장 결제
-                                    </label>
-                                    
-                                </li>
-                                <li>
-                                    <input type="radio" name="payment_list" id="payment_phone">
-                                    <label for="payment_phone">
-                                        휴대폰 결제
-                                    </label>
-                                    
-                                </li> -->
-                            </ul>
-                            <ul class="other_payment_detail">
-                                <!-- <li class="payment_list_checked">
-                                    <div class="payment_list_box">
-                                        <div>
-                                            <select class="form-select" name="" id="">
-                                                <option value="0" selected>카드를 선택해주세요</option>
-                                                <option value="1">신한카드</option>
-                                                <option value="2">KB국민카드</option>
-                                                <option value="3">BC카드(페이북)</option>
-                                                <option value="4">현대카드</option>
-                                                <option value="5">롯데카드</option>
-                                                <option value="6">하나카드</option>
-                                                <option value="7">삼성카드</option>
-                                                <option value="8">우리카드</option>
-                                                <option value="9">씨티카드</option>
-                                                <option value="10">NH카드</option>
-                                                <option value="11">카카오뱅크카드</option>
-                                                <option value="12">케이뱅크카드</option>
-                                                <option value="13">외환카드</option>
-                                                <option value="14">기타</option>
-                                            </select>
-                                        </div>
-                                        <input type="checkbox" class="form-check-input" name="" id="use_for_future">
-                                        <label for="use_for_future">이 결제수단을 다음에도 사용</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="payment_list_box">
-                                        <div>
-                                            <select class="form-select" name="" id="">
-                                                <option value="0" selected>은행를 선택해주세요</option>
-                                                <option value="1">국민은행</option>
-                                                <option value="2">기업은행</option>
-                                                <option value="3">농협은행</option>
-                                                <option value="4">신한은행</option>
-                                                <option value="5">우리은행</option>
-                                                <option value="6">우체국</option>
-                                                <option value="7">하나은행</option>
-                                            </select>
-                                        </div>
-                                        <input type="checkbox" class="form-check-input" name="" id="use_for_future">
-                                        <label for="use_for_future">이 결제수단을 다음에도 사용</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="payment_list_box">
-                                        <input type="checkbox" class="form-check-input" name="" id="use_for_future">
-                                        <label for="use_for_future">이 결제수단을 다음에도 사용</label>
-                                    </div>
-                                </li> -->
-                                <li class="active">
-                                    <div class="payment_list_box">
-                                        <div>Kakaopay</div>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
-                        <!-- <div class="request_cash_receipt_box">
-                            <input type="checkbox" class="form-check-input" name="" id="request_cash_receipt">
-                            <label for="request_cash_receipt">현금영수증 신청</label>
-                        </div> -->
-                    </div>
-                    <div class="right-box">
-                        <div>
-                            <ul>
-                                <li>
-                                    <p>상품 금액</p>
-                                    <p class="prod_total_price">
-                                        <span>0</span> 원
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>배송비</p>
-                                    <p class="delivery_price">
-                                        <span>0</span> 원
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>상품 할인</p>
-                                    <p class="sale_price">
-                                        <span>0</span> 원
-                                    </p>
-                                </li>
-                                <!-- <li>
-                                    <p>쿠폰 할인</p>
-                                    <p class="coupon_price">
-                                        <span>0</span> 원
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>포인트 사용</p>
-                                    <p class="point_price">
-                                        <span>0</span> 원
-                                    </p>
-                                </li> -->
-                                <li class="total_box">
-                                    <p>최종 결제 금액</p>
-                                    <p class="order_total_price">
-                                        <span>0</span> 원
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>적립 예정 포인트</p>
-                                    <p class="pending_points">
-                                        <span>0</span> p
-                                    </p>
-                                </li>
-                            </ul>
-                            <button class="btn btn-blue w-100">결제하기</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 
             </div>
@@ -630,6 +637,38 @@
                 }
                 
             }
+            $("#KakaoPayBtn").click(function(e) {
+                // 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
+                // HTML 요소에서 값 가져오기
+                let itemTitle = $(".prod_title").text().trim(); // 예: id가 itemTitle인 요소에서 텍스트 가져오기
+                console.log(itemTitle);
+                let orderTotalPriceText = $(".order_total_price span").text(); // 총 결제금액 텍스트 가져오기
+    
+                // 천 단위 구분 기호 제거하고 숫자로 변환
+                let orderTotalPrice = parseFloat(orderTotalPriceText.replace(/,/g, '')); 
+                let data = {
+                    name: itemTitle,    // 카카오페이에 보낼 대표 상품명
+                    totalPrice: orderTotalPrice // 총 결제금액
+                };
+            
+                $.ajax({
+                    type: 'POST',
+                    url: '/order/pay/ready',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        // 새 창의 크기와 위치 설정
+                            const width = 500;  // 새 창의 너비
+                            const height = 500; // 새 창의 높이
+                            const left = (screen.width - width) / 2; // 화면 중앙에 위치시키기
+                            const top = (screen.height - height) / 2; // 화면 중앙에 위치시키기
+
+                            // 새 창 열기
+                            window.open(response.next_redirect_pc_url, '', `width=${width},height=${height},top=${top},left=${left}`);
+                        
+                    }
+                });
+            });
             
         }
     </script>

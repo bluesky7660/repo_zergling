@@ -54,6 +54,7 @@ public class indexController {
 	public String index(Model model, ProductVo productVo) {
 		model.addAttribute("newProd", productService.newProdList(productVo));
 		model.addAttribute("bestProd", productService.bestProdList(productVo));
+		model.addAttribute("mdPickProd", productService.mdPickProdList(productVo));
 		System.out.println("index");
 		return "/usr/v1/pages/index";
 	}
