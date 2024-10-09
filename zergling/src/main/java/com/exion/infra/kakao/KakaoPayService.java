@@ -29,9 +29,9 @@ public class KakaoPayService {
         parameters.put("quantity", "1");                                        // 상품 수량
         parameters.put("total_amount", String.valueOf(totalPrice));             // 상품 총액
         parameters.put("tax_free_amount", "0");                                 // 상품 비과세 금액
-        parameters.put("approval_url", "http://localhost/order/pay/completed"); // 결제 성공 시 URL
-        parameters.put("cancel_url", "http://localhost/order/pay/cancel");      // 결제 취소 시 URL
-        parameters.put("fail_url", "http://localhost/order/pay/fail");          // 결제 실패 시 URL
+        parameters.put("approval_url", "http://localhost:8080/order/pay/success"); // 결제 성공 시 URL
+        parameters.put("cancel_url", "http://localhost:8080/order/pay/cancel");      // 결제 취소 시 URL
+        parameters.put("fail_url", "http://localhost:8080/order/pay/fail");          // 결제 실패 시 URL
 
         // HttpEntity : HTTP 요청 또는 응답에 해당하는 Http Header와 Http Body를 포함하는 클래스
         HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
@@ -52,6 +52,7 @@ public class KakaoPayService {
     // 사용자가 결제 수단을 선택하고 비밀번호를 입력해 결제 인증을 완료한 뒤,
     // 최종적으로 결제 완료 처리를 하는 단계
     public ApproveResponse payApprove(String tid, String pgToken) {
+    	System.out.println("승인메서드중");
         Map<String, String> parameters = new HashMap<>();
         parameters.put("cid", "TC0ONETIME");              // 가맹점 코드(테스트용)
         parameters.put("tid", tid);                       // 결제 고유번호

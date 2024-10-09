@@ -1,19 +1,21 @@
 package com.exion.infra.kakao;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exion.common.util.SessionUtils;
 
 @Controller
-@RequestMapping("/order")
+//@RequestMapping("/order/*")
 public class KakaoPayController {
 	
 	private final KakaoPayService kakaoPayService;
@@ -23,7 +25,7 @@ public class KakaoPayController {
         this.kakaoPayService = kakaoPayService;
     }
 
-	@PostMapping("/pay/ready")
+	@PostMapping("/order/pay/ready")
 	@ResponseBody
     public ReadyResponse payReady(@RequestBody OrderCreateForm orderCreateForm) {
         
@@ -44,17 +46,18 @@ public class KakaoPayController {
         return readyResponse;
     }
 
-    @GetMapping("/pay/completed")
+	@GetMapping("/order/pay/completed")
     public String payCompleted(@RequestParam("pg_token") String pgToken) {
     
         String tid = SessionUtils.getStringAttributeValue("tid");
+	        
         System.out.println("결제승인 요청을 인증하는 토큰: " + pgToken);
         System.out.println("결제 고유번호: " + tid);
 
         // 카카오 결제 요청하기
         ApproveResponse approveResponse = kakaoPayService.payApprove(tid, pgToken);
 
-        return "/pay/completed";
+        return "redirect:/order/pay/success";	
     }
 //	private final KakaoPayService kakaoPayService;
 //
@@ -94,20 +97,29 @@ public class KakaoPayController {
 //        }
 //        return paymentResponse; // 자동으로 JSON으로 변환되어 전송
 //    }
-//    @GetMapping("/payment/success")
-//    public String paymentSuccess() {
-//        return "결제가 성공적으로 완료되었습니다."; // 결제 성공 처리
+//    @GetMapping("/order/pay/success")
+//    @ResponseBody
+//    public Map<String, String> paymentSuccess() {
+//        System.out.println("결제가 성공적으로 완료되었습니다.");	
+//        Map<String, String> response = new HashMap<>();
+//        response.put("redirectUrl", "/user_order_list");
+//        return response; // 결제 성공 처리
 //    }
+	@GetMapping("/order/pay/success")
+	public String paymentSuccess() {
+	    System.out.println("결제가 성공적으로 완료되었습니다.");
+	    return "usr/v1/pages/paySuccess"; // 결제 성공 페이지로 리디렉션
+	}
 //
-//    @GetMapping("/payment/cancel")
-//    public String paymentCancel() {
-//        return "결제가 취소되었습니다."; // 결제 취소 처리
-//    }
-//
-//    @GetMapping("/payment/fail")
-//    public String paymentFail() {
-//        return "결제에 실패하였습니다."; // 결제 실패 처리
-//    }
+    @GetMapping("/order/pay/cancel")
+    public String paymentCancel() {
+        return "usr/v1/pages/payCancel"; // 결제 취소 처리
+    }
+
+    @GetMapping("/order/pay/fail")
+    public String paymentFail() {
+        return "usr/v1/pages/payFailed"; // 결제 실패 처리
+    }
 //	@Autowired
 //	KakaoPayService kakaoPayService;
 //    

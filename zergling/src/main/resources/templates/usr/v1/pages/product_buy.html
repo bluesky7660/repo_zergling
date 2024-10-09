@@ -662,14 +662,35 @@
                             const height = 500; // 새 창의 높이
                             const left = (screen.width - width) / 2; // 화면 중앙에 위치시키기
                             const top = (screen.height - height) / 2; // 화면 중앙에 위치시키기
-
-                            // 새 창 열기
-                            window.open(response.next_redirect_pc_url, '', `width=${width},height=${height},top=${top},left=${left}`);
                         
+                            // 새 창 열기
+                            const popup = window.open(response.next_redirect_pc_url, '', `width=${width},height=${height},top=${top},left=${left}`);
+                        
+                            // let timer = setInterval(function() {
+                            //     console.log("감지");
+                            //     if (popup.closed) { 
+                            //         clearInterval(timer);
+                            //         window.location.href = '/user_order_list';
+                            //     }
+                            // }, 1000);
                     }
                 });
             });
             
+        }
+        // 결제 성공 함수
+        function paymentSuccess() {
+            // 새 창이 닫힌 후 할 작업
+            $.ajax({
+                    type: 'POST',
+                    url: '/order/pay/ready',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function(response) {
+
+                    }
+            });
+            window.location.href = '/user_order_list'; // 성공 후 리디렉션
         }
     </script>
 </body>

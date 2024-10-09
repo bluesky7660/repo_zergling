@@ -213,7 +213,7 @@ public class indexController {
 		orderDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 		model.addAttribute("orderlist", orderService.selectUsrList(orderDto));
 //		System.out.println("user_order_list");
-		return "/usr/v1/pages/user_order_list";
+		return "usr/v1/pages/user_order_list";
 	}
 	@RequestMapping(value = "user_password")
 	public String userPassword(Model model,HttpSession httpSession, MemberDto memberDto) {
