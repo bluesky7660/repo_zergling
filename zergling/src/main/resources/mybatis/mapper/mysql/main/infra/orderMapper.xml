@@ -9,12 +9,47 @@
 			    ,a.orderNumber
 			    ,a.orderStatus
 			    ,a.orderDate
-			    ,a.name
+			    ,a.deliveryDate
+			    ,a.uoPrice
+			    ,a.uoQuantity
+			    ,a.uoDeliveryReq
+			    ,a.product_seq
+			    ,c.codeName as orderStatusText
 			    ,a.member_seq
 			from
 				ordertest a
 				join member b on b.seq = a.member_seq
+				join commoncode c on c.seq = a.orderStatus and c.codeGroup_seq = 5
 			where 1 = 1
 				and b.seq = #{seq}
 	</select>
+	<insert id="insert">
+	  		insert into ordertest(
+				orderNumber
+			    ,orderStatus
+			    ,orderDate
+			    ,deliveryDate
+			    ,uoPrice
+			    ,uoQuantity
+			    ,uoDeliveryReq
+			    ,product_seq
+			    ,member_seq
+			    ,deliveryAddress_daSeq
+			    ,uoModDate
+			    ,delNy
+			)value(
+				#{orderNumber}
+			    ,56
+			    ,now()
+			    ,#{deliveryDate}
+				,#{uoPrice}
+			    ,#{uoQuantity}
+				,#{uoDeliveryReq}
+			    ,#{product_seq}
+			    ,#{mmSeq}
+			    ,#{daSeq}
+			    ,now()
+			    ,0
+			)
+	  </insert>
 </mapper>

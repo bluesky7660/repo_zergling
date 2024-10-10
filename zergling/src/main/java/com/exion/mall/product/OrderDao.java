@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderDao {
 	public List<OrderDto> selectUsrList(OrderDto orderDto);
+	public int insert(OrderDto orderDto);
 }

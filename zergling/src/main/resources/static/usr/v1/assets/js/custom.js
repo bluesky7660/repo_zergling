@@ -143,6 +143,105 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         })
     }
+    //엔터 로그인
+    if(document.getElementById("loginform")){
+        document.getElementById("loginform").addEventListener("keydown", function(event) {
+            const feedbackChk = document.querySelector(".invalid-child");
+            const feedback = document.querySelector(".invalid-feedback");
+            if (event.key === "Enter") {
+                let idValid = true;
+                let pwValid = true;
+                let idValue = userId.value.trim();
+                let PasswordValue = userPassword.value.trim();
+        
+                // 아이디 필드 체크
+                if (idValue == "" || idValue == null) {
+                    feedback.textContent = "아이디를 입력해 주세요.";
+                    userId.classList.add('is-invalid');
+                    feedbackChk.classList.add('is-invalid');
+                    idValid = false;
+                } else {
+                    
+                    if(!idRegExp.test(idValue)){
+                        userId.classList.add('is-invalid');
+                        userPassword.classList.add('is-invalid');
+                        feedbackChk.classList.add('is-invalid');
+                        feedback.textContent = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                        idValid = false; 
+                        return false;
+                    }else{
+                        userId.classList.remove('is-invalid');
+                        feedbackChk.classList.remove('is-invalid');
+                    }
+                    
+                }
+        
+                // 비밀번호 필드 체크
+                if (PasswordValue == "" || PasswordValue == null) {
+                    feedback.textContent = "비밀번호를 입력해 주세요.";
+                    userPassword.classList.add('is-invalid');
+                    feedbackChk.classList.add('is-invalid');
+                    pwValid = false;
+                } else {
+                    userPassword.classList.remove('is-invalid');
+                    feedbackChk.classList.remove('is-invalid');
+                }
+        
+                // 아이디와 비밀번호 모두 입력하지 않은 경우 처리
+                if (!idValid && !pwValid) {
+                    feedback.textContent = "아이디와 비밀번호를 입력해 주세요.";
+                }
+        
+                // 둘 다 중에 하나라도 유효하지 않으면 submit 방지
+                if (!idValid || !pwValid) {
+                    feedbackChk.classList.add('is-invalid');
+                    return false;
+                }
+                
+                userId.classList.remove('is-invalid');
+                userPassword.classList.remove('is-invalid');
+                feedbackChk.classList.remove('is-invalid');
+                feedback.textContent = "";
+        
+                //ajax 로그인
+                $.ajax({
+                    async: true 
+                    ,cache: false
+                    ,type: "post"
+                    /* ,dataType:"json" */
+                    // ,url: "/v1/infra/member/loginUsrProc"
+                    ,url: "/loginUsrProc"
+                    /* ,data : $("#formLogin").serialize() */
+                    ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                    ,success: function(response) {
+                        if(response.rt == "success") {
+                            userId.classList.remove('is-invalid');
+                            userPassword.classList.remove('is-invalid');
+                            feedbackChk.classList.remove('is-invalid');
+                            // console.log("response:"+response.rt);
+                            // if(response.rtp == "buy"){
+                            //     location.href = "product_buy";
+                            // }else{
+                                
+                            // }
+                            window.location.href = response.redirectUrl;
+                            // location.href = "index";
+                            
+                        } else {
+                            userId.classList.add('is-invalid');
+                            userPassword.classList.add('is-invalid');
+                            feedbackChk.classList.add('is-invalid');
+                            document.getElementById("invalid-feedback").innerText = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                        }
+                    }
+                    ,error : function(jqXHR, textStatus, errorThrown){
+                        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                    }
+                });
+            }
+        })
+    }
+    
 
     //로그아웃
     const logoutBtn = document.querySelectorAll(".logoutBtn");

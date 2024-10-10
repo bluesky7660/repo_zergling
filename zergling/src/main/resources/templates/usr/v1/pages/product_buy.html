@@ -32,102 +32,7 @@
 </head>
 <body>
     <div class="page-wrapper">
-        <header>
-            <div class="navbar_pc">
-                <div class="customer_service_area d-flex justify-content-end">
-                    <div class="customer_service_box d-flex  align-items-center">
-                        <ul class="d-flex gap-3">
-                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
-                                <a href="signup">회원가입</a>
-                            </li>
-                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
-                                <a href="login">로그인</a>
-                            </li>
-                            <!-- <li class="">
-                                <a href="javascript:void(0);">회원혜택</a>
-                            </li> -->
-                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
-                                <a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문배송</a>
-                            </li>
-                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
-                                <span class="logoutBtn">로그아웃</span>
-                            </li>
-                            <!-- <li class="">
-                                <a href="javascript:void(0);">매장안내</a>
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0);">고객센터</a>
-                            </li> -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="scrolltable">
-                    <div class="gnb_search d-flex justify-content-between gap-5">
-                        <div class="search_wrapper d-flex align-items-center  gap-5">
-                            <div class="logo" onclick="window.location.href='index'">
-                                <img src="./usr/v1/assets/images/logo_book.svg" alt="">
-                            </div>
-                            <div class="search_area w-100">
-                                <div class="search_box d-flex align-items-center gap-3">
-                                    <input type="text" class="input-search">
-                                    <button class="search_btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user_box">
-                            <a class="user_my" href="user_account">
-                                <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
-                                <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="mmSeq" name="mmSeq" th:value="${session.sessSeqXdm}">
-                                <span class="usr-imgbox">
-                                    <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <nav class="gnb_list d-flex align-items-center gap-4">
-                        <div class="gnb_wrapper d-flex align-items-center gap-5">
-                            <button class="circle_btn"><i class="fa-solid fa-bars"></i></button>
-                            <div class="anb_wrapper">
-                                <div class="anb_wrapper_area">
-                                    <div class="anb_wrapper_list">
-                                        <h5 class="anb_category">국내도서</h5>
-                                        <ul>
-                                            <li onclick="window.location.href='product_list'">국내도서 - 소설</li>
-                                            <li onclick="window.location.href='product_list'">국내도서 - 시/에세이</li>
-                                            <li onclick="window.location.href='product_detail?seq=1'">도서 상세보기</li>
-                                            <li onclick="window.location.href='product_buy?seq=1'">도서 구매</li>
-                                        </ul>
-                                    </div>
-                                    <div class="anb_wrapper_list">
-                                        <h5 class="anb_category">회원정보</h5>
-                                        <ul>
-                                            <li onclick="window.location.href='user_order_list?seq=1'">주문/배송목록</li>
-                                            <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
-                                            <li onclick="window.location.href='user_delivery_address_add'">배송지추가</li>
-                                            <li onclick="window.location.href='user_account'">회원정보 변경</li>
-                                            <li onclick="window.location.href='user_password'">비밀번호 변경</li>
-                                        </ul>
-                                    </div>
-                                    <div class="anb_wrapper_list">
-                                        <h5 class="anb_category">그외 기타</h5>
-                                        <ul>
-                                            <li onclick="window.location.href='login'">로그인</li>
-                                            <li onclick="window.location.href='signup'">회원가입</li>
-                                            <li onclick="window.location.href='account_recovery'">비밀번호 찾기</li>
-                                            <li onclick="window.location.href='account_recovery'">아이디 찾기</li>
-                                            <li onclick="window.location.href='header_ver2'">헤더 다른버전2</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="gnb_link gap-3">
-                            <li onclick="window.location.href='product_list'">국내도서</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
+        <div th:replace="~{usr/v1/infra/include/head :: header}"></div>
         <main>
             <div class="content_wrapper">
                 <div class="header_box">
@@ -187,7 +92,7 @@
                                             <tr class="deliveryRequest_box">
                                                 <th>배송요청사항</th>
                                                 <td>
-                                                    <select class="form-select" name="" id="deliveryRequest">
+                                                    <select class="form-select" name="uoDeliveryReq" id="deliveryRequest">
                                                         <option value="1">현관앞에 가져다주세요</option>
                                                         <option value="2">경비실에 맡겨주세요</option>
                                                         <option value="3">배송전에 연락주세요</option>
@@ -442,104 +347,8 @@
                 
             </div>
         </main>
-        <div class="top_btn"><i class="fa-solid fa-xl fa-chevron-up"></i></div>
-        <footer>
-            <div class="notice">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex gap-3">
-                            <strong>공지사항</strong>
-                            <span class="notice_text">
-                                상품권(해피머니, 컬쳐캐쉬) 사용 일시 중지 안내
-                            </span>
-                        </div>
-                        <strong class="notice_more">더보기</strong>
-                    </div>
-                    <span class="line_space">|</span>
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex gap-3">
-                            <strong>당첨자발표</strong>
-                            <span class="notice_text">
-                                [로맨스/BL소설][24년 7/5] 먼슬리 교보💰캐시DREAM 당첨자 발표
-                            </span>
-                        </div>
-                        <strong class="notice_more">더보기</strong>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="footer mt-3">
-                <div class="footer-top d-flex justify-content-between">
-                    <div class="logo">
-                        <img src="/usr/v1/assets/images/img_logo_kyobo_member@2x.png" alt="">
-                    </div>
-                    <div class="d-flex gap-3 align-items-center">
-                        <select class="form-select" name="" id="">
-                            <option value="">Family Site</option>
-                        </select>
-                        <div class="icons d-flex gap-3">
-                            <div class="icon-box"><img src="/usr/v1/assets/images/btn_footer_sns_youtube_v2@2x.png" alt=""></div>
-                            <div class="icon-box"><img src="/usr/v1/assets/images/btn_footer_sns_fb_v2@2x.png" alt=""></div>
-                            <div class="icon-box"><img src="/usr/v1/assets/images/btn_footer_sns_insta_v2@2x.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom d-flex mt-3 gap-2">
-                    <div class="left-box">
-                        <ul class="footer_menu_list d-flex gap-3">
-                            <li>회사소개</li>
-                            <li>이용약관</li>
-                            <li>개인정보처리방침</li>
-                            <li>청소년보호정책</li>
-                            <li>대량주문안내</li>
-                            <li>협력사여러분</li>
-                            <li>채용정보</li>
-                            <li>광고소개</li>
-                        </ul>
-                        <ul class="footer_info_box d-flex flex-wrap gap-1 mt-3">
-                            <li>대표이사 : 안병현, 김상훈</li>
-                            <li>서울특별시 종로구 종로 1</li>
-                            <li>사업자등록번호 : 102-81-11670</li>
-                            <li>대표전화 : 1544-1900(발신자 부담전화)</li>
-                            <li>FAX : 0502-987-5711(지역번호 공통)</li>
-                            <li>서울특별시 통신판매업신고번호 : 제 653호</li>
-                            <li class="btn_footer">사업자정보확인</li>
-                        </ul>
-                        <div class="copyright"></div>
-                    </div>
-                    <div class="right-box">
-                        <div>
-                            <p>
-                                <span>토스페이먼츠 구매안전서비스</span>
-                                <span class="btn_footer">서비스 가입 확인</span>
-                            </p>
-                            <span>
-                                고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한<br>
-                                토스페이먼츠의 구매안전서비스를 이용하실 수 있습니다.
-                            </span>
-                        </div>
-
-                        <div class="d-flex mt-3 gap-3">
-                            <div class="d-flex gap-2">
-                                <div class="img-box">
-                                    <img src="/usr/v1/assets/images/img_mark_isms@2x.png" alt="">
-                                </div>
-                                <p>
-                                    정보보호관리체계<br>ISMS 인증획득
-                                </p>
-                            </div>
-                            <div>
-                                <p>
-                                    [인증범위] 인터넷 교보문고 및 브랜드 서비스 운영<br>
-                                    [유효기간] 2023.11.15 ~ 2026.11.14
-                                </p>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <div th:replace="~{usr/v1/infra/include/side :: top}"></div>
+        <div th:replace="~{usr/v1/infra/include/footer :: footer}"></div>
     </div>
     <!-- modals -->
     <!-- <div class="modal fade" id="addressAddModal" tabindex="-1" aria-labelledby="addressAddModalLabel" aria-hidden="true">
@@ -620,7 +429,7 @@
     <script src="/usr/v1/assets/js/custom.js"></script>
     <script src="/usr/v1/assets/js/buy.js"></script>
     <script src="/usr/v1/assets/js/header.js"></script>
-    <script>
+    <script th:inline="javascript" type="text/javascript">
         window.onload = function() {
             const isaddress = document.querySelector(".isaddress");
             
@@ -638,16 +447,26 @@
                 
             }
             $("#KakaoPayBtn").click(function(e) {
+                
                 // 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
                 // HTML 요소에서 값 가져오기
-                let itemTitle = $(".prod_title").text().trim(); // 예: id가 itemTitle인 요소에서 텍스트 가져오기
-                console.log(itemTitle);
+                let itemTitle = $(".title").text(); // 예: id가 itemTitle인 요소에서 텍스트 가져오기
+                const formattedTitle = itemTitle.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                
                 let orderTotalPriceText = $(".order_total_price span").text(); // 총 결제금액 텍스트 가져오기
-    
+                let userName = $("#mmId").val();
+                
+
+                let orderQuantity = parseFloat($(".total_qty span").text().replace(/,/g, ''));
                 // 천 단위 구분 기호 제거하고 숫자로 변환
                 let orderTotalPrice = parseFloat(orderTotalPriceText.replace(/,/g, '')); 
+                console.log(formattedTitle);
+                console.log(userName);
+                console.log(orderQuantity);
                 let data = {
-                    name: itemTitle,    // 카카오페이에 보낼 대표 상품명
+                    name: formattedTitle,    // 카카오페이에 보낼 대표 상품명
+                    userId: userName,
+                    quantity: orderQuantity,
                     totalPrice: orderTotalPrice // 총 결제금액
                 };
             
@@ -679,18 +498,44 @@
             
         }
         // 결제 성공 함수
-        function paymentSuccess() {
-            // 새 창이 닫힌 후 할 작업
+        function paymentSuccess(approveResponse) {
+            let deliveryDate = /*[[${#dates.format(deliveryDate,'yyyy-MM-dd')}]]*/ '';
+                
+            let orderTotalPrice = parseFloat($(".order_total_price span").text().replace(/,/g, '')); 
+            const uoDeliveryReqInput = document.getElementById("directInput");
+            var uoDeliveryReq = "";
+            if (deliveryRequest.value == 4) {
+                    uoDeliveryReq = uoDeliveryReqInput.value;
+            }else{
+                uoDeliveryReq = deliveryRequest.options[deliveryRequest.selectedIndex].text;
+            }
+            console.log("uoDeliveryReq: " +uoDeliveryReq);
+            console.log("Delivery Date: " + deliveryDate);
+            console.log('결제 승인 데이터:', approveResponse);
+            console.log(approveResponse.partner_order_id);
             $.ajax({
-                    type: 'POST',
-                    url: '/order/pay/ready',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json',
-                    success: function(response) {
-
-                    }
+                async: true 
+                ,cache: false
+                ,type: "post"
+                ,url: "/orderinst"
+                ,data : { 
+                    "orderNumber" : approveResponse.partner_order_id
+                    ,"uoQuantity": $(".total_qty span").text()
+                    ,"uoPrice":orderTotalPrice
+                    ,"uoDeliveryReq":uoDeliveryReq
+                    ,"product_seq":$("#prod_seq").val()
+                    ,"daSeq":$("#addressSelected").val()
+                    ,"mmSeq":$("#mmSeq").val()
+                    ,"deliveryDate":deliveryDate
+                }
+                ,success: function(response) {
+                    window.location.href = '/user_order_list';
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("insert ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
             });
-            window.location.href = '/user_order_list'; // 성공 후 리디렉션
+            // window.location.href = '/user_order_list'; // 성공 후 리디렉션
         }
     </script>
 </body>

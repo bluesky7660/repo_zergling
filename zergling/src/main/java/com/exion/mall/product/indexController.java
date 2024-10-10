@@ -208,12 +208,43 @@ public class indexController {
 //		return "redirect:index";
 //	}
 	@RequestMapping(value = "user_order_list")
-	public String userOrderList(Model model, HttpSession httpSession, OrderDto orderDto, MemberDto memberDto) {
+	public String userOrderList(Model model, HttpSession httpSession, OrderDto orderDto, MemberDto memberDto,ProductVo productVo) {
 //		model.addAttribute("member", memberService.selectOne(memberDto));
 		orderDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+		
 		model.addAttribute("orderlist", orderService.selectUsrList(orderDto));
-//		System.out.println("user_order_list");
+		System.out.println("orderDto:"+orderDto.getProduct_seq());
+		System.out.println("selectUsrList:"+orderService.selectUsrList(orderDto).get(0).getDeliveryDate()+", "+orderService.selectUsrList(orderDto).get(0).getOrderNumber());
+		productVo.setSeq(orderService.selectUsrList(orderDto).get(0).getProduct_seq());
+		model.addAttribute("prod", productService.prodUsrOne(productVo));
+		System.out.println("user_order_list");
 		return "usr/v1/pages/user_order_list";
+	}
+//	@RequestMapping(value = "orderinst")
+//	public String orderinst(Model model, HttpSession httpSession, OrderDto orderDto, MemberDto memberDto) {
+//		
+//		return "redirect:user_order_list";
+//	}
+	
+	@ResponseBody
+	@RequestMapping(value = "orderinst")
+	public Map<String, Object> orderinst(OrderDto orderDto){
+//		orderDto.setProduct_seq(orderDto.getSeq()); 
+		System.out.println("orderinst");
+		System.out.println("상품seq:"+orderDto.getProduct_seq());
+		System.out.println("유저seq:"+orderDto.getMmSeq());
+		System.out.println("주소seq:"+orderDto.getDaSeq());
+		Integer rtOrder = orderService.insert(orderDto);
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		if (rtOrder != null) {
+			System.out.println("성공");
+			returnMap.put("rt", "success");
+		} else {
+			System.out.println("실패");
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
 	}
 	@RequestMapping(value = "user_password")
 	public String userPassword(Model model,HttpSession httpSession, MemberDto memberDto) {
@@ -229,8 +260,9 @@ public class indexController {
 //	}
 	
 	@RequestMapping(value = "product_detail")
-	public String productDetail(Model model, ReviewVo reviewVo, ReviewDto reviewDto, ProductDto productDto,@ModelAttribute("vo") ProductVo vo,AuthorVo authorVo,ProductAuthorDto productAuthorDto) {
-		List<ReviewDto> lists = reviewService.selectUsrList(reviewDto);
+	public String productDetail(Model model,@ModelAttribute("vo") ReviewVo reviewVo, ReviewDto reviewDto, ProductDto productDto,ProductVo vo,AuthorVo authorVo,ProductAuthorDto productAuthorDto) {
+		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
+		List<ReviewDto> lists = reviewService.selectUsrList(reviewVo);
 		for(ReviewDto list:lists) {
 			System.out.println("점수: "+list.getRvScore()+" , 이름: "+list.getRvName());
 		}
@@ -240,7 +272,7 @@ public class indexController {
 		model.addAttribute("authors", authorService.authorUsrList(authorVo));
 		model.addAttribute("rvTags", codeService.tagsList());
 		model.addAttribute("rvCount", reviewService.listCount(reviewVo));
-		model.addAttribute("rvList", reviewService.selectUsrList(reviewDto));
+		model.addAttribute("rvList", reviewService.selectUsrList(reviewVo));
 		System.out.println("rvCount:" +reviewService.listCount(reviewVo));
 		System.out.println("목차: "+productService.prodOne(productDto).getIntro());
 //		model.addAttribute("author", authorService.authorOne(authorDto));

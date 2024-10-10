@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,33 +32,44 @@ public class KakaoPayController {
         
         String name = orderCreateForm.getName();
         int totalPrice = orderCreateForm.getTotalPrice();
+        int quantity = orderCreateForm.getQuantity();
+        String userId = orderCreateForm.getUserId();
+        String deliveryReq = orderCreateForm.getUoDeliveryReq();
         
         System.out.println("주문 상품 이름: " + name);
         System.out.println("주문 금액: " + totalPrice);
-
+        System.out.println("결제 회원 아이디: " + userId);
         // 카카오 결제 준비하기
-        System.out.println("결제 고유번호2: " + kakaoPayService.payReady(name, totalPrice).getTid());
-        ReadyResponse readyResponse = kakaoPayService.payReady(name, totalPrice);
+        System.out.println("결제 고유번호2: " + kakaoPayService.payReady(name, totalPrice, quantity , userId).getTid());
+        ReadyResponse readyResponse = kakaoPayService.payReady(name, totalPrice , quantity , userId);
         // 세션에 결제 고유번호(tid) 저장
         System.out.println("결제 고유번호: " + readyResponse.getTid());
+        System.out.println("결제 회원 아이디: " + userId);
         SessionUtils.addAttribute("tid", readyResponse.getTid());
-        
+        SessionUtils.addAttribute("userId", userId);
+        SessionUtils.addAttribute("Price", totalPrice);
+        SessionUtils.addAttribute("quantity", quantity);
+        SessionUtils.addAttribute("deliveryReq", deliveryReq);
 
         return readyResponse;
     }
 
 	@GetMapping("/order/pay/completed")
-    public String payCompleted(@RequestParam("pg_token") String pgToken) {
+    public String payCompleted(Model model, @RequestParam("pg_token") String pgToken) {
     
         String tid = SessionUtils.getStringAttributeValue("tid");
+        String userId = SessionUtils.getStringAttributeValue("userId");
 	        
         System.out.println("결제승인 요청을 인증하는 토큰: " + pgToken);
         System.out.println("결제 고유번호: " + tid);
+        System.out.println("결제 회원 아이디: " + userId);
 
         // 카카오 결제 요청하기
-        ApproveResponse approveResponse = kakaoPayService.payApprove(tid, pgToken);
-
-        return "redirect:/order/pay/success";	
+        ApproveResponse approveResponse = kakaoPayService.payApprove(tid, pgToken,userId);
+        System.out.println("결제승인:" +approveResponse.getPartner_order_id());
+        System.out.println("completed: 결제가 성공적으로 완료되었습니다.");
+        model.addAttribute("pay", approveResponse);
+        return "usr/v1/pages/paySuccess";	
     }
 //	private final KakaoPayService kakaoPayService;
 //
@@ -107,7 +119,7 @@ public class KakaoPayController {
 //    }
 	@GetMapping("/order/pay/success")
 	public String paymentSuccess() {
-	    System.out.println("결제가 성공적으로 완료되었습니다.");
+	    System.out.println("success: 결제가 성공적으로 완료되었습니다.");
 	    return "usr/v1/pages/paySuccess"; // 결제 성공 페이지로 리디렉션
 	}
 //

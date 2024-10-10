@@ -10,8 +10,8 @@ public class ReviewService {
 	@Autowired
 	ReviewDao reviewDao;
 	
-	public List<ReviewDto> selectUsrList(ReviewDto reviewDto){
-		return reviewDao.selectUsrList(reviewDto);
+	public List<ReviewDto> selectUsrList(ReviewVo vo){
+		return reviewDao.selectUsrList(vo);
 	}
 	public int insert(ReviewDto reviewDto) {
 		return reviewDao.insert(reviewDto);

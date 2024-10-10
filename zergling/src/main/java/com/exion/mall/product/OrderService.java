@@ -13,4 +13,7 @@ public class OrderService {
 	public List<OrderDto> selectUsrList(OrderDto orderDto){
 		return orderDao.selectUsrList(orderDto);
 	}
+	public int insert(OrderDto orderDto) {
+		return orderDao.insert(orderDto);
+	}
 }

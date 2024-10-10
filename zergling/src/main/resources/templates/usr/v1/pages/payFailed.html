@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>결제 성공</title>
-    <script th:inline="javascript" type="text/javascript">
+    <title>결제 실패</title>
+    <script>
         // 결제가 완료되면 이 함수가 실행됩니다.
         window.onload = function() {
-            var approveResponse = /*[[${pay}]]*/ {};
-            // 메인 페이지로 리디렉션
-            window.opener.paymentSuccess(approveResponse);
+            window.opener.location.href = "/";
             setTimeout(function() {
-                // 새 창을 닫기
-                window.close();
+                self.close();
             }, 2000); // 2초 후에 창을 닫습니다.
         };
     </script>
 </head>
 <body>
-    <h1>결제가 성공적으로 완료되었습니다.</h1>
-    <div th:text="${pay}"></div>
+    <h1>결제가 실패되었습니다.</h1>
+    <p>다시 시도해 주시기바랍니다.</p>
+    <p></p>
     <p>잠시 후 페이지가 닫힙니다...</p>
 </body>
 </html>
