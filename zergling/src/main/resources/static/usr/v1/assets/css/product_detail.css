@@ -461,14 +461,12 @@
     border-radius: 30px;
     margin-top: 30px;
 }
-.review_write_box>*:not(:nth-child(3),:last-child){
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 50px;
+.review_write_box div .box_title{
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 600;
 }
-.review_write_box .box_title{
-    font-weight: bolder;
-}
-.review_write_box .box_title::after{
+.review_write_box div .box_title::after{
     content: " *";
     color:#357b19;
 }
@@ -500,8 +498,14 @@
 }
 .rating_prod_title{
     display: inline-block;
-    font-size: 20px;
+    /* font-size: 20px; */
     margin-bottom: 20px;
+    margin-left: 10px;
+}
+.user_select_tags_box{
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #aaa;
 }
 /* .review_write_box input[type="radio"]:checked + label::before {
     background-color: #007bff;

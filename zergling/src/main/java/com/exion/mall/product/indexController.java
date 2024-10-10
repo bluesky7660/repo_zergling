@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -349,6 +350,29 @@ public class indexController {
 		
 		return returnMap;
 	}
+	@ResponseBody
+	@RequestMapping(value = "reviewInst")
+	public Map<String, Object> reviewInst(ReviewDto reviewDto){
+		Integer rtReview = reviewService.insert(reviewDto);
+		Map<String, Object> returnMap = new HashMap<>();
+		if(rtReview != null) {
+			System.out.println("성공");
+			
+			returnMap.put("rt", "success");
+		}else {
+			System.out.println("실패");
+			returnMap.put("rt", "fail");
+		}
+		
+		return returnMap;
+	}
+	@ResponseBody
+	@RequestMapping(value = "RefreshReviews")
+    public List<ReviewDto> RefreshReviews(@RequestBody ReviewVo reviewVo) {
+//		reviewVo.setProduct_seq(productSeq);
+//        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
+		return reviewService.selectUsrList(reviewVo);
+    }
 	@RequestMapping(value = "account_recovery")
 	public String accountRecovery() {
 		System.out.println("account_recovery");

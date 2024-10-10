@@ -475,8 +475,57 @@ $(document).ready(function(){
     // console.log("태그 분포:", tagCounts);
 
     
-    
-
-    
+    // const rvtaginput = document.querySelector
+    const rvBtn = document.getElementById("rvBtn");
+    if(rvBtn){
+        const params = new URLSearchParams(window.location.search);
+        const productSeq = params.get('seq');
+        rvBtn.addEventListener("click", function() {
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                ,url: "/loginUsrProc"
+                ,data : { 
+                    "member_seq" : $("#userIdSeq").val().trim()
+                    ,"product_seq" : productSeq 
+                    ,"rvSelectTag":$("input[name='rvSelectTag']:checked").val().trim()
+                    ,"rvContent":$("#rvContent").text()
+                    ,"rvScore":$("#rvUsrScore").val()
+                }
+                ,success: function(response) {
+                    if(response.rt == "success") {
+                        
+                        
+                    } else {
+                        userId.classList.add('is-invalid');
+                        userPassword.classList.add('is-invalid');
+                        feedbackChk.classList.add('is-invalid');
+                        document.getElementById("invalid-feedback").innerText = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        });
+    }
+    function loadReviewList() {
+        $.ajax({
+            async: true 
+            ,cache: false
+            ,type: "post"
+            ,url: "/RefreshReviews"
+                ,data : { 
+                    "product_seq" : productSeq
+                }
+            ,success: function(response) {
+                
+            }
+            ,error : function(jqXHR, textStatus, errorThrown){
+                alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+            }
+        });
+    }
 
 });

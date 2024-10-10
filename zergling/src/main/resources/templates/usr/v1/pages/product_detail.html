@@ -137,7 +137,6 @@
                                     <button class="increase-button">+</button>
                                 </div>
                                 <div class="buy_btn_box">
-                                    <button class="btn">장바구니</button>
                                     <button class="btn" th:onclick="|location.href='@{/product_buy(seq=${product.seq})}'|">바로구매</button>
                                 </div>
                                 
@@ -620,50 +619,34 @@
                             </div>
                             <div class="review_write_box d-flex flex-column gap-4 align-items-strat">
                                 <p class="box_title">리뷰작성</p>
-                                <div class="review_head d-flex align-items-center gap-4 ">
-                                    <div class="img-box">
-                                        <img th:src="${'/usr/v1/assets/images/prod/200/'+ product.imgSrc+'.jpg'}" alt="">
+                                <form action="">
+                                    <div class="user_select_tags_box">
+                                        <p class="box_title">감성 태그</p>
+                                        <p class="mb-5">가장 와 닿는 하나의 키워드를 선택해주세요.</p>
+                                        <ul class="user_select_tags d-flex justify-content-between mt-3">
+                                            <li th:each="tags:${rvTags}">
+                                                <input type="radio" name="rvSelectTag" th:id="'select_tag' + ${tagsStat.count}" th:value="${tags.seq}">
+                                                <label th:for="'select_tag' +${tagsStat.count}" th:text="${tags.codeName}">고마워요</label>
+                                            </li>
+                                        </ul>
+                                        <!-- <input type="text"> -->
                                     </div>
-                                    <div class="user_rating_star_box">
-                                        <strong class="rating_prod_title" th:text="${product.title}"></strong>
-                                        <div class="user_rating_star">
-                                            <input id="rating-input" name="rating" class="custom-star" value="10" />
+                                    <div class="review_text_box">
+                                        <p class="box_title">리뷰 작성</p>
+                                        <div class="review_head d-flex align-items-center gap-4 ">
+                                            <div class="user_rating_star_box">
+                                                <strong class="rating_prod_title" th:text="${product.title}"></strong>
+                                                <div class="user_rating_star">
+                                                    <input id="rating-input" class="custom-star" value="0" />
+                                                </div>
+                                                <input type="hidden" id="rvUsrScore" name="rvScore" value="0" />
+                                            </div>
                                         </div>
+                                        <textarea name="rvContent" class="form-control" id="review_text" rows="3" placeholder="내용을 50자 이상 입력해 주세요. 주제와 무관한 댓글, 악플, 배송문의 등의 글은 임의 삭제될 수 있습니다."></textarea>
                                     </div>
-                                </div>
-                                <div class="user_select_tags_box">
-                                    <p class="box_title">감성 태그</p>
-                                    <p class="mb-5">가장 와 닿는 하나의 키워드를 선택해주세요.</p>
-                                    <ul class="user_select_tags d-flex justify-content-between mt-3">
-                                        <li>
-                                            <input type="radio" name="select_tags" id="select_tag1">
-                                            <label for="select_tag1">고마워요</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="select_tags" id="select_tag2">
-                                            <label for="select_tag2">최고예요</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="select_tags" id="select_tag3">
-                                            <label for="select_tag3">공감돼요</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="select_tags" id="select_tag4">
-                                            <label for="select_tag4">재밌어요</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="select_tags" id="select_tag5">
-                                            <label for="select_tag5">힐링돼요</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="review_text_box">
-                                    <p class="box_title">리뷰 작성</p>
-                                    <textarea name="" class="form-control" id="review_text" rows="3" placeholder="내용을 50자 이상 입력해 주세요. 주제와 무관한 댓글, 악플, 배송문의 등의 글은 임의 삭제될 수 있습니다."></textarea>
-                                </div>
+                                </form>
                                 <div class="review_btn_box d-flex gap-2 align-items-center justify-content-end">
-                                    <p>구매 후 리뷰 작성 시, e교환권 200원 적립</p>
-                                    <button class="btn btn-blue">리뷰작성</button>
+                                    <button id="rvBtn" type="button" class="btn btn-blue">리뷰작성</button>
                                 </div>
                             </div>
                         </div>
@@ -761,7 +744,7 @@
                 </div>
             </div>
         </main>
-        <div th:replace="~{usr/v1/infra/include/side :: top}"></div>
+        <div class="top_btn"><i class="fa-solid fa-xl fa-chevron-up"></i></div>
         <div th:replace="~{usr/v1/infra/include/footer :: footer}"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
