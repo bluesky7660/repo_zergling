@@ -335,7 +335,7 @@
     font-size: 14px;
     color: #aaa;
 }
-.review_list .review_head .line_space{
+.review_list .review_head span:not(.user_id,.day){
     font-size: 12px;
     margin:0;
 }
@@ -387,7 +387,12 @@
 .review_footer{
     display: flex;
     gap: 10px;
-    justify-content: end;
+    justify-content: space-between;
+}
+.review_footer .review_footer_etc{
+    display: flex;
+    align-self: center;
+    gap: 10px;
 }
 .review_footer *{
     font-size: 14px;

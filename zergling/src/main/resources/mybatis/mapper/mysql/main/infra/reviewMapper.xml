@@ -26,12 +26,19 @@
 			    ,b.codeName as rvSelectTagName
 			    ,d.name as rvName
 			<include refid="selectCommon"/>
+		order by 
+			a.rvRegDate desc
 		<include refid="base.selectListLowerForMysql"/>
+		
 	</select>
 	<select id="listCount" resultType="int">
         	SELECT COUNT(*) 
         	<include refid="selectCommon"/>
    	</select>
+   	<!-- <select id="reviewsScore" resultMap="resultObj">
+        	SELECT COUNT(*) 
+        	<include refid="selectCommon"/>
+   	</select> -->
    	<select id="totalNum">
    		select 
    			a.rvSeq

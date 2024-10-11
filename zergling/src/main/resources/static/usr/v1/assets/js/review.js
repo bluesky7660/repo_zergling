@@ -1,4 +1,238 @@
+const scoreCounts = {
+    '10': 0,
+    '7.5': 0,
+    '5': 0,
+    '2.5': 0,
+    '0':0,
+    total: 0,
+    count: 0
+};
+const tagCounts = {
+    "고마워요": 0,
+    "최고예요": 0,
+    "공감돼요": 0,
+    "재밌어요": 0,
+    "힐링돼요": 0
+    
+};
+// function rvCloverImg(reviews) {
+//     reviews.forEach(function(review) {
+//         // const reviewNum = parseFloat(review.querySelector(".user_review_num").textContent);
+//         // const reviewTagN = review.querySelector(".user_select_tag").textContent; // 태그 이름
+//         // const reviewTag = review.querySelector(".user_select_tag").textContent;
+//         const reviewClover = review.querySelector(".clover_box");
+//         let i;
+//          // 불투명도 설정
+//         switch (reviewNum) {
+//             case 10:
+//                 reviewClover.querySelectorAll("li").forEach(function(item) {
+//                     item.style.opacity = "1";
+//                 });
+//                 break;
+//             case 7.5:
+//                 i=0;
+//                 reviewClover.querySelectorAll("li").forEach(function(item) {
+//                     item.style.opacity = i > 2 ? "0.3" : "1";
+//                     i++;
+//                 });
+//                 break;
+//             case 5:
+//                 i = 0;
+//                 reviewClover.querySelectorAll("li").forEach(function(item) {
+//                     item.style.opacity = i > 1 ? "0.3" : "1";
+//                     i++;
+//                 });
+//                 break;
+//             case 2.5:
+//                 i = 0;
+//                 reviewClover.querySelectorAll("li").forEach(function(item) {
+//                     item.style.opacity = i > 0 ? "0.3" : "1";
+//                     i++;
+//                 });
+//                 break;
+//             default:
+//                 reviewClover.querySelectorAll("li").forEach(function(item) {
+//                     item.style.opacity = "0.3";
+//                 });
+//                 break;
+//         }
+
+//         // 점수 카운트
+//         if (scoreCounts.hasOwnProperty(reviewNum)) {
+//             scoreCounts[reviewNum]++;
+//         }
+
+//         // 총점과 리뷰 수
+//         scoreCounts.total += reviewNum;
+//         scoreCounts.count++;
+
+//         // 태그 카운트
+        
+//         if (tagCounts.hasOwnProperty(reviewTag)) {
+//             tagCounts[reviewTag]++;
+//         }
+//     });
+// }
+function updatePagination(thisPage, totalPages) {
+    // 페이징 UI 업데이트 로직
+    const paginationList = document.querySelector('.dataTable-pagination-list');
+    paginationList.innerHTML = ''; // 기존 페이징 요소 초기화
+
+    // 첫 페이지 버튼
+    const firstPageItem = document.createElement('li');
+    firstPageItem.className = 'paginate_button page-item' + (thisPage > 1 ? '' : ' disabled');
+    firstPageItem.innerHTML = `
+        <a class="page-link" onclick="goList(1)" href="javascript:void(0)">
+            <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+        </a>
+    `;
+    paginationList.appendChild(firstPageItem);
+
+    // 이전 페이지 버튼
+    const previousPageItem = document.createElement('li');
+    previousPageItem.className = 'paginate_button previous page-item' + (thisPage > 1 ? '' : ' disabled');
+    previousPageItem.innerHTML = `
+        <a class="page-link" onclick="goList(${thisPage - 1})" href="javascript:void(0)">
+            <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+        </a>
+    `;
+    paginationList.appendChild(previousPageItem);
+
+    // 페이지 번호 생성
+    for (let i = 1; i <= totalPages; i++) {
+        const pageItem = document.createElement('li');
+        pageItem.className = 'paginate_button page-item' + (i === thisPage ? ' active' : '');
+        pageItem.innerHTML = `
+            <a class="page-link" onclick="goList(${i})" href="javascript:void(0)">${i}</a>
+        `;
+        paginationList.appendChild(pageItem);
+    }
+
+    // 다음 페이지 버튼
+    const nextPageItem = document.createElement('li');
+    nextPageItem.className = 'paginate_button next page-item' + (thisPage < totalPages ? '' : ' disabled');
+    nextPageItem.innerHTML = `
+        <a class="page-link" onclick="goList(${thisPage + 1})" href="javascript:void(0)">
+            <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+    `;
+    paginationList.appendChild(nextPageItem);
+
+    // 마지막 페이지 버튼
+    const lastPageItem = document.createElement('li');
+    lastPageItem.className = 'paginate_button page-item' + (thisPage < totalPages ? '' : ' disabled');
+    lastPageItem.innerHTML = `
+        <a class="page-link" onclick="goList(${totalPages})" href="javascript:void(0)">
+            <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+        </a>
+    `;
+    paginationList.appendChild(lastPageItem);
+}
+function displayTagDistribution(tagCounts, mostSelectedTag) {
+    const tagDistributionContainer = document.querySelector(".tag_distribution");
+    tagDistributionContainer.innerHTML = ''; // 기존 내용 초기화
+
+    // 태그 분포 표시
+    Object.entries(tagCounts).forEach(([tag, count]) => {
+        const tagItem = document.createElement("div");
+        tagItem.className = "tag_item";
+        tagItem.innerHTML = `${tag}: ${count}`;
+        tagDistributionContainer.appendChild(tagItem);
+    });
+
+    // 가장 많이 선택된 태그 표시
+    const mostSelectedTagContainer = document.querySelector(".most_selected_tag");
+    mostSelectedTagContainer.innerHTML = ''; // 기존 내용 초기화
+    mostSelectedTagContainer.innerHTML = `가장 많이 선택된 태그: ${mostSelectedTag}`;
+}
+function calculateReviewAverageScore(averageScore, scoreCounts, reviewCount) {
+    
+    console.log("scoreCounts:",scoreCounts);
+    const percentageResults = new Map([
+        ['10', Math.floor((scoreCounts[10] || 0) / reviewCount * 100)],
+        ['7.5', Math.floor((scoreCounts[7.5] || 0) / reviewCount * 100)],
+        ['5', Math.floor((scoreCounts[5] || 0) / reviewCount * 100)],
+        ['2.5', Math.floor((scoreCounts[2.5] || 0) / reviewCount * 100)],
+        ['0', Math.floor((scoreCounts[0] || 0) / reviewCount * 100)]
+    ]);
+
+    // HTML 업데이트 로직 (기존의 `reivewAverageScore` 내용 활용)
+    const scoreDistributionContainer = document.querySelector(".scroll_box");
+    scoreDistributionContainer.innerHTML = '';
+
+    percentageResults.forEach((percentage, score) => {
+        const liElement = document.createElement("li");
+        liElement.classList.add("score" + score);
+        
+        // 클로버 박스 생성
+        const cloverBox = document.createElement("ul");
+        cloverBox.className = "clover_box d-flex justify-content-between";
+        
+        for (let i = 0; i < 4; i++) {
+            const cloverItem = document.createElement("li");
+            const cloverImg = document.createElement("img");
+            cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
+            cloverImg.alt = "";
+            cloverItem.appendChild(cloverImg);
+            cloverBox.appendChild(cloverItem);
+        }
+        
+        liElement.appendChild(cloverBox);
+        
+        // 스코어 바 생성
+        const scoreBar = document.createElement("div");
+        scoreBar.className = "score_bar progress";
+
+        const progressBar = document.createElement("div");
+        progressBar.className = "progress-bar";
+        progressBar.style.width = `${percentage}%`;
+        progressBar.setAttribute("aria-valuenow", percentage);
+        scoreBar.appendChild(progressBar);
+        liElement.appendChild(scoreBar);
+        
+        // 비율 출력
+        const ratingP = document.createElement("div");
+        const pElement = document.createElement("p");
+        pElement.innerHTML = `<span>${percentage}</span> %`;
+        ratingP.appendChild(pElement);
+        liElement.appendChild(ratingP);
+        
+        scoreDistributionContainer.appendChild(liElement);
+    });
+
+    // 평균 점수 표시
+    const ratingTotal = document.querySelector(".rating_total");
+    ratingTotal.innerHTML = ''; // 기존 내용 초기화
+
+    const averageElement = document.createElement("div");
+    const reviewTotalTopT = document.querySelector(".prod_detail_view .rating_number strong");
+    reviewTotalTopT.textContent = averageScore.toFixed(1); // 평균 점수를 소수점 1자리로 표시
+    averageElement.innerHTML = `<span class="rating_number"><strong>${averageScore.toFixed(1)}</strong></span> / <span>10</span>`;
+    ratingTotal.appendChild(averageElement);
+}
 $(document).ready(function(){
+    $.ajax({
+        url: '/reviewAverage',
+        method: 'post',
+        success: function(response) {
+            const averageScore = response.averageScore;
+            const scoreCounts = response.scoreCounts;
+            const reviewCount = response.reviewCount;
+            const tagCounts = response.tagCounts;
+            const mostSelectedTag = response.mostSelectedTag;
+            const mostSelectedTagNumber = response.mostSelectedTagNumber;
+            // const mostSelectedTag = response.mostSelectedTag;
+            console.log("response:"+response);
+            // 평균 점수 및 점수 분포 계산
+            calculateReviewAverageScore(averageScore, scoreCounts, reviewCount);
+    
+            // 태그 분포 및 태그 탑 계산
+            displayTagDistribution(tagCounts, mostSelectedTag);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching review data:", error);
+        }
+    });
     // // .review_list 요소와 모든 span 요소를 선택합니다.
     // const reviewListElement = document.querySelector('.review_list>ul');
     // const spans = document.querySelectorAll('.review_count');
@@ -81,263 +315,336 @@ $(document).ready(function(){
 
 
     const reviews = document.querySelectorAll(".user_review_box");
-    const scoreCounts = {
-        10: 0,
-        7.5: 0,
-        5: 0,
-        2.5: 0,
-        total: 0,
-        count: 0
-    };
-    const tagCounts = {
-        "고마워요": 0,
-        "최고예요": 0,
-        "공감돼요": 0,
-        "재밌어요": 0,
-        "힐링돼요": 0
-        
-    };
+    
+    
     const totalReviews = reviews.length;
+    // if(reviews){
+    //     rvCloverImg(reviews);
+    // }
+    
+    // reviews.forEach(function(review) {
+    //     const reviewNum = parseFloat(review.querySelector(".user_review_num").textContent);
+    //     // const reviewTagN = review.querySelector(".user_select_tag").textContent; // 태그 이름
+    //     const reviewTag = review.querySelector(".user_select_tag").textContent;
+    //     const reviewClover = review.querySelector(".clover_box");
+    //     let i;
+    //      // 불투명도 설정
+    //     switch (reviewNum) {
+    //         case 10:
+    //             reviewClover.querySelectorAll("li").forEach(function(item) {
+    //                 item.style.opacity = "1";
+    //             });
+    //             break;
+    //         case 7.5:
+    //             i=0;
+    //             reviewClover.querySelectorAll("li").forEach(function(item) {
+    //                 item.style.opacity = i > 2 ? "0.3" : "1";
+    //                 i++;
+    //             });
+    //             break;
+    //         case 5:
+    //             i = 0;
+    //             reviewClover.querySelectorAll("li").forEach(function(item) {
+    //                 item.style.opacity = i > 1 ? "0.3" : "1";
+    //                 i++;
+    //             });
+    //             break;
+    //         case 2.5:
+    //             i = 0;
+    //             reviewClover.querySelectorAll("li").forEach(function(item) {
+    //                 item.style.opacity = i > 0 ? "0.3" : "1";
+    //                 i++;
+    //             });
+    //             break;
+    //         default:
+    //             reviewClover.querySelectorAll("li").forEach(function(item) {
+    //                 item.style.opacity = "0.3";
+    //             });
+    //             break;
+    //     }
 
-    reviews.forEach(function(review) {
-        const reviewNum = parseFloat(review.querySelector(".user_review_num").textContent);
-        // const reviewTagN = review.querySelector(".user_select_tag").textContent; // 태그 이름
-        const reviewTag = review.querySelector(".user_select_tag").textContent;
-        const reviewClover = review.querySelector(".clover_box");
-        let i;
-         // 불투명도 설정
-        switch (reviewNum) {
-            case 10:
-                reviewClover.querySelectorAll("li").forEach(function(item) {
-                    item.style.opacity = "1";
-                });
-                break;
-            case 7.5:
-                i=0;
-                reviewClover.querySelectorAll("li").forEach(function(item) {
-                    item.style.opacity = i > 2 ? "0.3" : "1";
-                    i++;
-                });
-                break;
-            case 5:
-                i = 0;
-                reviewClover.querySelectorAll("li").forEach(function(item) {
-                    item.style.opacity = i > 1 ? "0.3" : "1";
-                    i++;
-                });
-                break;
-            case 2.5:
-                i = 0;
-                reviewClover.querySelectorAll("li").forEach(function(item) {
-                    item.style.opacity = i > 0 ? "0.3" : "1";
-                    i++;
-                });
-                break;
-            default:
-                reviewClover.querySelectorAll("li").forEach(function(item) {
-                    item.style.opacity = "0.3";
-                });
-                break;
-        }
+    //     // 점수 카운트
+    //     if (scoreCounts.hasOwnProperty(reviewNum)) {
+    //         scoreCounts[reviewNum]++;
+    //     }
 
-        // 점수 카운트
-        if (scoreCounts.hasOwnProperty(reviewNum)) {
-            scoreCounts[reviewNum]++;
-        }
+    //     // 총점과 리뷰 수
+    //     scoreCounts.total += reviewNum;
+    //     scoreCounts.count++;
 
-        // 총점과 리뷰 수
-        scoreCounts.total += reviewNum;
-        scoreCounts.count++;
-
-        // 태그 카운트
+    //     // 태그 카운트
         
-        if (tagCounts.hasOwnProperty(reviewTag)) {
-            tagCounts[reviewTag]++;
-        }
-    });
+    //     if (tagCounts.hasOwnProperty(reviewTag)) {
+    //         tagCounts[reviewTag]++;
+    //     }
+    // });
 
     // 퍼센트 계산 및 평균 점수 출력
-    var averageScore = scoreCounts.count > 0 ? (scoreCounts.total / scoreCounts.count).toFixed(1) : 0;
-    const percentageResults = {
-        10: Math.floor((scoreCounts[10] / scoreCounts.count) * 100), // 소수점 버리기
-        7.5: Math.floor((scoreCounts[7.5] / scoreCounts.count) * 100), // 소수점 버리기
-        5: Math.floor((scoreCounts[5] / scoreCounts.count) * 100), // 소수점 버리기
-        2.5: Math.floor((scoreCounts[2.5] / scoreCounts.count) * 100) // 소수점 버리기
-    };
+    function reivewAverageScore() {
+        var averageScore = scoreCounts.count > 0 ? (scoreCounts.total / scoreCounts.count).toFixed(1) : 0;
+        // 점수와 비율을 배열에 저장합니다.
+        // const orderedPercentageResults = {
+        //     '10': Math.floor((scoreCounts['10'] / scoreCounts.count) * 100), // 문자열 키 사용
+        //     '7.5': Math.floor((scoreCounts['7.5'] / scoreCounts.count) * 100), // 문자열 키 사용
+        //     '5': Math.floor((scoreCounts['5'] / scoreCounts.count) * 100), // 문자열 키 사용
+        //     '2.5': Math.floor((scoreCounts['2.5'] / scoreCounts.count) * 100) // 문자열 키 사용
+        // };
+        // // console.log(percentageResultsArray);
+        // // percentageResultsArray.sort((a, b) => b.score - a.score);
 
-    // 점수 분포를 위한 HTML 생성
-    const scoreDistributionContainer = document.querySelector(".scroll_box");
-    scoreDistributionContainer.innerHTML = ''; // 기존 내용 초기화
+        // // // 객체로 변환하여 원하는 형식으로 결과를 생성
+        // // const percentageResults = {};
+        // // percentageResultsArray.forEach(item => {
+        // //     percentageResults[item.score] = parseFloat(item.percentage.toFixed(1)); // 소수점 한 자리로 변환
+        // // });
+        // const sortedResults = Object.entries(orderedPercentageResults).sort((a, b) => {
+        //     return parseFloat(a[0]) - parseFloat(b[0]); // 문자열을 실수로 변환하여 정렬
+        // });
+        
+        // const percentageResults = Object.fromEntries(sortedResults);
+        // console.log(percentageResults);
+        const percentageResults = new Map([
+            ['10', Math.floor((scoreCounts[10] / scoreCounts.count) * 100)],
+            ['7.5', Math.floor((scoreCounts[7.5] / scoreCounts.count) * 100)],
+            ['5', Math.floor((scoreCounts[5] / scoreCounts.count) * 100)],
+            ['2.5', Math.floor((scoreCounts[2.5] / scoreCounts.count) * 100)],
+            ['0', Math.floor((scoreCounts[0] / scoreCounts.count) * 100)]
+        ]);
+        // 결과 출력
+        console.log(percentageResults)
 
-    // 각 점수에 대해 li 요소 생성
-    for (const score in percentageResults) {
-        var percentage = percentageResults[score];
-        const numClover = Math.round((percentage / 100) * 4); // 4개 클로버 중 몇 개를 보여줄지 계산
-        console.log("dsa:"+percentage);
-        if (isNaN(percentage)) {
-            percentage = 0;
-            console.log("percentage:"+percentage);
+        // 점수 분포를 위한 HTML 생성   
+        const scoreDistributionContainer = document.querySelector(".scroll_box");
+        scoreDistributionContainer.innerHTML = ''; // 기존 내용 초기화
+
+        // 각 점수에 대해 li 요소 생성
+        percentageResults.forEach((percentage, score) => {
+            // var percentage = percentageResults[score];
+            const numClover = Math.round((percentage / 100) * 4); // 4개 클로버 중 몇 개를 보여줄지 계산
+            // console.log("dsa:"+percentage);
+            if (isNaN(percentage)) {
+                percentage = 0;
+                // console.log("percentage:"+percentage);
+            }
+            console.log(score+" :"+percentage);
+            const liElement = document.createElement("li");
+            liElement.classList.add("score"+score);
+            // 클로버 박스 생성
+            const cloverBox = document.createElement("ul");
+            cloverBox.className = "clover_box d-flex justify-content-between";
+            
+            for (let i = 0; i < 4; i++) {
+                const cloverItem = document.createElement("li");
+                const cloverImg = document.createElement("img");
+                cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
+                cloverImg.alt = "";
+                cloverItem.appendChild(cloverImg);
+                cloverBox.appendChild(cloverItem);
+            }
+            
+            liElement.appendChild(cloverBox);
+            
+            // 스코어 바 생성
+            const scoreBar = document.createElement("div");
+            scoreBar.className = "score_bar progress";
+
+            const progressBar = document.createElement("div");
+            progressBar.className = "progress-bar";
+            progressBar.setAttribute("role", "progressbar");
+            progressBar.style.width = `${percentage}%`;
+            progressBar.setAttribute("aria-valuenow", percentage);
+            progressBar.setAttribute("aria-valuemin", "0");
+            progressBar.setAttribute("aria-valuemax", "100");
+
+            scoreBar.appendChild(progressBar);
+            liElement.appendChild(scoreBar);
+            
+            // 비율 출력
+            const ratingP = document.createElement("div");
+            ratingP.className = "ratingP";
+            const pElement = document.createElement("p");
+            pElement.innerHTML = `<span>${percentage}</span> %`;
+            ratingP.appendChild(pElement);
+            
+            liElement.appendChild(ratingP);
+            
+            // 최종적으로 scoreDistributionContainer에 추가
+            scoreDistributionContainer.appendChild(liElement);
+        })
+        // for (const score in percentageResults) {
+        //     var percentage = percentageResults[score];
+        //     const numClover = Math.round((percentage / 100) * 4); // 4개 클로버 중 몇 개를 보여줄지 계산
+        //     // console.log("dsa:"+percentage);
+        //     if (isNaN(percentage)) {
+        //         percentage = 0;
+        //         // console.log("percentage:"+percentage);
+        //     }
+        //     console.log(score+" :"+percentage);
+        //     const liElement = document.createElement("li");
+
+        //     // 클로버 박스 생성
+        //     const cloverBox = document.createElement("ul");
+        //     cloverBox.className = "clover_box d-flex justify-content-between";
+            
+        //     for (let i = 0; i < 4; i++) {
+        //         const cloverItem = document.createElement("li");
+        //         const cloverImg = document.createElement("img");
+        //         cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
+        //         cloverImg.alt = "";
+        //         cloverItem.appendChild(cloverImg);
+        //         cloverBox.appendChild(cloverItem);
+        //     }
+            
+        //     liElement.appendChild(cloverBox);
+            
+        //     // 스코어 바 생성
+        //     const scoreBar = document.createElement("div");
+        //     scoreBar.className = "score_bar progress";
+
+        //     const progressBar = document.createElement("div");
+        //     progressBar.className = "progress-bar";
+        //     progressBar.setAttribute("role", "progressbar");
+        //     progressBar.style.width = `${percentage}%`;
+        //     progressBar.setAttribute("aria-valuenow", percentage);
+        //     progressBar.setAttribute("aria-valuemin", "0");
+        //     progressBar.setAttribute("aria-valuemax", "100");
+
+        //     scoreBar.appendChild(progressBar);
+        //     liElement.appendChild(scoreBar);
+            
+        //     // 비율 출력
+        //     const ratingP = document.createElement("div");
+        //     ratingP.className = "ratingP";
+        //     const pElement = document.createElement("p");
+        //     pElement.innerHTML = `<span>${percentage}</span> %`;
+        //     ratingP.appendChild(pElement);
+            
+        //     liElement.appendChild(ratingP);
+            
+        //     // 최종적으로 scoreDistributionContainer에 추가
+        //     scoreDistributionContainer.appendChild(liElement);
+        // }
+
+        
+        const tagPercentages = {};
+        for (let tag in tagCounts) {
+            tagPercentages[tag] = ((tagCounts[tag] / totalReviews) * 100);
         }
-        console.log("percentage2:"+percentage);
-        const liElement = document.createElement("li");
+
+        // 평균 점수와 클로버 표시
+        const ratingTotal = document.querySelector(".rating_total");
+        ratingTotal.innerHTML = ''; // 기존 내용 초기화
 
         // 클로버 박스 생성
         const cloverBox = document.createElement("ul");
-        cloverBox.className = "clover_box d-flex justify-content-between";
-        
+        const cloverBoxTop = document.createElement("ul");
+        cloverBox.className = "clover_box d-flex justify-content-between gap-3";
+        cloverBoxTop.className = "clover_box d-flex justify-content-between gap-3";
+
+        const numAverageClover = Math.round((averageScore / 10) * 4); // 평균 점수에 따라 클로버 개수 계산
+
         for (let i = 0; i < 4; i++) {
             const cloverItem = document.createElement("li");
             const cloverImg = document.createElement("img");
             cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
             cloverImg.alt = "";
+            if (i < numAverageClover) {
+                cloverItem.classList.add("active"); // 평균 점수에 따라 활성화
+            }
             cloverItem.appendChild(cloverImg);
             cloverBox.appendChild(cloverItem);
         }
-        
-        liElement.appendChild(cloverBox);
-        
-        // 스코어 바 생성
-        const scoreBar = document.createElement("div");
-        scoreBar.className = "score_bar progress";
 
-        const progressBar = document.createElement("div");
-        progressBar.className = "progress-bar";
-        progressBar.setAttribute("role", "progressbar");
-        progressBar.style.width = `${percentage}%`;
-        progressBar.setAttribute("aria-valuenow", percentage);
-        progressBar.setAttribute("aria-valuemin", "0");
-        progressBar.setAttribute("aria-valuemax", "100");
+        // 클로버 박스 추가
+        ratingTotal.appendChild(cloverBox);
 
-        scoreBar.appendChild(progressBar);
-        liElement.appendChild(scoreBar);
-        
-        // 비율 출력
-        const ratingP = document.createElement("div");
-        ratingP.className = "ratingP";
-        const pElement = document.createElement("p");
-        pElement.innerHTML = `<span>${percentage}</span> %`;
-        ratingP.appendChild(pElement);
-        
-        liElement.appendChild(ratingP);
-        
-        // 최종적으로 scoreDistributionContainer에 추가
-        scoreDistributionContainer.appendChild(liElement);
-    }
-
-    
-    const tagPercentages = {};
-    for (let tag in tagCounts) {
-        tagPercentages[tag] = ((tagCounts[tag] / totalReviews) * 100);
-    }
-
-    // 평균 점수와 클로버 표시
-    const ratingTotal = document.querySelector(".rating_total");
-    ratingTotal.innerHTML = ''; // 기존 내용 초기화
-
-    // 클로버 박스 생성
-    const cloverBox = document.createElement("ul");
-    const cloverBoxTop = document.createElement("ul");
-    cloverBox.className = "clover_box d-flex justify-content-between gap-3";
-    cloverBoxTop.className = "clover_box d-flex justify-content-between gap-3";
-
-    const numAverageClover = Math.round((averageScore / 10) * 4); // 평균 점수에 따라 클로버 개수 계산
-
-    for (let i = 0; i < 4; i++) {
-        const cloverItem = document.createElement("li");
-        const cloverImg = document.createElement("img");
-        cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
-        cloverImg.alt = "";
-        if (i < numAverageClover) {
-            cloverItem.classList.add("active"); // 평균 점수에 따라 활성화
+        for (let i = 0; i < 4; i++) {
+            const cloverItem = document.createElement("li");
+            const cloverImg = document.createElement("img");
+            cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
+            cloverImg.alt = "";
+            if (i < numAverageClover) {
+                cloverItem.classList.add("active"); // 평균 점수에 따라 활성화
+            }
+            cloverItem.appendChild(cloverImg);
+            cloverBoxTop.appendChild(cloverItem);
         }
-        cloverItem.appendChild(cloverImg);
-        cloverBox.appendChild(cloverItem);
-    }
+        const reviewTotalTop = document.querySelector(".prod_detail_view ");
+        const reviewTotalTopC = reviewTotalTop.querySelector(".total_clover_box");
+        reviewTotalTopC.innerHTML = ''; // 기존 내용 초기화
+        reviewTotalTopC.appendChild(cloverBoxTop);
 
-    // 클로버 박스 추가
-    ratingTotal.appendChild(cloverBox);
-
-    for (let i = 0; i < 4; i++) {
-        const cloverItem = document.createElement("li");
-        const cloverImg = document.createElement("img");
-        cloverImg.src = "/usr/v1/assets/images/ico_klover_sm@2x.png";
-        cloverImg.alt = "";
-        if (i < numAverageClover) {
-            cloverItem.classList.add("active"); // 평균 점수에 따라 활성화
+        // 평균 점수 출력
+        const averageElement = document.createElement("div");
+        const reviewTotalTopT = reviewTotalTop.querySelector(".rating_number strong");
+        // console.log("averageScore: "+averageScore);
+        if(averageScore == 0){
+            averageScore = "0.0";
         }
-        cloverItem.appendChild(cloverImg);
-        cloverBoxTop.appendChild(cloverItem);
-    }
-    const reviewTotalTop = document.querySelector(".prod_detail_view ");
-    const reviewTotalTopC = reviewTotalTop.querySelector(".total_clover_box");
-    reviewTotalTopC.innerHTML = ''; // 기존 내용 초기화
-    reviewTotalTopC.appendChild(cloverBoxTop);
+        reviewTotalTopT.textContent = averageScore;
+        averageElement.innerHTML = `<span class="rating_number"><strong>${averageScore}</strong></span> / <span>10</span>`;
+        ratingTotal.appendChild(averageElement);
 
-    // 평균 점수 출력
-    const averageElement = document.createElement("div");
-    const reviewTotalTopT = reviewTotalTop.querySelector(".rating_number strong");
-    console.log("averageScore: "+averageScore);
-    if(averageScore == 0){
-        averageScore = "0.0";
-    }
-    reviewTotalTopT.textContent = averageScore;
-    averageElement.innerHTML = `<span class="rating_number"><strong>${averageScore}</strong></span> / <span>10</span>`;
-    ratingTotal.appendChild(averageElement);
+        // 태그 비율을 표시할 영역
+        // const tagDistributionContainer = document.querySelector(".tag_distribution_container");
+        const tagDistributionContainer = document.querySelector(".review_tags_box");
+        const tagNames = document.querySelectorAll(".tagName p");
+        // const tagpercent = tagNames.p .querySelectorAll(".tag_percent p");
+        // tagDistributionContainer.innerHTML = ''; // 기존 내용 초기화
+        let mostSelectedTag = Object.keys(tagCounts).reduce((a, b) => tagCounts[a] > tagCounts[b] ? a : b);
 
-    // 태그 비율을 표시할 영역
-    // const tagDistributionContainer = document.querySelector(".tag_distribution_container");
-    const tagDistributionContainer = document.querySelector(".review_tags_box");
-    const tagNames = document.querySelectorAll(".tagName p");
-    // const tagpercent = tagNames.p .querySelectorAll(".tag_percent p");
-    // tagDistributionContainer.innerHTML = ''; // 기존 내용 초기화
-    let mostSelectedTag = Object.keys(tagCounts).reduce((a, b) => tagCounts[a] > tagCounts[b] ? a : b);
-
-    for (const tag in tagPercentages) {
-        const tagPercentage = tagPercentages[tag];
-        console.log(tag+": "+tagPercentage);
-        for (const tagName of tagNames) {
-            const tagParent  = tagName.parentElement.parentElement;
-            console.log(tagParent);
-            const tagpercent = tagParent.querySelector(".tag_percent span");
-            const progressBar = tagParent.querySelector(".progress-bar");
-            console.log(progressBar);
-            const name = tagName.textContent
-            if(tag == name){
-                tagpercent.textContent = tagPercentage;
-                
-                progressBar.style.height = tagPercentage+"%";
-                if(tag == mostSelectedTag){
-                    tagpercent.parentElement.style.color = "rgba(80, 85, 177, 0.8)";
-                    tagpercent.parentElement.style.fontWeight = "bold";
-                    document.querySelectorAll(".most_tag_parcent").forEach(function(tag) {
-                        tag.textContent = tagPercentage+"%";
-                    });
-                    tagName.style.color = "rgba(80, 85, 177, 0.8)";
-                    tagName.style.fontWeight = "bold";
-                    progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
+        for (const tag in tagPercentages) {
+            const tagPercentage = tagPercentages[tag];
+            // console.log(tag+": "+tagPercentage);
+            for (const tagName of tagNames) {
+                const tagParent  = tagName.parentElement.parentElement;
+                // console.log(tagParent);
+                const tagpercent = tagParent.querySelector(".tag_percent span");
+                const progressBar = tagParent.querySelector(".progress-bar");
+                // console.log(progressBar);
+                const name = tagName.textContent
+                if(tag == name){
+                    tagpercent.textContent = tagPercentage;
+                    
+                    progressBar.style.height = tagPercentage+"%";
+                    if(tag == mostSelectedTag){
+                        tagpercent.parentElement.style.color = "rgba(80, 85, 177, 0.8)";
+                        tagpercent.parentElement.style.fontWeight = "bold";
+                        document.querySelectorAll(".most_tag_parcent").forEach(function(tag) {
+                            tag.textContent = tagPercentage+"%";
+                        });
+                        tagName.style.color = "rgba(80, 85, 177, 0.8)";
+                        tagName.style.fontWeight = "bold";
+                        progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
+                    }
                 }
+                
             }
             
         }
         
-    }
-    
-    const selectedTagElement = document.querySelectorAll(" .most_tag");
-    if(selectedTagElement){
-        if(mostSelectedTag != null){
-            selectedTagElement.forEach(function(tag) {
-                tag.textContent = mostSelectedTag; 
-            })
+        const selectedTagElement = document.querySelectorAll(" .most_tag");
+        if(selectedTagElement){
+            if(mostSelectedTag != null){
+                selectedTagElement.forEach(function(tag) {
+                    tag.textContent = mostSelectedTag; 
+                })
+            }
         }
+        // 결과 출력
+        console.log("카운트:", scoreCounts.count);
+        console.log("토탈:", scoreCounts.total);
+        console.log("점수 분포:", percentageResults);
+        console.log("평균 점수:", averageScore);
+        console.log("태그 분포:", tagCounts);
+        console.log("태그 탑:", mostSelectedTag);
     }
+    reivewAverageScore();   
     
     
 
-    // 결과 출력
-    console.log("점수 분포:", percentageResults);
-    console.log("평균 점수:", averageScore);
-    console.log("태그 분포:", tagCounts);
-    console.log("태그 탑:", mostSelectedTag);
+    
+    
 
     // // 태그 분포를 위한 HTML 생성
     // const tagDistributionContainer = document.querySelector(".tag_distribution_container");
@@ -477,55 +784,116 @@ $(document).ready(function(){
     
     // const rvtaginput = document.querySelector
     const rvBtn = document.getElementById("rvBtn");
+    const userId = document.getElementById("userIdSeq");
     if(rvBtn){
         const params = new URLSearchParams(window.location.search);
         const productSeq = params.get('seq');
+        const currentUrl = window.location.href; 
+
+       
+            
         rvBtn.addEventListener("click", function() {
+            if (!userId || !userId.value) {  // 로그인 확인
+                // 로그인 페이지로 리다이렉트하면서 현재 페이지 URL을 쿼리 매개변수로 추가
+                // alert("리뷰를 작성하려면 로그인이 필요합니다.");
+                // window.location.href = "/login?redirect=" + encodeURIComponent(currentUrl);
+                window.location.href = "/login?redirect=review";
+            } else {
+                // console.log("태그:" +$("input[name='rvSelectTag']:checked").val());
+                // console.log("글:" +$("#rvContent").val());
+                if(($("input[name='rvSelectTag']:checked").val()== null)||($("#rvContent").val()==''||$("#rvContent").val()==null)){
+                    if($("input[name='rvSelectTag']:checked").val()== null){
+                        alert("감성태그를 선택해주세요.")
+                    }else if(($("#rvContent").val()=='')||$("#rvContent").val()==null){
+                        alert("리뷰를 제대로 작성 해주세요.")
+                    }
+                }
+                else {   
+                    $.ajax({
+                        async: true 
+                        ,cache: false
+                        ,type: "post"
+                        ,url: "/reviewInst"
+                        ,data : { 
+                            "member_seq" : $("#userIdSeq").val()
+                            ,"product_seq" : productSeq 
+                            ,"rvSelectTag":$("input[name='rvSelectTag']:checked").val()
+                            ,"rvContent":$("#rvContent").val()
+                            ,"rvScore":$("#rvUsrScore").val()
+                        }
+                        ,success: function(response) {
+                            if(response.rt == "success") {
+                                loadReviewList();
+                                
+                            } else {
+                                alert("양식에 맞춰주세요.")
+                                // userId.classList.add('is-invalid');
+                                // userPassword.classList.add('is-invalid');
+                                // feedbackChk.classList.add('is-invalid');
+                                // document.getElementById("invalid-feedback").innerText = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                            }
+                        }
+                        ,error : function(jqXHR, textStatus, errorThrown){
+                            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                        }
+                    });
+                }
+            }
+        });
+        function loadReviewList() {
             $.ajax({
                 async: true 
                 ,cache: false
                 ,type: "post"
-                ,url: "/loginUsrProc"
-                ,data : { 
-                    "member_seq" : $("#userIdSeq").val().trim()
-                    ,"product_seq" : productSeq 
-                    ,"rvSelectTag":$("input[name='rvSelectTag']:checked").val().trim()
-                    ,"rvContent":$("#rvContent").text()
-                    ,"rvScore":$("#rvUsrScore").val()
-                }
+                ,url: "/RefreshReviews"
+                ,contentType: "application/json"
+                ,data: JSON.stringify({ product_seq: productSeq })
                 ,success: function(response) {
-                    if(response.rt == "success") {
-                        
-                        
-                    } else {
-                        userId.classList.add('is-invalid');
-                        userPassword.classList.add('is-invalid');
-                        feedbackChk.classList.add('is-invalid');
-                        document.getElementById("invalid-feedback").innerText = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
-                    }
+                    // const reviewContainer = $('#review_list>ul'); 
+                    // reviewContainer.empty();
+                    
+                    $('#review_list>ul').empty(); // 기존 리뷰 리스트 비우기
+                    $.each(response.rvList, function(index, review) {
+                        // 리뷰 아이템 생성
+                        var reviewItem = `
+                            <li class="user_review_box">
+                                <div class="review_head">
+                                    <div>
+                                        <span class="user_id">${review.rvName}</span>
+                                        <span class="line_space">|</span>
+                                        <span class="day">${new Date(review.rvRegDate).toLocaleDateString()}</span>
+                                    </div>
+                                    <div>
+                                        <ul class="clover_box d-flex justify-content-between">
+                                            ${'<li><img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""></li>'.repeat(4)}
+                                        </ul>
+                                        <p class="user_review_num">${review.rvScore}</p>
+                                        <input type="hidden" class="rvSelectTag" name="rvSelectTag" value="${review.rvSelectTag}">
+                                        <p class="user_select_tag">${review.rvSelectTagName}</p>
+                                    </div>
+                                </div>
+                                <div class="review_content">${review.rvContent}</div>
+                                <div class="review_footer">
+                                    <div class="review_delbtn_box">
+                                        <button th:if="${rvList.member_seq == session.sessSeqXdm}" class="btn" id="" type="button">삭제</button>
+                                    </div>
+                                    <div class="review_footer_etc">
+                                        <div class="btn_like"><span>0</span></div>
+                                        <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                    </div>
+                                </div>
+                            </li>`;
+                        $('#review_list>ul').append(reviewItem);
+                    });
+                    updatePagination(response.thisPage, response.totalPages);
+                    const reviews = document.querySelectorAll(".user_review_box");
+                    rvCloverImg(reviews);
                 }
                 ,error : function(jqXHR, textStatus, errorThrown){
-                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                    console.error('리뷰 목록 갱신 중 오류 발생');
                 }
             });
-        });
-    }
-    function loadReviewList() {
-        $.ajax({
-            async: true 
-            ,cache: false
-            ,type: "post"
-            ,url: "/RefreshReviews"
-                ,data : { 
-                    "product_seq" : productSeq
-                }
-            ,success: function(response) {
-                
-            }
-            ,error : function(jqXHR, textStatus, errorThrown){
-                alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-            }
-        });
-    }
 
+        }
+    }
 });

@@ -205,7 +205,10 @@ $(document).ready(function(){
             // });
         });
     }
+
     
+
+    // 
 
     // 페이지 로드 시 초기 계산 수행
     // updateTotalCash();

@@ -11,8 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import com.exion.common.util.DateUtil;
 import com.exion.infra.code.CodeDto;
@@ -21,6 +24,7 @@ import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
 import com.exion.infra.util.Constants;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -60,36 +64,50 @@ public class indexController {
 		return "/usr/v1/pages/index";
 	}
 	@RequestMapping(value = "login")
-	public String login() {
+	public String login(HttpServletRequest request,HttpSession httpSession) {
+		String requestURL = request.getRequestURL().toString();
+		String refererURL = request.getHeader("referer");
+		String queryString = request.getQueryString();
+		System.out.println("requestURL: "+ requestURL);
+		System.out.println("refererURL: "+ refererURL);
+		System.out.println("queryString: "+ queryString);
+		if(queryString !=null) {
+			if (queryString.contains("redirect=review")) {
+	            System.out.println("리뷰 작성으로 로그인 성공");
+	            httpSession.setAttribute("prevPage",refererURL); // 원하는 URL 설정
+	        } 
+		}
+		
 		System.out.println("login");
 		return "/usr/v1/pages/login";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "loginUsrProc")
-	public Map<String, Object> loginUsrProc(MemberDto memberDto, HttpSession httpSession) throws Exception {
+	public Map<String, Object> loginUsrProc( MemberDto memberDto, HttpSession httpSession) throws Exception {
 		System.out.println("loginUsrProc");
 		Map<String, Object> returnMap = new HashMap<>();
 		MemberDto rtMember = memberService.selectUsrOne(memberDto);
 		System.out.println("rtMember: " + rtMember);
-		
 		if (rtMember != null) {
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 			httpSession.setAttribute("sessSeqXdm", rtMember.getSeq());
 			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
 			httpSession.setAttribute("sessNameXdm", rtMember.getName());
-			if(httpSession.getAttribute("prevPage") != null) {
-//				returnMap.put("rtp", "buy");
-				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
-				
-				
-				System.out.println("구매성공");
-			}else {
-//				returnMap.put("rtp", "fail");
-				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
-				System.out.println("구매실패");
-			}
+//			if(httpSession.getAttribute("prevPage") != null) {
+////				returnMap.put("rtp", "buy");
+//				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
+//				
+//				
+//				System.out.println("구매성공");
+//			}else {
+////				returnMap.put("rtp", "fail");
+//				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
+//				System.out.println("구매실패");
+//			}
+			
 			String prevPage = (String) httpSession.getAttribute("prevPage");
+			System.out.println("주소테스트: "+prevPage);
 			httpSession.removeAttribute("prevPage"); 
 			returnMap.put("redirectUrl", prevPage != null ? prevPage : "/index");
 			
@@ -276,6 +294,7 @@ public class indexController {
 		model.addAttribute("rvList", reviewService.selectUsrList(reviewVo));
 		System.out.println("rvCount:" +reviewService.listCount(reviewVo));
 		System.out.println("목차: "+productService.prodOne(productDto).getIntro());
+		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
 //		model.addAttribute("author", authorService.authorOne(authorDto));
 //		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
 		return "usr/v1/pages/product_detail";
@@ -291,7 +310,7 @@ public class indexController {
 //			System.out.println("출판사: "+prod.getPublisherName());
 //			System.out.println("타입: "+prod.getTitle()	);
 //		}
-//		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
+		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
 		System.out.println("최소: "+productVo.getMinPrice());
 		System.out.println("베스트: " +productVo.getBestNy());
 		System.out.println("투데이: " +productVo.getTodayPickNy());
@@ -353,6 +372,7 @@ public class indexController {
 	@ResponseBody
 	@RequestMapping(value = "reviewInst")
 	public Map<String, Object> reviewInst(ReviewDto reviewDto){
+//		System.out.println("상품seq:"+reviewDto.getProduct_seq());
 		Integer rtReview = reviewService.insert(reviewDto);
 		Map<String, Object> returnMap = new HashMap<>();
 		if(rtReview != null) {
@@ -366,13 +386,124 @@ public class indexController {
 		
 		return returnMap;
 	}
+//	@ResponseBody
+//	@RequestMapping(value = "RefreshReviews")
+//    public List<ReviewDto> RefreshReviews(@RequestBody ReviewVo reviewVo) {
+//		reviewVo.setSeq(reviewVo.getProduct_seq());
+//		reviewVo.setThisPage(1);
+//		System.out.println("현재 페이지:"+reviewVo.getThisPage());
+////        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
+//		return reviewService.selectUsrList(reviewVo);
+//    }
 	@ResponseBody
 	@RequestMapping(value = "RefreshReviews")
-    public List<ReviewDto> RefreshReviews(@RequestBody ReviewVo reviewVo) {
-//		reviewVo.setProduct_seq(productSeq);
+    public Map<String, Object> RefreshReviews(@RequestBody ReviewVo reviewVo) {
+		reviewVo.setSeq(reviewVo.getProduct_seq());
+		reviewVo.setThisPage(1);
+		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
+		System.out.println("상품seq:"+reviewVo.getSeq());
+		System.out.println("상품thisPage:"+reviewVo.getThisPage());
+		List<ReviewDto> reviews = reviewService.selectUsrList(reviewVo);
+
+	    Map<String, Object> responseMap = new HashMap<>();
+	    responseMap.put("rvList", reviews); // 리뷰 목록 추가
+	    responseMap.put("thisPage", reviewVo.getThisPage()); // 현재 페이지
+	    responseMap.put("totalPages", reviewVo.getTotalPages());
 //        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
-		return reviewService.selectUsrList(reviewVo);
+		return responseMap;
     }
+//	@Autowired
+//    private SpringTemplateEngine templateEngine; 
+//	@ResponseBody
+//	@RequestMapping(value = "reviewList", method = RequestMethod.POST)
+//    public String reviewList(@RequestBody ReviewVo reviewVo,Model model) {
+////		reviewVo.setThisPage(thisPage);
+//		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
+//		System.out.println("상품seq:"+reviewVo.getSeq());
+//		System.out.println("상품thisPage:"+reviewVo.getThisPage());
+//		model.addAttribute("rvList", reviewService.selectUsrList(reviewVo));
+////        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
+//		// Model을 Thymeleaf Context로 변환
+////        Context context = new Context();
+////        context.setVariables(model.asMap());
+//        
+//		return templateEngine.process("fragments/data", context);
+//    }
+	@ResponseBody
+	@RequestMapping(value = "reviewList", method = RequestMethod.POST)
+    public Map<String, Object> reviewList(@RequestBody ReviewVo reviewVo) {
+//		reviewVo.setThisPage(thisPage);
+		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
+		System.out.println("상품seq:"+reviewVo.getSeq());
+		System.out.println("상품thisPage:"+reviewVo.getThisPage());
+		List<ReviewDto> reviews = reviewService.selectUsrList(reviewVo);
+
+	    Map<String, Object> responseMap = new HashMap<>();
+	    responseMap.put("rvList", reviews); // 리뷰 목록 추가
+	    responseMap.put("thisPage", reviewVo.getThisPage()); // 현재 페이지
+	    responseMap.put("totalPages", reviewVo.getTotalPages()); // 총 페이지 수
+        return responseMap; // 제품에 대한 리뷰 목록 반환
+    }
+	@ResponseBody
+	@RequestMapping(value = "reviewAverage")
+    public Map<String, Object> reviewAverage(@RequestBody ReviewVo reviewVo) {
+		System.out.println("reviewAverage");
+		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
+		System.out.println("상품seq:"+reviewVo.getSeq());
+		System.out.println("상품thisPage:"+reviewVo.getThisPage());
+		
+		List<ReviewDto> reviews = reviewService.selectUsrList(reviewVo);
+		
+		Map<String, Object> response = new HashMap<>();
+
+	    double totalScore = 0;
+	    int reviewCount = reviewService.listCount(reviewVo);
+	    Map<Double, Integer> scoreCounts = new HashMap<>();
+	    Map<Integer, Integer> tagCounts = new HashMap<>();
+	 // 태그 번호와 이름을 저장할 맵
+	    Map<Integer, String> tagNames = new HashMap<>();
+	    String mostSelectedTag = "";
+	    int mostSelectedTagNumber = 0;
+	    int maxCount = 0;
+
+	    for (ReviewDto review : reviews) {
+	        double score = review.getRvScore();
+	        totalScore += score;
+
+	        scoreCounts.put(score, scoreCounts.getOrDefault(score, 0) + 1);
+
+	        String tagName = review.getRvSelectTagName(); // 각 리뷰의 단일 태그
+
+	        int tagNumber = review.getRvSelectTag(); // 태그 번호 가져오기
+	        tagNames.putIfAbsent(tagNumber, tagName);
+	        // 태그 개수 업데이트
+	        tagCounts.put(tagNumber, tagCounts.getOrDefault(tagNumber, 0) + 1);
+	    }
+	    
+	    for (Map.Entry<Integer, Integer> entry : tagCounts.entrySet()) {
+	        int tagNum = entry.getKey();
+	        int count = entry.getValue();
+
+	        // 가장 많이 선택된 태그 업데이트
+	        if (count > maxCount) {
+	            maxCount = count;
+	            mostSelectedTagNumber = tagNum; // 가장 많이 선택된 태그의 번호
+	            mostSelectedTag = tagNames.get(tagNum); // 번호로 태그 이름 찾기
+	        }
+	    }
+
+	    double averageScore = reviewCount > 0 ? totalScore / reviewCount : 0;
+		
+		Map<String, Object> responseMap = new HashMap<>();
+	    responseMap.put("rvList", reviews); // 리뷰 목록 추가
+	    responseMap.put("averageScore", averageScore);
+	    responseMap.put("scoreCounts", scoreCounts);
+	    responseMap.put("reviewCount", reviewCount);
+	    responseMap.put("tagCounts", tagCounts);
+	    responseMap.put("mostSelectedTag", mostSelectedTag);
+	    responseMap.put("mostSelectedTagNumber", mostSelectedTagNumber);
+		return responseMap;
+	}
 	@RequestMapping(value = "account_recovery")
 	public String accountRecovery() {
 		System.out.println("account_recovery");

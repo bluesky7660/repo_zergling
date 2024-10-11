@@ -19,6 +19,9 @@ public class ReviewService {
 	public int listCount(ReviewVo vo) {
 		return reviewDao.listCount(vo);
 	}
+	public List<ReviewDto> listNum(ReviewVo vo) {
+		return reviewDao.totalNum(vo);
+	}
 	public Double totalNum(ReviewVo vo) {
 		List<ReviewDto> reviews = reviewDao.totalNum(vo);
 		Double total = 0.0;
@@ -28,7 +31,8 @@ public class ReviewService {
 			count++;
 		}
 		System.out.println("total: " +total );
-		Double result = total/count;
+		Double result = Math.round((total/count)* 10) / 10.0;
+//		result 
 		System.out.println("result: " +result );
 		
 		return result;

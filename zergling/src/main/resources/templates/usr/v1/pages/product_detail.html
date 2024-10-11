@@ -116,10 +116,10 @@
                                 </span>
                                 <span class="regular_price"><span th:text="${#numbers.formatInteger(product.price,1,'COMMA')}">17,500</span>원</span>
                             </div>
-                            <div class="point_box d-flex justify-content-between">
+                            <!-- <div class="point_box d-flex justify-content-between">
                                 <strong>적립/혜택</strong>
                                 <span class="green_color"><span th:text="${#numbers.formatInteger(product.point,1,'COMMA')}">870</span>P</span>
-                            </div>
+                            </div> -->
                             <div class="delivery_info d-flex justify-content-between">
                                 <div>
                                     <strong>배송안내</strong>
@@ -133,7 +133,7 @@
                             <div class="prod_detail_info_etc">
                                 <div class="number-input">
                                     <button class="decrease-button">-</button>
-                                    <input type="number" min="1" max="999" value="1">
+                                    <input id="uoQuantity" name="uoQuantity" type="number" min="1" max="999" value="1" >
                                     <button class="increase-button">+</button>
                                 </div>
                                 <div class="buy_btn_box">
@@ -442,11 +442,13 @@
                                     <div class="sort_box">
                                         <select class="form-select">
                                             <option value="1">최신순</option>
-                                            <option value="2">좋아요순</option>
+                                            <option value="2">점수순</option>
+                                            <option value="3">좋아요순</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="review_list">
+                                <div class="review_list" id="review_list" th:fragment="rvList">
+                                    <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
                                     <ul>
                                         <li class="notReview" th:if="${(rvList == null||rvList == ''||rvCount == 0)}">
                                             <p>작성된 리뷰가 없습니다.</p>
@@ -455,7 +457,7 @@
                                             <div class="review_head">
                                                 <div>
                                                     <span class="user_id" th:text="${rvList.rvName}">jnbiuabiy23</span>
-                                                    <span class="line_space">|</span>
+                                                    <span class="">|</span>
                                                     <span class="day" th:text="${#dates.format(rvList.rvRegDate, 'yyyy.MM.dd')}">2024.08.01</span>
                                                 </div>
                                                 <div>
@@ -473,17 +475,21 @@
                                                             <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt="">
                                                         </li>
                                                     </ul>
-                                                    <p class="user_review_num" th:text="${rvList.rvScore}">10</p>
+                                                    <p class="user_review_num" th:text="${rvList.rvScore}"></p>
                                                     <input type="hidden" class="rvSelectTag" name="rvSelectTag" th:value="${rvList.rvSelectTag}">
-                                                    <p class="user_select_tag" th:text="${rvList.rvSelectTagName}">최고에요</p>
+                                                    <p class="user_select_tag" th:text="${rvList.rvSelectTagName}"></p>
                                                 </div>
                                             </div>
                                             <div class="review_content" th:text="${rvList.rvContent}">
-                                                마지막까지 재밌게 읽었습니다.
                                             </div>
                                             <div class="review_footer">
-                                                <div class="btn_like"><span>0</span></div>
-                                                <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                                <div class="review_delbtn_box">
+                                                    <button th:if="${rvList.member_seq == session.sessSeqXdm}" class="btn" id="" type="button">삭제</button>
+                                                </div>
+                                                <div class="review_footer_etc">
+                                                    <div class="btn_like"><span>0</span></div>
+                                                    <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                                </div>
                                             </div>
                                         </li>
                                         <!-- <li>
@@ -642,7 +648,7 @@
                                                 <input type="hidden" id="rvUsrScore" name="rvScore" value="0" />
                                             </div>
                                         </div>
-                                        <textarea name="rvContent" class="form-control" id="review_text" rows="3" placeholder="내용을 50자 이상 입력해 주세요. 주제와 무관한 댓글, 악플, 배송문의 등의 글은 임의 삭제될 수 있습니다."></textarea>
+                                        <textarea name="rvContent" class="form-control" id="rvContent" rows="3" placeholder="내용을 50자 이상 입력해 주세요. 주제와 무관한 댓글, 악플, 배송문의 등의 글은 임의 삭제될 수 있습니다."></textarea>
                                     </div>
                                 </form>
                                 <div class="review_btn_box d-flex gap-2 align-items-center justify-content-end">
@@ -756,7 +762,70 @@
 
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/usr/v1/assets/js/rating.js"></script>
-    <script src="/usr/v1/assets/js/review.js"></script>
     <script src="/usr/v1/assets/js/custom.js"></script>
+    <script src="/usr/v1/assets/js/review.js"></script>
+    <script>
+        window.onload = function() {
+            goList = function (thisPage) {
+                console.log("값: "+thisPage);
+                document.querySelector("input[name=thisPage]").value = thisPage;
+                const urlParams = new URLSearchParams(window.location.search);
+                const seq = urlParams.get('seq');
+                console.log("thisPage값: "+document.querySelector("input[name=thisPage]").value);
+
+                const sessSeqXdm = /*[[${session.sessSeqXdm}]]*/ '';
+                // const page = $(this).data('page'); // 클릭한 페이지 번호
+                $.ajax({
+                    url: '/reviewList', // 서버의 페이지네이션 엔드포인트
+                    type: 'post',
+                    contentType: 'application/json', // JSON 형식으로 데이터 전송
+                    data: JSON.stringify({ thisPage: thisPage ,seq:seq}),
+                    success: function(response) {
+                        $('#review_list>ul').empty(); // 기존 리뷰 리스트 비우기
+                        $.each(response.rvList, function(index, review) {
+                            // 리뷰 아이템 생성
+                            var reviewItem = `
+                                <li class="user_review_box">
+                                    <div class="review_head">
+                                        <div>
+                                            <span class="user_id">${review.rvName}</span>
+                                            <span class="line_space">|</span>
+                                            <span class="day">${new Date(review.rvRegDate).toLocaleDateString()}</span>
+                                        </div>
+                                        <div>
+                                            <ul class="clover_box d-flex justify-content-between">
+                                                ${'<li><img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""></li>'.repeat(4)}
+                                            </ul>
+                                            <p class="user_review_num">${review.rvScore}</p>
+                                            <input type="hidden" class="rvSelectTag" name="rvSelectTag" value="${review.rvSelectTag}">
+                                            <p class="user_select_tag">${review.rvSelectTagName}</p>
+                                        </div>
+                                    </div>
+                                    <div class="review_content">${review.rvContent}</div>
+                                    <div class="review_footer">
+                                        <div class="review_delbtn_box">
+                                            <button th:if="${review.member_seq == sessSeqXdm}" class="btn" id="" type="button">삭제</button>
+                                        </div>
+                                        <div class="review_footer_etc">
+                                            <div class="btn_like"><span>0</span></div>
+                                            <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                        </div>
+                                    </div>
+                                </li>`;
+                            $('#review_list>ul').append(reviewItem);
+                        });
+                        // 페이징 정보 업데이트
+                        // document.querySelector("input[name=thisPage]").value = response.thisPage;
+                        updatePagination(response.thisPage, response.totalPages);
+                        const reviews = document.querySelectorAll(".user_review_box");
+                        rvCloverImg(reviews);
+                    },
+                    error: function() {
+                        alert('데이터를 불러오는 데 오류가 발생했습니다.');
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>

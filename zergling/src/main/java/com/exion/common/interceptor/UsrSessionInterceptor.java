@@ -14,6 +14,7 @@ public class UsrSessionInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		System.out.println("인터셉터1");
 		HttpSession session = request.getSession();
 		String requestURL = request.getRequestURL().toString();
 		String refererURL = request.getHeader("referer");
@@ -24,7 +25,7 @@ public class UsrSessionInterceptor implements HandlerInterceptor {
 		System.out.println("seq: " + session.getAttribute("sessSeqXdm"));
 		System.out.println("이름: " + session.getAttribute("sessNameXdm"));
 		System.out.println("주소: " + session.getAttribute("prevPage"));
-		System.out.println("wjqiihqui");
+		System.out.println("인터셉터2");
 //		System.out.println("seq: "+request.getSession().getAttribute("sessSeqXdm"));
 		if(request.getSession().getAttribute("sessSeqXdm") != null) {
 			//by pass

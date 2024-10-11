@@ -707,8 +707,74 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
 
+    //페이지네이션 
+    goList = function (thisPage) {
+        console.log("값: "+thisPage);
+        document.querySelector("input[name=thisPage]").value = thisPage;
+        console.log("thisPage값: "+document.querySelector("input[name=thisPage]").value);
+        form.action = url;
+        form.submit();
+    }
     
+    
+    /*숫자 +- 버튼 , 계산*/
+    let value =  Number(1);
+    // let quantity = [0,0,0,1];
+    let quantity = 1;
 
+    // 숫자 값을 표시할 요소 선택
+    let numberInput = document.querySelector('.number-input input');
+    // 올리기 버튼과 내리기 버튼 요소 선택
+    let increaseButton = document.querySelector('.increase-button');
+    let decreaseButton = document.querySelector('.decrease-button');
+
+    if(increaseButton&&decreaseButton&&numberInput){
+        // 올리기 버튼 클릭 이벤트 처리
+        increaseButton.addEventListener('click', () => {
+            value = Number(numberInput.value);
+            
+            value++;
+            if (value > 999) {
+                value = 999;
+            }
+            // quantity = value;
+            numberInput.value = value;
+        });
+
+
+        // 내리기 버튼 클릭 이벤트 처리
+        decreaseButton.addEventListener('click', () => {
+            value = Number(numberInput.value);
+            value--;
+            if (value < 1) {
+                value = 1;
+            }
+            // quantity = value;
+            numberInput.value = value;
+        });
+
+        /* 숫자가 아니거 1 미만 일때 */
+        numberInput.addEventListener('input',function() {
+            let value = parseInt(this.value);
+            console.log("this:"+this.value);
+            console.log(value);
+            if (value < 1) {
+                this.value = 1;
+                value = 1;
+            }
+            else if(isNaN(value)){
+                console.log("isNaN");
+                this.value = 1;
+                value = 1;
+            }
+            if (value > 999) {
+                this.value = 999;
+                value = 999;
+            }
+            numberInput.value = value;
+        });
+    }
+    
     //양방향 range
 
     
