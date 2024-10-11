@@ -31,6 +31,23 @@
 		<include refid="base.selectListLowerForMysql"/>
 		
 	</select>
+	<select id="listAll" resultMap="resultObj">
+			select
+				a.rvSeq
+			    ,a.rvScore
+			    ,a.rvContent
+			    ,a.rvSelectTag
+			    ,a.rvRegDate
+			    ,a.delNy
+			    ,a.product_seq
+			    ,a.member_seq
+			    ,b.codeName as rvSelectTagName
+			    ,d.name as rvName
+			<include refid="selectCommon"/>
+		order by 
+			a.rvRegDate desc
+		
+	</select>
 	<select id="listCount" resultType="int">
         	SELECT COUNT(*) 
         	<include refid="selectCommon"/>

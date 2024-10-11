@@ -13,6 +13,9 @@ public class ReviewService {
 	public List<ReviewDto> selectUsrList(ReviewVo vo){
 		return reviewDao.selectUsrList(vo);
 	}
+	public List<ReviewDto> listAll(ReviewVo vo){
+		return reviewDao.listAll(vo);
+	}
 	public int insert(ReviewDto reviewDto) {
 		return reviewDao.insert(reviewDto);
 	}

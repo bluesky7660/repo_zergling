@@ -2,6 +2,7 @@ package com.exion.mall.product;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import com.exion.common.util.DateUtil;
 import com.exion.infra.code.CodeDto;
@@ -70,7 +69,7 @@ public class indexController {
 		String queryString = request.getQueryString();
 		System.out.println("requestURL: "+ requestURL);
 		System.out.println("refererURL: "+ refererURL);
-		System.out.println("queryString: "+ queryString);
+		System.out.println("login_queryString: "+ queryString);
 		if(queryString !=null) {
 			if (queryString.contains("redirect=review")) {
 	            System.out.println("리뷰 작성으로 로그인 성공");
@@ -285,6 +284,9 @@ public class indexController {
 		for(ReviewDto list:lists) {
 			System.out.println("점수: "+list.getRvScore()+" , 이름: "+list.getRvName());
 		}
+		for(CodeDto code:codeService.tagsList()) {
+			System.out.println("rvTags: " +code.getCodeName());
+		}
 		System.out.println("SEQ: "+productService.prodOne(productDto).getSeq()+" , 제목: "+productService.prodOne(productDto).getTitle());
 		model.addAttribute("product", productService.prodUsrOne(vo));
 		model.addAttribute("prodAuthor", authorService.prodAuthorList(authorVo));
@@ -295,9 +297,10 @@ public class indexController {
 		System.out.println("rvCount:" +reviewService.listCount(reviewVo));
 		System.out.println("목차: "+productService.prodOne(productDto).getIntro());
 		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
+//		System.out.println("rvTags: " +codeService.tagsList());
 //		model.addAttribute("author", authorService.authorOne(authorDto));
 //		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
-		return "usr/v1/pages/product_detail";
+		return "/usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
 	public String productList(Model model,@ModelAttribute("vo") ProductVo productVo,ReviewVo reviewVo) {
@@ -452,14 +455,25 @@ public class indexController {
 		System.out.println("상품seq:"+reviewVo.getSeq());
 		System.out.println("상품thisPage:"+reviewVo.getThisPage());
 		
-		List<ReviewDto> reviews = reviewService.selectUsrList(reviewVo);
+		List<ReviewDto> reviews = reviewService.listAll(reviewVo);
 		
 		Map<String, Object> response = new HashMap<>();
 
 	    double totalScore = 0;
 	    int reviewCount = reviewService.listCount(reviewVo);
-	    Map<Double, Integer> scoreCounts = new HashMap<>();
-	    Map<Integer, Integer> tagCounts = new HashMap<>();
+	    Map<Double, Integer> scoreCounts = new LinkedHashMap<>();
+	    scoreCounts.put(10.0, 0);
+	    scoreCounts.put(7.5, 0);
+	    scoreCounts.put(5.0, 0);
+	    scoreCounts.put(2.5, 0);
+	    scoreCounts.put(0.0, 0);
+//	    Map<Integer, Integer> tagCounts = new HashMap<>();
+	    Map<String, Integer> tagCounts = new LinkedHashMap<>();
+	    tagCounts.put("고마워요", 0);
+	    tagCounts.put("최고예요", 0);
+	    tagCounts.put("공감돼요", 0);
+	    tagCounts.put("재밌어요", 0);
+	    tagCounts.put("힐링돼요", 0);
 	 // 태그 번호와 이름을 저장할 맵
 	    Map<Integer, String> tagNames = new HashMap<>();
 	    String mostSelectedTag = "";
@@ -477,23 +491,26 @@ public class indexController {
 	        int tagNumber = review.getRvSelectTag(); // 태그 번호 가져오기
 	        tagNames.putIfAbsent(tagNumber, tagName);
 	        // 태그 개수 업데이트
-	        tagCounts.put(tagNumber, tagCounts.getOrDefault(tagNumber, 0) + 1);
+	        if (tagCounts.containsKey(tagName)) { // 미리 초기화된 태그 목록에 존재하는지 확인
+	            tagCounts.put(tagName, tagCounts.get(tagName) + 1);
+	        }
+	        
 	    }
 	    
-	    for (Map.Entry<Integer, Integer> entry : tagCounts.entrySet()) {
-	        int tagNum = entry.getKey();
+	    for (Map.Entry<String, Integer> entry : tagCounts.entrySet()) {
+	    	String tagName = entry.getKey();
 	        int count = entry.getValue();
 
 	        // 가장 많이 선택된 태그 업데이트
 	        if (count > maxCount) {
 	            maxCount = count;
-	            mostSelectedTagNumber = tagNum; // 가장 많이 선택된 태그의 번호
-	            mostSelectedTag = tagNames.get(tagNum); // 번호로 태그 이름 찾기
+//	            mostSelectedTagNumber = tagName; // 가장 많이 선택된 태그의 번호
+	            mostSelectedTag = tagName; // 번호로 태그 이름 찾기
 	        }
 	    }
 
 	    double averageScore = reviewCount > 0 ? totalScore / reviewCount : 0;
-		
+	    averageScore = Math.round(averageScore* 10) / 10.0;
 		Map<String, Object> responseMap = new HashMap<>();
 	    responseMap.put("rvList", reviews); // 리뷰 목록 추가
 	    responseMap.put("averageScore", averageScore);
@@ -501,7 +518,14 @@ public class indexController {
 	    responseMap.put("reviewCount", reviewCount);
 	    responseMap.put("tagCounts", tagCounts);
 	    responseMap.put("mostSelectedTag", mostSelectedTag);
-	    responseMap.put("mostSelectedTagNumber", mostSelectedTagNumber);
+//	    responseMap.put("totalReviews", mostSelectedTagNumber);
+	    System.out.println("averageScore:"+averageScore);
+        System.out.println("scoreCounts:"+scoreCounts);
+        System.out.println("reviewCount:"+reviewCount);
+        System.out.println("tagCounts:"+tagCounts);
+        System.out.println("mostSelectedTag:"+mostSelectedTag);
+//        System.out.println("totalReviews:"+totalReviews);
+//        System.out.println("mostSelectedTagNumber:"+mostSelectedTagNumber);
 		return responseMap;
 	}
 	@RequestMapping(value = "account_recovery")
