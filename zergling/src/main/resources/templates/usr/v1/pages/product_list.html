@@ -268,7 +268,9 @@
                                                     <span class="icon_box">
                                                         <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""> 
                                                     </span>
-                                                    <strong class="review_num" th:text="${listP.reviewNum}">0.0</strong> 
+                                                    <strong class="review_num" th:text="${reviewStats[listP.seq].result}">0.0</strong>
+                                                    <span>(<span class="review_count" th:text="${reviewStats[listP.seq].count}"></span>)</span>
+                                                    <!-- <strong class="review_num" th:text="${listP.reviewNum}">0.0</strong>  -->
                                                 </div>
                                             </div>
                                         </div>

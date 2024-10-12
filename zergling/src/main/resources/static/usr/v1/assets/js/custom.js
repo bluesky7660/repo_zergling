@@ -659,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // tabs[3].classList.add("active");
                     break;
             }
-            scrollElementOffsetTop = scrollElementOffsetTop - 150;
+            scrollElementOffsetTop = scrollElementOffsetTop - 90;
             window.scrollTo({
                 top: scrollElementOffsetTop,
                 behavior: 'smooth'

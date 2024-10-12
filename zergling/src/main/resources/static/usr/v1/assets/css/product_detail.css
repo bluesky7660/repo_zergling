@@ -66,7 +66,7 @@
 .buy_btn_box{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
 }
 .buy_btn_box button{
     width: calc((100%/2) - 5px);
@@ -313,7 +313,7 @@
 }
 /*리뷰리스트*/
 .review_list{
-    padding: 50px 0;
+    /* padding: 30px 0; */
 }
 /* .review_list>ul{
     display: flex;
@@ -321,16 +321,16 @@
     gap: 20px;
 } */
 .review_list>ul>li{
-    margin-bottom:30px;
-    padding-bottom: 30px;
+    /* margin-bottom:20px;
+    padding-bottom: 20px; */
     border-bottom: 1px solid #aaa;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding:0 20px 30px;
+    gap: 10px;
+    padding:20px 20px 20px;
 }
 
-.review_list .review_head{
+.review_list .review_head,.review_list .review_body{
     display: flex;
     justify-content: space-between;
 }
@@ -338,7 +338,7 @@
     font-size: 14px;
     color: #aaa;
 }
-.review_list .review_head span:not(.user_id,.day){
+.review_list .review_head span:not(.user_id,.day,.review_delbtn){
     font-size: 12px;
     margin:0;
 }
@@ -346,6 +346,27 @@
     gap: 10px;
     display: flex;
     align-items: center;
+}
+.user_review_box .review_head>div>div{
+    height: fit-content;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+.review_content{
+    min-height: 40px;
+}
+.review_list .review_head span.review_delbtn{
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    color:#4dac27;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+.review_list .review_head span.review_delbtn:hover{
+    font-weight: bold;
+    color:#0d1357;
 }
 .user_review_num{
     display: none;
@@ -437,6 +458,9 @@
 .tagName,.tag_percent ,.ratingP span{
     font-size: 14px;
     color: #777;
+}
+.tag_percent span{
+
 }
 .ratingP p{
     white-space: nowrap;

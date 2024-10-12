@@ -165,14 +165,21 @@ function displayTagDistribution(tagCounts, mostSelectedTag, reviewCount) {
                 
                 progressBar.style.height = tagPercentage+"%";
                 if(tag == mostSelectedTag){
-                    tagpercent.parentElement.style.color = "rgba(80, 85, 177, 0.8)";
-                    tagpercent.parentElement.style.fontWeight = "bold";
+                    tagpercent.style.color = "rgba(80, 85, 177, 0.8)";
+                    tagpercent.style.fontWeight = "bold";
                     document.querySelectorAll(".most_tag_parcent").forEach(function(tag) {
                         tag.textContent = tagPercentage+"%";
                     });
                     tagName.style.color = "rgba(80, 85, 177, 0.8)";
                     tagName.style.fontWeight = "bold";
                     progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
+                }
+                else{
+                    tagpercent.style.color = "rgb(119, 119, 119)";
+                    tagpercent.style.fontWeight = "400";
+                    tagName.style.color = "rgb(119, 119, 119)";
+                    tagName.style.fontWeight = "400";
+                    progressBar.style.backgroundColor = "rgb(170, 170, 170)";
                 }
             }
             
@@ -953,15 +960,22 @@ $(document).ready(function(){
                     // reviewContainer.empty();
                     
                     $('#review_list>ul').empty(); // 기존 리뷰 리스트 비우기
+                    console.log("List:",response.rvList);
                     $.each(response.rvList, function(index, review) {
+                        // 삭제 버튼 조건부 표시
+                        var deleteButton = (review.member_seq == response.sessSeqXdm) ? 
+                        `<span class="review_delbtn" id="review_delbtn" >삭제</span>` : '';
                         // 리뷰 아이템 생성
                         var reviewItem = `
                             <li class="user_review_box">
                                 <div class="review_head">
                                     <div>
-                                        <span class="user_id">${review.rvName}</span>
-                                        <span class="line_space">|</span>
-                                        <span class="day">${new Date(review.rvRegDate).toLocaleDateString()}</span>
+                                        <div>
+                                            <span class="user_id">${review.rvName}</span>
+                                            <span class="line_space">|</span>
+                                            <span class="day">${new Date(review.rvRegDate).toLocaleDateString()}</span>
+                                            ${deleteButton}    <!-- 로그인한 사용자일 때만 삭제 버튼 표시 -->
+                                        </div>
                                     </div>
                                     <div>
                                         <ul class="clover_box d-flex justify-content-between">
@@ -972,22 +986,47 @@ $(document).ready(function(){
                                         <p class="user_select_tag">${review.rvSelectTagName}</p>
                                     </div>
                                 </div>
-                                <div class="review_content">${review.rvContent}</div>
-                                <div class="review_footer">
-                                    <div class="review_delbtn_box">
-                                        <button th:if="${rvList.member_seq == session.sessSeqXdm}" class="btn" id="" type="button">삭제</button>
-                                    </div>
-                                    <div class="review_footer_etc">
-                                        <div class="btn_like"><span>0</span></div>
-                                        <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                <div class="review_body">
+                                    <div class="review_content">${review.rvContent}</div>
+                                    <div class="review_footer">
+                                        <div class="review_footer_etc">
+                                            <div class="btn_like"><span>0</span></div>
+                                            <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>`;
                         $('#review_list>ul').append(reviewItem);
                     });
+                    const averageScore = response.averageScore;
+                    const scoreCounts = response.scoreCounts;
+                    const reviewCount = response.reviewCount;
+                    const tagCounts = response.tagCounts;
+                    const mostSelectedTag = response.mostSelectedTag;
+                    const mostSelectedTagNumber = response.mostSelectedTagNumber;
+                    // const mostSelectedTag = response.mostSelectedTag;
+                    console.log("response:"+averageScore);
+                    // 평균 점수 및 점수 분포 계산
+                    calculateReviewAverageScore(averageScore, scoreCounts, reviewCount);
+            
+                    // 태그 분포 및 태그 탑 계산
+                    displayTagDistribution(tagCounts, mostSelectedTag, reviewCount);
                     updatePagination(response.thisPage, response.totalPages);
                     const reviews = document.querySelectorAll(".user_review_box");
                     rvCloverImg(reviews);
+                    console.log("reviewCount:"+reviewCount);
+                    const reviewCounts = document.querySelectorAll(".review_count");
+                    reviewCounts.forEach((element) => {
+                        element.textContent = reviewCount; // reviewCount의 값으로 각 요소의 텍스트 설정
+                    });
+                    let review = document.querySelector(".book_review");
+                    let scrollElementOffsetTop = review.offsetTop;
+                    console.log("review:"+review.offsetTop);
+                    console.log("scrollElementOffsetTop:"+scrollElementOffsetTop);
+                    window.scrollTo({
+                        top: scrollElementOffsetTop,
+                        behavior: 'smooth'
+                    });
                 }
                 ,error : function(jqXHR, textStatus, errorThrown){
                     console.error('리뷰 목록 갱신 중 오류 발생');

@@ -456,10 +456,15 @@
                                         <li class="user_review_box" th:each="rvList : ${rvList}" th:if="${!(rvList == null||rvList == ''||rvCount == 0)}">
                                             <div class="review_head">
                                                 <div>
-                                                    <span class="user_id" th:text="${rvList.rvName}">jnbiuabiy23</span>
-                                                    <span class="">|</span>
-                                                    <span class="day" th:text="${#dates.format(rvList.rvRegDate, 'yyyy.MM.dd')}">2024.08.01</span>
+                                                    <div>
+                                                        <span class="user_id" th:text="${rvList.rvName}">jnbiuabiy23</span>
+                                                        <span class="">|</span>
+                                                        <span class="day" th:text="${#dates.format(rvList.rvRegDate, 'yyyy.MM.dd')}">2024.08.01</span>
+                                                        <span th:if="${rvList.member_seq == session.sessSeqXdm}" class="review_delbtn" id="review_delbtn" >삭제</span>
+                                                    </div>
+                                                    
                                                 </div>
+                                                
                                                 <div>
                                                     <ul class="clover_box d-flex justify-content-between">
                                                         <li>
@@ -480,17 +485,17 @@
                                                     <p class="user_select_tag" th:text="${rvList.rvSelectTagName}"></p>
                                                 </div>
                                             </div>
-                                            <div class="review_content" th:text="${rvList.rvContent}">
-                                            </div>
-                                            <div class="review_footer">
-                                                <div class="review_delbtn_box">
-                                                    <button th:if="${rvList.member_seq == session.sessSeqXdm}" class="btn" id="" type="button">삭제</button>
+                                            <div class="review_body">
+                                                <div class="review_content" th:text="${rvList.rvContent}">
                                                 </div>
-                                                <div class="review_footer_etc">
-                                                    <div class="btn_like"><span>0</span></div>
-                                                    <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                                <div class="review_footer">
+                                                    <div class="review_footer_etc">
+                                                        <div class="btn_like"><span>0</span></div>
+                                                        <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            
                                         </li>
                                         <!-- <li>
                                             <div class="review_head">

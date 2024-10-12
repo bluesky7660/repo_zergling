@@ -308,9 +308,11 @@ public class indexController {
 		System.out.println("get: "+productVo.getMakeDateFillter());
 		model.addAttribute("list", productService.usrProdList(productVo));
 		model.addAttribute("bages", codeService.bageList());
+//		model.addAttribute("rvNum", reviewService.totalNum(reviewVo));
+		model.addAttribute("reviewStats", reviewService.listScore(reviewVo, productVo));
 //		List<ProductDto> prods = productService.usrProdList(productVo);
 //		for(ProductDto prod : prods) {
-//			System.out.println("출판사: "+prod.getPublisherName());
+//			System.out.println("상품seq: "+prod.getSeq());
 //			System.out.println("타입: "+prod.getTitle()	);
 //		}
 		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
@@ -377,6 +379,7 @@ public class indexController {
 	public Map<String, Object> reviewInst(ReviewDto reviewDto){
 //		System.out.println("상품seq:"+reviewDto.getProduct_seq());
 		Integer rtReview = reviewService.insert(reviewDto);
+//		productService.totalNum(reviewDto);
 		Map<String, Object> returnMap = new HashMap<>();
 		if(rtReview != null) {
 			System.out.println("성공");
@@ -398,40 +401,111 @@ public class indexController {
 ////        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
 //		return reviewService.selectUsrList(reviewVo);
 //    }
-	@ResponseBody
-	@RequestMapping(value = "RefreshReviews")
-    public Map<String, Object> RefreshReviews(@RequestBody ReviewVo reviewVo) {
-		reviewVo.setSeq(reviewVo.getProduct_seq());
-		reviewVo.setThisPage(1);
-		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
-		System.out.println("상품seq:"+reviewVo.getSeq());
-		System.out.println("상품thisPage:"+reviewVo.getThisPage());
-		List<ReviewDto> reviews = reviewService.selectUsrList(reviewVo);
-
-	    Map<String, Object> responseMap = new HashMap<>();
-	    responseMap.put("rvList", reviews); // 리뷰 목록 추가
-	    responseMap.put("thisPage", reviewVo.getThisPage()); // 현재 페이지
-	    responseMap.put("totalPages", reviewVo.getTotalPages());
-//        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
-		return responseMap;
-    }
-//	@Autowired
-//    private SpringTemplateEngine templateEngine; 
 //	@ResponseBody
-//	@RequestMapping(value = "reviewList", method = RequestMethod.POST)
-//    public String reviewList(@RequestBody ReviewVo reviewVo,Model model) {
-////		reviewVo.setThisPage(thisPage);
+//	@RequestMapping(value = "RefreshReviews")
+//    public Map<String, Object> RefreshReviews(@RequestBody ReviewVo reviewVo) {
+//		reviewVo.setSeq(reviewVo.getProduct_seq());
+//		reviewVo.setThisPage(1);
 //		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
 //		System.out.println("상품seq:"+reviewVo.getSeq());
 //		System.out.println("상품thisPage:"+reviewVo.getThisPage());
-//		model.addAttribute("rvList", reviewService.selectUsrList(reviewVo));
+//		List<ReviewDto> reviews = reviewService.selectUsrList(reviewVo);
+//
+//	    Map<String, Object> responseMap = new HashMap<>();
+//	    responseMap.put("rvList", reviews); // 리뷰 목록 추가
+//	    responseMap.put("thisPage", reviewVo.getThisPage()); // 현재 페이지
+//	    responseMap.put("totalPages", reviewVo.getTotalPages());
 ////        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
-//		// Model을 Thymeleaf Context로 변환
-////        Context context = new Context();
-////        context.setVariables(model.asMap());
-//        
-//		return templateEngine.process("fragments/data", context);
+//		return responseMap;
 //    }
+	@ResponseBody
+	@RequestMapping(value = "RefreshReviews")
+    public Map<String, Object> RefreshReviews(@RequestBody ReviewVo reviewVo, HttpSession session) {
+		reviewVo.setSeq(reviewVo.getProduct_seq());
+		reviewVo.setThisPage(1);
+		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
+//		System.out.println("상품seq:"+reviewVo.getSeq());
+//		System.out.println("상품thisPage:"+reviewVo.getThisPage());
+		List<ReviewDto> reviewsList = reviewService.selectUsrList(reviewVo);
+
+	    Map<String, Object> responseMap = new HashMap<>();
+	    responseMap.put("rvList", reviewsList); // 리뷰 목록 추가
+	    responseMap.put("thisPage", reviewVo.getThisPage()); // 현재 페이지
+	    responseMap.put("totalPages", reviewVo.getTotalPages());
+	    responseMap.put("sessSeqXdm", session.getAttribute("sessSeqXdm"));
+		System.out.println("상품seq:"+reviewVo.getSeq());
+		System.out.println("상품thisPage:"+reviewVo.getThisPage());
+		System.out.println("세션seq:"+session.getAttribute("sessSeqXdm"));
+		System.out.println("세션이름:"+session.getAttribute("sessNameXdm"));
+		
+		List<ReviewDto> reviews = reviewService.listAll(reviewVo);
+
+	    double totalScore = 0;
+	    int reviewCount = reviewService.listCount(reviewVo);
+	    Map<Double, Integer> scoreCounts = new LinkedHashMap<>();
+	    scoreCounts.put(10.0, 0);
+	    scoreCounts.put(7.5, 0);
+	    scoreCounts.put(5.0, 0);
+	    scoreCounts.put(2.5, 0);
+	    scoreCounts.put(0.0, 0);
+//	    Map<Integer, Integer> tagCounts = new HashMap<>();
+	    Map<String, Integer> tagCounts = new LinkedHashMap<>();
+	    tagCounts.put("고마워요", 0);
+	    tagCounts.put("최고예요", 0);
+	    tagCounts.put("공감돼요", 0);
+	    tagCounts.put("재밌어요", 0);
+	    tagCounts.put("힐링돼요", 0);
+	 // 태그 번호와 이름을 저장할 맵
+	    Map<Integer, String> tagNames = new HashMap<>();
+	    String mostSelectedTag = "";
+	    int mostSelectedTagNumber = 0;
+	    int maxCount = 0;
+
+	    for (ReviewDto review : reviews) {
+	        double score = review.getRvScore();
+	        totalScore += score;
+
+	        scoreCounts.put(score, scoreCounts.getOrDefault(score, 0) + 1);
+
+	        String tagName = review.getRvSelectTagName(); // 각 리뷰의 단일 태그
+
+	        int tagNumber = review.getRvSelectTag(); // 태그 번호 가져오기
+	        tagNames.putIfAbsent(tagNumber, tagName);
+	        // 태그 개수 업데이트
+	        if (tagCounts.containsKey(tagName)) { // 미리 초기화된 태그 목록에 존재하는지 확인
+	            tagCounts.put(tagName, tagCounts.get(tagName) + 1);
+	        }
+	        
+	    }
+	    
+	    for (Map.Entry<String, Integer> entry : tagCounts.entrySet()) {
+	    	String tagName = entry.getKey();
+	        int count = entry.getValue();
+
+	        // 가장 많이 선택된 태그 업데이트
+	        if (count > maxCount) {
+	            maxCount = count;
+//	            mostSelectedTagNumber = tagName; // 가장 많이 선택된 태그의 번호
+	            mostSelectedTag = tagName; // 번호로 태그 이름 찾기
+	        }
+	    }
+
+	    double averageScore = reviewCount > 0 ? totalScore / reviewCount : 0;
+	    averageScore = Math.round(averageScore* 10) / 10.0;
+	    responseMap.put("averageScore", averageScore);
+	    responseMap.put("scoreCounts", scoreCounts);
+	    responseMap.put("reviewCount", reviewCount);
+	    responseMap.put("tagCounts", tagCounts);
+	    responseMap.put("mostSelectedTag", mostSelectedTag);
+//	    responseMap.put("totalReviews", mostSelectedTagNumber);
+	    System.out.println("averageScore:"+averageScore);
+        System.out.println("scoreCounts:"+scoreCounts);
+        System.out.println("reviewCount:"+reviewCount);
+        System.out.println("tagCounts:"+tagCounts);
+        System.out.println("mostSelectedTag:"+mostSelectedTag);
+//        return reviewService.selectUsrList(reviewVo); // 제품에 대한 리뷰 목록 반환
+		return responseMap;
+    }
 	@ResponseBody
 	@RequestMapping(value = "reviewList", method = RequestMethod.POST)
     public Map<String, Object> reviewList(@RequestBody ReviewVo reviewVo) {
@@ -456,8 +530,6 @@ public class indexController {
 		System.out.println("상품thisPage:"+reviewVo.getThisPage());
 		
 		List<ReviewDto> reviews = reviewService.listAll(reviewVo);
-		
-		Map<String, Object> response = new HashMap<>();
 
 	    double totalScore = 0;
 	    int reviewCount = reviewService.listCount(reviewVo);
