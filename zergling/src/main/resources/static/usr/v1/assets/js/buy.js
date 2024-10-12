@@ -9,6 +9,7 @@ $(document).ready(function(){
     const regularPrice = document.querySelector('.regular_price span');
     const salePrice = document.querySelector('.sale_price span');
     const orderTotalPrice = document.querySelector('.order_total_price span');
+    const prodquantity = document.querySelector('.prod_quantity span');
     const pendingPoints = document.querySelector('.pending_points span');
     const pointPrice = document.querySelector('.point_price span');
 
@@ -95,7 +96,8 @@ $(document).ready(function(){
 
     // 할인 계산, 포인트 적용 후 최종 금액 및 적립 포인트 계산 함수
     function calculatePrices() {
-        const originalPrice = parseCurrency(regularPrice.textContent);// 상품 가격
+        const originalPrice = parseCurrency(regularPrice.textContent)*parseCurrency(prodquantity.textContent);// 상품 가격
+        console.log("originalPrice:",originalPrice);
         const discount = Math.floor(originalPrice * 0.1); // 10% 할인 계산
         const discountedPrice = originalPrice - discount; // 할인된 가격
 
@@ -107,14 +109,14 @@ $(document).ready(function(){
         const finalPrice = discountedPrice;
 
         // 적립 포인트 계산 (최종 결제 금액의 5%를 10단위로 내림)
-        let earnedPoints = finalPrice * 0.05;
-        earnedPoints = Math.floor(earnedPoints / 10) * 10; // 10단위로 내림 처리
+        // let earnedPoints = finalPrice * 0.05;
+        // earnedPoints = Math.floor(earnedPoints / 10) * 10; // 10단위로 내림 처리
 
         // 값을 DOM에 업데이트
         prodTotalPrice.textContent = formatCurrency(originalPrice); // 상품 가격을 prod_total_price로 출력
         salePrice.textContent = formatCurrency(discount); // 할인가격
         orderTotalPrice.textContent = formatCurrency(finalPrice); // 최종 결제 금액
-        pendingPoints.textContent = formatCurrency(earnedPoints); // 적립 포인트
+        // pendingPoints.textContent = formatCurrency(earnedPoints); // 적립 포인트
     }
 
     //직접입력

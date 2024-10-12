@@ -43,8 +43,9 @@
                     </div>
                     <div class="user_box">
                         <a class="user_my" href="user_account">
-                            <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" th:text="${session.sessNameXdm + ' 님' }"></span>
-                            <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userIdSeq" name="seq" th:value="${session.sessSeqXdm}">
+                            <span class="user-name" th:if="${session != null and session.sessNameXdm != null}" id="userName" th:text="${session.sessNameXdm + ' 님' }"></span>
+                            <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userSeq" name="seq" th:value="${session.sessSeqXdm}">
+                            <input type="hidden" th:if="${session != null and session.sessNameXdm != null}" id="userId" name="userId" th:value="${session.sessIdXdm}">
                             <span class="usr-imgbox">
                                 <img src="./usr/v1/assets/images/btn_header_my@2x.png" alt="">
                             </span>

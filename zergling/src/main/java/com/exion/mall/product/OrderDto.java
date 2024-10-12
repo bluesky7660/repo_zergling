@@ -25,6 +25,9 @@ public class OrderDto {
 	private String daSeq;
 	private String mmSeq;
 	private String orderStatusText;
+	private String title;
+	private String prodTypeName;
+	private String imgSrc;
 //------------------------------------
 	public String getUoSeq() {
 		return uoSeq;
@@ -129,6 +132,23 @@ public class OrderDto {
 	public void setOrderStatusText(String orderStatusText) {
 		this.orderStatusText = orderStatusText;
 	}
-	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getProdTypeName() {
+		return prodTypeName;
+	}
+	public void setProdTypeName(String prodTypeName) {
+		this.prodTypeName = prodTypeName;
+	}
+	public String getImgSrc() {
+		return imgSrc;
+	}
+	public void setImgSrc(String imgSrc) {
+		this.imgSrc = imgSrc;
+	}
 	
 }

@@ -16,10 +16,16 @@
 			    ,a.product_seq
 			    ,c.codeName as orderStatusText
 			    ,a.member_seq
+			    ,d.title
+			    ,f.codeName as prodTypeName
+			    ,d.imgSrc
 			from
 				ordertest a
 				join member b on b.seq = a.member_seq
 				join commoncode c on c.seq = a.orderStatus and c.codeGroup_seq = 5
+				join product d on d.seq = a.product_seq
+				join commoncode f on f.seq = d.prodType and f.codeGroup_seq = 12
+				
 			where 1 = 1
 				and b.seq = #{seq}
 	</select>

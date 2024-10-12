@@ -891,7 +891,7 @@ $(document).ready(function(){
     
     // const rvtaginput = document.querySelector
     const rvBtn = document.getElementById("rvBtn");
-    const userId = document.getElementById("userIdSeq");
+    const userId = document.getElementById("userSeq");
     if(rvBtn){
         const params = new URLSearchParams(window.location.search);
         const productSeq = params.get('seq');
@@ -922,7 +922,7 @@ $(document).ready(function(){
                         ,type: "post"
                         ,url: "/reviewInst"
                         ,data : { 
-                            "member_seq" : $("#userIdSeq").val()
+                            "member_seq" : $("#userSeq").val()
                             ,"product_seq" : productSeq 
                             ,"rvSelectTag":$("input[name='rvSelectTag']:checked").val()
                             ,"rvContent":$("#rvContent").val()

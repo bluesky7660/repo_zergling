@@ -137,9 +137,9 @@
                                     <button class="increase-button">+</button>
                                 </div>
                                 <div class="buy_btn_box">
-                                    <button class="btn" th:onclick="|location.href='@{/product_buy(seq=${product.seq})}'|">바로구매</button>
+                                    <!-- <button class="btn" th:onclick="|location.href='@{/product_buy(seq=${product.seq})}'|">구매하기</button> -->
+                                    <button class="btn" th:data-seq="${product.seq}" onclick="buyProduct(this)">구매하기</button>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                             <div>
-                                <p class="info_text" th:text="${product.intro}">
+                                <p class="info_text" th:utext="${product.intro}">
                                     <strong>
                                         “나쁜 것과 나쁜 게 아닌 것의 구분은 우리 검찰이 한다.”<br><br>휘몰아치는 전개! 압도적 몰입감! K-스토리 수상작가 이중세 신작 장편소설<br>대한민국 최고 권력 검찰을 향한 칼끝은 범죄인가, 개혁인가?
                                     </strong>
@@ -830,6 +830,12 @@
                     }
                 });
             }
+            
+        }
+        function buyProduct(button) {
+            const quantity = document.getElementById('uoQuantity').value;
+            const seq = button.getAttribute('data-seq');
+            location.href = `/product_buy?seq=${seq}&uoQuantity=${quantity}`;
         }
     </script>
 </body>

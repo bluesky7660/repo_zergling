@@ -56,7 +56,8 @@
                                                 <th>배송지 정보</th>
                                                 <td class="notaddress" th:if="${(user == null||user == '')}">
                                                     <p>기본배송지가 없습니다. 배송지를 추가해 주세요.</p>
-                                                    <button type="button" class="btn" id="addressAdd" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지 추가</button>
+                                                    <button type="button" class="btn" id="addressAdd" onclick="window.location.href='user_delivery_address_add'">배송지 추가</button>
+                                                    <!-- <button type="button" class="btn" id="addressAdd" data-bs-toggle="modal" data-bs-target="#addressAddModal">배송지 추가</button> -->
                                                 </td>
                                                 <td class="isaddress" th:if="${!(user == null||user == '')}">
                                                     <div class="address_name_box">
@@ -134,7 +135,7 @@
                                                         <span class="prod_title" th:text="${item.title}">나쁜 검사들</span>
                                                     </p>
                                                 </div>
-                                                <div class="pord_quantity">
+                                                <div class="prod_quantity">
                                                     <span>1</span>개
                                                 </div>
                                                 <div class="prod_price">
@@ -331,14 +332,14 @@
                                                 <span>0</span> 원
                                             </p>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <p>적립 예정 포인트</p>
                                             <p class="pending_points">
                                                 <span>0</span> p
                                             </p>
-                                        </li>
+                                        </li> -->
                                     </ul>
-                                    <button class="btn btn-blue w-100">결제하기</button>
+                                    <button id="buyBtn"  type="button" class="btn btn-blue w-100">결제하기</button>
                                 </div>
                             </div>
                         </div>
@@ -431,6 +432,32 @@
     <script src="/usr/v1/assets/js/header.js"></script>
     <script th:inline="javascript" type="text/javascript">
         window.onload = function() {
+            const queryString = window.location.search;
+            // URLSearchParams 객체 생성
+            const urlParams = new URLSearchParams(queryString);
+            // 'seq' 파라미터 값 가져오기
+            // 'seq'와 'uoQuantity' 파라미터 값 가져오기
+            const seq = urlParams.get('seq');
+            const Quantity = urlParams.get('uoQuantity');
+            if (Quantity == null) {
+                $(".total_qty span").text(1);
+                $(".prod_quantity span").text(1);
+            }else{
+                $(".total_qty span").text(Quantity);
+                $(".prod_quantity span").text(Quantity);
+            }
+            
+
+            // 값이 존재하는지 확인
+            // if (seq !== null && uoQuantity !== null) {
+            //     console.log("상품 seq:", seq);
+            //     console.log("수량:", uoQuantity);
+
+            //     // jQuery를 사용하여 .total_qty span 요소의 텍스트를 설정
+            //     $(".total_qty span").text(uoQuantity);
+            // } else {
+            //     console.error("파라미터가 존재하지 않습니다.");
+            // }
             const isaddress = document.querySelector(".isaddress");
             
             if(isaddress){
@@ -446,7 +473,7 @@
                 }
                 
             }
-            $("#KakaoPayBtn").click(function(e) {
+            $("#buyBtn").click(function(e) {
                 
                 // 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
                 // HTML 요소에서 값 가져오기
@@ -454,7 +481,7 @@
                 const formattedTitle = itemTitle.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
                 
                 let orderTotalPriceText = $(".order_total_price span").text(); // 총 결제금액 텍스트 가져오기
-                let userName = $("#mmId").val();
+                let userName = $("#userId").val();
                 
 
                 let orderQuantity = parseFloat($(".total_qty span").text().replace(/,/g, ''));
@@ -525,7 +552,7 @@
                     ,"uoDeliveryReq":uoDeliveryReq
                     ,"product_seq":$("#prod_seq").val()
                     ,"daSeq":$("#addressSelected").val()
-                    ,"mmSeq":$("#mmSeq").val()
+                    ,"mmSeq":$("#userSeq").val()
                     ,"deliveryDate":deliveryDate
                 }
                 ,success: function(response) {

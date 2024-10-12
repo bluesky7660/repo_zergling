@@ -359,6 +359,9 @@ main .left-box i{
 .content_info_box>div{
     padding:20px 0;
 }
+.prod_title{
+    margin-bottom: 0;
+}
 .prod_title a:hover{
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -370,7 +373,8 @@ main .left-box i{
 .prod_intro{
     line-height: 20px;
     overflow: hidden;
-    white-space: normal;
+    /* white-space: normal; */
+    white-space: pre-wrap;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;

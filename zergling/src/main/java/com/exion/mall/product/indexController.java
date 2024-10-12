@@ -234,7 +234,7 @@ public class indexController {
 		System.out.println("orderDto:"+orderDto.getProduct_seq());
 		System.out.println("selectUsrList:"+orderService.selectUsrList(orderDto).get(0).getDeliveryDate()+", "+orderService.selectUsrList(orderDto).get(0).getOrderNumber());
 		productVo.setSeq(orderService.selectUsrList(orderDto).get(0).getProduct_seq());
-		model.addAttribute("prod", productService.prodUsrOne(productVo));
+//		model.addAttribute("prod", productService.prodUsrOne(productVo));
 		System.out.println("user_order_list");
 		return "usr/v1/pages/user_order_list";
 	}
@@ -249,6 +249,7 @@ public class indexController {
 	public Map<String, Object> orderinst(OrderDto orderDto){
 //		orderDto.setProduct_seq(orderDto.getSeq()); 
 		System.out.println("orderinst");
+		System.out.println("걍seq:"+orderDto.getSeq());
 		System.out.println("상품seq:"+orderDto.getProduct_seq());
 		System.out.println("유저seq:"+orderDto.getMmSeq());
 		System.out.println("주소seq:"+orderDto.getDaSeq());
@@ -336,7 +337,7 @@ public class indexController {
 			System.out.println("셀렉트");
 			model.addAttribute("user", deliveryAddressService.selectOne(deliveryAddressDto));
 		}else {
-			System.out.println("usr.daseq: " +deliveryAddressService.selectDefOne(deliveryAddressDto).getDaSeq());
+			System.out.println("usr.daseq: " +(deliveryAddressService.selectDefOne(deliveryAddressDto) != null ? deliveryAddressService.selectDefOne(deliveryAddressDto).getDaSeq(): "null"));
 			model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));
 		}
 //		model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));

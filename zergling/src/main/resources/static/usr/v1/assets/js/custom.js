@@ -734,8 +734,8 @@ document.addEventListener('DOMContentLoaded', function () {
             value = Number(numberInput.value);
             
             value++;
-            if (value > 999) {
-                value = 999;
+            if (value > 99) {
+                value = 99;
             }
             // quantity = value;
             numberInput.value = value;
@@ -767,9 +767,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.value = 1;
                 value = 1;
             }
-            if (value > 999) {
-                this.value = 999;
-                value = 999;
+            if (value > 99) {
+                this.value = 99;
+                value = 99;
             }
             numberInput.value = value;
         });
