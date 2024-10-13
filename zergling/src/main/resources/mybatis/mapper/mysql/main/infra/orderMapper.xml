@@ -20,7 +20,7 @@
 			    ,f.codeName as prodTypeName
 			    ,d.imgSrc
 			from
-				ordertest a
+				userorder a
 				join member b on b.seq = a.member_seq
 				join commoncode c on c.seq = a.orderStatus and c.codeGroup_seq = 5
 				join product d on d.seq = a.product_seq
@@ -28,9 +28,10 @@
 				
 			where 1 = 1
 				and b.seq = #{seq}
+				and a.delNy = 0
 	</select>
 	<insert id="insert">
-	  		insert into ordertest(
+	  		insert into userorder(
 				orderNumber
 			    ,orderStatus
 			    ,orderDate
@@ -58,4 +59,11 @@
 			    ,0
 			)
 	  </insert>
+	  <update id="uelete">
+		UPDATE userorder
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
 </mapper>

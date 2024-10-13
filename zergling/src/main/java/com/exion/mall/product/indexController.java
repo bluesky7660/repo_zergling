@@ -265,6 +265,12 @@ public class indexController {
 		}
 		return returnMap;
 	}
+	@ResponseBody
+	@RequestMapping(value = "orderUelt")
+	public String orderUelt(OrderDto orderDto){
+		
+		return "returnMap";
+	}
 	@RequestMapping(value = "user_password")
 	public String userPassword(Model model,HttpSession httpSession, MemberDto memberDto) {
 		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
@@ -383,6 +389,22 @@ public class indexController {
 //		productService.totalNum(reviewDto);
 		Map<String, Object> returnMap = new HashMap<>();
 		if(rtReview != null) {
+			System.out.println("성공");
+			
+			returnMap.put("rt", "success");
+		}else {
+			System.out.println("실패");
+			returnMap.put("rt", "fail");
+		}
+		
+		return returnMap;
+	}
+	@ResponseBody
+	@RequestMapping(value = "reviewUelt")
+	public Map<String, Object> reviewUelt(ReviewDto reviewDto){
+		Integer rtUelete = reviewService.uelete(reviewDto);
+		Map<String, Object> returnMap = new HashMap<>();
+		if(rtUelete != null) {
 			System.out.println("성공");
 			
 			returnMap.put("rt", "success");

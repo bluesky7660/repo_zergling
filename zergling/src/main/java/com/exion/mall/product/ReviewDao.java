@@ -10,6 +10,7 @@ public interface ReviewDao {
 	public List<ReviewDto> listAll(ReviewVo vo);
 	public List<ReviewDto> totalNum(ReviewVo vo);
 	public int insert(ReviewDto reviewDto);
+	public int uelete(ReviewDto reviewDto);
 	public int listCount(ReviewVo vo);
 	
 }

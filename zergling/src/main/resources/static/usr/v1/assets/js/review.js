@@ -307,6 +307,137 @@ function calculateReviewAverageScore(averageScore, scoreCounts, reviewCount) {
     averageElement.innerHTML = `<span class="rating_number"><strong>${averageScore.toFixed(1)}</strong></span> / <span>10</span>`;
     ratingTotal.appendChild(averageElement);
 }
+function loadReviewList(productSeq) {
+    return $.ajax({
+        async: true 
+        ,cache: false
+        ,type: "post"
+        ,url: "/RefreshReviews"
+        ,contentType: "application/json"
+        ,data: JSON.stringify({ product_seq: productSeq })
+        ,success: function(response) {
+            // const reviewContainer = $('#review_list>ul'); 
+            // reviewContainer.empty();
+            
+            $('#review_list>ul').empty(); // 기존 리뷰 리스트 비우기
+            console.log("List:",response.rvList);
+            $.each(response.rvList, function(index, review) {
+                // 삭제 버튼 조건부 표시
+                var deleteButton = (review.member_seq == response.sessSeqXdm) ? 
+                `<span class="review_delbtn">삭제</span>` : '';
+                // 리뷰 아이템 생성
+                var reviewItem = `
+                    <li class="user_review_box">
+                        <input type="hidden" class="rvSeq" name="rvSeq" value="${review.rvSeq}">
+                        <div class="review_head">
+                            <div>
+                                <div>
+                                    <span class="user_id">${review.rvName}</span>
+                                    <span class="line_space">|</span>
+                                    <span class="day">${new Date(review.rvRegDate).toLocaleDateString()}</span>
+                                    ${deleteButton}    <!-- 로그인한 사용자일 때만 삭제 버튼 표시 -->
+                                </div>
+                            </div>
+                            <div>
+                                <ul class="clover_box d-flex justify-content-between">
+                                    ${'<li><img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""></li>'.repeat(4)}
+                                </ul>
+                                <p class="user_review_num">${review.rvScore}</p>
+                                <input type="hidden" class="rvSelectTag" name="rvSelectTag" value="${review.rvSelectTag}">
+                                <p class="user_select_tag">${review.rvSelectTagName}</p>
+                            </div>
+                        </div>
+                        <div class="review_body">
+                            <div class="review_content">${review.rvContent}</div>
+                            <div class="review_footer">
+                                <div class="review_footer_etc">
+                                    <div class="btn_like"><span>0</span></div>
+                                    <div class="btn_reply">답글<span class="reply_num">0</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                $('#review_list>ul').append(reviewItem);
+            });
+            const averageScore = response.averageScore;
+            const scoreCounts = response.scoreCounts;
+            const reviewCount = response.reviewCount;
+            const tagCounts = response.tagCounts;
+            const mostSelectedTag = response.mostSelectedTag;
+            const mostSelectedTagNumber = response.mostSelectedTagNumber;
+            // const mostSelectedTag = response.mostSelectedTag;
+            console.log("response:"+averageScore);
+            // 평균 점수 및 점수 분포 계산
+            calculateReviewAverageScore(averageScore, scoreCounts, reviewCount);
+    
+            // 태그 분포 및 태그 탑 계산
+            displayTagDistribution(tagCounts, mostSelectedTag, reviewCount);
+            updatePagination(response.thisPage, response.totalPages);
+            const reviews = document.querySelectorAll(".user_review_box");
+            rvCloverImg(reviews);
+            console.log("reviewCount:"+reviewCount);
+            const reviewCounts = document.querySelectorAll(".review_count");
+            reviewCounts.forEach((element) => {
+                element.textContent = reviewCount; // reviewCount의 값으로 각 요소의 텍스트 설정
+            });
+            let review = document.querySelector(".book_review");
+            let scrollElementOffsetTop = review.offsetTop;
+            console.log("review:"+review.offsetTop);
+            window.scrollTo({
+                top: scrollElementOffsetTop,
+                behavior: 'smooth'
+            });
+            rvdelete();
+            console.log("scrollElementOffsetTop:"+scrollElementOffsetTop);
+        }
+        ,error : function(jqXHR, textStatus, errorThrown){
+            console.error('리뷰 목록 갱신 중 오류 발생');
+        }
+    });
+
+}
+function rvdelete() {
+    const rvdelBtn = document.querySelectorAll(".review_delbtn");
+    if(rvdelBtn){
+        const params = new URLSearchParams(window.location.search);
+        const productSeq = params.get('seq');
+        rvdelBtn.forEach(e => {
+            e.addEventListener("click", function() {
+                const rvdelBtnBox = e.closest("li");
+                console.log(rvdelBtnBox);
+                $.ajax({
+                    async: true 
+                    ,cache: false
+                    ,type: "post"
+                    ,url: "/reviewUelt"
+                    ,data : { 
+                        "rvSeq" : rvdelBtnBox.querySelector(".rvSeq").value
+                    }
+                    ,success: function(response) {
+                        console.log("rvdelete실행");
+                        if(response.rt == "success") {
+                            loadReviewList(productSeq).done(function () {
+                                console.log("리뷰 리스트 업데이트 완료");
+                                // 리뷰 리스트가 갱신된 후에 다시 이벤트 리스너 등록
+                                rvdelete();
+                            });
+                        } else {
+                            alert("양식에 맞춰주세요.")
+                            // userId.classList.add('is-invalid');
+                            // userPassword.classList.add('is-invalid');
+                            // feedbackChk.classList.add('is-invalid');
+                            // document.getElementById("invalid-feedback").innerText = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                        }
+                        console.log("끝");
+                    }
+                    ,error : function(jqXHR, textStatus, errorThrown){
+                        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                    }
+                });
+            })
+        });
+    }
+}
 $(document).ready(function(){
     const prodparams = new URLSearchParams(window.location.search);
     const prod_Seq = prodparams.get('seq');
@@ -890,6 +1021,7 @@ $(document).ready(function(){
 
     
     // const rvtaginput = document.querySelector
+    
     const rvBtn = document.getElementById("rvBtn");
     const userId = document.getElementById("userSeq");
     if(rvBtn){
@@ -930,7 +1062,7 @@ $(document).ready(function(){
                         }
                         ,success: function(response) {
                             if(response.rt == "success") {
-                                loadReviewList();
+                                loadReviewList(productSeq);
                                 
                             } else {
                                 alert("양식에 맞춰주세요.")
@@ -947,92 +1079,8 @@ $(document).ready(function(){
                 }
             }
         });
-        function loadReviewList() {
-            $.ajax({
-                async: true 
-                ,cache: false
-                ,type: "post"
-                ,url: "/RefreshReviews"
-                ,contentType: "application/json"
-                ,data: JSON.stringify({ product_seq: productSeq })
-                ,success: function(response) {
-                    // const reviewContainer = $('#review_list>ul'); 
-                    // reviewContainer.empty();
-                    
-                    $('#review_list>ul').empty(); // 기존 리뷰 리스트 비우기
-                    console.log("List:",response.rvList);
-                    $.each(response.rvList, function(index, review) {
-                        // 삭제 버튼 조건부 표시
-                        var deleteButton = (review.member_seq == response.sessSeqXdm) ? 
-                        `<span class="review_delbtn" id="review_delbtn" >삭제</span>` : '';
-                        // 리뷰 아이템 생성
-                        var reviewItem = `
-                            <li class="user_review_box">
-                                <div class="review_head">
-                                    <div>
-                                        <div>
-                                            <span class="user_id">${review.rvName}</span>
-                                            <span class="line_space">|</span>
-                                            <span class="day">${new Date(review.rvRegDate).toLocaleDateString()}</span>
-                                            ${deleteButton}    <!-- 로그인한 사용자일 때만 삭제 버튼 표시 -->
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <ul class="clover_box d-flex justify-content-between">
-                                            ${'<li><img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""></li>'.repeat(4)}
-                                        </ul>
-                                        <p class="user_review_num">${review.rvScore}</p>
-                                        <input type="hidden" class="rvSelectTag" name="rvSelectTag" value="${review.rvSelectTag}">
-                                        <p class="user_select_tag">${review.rvSelectTagName}</p>
-                                    </div>
-                                </div>
-                                <div class="review_body">
-                                    <div class="review_content">${review.rvContent}</div>
-                                    <div class="review_footer">
-                                        <div class="review_footer_etc">
-                                            <div class="btn_like"><span>0</span></div>
-                                            <div class="btn_reply">답글<span class="reply_num">0</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>`;
-                        $('#review_list>ul').append(reviewItem);
-                    });
-                    const averageScore = response.averageScore;
-                    const scoreCounts = response.scoreCounts;
-                    const reviewCount = response.reviewCount;
-                    const tagCounts = response.tagCounts;
-                    const mostSelectedTag = response.mostSelectedTag;
-                    const mostSelectedTagNumber = response.mostSelectedTagNumber;
-                    // const mostSelectedTag = response.mostSelectedTag;
-                    console.log("response:"+averageScore);
-                    // 평균 점수 및 점수 분포 계산
-                    calculateReviewAverageScore(averageScore, scoreCounts, reviewCount);
-            
-                    // 태그 분포 및 태그 탑 계산
-                    displayTagDistribution(tagCounts, mostSelectedTag, reviewCount);
-                    updatePagination(response.thisPage, response.totalPages);
-                    const reviews = document.querySelectorAll(".user_review_box");
-                    rvCloverImg(reviews);
-                    console.log("reviewCount:"+reviewCount);
-                    const reviewCounts = document.querySelectorAll(".review_count");
-                    reviewCounts.forEach((element) => {
-                        element.textContent = reviewCount; // reviewCount의 값으로 각 요소의 텍스트 설정
-                    });
-                    let review = document.querySelector(".book_review");
-                    let scrollElementOffsetTop = review.offsetTop;
-                    console.log("review:"+review.offsetTop);
-                    console.log("scrollElementOffsetTop:"+scrollElementOffsetTop);
-                    window.scrollTo({
-                        top: scrollElementOffsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-                ,error : function(jqXHR, textStatus, errorThrown){
-                    console.error('리뷰 목록 갱신 중 오류 발생');
-                }
-            });
-
-        }
+        
     }
+    rvdelete();
+    
 });

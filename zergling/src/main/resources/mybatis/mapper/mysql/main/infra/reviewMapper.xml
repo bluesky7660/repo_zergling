@@ -11,6 +11,7 @@
 				join member d on d.seq = a.member_seq
 			where 1 = 1
 				and a.product_seq = #{seq}
+				and a.delNy = 0
 	</sql>
 	<select id="selectUsrList" resultMap="resultObj">
 		<include refid="base.selectListUpperForMysql"/>
@@ -81,4 +82,11 @@
 		    ,#{member_seq}
 		)
 	</insert>
+	<update id="uelete">
+		UPDATE review
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND rvSeq = #{rvSeq}
+	</update>
 </mapper>
