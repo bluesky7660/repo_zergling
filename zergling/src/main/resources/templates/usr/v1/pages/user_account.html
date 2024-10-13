@@ -34,27 +34,9 @@
     <div class="page-wrapper">
         <div th:replace="~{usr/v1/infra/include/head :: header}"></div>
         <main>
-            <div class="user_header_box">
-                <div class="user_imgbox">
-                    <div class="img-box">
-                        <img src="/usr/v1/assets/images/img_no_profile@2x.png" alt="">
-                    </div>
-                    <p class="user_name"><span th:text="${item.name}"></span>님</p>
-                </div>
-            </div>
+            <div th:replace="~{usr/v1/infra/include/user:: user-header}"></div>
             <div class="user_body d-flex justify-content-between">
-                <div class="aside_box">
-                    <ul class="d-flex flex-column gap-4">
-                        <!-- <li onclick="window.location.href='user_account?seq=1'">▶ 유저룸</li> -->
-                        <!-- <li><a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문 / 배송목록</a></li> -->
-                        <!-- <li><a th:href="@{user_delivery_address(seq=${session.sessSeqXdm})}">배송주소록</a></li> -->
-                        <li onclick="window.location.href='user_order_list'">주문 / 배송목록</li>
-                        <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
-                        <li class="active"><a th:href="@{user_account(seq=${session.sessSeqXdm})}">회원정보 수정</a></li>
-                        <li onclick="window.location.href='user_password'">비밀번호 변경</a></li>
-                        <li class="logoutBtn">로그아웃</li>
-                    </ul>
-                </div>
+                <div th:replace="~{usr/v1/infra/include/user :: user-aside}"></div>
                 <div class="content_area">
                     <div>
                         <p class="content_title">회원정보 수정</p>

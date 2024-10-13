@@ -160,18 +160,21 @@ public class indexController {
 		model.addAttribute("addrList", deliveryAddressService.selectList(vo));
 //		int size = deliveryAddressService.selectList().size();
 //		model.addAttribute("size", size); // 사이즈 추가
+		model.addAttribute("userPage", "deliveryAddress");
 		System.out.println("user_delivery_address");
 		return "/usr/v1/pages/user_delivery_address";
 	}
 	@RequestMapping(value = "user_delivery_addressMfom")
 	public String deliveryAddressMfom(Model model,DeliveryAddressDto deliveryAddressDto) {
 		model.addAttribute("item", deliveryAddressService.selectOne(deliveryAddressDto));
+		model.addAttribute("userPage", "deliveryAddress");
 		System.out.println("MfomSeq: "+deliveryAddressService.selectOne(deliveryAddressDto).getSeq());
 		return "/usr/v1/pages/user_delivery_addressMfom";
 	}
 	@RequestMapping(value = "user_delivery_address_add")
-	public String deliveryAddressAddForm() {
+	public String deliveryAddressAddForm(Model model) {
 		System.out.println("user_delivery_address_add");
+		model.addAttribute("userPage", "deliveryAddress");
 		return "/usr/v1/pages/user_delivery_address_add";
 	}
 	@RequestMapping(value = "user_delivery_address_inst")
@@ -204,11 +207,12 @@ public class indexController {
 //			System.out.println("코드이름: "+item.getCodeName());
 //		}
 		model.addAttribute("gender", codeService.genderList());
+		model.addAttribute("userPage", "account");
 //		System.out.println("seq: "+.get());
 		return "/usr/v1/pages/user_account";
 	}
 	@RequestMapping(value = "user_accountUpdt")
-	public String user_accountUpdt(MemberDto memberDto) {
+	public String userAccountUpdt(MemberDto memberDto) {
 		System.out.println("seq1: "+memberDto.getSeq());
 		memberService.update(memberDto);
 		return "redirect:index";
@@ -231,10 +235,12 @@ public class indexController {
 		orderDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 		
 		model.addAttribute("orderlist", orderService.selectUsrList(orderDto));
-		System.out.println("orderDto:"+orderDto.getProduct_seq());
-		System.out.println("selectUsrList:"+orderService.selectUsrList(orderDto).get(0).getDeliveryDate()+", "+orderService.selectUsrList(orderDto).get(0).getOrderNumber());
-		productVo.setSeq(orderService.selectUsrList(orderDto).get(0).getProduct_seq());
+//		System.out.println("orderDto:"+orderDto.getProduct_seq());
+		System.out.println("orderDto:"+orderDto.getSeq());
+//		System.out.println("selectUsrList:"+orderService.selectUsrList(orderDto).get(0).getDeliveryDate()+", "+orderService.selectUsrList(orderDto).get(0).getOrderNumber());
+//		productVo.setSeq(orderService.selectUsrList(orderDto).get(0).getProduct_seq());
 //		model.addAttribute("prod", productService.prodUsrOne(productVo));
+		model.addAttribute("userPage", "orderList");
 		System.out.println("user_order_list");
 		return "usr/v1/pages/user_order_list";
 	}
@@ -275,6 +281,7 @@ public class indexController {
 	public String userPassword(Model model,HttpSession httpSession, MemberDto memberDto) {
 		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 		model.addAttribute("item", memberService.selectOne(memberDto));
+		model.addAttribute("userPage", "passwordChange");
 		System.out.println("user_password");
 		return "/usr/v1/pages/user_password";
 	}

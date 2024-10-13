@@ -419,8 +419,14 @@ document.addEventListener('DOMContentLoaded', function () {
             for(let element of objs){
                 var objValue = element.value.trim();
                 // const elementBox = element.parentElement;
-                const elementBox = element.closest("li");
-                if(elementBox.querySelector(".invalid-box")){
+                let elementBox;
+                if(element.closest("td")){
+                    elementBox = element.closest("td");
+                }else if (element.closest("li")) {
+                    elementBox = element.closest("li");
+                }
+                const invalidBoxChk = elementBox.querySelector(".invalid-box");
+                if(invalidBoxChk){
                     elementBox.querySelector(".invalid-box").remove();
                 }
                 // console.log("elementBox:" +elementBox.outerHTML);

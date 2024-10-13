@@ -87,11 +87,12 @@ tr.order_head{
 
 /**/
 .order_list_box{
-    border-bottom: 2px solid #777;
+    /* border-bottom: 2px solid #777; */
 }
 .order_list_box .order_item{
     width: 100%;
     border-top: 2px solid #777;
+    border-bottom: 1px solid #ccc;
 }
 
 .order_summary{
@@ -169,4 +170,9 @@ tr.order_head{
 
 .order_delete_btn{
     cursor: pointer;
+}
+
+.data_empty{
+    vertical-align: middle;
+    padding: 30px 20px;
 }

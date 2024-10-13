@@ -11,6 +11,7 @@ public class ApproveResponse {
     private String payment_method_type; // 결제 수단, CARD 또는 MONEY 중 하나
     private String item_name;           // 상품 이름
     private String item_code;           // 상품 코드
+    private Amount amount; 				// 총 금액
     private int quantity;               // 상품 수량
     private String created_at;          // 결제 준비 요청 시각
     private String approved_at;         // 결제 승인 시각
@@ -87,6 +88,12 @@ public class ApproveResponse {
 	}
 	public void setPayload(String payload) {
 		this.payload = payload;
+	}
+	public Amount getAmount() {
+		return amount;
+	}
+	public void setAmount(Amount amount) {
+		this.amount = amount;
 	}
     
 }

@@ -50,7 +50,7 @@ textarea.form-control{
 }
 
 .password_box .form-control {
-    padding-right: 60px; /* 버튼 크기와 위치를 고려한 여백 */
+    padding-right: 70px; /* 버튼 크기와 위치를 고려한 여백 */
 }
 .toggle-button {
     position: absolute;
