@@ -43,6 +43,42 @@ public class ProductService {
 //		return productDao.prodList();
 //	}
 	public List<ProductDto> usrProdList(ProductVo vo){
+		System.out.println("sort정렬:"+vo.getSortOrder());
+		switch (vo.getSortOrder()) {
+			case 1: {
+				System.out.println("최신");
+				vo.setSortOrderString("makeDate desc");
+				break;
+			}
+	////		case 2: {
+	////			//판매량
+//					vo.setSortOrderString("sold desc");
+	////		}
+			case 3: {
+				System.out.println("높은 리뷰점수순");
+				vo.setSortOrderString("reviewNum desc");
+				break;
+			}
+			case 4: {
+				System.out.println("낮은 리뷰점수순");
+				vo.setSortOrderString("reviewNum asc");
+				break;
+			}
+			case 5: {
+				System.out.println("높은가격순");
+				vo.setSortOrderString("salePrice desc");
+				break;
+			}
+			case 6: {
+				System.out.println("낮은가격순");
+				vo.setSortOrderString("salePrice asc");
+				break;
+			}
+			default:{
+				System.out.println("오류!!!!!!!");
+				break;
+			}
+		}
 		return productDao.usrProdList(vo);
 	}
 	public List<ProductDto> newProdList(ProductVo vo){
@@ -50,6 +86,9 @@ public class ProductService {
 	}
 	public List<ProductDto> bestProdList(ProductVo vo){
 		return productDao.bestProdList(vo);
+	}
+	public List<ProductDto> bestCategoryProdList(ProductVo vo){
+		return productDao.bestCategoryProdList(vo);
 	}
 	public List<ProductDto> mdPickProdList(ProductVo vo){
 		return productDao.mdPickProdList(vo);
@@ -63,6 +102,9 @@ public class ProductService {
 	}
 	public ProductDto prodUsrOne(ProductVo vo){
 		return productDao.prodUsrOne(vo);
+	}
+	public int reviewNum(ProductDto productDto) {
+		return productDao.reviewNum(productDto);
 	}
 	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) {
 		int a = productDao.update(productDto);

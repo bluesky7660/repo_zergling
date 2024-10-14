@@ -28,7 +28,8 @@
 			    ,d.name as rvName
 			<include refid="selectCommon"/>
 		order by 
-			a.rvRegDate desc
+			<!-- a.rvRegDate desc -->
+			a.${sortOrderString}
 		<include refid="base.selectListLowerForMysql"/>
 		
 	</select>

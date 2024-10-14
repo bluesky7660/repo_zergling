@@ -20,6 +20,8 @@ public class ReviewVo extends BaseVo{
     private String seq;
     private String rvName;
     private String rvSelectTagName;
+//    private Integer rvSort;
+    private Integer rvSort = 1;
 //----------------------------------------------------
 	public String getRvSeq() {
 		return rvSeq;
@@ -87,7 +89,12 @@ public class ReviewVo extends BaseVo{
 	public void setRvSelectTagName(String rvSelectTagName) {
 		this.rvSelectTagName = rvSelectTagName;
 	}
-	
+	public Integer getRvSort() {
+		return rvSort;
+	}
+	public void setRvSort(Integer rvSort) {
+		this.rvSort = rvSort;
+	}
 	
     
 }

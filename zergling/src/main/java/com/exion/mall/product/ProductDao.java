@@ -11,12 +11,14 @@ public interface ProductDao {
 	public List<ProductDto> usrProdList(ProductVo vo);
 	public List<ProductDto> newProdList(ProductVo vo);
 	public List<ProductDto> bestProdList(ProductVo vo);
+	public List<ProductDto> bestCategoryProdList(ProductVo vo);
 	public List<ProductDto> mdPickProdList(ProductVo vo);
 	public List<ProductDto> xdmProdList(ProductVo vo);	
 	public ProductDto prodOne(ProductDto productDto);
 	public ProductDto prodUsrOne(ProductVo vo);
 	public int listCount(ProductVo vo);
 	public int update(ProductDto productDto);
+	public int reviewNum(ProductDto productDto);
 	public int uelete(ProductDto productDto);
 	public int delete(ProductDto productDto);
 }

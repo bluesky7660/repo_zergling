@@ -79,7 +79,11 @@
     z-index: 12;
     background-color: #fff;
     margin-bottom: 50px;
-    border-bottom: 1px solid;
+    margin-left: -150px;
+    margin-right: -150px;
+    padding: 0 150px;
+    
+    border-bottom: 1px solid #aaa;
 }
 .prod_detail_tabs>*{
     padding: 30px;
@@ -132,6 +136,7 @@
 }
 .prod_detail_recommend ul li .img-box{
     width: 110px;
+    min-width: 110px;
 }
 .prod_detail_recommend .prod_title *{
     font-size: 17px;

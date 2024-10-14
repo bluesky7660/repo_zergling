@@ -209,13 +209,13 @@
                                 </div>
                                 <div class="d-flex justify-content-between gap-3">
                                     <div>
-                                        <select name="" class="form-select" id="view_sort" >
-                                            <option value="1">최신순</option>
-                                            <option value="2">판매량</option>
-                                            <option value="3">높은 리뷰점수순</option>
-                                            <option value="4">낮은 리뷰점수점수순</option>
-                                            <option value="5">높은 가격순</option>
-                                            <option value="6">낮은 가격순</option>
+                                        <select name="sortOrder" class="form-select" id="view_sort" >
+                                            <option value="1" th:selected="${vo.sortOrder == 1}">최신순</option>
+                                            <!-- <option value="2" th:selected="${vo.sortOrder == 2}">판매량</option> -->
+                                            <option value="3" th:selected="${vo.sortOrder == 3}">높은 리뷰점수순</option>
+                                            <option value="4" th:selected="${vo.sortOrder == 4}">낮은 리뷰점수점수순</option>
+                                            <option value="5" th:selected="${vo.sortOrder == 5}">높은 가격순</option>
+                                            <option value="6" th:selected="${vo.sortOrder == 6}">낮은 가격순</option>
                                         </select>
                                     </div>
                                     <div>
@@ -382,6 +382,14 @@
     <script src="/usr/v1/assets/js/header.js"></script>
     <script src="/usr/v1/assets/js/range.js"></script>
     <script>
+        function prodSortSelect() {
+            const sortSelect = document.getElementById("view_sort");
+            const searchForm = document.getElementById("searchForm");
+            sortSelect.addEventListener('change', function () {
+                searchForm.action = "product_list"
+                searchForm.submit();
+            })
+        }
         window.onload = function() {
             const dateSearchBtn = document.querySelectorAll(".makeDateFillterList input[type=radio]");
             const form = document.querySelector("form[name=searchFrom]");
@@ -608,6 +616,7 @@
             //         }
             //     });
             // });
+            prodSortSelect();
         };
     </script>
 </body>

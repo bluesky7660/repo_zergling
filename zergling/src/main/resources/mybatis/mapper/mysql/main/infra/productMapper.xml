@@ -178,7 +178,7 @@
 					<when test="makeDateFillter == 5"> AND a.makeDate BETWEEN DATE_SUB(NOW(), INTERVAL 36 MONTH) AND NOW()</when>
 					<when test="makeDateFillter == 6"> AND a.makeDate &lt; DATE_SUB(NOW(), INTERVAL 36 MONTH) </when>
 				</choose> -->
-			order by a.makeDate desc
+			order by a.${sortOrderString}
 		<include refid="base.selectListLowerForMysql"/>
 	  </select>
 	  <select id="newProdList" resultMap="resultObj">
@@ -275,6 +275,54 @@
 				AND prodType.codeGroup_seq = 12
 				AND publisher.codeGroup_seq = 3
 				AND a.bestNy = 1
+			order by a.ranking asc
+			limit 5
+	  </select>
+	  <select id="bestCategoryProdList" resultMap="resultObj">
+		  	select
+				a.seq
+				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
+			    ,a.title
+			    ,a.prodType
+			    ,b.name
+			    ,a.publisher
+			    ,a.makeDate
+			    ,a.price
+			    ,a.sale
+			    ,a.salePrice
+			    ,a.point
+			    ,a.stockQty
+			    ,a.imgSrc
+			    ,a.intro
+			    ,a.reviewNum
+			    ,a.shipDate
+			    ,a.tableOfContents
+			    ,a.publisherReview
+			    ,a.preview
+			    ,a.viewNumber
+			    ,a.buyNumber
+			    ,a.bestNy
+			    ,a.todayPickNy
+			    ,a.mdPickNy
+			    ,a.freeShippingNy
+			    ,a.taxDeductionNy
+			    ,a.sliderText
+				,a.regDate
+				,a.modDate
+			    ,a.delNy
+			    ,prodType.codeName as prodTypeName
+			    ,publisher.codeName as publisherName
+			from
+				product a
+				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join author b on c.author_seq = b.seq
+				join commoncode d on b.authorType = d.seq
+				left join commoncode prodType on a.prodType = prodType.seq	AND prodType.codeGroup_seq = 12
+				left join commoncode publisher on a.publisher = publisher.seq AND publisher.codeGroup_seq = 3
+			where 1=1
+				AND a.prodType = #{prodType}
+				AND a.bestNy = 1
+				AND a.seq != #{seq}
 			order by a.ranking asc
 			limit 5
 	  </select>
@@ -517,7 +565,13 @@
 			WHERE 1=1
 				AND seq = #{seq}
 		</update>
-		
+		<update id="reviewNum">
+			UPDATE product
+			SET
+				reviewNum = #{reviewNum}
+			WHERE 1=1
+				AND seq = #{seq}
+		</update>
 		<delete id="delete">
 			delete from product
 			WHERE 1=1

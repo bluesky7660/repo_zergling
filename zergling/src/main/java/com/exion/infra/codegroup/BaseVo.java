@@ -32,6 +32,8 @@ public class BaseVo {
     private int endPage;					//마지막 페이지 번호
     
     private int startRnumForMysql = 0; 	// 쿼리 시작하는 row[index번호]
+    private int sortOrder = 1;
+    private String sortOrderString;
     //-------------
     public void setParamsPaging(int totalRows) {
 		
@@ -210,6 +212,25 @@ public class BaseVo {
 	public void setStartRnumForMysql(Integer startRnumForMysql) {
 		this.startRnumForMysql = startRnumForMysql;
 	}
+
+	public int getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(int sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
+	public String getSortOrderString() {
+		return sortOrderString;
+	}
+
+	public void setSortOrderString(String sortOrderString) {
+		this.sortOrderString = sortOrderString;
+	}
+	
+	
+	
 	
     
 }

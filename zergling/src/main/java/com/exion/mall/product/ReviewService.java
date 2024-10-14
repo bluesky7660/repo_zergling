@@ -15,6 +15,33 @@ public class ReviewService {
 	ProductService productService;
 	
 	public List<ReviewDto> selectUsrList(ReviewVo vo){
+		System.out.println("리뷰서비스sort:"+vo.getRvSort());
+		switch (vo.getRvSort()) {
+			case 1: {
+				System.out.println("최신");
+				vo.setSortOrderString("rvRegDate desc");
+				break;
+			}
+			case 2: {
+				System.out.println("높은 점수순");
+				vo.setSortOrderString("rvScore desc");
+				break;
+			}
+			case 3: {
+				System.out.println("낮은 점수순");
+				vo.setSortOrderString("rvScore asc");
+				break;
+			}
+//			case 4: {
+//				System.out.println("좋아요순");
+//				vo.setSortOrderString("reviewNum desc");
+//				break;
+//			}
+			default:{
+				System.out.println("오류!!!!!!!");
+				break;
+			}
+		}	
 		return reviewDao.selectUsrList(vo);
 	}
 	public List<ReviewDto> listAll(ReviewVo vo){

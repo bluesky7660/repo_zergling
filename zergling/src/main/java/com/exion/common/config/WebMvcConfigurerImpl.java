@@ -43,6 +43,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/logoutUsrProc"
 						,"/account_recovery"
 						,"/review*"
+						,"/RefreshReviews"
 						
 		);
 	}

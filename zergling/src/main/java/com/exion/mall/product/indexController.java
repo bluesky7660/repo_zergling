@@ -293,6 +293,7 @@ public class indexController {
 	
 	@RequestMapping(value = "product_detail")
 	public String productDetail(Model model,@ModelAttribute("vo") ReviewVo reviewVo, ReviewDto reviewDto, ProductDto productDto,ProductVo vo,AuthorVo authorVo,ProductAuthorDto productAuthorDto) {
+		System.out.println("productDetail");
 		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
 		List<ReviewDto> lists = reviewService.selectUsrList(reviewVo);
 		for(ReviewDto list:lists) {
@@ -303,6 +304,12 @@ public class indexController {
 		}
 		System.out.println("SEQ: "+productService.prodOne(productDto).getSeq()+" , 제목: "+productService.prodOne(productDto).getTitle());
 		model.addAttribute("product", productService.prodUsrOne(vo));
+//		vo.setProdType(null);
+		System.out.println("ProdType:" +productService.prodOne(productDto).getProdType());
+		vo.setProdType(productService.prodOne(productDto).getProdType());
+		vo.setSeq(productService.prodOne(productDto).getSeq());
+		System.out.println("카테고리:" +productService.prodOne(productDto).getProdTypeName());
+		model.addAttribute("best", productService.bestCategoryProdList(vo));
 		model.addAttribute("prodAuthor", authorService.prodAuthorList(authorVo));
 		model.addAttribute("authors", authorService.authorUsrList(authorVo));
 		model.addAttribute("rvTags", codeService.tagsList());
@@ -320,21 +327,23 @@ public class indexController {
 	public String productList(Model model,@ModelAttribute("vo") ProductVo productVo,ReviewVo reviewVo) {
 		productVo.setParamsPaging(productService.listCount(productVo));
 		System.out.println("get: "+productVo.getMakeDateFillter());
+		
+//		
 		model.addAttribute("list", productService.usrProdList(productVo));
 		model.addAttribute("bages", codeService.bageList());
-//		model.addAttribute("rvNum", reviewService.totalNum(reviewVo));
 		model.addAttribute("reviewStats", reviewService.listScore(reviewVo, productVo));
-//		List<ProductDto> prods = productService.usrProdList(productVo);
+//		model.addAttribute("rvNum", reviewService.totalNum(reviewVo));
+		//		List<ProductDto> prods = productService.usrProdList(productVo);
 //		for(ProductDto prod : prods) {
 //			System.out.println("상품seq: "+prod.getSeq());
 //			System.out.println("타입: "+prod.getTitle()	);
 //		}
 		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
-		System.out.println("최소: "+productVo.getMinPrice());
-		System.out.println("베스트: " +productVo.getBestNy());
-		System.out.println("투데이: " +productVo.getTodayPickNy());
-		System.out.println("타입: " +productVo.getProdType());
-		System.out.println("최대: "+productVo.getMaxPrice());
+//		System.out.println("최소: "+productVo.getMinPrice());
+//		System.out.println("베스트: " +productVo.getBestNy());
+//		System.out.println("투데이: " +productVo.getTodayPickNy());
+//		System.out.println("타입: " +productVo.getProdType());
+//		System.out.println("최대: "+productVo.getMaxPrice());
 		return "/usr/v1/pages/product_list";
 	}
 	
@@ -384,7 +393,7 @@ public class indexController {
 		System.out.println("우편번호: "+addr.getRecipientPhone());
 		System.out.println("우편번호: "+addr.getRecipientName());
 //		System.out.println("우편번호: "+addr.getDaZonecode());
-		System.out.println("상품seq: "+seq);
+//		System.out.println("상품seq: "+seq);
 		
 		return returnMap;
 	}
@@ -450,7 +459,9 @@ public class indexController {
 //    }
 	@ResponseBody
 	@RequestMapping(value = "RefreshReviews")
-    public Map<String, Object> RefreshReviews(@RequestBody ReviewVo reviewVo, HttpSession session) {
+    public Map<String, Object> RefreshReviews(@RequestBody ReviewVo reviewVo, HttpSession session, ProductDto productDto) {
+		System.out.println("RefreshReviews");
+		System.out.println("리뷰컨트롤sort:"+reviewVo.getRvSort());
 		reviewVo.setSeq(reviewVo.getProduct_seq());
 		reviewVo.setThisPage(1);
 		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
@@ -522,6 +533,12 @@ public class indexController {
 
 	    double averageScore = reviewCount > 0 ? totalScore / reviewCount : 0;
 	    averageScore = Math.round(averageScore* 10) / 10.0;
+	    
+	    productDto.setReviewNum(averageScore);
+	    productDto.setSeq(reviewVo.getSeq());
+	    System.out.println("상품seq2:"+productDto.getSeq());
+	    productService.reviewNum(productDto);
+	    
 	    responseMap.put("averageScore", averageScore);
 	    responseMap.put("scoreCounts", scoreCounts);
 	    responseMap.put("reviewCount", reviewCount);
@@ -539,6 +556,7 @@ public class indexController {
 	@ResponseBody
 	@RequestMapping(value = "reviewList", method = RequestMethod.POST)
     public Map<String, Object> reviewList(@RequestBody ReviewVo reviewVo) {
+		System.out.println("reviewList");
 //		reviewVo.setThisPage(thisPage);
 		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
 		System.out.println("상품seq:"+reviewVo.getSeq());
@@ -613,6 +631,7 @@ public class indexController {
 
 	    double averageScore = reviewCount > 0 ? totalScore / reviewCount : 0;
 	    averageScore = Math.round(averageScore* 10) / 10.0;
+	    
 		Map<String, Object> responseMap = new HashMap<>();
 	    responseMap.put("rvList", reviews); // 리뷰 목록 추가
 	    responseMap.put("averageScore", averageScore);
@@ -630,6 +649,22 @@ public class indexController {
 //        System.out.println("mostSelectedTagNumber:"+mostSelectedTagNumber);
 		return responseMap;
 	}
+	@ResponseBody
+	@RequestMapping(value = "reviewSort")
+    public Map<String, Object> reviewSort() {
+
+	    Map<String, Object> responseMap = new HashMap<>();
+
+        return responseMap; // 제품에 대한 리뷰 목록 반환
+    }
+	@ResponseBody
+	@RequestMapping(value = "sortSelect")
+    public Map<String, Object> sortSelect() {
+
+	    Map<String, Object> responseMap = new HashMap<>();
+
+        return responseMap; // 제품에 대한 리뷰 목록 반환
+    }
 	@RequestMapping(value = "account_recovery")
 	public String accountRecovery() {
 		System.out.println("account_recovery");
