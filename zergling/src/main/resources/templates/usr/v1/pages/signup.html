@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/signup.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 <body>
     <div class="page-wrapper">
@@ -117,7 +117,8 @@
                                 
                             </ul>
                             <div class="signup_btn">
-                                <button id="btnSubmit" class="btn btn-blue w-100" type="button">회원가입</button>
+                                <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div>
+                                <button id="btnSubmit"  class="btn btn-blue w-100" type="button">회원가입</button>
                             </div>
                         </div>
                         <div class="tab_content" id="corporate_member">
@@ -168,5 +169,10 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
     <script src="/usr/v1/assets/js/custom.js"></script>
     <!-- <script src="/usr/v1/assets/js/validations.js"></script> -->
+     <script>
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+        }
+     </script>
 </body>
 </html>

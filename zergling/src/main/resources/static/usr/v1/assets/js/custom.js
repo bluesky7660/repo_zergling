@@ -623,6 +623,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    
+    // 초기 상태에서 각 콘텐츠의 길이 체크
+    contents.forEach((content, index) => {
+        const lineHeight = parseInt(window.getComputedStyle(content).lineHeight);
+        if (content.scrollHeight > lineHeight * 4) { // 4줄 이상일 경우
+            toggleButtons[index].classList.remove('hidden'); // 버튼 보이기
+        } else {
+            toggleButtons[index].remove(); // 버튼 제거
+        }
+    });
 
 
     /*탭 선택시 영역으로 화면 스크롤 */
@@ -636,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function () {
         tabs[i].addEventListener('click', () => {
             switch (i) {
                 case 0:
-                    scrollElementOffsetTop = information.offsetTop;
+                    scrollElementOffsetTop = information.offsetTop - 90;
                     // console.log(this);
                     // tabs[0].classList.add("active");
                     // tabs[1].classList.remove("active");

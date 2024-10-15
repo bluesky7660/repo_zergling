@@ -152,14 +152,14 @@
                     <div class="prod_detail_info_wrap">
                         <div class="info_img">
                             <div class="img-box">
-                                <img th:src="'/usr/v1/assets/images/info/i'+${product.imgSrc}+'.jpg'" alt="">
+                                <img th:src="'/usr/v1/assets/images/prod/info/i'+${product.imgSrc}+'.jpg'" onerror="this.parentElement.parentElement.remove();">
                             </div>
                         </div>
                         <div class="prod_about">
                             <div class="prod_about_head d-flex flex-column gap-2 mb-3">
                                 <p class="box_title"><b>책 소개</b></p>
-                                <p>이 책이 속한 분야</p>
-                                <div>
+                                <p><b>이 책이 속한 분야</b></p>
+                                <div class="prod_about_type">
                                     <p><span>국내도서</span> > <span th:text="${product.prodTypeName}"></span></p>
                                 </div>
                             </div>
@@ -197,7 +197,7 @@
                                     <div class="author_type">
                                         <button class="btn" th:text="${author.codeName}">연극인＞희곡/극작가</button>
                                     </div>                                
-                                    <p class="info_text info_desc" th:text="${author.authorInfo}">생물학과 문예창작을 전공했다. 오래 기억되는 글을 쓰고 싶어 한다.<br>소설 「그래서 그들은 강으로 갔다」로 2013년 평사리문학대상을, 같은 해 희곡 〈끈〉으로 목포문학상 희곡 본상을 받았다.<br>소설 「코의 무게」, 「오래된 미래」가 각각 2019 교보문고 스토리공모전, SF오디오스토리어워즈에 수상작으로 선정되었다.<br>2022년 K-스토리 공모전에서 최우수상을 받고 장편소설 『강철로 된 무지개』를 출간했다.<br>그 밖에 희곡 〈파국〉과 장편소설 『삼키는 칼』을 썼다.</p>
+                                    <p class="info_text info_desc" th:utext="${author.authorInfo}">생물학과 문예창작을 전공했다. 오래 기억되는 글을 쓰고 싶어 한다.<br>소설 「그래서 그들은 강으로 갔다」로 2013년 평사리문학대상을, 같은 해 희곡 〈끈〉으로 목포문학상 희곡 본상을 받았다.<br>소설 「코의 무게」, 「오래된 미래」가 각각 2019 교보문고 스토리공모전, SF오디오스토리어워즈에 수상작으로 선정되었다.<br>2022년 K-스토리 공모전에서 최우수상을 받고 장편소설 『강철로 된 무지개』를 출간했다.<br>그 밖에 희곡 〈파국〉과 장편소설 『삼키는 칼』을 썼다.</p>
                                     <div class="collapse_btn">
                                         <span>펼치기</span>
                                     </div>
@@ -236,7 +236,7 @@
                                 <span>펼치기</span>
                             </div>
                         </div>
-                        <div class="book_info">
+                        <div class="book_info" th:if="${!(product.preview == '없음')}">
                             <p class="box_title"><b>책 속으로</b></p>
                             <p class="info_text" th:text="${product.preview}"></p>
                             <div class="collapse_btn ">

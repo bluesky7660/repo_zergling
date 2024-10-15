@@ -56,25 +56,25 @@
                                         <p>주문내역</p>
                                         <p>주문/배송안내</p>
                                     </div>
-                                    <div class="ready">
-                                        <p>1</p>
+                                    <div class="orders_status">
+                                        <p th:text="${paymentDoneCount}">0</p>
+                                        <p>결제완료</p>
+                                    </div>
+                                    <div class="orders_status">
+                                        <p th:text="${readyCount}">1</p>
                                         <p>준비중</p>
                                     </div>
-                                    <div class="ready">
-                                        <p>0</p>
+                                    <div class="orders_status">
+                                        <p th:text="${inDeliveryCount}">0</p>
                                         <p>배송중</p>
                                     </div>
-                                    <div class="ready">
-                                        <p>0</p>
+                                    <div class="orders_status">
+                                        <p th:text="${deliveredCount}">0</p>
                                         <p>배송완료</p>
                                     </div>
-                                    <div class="ready">
-                                        <p>1</p>
+                                    <div class="orders_status">
+                                        <p th:text="${cancelledCount}">1</p>
                                         <p>취소</p>
-                                    </div>
-                                    <div class="ready">
-                                        <p>0</p>
-                                        <p>교환/반품</p>
                                     </div>
                                 </div>
                             </div>

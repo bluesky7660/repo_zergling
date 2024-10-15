@@ -233,8 +233,46 @@ public class indexController {
 	public String userOrderList(Model model, HttpSession httpSession, OrderDto orderDto, MemberDto memberDto,ProductVo productVo) {
 //		model.addAttribute("member", memberService.selectOne(memberDto));
 		orderDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		
-		model.addAttribute("orderlist", orderService.selectUsrList(orderDto));
+		List<OrderDto> orderlist = orderService.selectUsrList(orderDto);
+		model.addAttribute("orderlist", orderlist);
+		int readyCount = 0;
+		int inDeliveryCount = 0;
+		int deliveredCount = 0;
+		int cancelledCount = 0;
+		int paymentDoneCount = 0;
+		for(OrderDto order : orderlist) {
+			switch (order.getOrderStatus()) {
+				case 57: {
+					readyCount++;
+					break;
+				}
+				case 14: {
+					inDeliveryCount++;
+					break;
+				}
+				case 10: {
+					deliveredCount++;
+					break;
+				}
+				case 19: {
+					cancelledCount++;
+					break;
+				}
+				case 56: {
+					paymentDoneCount++;
+					break;
+				}
+			}
+//			default:
+//				
+//			}
+		}
+		// 모델에 각 카운트 값 추가
+		model.addAttribute("readyCount", readyCount);
+		model.addAttribute("inDeliveryCount", inDeliveryCount);
+		model.addAttribute("deliveredCount", deliveredCount);
+		model.addAttribute("cancelledCount", cancelledCount);
+		model.addAttribute("paymentDoneCount", paymentDoneCount);
 //		System.out.println("orderDto:"+orderDto.getProduct_seq());
 		System.out.println("orderDto:"+orderDto.getSeq());
 //		System.out.println("selectUsrList:"+orderService.selectUsrList(orderDto).get(0).getDeliveryDate()+", "+orderService.selectUsrList(orderDto).get(0).getOrderNumber());
