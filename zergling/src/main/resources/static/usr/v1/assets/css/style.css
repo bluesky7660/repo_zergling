@@ -491,6 +491,12 @@ a.img-box{
     font-size: 25px;
 
 }
+.moreBtn{
+    font-weight: bold;
+}
+.moreBtn:hover{
+    text-decoration: underline;
+}
 /**/
 .customer_service_area{
     background-color: #ddd;

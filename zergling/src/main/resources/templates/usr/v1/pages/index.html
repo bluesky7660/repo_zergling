@@ -282,7 +282,7 @@
                             </div> -->
                         </div>
                         <div class="d-flex align-items-center">
-                            <a href="javascript:void(0);">더보기 +</a>
+                            <a class="moreBtn" href="product_list?todayPickNy=1">더보기 +</a>
                         </div>
                     </div>
                     <div class="contentArea ">
@@ -303,7 +303,7 @@
                         <div class="md_pick_list">
                             <div class="slider-container swiper-container"id="slider2">
                                 <div class="swiper-wrapper your-slider" >
-                                    <div th:each="mdPickProd:${mdPickProd}">
+                                    <div th:each="mdPickProd:${mdPickProd}" th:onclick="|location.href='@{/product_detail(seq=${mdPickProd.seq})}'|">
                                         <div class="img-box">
                                             <img th:src="'./usr/v1/assets/images/prod/300/'+${mdPickProd.imgSrc}+'.jpg'" alt="">
                                         </div>
@@ -643,13 +643,13 @@
                                 </ul>
                             </div> -->
                         </div>
-                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                        <div class="d-flex align-items-center"><a class="moreBtn" href="product_list?newNy=1">더보기 +</a></div>
                     </div>
                     
                     <div class="contentArea">
                         <div class="slider-container swiper-container"id="slider6">
                             <div class="swiper-wrapper">
-                                <div th:each="newProd:${newProd}">
+                                <div th:each="newProd:${newProd}" th:onclick="|location.href='@{/product_detail(seq=${newProd.seq})}'|">
                                     <div class="img-box">
                                         <img th:src="'./usr/v1/assets/images/prod/300/' +${newProd.imgSrc} +'.jpg'" alt="Image"/>
                                     </div>
@@ -899,11 +899,11 @@
                                 </div> -->
                             </div>                            
                         </div>
-                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                        <div class="d-flex align-items-center"><a class="moreBtn" href="product_list?bestNy=1">더보기 +</a></div>
                     </div>                    
                     <div class="contentArea">
                         <ul class="best-content gap-5">
-                            <li th:each=" bestProd: ${bestProd}">
+                            <li th:each=" bestProd: ${bestProd}" th:onclick="|location.href='@{/product_detail(seq=${bestProd.seq})}'|">
                                 <div class="img-box">
                                     <img th:src="'./usr/v1/assets/images/prod/300/'+ ${bestProd.imgSrc} +'.jpg'" alt="">
                                 </div>

@@ -28,7 +28,10 @@
     <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/login.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    <!-- 점수용 -->
+    <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeKiWEqAAAAAD6UdRMtXos58uq1oFddc305Gpdq"></script> -->
 </head>
 <body>
     <div class="page-wrapper">
@@ -50,7 +53,13 @@
                         </div>
                     </div>
                     <div class="login-btn">
+                        <input type="hidden" id="grecaptcha" />
+                        <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div>
                         <button class="btn w-100 mt-0" type="button" id="loginBtn">로그인</button>
+                        <!-- <button class="g-recaptcha btn w-100 mt-0" type="button" id="loginBtn" 
+                                    data-sitekey="6LeKiWEqAAAAAD6UdRMtXos58uq1oFddc305Gpdq"
+                                    data-callback='onSubmit'
+                                    data-action='LOGIN'>로그인</button> -->
                     </div>
                     <div class="etc_box d-flex justify-content-between">
                         <div class="save_id_chk_box form-check">
@@ -114,6 +123,12 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
     <script src="/usr/v1/assets/js/custom.js"></script>
     <script>
+        // grecaptcha.ready(function() {
+        //     grecaptcha.execute('YOUR_SITE_KEY', {action: 'login'}).then(function(token) {
+
+        //     })
+        // })
     </script>
+    
 </body>
 </html>

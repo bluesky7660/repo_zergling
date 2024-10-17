@@ -3,7 +3,9 @@
     padding-left:100px;
     padding-right:100px;
 } */
-
+.swiper-slide{
+    cursor: pointer;
+}
 /*메인슬라이더*/
 .hero-area .hero-slider .single-slider {
     background-size: cover;
@@ -305,8 +307,10 @@
     height: fit-content; /* 아이템 높이 */
     width: 100%; /* 아이템 너비 (그리드의 열 너비와 같음) */
     counter-increment: item-counter; /* 각 항목마다 카운터 증가 */
+    cursor: pointer;
     /* box-sizing: border-box; */
 }
+
 
 
 .best-content li::before {
@@ -331,6 +335,28 @@
 }
 .best-content li .img-box{
     border: 1px solid #ccc;
+    transition: border-color .5s ease;
+}
+.best-content li:hover .img-box{
+    border-color:rgb(77, 172, 39);
+    position: relative;
+}
+.best-content li .img-box::before{
+    content: "상세보기";
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+.best-content li:hover .img-box::before{
+    opacity: 1;
 }
 
 

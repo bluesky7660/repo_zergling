@@ -158,7 +158,6 @@ $(document).ready(function(){
                 ,cache: false
                 ,type: "post"
                 /* ,dataType:"json" */
-                // ,url: "/v1/infra/member/loginUsrProc"
                 ,url: "/buyAddressChange"
                 /* ,data : $("#formLogin").serialize() */
                 ,data : { "daSeq" : $("#addressSelected").val().trim(), "seq" : $("#prod_seq").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}

@@ -49,9 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if(loginBtn){
         const feedbackChk = document.querySelector(".invalid-child");
         const feedback = document.querySelector(".invalid-feedback");
-        loginBtn.addEventListener("click", function() {
+        loginBtn.addEventListener("click", function(event) {
             // const loginBoxParent = element.closest('.login-box');
-            
+            event.preventDefault();
+
             let idValid = true;
             let pwValid = true;
             let idValue = userId.value.trim();
@@ -101,21 +102,32 @@ document.addEventListener('DOMContentLoaded', function () {
                 return false;
             }
             
+            let token = grecaptcha.getResponse();
+            console.log("토큰:",token);
+            if (!token) {
+                feedback.textContent = "reCAPTCHA를 확인해 주세요.";
+                return false;
+            }
+
             userId.classList.remove('is-invalid');
             userPassword.classList.remove('is-invalid');
             feedbackChk.classList.remove('is-invalid');
             feedback.textContent = "";
-    
+            
             //ajax 로그인
             $.ajax({
                 async: true 
                 ,cache: false
                 ,type: "post"
                 /* ,dataType:"json" */
-                // ,url: "/v1/infra/member/loginUsrProc"
                 ,url: "/loginUsrProc"
                 /* ,data : $("#formLogin").serialize() */
-                ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                ,data : { 
+                    "userId" : $("#userId").val().trim(),
+                    "userPassword" : $("#userPassword").val(),
+                    token: token,
+                    recaptchaAction:"login"
+                }//, "autoLogin" : $("#autoLogin").is(":checked")}
                 ,success: function(response) {
                     if(response.rt == "success") {
                         userId.classList.remove('is-invalid');
@@ -209,7 +221,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     ,cache: false
                     ,type: "post"
                     /* ,dataType:"json" */
-                    // ,url: "/v1/infra/member/loginUsrProc"
                     ,url: "/loginUsrProc"
                     /* ,data : $("#formLogin").serialize() */
                     ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}

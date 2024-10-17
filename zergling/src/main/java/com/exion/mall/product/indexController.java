@@ -1,12 +1,17 @@
 package com.exion.mall.product;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +26,9 @@ import com.exion.infra.code.CodeDto;
 import com.exion.infra.code.CodeService;
 import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
+import com.exion.infra.recaptcha.CaptchaUtil;
+//import com.exion.infra.recaptcha.CreateAssessment;
+import com.exion.infra.recaptcha.RecaptchaService;
 import com.exion.infra.util.Constants;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -54,6 +62,12 @@ public class indexController {
 	@Autowired
 	ReviewService reviewService;
 	
+	@Autowired
+    private RecaptchaService recaptchaService;
+	
+	@Autowired
+	CaptchaUtil captchaUtil;
+	
 	@RequestMapping(value = "index")
 	public String index(Model model, ProductVo productVo) {
 		model.addAttribute("newProd", productService.newProdList(productVo));
@@ -83,9 +97,46 @@ public class indexController {
 	
 	@ResponseBody
 	@RequestMapping(value = "loginUsrProc")
-	public Map<String, Object> loginUsrProc( MemberDto memberDto, HttpSession httpSession) throws Exception {
+	public Map<String, Object> loginUsrProc(@RequestParam("token") String token, @RequestParam("recaptchaAction") String recaptchaAction, MemberDto memberDto, HttpSession httpSession) throws Exception {
 		System.out.println("loginUsrProc");
 		Map<String, Object> returnMap = new HashMap<>();
+		
+		try {
+			Properties properties = new Properties();
+		    Resource resource = new ClassPathResource("application.properties");
+		    try (InputStream input = resource.getInputStream()) {
+		        properties.load(input);
+		    }
+			
+			// 설정 파일에서 값 읽기
+			String projectID = properties.getProperty("google.recaptcha.projectID");
+			String recaptchaKey = properties.getProperty("google.recaptcha.key"); // 설정 파일에서 읽어오거나 상수로 관리
+//			String serviceAccountKeyFilePath = properties.getProperty("google.service.account.key.file");
+	        System.out.println("projectID:"+projectID);
+		    System.out.println("recaptchaKey:"+recaptchaKey);
+		    System.out.println("token:"+token);
+		    System.out.println("recaptchaAction:"+recaptchaAction);
+//		    System.out.println("serviceAccountKeyFilePath:"+serviceAccountKeyFilePath);
+		  //reCAPTCHA 검증
+            boolean isValid = recaptchaService.verifyRecaptcha(token,recaptchaAction);
+            if (!isValid) {
+                returnMap.put("rt", "fail");
+                returnMap.put("message", "reCAPTCHA validation failed.");
+                return returnMap;
+            }
+//            boolean isCaptchaValid = CAPTCHAUtil.validateCaptcha(captchaInput, httpSession);
+//            if (!isCaptchaValid) {
+//                returnMap.put("rt", "fail");
+//                returnMap.put("message", "CAPTCHA validation failed.");
+//                return returnMap;
+//            }
+//		    CreateAssessment.createAssessment(serviceAccountKeyFilePath, projectID, recaptchaKey, token, recaptchaAction);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        returnMap.put("rt", "fail");
+	        return returnMap; // reCAPTCHA 검증 실패
+	    }
+		
 		MemberDto rtMember = memberService.selectUsrOne(memberDto);
 		System.out.println("rtMember: " + rtMember);
 		if (rtMember != null) {
