@@ -102,12 +102,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 return false;
             }
             
-            let token = grecaptcha.getResponse();
-            console.log("토큰:",token);
-            if (!token) {
-                feedback.textContent = "reCAPTCHA를 확인해 주세요.";
-                return false;
-            }
+            // let token = grecaptcha.getResponse();
+            // console.log("토큰:",token);
+            // if (!token) {
+            //     feedback.textContent = "reCAPTCHA를 확인해 주세요.";
+            //     return false;
+            // }
 
             userId.classList.remove('is-invalid');
             userPassword.classList.remove('is-invalid');
@@ -125,8 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 ,data : { 
                     "userId" : $("#userId").val().trim(),
                     "userPassword" : $("#userPassword").val(),
-                    token: token,
-                    recaptchaAction:"login"
+                    // token: token,
+                    recaptchaAction:"login",
+                    captchaCode: $("#captchaCode").val(),
                 }//, "autoLogin" : $("#autoLogin").is(":checked")}
                 ,success: function(response) {
                     if(response.rt == "success") {

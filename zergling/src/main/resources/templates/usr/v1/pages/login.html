@@ -32,6 +32,18 @@
     <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <!-- 점수용 -->
     <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeKiWEqAAAAAD6UdRMtXos58uq1oFddc305Gpdq"></script> -->
+    <style>
+        /* 화살표 제거 */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none; /* Chrome/Safari */
+            margin: 0; /* 기본 여백 제거 */
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield; /* Firefox */
+        }
+    </style>
 </head>
 <body>
     <div class="page-wrapper">
@@ -53,8 +65,14 @@
                         </div>
                     </div>
                     <div class="login-btn">
-                        <input type="hidden" id="grecaptcha" />
-                        <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div>
+                        <div class="captcha_box">
+                            <img id="captchaImage" src="/captcha" style=" width:130px; height:48px; border: 1px solid #aaa;" />
+                            <!-- <input type="text" id="captchaCode" class="form-control" maxlength="5" pattern="\d*"> -->
+                            <input type="number" class="form-control" id="captchaCode" placeholder="숫자 입력" min="0" max="99999" oninput="this.value = Math.max(0, Math.min(99999, this.value))" />
+                        </div>
+                        <!-- <input type="hidden" id="grecaptcha" /> -->
+                        
+                        <!-- <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div> -->
                         <button class="btn w-100 mt-0" type="button" id="loginBtn">로그인</button>
                         <!-- <button class="g-recaptcha btn w-100 mt-0" type="button" id="loginBtn" 
                                     data-sitekey="6LeKiWEqAAAAAD6UdRMtXos58uq1oFddc305Gpdq"
@@ -128,6 +146,22 @@
 
         //     })
         // })
+        // $(document).ready(function() {
+        //     fetch('/captcha')
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         return response.blob(); // Blob 형태로 이미지 데이터 받아오기
+        //     })
+        //     .then(imageBlob => {
+        //         const imageObjectURL = URL.createObjectURL(imageBlob);
+        //         document.getElementById('captchaImage').src = imageObjectURL; // 이미지 URL 설정
+        //     })
+        //     .catch(error => {
+        //         console.error('There was a problem with the fetch operation:', error);
+        //     });
+        // });
     </script>
     
 </body>

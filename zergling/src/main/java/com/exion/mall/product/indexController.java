@@ -1,5 +1,11 @@
 package com.exion.mall.product;
 
+
+
+import java.awt.Font;
+
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
@@ -26,12 +32,18 @@ import com.exion.infra.code.CodeDto;
 import com.exion.infra.code.CodeService;
 import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
-import com.exion.infra.recaptcha.CaptchaUtil;
 //import com.exion.infra.recaptcha.CreateAssessment;
 import com.exion.infra.recaptcha.RecaptchaService;
 import com.exion.infra.util.Constants;
+//import com.wf.captcha.utils.CaptchaUtil;
 
+import io.springboot.captcha.SpecCaptcha;
+import io.springboot.captcha.base.Captcha;
+import io.springboot.captcha.utils.CaptchaJakartaUtil;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -65,9 +77,37 @@ public class indexController {
 	@Autowired
     private RecaptchaService recaptchaService;
 	
-	@Autowired
-	CaptchaUtil captchaUtil;
+//	@Autowired
+//	CaptchaUtil captchaUtil;
 	
+	@RequestMapping(value = "/captcha")
+	public void captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    response.setContentType("image/gif");
+	    response.setHeader("Pragma", "No-cache");
+	    response.setHeader("Cache-Control", "no-cache");
+	    response.setDateHeader("Expires", 0);
+
+	    SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
+	    specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));
+	    specCaptcha.setCharType(Captcha.TYPE_ONLY_NUMBER);
+//	    System.out.println("specCaptcha.toBase64()"+specCaptcha.toBase64());
+//	    System.out.println("specCaptcha.text().toLowerCase()"+specCaptcha.text().toLowerCase());
+	    request.getSession().setAttribute("captcha", specCaptcha.text().toLowerCase());
+//	    String base64Image = "data:image/gif;base64,"+specCaptcha.toBase64();
+
+	 // 이미지 출력
+	    System.out.println("출력");
+	    specCaptcha.out(response.getOutputStream());
+	    System.out.println("출력성공");
+	}
+	@RequestMapping(value = "/refreshCaptcha")
+    public void refreshCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
+        specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));
+        specCaptcha.setCharType(Captcha.TYPE_ONLY_NUMBER);
+        request.getSession().setAttribute("captcha", specCaptcha.text().toLowerCase());
+        specCaptcha.out(response.getOutputStream());
+    }
 	@RequestMapping(value = "index")
 	public String index(Model model, ProductVo productVo) {
 		model.addAttribute("newProd", productService.newProdList(productVo));
@@ -78,6 +118,9 @@ public class indexController {
 	}
 	@RequestMapping(value = "login")
 	public String login(HttpServletRequest request,HttpSession httpSession) {
+//		SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
+//		System.out.println("specCaptcha.toBase64()"+specCaptcha.toBase64());
+//		System.out.println("specCaptcha.text().toLowerCase()"+specCaptcha.text().toLowerCase());
 		String requestURL = request.getRequestURL().toString();
 		String refererURL = request.getHeader("referer");
 		String queryString = request.getQueryString();
@@ -97,45 +140,59 @@ public class indexController {
 	
 	@ResponseBody
 	@RequestMapping(value = "loginUsrProc")
-	public Map<String, Object> loginUsrProc(@RequestParam("token") String token, @RequestParam("recaptchaAction") String recaptchaAction, MemberDto memberDto, HttpSession httpSession) throws Exception {
+	public Map<String, Object> loginUsrProc(@RequestParam("captchaCode") String captchaCode, 
+//			@RequestParam("token") String token,
+			@RequestParam("recaptchaAction") String recaptchaAction, 
+			MemberDto memberDto, HttpSession httpSession,HttpServletRequest request) throws Exception {
+		
 		System.out.println("loginUsrProc");
 		Map<String, Object> returnMap = new HashMap<>();
-		
-		try {
-			Properties properties = new Properties();
-		    Resource resource = new ClassPathResource("application.properties");
-		    try (InputStream input = resource.getInputStream()) {
-		        properties.load(input);
-		    }
-			
-			// 설정 파일에서 값 읽기
-			String projectID = properties.getProperty("google.recaptcha.projectID");
-			String recaptchaKey = properties.getProperty("google.recaptcha.key"); // 설정 파일에서 읽어오거나 상수로 관리
-//			String serviceAccountKeyFilePath = properties.getProperty("google.service.account.key.file");
-	        System.out.println("projectID:"+projectID);
-		    System.out.println("recaptchaKey:"+recaptchaKey);
-		    System.out.println("token:"+token);
-		    System.out.println("recaptchaAction:"+recaptchaAction);
-//		    System.out.println("serviceAccountKeyFilePath:"+serviceAccountKeyFilePath);
-		  //reCAPTCHA 검증
-            boolean isValid = recaptchaService.verifyRecaptcha(token,recaptchaAction);
-            if (!isValid) {
-                returnMap.put("rt", "fail");
-                returnMap.put("message", "reCAPTCHA validation failed.");
-                return returnMap;
-            }
-//            boolean isCaptchaValid = CAPTCHAUtil.validateCaptcha(captchaInput, httpSession);
-//            if (!isCaptchaValid) {
+		// EasyCaptcha 검증
+		String sessionCode = (String) request.getSession().getAttribute("captcha");
+		System.out.println("captchaCode:"+captchaCode);
+		System.out.println("request:"+sessionCode);
+		System.out.println("CaptchaJakartaUtil.ver(captchaCode, request):"+CaptchaJakartaUtil.ver(captchaCode, request));
+		if (!CaptchaJakartaUtil.ver(captchaCode, request)) {
+            returnMap.put("rt", "fail");
+            returnMap.put("message", "Captcha validation failed.");
+            System.out.println("Captcha실패");
+             // 캡차 세션 제거
+//            refreshCaptcha();
+            return returnMap;
+        }
+		CaptchaJakartaUtil.clear(request);
+		System.out.println("Captcha성공");
+//		try {
+//			Properties properties = new Properties();
+//		    Resource resource = new ClassPathResource("application.properties");
+//		    try (InputStream input = resource.getInputStream()) {
+//		        properties.load(input);
+//		    }
+//			
+//			// 설정 파일에서 값 읽기
+////			String projectID = properties.getProperty("google.recaptcha.projectID");
+////			String recaptchaKey = properties.getProperty("google.recaptcha.key"); // 설정 파일에서 읽어오거나 상수로 관리
+//////			String serviceAccountKeyFilePath = properties.getProperty("google.service.account.key.file");
+////	        System.out.println("projectID:"+projectID);
+////		    System.out.println("recaptchaKey:"+recaptchaKey);
+////		    System.out.println("token:"+token);
+////		    System.out.println("recaptchaAction:"+recaptchaAction);
+//////		    System.out.println("serviceAccountKeyFilePath:"+serviceAccountKeyFilePath);
+//		  //reCAPTCHA 검증
+//            boolean isValid = recaptchaService.verifyRecaptcha(token,recaptchaAction);
+//            if (!isValid) {
 //                returnMap.put("rt", "fail");
-//                returnMap.put("message", "CAPTCHA validation failed.");
+//                returnMap.put("message", "reCAPTCHA validation failed.");
 //                return returnMap;
 //            }
-//		    CreateAssessment.createAssessment(serviceAccountKeyFilePath, projectID, recaptchaKey, token, recaptchaAction);
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        returnMap.put("rt", "fail");
-	        return returnMap; // reCAPTCHA 검증 실패
-	    }
+////          
+//            
+////		    CreateAssessment.createAssessment(serviceAccountKeyFilePath, projectID, recaptchaKey, token, recaptchaAction);
+//	    } catch (IOException e) {
+//	        e.printStackTrace();
+//	        returnMap.put("rt", "fail");
+//	        return returnMap; // reCAPTCHA 검증 실패
+//	    }
 		
 		MemberDto rtMember = memberService.selectUsrOne(memberDto);
 		System.out.println("rtMember: " + rtMember);

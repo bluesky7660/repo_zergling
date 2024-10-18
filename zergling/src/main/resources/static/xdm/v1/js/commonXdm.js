@@ -77,16 +77,16 @@ window.addEventListener('load', function() {
                 pwValid = false;
             } else {
                 
-                // if(!passwordRegExp.test(PasswordValue)){
-                //     userId.classList.add('is-invalid');
-                //     userPassword.classList.add('is-invalid');
-                //     feedback.textContent = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
-                //     pwValid = false;
-                //     return false;
-                // }else{
-                //     userPassword.classList.remove('is-invalid');
-                //     userPassword.classList.add('is-valid');
-                // }
+                if(!passwordRegExp.test(PasswordValue)){
+                    userId.classList.add('is-invalid');
+                    userPassword.classList.add('is-invalid');
+                    feedback.textContent = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.";
+                    pwValid = false;
+                    return false;
+                }else{
+                    userPassword.classList.remove('is-invalid');
+                    userPassword.classList.add('is-valid');
+                }
                 userPassword.classList.remove('is-invalid');
                 feedbackChk.classList.remove('is-invalid');
                 // userPassword.classList.add('is-valid');
@@ -110,17 +110,10 @@ window.addEventListener('load', function() {
                 async: true 
                 ,cache: false
                 ,type: "post"
-                /* ,dataType:"json" */
                 ,url: "/v1/infra/member/loginXdmProc"
-                /* ,data : $("#formLogin").serialize() */
                 ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
                 ,success: function(response) {
                     if(response.rt == "success") {
-                        // if(response.changePwd == "true") {
-                        //     location.href = "/v1/infra/member/expiredPwdUsrForm";
-                        // } else {
-                        //     location.href = "/v1/infra/index/indexXdmView";
-                        // }
                         location.href = "/v1/infra/index/indexXdmView";
                     } else {
                         document.getElementById("modalAlertTitle").innerText = "확 인";

@@ -44,6 +44,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/account_recovery"
 						,"/review*"
 						,"/RefreshReviews"
+						,"/captcha"
 						
 		);
 	}

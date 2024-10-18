@@ -497,6 +497,12 @@ a.img-box{
 .moreBtn:hover{
     text-decoration: underline;
 }
+.captcha_box{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
 /**/
 .customer_service_area{
     background-color: #ddd;

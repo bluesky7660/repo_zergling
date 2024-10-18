@@ -1,25 +1,24 @@
-package com.exion.infra.recaptcha;
-
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import org.springframework.stereotype.Service;
-
-import jakarta.servlet.http.HttpSession;
-
-@Service
-public class CaptchaUtil {
-	// CAPTCHA 생성 메서드
-//    public static byte[] generateCaptcha(HttpSession session) throws IOException {
-//        Captcha captcha = new Captcha.Builder(200, 50)
-//                .addText()
-//                .addBackground()
-//                .addNoise()
-//                .build();
+//package com.exion.infra.recaptcha;
 //
+//
+//import java.awt.image.BufferedImage;
+//import java.io.ByteArrayOutputStream;
+//import java.io.IOException;
+//
+//import javax.imageio.ImageIO;
+//
+//import org.springframework.stereotype.Service;
+//
+//import com.wf.captcha.base.Captcha;
+//
+//import jakarta.servlet.http.HttpSession;
+//
+//@Service
+//public class CaptchaUtil {
+//
+//	// CAPTCHA 생성 메서드
+//    public static byte[] generateCaptcha(HttpSession session) throws IOException {
+//        Captcha captcha = new Captcha();
 //        // CAPTCHA 정답을 세션에 저장
 //        session.setAttribute("captcha", captcha.getAnswer());
 //
@@ -35,4 +34,4 @@ public class CaptchaUtil {
 //        String captchaAnswer = (String) session.getAttribute("captcha");
 //        return captchaAnswer != null && captchaAnswer.equals(userInput);
 //    }
-}
+//}
