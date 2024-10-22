@@ -41,6 +41,10 @@ dependencies {
 	//implementation group: 'com.github.whvcse', name: 'easy-captcha', version: '1.6.2'
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 	
+	//BCrypt
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.3.4'
+	
 	//https://github.com/pig-mesh/easy-captcha
 	//implementation 'io.springboot.plugin:easy-captcha:2.2.3'
 	// https://mvnrepository.com/artifact/io.springboot.plugin/captcha-spring-boot-starter

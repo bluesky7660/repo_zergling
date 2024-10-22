@@ -15,7 +15,10 @@ public class DeliveryAddressService {
 	}
 	public int insertAddr(DeliveryAddressDto deliveryAddressDto) {
 		return deliveryAddressDao.insertAddr(deliveryAddressDto);
-	}	
+	}
+	public int ueleteAddr(DeliveryAddressDto deliveryAddressDto) {
+		return deliveryAddressDao.ueleteAddr(deliveryAddressDto);
+	}
 	public DeliveryAddressDto selectOne(DeliveryAddressDto deliveryAddressDto) {
 			return deliveryAddressDao.selectOne(deliveryAddressDto);
 	}

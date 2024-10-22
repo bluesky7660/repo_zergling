@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     /* ,dataType:"json" */
                     ,url: "/loginUsrProc"
                     /* ,data : $("#formLogin").serialize() */
-                    ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                    ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val(),captchaCode: $("#captchaCode").val(), }//, "autoLogin" : $("#autoLogin").is(":checked")}
                     ,success: function(response) {
                         if(response.rt == "success") {
                             userId.classList.remove('is-invalid');
@@ -1349,7 +1349,18 @@ document.addEventListener('DOMContentLoaded', function () {
             this.classList.toggle('active');
         });
     });
-   
+
+    
+    //통합검색
+    const search = document.querySelector("#total_search_form")
+    const totalshBtn = document.querySelector("#total_search_btn");
+    if(totalshBtn){
+        totalshBtn.addEventListener('click', function () {
+            search.action = "product_list";
+            search.submit();
+        })
+    }
+    
     
 
     

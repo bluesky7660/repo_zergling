@@ -85,7 +85,9 @@ textarea.form-control{
     text-decoration-line: line-through;
     color:#777;
 }
-
+.book-title{
+    line-height: 25px;
+}
 
 /*양방향 range*/
 /*.range_box{
@@ -600,6 +602,10 @@ main>*{
     width: 100%;
     min-width:240px;
     padding:10px 30px;
+}
+.search_box select{
+    width: 150px;
+    border: 0;
 }
 .search_box input{
     width: 100%;

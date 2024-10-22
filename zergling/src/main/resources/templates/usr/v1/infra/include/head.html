@@ -35,10 +35,18 @@
                             <img src="./usr/v1/assets/images/logo_book.svg" alt="">
                         </div>
                         <div class="search_area w-100">
-                            <div class="search_box d-flex align-items-center gap-3">
-                                <input type="text" class="input-search">
-                                <button class="search_btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </div>
+                            <form id="total_search_form" method="post" action="product_list">
+                                <div class="search_box d-flex align-items-center gap-3">
+                                    <select name="keywordType" id="keywordType" class="form-select">
+                                        <option value="" th:selected="${shVo.keywordType == ''}">통합검색</option>
+                                        <option value="2" th:selected="${shVo.keywordType == 2}">제목</option>
+                                        <option value="3" th:selected="${shVo.keywordType == 3}">작가</option>
+                                        <option value="4" th:selected="${shVo.keywordType == 4}">출판사</option>
+                                    </select>
+                                    <input type="text" class="input-search" name="searchKeyword" th:value="${shVo.searchKeyword}">
+                                    <button id="total_search_btn" class="search_btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="user_box">

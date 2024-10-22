@@ -44,6 +44,7 @@ public class ProductDto {
 	
 	private Integer authorCount;
 //	private String author_seq;
+	private String otherAuthors;
 //---------------------------------
 	public String getSeq() {
 		return seq;
@@ -255,6 +256,12 @@ public class ProductDto {
 	}
 	public void setAuthorCount(Integer authorCount) {
 		this.authorCount = authorCount;
+	}
+	public String getOtherAuthors() {
+		return otherAuthors;
+	}
+	public void setOtherAuthors(String otherAuthors) {
+		this.otherAuthors = otherAuthors;
 	}
 	
 }

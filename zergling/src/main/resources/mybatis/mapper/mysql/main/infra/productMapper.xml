@@ -22,12 +22,29 @@
 								a.seq Like CONCAT('%',#{searchKeyword},'%')
 								OR a.title Like CONCAT('%',#{searchKeyword},'%')
 								OR b.name Like CONCAT('%',#{searchKeyword},'%')
+								OR (
+							        SELECT GROUP_CONCAT(b2.name SEPARATOR ', ')
+							        FROM productAuthor c2
+							        LEFT JOIN author b2 ON c2.author_seq = b2.seq
+							        WHERE c2.product_seq = a.seq
+							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
 								OR publisher.codeName Like CONCAT('%',#{searchKeyword},'%')
 							)
 						</when>
 						<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
 						<when test="keywordType == 2">AND a.title Like CONCAT('%',#{searchKeyword},'%') </when>
-						<when test="keywordType == 3">AND b.name Like CONCAT('%',#{searchKeyword},'%')</when>
+						<when test="keywordType == 3">
+						    AND (
+							    b.name LIKE CONCAT('%', #{searchKeyword}, '%')
+							    OR (
+							        SELECT GROUP_CONCAT(b2.name SEPARATOR ', ')
+							        FROM productAuthor c2
+							        LEFT JOIN author b2 ON c2.author_seq = b2.seq
+							        WHERE c2.product_seq = a.seq
+							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
+							)
+						</when>
+
 						<when test="keywordType == 4">AND publisher.codeName Like CONCAT('%',#{searchKeyword},'%')</when>
 						<!-- <when test="keywordType == 5">AND a.reviewNum Like CONCAT('%',#{searchKeyword},'%')</when> -->
 					</choose>

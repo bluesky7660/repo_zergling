@@ -7,17 +7,13 @@ import java.awt.Font;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,8 +26,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.exion.common.util.DateUtil;
 import com.exion.infra.code.CodeDto;
 import com.exion.infra.code.CodeService;
+import com.exion.infra.codegroup.BaseVo;
+import com.exion.infra.kakao.KakaoBookService;
+import com.exion.infra.kakao.KakaoBookVo;
 import com.exion.infra.member.MemberDto;
 import com.exion.infra.member.MemberService;
+import com.exion.infra.naver.BookController;
+import com.exion.infra.naver.BookVo;
 //import com.exion.infra.recaptcha.CreateAssessment;
 import com.exion.infra.recaptcha.RecaptchaService;
 import com.exion.infra.util.Constants;
@@ -77,8 +78,11 @@ public class indexController {
 	@Autowired
     private RecaptchaService recaptchaService;
 	
-//	@Autowired
-//	CaptchaUtil captchaUtil;
+	@Autowired
+	BookController bookController;
+	
+	@Autowired
+    KakaoBookService kakaoBookService;
 	
 	@RequestMapping(value = "/captcha")
 	public void captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -100,19 +104,24 @@ public class indexController {
 	    specCaptcha.out(response.getOutputStream());
 	    System.out.println("출력성공");
 	}
-	@RequestMapping(value = "/refreshCaptcha")
-    public void refreshCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
-        specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));
-        specCaptcha.setCharType(Captcha.TYPE_ONLY_NUMBER);
-        request.getSession().setAttribute("captcha", specCaptcha.text().toLowerCase());
-        specCaptcha.out(response.getOutputStream());
-    }
+//	@RequestMapping(value = "/refreshCaptcha")
+//    public void refreshCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
+//        specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));
+//        specCaptcha.setCharType(Captcha.TYPE_ONLY_NUMBER);
+//        request.getSession().setAttribute("captcha", specCaptcha.text().toLowerCase());
+//        specCaptcha.out(response.getOutputStream());
+//    }
 	@RequestMapping(value = "index")
 	public String index(Model model, ProductVo productVo) {
 		model.addAttribute("newProd", productService.newProdList(productVo));
 		model.addAttribute("bestProd", productService.bestProdList(productVo));
 		model.addAttribute("mdPickProd", productService.mdPickProdList(productVo));
+		List<BookVo> nvbestSellers = bookController.getBestSellers("베스트셀러");
+		model.addAttribute("naverbest", nvbestSellers);
+		System.out.println("index끝전");
+		List<KakaoBookVo> bestSellers = kakaoBookService.getBestSellers("베스트셀러");
+		model.addAttribute("kakaobest", bestSellers);
 		System.out.println("index");
 		return "/usr/v1/pages/index";
 	}
@@ -289,19 +298,24 @@ public class indexController {
 	public String deliveryAddressInst(DeliveryAddressDto deliveryAddressDto) {
 		deliveryAddressService.insertAddr(deliveryAddressDto);
 		System.out.println("user_delivery_address_inst");
-		return "redirect:user_delivery_address?seq=1";
+		return "redirect:user_delivery_address";
 	}
 	@RequestMapping(value = "user_delivery_address_updt")
 	public String deliveryAddressUpdt(DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
 		deliveryAddressService.update(deliveryAddressDto, vo);
-		return "redirect:user_delivery_address?seq=1";
+		return "redirect:user_delivery_address";
+	}
+	@RequestMapping(value = "user_delivery_address_uelt")
+	public String deliveryAddressUelt(DeliveryAddressDto deliveryAddressDto) {
+		deliveryAddressService.ueleteAddr(deliveryAddressDto);
+		return "redirect:user_delivery_address";
 	}
 	@RequestMapping(value = "user_delivery_address_Defupdt")
 	public String deliveryAddressDefUpdt(DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
 //		deliveryAddressService.updateDef(deliveryAddressDto);
 		System.out.println("DeliveryAddressVo: " + vo);
 		deliveryAddressService.updateDefUsr(deliveryAddressDto,vo);
-		return "redirect:user_delivery_address?seq=1";
+		return "redirect:user_delivery_address";
 	}
 	@RequestMapping(value = "user_account")
 	public String userAccount(Model model, MemberDto memberDto,CodeDto codeDto,HttpSession httpSession) {
@@ -470,10 +484,10 @@ public class indexController {
 		return "/usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
-	public String productList(Model model,@ModelAttribute("vo") ProductVo productVo,ReviewVo reviewVo) {
+	public String productList(Model model,@ModelAttribute("vo") ProductVo productVo,@ModelAttribute("shVo") BaseVo shVo,ReviewVo reviewVo) {
 		productVo.setParamsPaging(productService.listCount(productVo));
 		System.out.println("get: "+productVo.getMakeDateFillter());
-		
+		System.out.println("검색어: "+productVo.getSearchKeyword());
 //		
 		model.addAttribute("list", productService.usrProdList(productVo));
 		model.addAttribute("bages", codeService.bageList());
@@ -484,6 +498,7 @@ public class indexController {
 //			System.out.println("상품seq: "+prod.getSeq());
 //			System.out.println("타입: "+prod.getTitle()	);
 //		}
+		System.out.println("검색: "+productService.usrProdList(productVo));
 		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
 //		System.out.println("최소: "+productVo.getMinPrice());
 //		System.out.println("베스트: " +productVo.getBestNy());

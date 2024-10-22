@@ -47,6 +47,7 @@
 				join member b on b.seq = a.member_seq
 			where 1=1
 				and b.seq = #{seq}
+				and a.delNy = 0
 			order by a.daSeq desc
 	  </select>
 	  <insert id="insertAddr">
@@ -200,4 +201,11 @@
 			WHERE 1=1
 				AND daSeq = #{daSeq}
 		</update>
+		<update id="ueleteAddr">
+			UPDATE deliveryaddress
+			SET
+				delNy = 1
+			WHERE 1=1
+				AND daSeq = #{daSeq}
+	</update>
 </mapper>

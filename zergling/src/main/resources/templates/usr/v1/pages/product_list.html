@@ -52,7 +52,8 @@
                 </ol>
             </div> -->
             <div class="content_wrapper">
-                <form id="searchForm" name="searchFrom" autocomplete="off" method="post" action="product_list">
+                <form id="listForm" name="listForm" autocomplete="off" method="post" action="product_list">
+                    <input type="hidden" name="searchKeyword" th:value="${shVo.searchKeyword}"/>
                     <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
                     <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
                     <div class="d-flex gap-5">
@@ -384,15 +385,15 @@
     <script>
         function prodSortSelect() {
             const sortSelect = document.getElementById("view_sort");
-            const searchForm = document.getElementById("searchForm");
+            const listForm = document.getElementById("listForm");
             sortSelect.addEventListener('change', function () {
-                searchForm.action = "product_list"
-                searchForm.submit();
+                listForm.action = "product_list"
+                listForm.submit();
             })
         }
         window.onload = function() {
             const dateSearchBtn = document.querySelectorAll(".makeDateFillterList input[type=radio]");
-            const form = document.querySelector("form[name=searchFrom]");
+            const form = document.querySelector("form[name=listForm]");
             dateSearchBtn.forEach((radio) => {
                 radio.addEventListener("change", function(event) {
                     var selectedValue = this.value;

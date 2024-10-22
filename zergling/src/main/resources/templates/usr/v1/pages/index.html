@@ -545,87 +545,40 @@
                     </div>
                 </div>
             </section> -->
-            <!-- <section class="art_culture flexibilization2">
+            <section class="art_culture flexibilization2">
                 <div>
                     <div class="area-head d-flex justify-content-between">
-                        <h3>ART & CULTURE</h3>
-                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
+                        <h3>카카오[다음] 베스트셀러</h3>
                     </div>
                     
                     <div class="contentArea">
                         <div class="slider-container swiper-container"id="slider5">
                             <div class="swiper-wrapper">
-                                <div>
+                                <!-- 네이버 버전
+                                <div class="prod_list_item" th:each="nvbest : ${#lists.toList(naverbest)}">
                                     <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
+                                        <img th:src="${nvbest.image}" th:alt="${nvbest.title}"/>
                                     </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
+                                    <p class="book-title" th:text="${nvbest.title}">읽고 쓰고 소유하다</p>
+                                    <span class="author" th:text="${nvbest.getAuthorsWithOthers()}">크리스 딕슨</span> · <span class="publisher" th:text="${nvbest.publisher}">어크로스</span>
+                                </div> -->
+                                <!-- 카카오 버전 -->
+                                <div class="prod_list_item" th:each="kakaobest : ${#lists.toList(kakaobest)}">
                                     <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
+                                        <img th:src="${kakaobest.thumbnail != null && !kakaobest.thumbnail.isEmpty() ? kakaobest.thumbnail : '/usr/v1/assets/images/prod/300/emty-img.jpg'}"
+                                        th:alt="${kakaobest.title}"/>
                                     </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                    <p class="book-title" th:text="${kakaobest.title}">읽고 쓰고 소유하다</p>
+                                    <p><span class="author" th:text="${kakaobest.getAuthorsWithOthers()}">크리스 딕슨</span> · <span class="publisher" th:text="${kakaobest.publisher}">어크로스</span></p>
                                 </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="swiper-button swiper-button-next"></div>
                         <div class="swiper-button swiper-button-prev"></div>
                     </div>
                 </div>
-            </section> -->
+            </section>
             <section class="new_arrivals flexibilization2">
                 <div>
                     <div class="area-head d-flex justify-content-between">
@@ -720,6 +673,30 @@
                     </div>
                 </div>
             </section>
+            <section class="kyobo_original">
+                <div>
+                    <div class="area-head d-flex justify-content-between">
+                        <h3>Naver 베스트셀러</h3>
+                        <!-- <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div> -->
+                    </div>
+                    
+                    <div class="contentArea">
+                        <div class="slider-container swiper-container"id="slider8">
+                            <div class="swiper-wrapper">
+                                <div class="prod_list_item" th:each="nvbest : ${#lists.toList(naverbest)}">
+                                    <div class="img-box">
+                                        <img th:src="${nvbest.image}" th:alt="${nvbest.title}"/>
+                                    </div>
+                                    <p class="book-title" th:text="${nvbest.title}">읽고 쓰고 소유하다</p>
+                                    <p><span class="author" th:text="${nvbest.getAuthorsWithOthers()}">크리스 딕슨</span> · <span class="publisher" th:text="${nvbest.publisher}">어크로스</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button swiper-button-next"></div>
+                        <div class="swiper-button swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section> 
             <!-- <section class="banners" id="banner02">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -738,45 +715,13 @@
                     </div>
                     <div class="contentArea">
                         <ul class="d-flex justify-content-between gap-5 flex-auto txt text-start">
-                            <li>
+                            <li class="prod_list_item" th:each="nvbest : ${#lists.toList(naverbest)}">
                                 <div class="img-box">
-                                    <img src="./usr/v1/assets/images/week_books/9791195522170.jpg" alt="">
+                                    <img th:src="${nvbest.image}" th:alt="${nvbest.title}">
                                 </div>
-                                <p class="title">보편의 단어</p>
-                                <p class="author">이기주 · 말글터</p>
+                                <p class="title" th:text="${nvbest.title}">보편의 단어</p>
+                                <p class="author"><span  class="author" th:text="${nvbest.author}">이기주</span> · <span class="publisher" th:text="${nvbest.publisher}">말글터</span></p>
                                 <p class="price"><strong>14,400</strong>원</p>
-                            </li>
-                            <li>
-                                <div class="img-box">
-                                    <img src="./usr/v1/assets/images/week_books/9791191013672.jpg" alt="">
-                                </div>
-                                <p class="title">초등 관심 사전</p>
-                                <p class="author">고정욱 · 북라이프</p>
-                                <p class="price"><strong>12,150</strong>원</p>
-                            </li>
-                            <li>
-                                <div class="img-box">
-                                    <img src="./usr/v1/assets/images/week_books/9791189217280.jpg" alt="">
-                                </div>
-                                <p class="title">우등생 해법 전과목 세트 초등 4-2(2024)</p>
-                                <p class="author">최용준 해법수학연구회 · 천재교육</p>
-                                <p class="price"><strong>54,450</strong>원</p>
-                            </li>
-                            <li>
-                                <div class="img-box">
-                                    <img src="./usr/v1/assets/images/week_books/9791125979029.jpg" alt="">
-                                </div>
-                                <p class="title">상위 1%의 비밀은 공부정서에 있습니다</p>
-                                <p class="author">정우열 · 저녁달</p>
-                                <p class="price"><strong>16,020</strong>원</p>
-                            </li>
-                            <li>
-                                <div class="img-box">
-                                    <img src="./usr/v1/assets/images/week_books/9788930041683.jpg" alt="">
-                                </div>
-                                <p class="title">허송세월</p>
-                                <p class="author">김훈 · 나남</p>
-                                <p class="price"><strong>16,200</strong>원</p>
                             </li>
                         </ul>
                     </div>
@@ -800,70 +745,14 @@
                     <div class="contentArea">
                         <div class="slider-container swiper-container"id="slider7">
                             <div class="swiper-wrapper">
-                                <div>
+                                <div class="prod_list_item" th:each="nvbest : ${#lists.toList(naverbest)}">
                                     <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
+                                        <img th:src="${nvbest.image}" th:alt="${nvbest.title}"/>
                                     </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
+                                    <p class="book-title" th:text="${nvbest.title}">읽고 쓰고 소유하다</p>
+                                    <span class="author" th:text="${nvbest.author}">크리스 딕슨</span> · <span class="publisher" th:text="${nvbest.publisher}">어크로스</span>
                                 </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/hit/5210000003320.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
+                                
                             </div>
                         </div>
                         
@@ -876,8 +765,6 @@
                         <div class="d-flex align-items-center">
                             <div class="title-tab d-flex">
                                  <h3 class="mb-0">베스트</h3>
-                                 <span> </span>
-                                 <h3 class="mb-0 d-none">스테디</h3>
                             </div>
                             <div>
                                 <!-- <div class="best-tabs tabs ms-5">
@@ -948,89 +835,9 @@
                         <img src="./usr/v1/assets/images/banner04.jpg" alt="">
                     </div>
                 </div>
-            </section>
-            <section class="kyobo_original">
-                <div>
-                    <div class="area-head d-flex justify-content-between">
-                        <h3>교보 오리지널</h3>
-                        <div class="d-flex align-items-center"><a href="javascript:void(0);">더보기 +</a></div>
-                    </div>
-                    
-                    <div class="contentArea">
-                        <div class="slider-container swiper-container"id="slider8">
-                            <div class="swiper-wrapper">
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/prod/300/9791170611561.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">소설</span>
-                                    <p class="book-title">당신이 누군가를 죽였다</p>
-                                    <span class="author">히가시노 게이고 · 북다</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                                <div>
-                                    <div class="img-box">
-                                        <img src="./usr/v1/assets/images/mainSlider/slider01.jpg" alt="Image"/>
-                                    </div>
-                                    <span class="book-type">경제/경영</span>
-                                    <p class="book-title">읽고 쓰고 소유하다</p>
-                                    <span class="author">크리스 딕슨 · 어크로스</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-button swiper-button-next"></div>
-                        <div class="swiper-button swiper-button-prev"></div>
-                    </div>
-                </div>
-            </section>
-            <section class="kyobo_casting">
+            </section>-->
+            
+            <!-- <section class="kyobo_casting">
                 <div class="area-head">
                     <h3><img src="./usr/v1/assets/images/welcome_casting_logo_ink@2x.png" alt=""></h3>
                     <div><a href="javascript:void(0);">더보기 +</a></div>
@@ -1527,8 +1334,8 @@
 
             //
             var swiper5 = new Swiper('.swiper-container#slider5', {
-                slidesPerView: 4, // 한 번에 보여줄 슬라이드 개수
-                slidesPerGroup: 4, // 한 번에 넘길 슬라이드 개수
+                slidesPerView: 5, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 5, // 한 번에 넘길 슬라이드 개수
                 spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
                 // loop: true, // 슬라이드가 끝없이 반복되도록 설정
                 // pagination: {
@@ -1570,8 +1377,8 @@
 
             //교보 오리지널
             var swiper8 = new Swiper('.swiper-container#slider8', {
-                slidesPerView: 3, // 한 번에 보여줄 슬라이드 개수
-                slidesPerGroup: 3, // 한 번에 넘길 슬라이드 개수
+                slidesPerView: 5, // 한 번에 보여줄 슬라이드 개수
+                slidesPerGroup: 5, // 한 번에 넘길 슬라이드 개수
                 spaceBetween: 30, // 슬라이드 간의 간격 (픽셀 단위)
                 navigation: {
                     nextEl: '.kyobo_original .swiper-button-next', // 다음 버튼

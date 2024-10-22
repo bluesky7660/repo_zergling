@@ -1,6 +1,6 @@
 
 window.addEventListener('load', function() {
-    const form = document.querySelector("form");
+    const form = document.querySelector("form:not(#search_form)");
     var formUrl;
     if(form){
         formUrl = form.action;

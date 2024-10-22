@@ -42,6 +42,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/v1/infra/member/memberXdmMfom")
 	public String memberXdmMFom(MemberDto memberDto,Model model) {
+		
 		model.addAttribute("item", memberService.selectOne(memberDto));
 		return "xdm/v1/infra/member/memberXdmMfom";
 	}
