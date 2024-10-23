@@ -28,8 +28,11 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	
+	//log
 	// https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1
 	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+	
+	//구글
 	// https://mvnrepository.com/artifact/com.google.cloud/google-cloud-recaptchaenterprise
 	implementation group: 'com.google.cloud', name: 'google-cloud-recaptchaenterprise', version: '3.48.0'
 	//https://mvnrepository.com/artifact/com.google.cloud/spring-cloud-gcp-starter
@@ -39,6 +42,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/nl.captcha/simple-captcha
 	// https://mvnrepository.com/artifact/com.github.whvcse/easy-captcha
 	//implementation group: 'com.github.whvcse', name: 'easy-captcha', version: '1.6.2'
+	
+	
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 	
 	//BCrypt
@@ -47,6 +52,8 @@ dependencies {
 	
 	//https://github.com/pig-mesh/easy-captcha
 	//implementation 'io.springboot.plugin:easy-captcha:2.2.3'
+	
+	//captcha
 	// https://mvnrepository.com/artifact/io.springboot.plugin/captcha-spring-boot-starter
 	implementation group: 'io.springboot.plugin', name: 'captcha-spring-boot-starter', version: '2.2.3'
 	

@@ -224,7 +224,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     /* ,dataType:"json" */
                     ,url: "/loginUsrProc"
                     /* ,data : $("#formLogin").serialize() */
-                    ,data : { "userId" : $("#userId").val().trim(), "userPassword" : $("#userPassword").val(),captchaCode: $("#captchaCode").val(), }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                    ,data : { 
+                        "userId" : $("#userId").val().trim(),
+                         "userPassword" : $("#userPassword").val(),
+                         recaptchaAction:"login",
+                        captchaCode: $("#captchaCode").val(),
+                    }//, "autoLogin" : $("#autoLogin").is(":checked")}
                     ,success: function(response) {
                         if(response.rt == "success") {
                             userId.classList.remove('is-invalid');

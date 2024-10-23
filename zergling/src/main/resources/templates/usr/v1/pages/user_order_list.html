@@ -124,7 +124,19 @@
                                                 
                                                 
                                             </div>
-                                            <div>
+                                            <div th:if="${!(list.orderStatus == 10 or list.orderStatus == 14 or list.orderStatus == 57 or list.orderStatus == 56)}" 
+                                                style="visibility: hidden;">
+                                                <!-- 이 안의 내용을 차지할 영역 -->
+                                                <button class="btn"></button>
+                                            </div>
+                                            <div th:if="${(list.orderStatus == 10) or (list.orderStatus == 14)}">
+                                                <!-- <a href="https://apis.tracker.delivery/carriers/kr.cjlogistics/tracks/1234567890" target="_blank" class="btn btn-blue">배송조회</a> -->
+                                                <!-- <a href="https://tracker.delivery/#/kr.cjlogistics/1234567890" target="_blank" class="btn btn-blue">배송조회</a> -->
+                                                <a href="#" onclick="window.open('https://tracker.delivery/#/kr.cjlogistics/577215028796', '_blank', 'width=600,height=400'); return false;" class="btn btn-blue">배송조회</a>
+                                                <!-- <a href="https://tracker.delivery/#/:carrier_id/:track_id" target="_blank" class="btn btn-blue">배송조회</a> -->
+                                            </div>
+                                            
+                                            <div th:if="${(list.orderStatus == 57) or (list.orderStatus == 56)}">
                                                 <button class="btn cancel-btn">취소신청</button>
                                             </div>
                                         </div>
