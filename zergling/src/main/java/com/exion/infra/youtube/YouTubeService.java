@@ -169,7 +169,24 @@ public class YouTubeService {
         channelDTO.setYcName(channelData.getJSONObject("snippet").getString("title"));
         channelDTO.setSubscribersCount(channelData.getJSONObject("statistics").getString("subscriberCount"));
         channelDTO.setVideosCount(channelData.getJSONObject("statistics").getString("videoCount"));
-        channelDTO.setThumbnailUrl(channelData.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("default").getString("url"));
+        
+        // 썸네일 URL 설정 로직
+        JSONObject thumbnails = channelData.getJSONObject("snippet").getJSONObject("thumbnails");
+		String thumbnailUrl = "";
+		if (thumbnails.has("maxres")) {
+			// maxres 썸네일이 존재할 경우
+			thumbnailUrl = thumbnails.getJSONObject("maxres").getString("url");
+		} else if (thumbnails.has("standard")) {
+			// maxres가 없고 standard 썸네일이 존재할 경우
+			thumbnailUrl = thumbnails.getJSONObject("standard").getString("url");
+		} else if (thumbnails.has("high")) {
+			// maxres가 없고 high 썸네일이 존재할 경우
+			thumbnailUrl = thumbnails.getJSONObject("high").getString("url"); 
+		} else {
+			// 셋 다 없을 경우 medium 썸네일  사용
+			thumbnailUrl = thumbnails.getJSONObject("medium").getString("url");
+		}
+		channelDTO.setThumbnailUrl(thumbnailUrl);
         String channelUrl = String.format("https://www.youtube.com/channel/%s", channelId);
         channelDTO.setChannelUrl(channelUrl);
         
@@ -199,8 +216,8 @@ public class YouTubeService {
             YouTubeVideoDto videoDTO = new YouTubeVideoDto();
             videoDTO.setVideoUrl("https://www.youtube.com/watch?v=" + videoId);
             videoDTO.setTitle(videoData.getJSONObject("snippet").getString("title"));
+            // 썸네일 URL 설정 로직
             JSONObject thumbnails = videoData.getJSONObject("snippet").getJSONObject("thumbnails");
-         // 썸네일 URL 설정 로직
 			String thumbnailUrl = "";
 			if (thumbnails.has("maxres")) {
 				// maxres 썸네일이 존재할 경우

@@ -20,6 +20,9 @@
     gap: 10px;
 }
 /*채널*/
+.channels_tab_area{
+    margin-bottom: 30px;
+}
 .channel-tabs{
     display: flex;
     justify-content: space-between;
@@ -37,8 +40,20 @@
 }
 .channel_info a{
  display: flex;
- justify-content: space-between;
  gap: 30px;
+}
+.channel_thumbnail_box{
+    width: 260px;
+}
+.channel_info_text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+.channels_video_list{
+    margin-top: 30px;
+    border-top: 1px solid #aaa;
 }
 
 
