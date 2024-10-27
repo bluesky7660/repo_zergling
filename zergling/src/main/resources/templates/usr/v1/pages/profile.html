@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Instagram Profile</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // AJAX 요청으로 프로필 정보 가져오기
+            $.ajax({
+                url: '/profile',
+                method: 'GET',
+                success: function (data) {
+                    // 사용자 정보 표시
+                    const user = data.user ? JSON.parse(data.user) : {};
+                    console.log(user);
+                    $('#user').empty(); // 기존 내용을 지움
+
+                    // 사용자 정보 추가
+                    $('#user').append(`<p>Username: ${user.username}</p>`);
+                    $('#user').append(`<p>Account Type: ${user.account_type}</p>`);
+                    $('#user').append(`<p>Media Count: ${user.media_count}</p>`);
+                    // 미디어 정보 표시
+                    const mediaList = $('#mediaList');
+                    const mediaItems = data.media ? JSON.parse(data.media) : [];
+                    if(mediaItems ==[]){
+                    	mediaItems.forEach(mediaItem => {
+                            mediaList.append(`<li><img src="${mediaItem.media_url}" alt="Media" style="width: 100px; height: 100px;" />
+                                              <p>${mediaItem.caption}</p></li>`);
+                        });
+                    }else{
+                    	mediaList.append('<li>게시물이 없습니다.</li>');
+                    }
+                    
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching data:", error);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Instagram Profile</h1>
+
+<div>
+    <h2>User Information</h2>
+    <div id="user"></div>
+</div>
+
+<div>
+    <h2>Media</h2>
+    <ul id="mediaList"></ul>
+</div>
+
+</body>
+</html>

@@ -45,6 +45,15 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/review*"
 						,"/RefreshReviews"
 						,"/captcha"
+						,"/book_review_video_list"
+						,"/search"
+						,"/instalogin"
+						,"/callback"
+						,"/profile"
+						,"/instaProfile"
+						,"/channels_video_list"
+						,"/channel/details"
+						,"/channels"
 						
 		);
 	}

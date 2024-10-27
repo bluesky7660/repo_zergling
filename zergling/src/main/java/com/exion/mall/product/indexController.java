@@ -100,9 +100,9 @@ public class indexController {
 //	    String base64Image = "data:image/gif;base64,"+specCaptcha.toBase64();
 
 	 // 이미지 출력
-	    System.out.println("출력");
+//	    System.out.println("출력");
 	    specCaptcha.out(response.getOutputStream());
-	    System.out.println("출력성공");
+//	    System.out.println("출력성공");
 	}
 //	@RequestMapping(value = "/refreshCaptcha")
 //    public void refreshCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -151,7 +151,7 @@ public class indexController {
 	@RequestMapping(value = "loginUsrProc")
 	public Map<String, Object> loginUsrProc(@RequestParam("captchaCode") String captchaCode, 
 //			@RequestParam("token") String token,
-			@RequestParam("recaptchaAction") String recaptchaAction, 
+			//@RequestParam("recaptchaAction") String recaptchaAction, 
 			MemberDto memberDto, HttpSession httpSession,HttpServletRequest request) throws Exception {
 		
 		System.out.println("loginUsrProc");
@@ -831,4 +831,22 @@ public class indexController {
 		System.out.println("account_recovery");
 		return "/usr/v1/pages/account_recovery";
 	}
+	@RequestMapping(value = "book_review_video_list")
+	public String videoList(@ModelAttribute("vo") BaseVo baseVo) {
+		
+		System.out.println("book_review_video_list");
+		return "/usr/v1/pages/book_review_video_list";
+	}
+	@RequestMapping(value = "channels_video_list")
+	public String channelsVideoList(@ModelAttribute("vo") BaseVo baseVo) {
+		
+		System.out.println("channels_video_list");
+		return "/usr/v1/pages/channels_video_list";
+	}
+//	@RequestMapping(value = "instaProfile")
+//	public String instaProfile() {
+//		
+//		System.out.println("instaProfile Page Accessed");
+//		return "/usr/v1/pages/profile";
+//	}
 }

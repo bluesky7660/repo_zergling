@@ -270,6 +270,10 @@ textarea.form-control{
     text-align: right;
     appearance: none;
   }
+  .header_box{
+
+    margin-bottom: 30px;
+}
 
 /*공통*/
 
@@ -711,6 +715,7 @@ main>*{
 .gnb_link{
     height: 100%;
     display: flex;
+    gap: 20px;
 }
 .scrolltable.active .gnb_link{
     display: none;
@@ -719,9 +724,25 @@ main>*{
     font-size: 18px;
     height: 100%;
     display: flex;
+    position: relative;
     align-items: center;
     cursor: pointer;
 }
+.gnb_link li::after{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    width: 0;
+    height: 1px;
+    border: 1px solid transparent;
+    transition: all .5s ease;
+}
+.gnb_link li:hover::after{
+    width: 100%;
+    border-color: #000;
+}
+
 .gnb_wrapper .circle_btn{
     width: 40px;
     height:40px;

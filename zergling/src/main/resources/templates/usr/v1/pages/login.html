@@ -67,9 +67,10 @@
                     <div class="login-btn">
                         <div class="captcha_box">
                             <img id="captchaImage" src="/captcha" style=" width:130px; height:48px; border: 1px solid #aaa;" />
-                            <!-- <input type="text" id="captchaCode" class="form-control" maxlength="5" pattern="\d*"> -->
+                            
                             <input type="number" class="form-control" id="captchaCode" placeholder="숫자 입력" min="0" max="99999" oninput="this.value = Math.max(0, Math.min(99999, this.value))" />
                         </div>
+                        <!-- <input type="text" id="captchaCode" class="form-control" maxlength="5" pattern="\d*"> -->
                         <!-- <input type="hidden" id="grecaptcha" /> -->
                         
                         <!-- <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div> -->

@@ -115,8 +115,9 @@
                                             </div>
                                             <div>
                                                 <p class="order_status_box">
-                                                    <p class="order_status"><span class="blue_color" th:text="${list.orderStatusText}">결제완료</span></p>
-                                                    <p class="prod_delivery_date"><span th:text="${list.deliveryDate}" >2024.08.06</span> <span class="prod_delivery_status">도착예정</span></p>
+                                                    <p class="order_status"><span class="blue_color" th:text="${list.orderStatusText}"></span></p>
+                                                    <p class="prod_delivery_date" th:if="${!(list.orderStatus == 10 or list.orderStatus == 19)}"><span th:text="${list.deliveryDate}" ></span> <span class="prod_delivery_status">도착예정</span></p>
+                                                    <p class="prod_delivery_date" th:if="${list.orderStatus == 10 or list.orderStatus == 19}" style="visibility: hidden;"><span class="prod_delivery_status"></span></p>
                                                 </p>
                                             </div>
                                             

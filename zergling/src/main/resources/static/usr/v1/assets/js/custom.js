@@ -1366,9 +1366,11 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
     
-    
-
-    
+    const bookRvBox = document.getElementById("book_review_area");
+    if(bookRvBox){
+        $('#loadingSpinner').show();
+        searchVideos();
+    }
 
     // //바로구매링크
     // const directBuyBtn = document.querySelectorAll('.direct_buy_btn');

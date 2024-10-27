@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/bootstrap.min.css" /> -->
+    <!-- <link rel="shortcut icon" href="/usr/v1/assets/images/favicon/favicon_256x256.png"> -->
+    <link rel="icon" type="image/png" sizes="256x256" href="/usr/v1/assets/images/favicon/favicon_256x256.png">
+    
+    <link rel="stylesheet" href="/usr/v1/assets/css/reset.css">
+    
+    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/style.css"> -->
+    <link rel="stylesheet" href="/usr/v1/assets/css/tiny-slider.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- nouislider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.js" integrity="sha512-g/feAizmeiVKSwvfW0Xk3ZHZqv5Zs8PEXEBKzL15pM0SevEvoX8eJ4yFWbqakvRj7vtw1Q97bLzEpG2IVWX0Mg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/usr/v1/assets/js/nouislider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.css" integrity="sha512-MKxcSu/LDtbIYHBNAWUQwfB3iVoG9xeMCm32QV5hZ/9lFaQZJVaXfz9aFa0IZExWzCpm7OWvp9zq9gVip/nLMg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/usr/v1/assets/css/nouislider.min.css">
+    <!-- another-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css" integrity="sha256-wiMI7buOV5UBzdWN4s4kXqE/LZ794hx5oJOOIQlDBaM=" crossorigin="anonymous">
+    
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/product_list.css">
+    <link rel="stylesheet" href="/usr/v1/assets/css/book_review_video_list.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="page-wrapper">
+        <div th:replace="~{usr/v1/infra/include/head :: header}"></div>
+        <main>
+            <!-- <div class="breadcrumb_wrapper">
+                <ol class="breadcrumb d-md-flex d-none">
+                    <li class="breadcrumb-item">
+                        <i class="bi bi-house"></i>
+                        <a href="index">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">국내도서</li>
+                    <li class="breadcrumb-item">소설</li>
+                    <li class="breadcrumb-item">한국소설</li>
+                    <li class="breadcrumb-item breadcrumb-active" aria-current="page">전체</li>
+                </ol>
+            </div> -->
+            <div class="content_wrapper">
+                <div class="header_box">
+                    <h3>Youtube API [도서서평]</h3>
+                </div>
+                <form id="listForm" name="listForm" autocomplete="off" method="post" action="book_review_video_list">
+                    <input type="hidden" name="searchKeyword" th:value="${shVo.searchKeyword}"/>
+                    <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+                    <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+                    
+                    <div class="contentArea">
+                        
+                        <div class="view_options d-flex justify-content-end gap-3">
+                            <!-- <div class="d-flex flex-column justify-content-between">
+                                <p id="listTotalRow">전체 <span th:text="${#numbers.formatInteger(vo.totalRows,1,'COMMA')}"></span> 건</p>
+                                <p id="newDay" class="gray_color">최근 2개월 기준으로 등록된 신상품이 집계됩니다.</p>
+                            </div> -->
+                            <div class="d-flex justify-content-between gap-3">
+                                <div>
+                                    <select name="sortOrder" class="form-select" id="view_sort" >
+                                        <option value="1" th:selected="${vo.sortOrder == 1}">최신순</option>
+                                        <!-- <option value="2" th:selected="${vo.sortOrder == 2}">판매량</option> -->
+                                        <option value="3" th:selected="${vo.sortOrder == 3}">높은 조회순</option>
+                                        <option value="4" th:selected="${vo.sortOrder == 4}">낮은 조회순</option>
+                                        <option value="5" th:selected="${vo.sortOrder == 5}">높은 좋아요순</option>
+                                        <option value="6" th:selected="${vo.sortOrder == 6}">낮은 좋아요순</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <select class="form-select" id="rowNumToShowSelect" name="rowNumToShow">
+                                        <option value="5" th:selected="${vo.rowNumToShow == 5}">5개씩 보기</option>
+                                        <option value="10" th:selected="${vo.rowNumToShow == 10}">10개씩 보기</option>
+                                        <option value="20" th:selected="${vo.rowNumToShow == 20}">20개씩 보기</option>
+                                        <option value="50" th:selected="${vo.rowNumToShow == 50}">50개씩 보기</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contents">
+                            <div class="spinner" id="loadingSpinner"></div>
+                            <div id="book_review_area" class="book_review_area">
+
+                            </div>
+                            <!-- <div class="pagination-container mt-5">
+                                <div class="pagination-wrapper">
+                                    <div class="dataTable-bottom">
+                                        <nav class="dataTable-pagination" aria-label="dataTable-pagination">
+                                            <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
+                                                <li class="paginate_button page-item" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+                                                    <a class="page-link" th:attr="onclick=|goList('1')|" href="javascript:goList(1)" th:if="${vo.thisPage > 1}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+                                                    </a>
+                                                    <a class="page-link" th:if="${vo.thisPage <= 1}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+                                                    </a>
+                                                </li>
+                                                <li class="paginate_button previous page-item" id="previousPage" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
+                                                    <a class="page-link" th:attr="onclick=|goList('${vo.thisPage - 1}')|" href="javascript:goList(${vo.thisPage - 1})" th:if="${vo.thisPage > 1}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                                    </a>
+                                                    <a class="page-link" th:if="${vo.thisPage <= 1}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                                    </a>
+                                                </li>
+                                                <li th:each="i : ${#numbers.sequence(
+                                                                    vo.thisPage == 1 ? 1 : 
+                                                                    vo.thisPage == 2 ? 1 : 
+                                                                    vo.thisPage == vo.totalPages - 1 ? vo.thisPage - 3 : 
+                                                                    vo.thisPage == vo.totalPages ? vo.thisPage - 4 : 
+                                                                    vo.thisPage - 2, 
+                                                                    
+                                                                    vo.thisPage == 1 ? 5 : 
+                                                                    vo.thisPage == 2 ? 5 : 
+                                                                    vo.thisPage == vo.totalPages - 1 ? vo.totalPages : 
+                                                                    vo.thisPage == vo.totalPages ? vo.totalPages : 
+                                                                    vo.thisPage + 2
+                                                                )}"
+                                                    class="paginate_button page-item"
+                                                    th:if="${i > 0 && i <= vo.totalPages}" 
+                                                    th:classappend="${i == vo.thisPage} ? 'active' : ''">
+                                                    <a class="page-link" th:attr="onclick=|goList('${i}')|" th:text="${i}"></a>
+                                                </li>
+                                                <li class="paginate_button next page-item" id="nextPage" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+                                                    <a class="page-link" th:attr="onclick=|goList('${vo.thisPage + 1}')|" href="javascript:goList(${vo.thisPage + 1})" th:if="${vo.thisPage < vo.totalPages}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                                    </a>
+                                                    <a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                                    </a>
+                                                </li>
+                                                <li class="paginate_button page-item" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
+                                                    <a class="page-link" th:attr="onclick=|goList('${vo.totalPages}')|" href="javascript:goList(${vo.totalPages})" th:if="${vo.thisPage < vo.totalPages}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                                                    </a>
+                                                    <a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
+                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <div class="top_btn"><i class="fa-solid fa-xl fa-chevron-up"></i></div>
+        <div th:replace="~{usr/v1/infra/include/footer :: footer}"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Bootstrap Select JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="/usr/v1/assets/js/custom.js"></script>
+    <script src="/usr/v1/assets/js/header.js"></script>
+    <script src="/usr/v1/assets/js/video.js"></script>
+</body>
+</html>

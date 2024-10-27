@@ -1,0 +1,91 @@
+/* 로딩 스피너 스타일 */
+.spinner {
+    display: none; /* 기본적으로 숨김 */
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin: 50px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/*서평*/
+.book_review_area{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/*채널*/
+.channel-tabs{
+    display: flex;
+    justify-content: space-between;
+
+}
+.channel-tabs li{
+    width: 100%;
+    text-align: center;
+}
+.channel-tabs li a{
+    width: 100%;
+    display: block;
+    border: 1px solid #aaa;
+    padding: 30px;
+}
+.channel_info a{
+ display: flex;
+ justify-content: space-between;
+ gap: 30px;
+}
+
+
+/*영상*/
+.video_item{
+    border-bottom: 1px solid #aaa;
+    padding: 20px;
+}
+.video_item a{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.video_thumbnail{
+    flex-shrink: 1;
+    width: 360px;
+    /* height: 200px; */
+    
+    background-color: #545bb3;
+    padding: 30px;
+}
+.video_thumbnail .img_box{
+    width: 360px;
+    background-color: #000;
+    border: 1px solid #aaa;
+    text-align: center;
+}
+.video_thumbnail img{
+    width: auto;
+    height: 200px;
+    
+}
+.video_detail{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.video_detail h4{
+    max-width:600px ;
+    line-height: 30px;
+    font-size: 20px;
+}
+.video_detail a{
+    border-bottom: 0px solid #000;
+    
+    /* transition: border-width .5s ease; */
+}
+.video_detail a:hover{
+    border-width: 2px;
+}

@@ -60,6 +60,17 @@ dependencies {
 	// https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
 	//compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 	
+	//json
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation group: 'org.json', name: 'json', version: '20240303'
+	
+	//Google API와 통신하기 위한 Java용 클라이언트 라이브러리
+	implementation group: 'com.google.api-client', name: 'google-api-client', version: '1.33.0'
+ 	//YouTube Data API를 사용할 수 있게 해주는 Google API 클라이언트 라이브러리
+    implementation group: 'com.google.apis', name: 'google-api-services-youtube', version: 'v3-rev20230327-1.32.1'
+	//Google HTTP Client 라이브러리의 Jackson2 모듈을 사용하여 JSON 데이터를 처리하는 기능을 제공하는 라이브러리
+	implementation 'com.google.http-client:google-http-client-jackson2:1.39.2'
+	
 
 
 	
