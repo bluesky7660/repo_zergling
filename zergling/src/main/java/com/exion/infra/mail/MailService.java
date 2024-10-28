@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailService {
 	
-//	@Autowired
-//	private JavaMailSender javaMailSender;
-//	
-//	 public void sendMailSimple() {
-//    	SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//    	
-//    	simpleMailMessage.setTo("kordelee@naver.com");
-//    	simpleMailMessage.setSubject("안녕하세요");
-////	    simpleMailMessage.setFrom("wjsgusfhr324@gmail.com"); 
-//    	//gmail은 수정 불가 
-//    	simpleMailMessage.setText("안녕하세요\n\n 잘지내고 계시죠");
-//
-//    	javaMailSender.send(simpleMailMessage);
-//
-//    }
+	@Autowired
+	private JavaMailSender javaMailSender;
+	
+	 public void sendMailSimple() {
+    	SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+    	
+    	simpleMailMessage.setTo("chlee7660@naver.com");
+    	simpleMailMessage.setSubject("안녕하세요");
+//	    simpleMailMessage.setFrom("wjsgusfhr324@gmail.com"); 
+    	//gmail은 수정 불가 
+    	simpleMailMessage.setText("안녕하세요\n\n 잘지내고 계시죠");
+
+    	javaMailSender.send(simpleMailMessage);
+
+    }
 }

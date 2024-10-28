@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exion.infra.mail.MailService;
 import com.exion.infra.util.Constants;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +20,9 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	MailService mailService;
 	
 	@RequestMapping(value = "/v1/infra/member/memberXdmList")
 	public String memberXdmList(Model model,@ModelAttribute("vo") MemberVo vo) {
@@ -37,6 +41,7 @@ public class MemberController {
 	public String memberXdmForm(MemberDto memberDto) {
 //		System.out.println("그룹이름: "+memberDto.getDateOfBirth());	
 		memberService.insert(memberDto);
+		mailService.sendMailSimple();
 		return "redirect:/v1/infra/member/memberXdmList";
 	}
 	

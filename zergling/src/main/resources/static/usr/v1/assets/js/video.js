@@ -68,6 +68,29 @@ function loadChannelDetails(channelId) {
             let channelInfo = data.channelInfo;
             console.log("channelId"+channelId);
             console.log("channelInfo:",channelInfo);
+            const subscribersCount = channelInfo.subscribersCount;
+            const videosCount = channelInfo.videosCount;
+
+            // 구독자 수 포맷팅
+            const formatSubscribers = (num) => {
+                if (num >= 10000) {
+                    const formattedNumber = (num / 10000);
+                    if (formattedNumber % 1 === 0) {
+                        return `${formattedNumber.toFixed(0)}만명`; // 정수일 경우
+                    } else if (formattedNumber * 10 % 1 === 0) {
+                        return `${formattedNumber.toFixed(1)}만명`; // 소수점 1자리일 경우
+                    } else {
+                        return `${formattedNumber.toFixed(2)}만명`; // 소수점 2자리일 경우
+                    }
+                } else {
+                    return num + "명"; // 10,000명 미만일 경우
+                }
+            };
+
+            // 영상 수 포맷팅
+            const formatVideos = (num) => {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            };
             $('#channel_info').empty();
             var channelHtml = `
                 <a href="${channelInfo.channelUrl}" target="_blank" rel="noopener noreferrer" id="channel_link">
@@ -76,8 +99,8 @@ function loadChannelDetails(channelId) {
                     </div>
                     <div class="channel_info_text" id="channel_info_text">
                         <h3 class="channel_Name" id="channel_Name">${channelInfo.ycName}</h3>
-                        <p class="channel_subscribersCount" id="channel_subscribersCount">구독자: ${channelInfo.videosCount}</p>
-                        <p class="channel_videosCount" id="channel_videosCount">총 영상수: ${channelInfo.videosCount}</p>
+                        <p class="channel_subscribersCount" id="channel_subscribersCount">구독자: ${formatSubscribers(subscribersCount)}</p>
+                        <p class="channel_videosCount" id="channel_videosCount">총 영상수:  ${formatVideos(videosCount)}개</p>
                         <p class="channels_description" id="channels_description">${channelInfo.channelsDescription}</p>
                     </div>
                 </a>

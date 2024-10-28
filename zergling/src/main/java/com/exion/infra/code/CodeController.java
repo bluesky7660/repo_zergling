@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.exion.infra.codegroup.CodeGroupDto;
 import com.exion.infra.codegroup.CodeGroupService;
 import com.exion.infra.codegroup.PagingResponseDto;
+import com.exion.infra.mail.MailService;
 
 @Controller
 public class CodeController {
@@ -20,7 +21,10 @@ public class CodeController {
 	
 	@Autowired
 	CodeGroupService codeGroupService;
-	 
+	
+	@Autowired
+	MailService mailService;
+	
 	@RequestMapping(value = "/v1/infra/code/codeXdmList")
 	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) {
 		vo.setParamsPaging(codeService.listCount(vo));
@@ -70,6 +74,14 @@ public class CodeController {
 	@RequestMapping(value = "/v1/infra/code/codeXdmUpdt")
 	public String codeXdmUpdt(CodeDto codeDto) {
 		codeService.update(codeDto);
+//		mailService.sendMailSimple();y
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				mailService.sendMailSimple();
+			}
+		});
+		thread.start();
 		return "redirect:/v1/infra/code/codeXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmUelt")
