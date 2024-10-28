@@ -1,14 +1,22 @@
 package com.exion.infra.youtube;
 
+import java.util.Date;
+
 public class YouTubeChannelDto {
 	//채널용
 	private String ycSeq;
 	private String ycId;
 	private String ycName;
+	private String channelsDescription;
 	private String subscribersCount;
     private String videosCount;
     private String thumbnailUrl;
     private String channelUrl;
+    
+    private Integer delNy;
+    private Integer useNy;
+    private Date regDate;
+	private Date modDate;
 //------------------------------
 	public String getYcSeq() {
 		return ycSeq;
@@ -27,6 +35,12 @@ public class YouTubeChannelDto {
 	}
 	public void setYcName(String ycName) {
 		this.ycName = ycName;
+	}
+	public String getChannelsDescription() {
+		return channelsDescription;
+	}
+	public void setChannelsDescription(String channelsDescription) {
+		this.channelsDescription = channelsDescription;
 	}
 	public String getSubscribersCount() {
 		return subscribersCount;
@@ -51,6 +65,30 @@ public class YouTubeChannelDto {
 	}
 	public void setChannelUrl(String channelUrl) {
 		this.channelUrl = channelUrl;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	public Integer getUseNy() {
+		return useNy;
+	}
+	public void setUseNy(Integer useNy) {
+		this.useNy = useNy;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public Date getModDate() {
+		return modDate;
+	}
+	public void setModDate(Date modDate) {
+		this.modDate = modDate;
 	}
 	
 }

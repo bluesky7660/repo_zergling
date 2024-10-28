@@ -68,11 +68,26 @@ function loadChannelDetails(channelId) {
             let channelInfo = data.channelInfo;
             console.log("channelId"+channelId);
             console.log("channelInfo:",channelInfo);
-            $('#channel_link').attr('href',channelInfo.channelUrl);
-            $('#channel_Name').text(channelInfo.ycName);
-            $('#channel_subscribersCount').text('구독자: ' + channelInfo.subscribersCount+'명');
-            $('#channel_videosCount').text('총 영상 수: ' + channelInfo.videosCount);
-            $('#channel_thumbnail').attr('src', channelInfo.thumbnailUrl);
+            $('#channel_info').empty();
+            var channelHtml = `
+                <a href="${channelInfo.channelUrl}" target="_blank" rel="noopener noreferrer" id="channel_link">
+                    <div class="channel_thumbnail_box" id="channel_thumbnail_box">
+                        <img id="channel_thumbnail" src="${channelInfo.thumbnailUrl}" alt="${channelInfo.ycName}썸네일">
+                    </div>
+                    <div class="channel_info_text" id="channel_info_text">
+                        <h3 class="channel_Name" id="channel_Name">${channelInfo.ycName}</h3>
+                        <p class="channel_subscribersCount" id="channel_subscribersCount">구독자: ${channelInfo.videosCount}</p>
+                        <p class="channel_videosCount" id="channel_videosCount">총 영상수: ${channelInfo.videosCount}</p>
+                        <p class="channels_description" id="channels_description">${channelInfo.channelsDescription}</p>
+                    </div>
+                </a>
+            `;
+            $('#channel_info').append(channelHtml);
+            // $('#channel_link').attr('href',channelInfo.channelUrl);
+            // $('#channel_Name').text(channelInfo.ycName);
+            // $('#channel_subscribersCount').text('구독자: ' + channelInfo.subscribersCount+'명');
+            // $('#channel_videosCount').text('총 영상 수: ' + channelInfo.videosCount);
+            // $('#channel_thumbnail').attr('src', channelInfo.thumbnailUrl);
 
             // 동영상 목록 표시
             let videos = data.latestVideos;

@@ -37,6 +37,7 @@ import com.exion.infra.naver.BookVo;
 import com.exion.infra.recaptcha.RecaptchaService;
 import com.exion.infra.util.Constants;
 //import com.wf.captcha.utils.CaptchaUtil;
+import com.exion.infra.youtube.YouTubeService;
 
 import io.springboot.captcha.SpecCaptcha;
 import io.springboot.captcha.base.Captcha;
@@ -83,6 +84,9 @@ public class indexController {
 	
 	@Autowired
     KakaoBookService kakaoBookService;
+	
+	@Autowired
+    YouTubeService youTubeService;
 	
 	@RequestMapping(value = "/captcha")
 	public void captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -838,8 +842,8 @@ public class indexController {
 		return "/usr/v1/pages/book_review_video_list";
 	}
 	@RequestMapping(value = "channels_video_list")
-	public String channelsVideoList(@ModelAttribute("vo") BaseVo baseVo) {
-		
+	public String channelsVideoList(Model model, @ModelAttribute("vo") BaseVo baseVo) {
+		model.addAttribute("channels", youTubeService.channelSelectAllList());
 		System.out.println("channels_video_list");
 		return "/usr/v1/pages/channels_video_list";
 	}

@@ -4,6 +4,11 @@
     border: 8px solid #f3f3f3;
     border-radius: 50%;
     border-top: 8px solid #3498db;
+    position: fixed;
+    top:50%;
+    left:50%;
+    bottom: 50%;
+    right:50%;
     width: 60px;
     height: 60px;
     animation: spin 2s linear infinite;
@@ -44,6 +49,7 @@
 }
 .channel_thumbnail_box{
     width: 260px;
+    flex-shrink: 0;
 }
 .channel_info_text{
     display: flex;

@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.exion.common.util.UtilDateTime;
 
 @Controller
 public class YouTubeController {
@@ -32,7 +36,7 @@ public class YouTubeController {
 	@GetMapping("/channels")
     public ResponseEntity<?> getChannels() {
 		System.out.println("getChannels");
-        List<YouTubeChannelDto> channels = youTubeService.selectList();
+        List<YouTubeChannelDto> channels = youTubeService.channelSelectAllList();
      // 각 채널에 대한 상세 정보를 추가하여 업데이트
         for (YouTubeChannelDto channel : channels) {
             YouTubeChannelDto detailedChannelInfo = youTubeService.getChannelInfo(channel.getYcId());
@@ -59,4 +63,28 @@ public class YouTubeController {
     	System.out.println("테스트:"+videos);
         return new ResponseEntity<>(videos, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/v1/infra/youtube/youtubeChannelXdmList")
+	public String youtubeChannelXdmList(Model model,@ModelAttribute("vo") YouTubeChannelVo youTubeChannelVo) {
+//    	youTubeChannelVo.setDateStart(youTubeChannelVo.getDateStart() == null || youTubeChannelVo.getDateStart() == "" ? null : UtilDateTime.add00TimeString(youTubeChannelVo.getDateStart()));
+//		youTubeChannelVo.setDateEnd(youTubeChannelVo.getDateEnd() == null || youTubeChannelVo.getDateEnd() == "" ? null : UtilDateTime.add59TimeString(youTubeChannelVo.getDateEnd()));
+		youTubeChannelVo.setParamsPaging(youTubeService.channelsCount(youTubeChannelVo));
+		model.addAttribute("list",youTubeService.channelSelectList(youTubeChannelVo));
+//		model.addAttribute("channels", youTubeService.selectList());
+//		System.out.println("youtubeChannelXdmList");
+		return "/xdm/v1/infra/youtube/youtubeChannelXdmList";
+	}
+    @RequestMapping(value = "/v1/infra/youtube/youtubeChannelXdmForm")
+	public String youtubeChannelXdmForm() {
+
+//		System.out.println("youtubeChannelXdmList");
+		return "/xdm/v1/infra/youtube/youtubeChannelXdmForm";
+	}
+    @RequestMapping(value = "/v1/infra/youtube/youtubeChannelXdmMfom")
+	public String youtubeChannelXdmMfom(Model model, YouTubeChannelDto youTubeChannelDto) {
+    	model.addAttribute("item", youTubeService.channelSelectOne(youTubeChannelDto));
+//    	System.out.println("getUseNy:"+youTubeService.channelSelectOne(youTubeChannelDto).getUseNy());
+//		System.out.println("youtubeChannelXdmMfom");
+		return "/xdm/v1/infra/youtube/youtubeChannelXdmMfom";
+	}
 }

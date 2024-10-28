@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var krAlphaNumRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
     var krNameRegExp = /^[가-힣]{2,4}$/;
     var alphaNumRegExp = /^[a-zA-Z0-9]+$/;
+    var nonkrRegExp=/^[a-zA-Z0-9!@#$%^&*()_+={}\[\]:;"'<>,.?/~`-]*$/;
+
     var numericRegExp = /^[0-9]+$/;
     var emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     var birthRegExp =  /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
@@ -412,6 +414,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 if(!krNameRegExp.test(objValue)){
                     var text = "최소 2자 이상, 최대 4자의 한글만 입력해주세요";
+                    feedback.textContent = text;
+                    element.focus();
+                    return false;
+                } else {
+        // 	    	by pass
+                    return true;
+                }
+            }else if (element.classList.contains('valid-nonkr')) {
+                console.log("한글만뺀");
+                
+                if(!nonkrRegExp.test(objValue)){
+                    var text = "영대소문자, 숫자, 특수문자 입력해주세요";
                     feedback.textContent = text;
                     element.focus();
                     return false;

@@ -135,8 +135,17 @@ public class YouTubeService {
     //채널용
     private final String VIDEO_DETAILS_URL = "https://www.googleapis.com/youtube/v3/videos";
     
-    public List<YouTubeChannelDto> selectList() {
-        return youTubeChannelDao.selectList();
+    public List<YouTubeChannelDto> channelSelectList(YouTubeChannelVo vo) {
+        return youTubeChannelDao.channelSelectList(vo);
+    }
+    public List<YouTubeChannelDto> channelSelectAllList() {
+        return youTubeChannelDao.channelSelectAllList();
+    }
+    public int channelsCount(YouTubeChannelVo vo) {
+    	return youTubeChannelDao.channelsCount(vo);
+    }
+    public YouTubeChannelDto channelSelectOne(YouTubeChannelDto dto) {
+    	return youTubeChannelDao.channelSelectOne(dto);
     }
  // 채널 정보 및 최신 동영상 가져오기
     public Map<String, Object> getChannelDetails(String channelId) {
@@ -167,6 +176,7 @@ public class YouTubeService {
         
         channelDTO.setYcId(channelId);
         channelDTO.setYcName(channelData.getJSONObject("snippet").getString("title"));
+        channelDTO.setChannelsDescription(channelData.getJSONObject("snippet").getString("description"));
         channelDTO.setSubscribersCount(channelData.getJSONObject("statistics").getString("subscriberCount"));
         channelDTO.setVideosCount(channelData.getJSONObject("statistics").getString("videoCount"));
         

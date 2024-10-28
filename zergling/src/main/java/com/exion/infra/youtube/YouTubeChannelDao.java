@@ -6,5 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface YouTubeChannelDao {
-	public List<YouTubeChannelDto> selectList();
+	public List<YouTubeChannelDto> channelSelectAllList();
+	public List<YouTubeChannelDto> channelSelectList(YouTubeChannelVo vo);
+	public int channelsCount(YouTubeChannelVo vo);
+	public YouTubeChannelDto channelSelectOne(YouTubeChannelDto dto);
 }

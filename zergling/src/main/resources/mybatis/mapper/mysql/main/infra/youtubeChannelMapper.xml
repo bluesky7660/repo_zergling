@@ -3,11 +3,69 @@
 
 <mapper namespace="com.exion.infra.youtube.YouTubeChannelDao">
 	<resultMap type="com.exion.infra.youtube.YouTubeChannelDto" id="resultObj"></resultMap>
-	<select id="selectList" resultMap="resultObj">
+	<sql id="selectCommon">
+		FROM youtubeChannels a
+		where 1=1
+			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
+			<if test="searchKeyword != null and !searchKeyword.equals('')">
+				<choose>
+					<when test="keywordType == null">
+						AND(
+							a.ycSeq Like CONCAT('%',#{searchKeyword},'%')
+							OR a.ycName Like CONCAT('%',#{searchKeyword},'%')
+						)
+					</when>
+					<when test="keywordType == 1">AND a.ycSeq = #{searchKeyword}</when>
+					<when test="keywordType == 2">AND a.ycName Like CONCAT('%',#{searchKeyword},'%')</when>
+				</choose>
+			</if>
+			<if test="(dateStart != null and !dateStart.equals('')) and (dateEnd != null and !dateEnd.equals(''))">
+				<choose>
+					<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
+			</if>
+	</sql>
+	<select id="channelSelectAllList" resultMap="resultObj">
 		SELECT
 			ycSeq
 			,ycId
 			,ycName
         FROM youtubeChannels
+        where 1=1
+        	and delNy = 0
+        	and useNy = 1
 	</select>
+	<select id="channelSelectList" resultMap="resultObj">
+		<include refid="base.selectListUpperForMysql"/>
+			SELECT
+				a.ycSeq
+				,a.ycId
+				,a.ycName
+				,a.delNy
+				,a.useNy
+				,a.modDate
+				,a.regDate
+	        <include refid="selectCommon"/>
+	        order by a.ycSeq desc
+        <include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="channelsCount" resultType="int">
+        	SELECT COUNT(*) 
+        	<include refid="selectCommon"/>
+   	</select>
+   	<select id="channelSelectOne">
+   		SELECT
+			ycSeq
+			,ycId
+			,ycName
+			,delNy
+			,useNy
+			,modDate
+			,regDate
+		FROM youtubeChannels 
+        where 1=1
+        	and ycSeq = #{ycSeq}
+   	</select>
 </mapper>

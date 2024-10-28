@@ -54,7 +54,7 @@
             </div> -->
             <div class="content_wrapper">
                 <div class="header_box">
-                    <h3>Youtube API [도서서평]</h3>
+                    <h3>Youtube API [서평채널]</h3>
                 </div>
                 <form id="listForm" name="listForm" autocomplete="off" method="post" action="book_review_video_list">
                     <input type="hidden" name="searchKeyword" th:value="${shVo.searchKeyword}"/>
@@ -66,12 +66,14 @@
                             
                             <div id="channels_area" class="channels_area">
                                 <div class="channels_tab_area">
-                                    <ul id="channel-tabs" class="channel-tabs"></ul>
+                                    <ul id="channel-tabs" class="channel-tabs">
+                                        <li th:each="channel:${channels}"><a href="#" class="channel-tab" th:data-channel-id="${channel.ycId}" th:text="${channel.ycName}"></a></li>
+                                    </ul>
                                 </div>
                                 <div class="channels_box">
                                     <div class="spinner" id="loadingSpinner"></div>
                                     <div class="channel_info" id="channel_info">
-                                        <a href="http://" target="_blank" rel="noopener noreferrer" id="channel_link">
+                                        <!-- <a href="http://" target="_blank" rel="noopener noreferrer" id="channel_link">
                                             <div class="channel_thumbnail_box" id="channel_thumbnail_box">
                                                 <img id="channel_thumbnail" src="" alt="channelsImage">
                                             </div>
@@ -80,7 +82,7 @@
                                                 <p class="channel_subscribersCount" id="channel_subscribersCount"></p>
                                                 <p class="channel_videosCount" id="channel_videosCount"></p>
                                             </div>
-                                        </a>
+                                        </a> -->
                                     </div>
                                     <div class="channels_video_list">
                                         <ul id="video-list"></ul>
@@ -127,12 +129,12 @@
                 url: '/channels',
                 method: 'GET',
                 success: function(channels) {
-                    let tabsHtml = '';
-                    channels.forEach(function(channel, index) {
-                        // 각 채널 탭 생성
-                        tabsHtml += '<li><a href="#" class="channel-tab" data-channel-id="' + channel.ycId + '">' + channel.ycName + '</a></li>';
-                    });
-                    $('#channel-tabs').html(tabsHtml);
+                    // let tabsHtml = '';
+                    // channels.forEach(function(channel, index) {
+                    //     // 각 채널 탭 생성
+                    //     tabsHtml += '<li><a href="#" class="channel-tab" data-channel-id="' + channel.ycId + '">' + channel.ycName + '</a></li>';
+                    // });
+                    // $('#channel-tabs').html(tabsHtml);
 
                     console.log("channels:",channels);
                     // 첫 번째 채널의 기본 정보 및 동영상 표시
@@ -146,7 +148,7 @@
                         console.log("클릭");
                         e.preventDefault();
                         let ycId = $(this).data('channel-id');
-                        
+                        $('#loadingSpinner').show();
                         loadChannelDetails(ycId);
                     });
                 }
