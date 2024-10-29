@@ -9,9 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
             
         });
     }
-    const form = document.querySelector("form");
+    const form = document.querySelector("form:not(#total_search_form)");
     var formUrl;
     if(form){
+        console.log(form);
         formUrl = form.action;
     }
     

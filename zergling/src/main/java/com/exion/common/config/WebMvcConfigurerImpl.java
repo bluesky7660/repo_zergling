@@ -54,6 +54,8 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/channels_video_list"
 						,"/channel/details"
 						,"/channels"
+						,"/v1/test/channel"
+						,"/searchChannel"
 						
 		);
 	}

@@ -63,7 +63,15 @@
                     
                     <div class="contentArea">
                         <div class="contents">
-                            
+                            <div class="channel_add_area">
+                                <h4>채널추가</h4>
+                                <div class="channel_sreach">
+                                    <input type="text" class="form-control" value="">
+                                </div>
+                                <div class="channel_add_btn_box">
+                                    <button class="btn">채널추가</button>
+                                </div>
+                            </div>
                             <div id="channels_area" class="channels_area">
                                 <div class="channels_tab_area">
                                     <ul id="channel-tabs" class="channel-tabs">
@@ -123,7 +131,7 @@
     <script src="/usr/v1/assets/js/video.js"></script>
     <script>
         $(document).ready(function() {
-            
+            $('#loadingSpinner').show();
             // 채널 목록 가져오기
             $.ajax({
                 url: '/channels',
@@ -139,7 +147,7 @@
                     console.log("channels:",channels);
                     // 첫 번째 채널의 기본 정보 및 동영상 표시
                     if (channels.length > 0) {
-                        $('#loadingSpinner').show();
+                       
                         loadChannelDetails(channels[0].ycId);
                     }
 

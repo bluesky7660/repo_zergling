@@ -151,96 +151,7 @@ public class indexController {
 		return "/usr/v1/pages/login";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "loginUsrProc")
-	public Map<String, Object> loginUsrProc(@RequestParam("captchaCode") String captchaCode, 
-//			@RequestParam("token") String token,
-			//@RequestParam("recaptchaAction") String recaptchaAction, 
-			MemberDto memberDto, HttpSession httpSession,HttpServletRequest request) throws Exception {
-		
-		System.out.println("loginUsrProc");
-		Map<String, Object> returnMap = new HashMap<>();
-		// EasyCaptcha 검증
-		String sessionCode = (String) request.getSession().getAttribute("captcha");
-		System.out.println("captchaCode:"+captchaCode);
-		System.out.println("request:"+sessionCode);
-		System.out.println("CaptchaJakartaUtil.ver(captchaCode, request):"+CaptchaJakartaUtil.ver(captchaCode, request));
-		if (!CaptchaJakartaUtil.ver(captchaCode, request)) {
-            returnMap.put("rt", "fail");
-            returnMap.put("message", "Captcha validation failed.");
-            System.out.println("Captcha실패");
-             // 캡차 세션 제거
-//            refreshCaptcha();
-            return returnMap;
-        }
-		CaptchaJakartaUtil.clear(request);
-		System.out.println("Captcha성공");
-//		try {
-//			Properties properties = new Properties();
-//		    Resource resource = new ClassPathResource("application.properties");
-//		    try (InputStream input = resource.getInputStream()) {
-//		        properties.load(input);
-//		    }
-//			
-//			// 설정 파일에서 값 읽기
-////			String projectID = properties.getProperty("google.recaptcha.projectID");
-////			String recaptchaKey = properties.getProperty("google.recaptcha.key"); // 설정 파일에서 읽어오거나 상수로 관리
-//////			String serviceAccountKeyFilePath = properties.getProperty("google.service.account.key.file");
-////	        System.out.println("projectID:"+projectID);
-////		    System.out.println("recaptchaKey:"+recaptchaKey);
-////		    System.out.println("token:"+token);
-////		    System.out.println("recaptchaAction:"+recaptchaAction);
-//////		    System.out.println("serviceAccountKeyFilePath:"+serviceAccountKeyFilePath);
-//		  //reCAPTCHA 검증
-//            boolean isValid = recaptchaService.verifyRecaptcha(token,recaptchaAction);
-//            if (!isValid) {
-//                returnMap.put("rt", "fail");
-//                returnMap.put("message", "reCAPTCHA validation failed.");
-//                return returnMap;
-//            }
-////          
-//            
-////		    CreateAssessment.createAssessment(serviceAccountKeyFilePath, projectID, recaptchaKey, token, recaptchaAction);
-//	    } catch (IOException e) {
-//	        e.printStackTrace();
-//	        returnMap.put("rt", "fail");
-//	        return returnMap; // reCAPTCHA 검증 실패
-//	    }
-		
-		MemberDto rtMember = memberService.selectUsrOne(memberDto);
-		System.out.println("rtMember: " + rtMember);
-		if (rtMember != null) {
-			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
-			httpSession.setAttribute("sessSeqXdm", rtMember.getSeq());
-			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
-			httpSession.setAttribute("sessNameXdm", rtMember.getName());
-//			if(httpSession.getAttribute("prevPage") != null) {
-////				returnMap.put("rtp", "buy");
-//				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
-//				
-//				
-//				System.out.println("구매성공");
-//			}else {
-////				returnMap.put("rtp", "fail");
-//				System.out.println("주소: " + httpSession.getAttribute("prevPage"));
-//				System.out.println("구매실패");
-//			}
-			
-			String prevPage = (String) httpSession.getAttribute("prevPage");
-			System.out.println("주소테스트: "+prevPage);
-			httpSession.removeAttribute("prevPage"); 
-			returnMap.put("redirectUrl", prevPage != null ? prevPage : "/index");
-			
-			System.out.println("성공");
-			
-			returnMap.put("rt", "success");
-			
-		} else {
-			System.out.println("실패");
-			returnMap.put("rt", "fail");
-		}
-		return returnMap;
-	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "logoutUsrProc")
@@ -258,12 +169,7 @@ public class indexController {
 		model.addAttribute("genders", codeService.genderList());
 		return "/usr/v1/pages/signup";
 	}
-	@RequestMapping(value = "signupInst")
-	public String signupInst(MemberDto memberDto) {
-		System.out.println("signupInst");
-		memberService.insertUsr(memberDto);
-		return "redirect:login";
-	}
+	
 //	@RequestMapping(value = "signupInst")
 //	public String signupInst(UserDto userDto) {
 //		userService.insertUser(userDto);
@@ -337,12 +243,7 @@ public class indexController {
 //		System.out.println("seq: "+.get());
 		return "/usr/v1/pages/user_account";
 	}
-	@RequestMapping(value = "user_accountUpdt")
-	public String userAccountUpdt(MemberDto memberDto) {
-		System.out.println("seq1: "+memberDto.getSeq());
-		memberService.update(memberDto);
-		return "redirect:index";
-	}
+	
 //	@RequestMapping(value = "user_account")
 //	public String userAccount(Model model, UserDto userDto) {
 //		model.addAttribute("item", userService.selectOne(userDto));

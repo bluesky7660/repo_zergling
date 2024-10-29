@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube 채널 검색</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .channels_info {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        .channels_image img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .channels_info_text {
+            margin-left: 20px;
+        }
+        .channels_info_text h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .channels_info_text p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube 채널 검색</h1>
+    
+    <!-- 검색 입력 필드 -->
+    <input type="text" id="searchQuery" placeholder="채널 이름을 입력하세요">
+    <button id="searchButton">검색</button>
+    
+    <!-- 검색 결과가 표시될 영역 -->
+    <div id="searchResults"></div>
+
+    <script>
+        // 검색 버튼 클릭 이벤트
+        $('#searchButton').on('click', function() {
+            const query = $('#searchQuery').val();
+            if (query) {
+                searchYouTubeChannel(query);
+            } else {
+                alert('채널 이름을 입력하세요.');
+            }
+        });
+        $('#searchQuery').on('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // 폼 제출 방지
+                const query = $(this).val();
+                if (query) {
+                    searchYouTubeChannel(query);
+                } else {
+                    alert('채널 이름을 입력하세요.');
+                }
+            }
+        });
+
+        // YouTube 채널 검색 함수
+        function searchYouTubeChannel(query) {
+            $.ajax({
+                type: 'GET',
+                url: '/searchChannel',
+                data: { channelName: query }, // 검색어를 서버로 전송
+                success: function(response) {
+                	console.log(response);
+                	//displaySearchResult(response); //단일
+                	displaySearchResults(response); //리스트
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX 요청 중 오류 발생:', error);
+                }
+            });
+        }
+
+        // 검색 결과 표시 함수
+        function displaySearchResult(channel) {
+            const resultsDiv = $('#searchResults');
+            resultsDiv.empty(); // 기존 결과 초기화
+
+            if (!channel) {
+                resultsDiv.append('<p>결과가 없습니다.</p>');
+                return;
+            }
+
+            const channelId = channel.ycId;
+            const channelTitle = channel.ycName;
+            const channelDescription = channel.channelsDescription;
+            const channelThumbnail = channel.thumbnailUrl;
+            const ucUrl = channel.channelUrl;
+
+            const channelHtml = `
+                <div class="channels_info" id="channel-${channelId}">
+                    <a href="${ucUrl}" target="_blank">
+                        <div class="channels_image">
+                            <img src="${channelThumbnail}" alt="${channelTitle}">
+                        </div>
+                        <div class="channels_info_text">
+                            <h3>${channelTitle}</h3>
+                            <p>${channelDescription}</p>
+                            <p>UC 주소: <a href="${ucUrl}" target="_blank">${ucUrl}</a></p>
+                        </div>
+                    </a>
+                </div>
+            `;
+            resultsDiv.append(channelHtml); // 결과 추가
+        }
+        function displaySearchResults(channels) {
+            const resultsDiv = $('#searchResults');
+            resultsDiv.empty(); // 기존 결과 초기화
+
+            if (channels.length === 0) {
+                resultsDiv.append('<p>결과가 없습니다.</p>');
+                return;
+            }
+
+            channels.forEach(channel => {
+                const channelId = channel.ycId;
+                const channelTitle = channel.ycName;
+                const channelDescription = channel.channelsDescription;
+                const channelThumbnail = channel.thumbnailUrl;
+                const ucUrl = channel.channelUrl;
+
+                const channelHtml = `
+                    <div class="channels_info" id="channel-${channelId}">
+                        <a href="${ucUrl}" target="_blank">
+                            <div class="channels_image">
+                                <img src="${channelThumbnail}" alt="${channelTitle}">
+                            </div>
+                            <div class="channels_info_text">
+                                <h3>${channelTitle}</h3>
+                                <p>${channelDescription}</p>
+                                <p>UC 주소: <a href="${ucUrl}" target="_blank">${ucUrl}</a></p>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                resultsDiv.append(channelHtml); // 결과 추가
+            });
+        }
+    </script>
+</body>
+</html>

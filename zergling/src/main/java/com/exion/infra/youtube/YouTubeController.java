@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.exion.common.util.UtilDateTime;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class YouTubeController {
@@ -74,7 +73,26 @@ public class YouTubeController {
 //		System.out.println("youtubeChannelXdmList");
 		return "/xdm/v1/infra/youtube/youtubeChannelXdmList";
 	}
-    @RequestMapping(value = "/v1/infra/youtube/youtubeChannelXdmForm")
+    
+//    @GetMapping("/searchChannel")
+//    @ResponseBody
+//    public YouTubeChannelDto searchChannel(@RequestParam("channelName") String channelName) {
+//    	return youTubeService.searchChannelByName(channelName);
+//    }
+    @GetMapping("/searchChannel")
+    @ResponseBody
+    public List<YouTubeChannelDto> searchChannel(@RequestParam("channelName") String channelName) {
+    	return youTubeService.searchChannelsByName(channelName);
+    }
+
+	@RequestMapping(value = "/v1/test/channel")
+	public String channel() {
+
+//		System.out.println("youtubeChannelXdmList");
+		return "/usr/v1/test/channel";
+	}
+    
+	@RequestMapping(value = "/v1/infra/youtube/youtubeChannelXdmForm")
 	public String youtubeChannelXdmForm() {
 
 //		System.out.println("youtubeChannelXdmList");

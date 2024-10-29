@@ -57,6 +57,9 @@
     gap: 10px;
     justify-content: center;
 }
+.channels_description{
+    line-height: 30px;
+}
 .channels_video_list{
     margin-top: 30px;
     border-top: 1px solid #aaa;

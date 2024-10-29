@@ -271,6 +271,99 @@ public class YouTubeService {
 
         return videos;
     }
+    private final String YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/channels";
+    public YouTubeChannelDto searchChannelByName(String channelName) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        // 1. 채널 이름으로 검색
+        String searchUrl = String.format("%s?part=snippet&type=channel&q=%s&key=%s",
+                YOUTUBE_SEARCH_URL, channelName, channelApiKey);
+        String searchResponse = restTemplate.getForObject(searchUrl, String.class);
+
+        JSONObject searchResult = new JSONObject(searchResponse);
+        JSONArray items = searchResult.getJSONArray("items");
+
+        if (items.length() > 0) {
+            // 첫 번째 검색 결과에서 채널 ID를 추출
+            JSONObject channelSnippet = items.getJSONObject(0).getJSONObject("snippet");
+            String channelId = items.getJSONObject(0).getJSONObject("id").getString("channelId");
+
+            // 2. 채널 ID로 채널 정보 조회
+            String channelUrl = String.format("%s?part=snippet,statistics&id=%s&key=%s",
+                    YOUTUBE_CHANNEL_URL, channelId, channelApiKey);
+            String channelResponse = restTemplate.getForObject(channelUrl, String.class);
+
+            JSONObject channelData = new JSONObject(channelResponse);
+            JSONArray channelItems = channelData.getJSONArray("items");
+
+            if (channelItems.length() > 0) {
+                JSONObject channelInfo = channelItems.getJSONObject(0);
+                return parseChannelData(channelInfo);
+            }
+        }
+        return null; // 채널이 없으면 null 반환
+    }
+    public List<YouTubeChannelDto> searchChannelsByName(String channelName) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        // 1. 채널 이름으로 검색
+        String searchUrl = String.format("%s?part=snippet&type=channel&q=%s&key=%s",
+                YOUTUBE_SEARCH_URL, channelName, channelApiKey);
+        String searchResponse = restTemplate.getForObject(searchUrl, String.class);
+
+        JSONObject searchResult = new JSONObject(searchResponse);
+        JSONArray items = searchResult.getJSONArray("items");
+        List<YouTubeChannelDto> channels = new ArrayList<>();
+
+        // 여러 개의 채널 정보 가져오기
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject channelSnippet = items.getJSONObject(i).getJSONObject("snippet");
+            String channelId = items.getJSONObject(i).getJSONObject("id").getString("channelId");
+
+            // 2. 채널 ID로 채널 정보 조회
+            String channelUrl = String.format("%s?part=snippet,statistics&id=%s&key=%s",
+                    YOUTUBE_CHANNEL_URL, channelId, channelApiKey);
+            String channelResponse = restTemplate.getForObject(channelUrl, String.class);
+
+            JSONObject channelData = new JSONObject(channelResponse);
+            JSONArray channelItems = channelData.getJSONArray("items");
+
+            if (channelItems.length() > 0) {
+                JSONObject channelInfo = channelItems.getJSONObject(0);
+                channels.add(parseChannelData(channelInfo)); // 채널 정보 추가
+            }
+        }
+        return channels; // 여러 개의 채널 정보 반환
+    }
+
+
+    // JSON 데이터를 YouTubeChannelDto로 변환하는 메서드
+    private YouTubeChannelDto parseChannelData(JSONObject channelInfo) {
+        YouTubeChannelDto channelDTO = new YouTubeChannelDto();
+
+        JSONObject snippet = channelInfo.getJSONObject("snippet");
+        JSONObject statistics = channelInfo.getJSONObject("statistics");
+
+        channelDTO.setYcId(channelInfo.getString("id"));
+        channelDTO.setYcName(snippet.getString("title"));
+        channelDTO.setChannelsDescription(snippet.getString("description"));
+        channelDTO.setSubscribersCount(statistics.optString("subscriberCount", "0"));
+//        channelDTO.setViewCount(statistics.optString("viewCount", "0"));
+        channelDTO.setVideosCount(statistics.optString("videoCount", "0"));
+
+        JSONObject thumbnails = snippet.getJSONObject("thumbnails");
+        channelDTO.setThumbnailUrl(thumbnails.getJSONObject("default").getString("url"));
+     // 커스텀 URL 추가
+        String customUrl = snippet.optString("customUrl", "");
+        if (!customUrl.isEmpty()) {
+            channelDTO.setChannelUrl("https://www.youtube.com/"+ customUrl);
+        } else {
+            // 기본 채널 URL (ID 사용)
+            channelDTO.setChannelUrl("https://www.youtube.com/channel/" + channelInfo.getString("id"));
+        }
+
+        return channelDTO;
+    }
 
 //    public List<Map<String, Object>> getAllChannelsLatestVideos() {
 //    	
