@@ -27,14 +27,24 @@
 /*채널*/
 .channels_tab_area{
     margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
 }
 .channel-tabs{
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 최대 6개 열 생성 */
+    gap: 10px;
 
 }
 .channel-tabs li{
-    width: 100%;
+    /* width: calc(16.66% - 5px); */
+    /* width: 100%;
+    min-width: calc(16.66% - 5px);
+    margin-bottom: 5px; */
+    border-bottom: 0;
     text-align: center;
 }
 .channel-tabs li a{
@@ -51,6 +61,9 @@
     width: 260px;
     flex-shrink: 0;
 }
+.channel_thumbnail{
+    border: 1px solid #aaa;
+}
 .channel_info_text{
     display: flex;
     flex-direction: column;
@@ -63,6 +76,13 @@
 .channels_video_list{
     margin-top: 30px;
     border-top: 1px solid #aaa;
+}
+.channel_add_area,.channel_add_box{
+    margin-top: 20px;
+}
+.channel_add_box{
+    display: flex;
+    gap: 10px;
 }
 
 

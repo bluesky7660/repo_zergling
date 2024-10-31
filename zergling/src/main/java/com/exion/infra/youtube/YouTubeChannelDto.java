@@ -7,11 +7,13 @@ public class YouTubeChannelDto {
 	private String ycSeq;
 	private String ycId;
 	private String ycName;
+	private String ycUrl;
 	private String channelsDescription;
 	private String subscribersCount;
     private String videosCount;
     private String thumbnailUrl;
     private String channelUrl;
+    
     
     private Integer delNy;
     private Integer useNy;
@@ -89,6 +91,12 @@ public class YouTubeChannelDto {
 	}
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
+	}
+	public String getYcUrl() {
+		return ycUrl;
+	}
+	public void setYcUrl(String ycUrl) {
+		this.ycUrl = ycUrl;
 	}
 	
 }

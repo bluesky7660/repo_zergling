@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exion.infra.mail.MailService;
+import com.exion.infra.recaptcha.RecaptchaService;
 import com.exion.infra.util.Constants;
 
 import io.springboot.captcha.utils.CaptchaJakartaUtil;
@@ -27,6 +28,9 @@ public class MemberController {
 	
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+    private RecaptchaService recaptchaService;
 	
 	@RequestMapping(value = "/v1/infra/member/memberXdmList")
 	public String memberXdmList(Model model,@ModelAttribute("vo") MemberVo vo) {

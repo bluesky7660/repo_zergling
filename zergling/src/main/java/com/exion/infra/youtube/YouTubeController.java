@@ -1,5 +1,6 @@
 package com.exion.infra.youtube;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -81,8 +82,28 @@ public class YouTubeController {
 //    }
     @GetMapping("/searchChannel")
     @ResponseBody
-    public List<YouTubeChannelDto> searchChannel(@RequestParam("channelName") String channelName) {
-    	return youTubeService.searchChannelsByName(channelName);
+    public ResponseEntity<?> searchChannel(@RequestParam("channelName") String channelName) {
+    	
+    	try {
+    		YouTubeChannelDto channelDto = youTubeService.searchChannelByName(channelName);
+    		// 각 필드를 개별적으로 출력
+    		System.out.println("채널 ID: " + channelDto.getYcId());
+    		System.out.println("채널 이름: " + channelDto.getYcName());
+    		System.out.println("채널 설명: " + channelDto.getChannelsDescription());
+    		System.out.println("구독자 수: " + channelDto.getSubscribersCount());
+    		System.out.println("비디오 수: " + channelDto.getVideosCount());
+    		System.out.println("썸네일 URL: " + channelDto.getThumbnailUrl());
+    		System.out.println("채널 URL: " + channelDto.getChannelUrl());
+    		youTubeService.channelInst(channelDto);
+            return ResponseEntity.ok(channelDto);
+        } catch (IllegalArgumentException e) {
+        	System.out.println("이름틀림");
+            // 정확한 채널 이름이 아닐 경우 에러 메시지 반환
+        	Map<String, Object> response = new HashMap<>();
+            response.put("match", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.ok(response);
+        }
     }
 
 	@RequestMapping(value = "/v1/test/channel")

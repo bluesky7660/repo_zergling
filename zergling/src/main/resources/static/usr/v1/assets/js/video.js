@@ -57,6 +57,38 @@ function searchVideos() {
         }
     });
 }
+//채널 기본정보 로드
+function loadChannels() {
+    $.ajax({
+        url: '/channels',
+        method: 'GET',
+        success: function(channels) {
+            // let tabsHtml = '';
+            // channels.forEach(function(channel, index) {
+            //     // 각 채널 탭 생성
+            //     tabsHtml += '<li><a href="#" class="channel-tab" data-channel-id="' + channel.ycId + '">' + channel.ycName + '</a></li>';
+            // });
+            // $('#channel-tabs').html(tabsHtml);
+
+            console.log("channels:",channels);
+            // 첫 번째 채널의 기본 정보 및 동영상 표시
+            if (channels.length > 0) {
+               
+                loadChannelDetails(channels[0].ycId);
+            }
+
+            // 탭 클릭 이벤트 처리
+            // $('.channel-tab').click(function(e) {
+            //     console.log("channels");
+            //     e.preventDefault();
+            //     let ycId = $(this).data('channel-id');
+            //     $('#loadingSpinner').show();
+            //     loadChannelDetails(ycId);
+            // });
+        }
+    });
+}
+//채널 정보 출력
 function loadChannelDetails(channelId) {
     $.ajax({
         url: '/channel/details',
@@ -95,7 +127,7 @@ function loadChannelDetails(channelId) {
             var channelHtml = `
                 <a href="${channelInfo.channelUrl}" target="_blank" rel="noopener noreferrer" id="channel_link">
                     <div class="channel_thumbnail_box" id="channel_thumbnail_box">
-                        <img id="channel_thumbnail" src="${channelInfo.thumbnailUrl}" alt="${channelInfo.ycName}썸네일">
+                        <img class="channel_thumbnail" src="${channelInfo.thumbnailUrl}" alt="${channelInfo.ycName}썸네일">
                     </div>
                     <div class="channel_info_text" id="channel_info_text">
                         <h3 class="channel_Name" id="channel_Name">${channelInfo.ycName}</h3>
@@ -136,5 +168,114 @@ function loadChannelDetails(channelId) {
             });
             $('#video-list').html(videoHtml);
         }
+    });
+}
+// YouTube 채널 검색 함수
+function searchYouTubeChannel(query) {
+    $.ajax({
+        type: 'GET',
+        url: '/searchChannel',
+        data: { channelName: query }, // 검색어를 서버로 전송
+        success: function(response) {
+            // alert("확인");
+            console.log("확인:",response);
+             // JSON 문자열을 객체로 변환
+            // const data = typeof response === "string" ? JSON.parse(response) : response;
+            console.log("확인:",response.match);
+            // const data = JSON.parse(response);
+            if (response.match == false) {
+                // 이름이 일치하지 않는 경우 모달을 띄움
+                openModal(response.message);
+            } else {
+                // 이름이 일치하는 경우 결과를 처리
+                const channelTabs = document.getElementById('channel-tabs');
+                // 새 채널 정보 추가
+                const newChannel = document.createElement('li');
+                newChannel.innerHTML = `<a href="javascript:void(0);" class="channel-tab" data-channel-id="${response.ycId}">${response.ycName}</a>`;
+                
+                channelTabs.appendChild(newChannel);
+                //탭 클릭 이벤트 처리
+                // $('.channel-tab').click(function(e) {
+                //     console.log("searchChannel");
+                //     e.preventDefault();
+                //     let ycId = $(this).data('channel-id');
+                //     $('#loadingSpinner').show();
+                //     loadChannelDetails(ycId);
+                // });
+
+                // alert("성공");
+                // loadChannelDetails(channels[0].ycId);
+                // displaySearchResult(response);
+            }
+            // displaySearchResults(response); //리스트
+        },
+        error: function(xhr, status, error) {
+            console.error('AJAX 요청 중 오류 발생:', error);
+        }
+    });
+}
+// 검색 결과 표시 함수
+function displaySearchResult(channel) {
+    const resultsDiv = $('#searchResults');
+    resultsDiv.empty(); // 기존 결과 초기화
+
+    if (!channel) {
+        resultsDiv.append('<p>결과가 없습니다.</p>');
+        return;
+    }
+
+    const channelId = channel.ycId;
+    const channelTitle = channel.ycName;
+    const channelDescription = channel.channelsDescription;
+    const channelThumbnail = channel.thumbnailUrl;
+    const ucUrl = channel.channelUrl;
+
+    const channelHtml = `
+        <div class="channels_info" id="channel-${channelId}">
+            <a href="${ucUrl}" target="_blank">
+                <div class="channels_image">
+                    <img src="${channelThumbnail}" alt="${channelTitle}">
+                </div>
+                <div class="channels_info_text">
+                    <h3>${channelTitle}</h3>
+                    <p>${channelDescription}</p>
+                    <p>UC 주소: <a href="${ucUrl}" target="_blank">${ucUrl}</a></p>
+                </div>
+            </a>
+        </div>
+    `;
+    resultsDiv.append(channelHtml); // 결과 추가
+}
+function displaySearchResults(channels) {
+    const resultsDiv = $('#searchResults');
+    resultsDiv.empty(); // 기존 결과 초기화
+
+    if (channels.length === 0) {
+        resultsDiv.append('<p>결과가 없습니다.</p>');
+        return;
+    }
+
+    channels.forEach(channel => {
+        const channelId = channel.ycId;
+        const channelTitle = channel.ycName;
+        const channelDescription = channel.channelsDescription;
+        const channelThumbnail = channel.thumbnailUrl;
+        const ucUrl = channel.channelUrl;
+
+        const channelHtml = `
+            <div class="channels_info" id="channel-${channelId}">
+                <a href="${ucUrl}" target="_blank">
+                    <div class="channels_image">
+                        <img src="${channelThumbnail}" alt="${channelTitle}">
+                    </div>
+                    <div class="channels_info_text">
+                        <h3>${channelTitle}</h3>
+                        <p>${channelDescription}</p>
+                        <p>UC 주소: <a href="${ucUrl}" target="_blank">${ucUrl}</a></p>
+                    </div>
+                </a>
+            </div>
+        `;
+        resultsDiv.append(channelHtml); // 결과 추가
     });
 }

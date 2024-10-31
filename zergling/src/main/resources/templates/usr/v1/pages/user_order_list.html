@@ -84,6 +84,7 @@
                                         <p>주문 / 배송정보가 없습니다.</p>
                                     </div>
                                     <div class="order_item" th:each="list : ${orderlist}" th:if="${!#lists.isEmpty(orderlist)}">
+                                        <input type="hidden" th:value="${list.uoSeq}">
                                         <!-- 주문 요약 -->
                                         <div class="order_summary">
                                             <div>
@@ -121,10 +122,10 @@
                                                 </p>
                                             </div>
                                             
-                                            <div class="product_info">
+                                            <!-- <div class="product_info">
                                                 
                                                 
-                                            </div>
+                                            </div> -->
                                             <div th:if="${!(list.orderStatus == 10 or list.orderStatus == 14 or list.orderStatus == 57 or list.orderStatus == 56)}" 
                                                 style="visibility: hidden;">
                                                 <!-- 이 안의 내용을 차지할 영역 -->
@@ -138,7 +139,7 @@
                                             </div>
                                             
                                             <div th:if="${(list.orderStatus == 57) or (list.orderStatus == 56)}">
-                                                <button class="btn cancel-btn">취소신청</button>
+                                                <button th:id="'order_cancel_btn'+${list.uoSeq}" class="order_cancel_btn btn btn-red cancel-btn" type="button" data-bs-toggle="modal" data-bs-target="#confirmCancelModal">취소신청</button>
                                             </div>
                                         </div>
                                     </div>
@@ -221,6 +222,25 @@
         <div class="top_btn"><i class="fa-solid fa-xl fa-chevron-up"></i></div>
         <div th:replace="~{usr/v1/infra/include/footer :: footer}"></div>
     </div>
+    <!-- 모달 -->
+    <div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmCancelLabel">확인</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    정말 취소하시겠습니까?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gray" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-red" id="cancel_btn" >취소 확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -229,6 +249,76 @@
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/usr/v1/assets/js/custom.js"></script>
     <script src="/usr/v1/assets/js/header.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            $(".order_cancel_btn").on('click', function () {
+                const orderItemElement = $(this).closest('.order_item');  // 클릭된 버튼의 조상 중에서 .order_item 클래스를 가진 가장 가까운 요소 찾기
+                const id = $(this).attr('id');  // 버튼의 id 속성 값 가져오기
+                const uoSeq = id.slice("order_cancel_btn".length);  // "order_cancel_btn" 이후의 값 추출
+                console.log(uoSeq);  // 추출된 uoSeq 값 출력
+                $("#confirmCancelModal #cancel_btn").on('click', function () {
+                    $.ajax({
+                        async: true 
+                        ,cache: false
+                        ,type: "post"
+                        ,url: '/orderCancel'
+                        ,contentType: 'application/json'
+                        ,data:{ uoSeq: uoSeq }
+                        ,success: function(response) {
+                            // orderItemElement.
+                            let orderItemHtml = `
+                                <div class="order_item">
+                                    <input type="hidden" value="${response.uoSeq}">
+                                    <div class="order_summary">
+                                        <div>
+                                            <span>${response.orderDate}(${response.orderNumber})</span>
+                                            <span class="order-detail-btn">상세보기</span>
+                                        </div>
+                                        <div>
+                                            <span class="order-delete-btn">주문내역에서 삭제</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="order_product">
+                                        <div>
+                                            <div class="img-box">
+                                                <img src="/usr/v1/assets/images/prod/200/${response.imgSrc}.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="prod_title_box">
+                                                <span class="prod_type">[국내도서 · ${response.prodTypeName}]</span>
+                                                <span class="prod_title">${response.title}</span>
+                                            </p>
+                                            <p class="prod_num">수량 : ${response.uoQuantity}</p>
+                                        </div>
+                                        <div>
+                                            <p class="prod_price">${response.uoPrice.toLocaleString()}원</p>
+                                        </div>
+                                        <div>
+                                            <p class="order_status_box">
+                                                <p class="order_status"><span class="blue_color">${response.orderStatusText}</span></p>
+                                                <p class="prod_delivery_date">${response.deliveryDate} <span class="prod_delivery_status">도착예정</span></p>
+                                            </p>
+                                        </div>
+                                        
+                                        <div ${response.orderStatus == 57 || response.orderStatus == 56 ? '' : 'style="visibility: hidden;"'}>
+                                            <button id="order_cancel_btn${response.uoSeq}" class="order_cancel_btn btn btn-red cancel-btn" type="button" data-bs-toggle="modal" data-bs-target="#confirmCancelModal">취소신청</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
 
+                            // 새로운 HTML을 주문 리스트에 추가
+                            $('#order_list').append(orderItemHtml);
+                        }
+                        ,error: function(xhr, status, error) {
+                            console.error("Error fetching review data:", error);
+                        }
+                    });
+                })
+            });
+        })
+    </script>
 </body>
 </html>

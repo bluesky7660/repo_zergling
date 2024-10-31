@@ -147,6 +147,9 @@ public class YouTubeService {
     public YouTubeChannelDto channelSelectOne(YouTubeChannelDto dto) {
     	return youTubeChannelDao.channelSelectOne(dto);
     }
+    public int channelInst(YouTubeChannelDto dto) {
+    	return youTubeChannelDao.channelInst(dto);
+    }
  // 채널 정보 및 최신 동영상 가져오기
     public Map<String, Object> getChannelDetails(String channelId) {
         // 채널 정보 가져오기
@@ -197,8 +200,15 @@ public class YouTubeService {
 			thumbnailUrl = thumbnails.getJSONObject("medium").getString("url");
 		}
 		channelDTO.setThumbnailUrl(thumbnailUrl);
-        String channelUrl = String.format("https://www.youtube.com/channel/%s", channelId);
-        channelDTO.setChannelUrl(channelUrl);
+
+     // 커스텀 URL 추가
+        String customUrl = channelData.getJSONObject("snippet").optString("customUrl", "");
+        if (!customUrl.isEmpty()) {
+            channelDTO.setChannelUrl("https://www.youtube.com/"+ customUrl);
+        } else {
+            // 기본 채널 URL (ID 사용)
+            channelDTO.setChannelUrl("https://www.youtube.com/channel/"+channelId);
+        }
         
         return channelDTO;
     }
@@ -272,6 +282,8 @@ public class YouTubeService {
         return videos;
     }
     private final String YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/channels";
+    //채널 검색및 추가
+    //단일
     public YouTubeChannelDto searchChannelByName(String channelName) {
         RestTemplate restTemplate = new RestTemplate();
 
@@ -286,6 +298,12 @@ public class YouTubeService {
         if (items.length() > 0) {
             // 첫 번째 검색 결과에서 채널 ID를 추출
             JSONObject channelSnippet = items.getJSONObject(0).getJSONObject("snippet");
+            String resultChannelName = channelSnippet.getString("title");
+            // 2. 사용자가 입력한 이름과 검색된 채널 이름 비교
+            if (!resultChannelName.equalsIgnoreCase(channelName)) {
+                // 이름이 정확히 일치하지 않으면 에러 메시지를 반환
+                throw new IllegalArgumentException("정확한 채널 이름을 입력해야 합니다.");
+            }
             String channelId = items.getJSONObject(0).getJSONObject("id").getString("channelId");
 
             // 2. 채널 ID로 채널 정보 조회
@@ -303,6 +321,7 @@ public class YouTubeService {
         }
         return null; // 채널이 없으면 null 반환
     }
+    //리스트
     public List<YouTubeChannelDto> searchChannelsByName(String channelName) {
         RestTemplate restTemplate = new RestTemplate();
 

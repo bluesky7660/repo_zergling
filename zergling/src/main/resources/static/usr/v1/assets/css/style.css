@@ -426,6 +426,11 @@ a.img-box{
     border-color: #545bb3;
     color: #fff;
 }
+.btn-red{
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
 /* .btn-blue:hover,.btn.btn-blue:first-child:active{
     background-color: #313364;
     border-color: #313364;

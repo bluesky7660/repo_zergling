@@ -29,6 +29,7 @@
 			where 1 = 1
 				and b.seq = #{seq}
 				and a.delNy = 0
+			order by a.orderDate desc
 	</select>
 	<insert id="insert">
 	  		insert into userorder(

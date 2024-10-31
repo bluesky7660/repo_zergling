@@ -68,4 +68,23 @@
         where 1=1
         	and ycSeq = #{ycSeq}
    	</select>
+   	<insert id="channelInst">
+   		INSERT INTO youtubeChannels (
+   			ycId
+   			,ycName
+   			,channelUrl
+   			,delNy
+   			,useNy
+   			,modDate
+   			,regDate
+   		)value(
+   			#{ycId}
+   			,#{ycName}
+   			,#{channelUrl}
+   			,0
+   			,1
+   			,now()
+   			,now()
+   		)
+   	</insert>
 </mapper>

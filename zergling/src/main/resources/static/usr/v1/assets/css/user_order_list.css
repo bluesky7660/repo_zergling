@@ -152,6 +152,13 @@ tr.order_head{
 }
 .order_list_box .order_product div:nth-child(4),.order_list_box .order_product div:nth-child(3){
     text-align: center;
+    width: 170px;
+    flex-shrink: 0;
+}
+.order_list_box .order_product div:nth-child(5){
+    width: 120px;
+    text-align: center;
+    flex-shrink: 0;
 }
 .order_list_box .order_product div *{
     font-size: 14px;

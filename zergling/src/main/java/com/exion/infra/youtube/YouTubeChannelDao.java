@@ -9,5 +9,6 @@ public interface YouTubeChannelDao {
 	public List<YouTubeChannelDto> channelSelectAllList();
 	public List<YouTubeChannelDto> channelSelectList(YouTubeChannelVo vo);
 	public int channelsCount(YouTubeChannelVo vo);
+	public int channelInst(YouTubeChannelDto dto);
 	public YouTubeChannelDto channelSelectOne(YouTubeChannelDto dto);
 }

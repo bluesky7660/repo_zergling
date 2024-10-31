@@ -76,8 +76,6 @@ public class indexController {
 	@Autowired
 	ReviewService reviewService;
 	
-	@Autowired
-    private RecaptchaService recaptchaService;
 	
 	@Autowired
 	BookController bookController;
