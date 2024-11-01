@@ -4,7 +4,9 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class ProductDto {
+import com.exion.common.base.FileDto;
+
+public class ProductDto extends FileDto{
 	private String seq;
 	private String title;
 	private Integer prodType;
@@ -45,6 +47,7 @@ public class ProductDto {
 	private Integer authorCount;
 //	private String author_seq;
 	private String otherAuthors;
+	private String pseq;
 //---------------------------------
 	public String getSeq() {
 		return seq;
@@ -262,6 +265,12 @@ public class ProductDto {
 	}
 	public void setOtherAuthors(String otherAuthors) {
 		this.otherAuthors = otherAuthors;
+	}
+	public String getPseq() {
+		return pseq;
+	}
+	public void setPseq(String pseq) {
+		this.pseq = pseq;
 	}
 	
 }

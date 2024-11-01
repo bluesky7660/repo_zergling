@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exion.infra.kakao.login.KakaoLoginService;
 import com.exion.infra.mail.MailService;
 import com.exion.infra.recaptcha.RecaptchaService;
 import com.exion.infra.util.Constants;
@@ -31,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
     private RecaptchaService recaptchaService;
+	
+	@Autowired
+	KakaoLoginService kakaoLoginService;
 	
 	@RequestMapping(value = "/v1/infra/member/memberXdmList")
 	public String memberXdmList(Model model,@ModelAttribute("vo") MemberVo vo) {
@@ -229,6 +233,21 @@ public class MemberController {
 			System.out.println("실패");
 			returnMap.put("rt", "fail");
 		}
+		return returnMap;
+	}
+	@ResponseBody
+	@RequestMapping(value = "logoutUsrProc")
+	public Map<String, Object> logoutUsrProc(HttpSession httpSession) throws Exception {
+		System.out.println("logoutUsrProc");
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		// 세션에서 액세스 토큰 가져오기
+        String accessToken = (String) httpSession.getAttribute("accessToken");
+        if (accessToken != null) {
+            // 카카오 로그아웃 호출
+            kakaoLoginService.logout(accessToken);
+        }
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
 		return returnMap;
 	}
 }

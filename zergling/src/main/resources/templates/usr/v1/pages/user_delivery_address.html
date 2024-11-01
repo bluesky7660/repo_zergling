@@ -82,22 +82,26 @@
                             </div>
                             <div class="address_list_box">
                                 <div class="address_list_box_top">
-                                    <p class="address_count"><span class="green_color" th:text="${count}">4</span>개</p>
+                                    <p class="address_count">
+                                        <span class="green_color" th:text="${count != null ? count : 0}"></span>
+                                        개
+                                    </p>
                                     <div>
                                         <span>배송지는 최대 100개까지 등록 가능합니다.</span>
                                         <button class="btn" onclick="window.location.href='user_delivery_address_add'">+ 새 배송지 등록</button>
                                     </div>
                                 </div>
                                 <form method="post" autocomplete="off" action="user_delivery_address_Defupdt">
-                                    <input type="hidden" name="seq" th:value="${vo.seq}">
-                                    <input type="hidden" name="chSeq" value="">
+                                    
                                     <table class="address_list">
                                         <tr th:if="${#lists.isEmpty(addrList)}" class="data_empty">
                                             <td colspan="12"><p>현재 배송지정보가 없습니다. 배송지를 추가해 주세요.</p></td>
                                         </tr>
                                         <tr th:each="list : ${addrList}" th:if="${!#lists.isEmpty(addrList)}">
                                             <td>
-                                                <input type="hidden" name="daSeq" th:value="${list.daSeq}">
+                                                <input class="addrListSeq" type="hidden" name="daSeq" th:value="${list.daSeq}">
+                                                <input type="hidden" name="seq" th:value="${vo.seq}">
+                                                <input type="hidden" name="chSeq" value="">
                                                 <input type="radio" class="form-check-input" name="defaultNy" th:checked="${list.defaultNy == 1}" th:id="'defAddrChk'+${list.daSeq}" value="0"  onclick="handleRadioClick(this)">
                                                 <!-- <input type="hidden" name="defaultNy" value="0"> -->
                                             </td>
@@ -124,7 +128,7 @@
                                             </td>
                                             <td class="btn-box">
                                                 <a  class="btn"  th:href="@{user_delivery_addressMfom(daSeq=${list.daSeq},seq=${list.member_seq})}">수정</a>
-                                                <button id="addr_delBtn" type="button" class="btn " data-bs-toggle="modal" data-bs-target="#ueleteModal">
+                                                <button id="addr_delBtn" type="button" class="btn " data-bs-toggle="modal" data-bs-target="#addrUeleteModal">
                                                     삭제
                                                 </button>
                                             </td>
@@ -146,7 +150,7 @@
         <div th:replace="~{usr/v1/infra/include/footer :: footer}"></div>
     </div>
     <!-- uelete modals -->
-    <div class="modal fade" id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addrUeleteModal" tabindex="-1" aria-labelledby="addrUeleteModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form method="post" autocomplete="off" action="user_delivery_address_uelt">
@@ -156,7 +160,7 @@
                     </div>
                     <div class="modal-body">
                         <span>주소를 삭제하시겠습니까?</span>
-                        <input type="hidden" name="daSeq" th:value="${item.daSeq}">
+                        <input class="addrUeleteModalSeq" type="hidden" name="daSeq" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
@@ -254,6 +258,17 @@
                 position: new kakao.maps.LatLng(y, x), // 마커의 좌표
                 map: map // 마커를 표시할 지도 객체
             });
+            $("#addr_delBtn").on("click", function() {
+        // 클릭된 버튼의 부모 요소 중 <tr> 찾기
+        var parentTr = $(this).closest("tr");
+        
+        // <tr> 내부의 addrListSeq 클래스를 가진 요소에서 값 가져오기
+        var addrListSeqValue = parentTr.find(".addrListSeq").text(); // 텍스트 값일 경우
+        // var addrListSeqValue = parentTr.find(".addrListSeq").val(); // input 값일 경우
+
+        // addrUeleteModalSeq의 값에 addrListSeqValue 설정
+        $("#addrUeleteModalSeq").val(addrListSeqValue);
+    });
         });
     </script>
 </body>

@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AuthorDto {
+import com.exion.common.base.FileDto;
+
+public class AuthorDto extends FileDto{
 	private String seq;
 	private int authorType;
 	private String codeName;
@@ -21,6 +23,8 @@ public class AuthorDto {
 	private String otherTitle;
 	private String otherImgSrc;
 	private Map<String, String> titleImageMap = new HashMap<>();
+	
+	private String aseq;
 	
 	public void addTitleImage(String otherTitle, String otherImgSrc) {
 		if(otherTitle!=null && otherImgSrc!=null) {
@@ -124,6 +128,12 @@ public class AuthorDto {
 	}
 	public void setTitleImageMap(Map<String, String> titleImageMap) {
 		this.titleImageMap = titleImageMap;
+	}
+	public String getAseq() {
+		return aseq;
+	}
+	public void setAseq(String aseq) {
+		this.aseq = aseq;
 	}
 	
 	

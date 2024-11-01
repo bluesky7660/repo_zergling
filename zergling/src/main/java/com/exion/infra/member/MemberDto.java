@@ -15,6 +15,7 @@ public class MemberDto {
 	private String codeName;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
+//	private String dateOfBirth;
 	private String email;
 	private String phoneNum;
 	private String userDesc;
@@ -71,6 +72,12 @@ public class MemberDto {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+//	public String getDateOfBirth() {
+//	return dateOfBirth;
+//}
+//public void setDateOfBirth(String dateOfBirth) {
+//	this.dateOfBirth = dateOfBirth;
+//}
 	public String getEmail() {
 		return email;
 	}

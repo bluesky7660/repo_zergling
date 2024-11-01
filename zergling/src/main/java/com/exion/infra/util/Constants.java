@@ -8,4 +8,7 @@ public class Constants {
 	public static final String URL_USRLOGINFORM = "/login";
 	public static final String TRACKING_API_URL = "https://api.tracker.delivery/tracking/{carrier}/{trackingNumber}";
 	public static final String YOUTUBE_CHANNEL_DETAILS_URL = "https://www.googleapis.com/youtube/v3/channels";
+	public static final String DATETIME_FORMAT_BASIC = "yyyy-MM-dd HH:mm:ss";
+	public static final int KAKAO_LOGIN = 1;
+	public static final int SITE_LOGIN = 0;
 }

@@ -59,17 +59,45 @@
                                         <th><label for="">이름</label></th>
                                         <td><p class="user_name" th:text="${item?.name}">홍길동</p></td>
                                     </tr>
-                                    <tr>
+                                    <tr th:if="${session.kakoLogin==null}">
                                         <th><label for="">생년월일/성별</label></th>
-                                        <td><p class="user_brdyGndr" ><span th:text="${#dates.format(item?.dateOfBirth, 'yyyy.MM.dd')}">1998.11.04</span> / <span th:each="gender : ${gender}" th:if="${gender.seq} == ${item.gender}" th:text="${gender.codeName}">남</span> </p></td>
+                                        <td>
+                                            <p class="user_brdyGndr">
+                                                <span th:text="${#dates.format(item.dateOfBirth, 'yyyy.MM.dd')}"></span>
+                                                <span> / </span> 
+                                                <span th:text="${@codeService.selectOneCachedCode(item.gender)}"></span>
+                                            </p>
+                                        </td>
+                                        <!-- <td><p class="user_brdyGndr" ><span th:text="${item.dateOfBirth}"></span> / <span th:each="gender : ${gender}" th:if="${gender.seq} == ${item.gender}" th:text="${gender.codeName}"></span> </p></td> -->
+                                    </tr>
+                                    <tr th:if="${session.kakoLogin !=null}">
+                                        <th><label for="">생년월일/성별</label></th>
+                                        <td>
+                                            <div class="user_dateOfBirth" >
+                                                <p>
+                                                    <input class="form-control" type="date" name="dateOfBirth" id="user_dateOfBirth">
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td> / </td>
+                                        <td>
+                                            <div class="user_gender" >
+                                                <p>
+                                                    <select class="form-control" name="gender" id="gender_select">
+                                                        <option value="">성별을 선택하세요.</option>
+                                                        <option th:each="gender : ${@codeService.selectListCachedCode(1)}" th:value="${gender.seq}" th:text="${gender.codeName}"></option>
+                                                    </select>
+                                                </p>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th><label for="">이메일</label></th>
-                                        <td><input class="form-control" type="email" name="email" id="" th:value="${item?.email}" value="abcd1234@gmail.com"></td>
+                                        <td><input class="form-control" type="email" name="email" id="" th:value="${item.email}" placeholder="ex).abcd1234@gmail.com"></td>
                                     </tr>
                                     <tr>
                                         <th><label for="">휴대폰</label></th>
-                                        <td><input class="form-control" type="text" name="phoneNum" id="" th:value="${item?.phoneNum}" value="010-2539-7660"></td>
+                                        <td><input class="form-control" type="text" name="phoneNum" id="" th:value="${item.phoneNum}" placeholder="ex). 010-1234-5678"></td>
                                     </tr>
                                 </table>
                                 <div class="btn-box mt-5">

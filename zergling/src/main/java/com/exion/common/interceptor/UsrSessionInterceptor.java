@@ -27,25 +27,30 @@ public class UsrSessionInterceptor implements HandlerInterceptor {
 		System.out.println("주소: " + session.getAttribute("prevPage"));
 		System.out.println("인터셉터2");
 //		System.out.println("seq: "+request.getSession().getAttribute("sessSeqXdm"));
-		if(request.getSession().getAttribute("sessSeqXdm") != null) {
-			//by pass
-		}else {
+		if(request.getSession().getAttribute("kakoLogin") != null) {
 			
-//			if(requestURL.contains("product_buy")) {
-//				session.setAttribute("prevPage", requestURL);
-//			}else {
-////				session.setAttribute("prevPage", null);
-//			}
-			if ( (!requestURL.contains("/login")) || (!refererURL.contains("/login")) ) {
-	            String fullURL = requestURL + (queryString != null ? "?" + queryString : "");
-	            System.out.println("주소뺵: " +fullURL);
-	            session.setAttribute("prevPage", fullURL);
-	        }
-//			session.setAttribute("prevPage", null);
-//			System.out.println("sessionURL: "+ session.getAttribute("prevPage"));
-			response.sendRedirect(Constants.URL_USRLOGINFORM);
-			return false;
+		}else {
+			if(request.getSession().getAttribute("sessSeqXdm") != null) {
+				//by pass
+			}else {
+				
+//				if(requestURL.contains("product_buy")) {
+//					session.setAttribute("prevPage", requestURL);
+//				}else {
+////					session.setAttribute("prevPage", null);
+//				}
+				if ( (!requestURL.contains("/login")) || (!refererURL.contains("/login")) ) {
+		            String fullURL = requestURL + (queryString != null ? "?" + queryString : "");
+		            System.out.println("주소뺵: " +fullURL);
+		            session.setAttribute("prevPage", fullURL);
+		        }
+//				session.setAttribute("prevPage", null);
+//				System.out.println("sessionURL: "+ session.getAttribute("prevPage"));
+				response.sendRedirect(Constants.URL_USRLOGINFORM);
+				return false;
+			}
 		}
+		
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 	

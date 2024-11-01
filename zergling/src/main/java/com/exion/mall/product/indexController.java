@@ -151,15 +151,7 @@ public class indexController {
 	
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "logoutUsrProc")
-	public Map<String, Object> logoutUsrProc(HttpSession httpSession) throws Exception {
-		System.out.println("logoutUsrProc");
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		httpSession.invalidate();
-		returnMap.put("rt", "success");
-		return returnMap;
-	}
+	
 	
 	@RequestMapping(value = "signup")
 	public String signup(Model model) {
@@ -175,14 +167,19 @@ public class indexController {
 //	}
 	@RequestMapping(value = "user_delivery_address")
 	public String deliveryAddress(Model model,HttpSession httpSession, MemberDto memberDto, DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
-		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		model.addAttribute("member", memberService.selectOne(memberDto));
-		model.addAttribute("count", deliveryAddressService.listCount(vo));
-		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
-//		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
-		model.addAttribute("addrList", deliveryAddressService.selectList(vo));
+		if(httpSession.getAttribute("kakoLogin") != null) {
+			model.addAttribute("addrList", deliveryAddressService.selectList(vo));
+		}else {
+			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+			deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+			vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+			model.addAttribute("member", memberService.selectOne(memberDto));
+			model.addAttribute("count", deliveryAddressService.listCount(vo));
+			model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
+//			System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
+			model.addAttribute("addrList", deliveryAddressService.selectList(vo));
+		}
+		
 //		int size = deliveryAddressService.selectList().size();
 //		model.addAttribute("size", size); // 사이즈 추가
 		model.addAttribute("userPage", "deliveryAddress");
@@ -230,15 +227,24 @@ public class indexController {
 		System.out.println("sessSeqXdm: " + httpSession.getAttribute("sessSeqXdm"));
 		System.out.println("sessIdXdm: " + httpSession.getAttribute("sessIdXdm"));
 		System.out.println("sessNameXdm: " + httpSession.getAttribute("sessNameXdm"));
-		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		model.addAttribute("item", memberService.selectOne(memberDto));
-//		System.out.println("seq: "+memberService.selectOne(memberDto).getSeq());
-//		for(CodeDto item:codeService.genderList()) {
-//			System.out.println("코드이름: "+item.getCodeName());
-//		}
-		model.addAttribute("gender", codeService.genderList());
+		System.out.println("sessEmailXdm: " + httpSession.getAttribute("sessEmailXdm"));
+		if(httpSession.getAttribute("kakoLogin") != null) {
+			memberDto.setUserId((String) httpSession.getAttribute("sessIdXdm"));
+			memberDto.setName((String) httpSession.getAttribute("sessNameXdm"));
+			memberDto.setEmail((String) httpSession.getAttribute("sessEmailXdm"));
+			memberDto.setPhoneNum("");
+			model.addAttribute("item", memberDto);
+		}else {
+			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+			model.addAttribute("item", memberService.selectOne(memberDto));
+//			System.out.println("seq: "+memberService.selectOne(memberDto).getSeq());
+//			for(CodeDto item:codeService.genderList()) {
+//				System.out.println("코드이름: "+item.getCodeName());
+//			}
+//			model.addAttribute("gender", codeService.genderList());
+//			System.out.println("seq: "+.get());
+		}
 		model.addAttribute("userPage", "account");
-//		System.out.println("seq: "+.get());
 		return "/usr/v1/pages/user_account";
 	}
 	

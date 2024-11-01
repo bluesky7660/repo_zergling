@@ -4,14 +4,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.exion.common.config.S3Config;
+import com.exion.common.util.UtilDateTime;
 
 @Service
 public class AuthorService {
 	@Autowired
 	AuthorDao authorDao;
+	
+	@Autowired
+	S3Config s3Config;
+	
+	@Value("${cloud.aws.s3.bucket}")
+	private String bucket;
 	
 	public List<AuthorDto> authorList(AuthorVo vo){
 		return authorDao.authorList(vo);
@@ -65,11 +79,135 @@ public class AuthorService {
 	public int listCount(AuthorVo vo){
 		return authorDao.listCount(vo);
 	}
-	public int insertAuthor(AuthorDto authorDto) {
-		return authorDao.insertAuthor(authorDto);
+	public int insertAuthor(AuthorDto authorDto) throws Exception {
+		int result = authorDao.insertAuthor(authorDto);
+		MultipartFile[] multipartFiles = authorDto.getUploadFiles();
+		int maxNumber = multipartFiles.length;
+		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
+		for(int i=0; i<multipartFiles.length; i++) {
+			
+			if(!multipartFiles[i].isEmpty()) {
+				int type = 1;
+				String className = authorDto.getClass().getSimpleName().toString().toLowerCase();
+				System.out.println("Class Name: " + className);
+
+				String fileName = multipartFiles[i].getOriginalFilename();
+				System.out.println("Original File Name: " + fileName);
+
+				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+				System.out.println("File Extension: " + ext);
+
+				String uuid = UUID.randomUUID().toString();
+				System.out.println("UUID: " + uuid);
+
+				String uuidFileName = uuid + "." + ext;
+				System.out.println("UUID File Name: " + uuidFileName);
+
+				String pathModule = className;
+				System.out.println("Path Module: " + pathModule);
+
+				String nowString = UtilDateTime.nowString();
+				System.out.println("Current Date and Time: " + nowString);
+
+				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10);
+				System.out.println("Path Date: " + pathDate);
+
+				String path = pathModule + "/" + type + "/" + pathDate + "/";
+				System.out.println("Final Path: " + path);
+
+//				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+				
+				
+//		        ObjectMetadata metadata = new ObjectMetadata();
+//		        metadata.setContentLength(multipartFiles[i].getSize());
+//		        metadata.setContentType(multipartFiles[i].getContentType());
+//		        
+//		        amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+//				
+//		        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
+//		        
+//				authorDto.setPath(objectUrl);
+//				authorDto.setOriginalName(fileName);
+//				authorDto.setUuidName(uuidFileName);
+//				authorDto.setExt(ext);
+//				authorDto.setSize(multipartFiles[i].getSize());
+//				
+//				authorDto.setTableName(tableName);
+//				authorDto.setType(type);
+//	//			authorDto.setDefaultNy();
+//				authorDto.setSort(maxNumber + i);
+//				authorDto.setPseq(authorDto.getSeq());
+//				
+//				productDao.insertUploaded(authorDto);
+			}
+		}
+		return result;
 	}
-	public int update(AuthorDto authorDto) {
-		return authorDao.update(authorDto);
+	public int update(AuthorDto authorDto) throws Exception {
+		int result = authorDao.update(authorDto);
+		MultipartFile[] multipartFiles = authorDto.getUploadFiles();
+		int maxNumber = multipartFiles.length;
+		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
+		for(int i=0; i<multipartFiles.length; i++) {
+			
+			if(!multipartFiles[i].isEmpty()) {
+				int type = 1;
+				String classOrName = authorDto.getClass().getSimpleName().toString().toLowerCase();
+				String className = classOrName.substring(0, classOrName.length() - 3);
+				System.out.println("Class Name: " + className);
+
+				String fileName = multipartFiles[i].getOriginalFilename();
+				System.out.println("Original File Name: " + fileName);
+
+				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+				System.out.println("File Extension: " + ext);
+
+				String uuid = UUID.randomUUID().toString();
+				System.out.println("UUID: " + uuid);
+
+				String uuidFileName = uuid + "." + ext;
+				System.out.println("UUID File Name: " + uuidFileName);
+
+				String pathModule = className;
+				System.out.println("Path Module: " + pathModule);
+
+				String nowString = UtilDateTime.nowString();
+				System.out.println("Current Date and Time: " + nowString);
+
+				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10);
+				System.out.println("Path Date: " + pathDate);
+
+				String path = pathModule + "/" + type + "/" + pathDate + "/";
+				System.out.println("Final Path: " + path);
+
+//				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+				
+				
+		        ObjectMetadata metadata = new ObjectMetadata();
+		        metadata.setContentLength(multipartFiles[i].getSize());
+		        metadata.setContentType(multipartFiles[i].getContentType());
+		        System.out.println("bucket:"+bucket);
+		        
+		        amazonS3Client.putObject("zergling2", path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+//				
+//		        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
+//		        
+//				authorDto.setPath(objectUrl);
+//				authorDto.setOriginalName(fileName);
+//				authorDto.setUuidName(uuidFileName);
+//				authorDto.setExt(ext);
+//				authorDto.setSize(multipartFiles[i].getSize());
+//				
+//				authorDto.setTableName(tableName);
+//				authorDto.setType(type);
+//	//			authorDto.setDefaultNy();
+//				authorDto.setSort(maxNumber + i);
+//				authorDto.setPseq(authorDto.getSeq());
+//				
+//				productDao.insertUploaded(authorDto);
+			}
+		}
+		return result;
 	}
 	public int uelete(AuthorDto authorDto) {
 		return authorDao.uelete(authorDto);

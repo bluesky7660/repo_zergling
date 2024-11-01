@@ -46,8 +46,8 @@ public class ProductController {
 		return "xdm/v1/mall/product/productXdmForm";
 	}
 	@RequestMapping(value = "v1/mall/product/productXdmInst")
-	public String productXdmInst(ProductDto productDto,ProductAuthorDto productAuthorDto) {
-		productService.insertProd(productDto,productAuthorDto);
+	public String productXdmInst(ProductDto productDto,ProductAuthorDto productAuthorDto) throws Exception {
+		productService.insertProd(productDto,productAuthorDto,"productUpload");
 		
 		return "redirect:productXdmList";
 	}

@@ -21,4 +21,6 @@ public interface ProductDao {
 	public int reviewNum(ProductDto productDto);
 	public int uelete(ProductDto productDto);
 	public int delete(ProductDto productDto);
+	
+	public int insertUploaded(ProductDto dto);
 }

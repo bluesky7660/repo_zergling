@@ -49,12 +49,22 @@ public class AuthorController {
 	}
 	@RequestMapping(value = "v1/mall/product/authorXdmInst")
 	public String authorXdmInst(AuthorDto authorDto) {
-		authorService.insertAuthor(authorDto);
+		try {
+			authorService.insertAuthor(authorDto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:authorXdmList";
 	}
 	@RequestMapping(value = "v1/mall/product/authorXdmUpdt")
 	public String authorXdmUpdt(AuthorDto authorDto) {
-		authorService.update(authorDto);
+		try {
+			authorService.update(authorDto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:authorXdmList";
 	}
 	@RequestMapping(value = "v1/mall/product/authorXdmUelt")

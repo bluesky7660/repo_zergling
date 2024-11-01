@@ -56,6 +56,8 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/channels"
 						,"/v1/test/channel"
 						,"/searchChannel"
+						,"/kakaoAuth"
+						,"/kakaoLogin"
 						
 		);
 	}

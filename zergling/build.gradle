@@ -31,6 +31,16 @@ dependencies {
 	//log
 	// https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1
 	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+
+	//아마존 aws
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-aws
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
+	
+	
+	//mail
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.3.5'
+	
 	
 	//구글
 	// https://mvnrepository.com/artifact/com.google.cloud/google-cloud-recaptchaenterprise
@@ -43,12 +53,6 @@ dependencies {
 	//easycaptcha
 	// https://mvnrepository.com/artifact/com.github.whvcse/easy-captcha
 	implementation group: 'com.github.whvcse', name: 'easy-captcha', version: '1.6.2'
-
-	
-	//mail
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.3.5'
-	
 	
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 	
