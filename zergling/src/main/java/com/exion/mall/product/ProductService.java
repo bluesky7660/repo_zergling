@@ -50,41 +50,40 @@ public class ProductService {
 			j++;
 		}
 		productAuthorDao.defaultUpdt(productAuthorDto);
-		MultipartFile[] multipartFiles = productDto.getUploadFiles();
-		int maxNumber = multipartFiles.length;
-		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
-		for(int i=0; i<multipartFiles.length; i++) {
-			
-			if(!multipartFiles[i].isEmpty()) {
-				int type = 1;
-				String className = productDto.getClass().getSimpleName().toString().toLowerCase();
-				System.out.println("Class Name: " + className);
-
-				String fileName = multipartFiles[i].getOriginalFilename();
-				System.out.println("Original File Name: " + fileName);
-				
-				String remainingChars = fileName.substring(0, fileName.length() - 3);
-				
-				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-				System.out.println("File Extension: " + ext);
-
-				String uuid = UUID.randomUUID().toString();
-				System.out.println("UUID: " + uuid);
-
-				String uuidFileName = uuid + "." + ext;
-				System.out.println("UUID File Name: " + uuidFileName);
-
-				String pathModule = className;
-				System.out.println("Path Module: " + pathModule);
-
-				String nowString = UtilDateTime.nowString();
-				System.out.println("Current Date and Time: " + nowString);
-
-				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10);
-				System.out.println("Path Date: " + pathDate);
-
-				String path = pathModule + "/" + type + "/" + pathDate + "/";
-				System.out.println("Final Path: " + path);
+//		MultipartFile[] multipartFiles = productDto.getUploadFiles();
+//		int maxNumber = multipartFiles.length;
+//		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
+//		for(int i=0; i<multipartFiles.length; i++) {
+//			
+//			if(!multipartFiles[i].isEmpty()) {
+//				int type = 1;
+//				String className = productDto.getClass().getSimpleName().toString().toLowerCase();
+//				System.out.println("Class Name: " + className);
+//
+//				String fileName = multipartFiles[i].getOriginalFilename();
+//				System.out.println("Original File Name: " + fileName);
+//				
+//				
+//				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+//				System.out.println("File Extension: " + ext);
+//
+//				String uuid = UUID.randomUUID().toString();
+//				System.out.println("UUID: " + uuid);
+//
+//				String uuidFileName = uuid + "." + ext;
+//				System.out.println("UUID File Name: " + uuidFileName);
+//
+//				String pathModule = className;
+//				System.out.println("Path Module: " + pathModule);
+//
+//				String nowString = UtilDateTime.nowString();
+//				System.out.println("Current Date and Time: " + nowString);
+//
+//				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10);
+//				System.out.println("Path Date: " + pathDate);
+//
+//				String path = pathModule + "/" + type + "/" + pathDate + "/";
+//				System.out.println("Final Path: " + path);
 
 //				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
 				
@@ -110,8 +109,8 @@ public class ProductService {
 //				productDto.setPseq(productDto.getSeq());
 //				
 //				productDao.insertUploaded(productDto);
-			}
-		}
+//			}
+//		}
 		return a;
 	}
 //	public List<ProductDto> prodList(){
@@ -199,12 +198,40 @@ public class ProductService {
 			
 			if(!multipartFiles[i].isEmpty()) {
 				int type = 1;
-				String className = productDto.getClass().getSimpleName().toString().toLowerCase();
+				int defaultNy = 1;
+				String classOrName = productDto.getClass().getSimpleName().toString().toLowerCase();
+				String className = classOrName.substring(0, classOrName.length() - 3);
 				System.out.println("Class Name: " + className);
 
 				String fileName = multipartFiles[i].getOriginalFilename();
 				System.out.println("Original File Name: " + fileName);
-
+				
+				String typeName = fileName.substring(0, fileName.lastIndexOf(".")).substring(fileName.lastIndexOf(".") - 3);
+				switch (typeName) {
+					case "480": {
+						type = 1;
+						defaultNy=1;
+						break;
+					}
+					case "300": {
+						type = 2;
+						defaultNy=0;
+						break;
+					}
+					case "200": {
+						type = 3;
+						defaultNy=0;
+						break;
+					}
+					case "Dtl": {
+						type = 4;
+						defaultNy=0;
+						break;
+					}
+				}
+				System.out.println("File TypeName: " + typeName);
+				System.out.println("File Type: " + type);
+				
 				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 				System.out.println("File Extension: " + ext);
 
@@ -245,14 +272,18 @@ public class ProductService {
 				
 //				productDto.setTableName(tableName);
 				productDto.setType(type);
-	//			productDto.setDefaultNy();
+				productDto.setDefaultNy(defaultNy);
 				productDto.setSort(maxNumber + i);
+				System.out.println("getSeq "+i+"번: " + productDto.getSeq());
 				productDto.setPseq(productDto.getSeq());
 				
 				productDao.insertUploaded(productDto);
 			}
 		}
 		return a;
+	}
+	public List<ProductDto> imgList(ProductDto productDto){
+		return productDao.imgList(productDto);
 	}
 	public int listCount(ProductVo vo) {
 		return productDao.listCount(vo);

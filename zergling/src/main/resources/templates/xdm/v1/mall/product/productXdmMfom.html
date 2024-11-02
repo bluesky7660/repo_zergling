@@ -389,32 +389,42 @@
 													</div>
 												</div>
 											</div>
-											<div class="row">
-												<label for="mainImage" class="form-label">상품이미지</label>
-												<div class="col-4" th:if="${imgList == null}"><p class="ps-4">이미지가 없습니다, 이미지를 업로드해주세요.</p></div>
-												<div class="grid" th:if="${imgList != null}">
-													<div class="g-col-3 img_Area">
-														<label for="inputAuthorInfo" class="form-label">메인이미지</label>
-														<div class="img-box">
-															<img th:src="${imgList.type == 1 ? imgList.imgSrc : ''}" alt="메인이미지">
-														</div>
-													</div>
-													<div class="g-col-3 img_Area">
-														<label for="subImage1" class="form-label">서브이미지1</label>
-														<div class="img-box">
-															<img th:src="${imgList.type == 2 ? imgList.imgSrc : ''}" alt="서브이미지1">
-														</div>
-													</div>
-													<div class="g-col-3 img_Area">
-														<label for="subImage2" class="form-label">서브이미지2</label>
-														<div class="img-box">
-															<img th:src="${imgList.type == 3 ? imgList.imgSrc : ''}" alt="서브이미지2">
-														</div>
-													</div>
-													<div class="g-col-3 img_Area">
-														<label for="detailImage" class="form-label">상세이미지</label>
-														<div class="img-box">
-															<img th:src="${imgList.type == 4 ? imgList.imgSrc : ''}" alt="상세이미지">
+											<div class="row card">
+												<!-- <div class="border-top">
+													<h4>상품이미지</h4>
+												</div> -->
+												<div class="card-header border-top">
+													<div class="card-title">상품이미지</div>
+												</div>
+												<div class="card-body">
+													<div class="col-4" th:if="${imgList == null or #lists.isEmpty(imgList)}"><p class="ps-4">이미지가 없습니다, 이미지를 업로드해주세요.</p></div>
+													<div class="grid row" th:if="${imgList != null and not #lists.isEmpty(imgList)}">
+														<div class="col-3 img_Area" th:each="image : ${imgList}">
+															<div th:if="${image.type == 1}">
+																<label class="form-label">메인이미지 480</label>
+																<div class="img-box">
+																	<img th:src="${image.imgSrc}" alt="메인이미지">
+																</div>
+																<!-- <p th:text="${'사이즈:'+image.}"></p> -->
+															</div>
+															<div th:if="${image.type == 2}">
+																<label class="form-label">서브이미지 300</label>
+																<div class="img-box">
+																	<img th:src="${image.imgSrc}" alt="서브이미지1">
+																</div>
+															</div>
+															<div th:if="${image.type == 3}">
+																<label class="form-label">서브이미지 200</label>
+																<div class="img-box">
+																	<img th:src="${image.imgSrc}" alt="서브이미지2">
+																</div>
+															</div>
+															<div th:if="${image.type == 4}">
+																<label class="form-label">상세이미지</label>
+																<div class="img-box">
+																	<img th:src="${image.imgSrc}" alt="상세이미지">
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>

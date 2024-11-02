@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface ProductDao {
 	public int insertProd(ProductDto productDto);
 //	public List<ProductDto> prodList();
+	public List<ProductDto> imgList(ProductDto productDto);
 	public List<ProductDto> usrProdList(ProductVo vo);
 	public List<ProductDto> newProdList(ProductVo vo);
 	public List<ProductDto> bestProdList(ProductVo vo);

@@ -61,6 +61,7 @@ public class ProductController {
 //		model.addAttribute("author", authorService.authorOne(authorDto));
 		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
 		model.addAttribute("authorList", authorService.authorList(vo));
+		model.addAttribute("imgList", productService.imgList(productDto));
 		model.addAttribute("prodTypes", codeService.prodTypeList());
 		return "xdm/v1/mall/product/productXdmMfom";
 	}

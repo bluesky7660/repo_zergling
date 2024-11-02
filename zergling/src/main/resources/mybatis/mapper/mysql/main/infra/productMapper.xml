@@ -594,4 +594,43 @@
 			WHERE 1=1
 				AND seq = #{seq}
 		</delete>
+		<select id="imgList" resultMap="resultObj">
+			select
+				type
+			    ,path as imgSrc
+			from productupload
+			where 1=1
+				and pseq = #{seq}
+			order by type
+		</select>
+		<insert id="insertUploaded">
+			insert into productupload(
+			    type
+			    ,sort
+			    ,path
+			    ,originalName
+			    ,uuidName
+			    ,ext
+			    ,size
+				,regDate
+				,modDate
+			    ,delNy
+			    ,pseq
+			) value(
+				#{type}
+			    ,#{sort}
+			    ,#{path}
+			    ,#{originalName}
+			    ,#{uuidName}
+			    ,#{ext}
+			    ,#{size}
+			    ,now()
+			    ,now()
+			    ,0
+			    ,#{pseq}
+			)
+			<selectKey resultType="String" keyProperty="seq" order="AFTER">
+				SELECT last_insert_id()
+		 	</selectKey>
+	  </insert>
 </mapper>
