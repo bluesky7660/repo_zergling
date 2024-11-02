@@ -24,7 +24,7 @@ public class AuthorDto extends FileDto{
 	private String otherImgSrc;
 	private Map<String, String> titleImageMap = new HashMap<>();
 	
-	private String aseq;
+	private String aSeq;
 	
 	public void addTitleImage(String otherTitle, String otherImgSrc) {
 		if(otherTitle!=null && otherImgSrc!=null) {
@@ -129,12 +129,10 @@ public class AuthorDto extends FileDto{
 	public void setTitleImageMap(Map<String, String> titleImageMap) {
 		this.titleImageMap = titleImageMap;
 	}
-	public String getAseq() {
-		return aseq;
+	public String getaSeq() {
+		return aSeq;
 	}
-	public void setAseq(String aseq) {
-		this.aseq = aseq;
+	public void setaSeq(String aSeq) {
+		this.aSeq = aSeq;
 	}
-	
-	
 }

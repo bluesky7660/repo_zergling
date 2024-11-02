@@ -25,7 +25,7 @@ public class AuthorService {
 	S3Config s3Config;
 	
 	@Value("${cloud.aws.s3.bucket}")
-	private String bucket;
+	private String bucketName;
 	
 	public List<AuthorDto> authorList(AuthorVo vo){
 		return authorDao.authorList(vo);
@@ -186,25 +186,25 @@ public class AuthorService {
 		        ObjectMetadata metadata = new ObjectMetadata();
 		        metadata.setContentLength(multipartFiles[i].getSize());
 		        metadata.setContentType(multipartFiles[i].getContentType());
-		        System.out.println("bucket:"+bucket);
-		        
-		        amazonS3Client.putObject("zergling2", path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+		        System.out.println("bucket:"+bucketName);
+		        String bucket = bucketName;
+		        amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
 //				
-//		        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
+		        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
 //		        
-//				authorDto.setPath(objectUrl);
-//				authorDto.setOriginalName(fileName);
-//				authorDto.setUuidName(uuidFileName);
-//				authorDto.setExt(ext);
-//				authorDto.setSize(multipartFiles[i].getSize());
-//				
+				authorDto.setPath(objectUrl);
+				authorDto.setOriginalName(fileName);
+				authorDto.setUuidName(uuidFileName);
+				authorDto.setExt(ext);
+				authorDto.setSize(multipartFiles[i].getSize());
+				
 //				authorDto.setTableName(tableName);
-//				authorDto.setType(type);
-//	//			authorDto.setDefaultNy();
-//				authorDto.setSort(maxNumber + i);
-//				authorDto.setPseq(authorDto.getSeq());
-//				
-//				productDao.insertUploaded(authorDto);
+				authorDto.setType(type);
+	//			authorDto.setDefaultNy();
+				authorDto.setSort(maxNumber + i);
+				authorDto.setaSeq(authorDto.getSeq());
+				
+				authorDao.insertUploaded(authorDto);
 			}
 		}
 		return result;

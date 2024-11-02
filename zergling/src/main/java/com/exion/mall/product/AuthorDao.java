@@ -17,4 +17,6 @@ public interface AuthorDao {
 	public int update(AuthorDto authorDto);
 	public int uelete(AuthorDto authorDto);
 	public int delete(AuthorDto authorDto);
+	
+	public int insertUploaded(AuthorDto authorDto);
 }

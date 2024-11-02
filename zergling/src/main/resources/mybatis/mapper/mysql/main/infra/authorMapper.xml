@@ -228,4 +228,36 @@
 			WHERE 1=1
 				AND seq = #{seq}
 		</delete>
+		
+		<!-- img insert -->
+		<insert id="insertUploaded">
+			insert into autherUpload(
+			    type
+			    ,sort
+			    ,path
+			    ,originalName
+			    ,uuidName
+			    ,ext
+			    ,size
+				,regDate
+				,modDate
+			    ,delNy
+			    ,aSeq
+			) value(
+				#{type}
+			    ,#{sort}
+			    ,#{path}
+			    ,#{originalName}
+			    ,#{uuidName}
+			    ,#{ext}
+			    ,#{size}
+			    ,now()
+			    ,now()
+			    ,0
+			    ,#{aSeq}
+			)
+			<selectKey resultType="String" keyProperty="seq" order="AFTER">
+				SELECT last_insert_id()
+		 	</selectKey>
+	  </insert>
 </mapper>
