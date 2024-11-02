@@ -67,7 +67,12 @@ public class ProductController {
 	
 	@RequestMapping(value = "v1/mall/product/productXdmUpdt")
 	public String productXdmUpdt(ProductDto productDto,ProductAuthorDto productAuthorDto) {
-		productService.update(productDto,productAuthorDto);
+		try {
+			productService.update(productDto,productAuthorDto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:productXdmList";
 	}
 }

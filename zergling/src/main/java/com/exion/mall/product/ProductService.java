@@ -62,7 +62,9 @@ public class ProductService {
 
 				String fileName = multipartFiles[i].getOriginalFilename();
 				System.out.println("Original File Name: " + fileName);
-
+				
+				String remainingChars = fileName.substring(0, fileName.length() - 3);
+				
 				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 				System.out.println("File Extension: " + ext);
 
@@ -179,7 +181,7 @@ public class ProductService {
 	public int reviewNum(ProductDto productDto) {
 		return productDao.reviewNum(productDto);
 	}
-	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) {
+	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) throws Exception {
 		int a = productDao.update(productDto);
 //		List<String> authorLists = productAuthorDto.getListAuthor_seq();
 //		System.out.println("리스트2: "+authorLists);
@@ -190,6 +192,66 @@ public class ProductService {
 //			productAuthorDto.setAuthor_seq(author);
 //			productAuthorDao.update(productAuthorDto);
 //		}
+		MultipartFile[] multipartFiles = productDto.getUploadFiles();
+		int maxNumber = multipartFiles.length;
+		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
+		for(int i=0; i<multipartFiles.length; i++) {
+			
+			if(!multipartFiles[i].isEmpty()) {
+				int type = 1;
+				String className = productDto.getClass().getSimpleName().toString().toLowerCase();
+				System.out.println("Class Name: " + className);
+
+				String fileName = multipartFiles[i].getOriginalFilename();
+				System.out.println("Original File Name: " + fileName);
+
+				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+				System.out.println("File Extension: " + ext);
+
+				String uuid = UUID.randomUUID().toString();
+				System.out.println("UUID: " + uuid);
+
+				String uuidFileName = uuid + "." + ext;
+				System.out.println("UUID File Name: " + uuidFileName);
+
+				String pathModule = className;
+				System.out.println("Path Module: " + pathModule);
+
+				String nowString = UtilDateTime.nowString();
+				System.out.println("Current Date and Time: " + nowString);
+
+				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10);
+				System.out.println("Path Date: " + pathDate);
+
+				String path = pathModule + "/" + type + "/" + pathDate + "/";
+				System.out.println("Final Path: " + path);
+
+//				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+				
+				
+		        ObjectMetadata metadata = new ObjectMetadata();
+		        metadata.setContentLength(multipartFiles[i].getSize());
+		        metadata.setContentType(multipartFiles[i].getContentType());
+		        
+		        amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+				
+		        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
+		        
+				productDto.setPath(objectUrl);
+				productDto.setOriginalName(fileName);
+				productDto.setUuidName(uuidFileName);
+				productDto.setExt(ext);
+				productDto.setSize(multipartFiles[i].getSize());
+				
+//				productDto.setTableName(tableName);
+				productDto.setType(type);
+	//			productDto.setDefaultNy();
+				productDto.setSort(maxNumber + i);
+				productDto.setPseq(productDto.getSeq());
+				
+				productDao.insertUploaded(productDto);
+			}
+		}
 		return a;
 	}
 	public int listCount(ProductVo vo) {
