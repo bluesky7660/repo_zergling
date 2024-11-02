@@ -612,6 +612,7 @@
 			    ,uuidName
 			    ,ext
 			    ,size
+			    ,defaultNy
 				,regDate
 				,modDate
 			    ,delNy
@@ -624,6 +625,7 @@
 			    ,#{uuidName}
 			    ,#{ext}
 			    ,#{size}
+			    ,#{defaultNy}
 			    ,now()
 			    ,now()
 			    ,0

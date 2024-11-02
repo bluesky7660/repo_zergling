@@ -194,6 +194,7 @@ public class ProductService {
 		MultipartFile[] multipartFiles = productDto.getUploadFiles();
 		int maxNumber = multipartFiles.length;
 		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
+		String seq =productDto.getSeq();
 		for(int i=0; i<multipartFiles.length; i++) {
 			
 			if(!multipartFiles[i].isEmpty()) {
@@ -275,7 +276,7 @@ public class ProductService {
 				productDto.setDefaultNy(defaultNy);
 				productDto.setSort(maxNumber + i);
 				System.out.println("getSeq "+i+"번: " + productDto.getSeq());
-				productDto.setPseq(productDto.getSeq());
+				productDto.setPseq(seq);
 				
 				productDao.insertUploaded(productDto);
 			}
