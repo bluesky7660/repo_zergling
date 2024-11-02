@@ -179,6 +179,7 @@
 			    ,d.codeName
 			    ,a.name	
 			    ,a.authorInfo
+			    ,c.path as imgSrc
 			    <!-- ,b.title -->
 				,a.regDate
 				,a.modDate
@@ -188,6 +189,7 @@
 				<!-- join productAuthor c on c.author_seq = a.seq
 				join product b on c.product_seq = b.seq -->
 				join commoncode d on a.authorType = d.seq
+				join autherUpload c on a.seq = c.aSeq and c.defaultNy = 1
 			where 1 = 1
 				and a.seq = #{seq}
 	  </select>

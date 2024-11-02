@@ -42,6 +42,9 @@
 		<!--<div style="background-color: red;"></div>-->
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
+		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
 			.form-label{
 				margin-left: 10px;
@@ -151,9 +154,15 @@
 														</div>
 													</div>
 												</div>
+												<div class="img_Area">
+													<label for="inputAuthorInfo" class="form-label">작가이미지</label>
+													<div class="img-box">
+														<img th:src="${item.imgSrc}" alt="작가이미지">
+													</div>
+												</div>
 											</div>
 											<div class="row">
-												<div class="col-xl-6 col-md-8 col-12">
+												<div class="col-xxl-9 col-12">
 													<div class="mb-3">
 														<label for="inputAuthorInfo" class="form-label">소개글</label>
 														<textarea class="form-control exclude-validation" id="inputAuthorInfo" name="authorInfo" th:text="${item.authorInfo}" placeholder="상품에 대한 소개글을 적어주세요." rows="3"></textarea>

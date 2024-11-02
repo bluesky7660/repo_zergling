@@ -25,7 +25,7 @@ public class AuthorService {
 	S3Config s3Config;
 	
 	@Value("${cloud.aws.s3.bucket}")
-	private String bucketName;
+	private String bucket;
 	
 	public List<AuthorDto> authorList(AuthorVo vo){
 		return authorDao.authorList(vo);
@@ -186,8 +186,7 @@ public class AuthorService {
 		        ObjectMetadata metadata = new ObjectMetadata();
 		        metadata.setContentLength(multipartFiles[i].getSize());
 		        metadata.setContentType(multipartFiles[i].getContentType());
-		        System.out.println("bucket:"+bucketName);
-		        String bucket = bucketName;
+		        System.out.println("bucket:"+bucket);
 		        amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
 //				
 		        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
