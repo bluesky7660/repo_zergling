@@ -24,6 +24,32 @@
 .card-body{
     position: relative;
 }
+.grid{
+    align-items: flex-start;
+}
+.detail_img{
+    flex: 1;
+    /* aspect-ratio: 1 / 1; */
+    overflow: hidden; /* 이미지가 박스 크기를 벗어나지 않도록 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 400px;
+    height: 400px;
+}
+.img_Area .img-box.detail_img img{
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+.sidebar-menu_box li.active .menu-text{
+    color: #3688fa;
+    font-weight: bold;
+}
+.sidebar-wrapper .sidebar-menu ul.sidebar-menu_box li a.active{
+    color: #3688fa;
+    font-weight: bold;
+}
 /*index*/
 .pageCategory{
     display: flex;

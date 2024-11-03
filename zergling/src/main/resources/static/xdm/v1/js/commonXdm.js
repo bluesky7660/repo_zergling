@@ -1,5 +1,25 @@
 
 window.addEventListener('load', function() {
+    const currentPath = window.location.pathname;
+    const menuItems = document.querySelectorAll('.sidebar-menu li');
+
+    menuItems.forEach(item => {
+        const link = item.querySelector('a');
+        
+        if (link && link.getAttribute('href') === currentPath) {
+            console.log("currentPath:", currentPath);
+            console.log("href:", link.getAttribute('href'));
+            console.log("성공");
+            link.classList.add('active');
+            // 최상위 li에 active 클래스 추가
+            let topLevelItem = item;
+            while (topLevelItem.parentElement && !topLevelItem.parentElement.classList.contains('sidebar-menu_box')) {
+                topLevelItem = topLevelItem.parentElement.closest('li');
+            }
+            topLevelItem.classList.add('active');
+        }
+    });
+
     const form = document.querySelector("form:not(#search_form)");
     var formUrl;
     if(form){
@@ -630,5 +650,5 @@ window.addEventListener('load', function() {
     //     }
         
     //}
-
+    
 });
