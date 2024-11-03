@@ -1,22 +1,27 @@
 
 window.addEventListener('load', function() {
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname.split('Xdm')[0]; // 'Xdm' 이전의 경로만 추출
+
     const menuItems = document.querySelectorAll('.sidebar-menu li');
 
     menuItems.forEach(item => {
         const link = item.querySelector('a');
-        
-        if (link && link.getAttribute('href') === currentPath) {
-            console.log("currentPath:", currentPath);
-            console.log("href:", link.getAttribute('href'));
-            console.log("성공");
-            link.classList.add('active');
-            // 최상위 li에 active 클래스 추가
-            let topLevelItem = item;
-            while (topLevelItem.parentElement && !topLevelItem.parentElement.classList.contains('sidebar-menu_box')) {
-                topLevelItem = topLevelItem.parentElement.closest('li');
+
+        if (link) {
+            const linkPath = link.getAttribute('href').split('Xdm')[0]; // 'Xdm' 이전의 경로만 추출
+
+            if (linkPath === currentPath) {
+                console.log("currentPath:", currentPath);
+                console.log("linkPath:", linkPath);
+                console.log("성공");
+
+                // 최상위 li에 active 클래스 추가
+                let topLevelItem = item;
+                while (topLevelItem.parentElement && !topLevelItem.parentElement.classList.contains('sidebar-menu_box')) {
+                    topLevelItem = topLevelItem.parentElement.closest('li');
+                }
+                topLevelItem.classList.add('active');
             }
-            topLevelItem.classList.add('active');
         }
     });
 
