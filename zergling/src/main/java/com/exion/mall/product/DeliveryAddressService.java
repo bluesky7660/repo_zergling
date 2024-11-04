@@ -73,6 +73,9 @@ public class DeliveryAddressService {
 	public int updateDef(DeliveryAddressDto deliveryAddressDto) {
 		return deliveryAddressDao.updateDef(deliveryAddressDto);
 	}
+	public int listUsrCount(DeliveryAddressVo vo) {
+		return deliveryAddressDao.listUsrCount(vo);
+	}
 	public int listCount(DeliveryAddressVo vo) {
 		return deliveryAddressDao.listCount(vo);
 	}

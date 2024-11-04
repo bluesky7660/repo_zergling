@@ -28,6 +28,7 @@ public class OrderDto {
 	private String title;
 	private String prodTypeName;
 	private String imgSrc;
+	private String name;
 //------------------------------------
 	public String getUoSeq() {
 		return uoSeq;
@@ -149,6 +150,12 @@ public class OrderDto {
 	}
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

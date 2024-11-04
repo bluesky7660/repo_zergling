@@ -14,7 +14,7 @@ window.addEventListener('load', function() {
                 console.log("currentPath:", currentPath);
                 console.log("linkPath:", linkPath);
                 console.log("성공");
-
+                link.classList.add('active');
                 // 최상위 li에 active 클래스 추가
                 let topLevelItem = item;
                 while (topLevelItem.parentElement && !topLevelItem.parentElement.classList.contains('sidebar-menu_box')) {

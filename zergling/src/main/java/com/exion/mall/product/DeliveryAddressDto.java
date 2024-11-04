@@ -22,6 +22,7 @@ public class DeliveryAddressDto {
 	private String member_seq;
 	
 	private String seq;
+	private String name;
 //-------------------------------------------
 	
 	public String getDaSeq() {
@@ -126,5 +127,11 @@ public class DeliveryAddressDto {
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

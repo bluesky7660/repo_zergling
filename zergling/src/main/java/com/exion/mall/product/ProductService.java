@@ -194,7 +194,7 @@ public class ProductService {
 		MultipartFile[] multipartFiles = productDto.getUploadFiles();
 		int maxNumber = multipartFiles.length;
 		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
-		String seq =productDto.getSeq();
+		String seq = productDto.getSeq();
 		for(int i=0; i<multipartFiles.length; i++) {
 			
 			if(!multipartFiles[i].isEmpty()) {

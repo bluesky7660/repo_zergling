@@ -174,7 +174,7 @@ public class indexController {
 			deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 			vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 			model.addAttribute("member", memberService.selectOne(memberDto));
-			model.addAttribute("count", deliveryAddressService.listCount(vo));
+			model.addAttribute("count", deliveryAddressService.listUsrCount(vo));
 			model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
 //			System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
 			model.addAttribute("addrList", deliveryAddressService.selectList(vo));

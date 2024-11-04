@@ -58,6 +58,8 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/searchChannel"
 						,"/kakaoAuth"
 						,"/kakaoLogin"
+						,"/api/generate-cover"
+						,"/bookCover"
 						
 		);
 	}

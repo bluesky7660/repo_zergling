@@ -3,7 +3,38 @@
 
 <mapper namespace="com.exion.mall.product.DeliveryAddressDao">
 	  <resultMap type="com.exion.mall.product.DeliveryAddressDto" id="resultObj"></resultMap>
+	  <sql id="selectCommon">
+	  		from
+				deliveryaddress a
+				join member b on b.seq = a.member_seq
+			where 1=1
+				<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
+				<if test="defaultNy != null and !defaultNy.equals('')">AND a.defaultNy = #{defaultNy}</if>
+				<if test="searchKeyword != null and !searchKeyword.equals('')">
+					<choose>
+						<when test="keywordType == null">
+							AND(
+								a.name Like CONCAT('%',#{searchKeyword},'%')
+								OR a.userId Like CONCAT('%',#{searchKeyword},'%')
+								OR a.userPassword Like CONCAT('%',#{searchKeyword},'%')
+								OR a.email Like CONCAT('%',#{searchKeyword},'%')
+							)
+						</when>
+						<when test="keywordType == 1">AND a.name = #{searchKeyword}</when>
+						<when test="keywordType == 2">AND a.userId Like CONCAT('%',#{searchKeyword},'%') </when>
+						<when test="keywordType == 3">AND a.userPassword Like CONCAT('%',#{searchKeyword},'%')</when>
+						<when test="keywordType == 4">AND a.email Like CONCAT('%',#{searchKeyword},'%')</when>
+					</choose>
+				</if>
+				<if test="((dateStart != null)and(dateStart != null))and((!dateStart.equals(''))and(!dateStart.equals('')))">
+					<choose>
+						<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+						<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					</choose>
+				</if>
+	  </sql>
 	  <select id="selectList" resultMap="resultObj">
+	  	<include refid="base.selectListUpperForMysql"/>
 		  	select
 				a.daSeq
 			    ,a.defaultNy
@@ -19,12 +50,10 @@
 				,a.modDate
 			    ,a.delNy
 			    ,a.member_seq
-			from
-				deliveryaddress a
-				join member b on b.seq = a.member_seq
-			where 1=1
-				and b.seq = #{seq}
-			order by a.daSeq desc
+			    ,b.name
+			<include refid="selectCommon"/>
+			order by a.defaultNy desc,a.daSeq desc
+			<include refid="base.selectListLowerForMysql"/>
 	  </select>
 	  <select id="selectUsrList" resultMap="resultObj">
 		  	select
@@ -161,6 +190,11 @@
 				and a.daSeq = #{daSeq}
 	  </select>
 	  <select id="listCount">
+        SELECT COUNT(*)
+        from
+			deliveryaddress 
+      </select>
+	  <select id="listUsrCount">
         SELECT COUNT(*)
         from
 			deliveryaddress a

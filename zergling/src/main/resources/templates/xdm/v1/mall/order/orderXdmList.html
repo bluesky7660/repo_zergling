@@ -50,7 +50,7 @@
 		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
 		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
-		
+
 		</style>
 	</head>
 
@@ -96,12 +96,12 @@
 							<div class="col-sm-12 col-12">
 								<!-- Card start -->
 								<div class="card border">
-									<form id="form" method="post" autocomplete="off" action="/v1/infra/member/memberXdmList">
+									<form method="post" autocomplete="off" action="/v1/mall/order/orderXdmList">
 										<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 										<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 										<div class="card-header bg-light">
 											<h2 class="card-title">
-												Address
+												주문관리
 											</h2>
 											<div>
 												<div class="row gy-3">
@@ -113,12 +113,11 @@
 															<option value="0" th:selected="${vo.sDelNy == 0}">N</option>
 														</select>
 													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
-														<label class="visually-hidden" for="selectAdmNy">기본배송지</label>
-														<select class="form-select" id="selectAdmNy" name="admNy">
-															<option value="" selected>기본배송지여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.admNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.admNy == 0}">N</option>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectOrderStatus">주문상태</label>
+														<select class="form-select" id="selectOrderStatus" name="orderStatus">
+															<option value="" selected>주문상태를 선택하세요</option>
+															<option th:each="list : ${@codeService.selectListCachedCode(5)}" th:value="${list.seq}" th:text="${list.codeName}" th:selected="${list.seq} == ${vo.orderStatus}"></option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -127,6 +126,7 @@
 															<option value="" selected>날짜종류 선택해주세요.</option>
 															<option value="1" th:selected="${vo.dateType == 1}">등록일</option>
 															<option value="2" th:selected="${vo.dateType == 2}">수정일</option>
+															<option value="3" th:selected="${vo.dateType == 3}">배송일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -140,20 +140,12 @@
 												</div>
 												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inputDateOfBirth">생년월일</label>
-														<input type="text" class="form-control" id="inputDateOfBirth" name="dateOfBirth" th:value="${vo.dateOfBirth}" placeholder="생년월일을 선택해주세요" value="">
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="keywordType">
 															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.keywordType == 1}">배송지명</option>
-															<option value="2" th:selected="${vo.keywordType == 2}">배송지 유저이름</option>
-															<option value="3" th:selected="${vo.keywordType == 3}">우편번호</option>
-															<option value="4" th:selected="${vo.keywordType == 4}">도로명</option>
-															<option value="5" th:selected="${vo.keywordType == 5}">지번주소</option>
-															<option value="6" th:selected="${vo.keywordType == 6}">참고항목(동,건물이름)</option>
-															<option value="7" th:selected="${vo.keywordType == 7}">상세주소</option>
+															<option value="1" th:selected="${vo.keywordType == 1}">주문번호</option>
+															<option value="2" th:selected="${vo.keywordType == 2}">주문 유저이름</option>
+															<option value="3" th:selected="${vo.keywordType == 3}">주문 상품이름</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -164,12 +156,29 @@
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
+												</div>
+												<div class="row gy-3 mt-0">
+													<h4>추가조건</h4>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMinPrice">최소가격</label>
+														<input type="text" class="form-control" id="inputMinPrice" name="minPrice" th:value="${vo.minPrice}" placeholder="숫자만 적어주세요" value="">
+													</div>
+													<!-- <span class="col-1 text-center"> ~ </span> -->
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually" for="inputMaxPrice">최대가격</label>
+														<input type="text" class="form-control" id="inputMaxPrice" name="maxPrice" th:value="${vo.maxPrice}" placeholder="숫자만 적어주세요" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl"></div>
 												</div>
 											</div>
 										</div>
 										<div class="card-body">
 											<div class="row justify-content-between">
-												<div class="col-6 col-lg-3">Total: <span th:text="${vo.totalRows}"></span></div>
+												<div class="col-6 col-lg-3">Total: <span th:text="${totalRows}"></span></div>
 												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
 													<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
 														<option value="2" th:selected="${vo.rowNumToShow == 2}">2</option>
@@ -190,15 +199,16 @@
 															</th>
 															<th><span>#</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">유저이름</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">배송지명</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">받는분 이름</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">받는분 전화번호</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">우편번호</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">도로명</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">지번주소</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">참고항목</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">상세주소</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">주문상태</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">유저</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">주문번호</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">주문 상품</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">상품수량</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">총 가격</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">배송일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">생성일</span></th>
+															<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -208,23 +218,20 @@
 														<tr th:each="list : ${list}" th:if="${!#lists.isEmpty(list)}">
 															<td><input type="checkbox"></td>
 															<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) + listStat.index)}">171</td>
-															<td th:text="${list.daSeq}"></td>
-															<td th:if="${list.admNy eq 0}">N</td>
-															<td th:unless="${list.admNy eq 0}">Y</td>
+															<td th:text="${list.uoSeq}"></td>
+															<td th:text="${@codeService.selectOneCachedCode(list.orderStatus)}"></td>
+															<td th:text="${list.name}"></td>
 															<td class="td_spotlight">
-																<a th:href="@{/v1/infra/member/memberXdmMfom(seq=${list.seq})}" th:text="${list.name}"></a>
+																<a th:href="@{/v1/infra/member/memberXdmMfom(seq=${list.seq})}" th:text="${list.orderNumber}"></a>
 															</td>
-															<td th:text="${list.userId}"></td>
-															<td th:text="${list.userPassword}"></td>
-															<!-- <td th:text="${list.codeName}"></td> -->
-															<td th:if="${list.gender != null}" th:text="${@codeService.selectOneCachedCode(list.gender)}" class="ifmmGenderCd align-middle"></td>
-															<td th:unless="${list.gender != null}" class="ifmmGenderCd align-middle"></td>
-															<td th:text="${#dates.format(list.dateOfBirth,'yyyy-MM-dd')}"></td>
-															<td th:text="${list.email}"></td>
+															<td th:text="${list.title}"></td>
+															<td th:text="${list.uoQuantity}"></td>
+															<td th:text="${list.uoPrice}"></td>
+															<td th:text="${list.deliveryDate}"></td>
 															<td th:if="${list.delNy eq 0}">N</td>
 															<td th:unless="${list.delNy eq 0}">Y</td>
-															<td th:text="${#dates.format(list.regDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-															<td th:text="${#dates.format(list.modDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(list.orderDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(list.uoModDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 														</tr>
 													</tbody>
 												</table>	
@@ -293,7 +300,7 @@
 												</div>
 												<div>
 													<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-													<a href="memberXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+													<a href="freeGiftXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
 												</div>
 											</div>
 										</div>
@@ -347,7 +354,7 @@
 		<script>
 			window.addEventListener('load',function() {
 				$.datetimepicker.setLocale('ko');
-				$("#inputDateStart,#inputDateEnd,#inputDateOfBirth").datetimepicker({
+				$("#inputDateStart,#inputDateEnd").datetimepicker({
 					timepicker:false,
 					format:'Y-m-d'
 				});
@@ -378,65 +385,7 @@
 					form.action = url;
 					form.submit();
 				}
-				// var currentPageIndex = 0; // 현재 페이지 번호 인덱스
-				// var pageItems = document.querySelectorAll('.page-item:not(#previousPage):not(#nextPage)');
-
-				// // 이전 페이지 링크 클릭 이벤트 처리
-				// document.getElementById('previousPage').addEventListener('click', function(event) {
-				// 	event.preventDefault(); // 기본 동작(링크 이동) 방지
-				// 	if (currentPageIndex > 0) {
-				// 	pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				// 	currentPageIndex--; // 이전 페이지 인덱스로 변경
-				// 	pageItems[currentPageIndex].classList.add('active'); // 이전 페이지 활성화
-				// 	}
-				// 	updatePaginationState(); // 페이지네이션 상태 업데이트
-				// });
-
-				// // 다음 페이지 링크 클릭 이벤트 처리
-				// document.getElementById('nextPage').addEventListener('click', function(event) {
-				// 	event.preventDefault(); // 기본 동작(링크 이동) 방지
-				// 	if (currentPageIndex < pageItems.length - 1) { // 마지막 페이지 미포함
-				// 	pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				// 	currentPageIndex++; // 다음 페이지 인덱스로 변경
-				// 	pageItems[currentPageIndex].classList.add('active'); // 다음 페이지 활성화
-				// 	}
-				// 	updatePaginationState(); // 페이지네이션 상태 업데이트
-				// });
-
-				// // 페이지 번호 링크 클릭 이벤트 처리
-				// pageItems.forEach(function(pageItem, index) {
-				// 	pageItem.addEventListener('click', function(event) {
-				// 	event.preventDefault(); // 기본 동작(링크 이동) 방지
-				// 	if (currentPageIndex !== index) { // 현재 페이지와 클릭한 페이지가 다를 때만 처리
-				// 		pageItems[currentPageIndex].classList.remove('active'); // 현재 활성화된 페이지 비활성화
-				// 		currentPageIndex = index; // 클릭한 페이지 인덱스로 변경
-				// 		pageItems[currentPageIndex].classList.add('active'); // 클릭한 페이지 활성화
-				// 		updatePaginationState(); // 페이지네이션 상태 업데이트
-				// 	}
-				// 	});
-				// });
-
-				// // 초기 페이지네이션 상태 업데이트
-				// updatePaginationState();
-
-				// // 페이지네이션 버튼 상태 업데이트 함수
-				// function updatePaginationState() {
-				// 	// 이전 버튼 상태 업데이트
-				// 	if (currentPageIndex === 0) {
-				// 	document.getElementById('previousPage').classList.add('disabled'); // 첫 번째 페이지에서는 이전 버튼 비활성화
-				// 	} else {
-				// 	document.getElementById('previousPage').classList.remove('disabled'); // 첫 번째 페이지가 아닌 경우 이전 버튼 활성화
-				// 	}
-
-				// 	// 다음 버튼 상태 업데이트
-				// 	if (currentPageIndex === pageItems.length - 1) {
-				// 	document.getElementById('nextPage').classList.add('disabled'); // 마지막 페이지에서는 다음 버튼 비활성화
-				// 	} else {
-				// 	document.getElementById('nextPage').classList.remove('disabled'); // 마지막 페이지가 아닌 경우 다음 버튼 활성화
-				// 	}
-				// }
 			});
-			
 		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>

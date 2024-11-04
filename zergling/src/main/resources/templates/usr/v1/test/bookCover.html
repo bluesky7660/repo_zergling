@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 표지 생성기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>책 표지 생성기</h1>
+    <input type="text" id="inputPrompt" placeholder="표지 관련 내용을 입력하세요" />
+    <button id="generate">표지 생성</button>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#generate').click(function() {
+                const userPrompt = $('#inputPrompt').val();
+                
+                // 기본 프롬프트와 사용자가 입력한 내용을 결합
+                const basePrompt = "책 표지"; // 기본 프롬프트
+                const prompt = basePrompt + ": " + userPrompt; // 결합된 프롬프트
+
+                // API 요청
+                $.ajax({
+                    url: '/api/generate-cover',
+                    method: 'POST',
+                    data: { prompt: prompt },
+                    success: function(response) {
+                        // 생성된 이미지를 웹 페이지에 표시
+                        $('#result').html('<img src="' + response.image_url + '" alt="생성된 책 표지" />');
+                    },
+                    error: function(error) {
+                        console.error("표지 생성 오류:", error);
+                        alert('표지 생성 중 오류가 발생했습니다.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
