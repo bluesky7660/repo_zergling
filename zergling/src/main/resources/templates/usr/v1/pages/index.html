@@ -305,7 +305,7 @@
                                 <div class="swiper-wrapper your-slider" >
                                     <div th:each="mdPickProd:${mdPickProd}" th:onclick="|location.href='@{/product_detail(seq=${mdPickProd.seq})}'|">
                                         <div class="img-box">
-                                            <img th:src="'./usr/v1/assets/images/prod/300/'+${mdPickProd.imgSrc}+'.jpg'" alt="">
+                                            <img th:src="${mdPickProd.imgSrc}" th:alt="${mdPickProd.title+' 이미지'}">
                                         </div>
                                         <p th:text="${mdPickProd.title}">당신이 누군가를 죽였다</p>
                                     </div>
@@ -397,7 +397,7 @@
                     </div>
                 </div>
             </section> -->
-            <section class="mostView flexibilization1">
+            <!-- <section class="mostView flexibilization1">
                 <div>
                     <div class="area-head">
                         <h3>급상승! 많이 보고 있는 상품</h3>
@@ -475,7 +475,7 @@
                         <div class="swiper-button swiper-button-prev"></div>
                     </div>
                 </div>
-            </section>
+            </section> -->
             <!-- <section class="picks">
                 <div>
                     <div class="area-head">

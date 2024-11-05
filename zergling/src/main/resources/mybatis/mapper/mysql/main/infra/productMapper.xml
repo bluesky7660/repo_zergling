@@ -362,7 +362,7 @@
 			    ,a.salePrice
 			    ,a.point
 			    ,a.stockQty
-			    ,a.imgSrc
+			    ,f.path as imgSrc
 			    ,a.intro
 			    ,a.reviewNum
 			    ,a.shipDate
@@ -387,6 +387,7 @@
 				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
+				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
 				left join commoncode prodType on a.prodType = prodType.seq
 				left join commoncode publisher on a.publisher = publisher.seq
 			where 1=1
