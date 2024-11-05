@@ -604,7 +604,7 @@
                             <div class="swiper-wrapper">
                                 <div th:each="newProd:${newProd}" th:onclick="|location.href='@{/product_detail(seq=${newProd.seq})}'|">
                                     <div class="img-box">
-                                        <img th:src="'./usr/v1/assets/images/prod/300/' +${newProd.imgSrc} +'.jpg'" alt="Image"/>
+                                        <img th:src="${newProd.imgSrc}" th:alt="${newProd.title+' 이미지'}"/>
                                     </div>
                                     <span class="book-type" th:text="${newProd.prodTypeName}">경제/경영</span>
                                     <p class="book-title" th:text="${newProd.title}">읽고 쓰고 소유하다</p>
@@ -792,7 +792,7 @@
                         <ul class="best-content gap-5">
                             <li th:each=" bestProd: ${bestProd}" th:onclick="|location.href='@{/product_detail(seq=${bestProd.seq})}'|">
                                 <div class="img-box">
-                                    <img th:src="'./usr/v1/assets/images/prod/300/'+ ${bestProd.imgSrc} +'.jpg'" alt="">
+                                    <img th:src="${bestProd.imgSrc}" th:alt="${bestProd.title+' 이미지'}">
                                 </div>
                                 <p class="title" th:text="${bestProd.title}">당신이 누군가를 죽였다</p>
                                 <p><span class="author" th:text="${bestProd.authorCount > 1 ? bestProd.name+' 외 '+(bestProd.authorCount - 1)+'명':bestProd.name}">히가시노 게이고</span> · <span class="publish" th:text="${bestProd.publisherName}">북다</span></p>

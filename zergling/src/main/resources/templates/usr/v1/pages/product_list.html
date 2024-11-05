@@ -254,8 +254,10 @@
                                         </div>
                                         <div class="prod_img">
                                             <a th:href="@{product_detail(seq=${listP.seq})}" class="img-box ">
-                                                <img th:src="${'/usr/v1/assets/images/prod/300/'+listP.imgSrc+'.jpg'}" alt="">
-                                                <img style="display: none;" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지">
+                                                <img th:src="${listP.imgSrc != null ? listP.imgSrc : '/usr/v1/assets/images/emty-img.jpg'}" th:alt="${listP.imgSrc!=null ?listP.title + ' 이미지':'빈이미지'}">
+                                                <!-- <img th:if="${}" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지"> -->
+                                                <!-- <img th:src="${'/usr/v1/assets/images/prod/300/'+listP.imgSrc+'.jpg'}" alt=""> -->
+                                                <!-- <img style="display: none;" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지"> -->
                                             </a>
                                             <a th:href="@{product_detail(seq=${listP.seq})}" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
                                         </div>

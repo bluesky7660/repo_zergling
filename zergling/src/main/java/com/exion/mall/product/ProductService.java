@@ -286,6 +286,12 @@ public class ProductService {
 	public List<ProductDto> imgList(ProductDto productDto){
 		return productDao.imgList(productDto);
 	}
+	public List<ProductDto> imgUsrList(ProductDto productDto){
+		return productDao.imgUsrList(productDto);
+	}
+	public ProductDto imgUsrOne(ProductDto dto) {
+		return productDao.imgUsrOne(dto);
+	}
 	public int listCount(ProductVo vo) {
 		return productDao.listCount(vo);
 	}

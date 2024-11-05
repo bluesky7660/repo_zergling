@@ -384,6 +384,16 @@ public class indexController {
 		model.addAttribute("rvTags", codeService.tagsList());
 		model.addAttribute("rvCount", reviewService.listCount(reviewVo));
 		model.addAttribute("rvList", reviewService.selectUsrList(reviewVo));
+		List<ProductDto> imgList = productService.imgUsrList(productDto);
+        
+        // 리스트의 내용을 출력합니다.
+        for (ProductDto img : imgList) {
+            System.out.println("Pseq: " + img.getPseq()); // Pseq 출력
+            System.out.println("type: " + img.getType()); // Pseq 출력
+            System.out.println("ImgSrc: " + img.getImgSrc()); // 이미지 경로 출력
+            // 필요한 다른 속성도 추가적으로 출력할 수 있습니다.
+        }
+		model.addAttribute("prodImg", productService.imgUsrList(productDto));
 		System.out.println("rvCount:" +reviewService.listCount(reviewVo));
 		System.out.println("목차: "+productService.prodOne(productDto).getIntro());
 		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
@@ -393,7 +403,7 @@ public class indexController {
 		return "/usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
-	public String productList(Model model,@ModelAttribute("vo") ProductVo productVo,@ModelAttribute("shVo") BaseVo shVo,ReviewVo reviewVo) {
+	public String productList(Model model,ProductDto productDto,@ModelAttribute("vo") ProductVo productVo,@ModelAttribute("shVo") BaseVo shVo,ReviewVo reviewVo) {
 		productVo.setParamsPaging(productService.listCount(productVo));
 		System.out.println("get: "+productVo.getMakeDateFillter());
 		System.out.println("검색어: "+productVo.getSearchKeyword());
@@ -407,6 +417,17 @@ public class indexController {
 //			System.out.println("상품seq: "+prod.getSeq());
 //			System.out.println("타입: "+prod.getTitle()	);
 //		}
+//		productDto.setType(1);
+		List<ProductDto> imgList = productService.imgUsrList(productDto);
+        
+        // 리스트의 내용을 출력합니다.
+        for (ProductDto img : imgList) {
+            System.out.println("Pseq: " + img.getPseq()); // Pseq 출력
+            System.out.println("ImgSrc: " + img.getImgSrc()); // 이미지 경로 출력
+            // 필요한 다른 속성도 추가적으로 출력할 수 있습니다.
+        }
+//		model.addAttribute("img", productService.imgUsrList(productDto));
+		 
 		System.out.println("검색: "+productService.usrProdList(productVo));
 		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
 //		System.out.println("최소: "+productVo.getMinPrice());

@@ -47,6 +47,7 @@ public class ProductDto extends FileDto{
 	private Integer authorCount;
 //	private String author_seq;
 	private String otherAuthors;
+	private Integer type;
 	private String pseq;
 //---------------------------------
 	public String getSeq() {
@@ -271,6 +272,12 @@ public class ProductDto extends FileDto{
 	}
 	public void setPseq(String pseq) {
 		this.pseq = pseq;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	
 }

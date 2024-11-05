@@ -101,7 +101,11 @@
                         </div>
                         <div class="img_slider_container">
                             <div class="img-box">
-                                <img th:src="${'/usr/v1/assets/images/prod/300/'+ product.imgSrc+'.jpg'}" alt="">
+                                <!-- <img th:src="${'/usr/v1/assets/images/prod/300/'+ product.imgSrc+'.jpg'}" alt=""> -->
+                                <img th:each="mainImg : ${prodImg}" 
+                                th:if="${mainImg.type == 1}" 
+                                th:src="${mainImg.imgSrc}" 
+                                alt="메인이미지" />
                             </div>
                         </div>
                         <div class="prod_detail_info">
@@ -150,9 +154,9 @@
                 </div>
                 <div class="prod_detail_contents d-flex">
                     <div class="prod_detail_info_wrap">
-                        <div class="info_img">
+                        <div class="info_img" th:each="detailImg : ${prodImg}" th:if="${detailImg.type == 4}" >
                             <div class="img-box">
-                                <img th:src="'/usr/v1/assets/images/prod/info/i'+${product.imgSrc}+'.jpg'" onerror="this.parentElement.parentElement.remove();">
+                                <img th:src="${detailImg.imgSrc}" alt="상세이미지" />
                             </div>
                         </div>
                         <div class="prod_about">
@@ -672,7 +676,7 @@
                             <ul class="d-flex flex-column gap-3 mt-4">
                                 <li th:each="best :${best}">
                                     <div class="img-box">
-                                        <img th:src="'/usr/v1/assets/images/prod/200/'+${best.imgSrc}+'.jpg'" alt="">
+                                        <img th:src="${best.imgSrc}" th:alt="${'베스트'+bestStat.count+' 이미지'}">
                                     </div>
                                     <div class="textArea">
                                         <span th:text="${bestStat.count}">1</span>

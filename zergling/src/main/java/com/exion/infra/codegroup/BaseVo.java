@@ -34,6 +34,7 @@ public class BaseVo {
     private int startRnumForMysql = 0; 	// 쿼리 시작하는 row[index번호]
     private int sortOrder = 1;
     private String sortOrderString;
+    private int type;
     //-------------
     public void setParamsPaging(int totalRows) {
 		
@@ -228,9 +229,13 @@ public class BaseVo {
 	public void setSortOrderString(String sortOrderString) {
 		this.sortOrderString = sortOrderString;
 	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
 	
-	
-	
-	
-    
 }
