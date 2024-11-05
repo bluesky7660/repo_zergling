@@ -18,7 +18,7 @@
                 const userPrompt = $('#inputPrompt').val();
                 
                 // 기본 프롬프트와 사용자가 입력한 내용을 결합
-                const basePrompt = "책 표지"; // 기본 프롬프트
+                const basePrompt = "novel cover"; // 기본 프롬프트
                 const prompt = basePrompt + ": " + userPrompt; // 결합된 프롬프트
 
                 // API 요청
@@ -27,6 +27,8 @@
                     method: 'POST',
                     data: { prompt: prompt },
                     success: function(response) {
+                        console.log("response: ",response);
+                        console.log("image_url: ",response.image_url);
                         // 생성된 이미지를 웹 페이지에 표시
                         $('#result').html('<img src="' + response.image_url + '" alt="생성된 책 표지" />');
                     },
