@@ -159,7 +159,7 @@
                                 <img th:src="${detailImg.imgSrc}" alt="상세이미지" />
                             </div>
                         </div>
-                        <div class="prod_about">
+                        <div class="prod_info prod_about">
                             <div class="prod_about_head d-flex flex-column gap-2 mb-3">
                                 <p class="box_title"><b>책 소개</b></p>
                                 <p><b>이 책이 속한 분야</b></p>
@@ -167,7 +167,12 @@
                                     <p><span>국내도서</span> > <span th:text="${product.prodTypeName}"></span></p>
                                 </div>
                             </div>
-                            <div>
+                            <p class="info_text" th:utext="${product.intro}">
+                            </p>
+                            <div class="collapse_btn hidden">
+                                <span>펼치기</span>
+                            </div>
+                            <!-- <div>
                                 <p class="info_text" th:utext="${product.intro}">
                                     <strong>
                                         “나쁜 것과 나쁜 게 아닌 것의 구분은 우리 검찰이 한다.”<br><br>휘몰아치는 전개! 압도적 몰입감! K-스토리 수상작가 이중세 신작 장편소설<br>대한민국 최고 권력 검찰을 향한 칼끝은 범죄인가, 개혁인가?
@@ -177,12 +182,12 @@
                                     실제로 작가는 이 소설을 쓰기 위해 수년에 걸쳐 관계자들을 조사하고 인터뷰했으며 그 노력은 고스란히 작품에 녹아들었다. 부패한 조직과 반부패를 부르짖는 이들의 팽팽한 긴장감은 현실보다 더 현실 같은 에피소드로 마지막까지 이 책을 손에서 놓지 못하게 만든다. 작가는 “부당한 처사를 당연하게 받아들이지 않는 선한 자들의 작은 목소리가 결국 큰 세상을 바꿀 것”이라며, 이 책이 독자들의 답답한 가슴을 시원하게 뚫어줄 소화제가 되기를 바랐다.<br>
                                     휘몰아치는 전개와 생생한 묘사, 압도적 몰입감으로 마치 한 편의 영화를 보듯 단숨에 읽어내려갈 수 있는 소설 『나쁜 검사들』과 함께 무더운 여름을 시원하게 날려보자.
                                 </p>
-                                <div class="collapse_btn">
+                                <div class="collapse_btn hidden">
                                     <span>펼치기</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="author_info_area">
+                        <div class="prod_info author_info_area">
                             <p class="box_title"><b>작가정보</b></p>
                             <!-- <div>
                                 <div th:each="author : ${authors}">
@@ -195,14 +200,19 @@
                                 
                                 <div class="author_info_box d-flex flex-column gap-3 "  th:each="author : ${authors}">
                                     <div class="d-flex justify-content-between">
-                                        <p><span>저자(글) </span> <strong th:text="${author.name}"> 이중세</strong></p>
+                                        <p><span>저자(글) </span> <strong th:text="${author.name}"></strong></p>
                                         <button class="btn">인물정보</button>
                                     </div>
                                     <div class="author_type">
-                                        <button class="btn" th:text="${author.codeName}">연극인＞희곡/극작가</button>
+                                        <button class="btn" th:text="${author.codeName}"></button>
+                                    </div>
+                                    <div class="author_img_text_area">
+                                        <div class="author_img img-box">
+                                            <img th:src="${author.authorImgSrc}" th:alt="${author.name+' 이미지'}">
+                                        </div>
+                                        <p class="info_text info_desc" th:utext="${author.authorInfo}"></p>
                                     </div>                                
-                                    <p class="info_text info_desc" th:utext="${author.authorInfo}">생물학과 문예창작을 전공했다. 오래 기억되는 글을 쓰고 싶어 한다.<br>소설 「그래서 그들은 강으로 갔다」로 2013년 평사리문학대상을, 같은 해 희곡 〈끈〉으로 목포문학상 희곡 본상을 받았다.<br>소설 「코의 무게」, 「오래된 미래」가 각각 2019 교보문고 스토리공모전, SF오디오스토리어워즈에 수상작으로 선정되었다.<br>2022년 K-스토리 공모전에서 최우수상을 받고 장편소설 『강철로 된 무지개』를 출간했다.<br>그 밖에 희곡 〈파국〉과 장편소설 『삼키는 칼』을 썼다.</p>
-                                    <div class="collapse_btn">
+                                    <div class="collapse_btn hidden">
                                         <span>펼치기</span>
                                     </div>
                                     <div class="author_other_prod_area">
@@ -210,7 +220,7 @@
                                             <!-- th:if="${#lists.size(author.titleImageMap) > 0}" -->
                                             <!-- <p th:text="${#lists.size(author.titleImageMap)}"></p> -->
                                             <div class="img-box">
-                                                <img th:src="${'/usr/v1/assets/images/prod/200/'+entry.value+'.jpg'}" alt="">
+                                                <img th:src="${entry.value}" th:alt="${entry.key+' 이미지'}">
                                             </div>
                                             <a href="javascript:void(0);" class="prod_title" ><strong th:text="${entry.key}">강철로 된 무지개</strong></a>
                                         </div>
@@ -218,39 +228,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="book_contents">
+                        <div class="prod_info book_contents">
                             <p class="box_title"><b>목차</b></p>
                             <p class="info_text" th:text="${product.tableOfContents}">
 
                             </p>
-                            <!-- <ul class="info_text">
-                                
-                                <li>제1장. 붉은 옷을 입은 여인</li>
-                                <li>제2장. 남색 아반떼에 몸을 숨긴 수사관</li>
-                                <li>제3장. 갈색 보테가베네타 가방을 든 변호사</li>
-                                <li>제4장. 검은 하이힐을 신은 검사</li>
-                                <li>제5장. 황금 커프스단추를 단 칼잡이들</li>
-                                <li>제6장. 은빛 라이터를 딸깍거리는 깡패</li>
-                                <li>제7장. 보랏빛 행커치프를 착용한 보스</li>
-                                <li>제8장. 흰색 가루 속에서 춤을 추는 사람들</li>
-                                <li>제9장. 호두색 마호가니 책상에 앉은 얼간이들</li>
-                                <li>제10장. 푸른 재킷을 입은 사나이</li>
-                            </ul> -->
-                            <div class="collapse_btn ">
+                            <div class="collapse_btn hidden ">
                                 <span>펼치기</span>
                             </div>
                         </div>
-                        <div class="book_info" th:if="${!(product.preview == '없음')}">
+                        <div class="prod_info book_info" th:if="${!(product.preview == '없음')}">
                             <p class="box_title"><b>책 속으로</b></p>
                             <p class="info_text" th:text="${product.preview}"></p>
-                            <div class="collapse_btn ">
+                            <div class="collapse_btn hidden ">
                                 <span>펼치기</span>
                             </div>
                         </div>
-                        <div class="publishers_review">
+                        <div class="prod_info publishers_review">
                             <p class="box_title"><b>출판사 서평</b></p>
                             <p class="info_text" th:text="${product.publisherReview}"></p>
-                            <div class="collapse_btn ">
+                            <div class="collapse_btn hidden ">
                                 <span>펼치기</span>
                             </div>
                         </div>
@@ -383,55 +380,15 @@
                                                 </p>
                                             </div>
                                             <div class="review_tags_box">
-                                                <div class="" th:each="rvTag : ${rvTags}">
+                                                <div class="review_tag_item" th:each="rvTag : ${rvTags}">
                                                     <p class="tag_percent"><span></span>%</p>
                                                     <div class="score_bar progress" >
                                                         <div class="progress-bar" role="progressbar"   aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="tagName">
-                                                        <p th:text="${rvTag.codeName}">최고예요</p>
+                                                        <p th:text="${rvTag.codeName}"></p>
                                                     </div>
                                                 </div>
-                                                <!-- <div>
-                                                    <div class="score_bar progress">
-                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="tagName">
-                                                        <p>고마워요</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="score_bar progress" >
-                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="tagName">
-                                                        <p>최고예요</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="score_bar progress" >
-                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="tagName">
-                                                        <p>공감돼요</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="score_bar progress" >
-                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="tagName">
-                                                        <p>재밌어요</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="score_bar progress" >
-                                                        <div class="progress-bar" role="progressbar" style="height: calc((100% / 3) * 2); " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="tagName">
-                                                        <p>힐링돼요</p>
-                                                    </div>
-                                                </div> -->
                                             </div>
                                         </div>
                                     </div>

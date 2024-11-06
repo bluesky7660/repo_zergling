@@ -156,7 +156,8 @@
 												</div>
 												<div class="img_Area">
 													<label for="inputAuthorInfo" class="form-label">작가이미지</label>
-													<div class="img-box">
+													<p th:if="${item.imgSrc == null}">이미지가 없습니다.</p>
+													<div th:unless="${item.imgSrc == null}" class="img-box">
 														<img th:src="${item.imgSrc}" alt="작가이미지">
 													</div>
 												</div>
@@ -165,7 +166,7 @@
 												<div class="col-xxl-9 col-12">
 													<div class="mb-3">
 														<label for="inputAuthorInfo" class="form-label">소개글</label>
-														<textarea class="form-control exclude-validation" id="inputAuthorInfo" name="authorInfo" th:text="${item.authorInfo}" placeholder="상품에 대한 소개글을 적어주세요." rows="3"></textarea>
+														<textarea class="form-control exclude-validation" id="inputAuthorInfo" name="authorInfo" th:text="${item.authorInfo}" placeholder="상품에 대한 소개글을 적어주세요." rows="5"></textarea>
 														<div class="invalid-feedback">
 															소개글을 적어주세요.
 														</div>

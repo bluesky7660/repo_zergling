@@ -165,6 +165,19 @@
     border: none;
     background-color: #fff;
 }
+.author_img_text_area{
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+.author_info_box .img-box.author_img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-bottom: 0;
+}
 .author_info .info_text{
     line-height: 25px;
 }
@@ -178,7 +191,7 @@
     white-space: normal;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     padding-bottom: 0;
 }
@@ -343,6 +356,7 @@
 
 .review_list .review_head,.review_list .review_body{
     display: flex;
+    gap: 30px;
     justify-content: space-between;
 }
 .review_list .review_head span{
@@ -365,7 +379,9 @@
     align-items: center;
 }
 .review_content{
+    width: calc(100% - 200px);
     min-height: 40px;
+    line-height: 25px;
 }
 .review_list .review_head span.review_delbtn{
     margin-left: 10px;
@@ -423,13 +439,15 @@
     display: flex;
     gap: 10px;
     justify-content: space-between;
+    align-items: end;
 }
 .review_footer .review_footer_etc{
     display: flex;
-    align-self: center;
+    align-self: flex-end;
     gap: 10px;
 }
 .review_footer *{
+    white-space: nowrap;
     font-size: 14px;
     color:#777;
 }

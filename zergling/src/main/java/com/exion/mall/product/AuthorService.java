@@ -46,6 +46,7 @@ public class AuthorService {
                  existingAuthor.setCodeName(author.getCodeName());
                  existingAuthor.setAuthorType(author.getAuthorType());
                  existingAuthor.setAuthorInfo(author.getAuthorInfo());
+                 existingAuthor.setAuthorImgSrc(author.getAuthorImgSrc());
                  authorMap.put(author.getName(), existingAuthor);
             }
 

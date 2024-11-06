@@ -13,7 +13,15 @@ public class DeliveryAddressService {
 	public List<DeliveryAddressDto> selectList(DeliveryAddressVo vo){
 		return deliveryAddressDao.selectList(vo);
 	}
-	public int insertAddr(DeliveryAddressDto deliveryAddressDto) {
+	public List<DeliveryAddressDto> selectUsrList(DeliveryAddressVo vo){
+		return deliveryAddressDao.selectUsrList(vo);
+	}
+	public int insertAddr(DeliveryAddressDto deliveryAddressDto, DeliveryAddressVo vo) {
+		int count = deliveryAddressDao.listUsrCount(vo);
+		if(count == 0) {
+			deliveryAddressDto.setDefaultNy(1);
+		}
+		System.out.println("getDefaultNy2:"+deliveryAddressDto.getDefaultNy());
 		return deliveryAddressDao.insertAddr(deliveryAddressDto);
 	}
 	public int ueleteAddr(DeliveryAddressDto deliveryAddressDto) {
@@ -30,7 +38,7 @@ public class DeliveryAddressService {
 	}
 	public int update(DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
 		int a = deliveryAddressDao.update(deliveryAddressDto);
-		List<DeliveryAddressDto> lists = deliveryAddressDao.selectList(vo);
+		List<DeliveryAddressDto> lists = deliveryAddressDao.selectUsrList(vo);
 //		System.out.println("리스트: "+deliveryAddressDao.selectList(vo).get(1).getMember_seq());
 //		System.out.println("리스트: "+deliveryAddressDao.selectList(vo));
 		String thisNum = deliveryAddressDao.selectOne(deliveryAddressDto).getDaSeq();
@@ -81,7 +89,8 @@ public class DeliveryAddressService {
 	}
 	public int updateDefUsr(DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
 		
-		List<DeliveryAddressDto> lists = deliveryAddressDao.selectList(vo);
+//		deliveryAddressDto.setMember_seq(deliveryAddressDto);
+		List<DeliveryAddressDto> lists = deliveryAddressDao.selectUsrList(vo);
 		int num = vo.getDefaultNy();
 		int daseq = vo.getChSeq();
 		int i = 0;
@@ -128,6 +137,7 @@ public class DeliveryAddressService {
 //			deliveryAddressDao.updateDef(deliveryAddressDto);
 			i++;
 		}
+		System.out.println("끝");
 //		String thisNum = deliveryAddressDao.selectOne(deliveryAddressDto).getDaSeq();
 //		System.out.println("유저번호one: "+thisNum);
 //		int a = deliveryAddressDao.updateDefUsr(deliveryAddressDto);

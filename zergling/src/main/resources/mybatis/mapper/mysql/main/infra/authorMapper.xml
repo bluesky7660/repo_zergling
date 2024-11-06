@@ -66,7 +66,8 @@
 			    ,a.name	
 			    ,a.authorInfo
 			    ,b.title
-			    ,b.imgSrc
+			    ,f.path as imgSrc
+			    ,e.path as authorImgSrc
 			    <!-- ,b.title as titleList    -->       
 				<!-- ,c.product_seq   --> 
 				,CASE
@@ -74,7 +75,7 @@
 					ELSE NULL
 				END AS otherTitle
 				,CASE
-					WHEN paOther.product_seq IS NOT NULL THEN b2.imgSrc
+					WHEN paOther.product_seq IS NOT NULL THEN f2.path
 					ELSE NULL
 				END AS otherImgSrc     
 			FROM 
@@ -84,6 +85,9 @@
 				left JOIN productAuthor paOther ON a.seq = paOther.author_seq AND paOther.product_seq != #{seq} 
 				left JOIN product b2 ON paOther.product_seq = b2.seq 
 				join commoncode d on a.authorType = d.seq
+				left join productupload f on f.pseq = b.seq
+				left join productupload f2 on f2.pseq = b2.seq
+				left join autherupload e on e.aSeq = a.seq
 			WHERE 
 				c.product_seq = #{seq}   
 				
@@ -189,7 +193,7 @@
 				<!-- join productAuthor c on c.author_seq = a.seq
 				join product b on c.product_seq = b.seq -->
 				join commoncode d on a.authorType = d.seq
-				join autherUpload c on a.seq = c.aSeq and c.defaultNy = 1
+				left join autherUpload c on a.seq = c.aSeq and c.defaultNy = 1
 			where 1 = 1
 				and a.seq = #{seq}
 	  </select>
@@ -236,6 +240,7 @@
 			insert into autherUpload(
 			    type
 			    ,sort
+   			    ,defaultNy
 			    ,path
 			    ,originalName
 			    ,uuidName
@@ -248,6 +253,7 @@
 			) value(
 				#{type}
 			    ,#{sort}
+			    ,1
 			    ,#{path}
 			    ,#{originalName}
 			    ,#{uuidName}

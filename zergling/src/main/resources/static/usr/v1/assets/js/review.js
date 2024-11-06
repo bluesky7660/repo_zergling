@@ -128,12 +128,62 @@ function updatePagination(thisPage, totalPages) {
     `;
     paginationList.appendChild(lastPageItem);
 }
+
 function displayTagDistribution(tagCounts, mostSelectedTag, reviewCount) {
     // const tagDistributionContainer = document.querySelector(".tag_distribution");
-    const tagDistributionContainer = document.querySelector(".review_tags_box");
-    // tagDistributionContainer.innerHTML = ''; // 기존 내용 초기화
-
+    // const tagDistributionContainer = document.querySelector(".review_tags_box");
     console.log("tagCounts:",tagCounts);
+    console.log("reviewCount:",reviewCount);
+    
+    const tagDistributionContainer = document.querySelector("#book_review .review_tags_area");
+    const topTagDistributionContainer = document.querySelector(".prod_detail_view .review_tags_area");
+    if(reviewCount != 0){
+        tagDistributionContainer.innerHTML = ''; // 기존 내용 초기화
+        topTagDistributionContainer.innerHTML = '';
+        const tagtotal = `
+            <div class="review_total_tag_area">
+                <div class="most_tag_box">
+                    <p>
+                        <span class="most_tag_parcent"></span>의 구매자가<br>
+                        <span class="most_tag"></span> 라고 응답했어요
+                    </p>
+                </div>
+                <div class="review_tags_box">
+                </div>
+            </div>`;
+        // tagDistributionContainer.appendChild(tagtotal);  
+        tagDistributionContainer.insertAdjacentHTML('beforeend', tagtotal);   
+        
+        // 태그 비율 계산 및 진행 바 설정
+        Object.keys(tagCounts).forEach(tag => {
+            const tagPercentage = ((tagCounts[tag] / reviewCount) * 100).toFixed(1);
+
+            // 새로운 태그 항목 생성
+            const tagItemHTML = `
+                <div class="review_tag_item">
+                    <p class="tag_percent"><span>${tagPercentage}</span>%</p>
+                    <div class="score_bar progress">
+                        <div class="progress-bar" role="progressbar" style="height: ${tagPercentage}%" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="tagName">
+                        <p>${tag}</p>
+                    </div>
+                </div>
+            `;
+            // `review_tags_box`에 새 태그 항목 추가
+            document.querySelector(".review_tags_box").insertAdjacentHTML('beforeend', tagItemHTML);
+        });
+        const topMostTagHTML = `
+            <div class="most_tag_box">
+                <p>
+                    <span class="most_tag_parcent"></span>의 구매자가<br>
+                    <span class="most_tag"></span> 라고 응답했어요
+                </p>
+            </div>
+        `;
+        topTagDistributionContainer.insertAdjacentHTML('beforeend', topMostTagHTML); 
+    }
+    
     // // 태그 분포 표시
     // Object.entries(tagCounts).forEach(([tag, count]) => {
     //     const tagItem = document.createElement("div");
@@ -142,51 +192,93 @@ function displayTagDistribution(tagCounts, mostSelectedTag, reviewCount) {
     //     tagDistributionContainer.appendChild(tagItem);
     // });
     // 태그 비율을 표시할 영역
-    const tagNames = document.querySelectorAll(".tagName p");
+    // const tagNames = document.querySelectorAll(".tagName p");
     // const tagpercent = tagNames.p .querySelectorAll(".tag_percent p");
     // tagDistributionContainer.innerHTML = ''; // 기존 내용 초기화
     // let mostSelectedTag = Object.keys(tagCounts).reduce((a, b) => tagCounts[a] > tagCounts[b] ? a : b);
+    
+
+    // const tagPercentages = {};
+    // for (let tag in tagCounts) {
+    //     tagPercentages[tag] = ((tagCounts[tag] / reviewCount) * 100).toFixed(1);
+    // }
+    // for (const tag in tagPercentages) {
+    //     const tagPercentage = tagPercentages[tag];
+    //     // console.log(tag+": "+tagPercentage);
+    //     for (const tagName of tagNames) {
+    //         const tagParent  = tagName.parentElement.parentElement;
+    //         // console.log(tagParent);
+    //         const tagpercent = tagParent.querySelector(".tag_percent span");
+    //         const progressBar = tagParent.querySelector(".progress-bar");
+    //         // console.log(progressBar);
+    //         const name = tagName.textContent
+    //         if(tag == name){
+    //             tagpercent.textContent = tagPercentage;
+                
+    //             progressBar.style.height = tagPercentage+"%";
+    //             if(tag == mostSelectedTag){
+    //                 tagpercent.style.color = "rgba(80, 85, 177, 0.8)";
+    //                 tagpercent.style.fontWeight = "bold";
+    //                 document.querySelectorAll(".most_tag_parcent").forEach(function(tag) {
+    //                     tag.textContent = tagPercentage+"%";
+    //                 });
+    //                 tagName.style.color = "rgba(80, 85, 177, 0.8)";
+    //                 tagName.style.fontWeight = "bold";
+    //                 progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
+    //             }
+    //             else{
+    //                 tagpercent.style.color = "rgb(119, 119, 119)";
+    //                 tagpercent.style.fontWeight = "400";
+    //                 tagName.style.color = "rgb(119, 119, 119)";
+    //                 tagName.style.fontWeight = "400";
+    //                 progressBar.style.backgroundColor = "rgb(170, 170, 170)";
+    //             }
+    //         }
+            
+    //     }
+        
+    // }
+    // 태그별 진행 바와 색상 업데이트
     const tagPercentages = {};
     for (let tag in tagCounts) {
         tagPercentages[tag] = ((tagCounts[tag] / reviewCount) * 100).toFixed(1);
     }
-    for (const tag in tagPercentages) {
-        const tagPercentage = tagPercentages[tag];
-        // console.log(tag+": "+tagPercentage);
-        for (const tagName of tagNames) {
-            const tagParent  = tagName.parentElement.parentElement;
-            // console.log(tagParent);
-            const tagpercent = tagParent.querySelector(".tag_percent span");
-            const progressBar = tagParent.querySelector(".progress-bar");
-            // console.log(progressBar);
-            const name = tagName.textContent
-            if(tag == name){
-                tagpercent.textContent = tagPercentage;
-                
-                progressBar.style.height = tagPercentage+"%";
-                if(tag == mostSelectedTag){
-                    tagpercent.style.color = "rgba(80, 85, 177, 0.8)";
-                    tagpercent.style.fontWeight = "bold";
-                    document.querySelectorAll(".most_tag_parcent").forEach(function(tag) {
-                        tag.textContent = tagPercentage+"%";
-                    });
-                    tagName.style.color = "rgba(80, 85, 177, 0.8)";
-                    tagName.style.fontWeight = "bold";
-                    progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
-                }
-                else{
-                    tagpercent.style.color = "rgb(119, 119, 119)";
-                    tagpercent.style.fontWeight = "400";
-                    tagName.style.color = "rgb(119, 119, 119)";
-                    tagName.style.fontWeight = "400";
-                    progressBar.style.backgroundColor = "rgb(170, 170, 170)";
-                }
-            }
-            
-        }
-        
-    }
 
+    document.querySelectorAll(".review_tag_item").forEach(item => {
+        const tagNameElement = item.querySelector(".tagName p");
+        const tagPercentElement = item.querySelector(".tag_percent span");
+        const progressBar = item.querySelector(".progress-bar");
+        const tagName = tagNameElement.textContent;
+
+        const tagPercentage = tagPercentages[tagName];
+        tagPercentElement.textContent = tagPercentage;
+        progressBar.style.height = tagPercentage + "%";
+
+        // 가장 많이 선택된 태그 강조
+        if (tagName === mostSelectedTag) {
+            tagPercentElement.style.color = "rgba(80, 85, 177, 0.8)";
+            tagPercentElement.style.fontWeight = "bold";
+            tagNameElement.style.color = "rgba(80, 85, 177, 0.8)";
+            tagNameElement.style.fontWeight = "bold";
+            progressBar.style.backgroundColor = "rgba(80, 85, 177, 0.8)";
+
+            // mostSelectedTag 비율 업데이트
+            document.querySelectorAll(".most_tag_parcent").forEach(tag => {
+                tag.textContent = tagPercentage + "%";
+            });
+            document.querySelectorAll(".most_tag").forEach(tag => {
+                tag.textContent = mostSelectedTag;
+            });
+        } else {
+            tagPercentElement.style.color = "rgb(119, 119, 119)";
+            tagPercentElement.style.fontWeight = "400";
+            tagNameElement.style.color = "rgb(119, 119, 119)";
+            tagNameElement.style.fontWeight = "400";
+            progressBar.style.backgroundColor = "rgb(170, 170, 170)";
+        }
+    });
+
+    
     // 가장 많이 선택된 태그 표시
     // const mostSelectedTagContainer = document.querySelector(".most_selected_tag");
     // mostSelectedTagContainer.innerHTML = ''; // 기존 내용 초기화
@@ -355,7 +447,9 @@ function loadReviewList(productSeq,rvSort) {
                                 </div>
                             </div>
                             <div class="review_body">
-                                <div class="review_content">${review.rvContent}</div>
+                                <div class="review_content">
+                                    ${review.rvContent}
+                                </div>
                                 <div class="review_footer">
                                     <div class="review_footer_etc">
                                         <div class="btn_like"><span>0</span></div>

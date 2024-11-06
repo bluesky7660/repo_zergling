@@ -42,7 +42,7 @@ public class AuthorController {
 	
 	@RequestMapping(value = "v1/mall/product/authorXdmMfom")
 	public String authorXdmMfom(AuthorDto authorDto, Model model) {
-		System.out.println("1: "+authorService.authorOne(authorDto));
+//		System.out.println("1: "+authorService.authorOne(authorDto));
 		model.addAttribute("item", authorService.authorOne(authorDto));
 		model.addAttribute("jobs",authorService.jobList());
 		return "xdm/v1/mall/product/authorXdmMfom";

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface DeliveryAddressDao {
 //	public List<DeliveryAddressDto> selectList();
 	public List<DeliveryAddressDto> selectList(DeliveryAddressVo vo);
-	public List<DeliveryAddressDto> selectUsrList(DeliveryAddressDto deliveryAddressDto);
+	public List<DeliveryAddressDto> selectUsrList(DeliveryAddressVo vo);
 	public int insertAddr(DeliveryAddressDto deliveryAddressDto);
 	public int ueleteAddr(DeliveryAddressDto deliveryAddressDto);
 	public DeliveryAddressDto selectOne(DeliveryAddressDto deliveryAddressDto);

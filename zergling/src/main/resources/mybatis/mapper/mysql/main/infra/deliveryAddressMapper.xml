@@ -90,10 +90,12 @@
 			    ,daJibunAddress
 			    ,daDetailAddress
 			    ,daExtraAddress
+			    ,longitude
+			    ,latitude
 			    ,regDate
 			    ,modDate
 			    ,delNy
-			    <!-- ,member_seq -->
+			    ,member_seq
 			
 			)value(
 				#{defaultNy}
@@ -105,10 +107,12 @@
 			    ,#{daJibunAddress}
 			    ,#{daDetailAddress}
 			    ,#{daExtraAddress}
+			    ,#{longitude}
+			    ,#{latitude}
 			    ,now()
 			    ,now()
 			    ,0
-			    <!-- ,#{member_seq} -->
+			    ,#{member_seq}
 			)
 			<selectKey resultType="String" keyProperty="daSeq" order="AFTER">
 				SELECT last_insert_id()

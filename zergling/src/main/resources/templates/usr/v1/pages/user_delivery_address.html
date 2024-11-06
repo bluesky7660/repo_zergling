@@ -259,16 +259,16 @@
                 map: map // 마커를 표시할 지도 객체
             });
             $("#addr_delBtn").on("click", function() {
-        // 클릭된 버튼의 부모 요소 중 <tr> 찾기
-        var parentTr = $(this).closest("tr");
-        
-        // <tr> 내부의 addrListSeq 클래스를 가진 요소에서 값 가져오기
-        var addrListSeqValue = parentTr.find(".addrListSeq").text(); // 텍스트 값일 경우
-        // var addrListSeqValue = parentTr.find(".addrListSeq").val(); // input 값일 경우
+                // 클릭된 버튼의 부모 요소 중 <tr> 찾기
+                var parentTr = $(this).closest("tr");
+                
+                // <tr> 내부의 addrListSeq 클래스를 가진 요소에서 값 가져오기
+                var addrListSeqValue = parentTr.find(".addrListSeq").text(); // 텍스트 값일 경우
+                // var addrListSeqValue = parentTr.find(".addrListSeq").val(); // input 값일 경우
 
-        // addrUeleteModalSeq의 값에 addrListSeqValue 설정
-        $("#addrUeleteModalSeq").val(addrListSeqValue);
-    });
+                // addrUeleteModalSeq의 값에 addrListSeqValue 설정
+                $("#addrUeleteModalSeq").val(addrListSeqValue);
+            });
         });
     </script>
 </body>

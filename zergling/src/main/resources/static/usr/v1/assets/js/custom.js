@@ -636,13 +636,22 @@ document.addEventListener('DOMContentLoaded', function () {
     contents.forEach((content) => {
         content.classList.add('hidden');
     });
-    toggleButtons.forEach((btuton) => {
-        btuton.classList.add('hidden');
+    toggleButtons.forEach((button) => {
+        button.classList.add('hidden');
     });
 
     toggleButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            const content = contents[index];
+            // const content = contents[index];
+            const contentTop =button.parentElement;
+            const content = button.parentElement.querySelector('.info_text');
+            const contentTopPosition = contentTop.getBoundingClientRect().top + window.scrollY;  // contentTop의 위치(스크롤 오프셋 포함)
+
+            // contentTop을 화면 상단으로 스크롤 후 100px 위로 조정
+            window.scrollTo({
+                top: contentTopPosition - 120,  // 100px 위로
+                behavior: 'smooth'  // 부드러운 스크롤
+            });
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
                 button.classList.remove('hidden');
@@ -659,10 +668,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // 초기 상태에서 각 콘텐츠의 길이 체크
     contents.forEach((content, index) => {
         const lineHeight = parseInt(window.getComputedStyle(content).lineHeight);
-        if (content.scrollHeight > lineHeight * 4) { // 4줄 이상일 경우
-            toggleButtons[index].classList.remove('hidden'); // 버튼 보이기
-        } else {
-            toggleButtons[index].remove(); // 버튼 제거
+        const button = content.parentElement.querySelector('.collapse_btn');
+        if(content.classList.contains("info_desc")){
+
+        }else{
+            if (content.scrollHeight > lineHeight * 4) { // 4줄 이상일 경우
+                // toggleButtons[index].classList.remove('hidden'); // 버튼 보이기
+                console.log("4줄이상");
+            } else {
+                console.log("4줄미만");
+                button.remove(); // 버튼 제거
+            }
         }
     });
 

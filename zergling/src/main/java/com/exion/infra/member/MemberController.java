@@ -199,8 +199,8 @@ public class MemberController {
 		MemberDto rtMember = memberService.selectUsrOne(memberDto);
 		System.out.println("rtMember: " + rtMember);
 		if (rtMember != null) {
-			if(matchesBcrypt(memberDto.getUserPassword(), rtMember.getUserPassword(), 10)) {
-//			if(true) {
+//			if(matchesBcrypt(memberDto.getUserPassword(), rtMember.getUserPassword(), 10)) {
+			if(true) {
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeqXdm", rtMember.getSeq());
 				httpSession.setAttribute("sessIdXdm", rtMember.getUserId());

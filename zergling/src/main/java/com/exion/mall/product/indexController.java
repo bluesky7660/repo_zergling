@@ -173,11 +173,11 @@ public class indexController {
 			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 			deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 			vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-			model.addAttribute("member", memberService.selectOne(memberDto));
+//			model.addAttribute("member", memberService.selectOne(memberDto));
 			model.addAttribute("count", deliveryAddressService.listUsrCount(vo));
 			model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
 //			System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
-			model.addAttribute("addrList", deliveryAddressService.selectList(vo));
+			model.addAttribute("addrList", deliveryAddressService.selectUsrList(vo));
 		}
 		
 //		int size = deliveryAddressService.selectList().size();
@@ -200,8 +200,11 @@ public class indexController {
 		return "/usr/v1/pages/user_delivery_address_add";
 	}
 	@RequestMapping(value = "user_delivery_address_inst")
-	public String deliveryAddressInst(DeliveryAddressDto deliveryAddressDto) {
-		deliveryAddressService.insertAddr(deliveryAddressDto);
+	public String deliveryAddressInst(HttpSession httpSession, DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
+		deliveryAddressDto.setMember_seq(httpSession.getAttribute("sessSeqXdm").toString());
+		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+		System.out.println("getDefaultNy:"+deliveryAddressDto.getDefaultNy());
+		deliveryAddressService.insertAddr(deliveryAddressDto,vo);
 		System.out.println("user_delivery_address_inst");
 		return "redirect:user_delivery_address";
 	}
@@ -216,9 +219,11 @@ public class indexController {
 		return "redirect:user_delivery_address";
 	}
 	@RequestMapping(value = "user_delivery_address_Defupdt")
-	public String deliveryAddressDefUpdt(DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
+	public String deliveryAddressDefUpdt(HttpSession httpSession, DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
 //		deliveryAddressService.updateDef(deliveryAddressDto);
-		System.out.println("DeliveryAddressVo: " + vo);
+		
+		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+		System.out.println("DeliveryAddressVo.Seq: " + vo.getSeq());
 		deliveryAddressService.updateDefUsr(deliveryAddressDto,vo);
 		return "redirect:user_delivery_address";
 	}
