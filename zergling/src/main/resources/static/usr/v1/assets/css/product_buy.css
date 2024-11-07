@@ -152,6 +152,7 @@ table{
 }
 .orderList_box .img-box{
     width: 80px;
+    cursor: pointer;
 }
 .orderList_box li>div.prod_title_box{
     width:calc(100% - 500px);

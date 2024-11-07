@@ -556,7 +556,7 @@ main>*{
     border-bottom: 1px solid #ccc;
 }
 .scrolltable{
-    min-width: 1200px;
+    min-width: 900px;
     height: auto;
     position: relative;
     display: flex;

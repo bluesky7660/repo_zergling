@@ -75,8 +75,15 @@ public class KakaoLoginController {
 	    memberDto.setUserId(email);
 	    memberDto.setEmail(email);
 	    memberDto.setKakaoLoginNy(1);
-//	    if()
-	    memberService.insertUsr(memberDto);
+	    if(memberService.selectUsrOne(memberDto) == null){
+//			System.out.println("계정없음");
+			memberService.insertUsr(memberDto);
+			session.setAttribute("sessSeqXdm", memberDto.getSeq());
+		}else {
+			System.out.println("계정있음");
+			memberService.selectUsrOne(memberDto);
+			session.setAttribute("sessSeqXdm", memberService.selectUsrOne(memberDto).getSeq());
+		}
 	    
 	    session.setAttribute("sessIdXdm", email);
 	    session.setAttribute("sessEmailXdm",email);

@@ -43,10 +43,10 @@
                             <p><span th:text="${product.prodTypeName}"></span></p>
                         </div>
                         <div class="prod_title">
-                            <p><span class="gray_color pre_order"></span> <strong th:text="${product.title}">나쁜 검사들</strong></p>
+                            <p><span class="gray_color pre_order"></span> <strong th:text="${product.title}"></strong></p>
                         </div>
                         <div class="prod_desc">
-                            <span th:if="${#lists.size(prodAuthor) == 1}" th:text="${product.name +' '+ product.prodTypeName}">이중세 장편소설</span>
+                            <span th:if="${#lists.size(prodAuthor) == 1}" th:text="${product.name +' '+ product.prodTypeName}"></span>
                             <!-- <span><span th:text="${product.author}">이중세</span> 장편소설</span> -->
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                                         <button class="btn" th:text="${author.codeName}"></button>
                                     </div>
                                     <div class="author_img_text_area">
-                                        <div class="author_img img-box">
+                                        <div th:if="${author.authorImgSrc != null}" class="author_img img-box">
                                             <img th:src="${author.authorImgSrc}" th:alt="${author.name+' 이미지'}">
                                         </div>
                                         <p class="info_text info_desc" th:utext="${author.authorInfo}"></p>
@@ -628,21 +628,21 @@
                         <div class="best_in_category">
                             <div class="d-flex justify-content-between">
                                 <p class="box_title"><b>이 분야의 베스트</b></p>
-                                <a href="javascript:void(0);">더보기 ></a>
+                                <a th:href="@{'product_list?bestNy=1&prodType=' + ${product.prodType}}">더보기 ></a>
                             </div>
-                            <ul class="d-flex flex-column gap-3 mt-4">
-                                <li th:each="best :${best}">
+                            <ul class="d-flex flex-column gap-5 mt-4">
+                                <li th:each="best :${best}" th:onclick="|location.href='@{/product_detail(seq=${best.seq})}'|">
                                     <div class="img-box">
                                         <img th:src="${best.imgSrc}" th:alt="${'베스트'+bestStat.count+' 이미지'}">
                                     </div>
                                     <div class="textArea">
-                                        <span th:text="${bestStat.count}">1</span>
-                                        <p class="prod_title"><strong th:text="${best.title}">당신이 누군가를 죽였다</strong></p>
-                                        <p class="prod_author" th:text="${best.authorCount > 1 ? best.name+' 외 '+(best.authorCount - 1)+'명':best.name}">히가시노 게이고</p>
+                                        <span th:text="${bestStat.count}"></span>
+                                        <p class="prod_title"><strong th:text="${best.title}"></strong></p>
+                                        <p class="prod_author" th:text="${best.authorCount > 1 ? best.name+' 외 '+(best.authorCount - 1)+'명':best.name}"></p>
                                         <p class="prod_price">
-                                            <strong class="saleP" th:text="${best.sale+'%'}">10</strong>
+                                            <strong class="saleP" th:text="${best.sale+'%'}"></strong>
                                             <span class="sale_price">
-                                                <strong th:text="${#numbers.formatInteger(best.salePrice,1,'COMMA')}">17,820</strong>원
+                                                <strong th:text="${#numbers.formatInteger(best.salePrice,1,'COMMA')}"></strong>원
                                             </span>
                                         </p>            
                                     </div>

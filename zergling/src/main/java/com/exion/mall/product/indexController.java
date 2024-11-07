@@ -244,22 +244,24 @@ public class indexController {
 		System.out.println("sessIdXdm: " + httpSession.getAttribute("sessIdXdm"));
 		System.out.println("sessNameXdm: " + httpSession.getAttribute("sessNameXdm"));
 		System.out.println("sessEmailXdm: " + httpSession.getAttribute("sessEmailXdm"));
-		if(httpSession.getAttribute("kakoLogin") != null) {
-			memberDto.setUserId((String) httpSession.getAttribute("sessIdXdm"));
-			memberDto.setName((String) httpSession.getAttribute("sessNameXdm"));
-			memberDto.setEmail((String) httpSession.getAttribute("sessEmailXdm"));
-			memberDto.setPhoneNum("");
-			model.addAttribute("item", memberDto);
-		}else {
-			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-			model.addAttribute("item", memberService.selectOne(memberDto));
+//		if(httpSession.getAttribute("kakoLogin") != null) {
+//			memberDto.setUserId((String) httpSession.getAttribute("sessIdXdm"));
+//			memberDto.setName((String) httpSession.getAttribute("sessNameXdm"));
+//			memberDto.setEmail((String) httpSession.getAttribute("sessEmailXdm"));
+//			memberDto.setPhoneNum("");
+//			model.addAttribute("item", memberDto);
+//		}else {
+//			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+//			model.addAttribute("item", memberService.selectOne(memberDto));
 //			System.out.println("seq: "+memberService.selectOne(memberDto).getSeq());
 //			for(CodeDto item:codeService.genderList()) {
 //				System.out.println("코드이름: "+item.getCodeName());
 //			}
 //			model.addAttribute("gender", codeService.genderList());
 //			System.out.println("seq: "+.get());
-		}
+//		}
+		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+		model.addAttribute("item", memberService.selectOne(memberDto));
 		model.addAttribute("userPage", "account");
 		return "/usr/v1/pages/user_account";
 	}
@@ -473,7 +475,7 @@ public class indexController {
 		model.addAttribute("item", productService.prodUsrOne(productVo));
 		Date deliveryDate = DateUtil.getDeliveryDate(2);
 		model.addAttribute("deliveryDate",deliveryDate);
-		model.addAttribute("addrList", deliveryAddressService.selectList(addressVo));
+		model.addAttribute("addrList", deliveryAddressService.selectUsrList(addressVo));
 		System.out.println("product_buy");
 		return "/usr/v1/pages/product_buy";
 	}

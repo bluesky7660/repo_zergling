@@ -135,9 +135,15 @@ public class MemberController {
 	}
 	@RequestMapping(value = "user_accountUpdt")
 	public String userAccountUpdt(MemberDto memberDto) {
-		System.out.println("seq1: "+memberDto.getSeq());
-		memberDto.setUserPassword(encodeBcrypt(memberDto.getUserPassword(), 10));
+//		System.out.println("seq1: "+memberDto.getSeq());
 		memberService.update(memberDto);
+		return "redirect:index";
+	}
+	@RequestMapping(value = "user_accountPwUpdt")
+	public String user_accountPwUpdt(MemberDto memberDto) {
+//		System.out.println("seq1: "+memberDto.getSeq());
+		memberDto.setUserPassword(encodeBcrypt(memberDto.getUserPassword(), 10));
+		memberService.updatePW(memberDto);
 		return "redirect:index";
 	}
 	@ResponseBody

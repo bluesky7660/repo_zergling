@@ -670,7 +670,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const lineHeight = parseInt(window.getComputedStyle(content).lineHeight);
         const button = content.parentElement.querySelector('.collapse_btn');
         if(content.classList.contains("info_desc")){
-
+            if (content.scrollHeight > lineHeight * 4) { // 4줄 이상일 경우
+                // toggleButtons[index].classList.remove('hidden'); // 버튼 보이기
+                console.log("4줄이상");
+            } else {
+                console.log("4줄미만");
+                content.parentElement.parentElement.querySelector('.collapse_btn').remove(); // 버튼 제거
+            }
         }else{
             if (content.scrollHeight > lineHeight * 4) { // 4줄 이상일 경우
                 // toggleButtons[index].classList.remove('hidden'); // 버튼 보이기

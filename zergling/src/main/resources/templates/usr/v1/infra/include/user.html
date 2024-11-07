@@ -23,7 +23,7 @@
                 th:class="${userPage == 'deliveryAddress'} ? 'active'"><span>배송주소록</span></li>
             <li onclick="window.location.href='user_account'" 
                 th:class="${userPage == 'account'} ? 'active'"><span>회원정보 수정</span></li>
-            <li onclick="window.location.href='user_password'" 
+            <li th:if="${session.kakoLogin == null}" onclick="window.location.href='user_password'" 
                 th:class="${userPage == 'passwordChange'} ? 'active'"><span>비밀번호 변경</span></li>
             <li class="logoutBtn"><span>로그아웃</span></li>
         </ul>

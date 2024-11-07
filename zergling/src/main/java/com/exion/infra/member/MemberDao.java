@@ -15,4 +15,6 @@ public interface MemberDao {
 	public MemberDto selectOne(MemberDto memberDto);
 	public int insertUsr(MemberDto memberDto);
 	public int update(MemberDto memberDto);
+	public int updatePW(MemberDto memberDto);
+
 }

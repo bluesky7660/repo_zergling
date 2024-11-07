@@ -44,4 +44,8 @@ public class MemberService {
 		System.out.println("그룹이름: "+memberDto.getSeq());
 		return memberDao.update(memberDto);
 	}
+	public int updatePW(MemberDto memberDto) {
+		System.out.println("그룹이름: "+memberDto.getSeq());
+		return memberDao.updatePW(memberDto);
+	}
 }

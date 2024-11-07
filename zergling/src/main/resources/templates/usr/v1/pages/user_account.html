@@ -59,7 +59,7 @@
                                         <th><label for="">이름</label></th>
                                         <td><p class="user_name" th:text="${item?.name}">홍길동</p></td>
                                     </tr>
-                                    <tr th:if="${session.kakoLogin==null}">
+                                    <tr th:if="${(session.kakoLogin==null)||(item.dateOfBirth!=null&&item.gender!=null)}">
                                         <th><label for="">생년월일/성별</label></th>
                                         <td>
                                             <p class="user_brdyGndr">
@@ -70,12 +70,12 @@
                                         </td>
                                         <!-- <td><p class="user_brdyGndr" ><span th:text="${item.dateOfBirth}"></span> / <span th:each="gender : ${gender}" th:if="${gender.seq} == ${item.gender}" th:text="${gender.codeName}"></span> </p></td> -->
                                     </tr>
-                                    <tr th:if="${session.kakoLogin !=null}">
+                                    <tr th:if="${(session.kakoLogin !=null)&&(item.dateOfBirth==null&&item.gender==null)}">
                                         <th><label for="">생년월일/성별</label></th>
                                         <td>
                                             <div class="user_dateOfBirth" >
                                                 <p>
-                                                    <input class="form-control" type="date" name="dateOfBirth" id="user_dateOfBirth">
+                                                    <input class="form-control" type="date" name="dateOfBirth" id="user_dateOfBirth" th:value="${item.dateOfBirth}">
                                                 </p>
                                             </div>
                                         </td>
@@ -97,7 +97,7 @@
                                     </tr>
                                     <tr>
                                         <th><label for="">휴대폰</label></th>
-                                        <td><input class="form-control" type="text" name="phoneNum" id="" th:value="${item.phoneNum}" placeholder="ex). 010-1234-5678"></td>
+                                        <td><input class="form-control" type="text" name="phoneNum" id="" th:value="${item.phoneNum}" placeholder="ex). 01012345678"></td>
                                     </tr>
                                 </table>
                                 <div class="btn-box mt-5">

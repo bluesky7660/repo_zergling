@@ -117,16 +117,16 @@
                                             <h5>주문상품</h5>
                                             <p class="total_qty">총 <span>1</span>개</p>
                                         </div>
-                                        <div>
+                                        <!-- <div>
                                             <i class="fa-solid fa-chevron-up"></i>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="orderList_box">
                                         <ul>
                                             <li>
                                                 <div class="prod_img">
                                                     <div class="img-box" th:onclick="|location.href='@{/product_detail(seq=${item.seq})}'|">
-                                                        <img th:src="${'/usr/v1/assets/images/prod/200/'+item.imgSrc+'.jpg'}" alt="">
+                                                        <img th:src="${item.imgSrc}" th:alt="${item.title+' 이미지'}">
                                                     </div>
                                                 </div>
                                                 <div class="prod_title_box">

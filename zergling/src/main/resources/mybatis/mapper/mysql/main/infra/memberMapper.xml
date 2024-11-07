@@ -223,6 +223,9 @@
 			    ,now()
 			    ,0
 			)
+			<selectKey resultType="String" keyProperty="seq" order="AFTER">
+				SELECT last_insert_id()
+		 	</selectKey>
 	  </insert>
 	  <update id="update">
 	  		update member
@@ -242,7 +245,7 @@
 	  <update id="updateU">
 	  		update member
 	  		set
-	  			,userPassword = #{userPassword}
+	  			<!-- userPassword = #{userPassword} -->
 	  			,email = #{email}
 	  			,phoneNum = #{phoneNum}
 	  			,modDate = now()
@@ -252,7 +255,7 @@
 	  <update id="updatePW">
 	  		update member
 	  		set
-	  			,userPassword = #{userPassword}
+	  			userPassword = #{userPassword}
 	  			,modDate = now()
 	  		where 1=1
 	  			and seq = #{seq}
