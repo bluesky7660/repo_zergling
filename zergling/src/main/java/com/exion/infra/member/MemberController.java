@@ -66,7 +66,7 @@ public class MemberController {
 	}
 	@RequestMapping(value = "/v1/infra/member/memberXdmUpdt")
 	public String memberXdmUpdt(MemberDto memberDto) {
-		memberDto.setUserPassword(encodeBcrypt(memberDto.getUserPassword(), 10));
+//		memberDto.setUserPassword(encodeBcrypt(memberDto.getUserPassword(), 10));
 		memberService.update(memberDto);
 		return "redirect:/v1/infra/member/memberXdmList";
 	}

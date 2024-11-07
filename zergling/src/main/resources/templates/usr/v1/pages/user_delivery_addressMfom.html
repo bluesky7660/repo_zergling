@@ -48,6 +48,7 @@
                                     <input type="hidden" name="seq" th:value="${item.member_seq}">
                                     <input type="hidden" id="def_latitude" name="latitude" th:value="${item.latitude}" />
                                     <input type="hidden" id="def_longitude" name="longitude" th:value="${item.longitude}" />
+                                    <input type="hidden" id="default_addressH" name="defaultNy" th:value="${item.defaultNy}">
                                     <p class="box_title">배송지 수정</p>
                                     <ul>
                                         <li>
@@ -98,9 +99,8 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li class="default_address_box" th:if="${item.defaultNy != 1}">
                                             <input type="checkbox" class="form-check-input" name="defaultNy" id="default_address" th:value="${item.defaultNy}" th:checked="${item.defaultNy == 1}" onclick="this.value = this.checked ? '1' : '0';">
-                                            <input type="hidden" class="form-check-input" name="defaultNy" id="default_addressH" value="0">
                                             <label for="default_address">기본배송지로 설정</label>
                                         </li>
                                     </ul>

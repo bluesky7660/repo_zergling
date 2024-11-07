@@ -22,6 +22,7 @@ public class MemberDto {
 	private Date regDate;
 	private Date modDate;
 	private Integer delNy;
+	private Integer kakaoLoginNy;
 //--------------------------
 	public String getSeq() {
 		return seq;
@@ -113,6 +114,12 @@ public class MemberDto {
 	}
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
+	}
+	public Integer getKakaoLoginNy() {
+		return kakaoLoginNy;
+	}
+	public void setKakaoLoginNy(Integer kakaoLoginNy) {
+		this.kakaoLoginNy = kakaoLoginNy;
 	}
 	
 }

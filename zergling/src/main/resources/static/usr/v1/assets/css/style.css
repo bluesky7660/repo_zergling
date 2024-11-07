@@ -556,6 +556,7 @@ main>*{
     border-bottom: 1px solid #ccc;
 }
 .scrolltable{
+    min-width: 1200px;
     height: auto;
     position: relative;
     display: flex;
@@ -922,6 +923,9 @@ footer .sitemap li div strong{
 footer .left-box *{
     white-space: nowrap;
     font-size: 13.5px;
+}
+.footer_menu_list{
+    flex-wrap:wrap;
 }
 .footer_info_box li{
     font-size: 12px;

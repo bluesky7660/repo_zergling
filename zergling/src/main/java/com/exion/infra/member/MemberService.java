@@ -35,6 +35,9 @@ public class MemberService {
 		return memberDao.selectUsrOne(memberDto);
 	}
 	public int insertUsr(MemberDto memberDto) {
+		if(memberDto.getKakaoLoginNy() == null ) {
+			memberDto.setKakaoLoginNy(0);
+		}
 		return memberDao.insertUsr(memberDto);
 	}
 	public int update(MemberDto memberDto) {

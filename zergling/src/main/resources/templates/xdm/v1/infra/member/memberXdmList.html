@@ -198,7 +198,6 @@
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">관리자권한</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">이름</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">ID</span></th>
-															<th class="sorting sorting_asc"><span class="dataTable-sorter">패스워드</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">성별</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
@@ -221,7 +220,6 @@
 																<a th:href="@{/v1/infra/member/memberXdmMfom(seq=${listU.seq})}" th:text="${listU.name}"></a>
 															</td>
 															<td th:text="${listU.userId}"></td>
-															<td th:text="${listU.userPassword}"></td>
 															<!-- <td th:text="${listU.codeName}"></td> -->
 															<td th:if="${listU.gender != null}" th:text="${@codeService.selectOneCachedCode(listU.gender)}" class="ifmmGenderCd align-middle"></td>
 															<td th:unless="${listU.gender != null}" class="ifmmGenderCd align-middle"></td>

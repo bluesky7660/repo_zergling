@@ -77,7 +77,7 @@
 			where 1=1
 				and b.seq = #{seq}
 				and a.delNy = 0
-			order by a.daSeq desc
+			order by a.defaultNy desc,a.daSeq desc
 	  </select>
 	  <insert id="insertAddr">
 	  		insert into deliveryaddress(

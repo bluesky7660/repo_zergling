@@ -108,7 +108,7 @@
 			    ,a.modDate
 			    ,a.delNy
 			<include refid="selectCommon"/>
-			order by a.seq desc
+			order by a.admNy desc, a.seq desc
 			<include refid="base.selectListLowerForMysql"/>
 	  </select>
 	  <select id="listCount">
@@ -196,6 +196,7 @@
 	  <insert id="insertUsr">
 	  		insert into member(
 				admNy
+				,kakaoLoginNy
 			    ,name
 			    ,userId
 			    ,userPassword
@@ -209,6 +210,7 @@
 			    ,delNy
 			)value(
 				0
+				,#{kakaoLoginNy}
 			    ,#{name}
 			    ,#{userId}
 				,#{userPassword}
@@ -228,7 +230,6 @@
 	  			admNy = CASE WHEN #{admNy} IS NOT NULL THEN #{admNy} ELSE admNy END
 	  			,name = CASE WHEN #{name} IS NOT NULL THEN #{name} ELSE name END
 	  			,userId = CASE WHEN #{userId} IS NOT NULL THEN #{userId} ELSE userId END
-	  			,userPassword = CASE WHEN #{userPassword} IS NOT NULL THEN #{userPassword} ELSE userPassword END
 	  			,gender = CASE WHEN #{gender} IS NOT NULL THEN #{gender} ELSE gender END
 	  			,dateOfBirth = CASE WHEN #{dateOfBirth} IS NOT NULL THEN #{dateOfBirth} ELSE dateOfBirth END
 	  			,email = CASE WHEN #{email} IS NOT NULL THEN #{email} ELSE email END

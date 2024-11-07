@@ -536,6 +536,7 @@ main>*{
 .scrolltable{
     height: auto;
     position: relative;
+    min-width: 1200px;
     /* display: flex;
     flex-direction: column; */
     gap: 20px;

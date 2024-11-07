@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.exion.infra.member.MemberDto;
+import com.exion.infra.member.MemberService;
 import com.exion.infra.util.Constants;
 
 import jakarta.servlet.http.HttpSession;
@@ -17,6 +19,9 @@ public class KakaoLoginController {
 	
 	@Autowired
 	KakaoLoginService kakaoLoginService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	//@RequestMapping("/kakao")
 //    public String kakao(@RequestParam("code") String code){
@@ -36,12 +41,12 @@ public class KakaoLoginController {
 //        return "redirect:/";
 //    }
 	@GetMapping("/kakaoLogin")
-	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
+	public String kakaoLogin(@RequestParam("code") String code, HttpSession session,MemberDto memberDto) {
 	    // 액세스 토큰 요청 및 사용자 정보 요청 로직
 	    LoginResponseDto loginResponse = kakaoLoginService.getAccessToken(code);
 	    System.out.println("loginResponse");
 	    Map<String, Object> userInfo = kakaoLoginService.getUserInfo(loginResponse.getAccess_token());
-
+	    
 	    // 사용자 정보를 세션에 저장
 //	    session.setAttribute("sessIdXdm", userInfo.get("id"));
 //	    session.setAttribute("sessNameXdm", userInfo.get("nickname")); // 필요한 추가 정보 저장
@@ -61,10 +66,18 @@ public class KakaoLoginController {
 //	        String formattedNumber = String.format("%04d", randomNumber); // 4자리로 포맷
 //
 //	        session.setAttribute("sessNameXdm", "카카오" + formattedNumber + "회원님");
+	    	memberDto.setName("카카오" + userInfo.get("id") + "회원님");
 	    	session.setAttribute("sessNameXdm", "카카오" + userInfo.get("id") + "회원님");
 	    } else {
+	    	memberDto.setName(nickname);
 	        session.setAttribute("sessNameXdm", nickname);
 	    }
+	    memberDto.setUserId(email);
+	    memberDto.setEmail(email);
+	    memberDto.setKakaoLoginNy(1);
+//	    if()
+	    memberService.insertUsr(memberDto);
+	    
 	    session.setAttribute("sessIdXdm", email);
 	    session.setAttribute("sessEmailXdm",email);
 	    

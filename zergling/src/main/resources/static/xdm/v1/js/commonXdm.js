@@ -305,10 +305,10 @@ window.addEventListener('load', function() {
                     // var waring = feedback.textContent.trim();
                     if(element.tagName ==='INPUT'){
                         feedback.textContent = inputNullText;
-                        alert(inputNullText);
+                        // alert(inputNullText);
                     }else if(element.tagName ==='SELECT'){
                         feedback.textContent = selectNullText;
-                        alert(selectNullText);
+                        // alert(selectNullText);
                     }
                     
                     
@@ -339,10 +339,10 @@ window.addEventListener('load', function() {
                 }
             };
             if(validateChk == false){
-                alert("검사실패");
+                // alert("검사실패");
                 return false;
             }
-            alert("통과!");
+            // alert("통과!");
             form.action = formUrl;
             form.submit();
             //ajax 로그인
@@ -440,39 +440,39 @@ window.addEventListener('load', function() {
                 console.log("특문빼고");
                 
                 if(!krAlphaNumRegExp.test(objValue)){
-                    alert(codeRegExpText);
+                    // alert(codeRegExpText);
                     feedback.textContent = codeRegExpText;
                     element.focus();
                     return false;
                 } else {
         // 	    	by pass
-                    alert("정규식 통과");
+                    // alert("정규식 통과");
                     return true;
                 }
             } else if (element.classList.contains('valid-alpha-num')) {
                 console.log("한글빼고");
                 
                 if(!alphaNumRegExp.test(objValue)){
-                    alert(alphaNumRegExpText);
+                    // alert(alphaNumRegExpText);
                     feedback.textContent = alphaNumRegExpText;
                     element.focus();
                     return false;
                 } else {
         // 	    	by pass
-                    alert("정규식 통과");
+                    // alert("정규식 통과");
                     return true;
                 }
             } else if (element.classList.contains('valid-numeric')) {
                 console.log("숫자만");
                 
                 if(!numericRegExp.test(objValue)){
-                    alert(numRegExpText);
+                    // alert(numRegExpText);
                     feedback.textContent = numRegExpText;
                     element.focus();
                     return false;
                 } else {
         // 	    	by pass
-                    alert("정규식 통과");
+                    // alert("정규식 통과");
                     return true;
                 }
             }
@@ -484,13 +484,13 @@ window.addEventListener('load', function() {
     
                 if(!emailRegExp.test(objValue)){
                     var text = "이메일 형식에 따라 정확히 입력해주세요";
-                    alert(text);
+                    // alert(text);
                     feedback.textContent = text;
                     element.focus();
                     return false;
                 } else {
         // 	    	by pass
-                    alert("정규식 통과");
+                    // alert("정규식 통과");
                     return true;
                 }
             } else if (element.classList.contains('valid-birth-num')) {
@@ -500,13 +500,13 @@ window.addEventListener('load', function() {
                 console.log("생일: "+objValue);
                 if(!birthRegExp.test(objValue)){
                     var text = "정확한 생년월일 8자리를 입력해주세요";
-                    alert(text);
+                    // alert(text);
                     feedback.textContent = text;
                     element.focus();
                     return false;
                 } else {
         // 	    	by pass
-                    alert("정규식 통과");
+                    // alert("정규식 통과");
                     return true;
                 }
             }
@@ -514,13 +514,13 @@ window.addEventListener('load', function() {
                 console.log("아이디형식");
                 if(!idRegExp.test(objValue)){
                     var text = "아이디는 5~15자의 영대소문자와 숫자만 포함해야 합니다.";
-                    alert(text);
+                    // alert(text);
                     feedback.textContent = text;
                     element.focus();
                     return false;
                 } else {
         // 	    	by pass
-                    alert("정규식 통과");
+                    // alert("정규식 통과");
                     return true;
                 }
             }
@@ -544,18 +544,18 @@ window.addEventListener('load', function() {
                 
                 if(!phoneRegExp.test(objValue)){
                     var text = "정확한 핸드폰번호를 입력해주세요: - 제외";
-                    alert(text);
+                    // alert(text);
                     feedback.textContent = text;
                     element.focus();
                     return false;
                 } else {
         // 	    	by pass
-                    alert("정규식 통과");
+                    // alert("정규식 통과");
                     return true;
                 }
             }else{
                 console.log("else 통과");
-                alert("else 통과");
+                // alert("else 통과");
                 return true;
             }
         // }

@@ -168,17 +168,25 @@ public class indexController {
 	@RequestMapping(value = "user_delivery_address")
 	public String deliveryAddress(Model model,HttpSession httpSession, MemberDto memberDto, DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
 		if(httpSession.getAttribute("kakoLogin") != null) {
-			model.addAttribute("addrList", deliveryAddressService.selectList(vo));
+//			model.addAttribute("addrList", deliveryAddressService.selectList(vo));
 		}else {
-			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-			deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-			vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-//			model.addAttribute("member", memberService.selectOne(memberDto));
-			model.addAttribute("count", deliveryAddressService.listUsrCount(vo));
-			model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
-//			System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
-			model.addAttribute("addrList", deliveryAddressService.selectUsrList(vo));
+//			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+//			deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+//			vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+////			model.addAttribute("member", memberService.selectOne(memberDto));
+//			model.addAttribute("count", deliveryAddressService.listUsrCount(vo));
+//			model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
+////			System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
+//			model.addAttribute("addrList", deliveryAddressService.selectUsrList(vo));
 		}
+		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+		deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
+//		model.addAttribute("member", memberService.selectOne(memberDto));
+		model.addAttribute("count", deliveryAddressService.listUsrCount(vo));
+		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
+//		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
+		model.addAttribute("addrList", deliveryAddressService.selectUsrList(vo));
 		
 //		int size = deliveryAddressService.selectList().size();
 //		model.addAttribute("size", size); // 사이즈 추가
@@ -204,6 +212,9 @@ public class indexController {
 		deliveryAddressDto.setMember_seq(httpSession.getAttribute("sessSeqXdm").toString());
 		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 		System.out.println("getDefaultNy:"+deliveryAddressDto.getDefaultNy());
+		if(deliveryAddressDto.getDefaultNy() == null) {
+			deliveryAddressDto.setDefaultNy(0);
+		}
 		deliveryAddressService.insertAddr(deliveryAddressDto,vo);
 		System.out.println("user_delivery_address_inst");
 		return "redirect:user_delivery_address";
