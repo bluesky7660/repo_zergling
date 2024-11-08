@@ -25,6 +25,9 @@
 
     <!-- swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- by developer -->
+    <link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/style.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/user_account.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -42,15 +45,13 @@
                         <p class="content_title">회원정보 수정</p>
                         <div class="content_box">
                             <form method="post" autocomplete="off" action="user_accountUpdt">
+                                <input type="hidden" name="seq" th:value="${session.sessSeqXdm}">
                                 <p class="box_title">기본정보</p>
                                 <table class="modAccount">
                                     <colgroup>
                                         <col style="width: 264px;">
                                         <col style="width: auto;">
                                     </colgroup>
-                                    <tr>
-                                        <td><input type="hidden" name="seq" th:value="${session.sessSeqXdm}"></td>
-                                    </tr>
                                     <tr>
                                         <th><label for="">아이디</label></th>
                                         <td><p class="user_id" th:text="${item?.userId}">abcd1234</p></td>
@@ -73,9 +74,9 @@
                                     <tr th:if="${(session.kakoLogin !=null)&&(item.dateOfBirth==null&&item.gender==null)}">
                                         <th><label for="">생년월일/성별</label></th>
                                         <td>
-                                            <div class="user_dateOfBirth" >
+                                            <div class="user_dateOfBirth_box" >
                                                 <p>
-                                                    <input class="form-control" type="date" name="dateOfBirth" id="user_dateOfBirth" th:value="${item.dateOfBirth}">
+                                                    <input class="form-control" type="text" name="dateOfBirth" id="user_dateOfBirth" th:value="${item.dateOfBirth}" placeholder="1999-12-12">
                                                 </p>
                                             </div>
                                         </td>
@@ -99,6 +100,13 @@
                                         <th><label for="">휴대폰</label></th>
                                         <td><input class="form-control" type="text" name="phoneNum" id="" th:value="${item.phoneNum}" placeholder="ex). 01012345678"></td>
                                     </tr>
+                                    
+                                    <tr>
+                                        <th><label for="">프로필사진</label></th>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
                                 </table>
                                 <div class="btn-box mt-5">
                                     <button class="btn" type="submit">정보 수정</button>
@@ -118,8 +126,19 @@
     <!-- Bootstrap Select JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <!-- by developer -->
+    <script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <script src="/usr/v1/assets/js/custom.js"></script>
     <script src="/usr/v1/assets/js/header.js"></script>
-
+    <script>
+        window.addEventListener('load',function() {
+            $.datetimepicker.setLocale('ko');
+            $("#user_dateOfBirth").datetimepicker({
+                timepicker:false,
+                format:'Y-m-d'
+            });
+        })
+    </script>
 </body>
 </html>

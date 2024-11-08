@@ -49,6 +49,9 @@ li a img{
 *{
     text-align: left;
 }
+footer{
+    padding: 20px 150px;
+}
 .logo{
     margin: 0 auto 50px;
     cursor: pointer;
@@ -57,7 +60,7 @@ li a img{
 .contentArea{
     max-width: 340px;
     margin:  auto;
-    padding: 3rem 0 150px;
+    padding: 3rem 0 40px;
 }
 .btn{
     font-weight: bold;

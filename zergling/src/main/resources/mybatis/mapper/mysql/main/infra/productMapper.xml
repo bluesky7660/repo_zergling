@@ -435,7 +435,7 @@
 			    ,#{point}
 			    ,#{stockQty}
 			    ,#{intro}
-			    ,#{reviewNum}
+			    ,0
 			    ,#{shipDate}
 			    ,#{tableOfContents}
 				,#{publisherReview}
@@ -556,7 +556,6 @@
 			    ,point = #{point}
 			    ,stockQty = #{stockQty}
 			    ,intro = #{intro}
-			    ,reviewNum = #{reviewNum}
 			    ,shipDate = #{shipDate}
 			    ,tableOfContents = #{tableOfContents}
 			    ,publisherReview = #{publisherReview}

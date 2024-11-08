@@ -30,6 +30,8 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://www.google.com/recaptcha/enterprise.js?render=KEY_ID"></script>
     <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    <!-- by developer -->
+    <link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
 </head>
 <body>
     <div class="page-wrapper">
@@ -114,7 +116,7 @@
                                 <li>
                                     <label for="">생년월일</label>
                                     <div>
-                                        <input type="date" id="signup_dateOfBirth" class="signup_dateOfBirth valid-birth-num form-control validate-this" name="dateOfBirth" placeholder="19991212" required>
+                                        <input type="text" id="signup_dateOfBirth" class="signup_dateOfBirth valid-birth-num form-control validate-this" name="dateOfBirth" placeholder="1999-12-12" required readonly>
                                     </div>
                                     <!-- <input type="text" class="form-control" name="dateOfBirth" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="19991212" required> -->
                                 </li>
@@ -179,9 +181,17 @@
     <!-- Initialize Bootstrap Select -->
     <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
+    <!-- by developer -->
+    <script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <script src="/usr/v1/assets/js/custom.js"></script>
-    <!-- <script src="/usr/v1/assets/js/validations.js"></script> -->
-     <script>
+    <script>
+        window.addEventListener('load',function() {
+            $.datetimepicker.setLocale('ko');
+            $("#signup_dateOfBirth").datetimepicker({
+                timepicker:false,
+                format:'Y-m-d'
+            });
+        })
         function onClick(e) {
             e.preventDefault();
             grecaptcha.enterprise.ready(async () => {
@@ -195,6 +205,6 @@
         function onSubmit(token) {
             document.getElementById("demo-form").submit();
         }
-     </script>
+    </script>
 </body>
 </html>
