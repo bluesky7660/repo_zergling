@@ -101,6 +101,12 @@ form>*{
 .input_area li{
     margin-bottom: 20px;
 }
+/* #signupBtn{
+    margin-top: 30px;
+} */
+.captcha_area .invalid-feedback{
+    text-align: end;
+}
 
 /* .input_area li>label{
     display: inline-block;

@@ -542,6 +542,162 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //회원가입
+    const signupBtn = document.getElementById("signupBtn");
+    if (signupBtn) {
+        signupBtn.onclick = function (){
+            
+            var objs = document.querySelectorAll(".validate-this");
+            var i= 0;
+            var validateChk = [];
+            for(let element of objs){
+                var objValue = element.value.trim();
+                // const elementBox = element.parentElement;
+                let elementBox;
+                if(element.closest("td")){
+                    elementBox = element.closest("td");
+                }else if (element.closest("li")) {
+                    elementBox = element.closest("li");
+                }
+                const invalidBoxChk = elementBox.querySelector(".invalid-box");
+                if(invalidBoxChk){
+                    elementBox.querySelector(".invalid-box").remove();
+                }
+                // console.log("elementBox:" +elementBox.outerHTML);
+                const feedbackBox = document.createElement("div");
+                const feedbackChild = document.createElement("div");
+                const feedbackinner = document.createElement("div");
+                feedbackBox.className  = "invalid-box mb-3";
+                feedbackChild.className  = "invalid-child";
+                feedbackinner.className  = "invalid-feedback";
+                feedbackinner.id  = "invalid-feedback";
+                feedbackBox.appendChild(feedbackChild);
+                feedbackBox.appendChild(feedbackinner);
+                elementBox.appendChild(feedbackBox);
+                const feedbackChk = elementBox.querySelector(".invalid-child");
+                const feedback = elementBox.querySelector(".invalid-feedback");
+                if (objValue == "" || objValue == null) {
+                    // var waring = feedback.textContent.trim();
+                    if(element.tagName ==='INPUT'){
+                        // console.log("INPUT1");
+                        if(element.classList.contains('valid-birth-num')){
+                            feedback.textContent = birthRegExpText;
+                            // console.log("INPUT2");
+                        }else{
+                            feedback.textContent = inputNullText;
+                            // console.log("INPUT3");
+                        }
+                        // alert(inputNullText);
+                    }else if(element.tagName ==='SELECT'){
+                        // console.log("SELECT1");
+                        if(element.classList.contains('valid-gender')){
+                            feedback.textContent = genderRegExpText;
+                            // console.log("SELECT2");
+                        }else{
+                            feedback.textContent = selectNullText;
+                            // console.log("SELECT3");
+                        }
+                        // alert(selectNullText);
+                    }
+                    
+                    
+                    if(i==0){
+                        element.focus();
+                    }
+                    
+                    validateChk[i] = false;
+                    i++;
+                    element.classList.add('is-invalid');
+                    feedbackChk.classList.add('is-invalid');
+                } else {
+                    //by pass
+                    var val  = RegExps(element,objValue,feedback);
+                    console.log("체크");
+                    if(val == true){
+                        validateChk[i] = true;
+                        i++;
+                        element.classList.remove('is-invalid');
+                        element.classList.add('is-valid');
+                        feedbackChk.classList.remove('is-invalid');
+                    }else{
+                        if(i==0){
+                            element.focus();
+                        }
+                        
+                        validateChk[i] = false;
+                        i++;
+                        element.classList.add('is-invalid');
+                        feedbackChk.classList.add('is-invalid');
+                    }
+                    
+                }
+            };
+            console.log("validateChk: "+validateChk);
+            if(validateChk.includes(false)){
+                // alert("검사실패");
+                return false;
+            }
+            // alert("통과!");
+            // form.action = formUrl;
+            // form.submit();
+
+            //ajax 
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: formUrl
+                /* ,data : $("#formLogin").serialize() */
+                ,data : { 
+                    "userId" : $("#userId").val().trim(),
+                    "name" : $("#userName").val().trim(),
+                    "userPassword" : $("#signup_password").val(),
+                    "email" : $("#userEmail").val().trim(),
+                    "phoneNum" : $("#userTel").val().trim(),
+                    "gender" : $("#user_gender").val().trim(),
+                    "dateOfBirth" : $("#signup_dateOfBirth").val().trim(),
+                    captchaCode: $("#captchaCode").val(),
+                }//, "autoLogin" : $("#autoLogin").is(":checked")}
+                ,success: function(response) {
+                    if(response.rt == "success") {
+                        // $("#userId").classList.remove('is-invalid');
+                        // $("#userName").classList.remove('is-invalid');
+                        // $("#signup_password").classList.remove('is-invalid');
+                        // $("#signup_password_check").classList.remove('is-invalid');
+                        // $("#userEmail").classList.remove('is-invalid');
+                        // $("#userTel").classList.remove('is-invalid');
+                        // $("#user_gender").classList.remove('is-invalid');
+                        // $("#signup_dateOfBirth").classList.remove('is-invalid');
+                        // feedbackChk.classList.remove('is-invalid');
+
+                        window.location.href = "/login";
+                        // location.href = "index";
+                        
+                    } else {
+
+                        // const feedbackHtml = `
+                        //     <div class="invalid-box mb-3">
+                        //         <div class="invalid-child"></div>
+                        //         <div id="invalid-feedback" class="invalid-feedback"></div>
+                        //     </div>`
+                        // ;
+                        // console.log("테스트");
+                        // $(".captcha_area").append(feedbackHtml);
+                        console.log("테스트2");
+                        $("#captchaCode").addClass('is-invalid');
+                        $(".captcha_area .invalid-feedback").css("display", "block").text("캡차 검증에 실패했습니다.");
+
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+            
+        }
+    }
+
     //비밀번호 on/off
     const togglePasswordElements = document.querySelectorAll('.toggle-password');
     const passwordInputs = document.querySelectorAll('.login_password,.signup_password');

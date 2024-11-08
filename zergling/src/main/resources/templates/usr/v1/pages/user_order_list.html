@@ -42,12 +42,12 @@
                     <div>
                         <div class="content_title_box">
                             <p class="content_title">주문 / 배송 목록</p>
-                            <div class="d-flex align-items-center gap-3">
+                            <!-- <div class="d-flex align-items-center gap-3">
                                 <p class="gray-color">
                                     최근 1개월 주문내역 입니다.
                                 </p>
                                 <button class="btn">상세조회</button>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="content_box">
                             <div class="order_list_view_box">
@@ -89,27 +89,26 @@
                                         <div class="order_summary">
                                             <div>
                                                 <span th:text="${#dates.format(list.orderDate,'yyyy.MM.dd') + '(' + list.orderNumber + ')'}">2024.08.04(O24458797451)</span>
-                                                <span class="order-detail-btn">상세보기</span>
+                                                <!-- <span class="order-detail-btn">상세보기</span> -->
                                             </div>
-                                            <div>
+                                            <!-- <div>
                                                 <span class="order-delete-btn">주문내역에서 삭제</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                 
                                         <!-- 주문 상품 정보 -->
                                         <div class="order_product">
                                             <div>
                                                 <div class="img-box">
-                                                    <img th:src="'/usr/v1/assets/images/prod/200/'+ ${list.imgSrc} +'.jpg'" alt="">
-                                                    <!-- <img th:src="@{/usr/v1/assets/images/prod/200/} + ${list.productImage}" alt=""> -->
+                                                    <img th:src="${list.imgSrc}" th:alt="${list.title+' 이미지'}">
                                                 </div>
                                             </div>
                                             <div>
                                                 <p class="prod_title_box">
                                                     <span class="prod_type">[국내도서 · <span th:text="${list.prodTypeName}"></span>]</span>
-                                                    <span class="prod_title" th:text="${list.title}">나쁜 검사들</span>
+                                                    <span class="prod_title" th:text="${list.title}"></span>
                                                 </p>
-                                                <p class="prod_num">수량 : <span th:text="${list.uoQuantity}">1</span></p>
+                                                <p class="prod_num">수량 : <span th:text="${list.uoQuantity}"></span></p>
                                             </div>
                                             <div>
                                                 <p class="prod_price"><span th:text="${#numbers.formatInteger(list.uoPrice,1,'COMMA')}"></span>원</p>

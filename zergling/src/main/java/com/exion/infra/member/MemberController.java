@@ -127,11 +127,30 @@ public class MemberController {
 	
 	//user
 	@RequestMapping(value = "signupInst")
-	public String signupInst(MemberDto memberDto) {
+	@ResponseBody
+	public Map<String, Object> signupInst(MemberDto memberDto,@RequestParam("captchaCode") String captchaCode, HttpServletRequest request) {
 		System.out.println("signupInst");
+		System.out.println("test:"+memberDto.getName());
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		String sessionCode = (String) request.getSession().getAttribute("captcha");
+//		System.out.println("captchaCode:"+captchaCode);
+//		System.out.println("request:"+sessionCode);
+//		System.out.println("CaptchaJakartaUtil.ver(captchaCode, request):"+CaptchaJakartaUtil.ver(captchaCode, request));
+		if (!CaptchaJakartaUtil.ver(captchaCode, request)) {
+            returnMap.put("rt", "fail");
+            returnMap.put("message", "Captcha validation failed.");
+            System.out.println("Captcha실패");
+
+            return returnMap;
+        }
+        // 캡차 세션 제거
+		CaptchaJakartaUtil.clear(request);
+		System.out.println("Captcha성공");
 		memberDto.setUserPassword(encodeBcrypt(memberDto.getUserPassword(), 10));
 		memberService.insertUsr(memberDto);
-		return "redirect:login";
+		returnMap.put("rt", "success");
+		return returnMap;
 	}
 	@RequestMapping(value = "user_accountUpdt")
 	public String userAccountUpdt(MemberDto memberDto) {

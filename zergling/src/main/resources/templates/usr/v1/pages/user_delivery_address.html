@@ -134,7 +134,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <div class="btn-box changeDefAddress" th:if="${!#lists.isEmpty(addrList)}">
+                                    <div class="btn-box changeDefAddress" th:if="${!#lists.isEmpty(addrList)&&count!=1}">
                                         <button class="btn btn-blue" type="submit">
                                             선택한 배송지로 기본배송지 변경
                                         </button>

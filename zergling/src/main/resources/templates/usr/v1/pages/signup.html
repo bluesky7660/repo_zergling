@@ -39,21 +39,24 @@
             </div>
             <div>
                 <form method="post" autocomplete="off" action="signupInst">
-                    <div class="type_tab d-flex justify-content-between">
+                    <div>
+                        <h3>회원가입</h3>
+                    </div>
+                    <!-- <div class="type_tab d-flex justify-content-between">
                         <div class="individual_tab tab_button active" data-target="individual_member">
                             <span>개인회원</span>
                         </div>
                         <div class="corporate_tab tab_button" data-target="corporate_member">
                             <span>간편회원</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="tab_contents">
                         <div class="tab_content active" id="individual_member">
                             <ul class="input_area input_box">
                                 <li>
                                     <label for="">이름</label>
                                     <div>
-                                        <input type="text" class="form-control validate-this valid-user-name" name="name" placeholder="이름을 입력하세요." required>
+                                        <input type="text" id="userName" class="form-control validate-this valid-user-name" name="name" placeholder="이름을 입력하세요." required>
                                         <div class="invalid-box mb-3">
                                             <div class="invalid-child"></div>
                                             <div id="invalid-feedback" class="invalid-feedback"></div>
@@ -63,7 +66,7 @@
                                 <li>
                                     <label for="">아이디</label>
                                     <div>
-                                        <input type="text" class="form-control validate-this valid-id" name="userId" placeholder="아이디를 입력하세요." required>
+                                        <input type="text" id="userId" class="form-control validate-this valid-id" name="userId" placeholder="아이디를 입력하세요." required>
                                     </div>
                                 </li>
                                 <li>
@@ -83,13 +86,13 @@
                                 <li>
                                     <label for="">이메일</label>
                                     <div>
-                                        <input type="email" class="form-control validate-this valid-email" name="email" placeholder="이메일을 입력해주세요." required>
+                                        <input type="email" id="userEmail" class="form-control validate-this valid-email" name="email" placeholder="이메일을 입력해주세요." required>
                                     </div>
                                 </li>
                                 <li>
                                     <label for="">전화번호</label>
                                     <div>
-                                        <input type="tel" class="form-control validate-this valid-phone-num" name="phoneNum" placeholder="전화번호를 입력해주세요. 숫자만" required>
+                                        <input type="tel" id="userTel" class="form-control validate-this valid-phone-num" name="phoneNum" placeholder="전화번호를 입력해주세요. 숫자만" required>
                                     </div>
                                 </li>
                                 <!-- <li>
@@ -115,15 +118,22 @@
                                     </div>
                                     <!-- <input type="text" class="form-control" name="dateOfBirth" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="19991212" required> -->
                                 </li>
-                                
+                                <li class="captcha_area">
+                                    <div class="captcha_box">
+                                        <img id="captchaImage" src="/captcha" style=" width:130px; height:48px; border: 1px solid #aaa;" />
+                                        <input type="number" class="form-control validate-this" id="captchaCode" placeholder="숫자 입력" min="0" max="99999" oninput="this.value = Math.max(0, Math.min(99999, this.value))" required/>
+                                    </div>
+                                </li>
                             </ul>
                             <div class="signup_btn">
-                                <input type="hidden" id="grecaptcha" />
-                                <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div>
-                                <button id="btnSubmit"  class="btn btn-blue w-100" type="button">회원가입</button>
+                                <!-- <input type="hidden" id="grecaptcha" /> -->
+                                <!-- <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div> -->
+                                
+                                
+                                <button id="signupBtn" class="btn btn-blue w-100" type="button">회원가입</button>
                             </div>
                         </div>
-                        <div class="tab_content" id="corporate_member">
+                        <!-- <div class="tab_content" id="corporate_member">
                             <ul class="simple_Signup flex-wrap d-flex justify-content-center gap-3">
                                 <li>
                                     <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_naver@2x.png" alt=""></a>
@@ -144,7 +154,7 @@
                             <div class="sns_btn">
                                 <button class="btn btn-blue w-100" type="button">간편회원 가입하기</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
                 
