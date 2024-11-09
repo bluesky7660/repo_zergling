@@ -62,6 +62,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/bookCover"
 						,"/rest/member"
 						,"/rest/member/**"
+						,"/orderCancel"
 						
 		);
 	}

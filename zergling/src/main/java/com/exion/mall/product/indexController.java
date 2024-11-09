@@ -359,6 +359,35 @@ public class indexController {
 		return returnMap;
 	}
 	@ResponseBody
+	@RequestMapping(value = "orderCancel")
+	public Map<String, Object> orderCancel(@RequestParam("uoSeq") String uoSeq , OrderDto orderDto){
+		Map<String, Object> returnMap = new HashMap<>();
+		System.out.println("uoSeq:"+uoSeq);
+		orderDto.setUoSeq(uoSeq);
+	    OrderDto rtOrder = orderService.selectUsrOne(orderDto);
+	    System.out.println("rtOrder.getOrderDate():"+rtOrder.getOrderDate());
+	    if (rtOrder != null) {
+	        returnMap.put("rt", "success");
+	        returnMap.put("uoSeq", rtOrder.getUoSeq());
+	        returnMap.put("orderDate", rtOrder.getOrderDate());
+	        returnMap.put("orderNumber", rtOrder.getOrderNumber());
+	        returnMap.put("imgSrc", rtOrder.getImgSrc());
+	        returnMap.put("prodTypeName", rtOrder.getProdTypeName());
+	        returnMap.put("title", rtOrder.getTitle());
+	        returnMap.put("uoQuantity", rtOrder.getUoQuantity());
+	        returnMap.put("uoPrice", rtOrder.getUoPrice());
+	        returnMap.put("orderStatusText", rtOrder.getOrderStatusText());
+	        returnMap.put("deliveryDate", rtOrder.getDeliveryDate());
+	        returnMap.put("orderStatus", rtOrder.getOrderStatus());
+	        System.out.println("성공");
+	    } else {
+	        returnMap.put("rt", "fail");
+	        System.out.println("실패");
+	    }
+	    
+	    return returnMap;
+	}
+	@ResponseBody
 	@RequestMapping(value = "orderUelt")
 	public String orderUelt(OrderDto orderDto){
 		

@@ -16,6 +16,9 @@ public class OrderService {
 	public List<OrderDto> selectUsrList(OrderDto orderDto){
 		return orderDao.selectUsrList(orderDto);
 	}
+	public OrderDto selectUsrOne(OrderDto orderDto){
+		return orderDao.selectUsrOne(orderDto);
+	}
 	public int listCount(OrderVo vo) {
 		return orderDao.listCount(vo);
 	}
