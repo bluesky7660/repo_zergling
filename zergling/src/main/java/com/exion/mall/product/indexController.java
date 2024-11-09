@@ -364,6 +364,7 @@ public class indexController {
 		Map<String, Object> returnMap = new HashMap<>();
 		System.out.println("uoSeq:"+uoSeq);
 		orderDto.setUoSeq(uoSeq);
+		orderService.cancel(orderDto);
 	    OrderDto rtOrder = orderService.selectUsrOne(orderDto);
 	    System.out.println("rtOrder.getOrderDate():"+rtOrder.getOrderDate());
 	    if (rtOrder != null) {

@@ -78,6 +78,7 @@
 			    ,a.uoQuantity
 			    ,a.uoDeliveryReq
 			    ,a.product_seq
+			    ,a.uoModDate
 			    ,c.codeName as orderStatusText
 			    ,a.member_seq
 			    ,d.title
@@ -94,7 +95,7 @@
 			where 1 = 1
 				and b.seq = #{seq}
 				and a.delNy = 0
-			order by a.orderDate desc
+			order by a.uoModDate desc
 	</select>
 	<select id="listCount">
     	SELECT COUNT(*)

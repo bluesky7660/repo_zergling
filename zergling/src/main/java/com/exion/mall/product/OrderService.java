@@ -22,6 +22,9 @@ public class OrderService {
 	public int listCount(OrderVo vo) {
 		return orderDao.listCount(vo);
 	}
+	public int cancel(OrderDto orderDto) {
+		return orderDao.cancel(orderDto);
+	}
 	public int insert(OrderDto orderDto) {
 		return orderDao.insert(orderDto);
 	}

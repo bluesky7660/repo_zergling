@@ -56,24 +56,24 @@
                                         <p>주문내역</p>
                                         <p>주문/배송안내</p>
                                     </div>
-                                    <div class="orders_status">
-                                        <p th:text="${paymentDoneCount}">0</p>
+                                    <div class="orders_status" id="paymentDoneCount">
+                                        <p class="orders_status_count" th:text="${paymentDoneCount}">0</p>
                                         <p>결제완료</p>
                                     </div>
-                                    <div class="orders_status">
-                                        <p th:text="${readyCount}">1</p>
+                                    <div class="orders_status" id="readyCount">
+                                        <p class="orders_status_count" th:text="${readyCount}">1</p>
                                         <p>준비중</p>
                                     </div>
-                                    <div class="orders_status">
-                                        <p th:text="${inDeliveryCount}">0</p>
+                                    <div class="orders_status" id="inDeliveryCount">
+                                        <p class="orders_status_count" th:text="${inDeliveryCount}">0</p>
                                         <p>배송중</p>
                                     </div>
-                                    <div class="orders_status">
-                                        <p th:text="${deliveredCount}">0</p>
+                                    <div class="orders_status" id="deliveredCount">
+                                        <p class="orders_status_count" th:text="${deliveredCount}">0</p>
                                         <p>배송완료</p>
                                     </div>
-                                    <div class="orders_status">
-                                        <p th:text="${cancelledCount}">1</p>
+                                    <div class="orders_status" id="cancelledCount">
+                                        <p class="orders_status_count" th:text="${cancelledCount}">1</p>
                                         <p>취소</p>
                                     </div>
                                 </div>
@@ -252,10 +252,12 @@
         document.addEventListener("DOMContentLoaded", function() {
             $(".order_cancel_btn").on('click', function () {
                 const orderItemElement = $(this).closest('.order_item');  // 클릭된 버튼의 조상 중에서 .order_item 클래스를 가진 가장 가까운 요소 찾기
+                const orderStatusText = orderItemElement.find(".order_status span").text();
                 const id = $(this).attr('id');  // 버튼의 id 속성 값 가져오기
                 const uoSeq = id.slice("order_cancel_btn".length);  // "order_cancel_btn" 이후의 값 추출
                 console.log(uoSeq);  // 추출된 uoSeq 값 출력
-                $("#confirmCancelModal #cancel_btn").on('click', function () {
+                $("#confirmCancelModal #cancel_btn").off('click').on('click', function () {
+                    console.log("클릭");
                     $.ajax({
                         async: true 
                         ,cache: false
@@ -305,6 +307,15 @@
                                     </div>
                                 `;
                                 $('#order_list').prepend(orderItemHtml);
+                                if(orderStatusText == "결제완료"){
+                                    let minusCount = parseInt($("#paymentDoneCount .orders_status_count").text());
+                                    $("#paymentDoneCount .orders_status_count").text(minusCount-1);
+                                }else if(orderStatusText == "준비중"){
+                                    let minusCount = parseInt($("#readyCount .orders_status_count").text());
+                                    $("#readyCount .orders_status_count").text(minusCount-1);
+                                }
+                                let currentCount = parseInt($("#cancelledCount .orders_status_count").text());
+                                $("#cancelledCount .orders_status_count").text(currentCount+1);
                             }
                             
                             

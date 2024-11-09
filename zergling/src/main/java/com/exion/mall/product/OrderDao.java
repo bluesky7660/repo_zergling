@@ -9,6 +9,7 @@ public interface OrderDao {
 	public List<OrderDto> selectList(OrderVo vo);
 	public List<OrderDto> selectUsrList(OrderDto orderDto);
 	public OrderDto selectUsrOne(OrderDto orderDto);
+	public int cancel(OrderDto orderDto);
 	public int listCount(OrderVo vo);
 	public int insert(OrderDto orderDto);
 }
