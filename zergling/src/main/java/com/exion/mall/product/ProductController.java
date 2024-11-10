@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exion.infra.code.CodeService;
 
@@ -67,7 +68,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "v1/mall/product/productXdmUpdt")
-	public String productXdmUpdt(ProductDto productDto,ProductAuthorDto productAuthorDto) {
+	public String productXdmUpdt(@RequestParam("author_seq") List<String> listAuthor_seq, ProductDto productDto,ProductAuthorDto productAuthorDto) {
+		System.out.println("Author Sequences: " + listAuthor_seq);
+		productAuthorDto.setListAuthor_seq(listAuthor_seq);
 		try {
 			productService.update(productDto,productAuthorDto);
 		} catch (Exception e) {

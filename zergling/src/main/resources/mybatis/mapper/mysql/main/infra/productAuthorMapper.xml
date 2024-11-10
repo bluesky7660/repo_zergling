@@ -6,6 +6,8 @@
 	<select id="productAuthorSelected" resultMap="resultMapObj">
 		select 
 			a.author_seq
+			,a.paSeq
+			,a.delNy
 			,b.name
 			from
 				productAuthor a 
@@ -13,16 +15,19 @@
 				join author b on a.author_seq = b.seq
 			where 1 = 1
 				and c.seq = #{seq}
+				and a.delNy = 0
 	</select>
 	<insert id="insert">
 		insert into productAuthor(
 			product_seq
 		    ,author_seq
+		    ,delNy
 		    ,aDefaultNy
 		    ,pDefaultNy
 		)value(
 			#{product_seq}
 		    ,#{author_seq}
+		    ,0
 		    ,0
 		    ,0
      	)
@@ -55,6 +60,13 @@
 			,author_seq = #{author_seq}
 		WHERE 1=1
 			AND product_seq = #{product_seq}
+	</update>
+	<update id="uelete">
+		UPDATE productAuthor
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND paSeq = #{paSeq}
 	</update>
 </mapper>	
 	

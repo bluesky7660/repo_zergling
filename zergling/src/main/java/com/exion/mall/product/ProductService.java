@@ -39,13 +39,14 @@ public class ProductService {
 		for(String author: authorLists) {
 //			System.out.println("상품번호: "+productDto.getSeq());
 //			System.out.println("작가번호: "+author);
-			productAuthorDto.setProduct_seq(productDto.getSeq());
-			productAuthorDto.setAuthor_seq(author);
+			
 //			if(i == 0) {
 //				productAuthorDto.setaDefaultNy(1);
 //			}else {
 //				productAuthorDto.setaDefaultNy(0);
 //			}
+			productAuthorDto.setProduct_seq(productDto.getSeq());
+			productAuthorDto.setAuthor_seq(author);
 			productAuthorDao.insert(productAuthorDto);
 			j++;
 		}
@@ -182,14 +183,65 @@ public class ProductService {
 	}
 	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) throws Exception {
 		int a = productDao.update(productDto);
-//		List<String> authorLists = productAuthorDto.getListAuthor_seq();
-//		System.out.println("리스트2: "+authorLists);
-//		for(String author: authorLists) {
-//			System.out.println("상품번호: "+productDto.getSeq());
-//			System.out.println("작가번호: "+author);
+		List<String> authorSeqs = productAuthorDto.getListAuthor_seq();
+		List<ProductAuthorDto> authorLists = productAuthorDao.productAuthorSelected(productAuthorDto);
+		
+		//수정한 작가추가
+		for(String authorSeq:authorSeqs) {
+			System.out.println("----------------------------------------------------");
+			System.out.println("현재작가번호: "+authorSeq+"번");
+			boolean isExist = false;
+			
+			for(ProductAuthorDto author: authorLists) {
+				System.out.println("ProductAuthorDto.seq: "+author.getPaSeq());
+
+				System.out.println("작가번호: "+author.getAuthor_seq());
+				
+				if(authorSeq.equals(author.getAuthor_seq())) {
+					System.out.println("작가존재");
+					isExist = true;
+					break;
+				}
+				System.out.println("작가없음");	
+
+			}
+			if (!isExist) {
+				System.out.println("상품번호: "+productDto.getSeq());
+				productAuthorDto.setProduct_seq(productDto.getSeq());  // 상품 번호 설정
+		        productAuthorDto.setAuthor_seq(authorSeq);  // 추가할 작가 번호 설정
+
+		        System.out.println(authorSeq + "번 작가 추가");
+		        productAuthorDao.insert(productAuthorDto);   // 추가실행
+		    }
+		}
+		// authorSeqs에 해당 Author_seq가 없다면, 해당 author를 삭제
+		for (ProductAuthorDto author : authorLists) {
+		    boolean isExist = false;
+
+		    // authorSeqs에 해당 authorSeq가 존재하는지 확인
+		    for (String authorSeq : authorSeqs) {
+		        if (authorSeq.equals(author.getAuthor_seq())) {
+		        	isExist = true;
+		            break;  // authorSeqs에 존재하면 더 이상 확인할 필요 없음
+		        }
+		    }
+
+		    
+		    if (!isExist) {
+		    	System.out.println("상품번호: "+productDto.getSeq());
+		        productAuthorDto.setProduct_seq(productDto.getSeq());  // ProductAuthorDto의 paSeq 설정
+		        productAuthorDto.setAuthor_seq(author.getAuthor_seq());  // 해당 authorSeq 설정
+
+		        System.out.println(author.getAuthor_seq() + "번 작가 제외");
+		        productAuthorDao.uelete(productAuthorDto);  // 해당 authorSeq에 대해 데이터 삭제
+		    }
+		}
+//		productAuthorDao.defaultUpdt(productAuthorDto);
+
 //			productAuthorDto.setProduct_seq(productDto.getSeq());
-//			productAuthorDto.setAuthor_seq(author);
+//			productAuthorDto.setAuthor_seq(author.getAuthor_seq());
 //			productAuthorDao.update(productAuthorDto);
+//			if()
 //		}
 		MultipartFile[] multipartFiles = productDto.getUploadFiles();
 		int maxNumber = multipartFiles.length;

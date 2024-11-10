@@ -6,12 +6,13 @@ public class ProductAuthorDto {
 	private String paSeq;
 	private String product_seq;
 //	private List<String> author_seq;
-	private List<String> ListAuthor_seq;
+	private List<String> listAuthor_seq;
 	private String author_seq;
 	private String seq;
 	private String name;
 	private Integer aDefaultNy;
 	private Integer pDefaultNy;
+	private Integer delNy;
 //------------------------------
 	public String getPaSeq() {
 		return paSeq;
@@ -37,11 +38,12 @@ public class ProductAuthorDto {
 //	public void setAuthor_seq(List<String> author_seq) {
 //		this.author_seq = author_seq;
 //	}
+
 	public List<String> getListAuthor_seq() {
-		return ListAuthor_seq;
+		return listAuthor_seq;
 	}
 	public void setListAuthor_seq(List<String> listAuthor_seq) {
-		ListAuthor_seq = listAuthor_seq;
+		this.listAuthor_seq = listAuthor_seq;
 	}
 	public String getSeq() {
 		return seq;
@@ -66,6 +68,12 @@ public class ProductAuthorDto {
 	}
 	public void setpDefaultNy(Integer pDefaultNy) {
 		this.pDefaultNy = pDefaultNy;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
 	}
 	
 }
