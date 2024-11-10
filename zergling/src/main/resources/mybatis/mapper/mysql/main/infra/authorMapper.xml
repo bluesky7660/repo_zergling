@@ -15,11 +15,28 @@
 								a.seq Like CONCAT('%',#{searchKeyword},'%')
 								OR a.name Like CONCAT('%',#{searchKeyword},'%')
 								OR b.title Like CONCAT('%',#{searchKeyword},'%')
+								OR (
+							        SELECT GROUP_CONCAT(b2.title SEPARATOR ', ')
+							        FROM productAuthor c2
+							        LEFT JOIN product b2 ON c2.product_seq = b2.seq
+							        WHERE 1=1 and c2.author_seq = a.seq and c2.delNy = 0
+							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
 							)
 						</when>
 						<when test="keywordType == 1">AND a.seq = #{searchKeyword}</when>
 						<when test="keywordType == 2">AND a.name Like CONCAT('%',#{searchKeyword},'%') </when>
-						<when test="keywordType == 3">AND b.title Like CONCAT('%',#{searchKeyword},'%')</when>
+						<when test="keywordType == 3">
+						AND(
+							b.title Like CONCAT('%',#{searchKeyword},'%')
+							OR (
+							        SELECT GROUP_CONCAT(b2.title SEPARATOR ', ')
+							        FROM productAuthor c2
+							        LEFT JOIN product b2 ON c2.product_seq = b2.seq
+							        WHERE 1=1 and c2.author_seq = a.seq and c2.delNy = 0
+							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
+						) 
+						
+						</when>
 					</choose>
 				</if>
 				<choose>
@@ -35,8 +52,9 @@
 				author a
 				left join productAuthor c on c.author_seq = a.seq
 				left join product b on c.product_seq = b.seq
-			WHERE 
-				c.product_seq = #{seq}
+			WHERE 1=1
+				and c.delNy = 0
+				and c.product_seq = #{seq}
 			ORDER BY 
 				a.seq
 	  </select>
@@ -82,14 +100,15 @@
 				productAuthor c  
 				JOIN author a ON c.author_seq = a.seq  
 				left JOIN product b ON c.product_seq = b.seq 
-				left JOIN productAuthor paOther ON a.seq = paOther.author_seq AND paOther.product_seq != #{seq} 
+				left JOIN productAuthor paOther ON a.seq = paOther.author_seq AND paOther.product_seq != #{seq}
 				left JOIN product b2 ON paOther.product_seq = b2.seq 
 				join commoncode d on a.authorType = d.seq
 				left join productupload f on f.pseq = b.seq
 				left join productupload f2 on f2.pseq = b2.seq
 				left join autherupload e on e.aSeq = a.seq
-			WHERE 
-				c.product_seq = #{seq}   
+			WHERE 1=1
+				and c.delNy = 0
+				and c.product_seq = #{seq}   
 				
 			ORDER BY 
 				a.seq
@@ -107,7 +126,7 @@
 		  	select
 				a.seq
 			    ,a.authorType
-			    ,(select count(aa.author_seq) from productAuthor aa  where 1=1 and aa.author_seq = a.seq) as productCount
+			    ,(select count(aa.author_seq) from productAuthor aa  where 1=1 and aa.author_seq = a.seq and aa.delNy = 0) as productCount
 			    ,d.codeName
 			    ,a.name	
 			    ,a.authorInfo

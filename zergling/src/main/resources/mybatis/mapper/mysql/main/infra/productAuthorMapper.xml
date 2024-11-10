@@ -66,7 +66,8 @@
 		SET
 			delNy = 1
 		WHERE 1=1
-			AND paSeq = #{paSeq}
+			AND product_seq = #{product_seq}
+			AND author_seq = #{author_seq}
 	</update>
 </mapper>	
 	

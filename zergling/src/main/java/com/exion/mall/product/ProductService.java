@@ -220,13 +220,12 @@ public class ProductService {
 
 		    // authorSeqs에 해당 authorSeq가 존재하는지 확인
 		    for (String authorSeq : authorSeqs) {
-		        if (authorSeq.equals(author.getAuthor_seq())) {
+		        if (author.getAuthor_seq().equals(authorSeq)) {
 		        	isExist = true;
 		            break;  // authorSeqs에 존재하면 더 이상 확인할 필요 없음
 		        }
 		    }
 
-		    
 		    if (!isExist) {
 		    	System.out.println("상품번호: "+productDto.getSeq());
 		        productAuthorDto.setProduct_seq(productDto.getSeq());  // ProductAuthorDto의 paSeq 설정
@@ -236,13 +235,7 @@ public class ProductService {
 		        productAuthorDao.uelete(productAuthorDto);  // 해당 authorSeq에 대해 데이터 삭제
 		    }
 		}
-//		productAuthorDao.defaultUpdt(productAuthorDto);
-
-//			productAuthorDto.setProduct_seq(productDto.getSeq());
-//			productAuthorDto.setAuthor_seq(author.getAuthor_seq());
-//			productAuthorDao.update(productAuthorDto);
-//			if()
-//		}
+		productAuthorDao.defaultUpdt(productAuthorDto);
 		MultipartFile[] multipartFiles = productDto.getUploadFiles();
 		int maxNumber = multipartFiles.length;
 		AmazonS3Client amazonS3Client = s3Config.amazonS3Client();
