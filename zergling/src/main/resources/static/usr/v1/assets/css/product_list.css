@@ -358,6 +358,7 @@ main .left-box i{
 }
 .content_info_box>div{
     padding:20px 0;
+    height: 100%;
 }
 .prod_title{
     margin-bottom: 0;
@@ -379,6 +380,9 @@ main .left-box i{
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+.prod_review {
+    margin-top: auto;
 }
 
 

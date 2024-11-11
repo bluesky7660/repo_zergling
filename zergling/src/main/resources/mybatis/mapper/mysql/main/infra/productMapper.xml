@@ -126,7 +126,7 @@
 	  	<include refid="base.selectListUpperForMysql"/>
 		  	select
 				a.seq
-				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
+				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq and aa.delNy = 0) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name

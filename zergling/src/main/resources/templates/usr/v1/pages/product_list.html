@@ -170,7 +170,7 @@
                                         <!-- <input type="range" id="review_range" class="value-range2" min="0" max="10" value="0"> -->
                                     </div>
                                     <div class="price_search_btn_box">
-                                        <button class="btn" id="resetBtn" type="reset">조건 리셋</button>
+                                        <button class="btn" id="resetBtn" type="button">조건 리셋</button>
                                         <button class="btn" type="submit">조건 검색</button>
                                     </div>
                                 </div>
@@ -265,8 +265,9 @@
                                             <div class="d-flex flex-column gap-3">
                                                 <p class="prod_title"><a th:href="@{product_detail(seq=${listP.seq})}"><!--<span class="gray_color">예약판매</span>--> <strong th:text="${listP.title}">하늘나라 극락과 천국(상)</strong></a></p>
                                                 <p class="prod_author"><span th:text="${listP.authorCount > 1 ? listP.name+' 외 '+(listP.authorCount - 1)+'명':listP.name}">조창조</span> · <span th:text="${listP.publisherName}">신아출판사</span> · <span th:text="${#dates.format(listP.makeDate,'yyyy.MM.dd')}" >2024.07.25</span></p>
-                                                <p class="prod_price d-flex gap-1"><strong class="saleP" th:text="${listP.sale +'%'}">10%</strong><span class="sale_price"><strong th:text="${#numbers.formatInteger(listP.salePrice,1,'COMMA')}">13,500</strong>원</span><span class="regular_price" th:text="${#numbers.formatInteger(listP.price,1,'COMMA')+'원'}">15,000원</span> <span class="point" th:text="${#numbers.formatInteger(listP.point,1,'COMMA')+'p'}">750p</span> </p>
-                                                <p class="prod_intro" th:utext="${listP.intro}"></p>
+                                                <p th:if="${listP.stockQty > 0}" class="prod_price d-flex gap-1"><strong class="saleP" th:text="${listP.sale +'%'}">10%</strong><span class="sale_price"><strong th:text="${#numbers.formatInteger(listP.salePrice,1,'COMMA')}">13,500</strong>원</span><span class="regular_price" th:text="${#numbers.formatInteger(listP.price,1,'COMMA')+'원'}">15,000원</span></p>
+                                                <p th:if="${listP.stockQty == 0}" class="prod_sold"><strong>품절되었습니다.</strong></p>
+                                                <p th:if="${listP.stockQty > 0}" class="prod_intro" th:utext="${listP.intro}"></p>
                                                 <div class="prod_review d-flex gap-1">
                                                     <span class="icon_box">
                                                         <img src="/usr/v1/assets/images/ico_klover_sm@2x.png" alt=""> 
@@ -277,11 +278,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="shipping_date d-flex flex-column gap-2">
+                                        <div class="shipping_date d-flex flex-column gap-2" th:if="${listP.stockQty > 0}" >
                                             <p><strong th:text="${#dates.format(listP.shipDate, 'M/d') + '(' + #dates.format(listP.shipDate, 'E') + ')'}">8/5(월)</strong></p>
                                             <p>출고예정</p>
                                         </div>
-                                        <div class="button_box d-flex flex-column gap-2">
+                                        <div class="button_box d-flex flex-column gap-2" th:if="${listP.stockQty > 0}" >
                                             <span class="heart_icon">
                                                 <img src="/usr/v1/assets/images/ico_heart_h18@2x.png" alt="">
                                             </span>
@@ -421,6 +422,10 @@
                     //     console.log("알 수 없는 값이 선택되었습니다.");
                     // }
                 });
+            });
+            const resetBtn = document.getElementById("resetBtn");
+            resetBtn.addEventListener("click", function(event) {
+                window.location = "product_list";
             });
             
             const inputProdType = document.querySelector("#inputProdType"); 

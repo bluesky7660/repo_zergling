@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OrderController {
 	@Autowired
 	OrderService orderService;
+	
 	@RequestMapping("/v1/mall/order/orderXdmList")
 	public String orderXdmList(Model model,@ModelAttribute("vo") OrderVo vo) {
 		vo.setParamsPaging(orderService.listCount(vo));
