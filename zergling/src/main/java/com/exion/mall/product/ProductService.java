@@ -184,7 +184,7 @@ public class ProductService {
 	public int update(ProductDto productDto, ProductAuthorDto productAuthorDto) throws Exception {
 		int a = productDao.update(productDto);
 		List<String> authorSeqs = productAuthorDto.getListAuthor_seq();
-		List<ProductAuthorDto> authorLists = productAuthorDao.productAuthorSelected(productAuthorDto);
+		List<ProductAuthorDto> authorLists = productAuthorDao.productAuthorOneSelectList(productAuthorDto);
 		
 		//수정한 작가추가
 		for(String authorSeq:authorSeqs) {
@@ -196,12 +196,25 @@ public class ProductService {
 				System.out.println("ProductAuthorDto.seq: "+author.getPaSeq());
 
 				System.out.println("작가번호: "+author.getAuthor_seq());
-				
-				if(authorSeq.equals(author.getAuthor_seq())) {
-					System.out.println("작가존재");
-					isExist = true;
-					break;
+				if(author.getDelNy() ==0) {
+					if(authorSeq.equals(author.getAuthor_seq())) {
+						System.out.println("작가존재");
+						isExist = true;
+						break;
+					}
+					System.out.println("getDelNy:1");
+				}else if(author.getDelNy() ==1){
+					if(authorSeq.equals(author.getAuthor_seq())) {
+						System.out.println("작가존재 DelNy:1");
+						isExist = true;
+						productAuthorDto.setProduct_seq(productDto.getSeq());
+				        productAuthorDto.setAuthor_seq(author.getAuthor_seq());
+						productAuthorDao.update(productAuthorDto);
+						break;
+					}
+					System.out.println("작가없음 DelNy:1");
 				}
+
 				System.out.println("작가없음");	
 
 			}

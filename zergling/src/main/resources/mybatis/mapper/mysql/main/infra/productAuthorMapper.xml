@@ -17,6 +17,19 @@
 				and c.seq = #{seq}
 				and a.delNy = 0
 	</select>
+	<select id="productAuthorOneSelectList" resultMap="resultMapObj">
+		select 
+			a.author_seq
+			,a.paSeq
+			,a.delNy
+			,b.name
+			from
+				productAuthor a 
+				left join product c on a.product_seq = c.seq
+				join author b on a.author_seq = b.seq
+			where 1 = 1
+				and c.seq = #{seq}
+	</select>
 	<insert id="insert">
 		insert into productAuthor(
 			product_seq
@@ -41,30 +54,48 @@
 		    SELECT 
 		        paSeq,
 		        CASE 
-		            WHEN ROW_NUMBER() OVER (PARTITION BY product_seq ORDER BY paSeq) = 1 THEN 1 
+		            WHEN delNy = 1 THEN 0
+		            WHEN ROW_NUMBER() OVER (
+		                PARTITION BY product_seq 
+		                ORDER BY paSeq
+		            ) = 1 THEN 1 
 		            ELSE 0 
-		        END AS aDefaultNy,
+		        END AS aDefaultNy
+		    FROM productAuthor
+		    WHERE delNy = 0
+		) AS b ON a.paSeq = b.paSeq
+		JOIN (
+		    SELECT 
+		        paSeq,
 		        CASE 
-		            WHEN ROW_NUMBER() OVER (PARTITION BY author_seq ORDER BY paSeq) = 1 THEN 1 
+		            WHEN delNy = 1 THEN 0
+		            WHEN ROW_NUMBER() OVER (
+		                PARTITION BY author_seq 
+		                ORDER BY paSeq
+		            ) = 1 THEN 1 
 		            ELSE 0 
 		        END AS pDefaultNy
 		    FROM productAuthor
-		) AS b ON a.paSeq = b.paSeq
+		    WHERE delNy = 0
+		) AS c ON a.paSeq = c.paSeq
 		SET a.aDefaultNy = b.aDefaultNy, 
-		    a.pDefaultNy = b.pDefaultNy
+		    a.pDefaultNy = c.pDefaultNy;
+
 	</update>
 	<update id="update">
 		UPDATE productAuthor
 		SET
-			product_seq = #{product_seq}
-			,author_seq = #{author_seq}
+			delNy = 0
 		WHERE 1=1
 			AND product_seq = #{product_seq}
+			AND author_seq = #{author_seq}
 	</update>
 	<update id="uelete">
 		UPDATE productAuthor
 		SET
 			delNy = 1
+			,pDefaultNy = 0
+			,aDefaultNy = 0
 		WHERE 1=1
 			AND product_seq = #{product_seq}
 			AND author_seq = #{author_seq}

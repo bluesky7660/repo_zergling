@@ -8,5 +8,6 @@ public interface ProductAuthorDao {
 	public int uelete(ProductAuthorDto productAuthorDto);
 	public int defaultUpdt(ProductAuthorDto productAuthorDto);
 	public List<ProductAuthorDto> productAuthorSelected(ProductAuthorDto productAuthorDto);
+	public List<ProductAuthorDto> productAuthorOneSelectList(ProductAuthorDto productAuthorDto);
 	
 }
