@@ -125,7 +125,7 @@ public class indexController {
 		List<KakaoBookVo> bestSellers = kakaoBookService.getBestSellers("베스트셀러");
 		model.addAttribute("kakaobest", bestSellers);
 		System.out.println("index");
-		return "/usr/v1/pages/index";
+		return "usr/v1/pages/index";
 	}
 	@RequestMapping(value = "login")
 	public String login(HttpServletRequest request,HttpSession httpSession) {
@@ -146,7 +146,7 @@ public class indexController {
 		}
 		
 		System.out.println("login");
-		return "/usr/v1/pages/login";
+		return "usr/v1/pages/login";
 	}
 	
 	
@@ -157,7 +157,7 @@ public class indexController {
 	public String signup(Model model) {
 		System.out.println("signup");
 		model.addAttribute("genders", codeService.genderList());
-		return "/usr/v1/pages/signup";
+		return "usr/v1/pages/signup";
 	}
 	
 //	@RequestMapping(value = "signupInst")
@@ -192,20 +192,20 @@ public class indexController {
 //		model.addAttribute("size", size); // 사이즈 추가
 		model.addAttribute("userPage", "deliveryAddress");
 		System.out.println("user_delivery_address");
-		return "/usr/v1/pages/user_delivery_address";
+		return "usr/v1/pages/user_delivery_address";
 	}
 	@RequestMapping(value = "user_delivery_addressMfom")
 	public String deliveryAddressMfom(Model model,DeliveryAddressDto deliveryAddressDto) {
 		model.addAttribute("item", deliveryAddressService.selectOne(deliveryAddressDto));
 		model.addAttribute("userPage", "deliveryAddress");
 		System.out.println("MfomSeq: "+deliveryAddressService.selectOne(deliveryAddressDto).getSeq());
-		return "/usr/v1/pages/user_delivery_addressMfom";
+		return "usr/v1/pages/user_delivery_addressMfom";
 	}
 	@RequestMapping(value = "user_delivery_address_add")
 	public String deliveryAddressAddForm(Model model) {
 		System.out.println("user_delivery_address_add");
 		model.addAttribute("userPage", "deliveryAddress");
-		return "/usr/v1/pages/user_delivery_address_add";
+		return "usr/v1/pages/user_delivery_address_add";
 	}
 	@RequestMapping(value = "user_delivery_address_inst")
 	public String deliveryAddressInst(HttpSession httpSession, DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
@@ -263,14 +263,14 @@ public class indexController {
 		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
 		model.addAttribute("item", memberService.selectOne(memberDto));
 		model.addAttribute("userPage", "account");
-		return "/usr/v1/pages/user_account";
+		return "usr/v1/pages/user_account";
 	}
 	
 //	@RequestMapping(value = "user_account")
 //	public String userAccount(Model model, UserDto userDto) {
 //		model.addAttribute("item", userService.selectOne(userDto));
 //		System.out.println("seq: "+userService.selectOne(userDto).getSeq());
-//		return "/usr/v1/pages/user_account";
+//		return "usr/v1/pages/user_account";
 //	}
 //	@RequestMapping(value = "user_accountUpdt")
 //	public String user_accountUpdt(UserDto userDto) {
@@ -400,12 +400,12 @@ public class indexController {
 		model.addAttribute("item", memberService.selectOne(memberDto));
 		model.addAttribute("userPage", "passwordChange");
 		System.out.println("user_password");
-		return "/usr/v1/pages/user_password";
+		return "usr/v1/pages/user_password";
 	}
 //	@RequestMapping(value = "user_password")
 //	public String userPassword(Model model,UserDto userDto) {
 //		model.addAttribute("item", userService.selectOne(userDto));
-//		return "/usr/v1/pages/user_password";
+//		return "usr/v1/pages/user_password";
 //	}
 	
 	@RequestMapping(value = "product_detail")
@@ -448,7 +448,7 @@ public class indexController {
 //		System.out.println("rvTags: " +codeService.tagsList());
 //		model.addAttribute("author", authorService.authorOne(authorDto));
 //		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
-		return "/usr/v1/pages/product_detail";
+		return "usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
 	public String productList(Model model,ProductDto productDto,@ModelAttribute("vo") ProductVo productVo,@ModelAttribute("shVo") BaseVo shVo,ReviewVo reviewVo) {
@@ -483,7 +483,7 @@ public class indexController {
 //		System.out.println("투데이: " +productVo.getTodayPickNy());
 //		System.out.println("타입: " +productVo.getProdType());
 //		System.out.println("최대: "+productVo.getMaxPrice());
-		return "/usr/v1/pages/product_list";
+		return "usr/v1/pages/product_list";
 	}
 	
 	@RequestMapping(value = "product_buy")
@@ -507,7 +507,7 @@ public class indexController {
 		model.addAttribute("deliveryDate",deliveryDate);
 		model.addAttribute("addrList", deliveryAddressService.selectUsrList(addressVo));
 		System.out.println("product_buy");
-		return "/usr/v1/pages/product_buy";
+		return "usr/v1/pages/product_buy";
 	}
 	@ResponseBody
 	@RequestMapping(value = "buyAddressChange")
@@ -807,24 +807,24 @@ public class indexController {
 	@RequestMapping(value = "account_recovery")
 	public String accountRecovery() {
 		System.out.println("account_recovery");
-		return "/usr/v1/pages/account_recovery";
+		return "usr/v1/pages/account_recovery";
 	}
 	@RequestMapping(value = "book_review_video_list")
 	public String videoList(@ModelAttribute("vo") BaseVo baseVo) {
 		
 		System.out.println("book_review_video_list");
-		return "/usr/v1/pages/book_review_video_list";
+		return "usr/v1/pages/book_review_video_list";
 	}
 	@RequestMapping(value = "channels_video_list")
 	public String channelsVideoList(Model model, @ModelAttribute("vo") BaseVo baseVo) {
 		model.addAttribute("channels", youTubeService.channelSelectAllList());
 		System.out.println("channels_video_list");
-		return "/usr/v1/pages/channels_video_list";
+		return "usr/v1/pages/channels_video_list";
 	}
 //	@RequestMapping(value = "instaProfile")
 //	public String instaProfile() {
 //		
 //		System.out.println("instaProfile Page Accessed");
-//		return "/usr/v1/pages/profile";
+//		return "usr/v1/pages/profile";
 //	}
 }

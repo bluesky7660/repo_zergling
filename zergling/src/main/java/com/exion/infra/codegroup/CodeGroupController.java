@@ -109,7 +109,7 @@ public class CodeGroupController {
 		System.out.println("node2.get(\"header\").get(\"resultCode\").asText(): " + node2.get("header").get("resultCode").asText());
 		System.out.println("node2.get(\"header\").get(\"resultMsg\").asText(): " + node2.get("header").get("resultMsg").asText());
 		System.out.println("node2.get(\"body\").get(\"items\").asText(): " + node2.get("body").get("items").get(0).get("KIT_EXPRT_QTY").asText());
-		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
+		return "xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
 //	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmSrch")
 //	public String codeGroupXdmSrch(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -124,7 +124,7 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmForm")
 	public String codeGroupXdmForm() {
-		return "/xdm/v1/infra/codegroup/codeGroupXdmForm";
+		return "xdm/v1/infra/codegroup/codeGroupXdmForm";
 	}
 	 
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmInst")

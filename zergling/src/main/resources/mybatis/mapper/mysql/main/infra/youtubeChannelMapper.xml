@@ -4,7 +4,7 @@
 <mapper namespace="com.exion.infra.youtube.YouTubeChannelDao">
 	<resultMap type="com.exion.infra.youtube.YouTubeChannelDto" id="resultObj"></resultMap>
 	<sql id="selectCommon">
-		FROM youtubeChannels a
+		FROM youtubechannels a
 		where 1=1
 			<if test="sDelNy != null and !sDelNy.equals('')">AND a.delNy = #{sDelNy}</if>
 			<if test="sUseNy != null and !sUseNy.equals('')">AND a.useNy = #{sUseNy}</if>
@@ -32,7 +32,7 @@
 			ycSeq
 			,ycId
 			,ycName
-        FROM youtubeChannels
+        FROM youtubechannels
         where 1=1
         	and delNy = 0
         	and useNy = 1
@@ -64,12 +64,12 @@
 			,useNy
 			,modDate
 			,regDate
-		FROM youtubeChannels 
+		FROM youtubechannels 
         where 1=1
         	and ycSeq = #{ycSeq}
    	</select>
    	<insert id="channelInst">
-   		INSERT INTO youtubeChannels (
+   		INSERT INTO youtubechannels (
    			ycId
    			,ycName
    			,channelUrl

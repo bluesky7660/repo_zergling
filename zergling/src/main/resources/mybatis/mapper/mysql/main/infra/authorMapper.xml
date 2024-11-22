@@ -17,7 +17,7 @@
 								OR b.title Like CONCAT('%',#{searchKeyword},'%')
 								OR (
 							        SELECT GROUP_CONCAT(b2.title SEPARATOR ', ')
-							        FROM productAuthor c2
+							        FROM productauthor c2
 							        LEFT JOIN product b2 ON c2.product_seq = b2.seq
 							        WHERE 1=1 and c2.author_seq = a.seq and c2.delNy = 0
 							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -30,7 +30,7 @@
 							b.title Like CONCAT('%',#{searchKeyword},'%')
 							OR (
 							        SELECT GROUP_CONCAT(b2.title SEPARATOR ', ')
-							        FROM productAuthor c2
+							        FROM productauthor c2
 							        LEFT JOIN product b2 ON c2.product_seq = b2.seq
 							        WHERE 1=1 and c2.author_seq = a.seq and c2.delNy = 0
 							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -50,7 +50,7 @@
 			    ,a.name
 			from
 				author a
-				left join productAuthor c on c.author_seq = a.seq
+				left join productauthor c on c.author_seq = a.seq
 				left join product b on c.product_seq = b.seq
 			WHERE 1=1
 				and c.delNy = 0
@@ -71,7 +71,7 @@
 			    ,a.delNy
 			from
 				author a
-				left join productAuthor c on c.author_seq = a.seq
+				left join productauthor c on c.author_seq = a.seq
 				left join product b on c.product_seq = b.seq and c.author_seq = a.seq
 				join commoncode d on a.authorType = d.seq
 			<include refid="selectCommon"/>
@@ -97,10 +97,10 @@
 					ELSE NULL
 				END AS otherImgSrc     
 			FROM 
-				productAuthor c  
+				productauthor c  
 				JOIN author a ON c.author_seq = a.seq  
 				left JOIN product b ON c.product_seq = b.seq 
-				left JOIN productAuthor paOther ON a.seq = paOther.author_seq AND paOther.product_seq != #{seq}
+				left JOIN productauthor paOther ON a.seq = paOther.author_seq AND paOther.product_seq != #{seq}
 				left JOIN product b2 ON paOther.product_seq = b2.seq 
 				join commoncode d on a.authorType = d.seq
 				left join productupload f on f.pseq = b.seq
@@ -126,7 +126,7 @@
 		  	select
 				a.seq
 			    ,a.authorType
-			    ,(select count(aa.author_seq) from productAuthor aa  where 1=1 and aa.author_seq = a.seq and aa.delNy = 0) as productCount
+			    ,(select count(aa.author_seq) from productauthor aa  where 1=1 and aa.author_seq = a.seq and aa.delNy = 0) as productCount
 			    ,d.codeName
 			    ,a.name	
 			    ,a.authorInfo
@@ -136,7 +136,7 @@
 			    ,a.delNy
 			from
 				author a
-				left join productAuthor c on c.author_seq = a.seq and pDefaultNy = 1 
+				left join productauthor c on c.author_seq = a.seq and pDefaultNy = 1 
 				left join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
 			<include refid="selectCommon"/>
@@ -147,7 +147,7 @@
         	SELECT COUNT(*) 
         	from
 				author a
-				left join productAuthor c on c.author_seq = a.seq and pDefaultNy = 1 
+				left join productauthor c on c.author_seq = a.seq and pDefaultNy = 1 
 				left join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
         	<include refid="selectCommon"/>
@@ -209,7 +209,7 @@
 			    ,a.delNy
 			from
 				author a
-				<!-- join productAuthor c on c.author_seq = a.seq
+				<!-- join productauthor c on c.author_seq = a.seq
 				join product b on c.product_seq = b.seq -->
 				join commoncode d on a.authorType = d.seq
 				left join autherUpload c on a.seq = c.aSeq and c.defaultNy = 1
@@ -224,7 +224,7 @@
 			    ,c.
 			from
 				author a
-				join productAuthor c on c.author_seq = a.seq
+				join productauthor c on c.author_seq = a.seq
 				join product b on c.product_seq = b.seq
 				join commoncode d on a.authorType = d.seq
 			where 1 = 1

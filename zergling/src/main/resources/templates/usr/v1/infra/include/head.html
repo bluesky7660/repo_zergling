@@ -1,31 +1,24 @@
 <th:block th:fragment="header">	
 	<header>
         <div class="navbar_pc">
-            <div class="customer_service_area d-flex justify-content-end">
-                <div class="customer_service_box d-flex  align-items-center">
-                    <ul class="d-flex gap-3">
-                        <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
-                            <a href="signup">회원가입</a>
-                        </li>
-                        <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
-                            <a href="login">로그인</a>
-                        </li>
-                        <!-- <li class="">
-                            <a href="javascript:void(0);">회원혜택</a>
-                        </li> -->
-                        <li class="" th:if="${session != null and session.sessNameXdm != null}">
-                            <a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문배송</a>
-                        </li>
-                        <li class="" th:if="${session != null and session.sessNameXdm != null}">
-                            <a href="javascript:void(0);" class="logoutBtn">로그아웃</a>
-                        </li>
-                        <!-- <li class="">
-                            <a href="javascript:void(0);">매장안내</a>
-                        </li>
-                        <li class="">
-                            <a href="javascript:void(0);">고객센터</a>
-                        </li> -->
-                    </ul>
+            <div class="customer_service_area">
+                <div class="customer_service_inner_area d-flex justify-content-end">
+                    <div class="customer_service_box d-flex  align-items-center">
+                        <ul class="d-flex gap-3">
+                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
+                                <a href="signup">회원가입</a>
+                            </li>
+                            <li class="" th:if="${!(session != null and session.sessNameXdm != null)}">
+                                <a href="login">로그인</a>
+                            </li>
+                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
+                                <a th:href="@{user_order_list(seq=${session.sessSeqXdm})}">주문배송</a>
+                            </li>
+                            <li class="" th:if="${session != null and session.sessNameXdm != null}">
+                                <a href="javascript:void(0);" class="logoutBtn">로그아웃</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="scrolltable">

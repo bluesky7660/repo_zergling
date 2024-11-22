@@ -24,7 +24,7 @@
 								OR b.name Like CONCAT('%',#{searchKeyword},'%')
 								OR (
 							        SELECT GROUP_CONCAT(b2.name SEPARATOR ', ')
-							        FROM productAuthor c2
+							        FROM productauthor c2
 							        LEFT JOIN author b2 ON c2.author_seq = b2.seq
 							        WHERE 1=1 and c2.product_seq = a.seq and c2.delNy = 0
 							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -38,7 +38,7 @@
 							    b.name LIKE CONCAT('%', #{searchKeyword}, '%')
 							    OR (
 							        SELECT GROUP_CONCAT(b2.name SEPARATOR ', ')
-							        FROM productAuthor c2
+							        FROM productauthor c2
 							        LEFT JOIN author b2 ON c2.author_seq = b2.seq
 							        WHERE 1=1 and c2.product_seq = a.seq and c2.delNy = 0
 							    ) LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -81,7 +81,7 @@
 	  	<include refid="base.selectListUpperForMysql"/>
 		  	select
 				a.seq
-				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq and aa.delNy = 0) as authorCount
+				,(select count(aa.product_seq) from productauthor aa  where 1=1 and aa.product_seq = a.seq and aa.delNy = 0) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -114,7 +114,7 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				left join commoncode prodType on a.prodType = prodType.seq
 				left join commoncode publisher on a.publisher = publisher.seq
@@ -126,7 +126,7 @@
 	  	<include refid="base.selectListUpperForMysql"/>
 		  	select
 				a.seq
-				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq and aa.delNy = 0) as authorCount
+				,(select count(aa.product_seq) from productauthor aa  where 1=1 and aa.product_seq = a.seq and aa.delNy = 0) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -160,7 +160,7 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
@@ -203,7 +203,7 @@
 	  <select id="newProdList" resultMap="resultObj">
 		  	select
 				a.seq
-				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
+				,(select count(aa.product_seq) from productauthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -236,7 +236,7 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
@@ -253,7 +253,7 @@
 	  <select id="bestProdList" resultMap="resultObj">
 		  	select
 				a.seq
-				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
+				,(select count(aa.product_seq) from productauthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -286,7 +286,7 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
@@ -302,7 +302,7 @@
 	  <select id="bestCategoryProdList" resultMap="resultObj">
 		  	select
 				a.seq
-				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
+				,(select count(aa.product_seq) from productauthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -335,7 +335,7 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
@@ -351,7 +351,7 @@
 	  <select id="mdPickProdList" resultMap="resultObj">
 		  	select
 				a.seq
-				,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
+				,(select count(aa.product_seq) from productauthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
 			    ,a.title
 			    ,a.prodType
 			    ,b.name
@@ -384,7 +384,7 @@
 			    ,publisher.codeName as publisherName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
 				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
@@ -489,7 +489,7 @@
 			    ,c.author_seq
 			from
 				product a 
-				left join productAuthor c on c.product_seq = a.seq
+				left join productauthor c on c.product_seq = a.seq
 			where 1 = 1
 				and a.seq = #{seq}
 				limit 1
@@ -498,7 +498,7 @@
 		  	select
 				a.seq
 			    ,a.title
-			    ,(select count(aa.product_seq) from productAuthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
+			    ,(select count(aa.product_seq) from productauthor aa  where 1=1 and aa.product_seq = a.seq) as authorCount
 			    ,a.prodType
 			    ,b.name
 			    ,b.authorInfo
@@ -533,7 +533,7 @@
 			    ,authorType.codeName as authorTypeName
 			from
 				product a
-				left join productAuthor c on c.product_seq = a.seq
+				left join productauthor c on c.product_seq = a.seq
 				left join author b on c.author_seq = b.seq
 				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
 				left join commoncode prodType on a.prodType = prodType.seq
@@ -574,7 +574,7 @@
         	SELECT COUNT(*) 
         	from
 				product a
-				left join productAuthor c on c.product_seq = a.seq and aDefaultNy = 1
+				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				left join commoncode prodType on a.prodType = prodType.seq
 				left join commoncode publisher on a.publisher = publisher.seq

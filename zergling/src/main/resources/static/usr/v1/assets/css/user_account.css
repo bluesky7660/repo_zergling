@@ -3,7 +3,14 @@
     background-image: url(../images/bg_myroom_main@2x.png);
     background-repeat: no-repeat;
     background-size: cover;
+    padding:0;
+    
+}
+
+.user_header_inner_area{
+    max-width: 1500px;
     padding:50px 150px;
+    margin:0 auto;
 }
 .user_header_box{
     width: fit-content;
@@ -31,7 +38,9 @@
 } */
 
 .user_body{
+    max-width: 1500px;
     padding:100px 150px;
+    margin: 0 auto;
 }
 
 .aside_box{

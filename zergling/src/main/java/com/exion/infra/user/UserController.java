@@ -19,13 +19,13 @@ public class UserController {
 		vo.setParamsPaging(userService.listCount(vo));
 		model.addAttribute("list3", userService.selectXdmUser(vo)) ;
 		System.out.println("1: "+vo.getDateOfBirth());
-		return "/xdm/v1/infra/user/userXdmList";
+		return "xdm/v1/infra/user/userXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/infra/user/userXdmForm")
 	public String userXdmForm() {
 
-		return "/xdm/v1/infra/user/userXdmForm";
+		return "xdm/v1/infra/user/userXdmForm";
 	}
 	@RequestMapping(value = "/v1/infra/user/userXdmInst")
 	public String userXdmForm(UserDto userDto) {

@@ -339,6 +339,8 @@ section{
 }
 
 .content_wrapper{
+    max-width: 1500px;
+    margin: 0 auto;
     padding:100px 150px 100px;
 }
 .logo{
@@ -346,7 +348,10 @@ section{
     cursor: pointer;
 }
 .navbar_pc{
-    padding:0 150px;
+    /* padding:0 150px;
+    max-width: 1500px; */
+    position: relative;
+    border-bottom: 1px solid #ccc;
 }
 .img-box{
     position: relative;
@@ -516,20 +521,21 @@ a.img-box{
 
 /**/
 .customer_service_area{
-    background-color: #ddd;
-    /* margin-bottom: 20px; */
+    background-color: #eee;
     top: 0;
     right: 0;
     left: 0;
-    display: flex;
     position: relative;
-    /* transition: all .3s; */
-    padding:10px;
 }
 .customer_service_area.hidden{
     position: absolute;
     top:-48px;
     visibility: hidden;
+}
+.customer_service_inner_area{
+    max-width: 1500px;
+    padding:10px 150px;
+    margin: 0 auto;
 }
 .customer_service_box ul li>*{
     font-size: 13px;
@@ -551,18 +557,18 @@ main>*{
     padding-left:150px;
     padding-right:150px;
 }
-.navbar_pc{
-    position: relative;
-    border-bottom: 1px solid #ccc;
-}
+
 .scrolltable{
     min-width: 900px;
+    max-width: 1500px;
     height: auto;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding:20px 0;
+    padding:20px 150px;
+    margin: 0 auto;
+    /* padding:0 ; */
 }
 .scrolltable.active{
     height: 100px;
@@ -580,8 +586,8 @@ main>*{
 }
 .gnb_search.active{
     position: absolute;
-    left:60px;
-    width: calc(100% - 60px);
+    left:210px;
+    width: calc(100% - 360px);
     z-index: 2;
 }
 .gnb_search .logo{
@@ -632,9 +638,9 @@ main>*{
 }
 
 /*user box*/
-.user_box>{
-    
-    /* cursor: pointer; */
+.user_box{
+    display: flex;
+    align-items: center;
 }
 .user_my{
     display: flex;
@@ -881,6 +887,10 @@ footer{
 footer>*{
     padding:0 150px;
 }
+footer .footer_area{
+    max-width: 1500px;
+    margin: 0 auto;
+}
 footer .img-box{
     width: 50px;
 }
@@ -927,11 +937,11 @@ footer .left-box *{
 .footer_menu_list{
     flex-wrap:wrap;
 }
-.footer_info_box li{
+.footer_area_info_box li{
     font-size: 12px;
 }
 footer .right-box{
-    
+    /* white-space: wrap; */
 }
 footer .right-box *{
     white-space: nowrap;

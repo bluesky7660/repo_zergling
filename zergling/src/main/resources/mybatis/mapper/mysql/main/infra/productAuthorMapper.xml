@@ -10,7 +10,7 @@
 			,a.delNy
 			,b.name
 			from
-				productAuthor a 
+				productauthor a 
 				left join product c on a.product_seq = c.seq
 				join author b on a.author_seq = b.seq
 			where 1 = 1
@@ -24,14 +24,14 @@
 			,a.delNy
 			,b.name
 			from
-				productAuthor a 
+				productauthor a 
 				left join product c on a.product_seq = c.seq
 				join author b on a.author_seq = b.seq
 			where 1 = 1
 				and c.seq = #{seq}
 	</select>
 	<insert id="insert">
-		insert into productAuthor(
+		insert into productauthor(
 			product_seq
 		    ,author_seq
 		    ,delNy
@@ -49,7 +49,7 @@
 		 </selectKey>
 	</insert>
 	<update id="defaultUpdt">
-		UPDATE productAuthor a
+		UPDATE productauthor a
 		JOIN (
 		    SELECT 
 		        paSeq,
@@ -61,7 +61,7 @@
 		            ) = 1 THEN 1 
 		            ELSE 0 
 		        END AS aDefaultNy
-		    FROM productAuthor
+		    FROM productauthor
 		    WHERE delNy = 0
 		) AS b ON a.paSeq = b.paSeq
 		JOIN (
@@ -75,7 +75,7 @@
 		            ) = 1 THEN 1 
 		            ELSE 0 
 		        END AS pDefaultNy
-		    FROM productAuthor
+		    FROM productauthor
 		    WHERE delNy = 0
 		) AS c ON a.paSeq = c.paSeq
 		SET a.aDefaultNy = b.aDefaultNy, 
@@ -83,7 +83,7 @@
 
 	</update>
 	<update id="update">
-		UPDATE productAuthor
+		UPDATE productauthor
 		SET
 			delNy = 0
 		WHERE 1=1
@@ -91,7 +91,7 @@
 			AND author_seq = #{author_seq}
 	</update>
 	<update id="uelete">
-		UPDATE productAuthor
+		UPDATE productauthor
 		SET
 			delNy = 1
 			,pDefaultNy = 0

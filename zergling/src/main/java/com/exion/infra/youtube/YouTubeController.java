@@ -72,7 +72,7 @@ public class YouTubeController {
 		model.addAttribute("list",youTubeService.channelSelectList(youTubeChannelVo));
 //		model.addAttribute("channels", youTubeService.selectList());
 //		System.out.println("youtubeChannelXdmList");
-		return "/xdm/v1/infra/youtube/youtubeChannelXdmList";
+		return "xdm/v1/infra/youtube/youtubeChannelXdmList";
 	}
     
 //    @GetMapping("/searchChannel")
@@ -117,13 +117,13 @@ public class YouTubeController {
 	public String youtubeChannelXdmForm() {
 
 //		System.out.println("youtubeChannelXdmList");
-		return "/xdm/v1/infra/youtube/youtubeChannelXdmForm";
+		return "xdm/v1/infra/youtube/youtubeChannelXdmForm";
 	}
     @RequestMapping(value = "/v1/infra/youtube/youtubeChannelXdmMfom")
 	public String youtubeChannelXdmMfom(Model model, YouTubeChannelDto youTubeChannelDto) {
     	model.addAttribute("item", youTubeService.channelSelectOne(youTubeChannelDto));
 //    	System.out.println("getUseNy:"+youTubeService.channelSelectOne(youTubeChannelDto).getUseNy());
 //		System.out.println("youtubeChannelXdmMfom");
-		return "/xdm/v1/infra/youtube/youtubeChannelXdmMfom";
+		return "xdm/v1/infra/youtube/youtubeChannelXdmMfom";
 	}
 }

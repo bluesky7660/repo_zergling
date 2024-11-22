@@ -41,13 +41,13 @@ public class MemberController {
 		vo.setParamsPaging(memberService.listCount(vo));
 		model.addAttribute("list3", memberService.selectXdmMember(vo)) ;
 		System.out.println("1: "+vo.getDateOfBirth());
-		return "/xdm/v1/infra/member/memberXdmList";
+		return "xdm/v1/infra/member/memberXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/infra/member/memberXdmForm")
 	public String memberXdmForm() {
 
-		return "/xdm/v1/infra/member/memberXdmForm";
+		return "xdm/v1/infra/member/memberXdmForm";
 	}
 	@RequestMapping(value = "/v1/infra/member/memberXdmInst")
 	public String memberXdmForm(MemberDto memberDto) {
@@ -224,8 +224,8 @@ public class MemberController {
 		MemberDto rtMember = memberService.selectUsrOne(memberDto);
 		System.out.println("rtMember: " + rtMember);
 		if (rtMember != null) {
-//			if(matchesBcrypt(memberDto.getUserPassword(), rtMember.getUserPassword(), 10)) {
-			if(true) {
+			if(matchesBcrypt(memberDto.getUserPassword(), rtMember.getUserPassword(), 10)) {
+//			if(true) {
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeqXdm", rtMember.getSeq());
 				httpSession.setAttribute("sessIdXdm", rtMember.getUserId());

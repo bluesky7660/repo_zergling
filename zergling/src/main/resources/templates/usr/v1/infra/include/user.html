@@ -1,10 +1,12 @@
 <th:block th:fragment="user-header">
     <div class="user_header_area">
-        <div class="user_header_box">
-            <div class="img-box">
-                <img src="/usr/v1/assets/images/img_no_profile@2x.png" alt="">
+        <div class="user_header_inner_area">
+            <div class="user_header_box">
+                <div class="img-box">
+                    <img src="/usr/v1/assets/images/img_no_profile@2x.png" alt="">
+                </div>
+                <p class="user_name"><span th:text="${session.sessNameXdm}"></span>님</p>
             </div>
-            <p class="user_name"><span th:text="${session.sessNameXdm}"></span>님</p>
         </div>
     </div>
 </th:block>
