@@ -5,4 +5,5 @@
      -USER- http://3.35.53.81:8080/index<br/>
      -ADMIN - http://3.35.53.81:8080/v1/infra/index/indexXdmView
 
-![image](https://github.com/user-attachments/assets/cc392dbd-6d53-4de0-b501-12d2483f3f1a)
+![image](https://github.com/user-attachments/assets/fc87222c-0543-466d-abc2-8742b5b2ad53)
+
