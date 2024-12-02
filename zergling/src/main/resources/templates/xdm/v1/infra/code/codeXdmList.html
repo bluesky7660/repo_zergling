@@ -132,12 +132,10 @@
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
 														<input type="text" class="form-control" id="inputDateStart" name="dateStart" th:value="${vo.dateStart}" placeholder="시작일을 선택해주세요" value="">
-														<!-- <input type="text" class="form-control datepicker" id="inputDateStart" name="" placeholder="" value=""> -->
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
 														<input type="text" class="form-control" id="inputDateEnd" name="dateEnd" th:value="${vo.dateEnd}" placeholder="종료일을 선택해주세요" value="">
-														<!-- <input type="text" class="form-control datepicker" id="inputDateEnd" name="" placeholder="" value=""> -->
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
@@ -148,7 +146,6 @@
 															<option value="1" th:selected="${vo.keywordType == 1}">코드번호</option>
 															<option value="2" th:selected="${vo.keywordType == 2}">코드그룹이름</option>
 															<option value="3" th:selected="${vo.keywordType == 3}">코드이름</option>
-															<!-- <option value="3">순서</option> -->
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -168,7 +165,6 @@
 										</div>
 										<div class="card-body">
 											<div class="row justify-content-between">
-												<!-- <div class="col-6 col-lg-3">Total: <span th:text="${response.listCount}"></span></div> -->
 												<div class="col-6 col-lg-3">Total: <span th:text="${vo.totalRows}"></span></div>
 												<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
 													<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
@@ -179,17 +175,6 @@
 															<option value="20" th:selected="${vo.rowNumToShow == 20}">20</option>
 															<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
 													</select>
-													<!-- <form method="get" action="/v1/infra/code/codeXdmList" id="pagination-form">
-														<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="size">
-															<option value="2" th:selected="${response.rowNumToShow == 2}">2</option>
-															<option value="3" th:selected="${response.rowNumToShow == 3}">3</option>
-															<option value="5" th:selected="${response.rowNumToShow == 5}">5</option>
-															<option value="10" th:selected="${response.rowNumToShow == 10}">10</option>
-															<option value="20" th:selected="${response.rowNumToShow == 20}">20</option>
-															<option value="50" th:selected="${response.rowNumToShow == 50}">50</option>
-														</select>
-														<input type="hidden" name="page" id="pageNumber" value="1" />
-													</form> -->
 												</div>
 											</div>
 											<div class="scrolltable">
@@ -206,7 +191,6 @@
 															<th class="d-flex flex-nowrap justify-content-center">
 																<div class="sorting sorting_asc"><span class="dataTable-sorter">대체코드</span></div>
 																<div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름</span></div>
-																<!-- <div class="sorting sorting_asc"><span class="dataTable-sorter">코드이름(영문)</span></div> -->
 															</th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
 															<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
@@ -294,70 +278,6 @@
 															</a>
 														</li>
 													</ul>
-													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-														<li class="paginate_button page-item" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=1, size=${vo.rowNumToShow})}" th:if="${vo.thisPage > 1}">
-																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
-															</a>
-															<a class="page-link" th:if="${vo.thisPage <= 1}">
-																<span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
-															</a>
-														</li>
-														<li class="paginate_button previous page-item" id="previousPage" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${vo.thisPage - 1}, size=${vo.rowNumToShow})}" th:if="${vo.thisPage > 1}">
-																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-															</a>
-															<a class="page-link" th:if="${vo.thisPage <= 1}">
-																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-															</a>
-														</li>
-														<li th:each="i : ${#numbers.sequence(
-																			vo.thisPage == 1 ? 1 : 
-																			vo.thisPage == 2 ? 1 : 
-																			vo.thisPage == vo.totalPages - 1 ? vo.thisPage - 3 : 
-																			vo.thisPage == vo.totalPages ? vo.thisPage - 4 : 
-																			vo.thisPage - 2, 
-																			
-																			vo.thisPage == 1 ? 5 : 
-																			vo.thisPage == 2 ? 5 : 
-																			vo.thisPage == vo.totalPages - 1 ? vo.totalPages : 
-																			vo.thisPage == vo.totalPages ? vo.totalPages : 
-																			vo.thisPage + 2
-																		)}"
-															class="paginate_button page-item"
-															th:if="${i > 0 && i <= vo.totalPages}" 
-															th:classappend="${i == vo.thisPage} ? 'active' : ''">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${i}, size=${vo.rowNumToShow})}" th:text="${i}"></a>
-														</li>
-														<li class="paginate_button next page-item" id="nextPage" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${vo.thisPage + 1}, size=${vo.rowNumToShow})}" th:if="${vo.thisPage < vo.totalPages}">
-																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-															</a>
-															<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
-																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-															</a>
-														</li>
-														<li class="paginate_button page-item" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
-															<a class="page-link" th:href="@{/v1/infra/code/codeXdmList(page=${vo.totalPages}, size=${vo.rowNumToShow})}" th:if="${vo.thisPage < vo.totalPages}">
-																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
-															</a>
-															<a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
-																<span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
-															</a>
-														</li>
-													</ul> -->
-													<!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-														
-														<li class="page-item"><a class="page-link" href="#">
-																<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-															</a></li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item active"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item"><a class="page-link" href="#">
-																<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-															</a></li>
-													</ul> -->
 												</nav>
 											</div>
 											<div class="btn-toolbar mt-5 justify-content-between">
@@ -436,19 +356,6 @@
 					form.submit();
 				}
 			});
-			
-			// window.addEventListener('load', function() {
-
-			// });
-			// window.onload = function() {
-				
-			// 	var rowNumToShowSelect = document.getElementById('rowNumToShowSelect');
-			// 	console.log('rowNumToShowSelect: '+rowNumToShowSelect);
-				
-			// }
-			// $(document).ready(function(){
-
-			// });
 		</script>
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/jquery.min.js"></script>

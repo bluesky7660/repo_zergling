@@ -40,18 +40,6 @@
     <div class="page-wrapper">
         <div th:replace="~{usr/v1/infra/include/head :: header}"></div>
         <main>
-            <!-- <div class="breadcrumb_wrapper">
-                <ol class="breadcrumb d-md-flex d-none">
-                    <li class="breadcrumb-item">
-                        <i class="bi bi-house"></i>
-                        <a href="index">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">국내도서</li>
-                    <li class="breadcrumb-item">소설</li>
-                    <li class="breadcrumb-item">한국소설</li>
-                    <li class="breadcrumb-item breadcrumb-active" aria-current="page">전체</li>
-                </ol>
-            </div> -->
             <div class="content_wrapper">
                 <div class="header_box">
                     <h3>Youtube API [서평채널]</h3>
@@ -84,34 +72,9 @@
                                 <div class="channels_box">
                                     <div class="spinner" id="loadingSpinner"></div>
                                     <div class="channel_info" id="channel_info">
-                                        <!-- <a href="http://" target="_blank" rel="noopener noreferrer" id="channel_link">
-                                            <div class="channel_thumbnail_box" id="channel_thumbnail_box">
-                                                <img id="channel_thumbnail" src="" alt="channelsImage">
-                                            </div>
-                                            <div class="channel_info_text" id="channel_info_text">
-                                                <h3 class="channel_Name" id="channel_Name"></h3>
-                                                <p class="channel_subscribersCount" id="channel_subscribersCount"></p>
-                                                <p class="channel_videosCount" id="channel_videosCount"></p>
-                                            </div>
-                                        </a> -->
                                     </div>
                                     <div class="channels_video_list">
                                         <ul id="video-list"></ul>
-                                        <!-- <div class="channels_video">
-                                            <a href="${item.videoUrl}" target="_blank">
-                                                <div class="video_thumbnail">
-                                                    <div class="img_box">
-                                                        <img src="${item.thumbnailUrl}" alt="${item.title}">
-                                                    </div>
-                                                </div>
-                                                <div class="video_detail">
-                                                    <h4>${item.title}</h4>
-                                                    <p>조회수: ${item.viewCount}회</p>
-                                                    <p>좋아요: ${item.likeCount}</p>
-                                                    <p>댓글 수: ${item.commentCount}</p>
-                                                </div>
-                                            </a>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>

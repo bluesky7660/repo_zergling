@@ -40,18 +40,6 @@
     <div class="page-wrapper">
         <div th:replace="~{usr/v1/infra/include/head :: header}"></div>
         <main>
-            <!-- <div class="breadcrumb_wrapper">
-                <ol class="breadcrumb d-md-flex d-none">
-                    <li class="breadcrumb-item">
-                        <i class="bi bi-house"></i>
-                        <a href="index">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">국내도서</li>
-                    <li class="breadcrumb-item">소설</li>
-                    <li class="breadcrumb-item">한국소설</li>
-                    <li class="breadcrumb-item breadcrumb-active" aria-current="page">전체</li>
-                </ol>
-            </div> -->
             <div class="content_wrapper">
                 <div class="header_box">
                     <h3>Youtube API [도서서평]</h3>
@@ -94,66 +82,6 @@
                             <div id="book_review_area" class="book_review_area">
 
                             </div>
-                            <!-- <div class="pagination-container mt-5">
-                                <div class="pagination-wrapper">
-                                    <div class="dataTable-bottom">
-                                        <nav class="dataTable-pagination" aria-label="dataTable-pagination">
-                                            <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-                                                <li class="paginate_button page-item" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
-                                                    <a class="page-link" th:attr="onclick=|goList('1')|" href="javascript:goList(1)" th:if="${vo.thisPage > 1}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
-                                                    </a>
-                                                    <a class="page-link" th:if="${vo.thisPage <= 1}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button previous page-item" id="previousPage" th:classappend="${vo.thisPage > 1} ? '' : 'disabled'">
-                                                    <a class="page-link" th:attr="onclick=|goList('${vo.thisPage - 1}')|" href="javascript:goList(${vo.thisPage - 1})" th:if="${vo.thisPage > 1}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
-                                                    </a>
-                                                    <a class="page-link" th:if="${vo.thisPage <= 1}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
-                                                    </a>
-                                                </li>
-                                                <li th:each="i : ${#numbers.sequence(
-                                                                    vo.thisPage == 1 ? 1 : 
-                                                                    vo.thisPage == 2 ? 1 : 
-                                                                    vo.thisPage == vo.totalPages - 1 ? vo.thisPage - 3 : 
-                                                                    vo.thisPage == vo.totalPages ? vo.thisPage - 4 : 
-                                                                    vo.thisPage - 2, 
-                                                                    
-                                                                    vo.thisPage == 1 ? 5 : 
-                                                                    vo.thisPage == 2 ? 5 : 
-                                                                    vo.thisPage == vo.totalPages - 1 ? vo.totalPages : 
-                                                                    vo.thisPage == vo.totalPages ? vo.totalPages : 
-                                                                    vo.thisPage + 2
-                                                                )}"
-                                                    class="paginate_button page-item"
-                                                    th:if="${i > 0 && i <= vo.totalPages}" 
-                                                    th:classappend="${i == vo.thisPage} ? 'active' : ''">
-                                                    <a class="page-link" th:attr="onclick=|goList('${i}')|" th:text="${i}"></a>
-                                                </li>
-                                                <li class="paginate_button next page-item" id="nextPage" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
-                                                    <a class="page-link" th:attr="onclick=|goList('${vo.thisPage + 1}')|" href="javascript:goList(${vo.thisPage + 1})" th:if="${vo.thisPage < vo.totalPages}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-                                                    </a>
-                                                    <a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item" th:classappend="${vo.thisPage < vo.totalPages} ? '' : 'disabled'">
-                                                    <a class="page-link" th:attr="onclick=|goList('${vo.totalPages}')|" href="javascript:goList(${vo.totalPages})" th:if="${vo.thisPage < vo.totalPages}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
-                                                    </a>
-                                                    <a class="page-link" th:if="${vo.thisPage >= vo.totalPages}">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </form>

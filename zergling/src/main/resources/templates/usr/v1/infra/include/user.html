@@ -13,12 +13,6 @@
 <th:block th:fragment="user-aside">
     <div class="aside_box">
         <ul class="d-flex flex-column">
-            <!-- <li onclick="window.location.href='user_account?seq=1'">▶ 유저룸</li> -->
-            <!-- <li onclick="window.location.href='user_order_list'">주문 / 배송목록</li>
-            <li onclick="window.location.href='user_delivery_address'">배송주소록</li>
-            <li onclick="window.location.href='user_account'">회원정보 수정</a></li>
-            <li class="active"><a th:href="@{user_password(seq=${session.sessSeqXdm})}">비밀번호 변경</a></li>
-            <li class="logoutBtn">로그아웃</li> -->
             <li onclick="window.location.href='user_order_list'" 
                 th:class="${userPage == 'orderList'} ? 'active'"><span>주문 / 배송목록</span></li>
             <li onclick="window.location.href='user_delivery_address'" 

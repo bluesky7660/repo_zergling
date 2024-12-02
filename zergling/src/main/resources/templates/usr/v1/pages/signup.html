@@ -44,14 +44,6 @@
                     <div>
                         <h3>회원가입</h3>
                     </div>
-                    <!-- <div class="type_tab d-flex justify-content-between">
-                        <div class="individual_tab tab_button active" data-target="individual_member">
-                            <span>개인회원</span>
-                        </div>
-                        <div class="corporate_tab tab_button" data-target="corporate_member">
-                            <span>간편회원</span>
-                        </div>
-                    </div> -->
                     <div class="tab_contents">
                         <div class="tab_content active" id="individual_member">
                             <ul class="input_area input_box">
@@ -97,19 +89,12 @@
                                         <input type="tel" id="userTel" class="form-control validate-this valid-phone-num" name="phoneNum" placeholder="전화번호를 입력해주세요. 숫자만" required>
                                     </div>
                                 </li>
-                                <!-- <li>
-                                    <label for="">유저설명</label>
-                                    <textarea class="form-control exclude-validation" id="inputMessage" name="userDesc" placeholder="유저에 대한 설명을 적어주세요" rows="3"></textarea>
-                                </li> -->
                                 <li>
                                     <label for="user_gender">성별</label>
                                     <div>
                                         <select class="form-select validate-this valid-gender" name="gender" id="user_gender" required>
                                             <option value="" disabled selected>선택해주세요</option>
                                             <option th:each="gender : ${genders}" th:value="${gender.seq}" th:text="${gender.codeName}"></option>
-                                            <!-- <option value="1">남자</option>
-                                            <option value="2">여자</option>
-                                            <option value="3">기타</option> -->
                                         </select>
                                     </div>
                                 </li>
@@ -118,7 +103,6 @@
                                     <div>
                                         <input type="text" id="signup_dateOfBirth" class="signup_dateOfBirth valid-birth-num form-control validate-this" name="dateOfBirth" placeholder="1999-12-12" required readonly>
                                     </div>
-                                    <!-- <input type="text" class="form-control" name="dateOfBirth" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9]+" placeholder="19991212" required> -->
                                 </li>
                                 <li class="captcha_area">
                                     <div class="captcha_box">
@@ -128,45 +112,19 @@
                                 </li>
                             </ul>
                             <div class="signup_btn">
-                                <!-- <input type="hidden" id="grecaptcha" /> -->
-                                <!-- <div class="g-recaptcha" data-sitekey="6LcXtGEqAAAAABgJh77_leG_-5IH2RnduylOXTSK" data-action="LOGIN"></div> -->
-                                
-                                
                                 <button id="signupBtn" class="btn btn-blue w-100" type="button">회원가입</button>
                             </div>
                         </div>
-                        <!-- <div class="tab_content" id="corporate_member">
-                            <ul class="simple_Signup flex-wrap d-flex justify-content-center gap-3">
-                                <li>
-                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_naver@2x.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_kakao@2x.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_google@2x.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_phone@2x.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);"><img src="/usr/v1/assets/images/ico_sns_mail@2x.png" alt=""></a>
-                                </li>
-                            </ul>
-                            <div class="sns_btn">
-                                <button class="btn btn-blue w-100" type="button">간편회원 가입하기</button>
-                            </div>
-                        </div> -->
                     </div>
                 </form>
                 
             </div>
         </div>
-        <footer>
+        <!-- <footer>
             <div class="text-center">
                 <span style="color:#777;font:14px;">ⓒ 이창훈</span>
             </div>
-        </footer>
+        </footer> -->
     </div>
     <!-- Required jQuery first, then Bootstrap Bundle JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -175,12 +133,6 @@
     <!-- Bootstrap Select JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- <script src="/usr/v1/assets/js/tiny-slider.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tiny-slider@2.9.4/dist/tiny-slider.css">
-    <script src="https://cdn.jsdelivr.net/npm/tiny-slider@2.9.4/dist/tiny-slider.js"></script> -->
-    <!-- Initialize Bootstrap Select -->
-    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
     <!-- by developer -->
     <script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <script src="/usr/v1/assets/js/custom.js"></script>
@@ -196,10 +148,6 @@
             e.preventDefault();
             grecaptcha.enterprise.ready(async () => {
                 const token = await grecaptcha.enterprise.execute('KEY_ID', {action: 'LOGIN'});
-                // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
-                // reCAPTCHA Enterprise to the end user's browser.
-                // This token must be validated by creating an assessment.
-                // See https://cloud.google.com/recaptcha/docs/create-assessment
             });
         }
         function onSubmit(token) {

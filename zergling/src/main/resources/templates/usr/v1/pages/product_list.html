@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USER</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/bootstrap.min.css" /> -->
-    <!-- <link rel="shortcut icon" href="/usr/v1/assets/images/favicon/favicon_256x256.png"> -->
     <link rel="icon" type="image/png" sizes="256x256" href="/usr/v1/assets/images/favicon/favicon_256x256.png">
     
     <link rel="stylesheet" href="/usr/v1/assets/css/reset.css">
     
-    <!-- <link rel="stylesheet" href="/usr/v1/assets/css/style.css"> -->
     <link rel="stylesheet" href="/usr/v1/assets/css/tiny-slider.css">
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -39,18 +36,6 @@
     <div class="page-wrapper">
         <div th:replace="~{usr/v1/infra/include/head :: header}"></div>
         <main>
-            <!-- <div class="breadcrumb_wrapper">
-                <ol class="breadcrumb d-md-flex d-none">
-                    <li class="breadcrumb-item">
-                        <i class="bi bi-house"></i>
-                        <a href="index">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">국내도서</li>
-                    <li class="breadcrumb-item">소설</li>
-                    <li class="breadcrumb-item">한국소설</li>
-                    <li class="breadcrumb-item breadcrumb-active" aria-current="page">전체</li>
-                </ol>
-            </div> -->
             <div class="content_wrapper">
                 <form id="listForm" name="listForm" autocomplete="off" method="post" action="product_list">
                     <input type="hidden" name="searchKeyword" th:value="${shVo.searchKeyword}"/>
@@ -82,29 +67,20 @@
                                     </li>
                                     <li class="bsetNyBtn" th:classappend="${vo.bestNy == 1} ? 'active' : '' ">
                                         <label for="inputBestNy">베스트셀러</label>
-                                        <!-- <input id="inputBestNy" type="radio" name="bestNy" value="1" th:checked="${vo.bestNy==1}"> -->
                                         <input id="inputBestNy" type="hidden" name="bestNy"  value="0" th:value="${vo.bestNy}">
                                     </li>
                                     <li class="newNyBtn" th:classappend="${vo.newNy == 1} ? 'active' : '' ">
                                         <label for="inputNewNy">신상품</label>
-                                        <!-- <input id="inputTodayPickNy" type="radio" name="newNy" value="1" th:checked="${vo.newNy==1}"> -->
                                         <input id="inputNewNy" type="hidden" name="newNy"  value="0" th:value="${vo.newNy}">
                                     </li>
                                     <li class="todayPickNyBtn" th:classappend="${vo.todayPickNy == 1} ? 'active' : '' ">
                                         <label for="inputTodayPickNy">Today's Pick</label>
-                                        <!-- <input id="inputTodayPickNy" type="radio" name="todayPickNy" value="1" th:checked="${vo.todayPickNy==1}"> -->
                                         <input id="inputTodayPickNy" type="hidden" name="todayPickNy"  value="0" th:value="${vo.todayPickNy}">
                                     </li>
                                 </ul>
                                 <div class="bage_search_box">
                                     <label for="bage">혜택/조건</label>
                                     <ul class="bage_list" >
-                                        <!-- <li class="bage_item" th:each="bage : ${bages}" >
-                                            <label th:for="'bageItem'+${bage.seq}">
-                                                <span th:text="${bage.codeName}"></span>
-                                                <input type="checkbox" name="seq" th:id="'bageItem'+${bage.seq}">
-                                            </label>
-                                        </li> -->
                                         <li class="bage_item">
                                             <label for="bageItem1" th:classappend="${vo.mdPickNy == 1} ? 'active' : '' ">
                                                 <span>MD의 선택</span>
@@ -131,16 +107,8 @@
                                         <div id="price-slider">
                                                 
                                         </div>
-                                        <div class="range_box">
-                                            <!-- <input type="range" id="price_range1" class="min-range value-range" name="minPrice" step="500" min="0" max="50000" value="0" th:value="${vo.minPrice}">
-                                            <input type="range" id="price_range2" class="max-range value-range" name="maxPrice" step="500" min="0" max="50000" value="50000" th:value="${vo.maxPrice}"> -->
-                                            <!-- <div class="range-control">
-                                                <div class="track"></div>
-                                                <div class="range"></div>
-                                                <div class="thumb left"></div>
-                                                <div class="thumb right"></div>
-                                            </div> -->
-                                        </div>
+                                        <!-- <div class="range_box">
+                                        </div> -->
                                         <div class="value_display_box">
                                             <input type="number" id="min-price" class="value_display left price_range1" name="minPrice" step="500" min="0" max="50000" value="0" th:value="${vo.minPrice}">
                                             <span>~</span>
@@ -152,22 +120,13 @@
                                         <div id="review-slider">
                                                 
                                         </div>
-                                        <div class="range_box">
-                                            <!-- <input type="range" id="price_range3" class="min-range value-range" step="1" min="0" max="10" value="0" th:>
-                                            <input type="range" id="price_range4" class="max-range value-range" step="1" min="0" max="10" value="10"> -->
-                                            <!-- <div class="range-control">
-                                                <div class="track"></div>
-                                                <div class="range"></div>
-                                                <div class="thumb left"></div>
-                                                <div class="thumb right"></div>
-                                            </div> -->
-                                        </div>
+                                        <!-- <div class="range_box">
+                                        </div> -->
                                         <div class="value_display_box">
                                             <input type="number" id="min-review" class="value_display left price_range3" name="minReview" min="0" max="10" value="0" th:value="${vo.minReview}">
                                             <span>~</span>
                                             <input type="number" id="max-review" class="value_display right price_range4" name="maxReview" min="0" max="10" value="10" th:value="${vo.maxReview}">
                                         </div>
-                                        <!-- <input type="range" id="review_range" class="value-range2" min="0" max="10" value="0"> -->
                                     </div>
                                     <div class="price_search_btn_box">
                                         <button class="btn" id="resetBtn" type="button">조건 리셋</button>
@@ -212,7 +171,6 @@
                                     <div>
                                         <select name="sortOrder" class="form-select" id="view_sort" >
                                             <option value="1" th:selected="${vo.sortOrder == 1}">최신순</option>
-                                            <!-- <option value="2" th:selected="${vo.sortOrder == 2}">판매량</option> -->
                                             <option value="3" th:selected="${vo.sortOrder == 3}">높은 리뷰점수순</option>
                                             <option value="4" th:selected="${vo.sortOrder == 4}">낮은 리뷰점수점수순</option>
                                             <option value="5" th:selected="${vo.sortOrder == 5}">높은 가격순</option>
@@ -228,14 +186,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <!-- <div class="view_type d-flex gap-1">
-                                    <button class="list_type btn active">
-                                        <img src="/usr/v1/assets/images/ico_view_list_active@2x.png" alt="">
-                                    </button>
-                                    <button class="grid-type btn">
-                                        <img src="/usr/v1/assets/images/ico_view_img_active@2x.png" alt="">
-                                    </button>
-                                </div> -->
                             </div>
                             <div class="selectedBages_box">
                                 <div>
@@ -255,9 +205,6 @@
                                         <div class="prod_img">
                                             <a th:href="@{product_detail(seq=${listP.seq})}" class="img-box ">
                                                 <img th:src="${listP.imgSrc != null ? listP.imgSrc : '/usr/v1/assets/images/emty-img.jpg'}" th:alt="${listP.imgSrc!=null ?listP.title + ' 이미지':'빈이미지'}">
-                                                <!-- <img th:if="${}" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지"> -->
-                                                <!-- <img th:src="${'/usr/v1/assets/images/prod/300/'+listP.imgSrc+'.jpg'}" alt=""> -->
-                                                <!-- <img style="display: none;" src="/usr/v1/assets/images/emty-img.jpg" alt="빈이미지"> -->
                                             </a>
                                             <a th:href="@{product_detail(seq=${listP.seq})}" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center"><span class="blank_icon"></span>새창보기</a>
                                         </div>
@@ -274,7 +221,6 @@
                                                     </span>
                                                     <strong class="review_num" th:text="${reviewStats[listP.seq].result}">0.0</strong>
                                                     <span>(<span class="review_count" th:text="${reviewStats[listP.seq].count}"></span>)</span>
-                                                    <!-- <strong class="review_num" th:text="${listP.reviewNum}">0.0</strong>  -->
                                                 </div>
                                             </div>
                                         </div>
@@ -346,23 +292,6 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                                <!-- <ul class="dataTable-pagination-list pagination pagination-primary justify-content-center">
-                                                    <li class="paginate_button previous page-item" id="previousPage">
-                                                        <a class="page-link" href="#">
-                                                            <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="active paginate_button page-item"><a href="#" data-page="1" class="page-link">1</a></li>
-                                                    <li class="paginate_button page-item"><a href="#" data-page="2" class="page-link">2</a></li>
-                                                    <li class="paginate_button page-item"><a href="#" data-page="3" class="page-link">3</a></li>
-                                                    <li class="paginate_button page-item"><a href="#" data-page="4" class="page-link">4</a></li>
-                                                    <li class="paginate_button page-item"><a href="#" data-page="5" class="page-link">5</a></li>
-                                                    <li class="paginate_button next page-item" id="nextPage">
-                                                        <a class="page-link" href="#">
-                                                            <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-                                                        </a>
-                                                    </li>
-                                                </ul> -->
                                             </nav>
                                         </div>
                                     </div>
@@ -400,11 +329,6 @@
             dateSearchBtn.forEach((radio) => {
                 radio.addEventListener("change", function(event) {
                     var selectedValue = this.value;
-                    // if (this.checked) {
-                    //     console.log("체크");
-                    //     return;
-                    // }
-                    // 
                     form.action = "product_list";
                     form.submit();
                     // 값 비교 예시
@@ -430,25 +354,9 @@
             
             const inputProdType = document.querySelector("#inputProdType"); 
             const prodTypeBtn = document.querySelectorAll(".prod_types_box .prodType");
-            // prodTypeBtn.forEach((t) => t.classList.remove('active'));
             prodTypeBtn.forEach((prodType) => {
-                // if (inputProdType.value = 34) {
-                //     
-                //     document.getElementById("prodType2").classList.add('active');
-                // }else if(inputProdType.value = 33) {
-                //     prodTypeBtn.forEach((t) => t.classList.remove('active'));
-                //     document.getElementById("prodType1").classList.add('active');
-                // }
-                // if(prodType.querySelector("input").checked){
-                //     prodType.classList.add('active');
-                //     console.log("prodType: "+prodType);
-                // }
-                // else{
-                //     prodType.classList.remove('active');
-                // }
                 prodType.addEventListener("click", function(event) {
-                    // prodTypeBtn.forEach((t) => t.classList.remove('active'));
-                    // this.classList.add('active');
+                    
                     console.log("dsajdk!");
                     var checkNum = this.id.slice(-1);
                     if(checkNum == 0){
@@ -466,7 +374,6 @@
                 })
 
             });
-            // const SearchOption1 = document.querySelector("#inputProdType"); 
             const SearchOptions1 = document.querySelectorAll(".SearchOption1 li");
             const inputBestNy =  document.querySelector("#inputBestNy");
             const inputTodayPickNy = document.querySelector("#inputTodayPickNy");
@@ -478,41 +385,34 @@
                     if(this.classList.contains('allViewBtn')){
                         console.log("1");
                         inputBestNy.value = 0;
-                        // inputBestNy.checked= false;
                         inputTodayPickNy.value = 0;
                         inputNewNy.value = 0;
-                        // inputTodayPickNy.checked = false;
-                        // this.classList.add("active");
+                        
                     }
                     else if(this.classList.contains('bsetNyBtn')){
                         console.log("2");
                         inputBestNy.value = 1;
                         inputTodayPickNy.value = 0;
                         inputNewNy.value = 0;
-                        // inputTodayPickNy.checked = false;
+                        
                     }
                     else if(this.classList.contains('newNyBtn')){
                         console.log("3");
                         inputNewNy.value = 1;
                         inputTodayPickNy.value = 0;
                         inputBestNy.value = 0;
-                        // inputTodayPickNy.checked = false;
+                        
                     }
                     else if(this.classList.contains('todayPickNyBtn')){
                         console.log("4");
                         inputTodayPickNy.value = 1;
                         inputBestNy.value = 0;
                         inputNewNy.value = 0;
-                        // inputBestNy.checked= false;
+                       
                     }
                     form.action = "product_list";
                     form.submit();
                 });
-                // option.querySelectorAll('input').forEach((input) => {
-                //     input.addEventListener('click', function(event) {
-                //         event.stopPropagation();
-                //     });
-                // });
             })
             
 
@@ -528,11 +428,6 @@
                     selectedItem.className = "selected-item";
                     selectedItem.textContent = parentElement.textContent;
                     checkBageBox.appendChild(selectedItem);
-
-                    // const selectedItem = document.createElement("div");
-                    // selectedItem.className = "selected-item";
-                    // selectedItem.textContent = parentElement.textContent;
-                    // checkBageBox.appendChild(selectedItem);
 
                     // 선택된 항목 클릭 시 제거
                     selectedItem.addEventListener("click", function(event) {
@@ -550,14 +445,11 @@
                     const parentElement = this.parentElement;
                     if (this.checked) {
                         this.value = 1;
-                        // parentElement.querySelector("span").style.color = "#fff";
-                        // parentElement.style.backgroundColor = "#545bb3";
-                        // parentElement.style.borderColor = "#545bb3";
+                        
                         parentElement.classList.add("active");
                         const selectedItem = document.createElement("div");
                         selectedItem.className = "selected-item";
                         selectedItem.textContent = parentElement.textContent;
-                        // selectedItem.dataset.value = this.value;
                         checkBageBox.appendChild(selectedItem);
 
                         selectedItem.addEventListener("click", function(event) {
@@ -565,15 +457,9 @@
                             this.remove();
                             bage.checked = false;
                             parentElement.classList.remove("active");
-                            // parentElement.querySelector("span").style.color = "#555";
-                            // parentElement.style.backgroundColor = "";
-                            // parentElement.style.borderColor = "#aaa";
                         });
                     } else {
                         this.value = 0;
-                        // parentElement.querySelector("span").style.color = "#555";
-                        // parentElement.style.backgroundColor = "";
-                        // parentElement.style.borderColor = "#aaa";
                         parentElement.classList.remove("active");
                         const selectedItems = checkBageBox.querySelectorAll(".selected-item");
                         selectedItems.forEach(item => {
@@ -585,7 +471,6 @@
                     console.log("1");
                     form.action = "product_list";
                     form.submit();
-                    
                 });
             });
             var pageSizeSelect = document.getElementById('rowNumToShowSelect');
@@ -614,16 +499,6 @@
                 form.action = url;
                 form.submit();
             }
-
-            // const checkBages = document.querySelectorAll(".selected-item");
-
-            // checkBages.forEach((bage) => {
-            //     bage.addEventListener("click", function(event) {
-            //         if (this.textContent === parentElement.textContent) {
-            //             checkBageBox.removeChild(item);
-            //         }
-            //     });
-            // });
             prodSortSelect();
         };
     </script>

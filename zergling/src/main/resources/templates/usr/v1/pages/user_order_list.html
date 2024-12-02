@@ -42,12 +42,6 @@
                     <div>
                         <div class="content_title_box">
                             <p class="content_title">주문 / 배송 목록</p>
-                            <!-- <div class="d-flex align-items-center gap-3">
-                                <p class="gray-color">
-                                    최근 1개월 주문내역 입니다.
-                                </p>
-                                <button class="btn">상세조회</button>
-                            </div> -->
                         </div>
                         <div class="content_box">
                             <div class="order_list_view_box">
@@ -89,11 +83,7 @@
                                         <div class="order_summary">
                                             <div>
                                                 <span th:text="${#dates.format(list.orderDate,'yyyy.MM.dd') + '(' + list.orderNumber + ')'}">2024.08.04(O24458797451)</span>
-                                                <!-- <span class="order-detail-btn">상세보기</span> -->
                                             </div>
-                                            <!-- <div>
-                                                <span class="order-delete-btn">주문내역에서 삭제</span>
-                                            </div> -->
                                         </div>
                                 
                                         <!-- 주문 상품 정보 -->
@@ -120,21 +110,13 @@
                                                     <p class="prod_delivery_date" th:if="${list.orderStatus == 10 or list.orderStatus == 19}" style="visibility: hidden;"><span class="prod_delivery_status"></span></p>
                                                 </p>
                                             </div>
-                                            
-                                            <!-- <div class="product_info">
-                                                
-                                                
-                                            </div> -->
                                             <div th:if="${!(list.orderStatus == 10 or list.orderStatus == 14 or list.orderStatus == 57 or list.orderStatus == 56)}" 
                                                 style="visibility: hidden;">
                                                 <!-- 이 안의 내용을 차지할 영역 -->
                                                 <button class="btn"></button>
                                             </div>
                                             <div th:if="${(list.orderStatus == 10) or (list.orderStatus == 14)}">
-                                                <!-- <a href="https://apis.tracker.delivery/carriers/kr.cjlogistics/tracks/1234567890" target="_blank" class="btn btn-blue">배송조회</a> -->
-                                                <!-- <a href="https://tracker.delivery/#/kr.cjlogistics/1234567890" target="_blank" class="btn btn-blue">배송조회</a> -->
                                                 <a href="#" onclick="window.open('https://tracker.delivery/#/kr.cjlogistics/577215028796', '_blank', 'width=600,height=400'); return false;" class="btn btn-blue">배송조회</a>
-                                                <!-- <a href="https://tracker.delivery/#/:carrier_id/:track_id" target="_blank" class="btn btn-blue">배송조회</a> -->
                                             </div>
                                             
                                             <div th:if="${(list.orderStatus == 57) or (list.orderStatus == 56)}">
@@ -143,75 +125,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <p class="prod_title-box">
-                                                    <span class="prod_type" th:text="${list.productType}">[국내도서]</span>
-                                                    <span class="prod_title" th:text="${list.productTitle}">나쁜 검사들</span>
-                                                </p>
-                                                <p class="prod_num">수량 : <span th:text="${list.quantity}">1</span></p>
-                                                <p class="prod_price"><span th:text="${list.productPrice}">15,750</span>원</p>
-                                                <p class="order-status">
-                                                    <span class="blue-color" th:text="${list.orderStatus}">결제완료</span>
-                                                    <span class="prod_delivery_date" th:text="${list.deliveryDate}">2024.08.06</span> 도착예정
-                                                </p> -->
-                                <!-- <table>
-                                    <div th:each="list : ${orderlist}">
-                                        <tr  class="order_head">
-                                            <th colspan="4">
-                                                <p>
-                                                    <span>2024.08.04(O24458797451)</span> <span>상세보기</span>
-                                                </p>
-                                            </th>
-                                            <th>
-                                                <span class="order_delete_btn">주문내역에 삭제</span>
-                                            </th>
-                                        </tr>
-                                        <tr >
-                                            <td>
-                                                <img src="/usr/v1/assets/images/prod/200/9791193289273.jpg" alt="">
-                                            </td>
-                                            <td>
-                                                <p class="prod_title_box"><span class="prod_type">[국내도서]</span><span class="prod_title">나쁜 검사들</span></p>
-                                                <p class="prod_num">수량 : <span>1</span></p>
-                                            </td>
-                                            <td>
-                                                <p class="prod_price"><span>15,750</span>원</p>
-                                            </td>
-                                            <td>
-                                                <p class="blue_color">결제완료</p>
-                                                <p class="prod_quantity"><span>2024.08.06</span> 도작예정</p>
-                                            </td>
-                                            <td>
-                                                <button class="btn ">취소신청</button>
-                                            </td>
-                                        </tr>
-                                    </div>
-                                    
-                                    <tr class="order_head">
-                                        <th colspan="4">
-                                            <p>
-                                                <span>2024.08.04(O41295635312)</span> <span>상세보기</span>
-                                            </p>
-                                        </th>
-                                        <th>
-                                            <button class="btn btn-no">주문내역에 삭제</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="/usr/v1/assets/images/prod/200/9791191570724.jpg" alt="">
-                                        </td>
-                                        <td>
-                                            <p class="prod_title_box"><span class="prod_type">[국내도서]</span><span class="prod_title">아직 덜 마른 장작</span></p>
-                                            <p class="prod_num">수량 : <span>1</span></p>
-                                        </td>
-                                        <td>
-                                            <p class="prod_price"><span>18,000</span>원</p>
-                                        </td>
-                                        <td>
-                                            <p class="blue_color">취소완료</p>
-                                        </td>
-                                    </tr>
-                                </table> -->
                             </div>
                         </div>
                     </div>
