@@ -51,18 +51,19 @@
 ## ⚙️ 기술 스택
 
 ### Frontend
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="40" height="40"/>  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="40" height="40"/>  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" height="40"/>  
+<img src="https://img.shields.io/badge/HTML-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5" height="40"/>  <img src="https://img.shields.io/badge/CSS-%231572B6.svg?style=flat&logo=css3&logoColor=white" alt="CSS3" height="40"/>
+<img src="https://img.shields.io/badge/JavaScript-%23323330.svg?style=flat&logo=javascript&logoColor=F7DF1E" alt="JavaScript" height="40"/> <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery" alt="jQuery" height="40"/> <img src="https://img.shields.io/badge/Bootstrapap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap" height="40"/>  
 
 ### Backend
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring" width="40" height="40"/>  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" width="40" height="40"/>  
+<img src="https://img.shields.io/badge/Spring-%6DB33F.svg?style=flat&logo=spring&logoColor=white" alt="Spring" height="40"/> <img src="https://img.shields.io/badge/Java-f26522.svg?style=flat&logo=java&logoColor=white" alt="Java"  height="40"/>  
 
 ### Database
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="40" height="40"/>  
+<img src="https://img.shields.io/badge/MySQL-%234F78A1.svg?style=flat&logo=mysql&logoColor=white" alt="MySQL" height="40"/>  
 
 ### Tools & Platforms
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40" height="40"/>  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" width="40" height="40"/>  
+<img src="https://img.shields.io/badge/GitHub-%23121011.svg?style=flat&logo=github&logoColor=white" alt="GitHub" height="40"/>  <img src="https://img.shields.io/badge/Amazon%20Web%20Services-FF9900?style=for-the-badge&logo=amazonwebservices" alt="AWS" height="40"/>  
 
 ### Authentication
-<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="Kakao Login" width="40" height="40"/>  
+<img src="https://img.shields.io/badge/Kakao-FFCC00.svg?style=flat&logo=kakao&logoColor=white" alt="Kakao Login" height="40"/>  
 
 
