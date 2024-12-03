@@ -338,7 +338,7 @@
 				left join productauthor c on c.product_seq = a.seq and aDefaultNy = 1
 				left join author b on c.author_seq = b.seq
 				join commoncode d on b.authorType = d.seq
-				left join productupload f on f.pseq = a.seq and f.defaultNy = 1
+				left join productupload f on f.pseq = a.seq and f.type = 3
 				left join commoncode prodType on a.prodType = prodType.seq	AND prodType.codeGroup_seq = 12
 				left join commoncode publisher on a.publisher = publisher.seq AND publisher.codeGroup_seq = 3
 			where 1=1

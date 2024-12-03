@@ -49,7 +49,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="group-2">
+                            <div class="group-2" onclick="window.location.href='product_detail?seq=10'">
                                 <div class="img-box">
                                     <img src="./usr/v1/assets/images/mainSlider/101022.jpg" alt="Image"/>
                                 </div>
@@ -60,7 +60,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="group-2">
+                            <div class="group-2" onclick="window.location.href='product_detail?seq=4'">
                                 <div class="img-box">
                                     <img src="./usr/v1/assets/images/mainSlider/20240715_093914811.jpg" alt="Image"/>
                                 </div>
@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                             
-                            <div class="group-5">
+                            <!-- <div class="group-5">
                                 <div class="img-box">
                                     <img src="./usr/v1/assets/images/mainSlider/i_1624_450_5eb0927b569444c4a5ec92342047f38c.jpg" alt="Image"/>
                                 </div>
@@ -137,7 +137,7 @@
                                         『책과 마주하는 마음으로』 에필로그
                                     </p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="slider-controls">
                             <ul class="slick-dots swiper-pagination"></ul>
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            <section class="today_pick">
+            <section class="today_pick more_link_area">
                 <div class="today_pickArea">
                     <div class="area-head d-flex justify-content-between">
                         <div class="d-flex">
@@ -181,7 +181,7 @@
                     </div>
                 </div>
             </section>
-            <section class="art_culture flexibilization2">
+            <section class="art_culture">
                 <div>
                     <div class="area-head d-flex justify-content-between">
                         <h3>카카오[다음] 베스트셀러 api</h3>
@@ -192,7 +192,7 @@
                             <div class="swiper-wrapper">
                                 <div class="prod_list_item" th:each="kakaobest : ${#lists.toList(kakaobest)}">
                                     <div class="img-box">
-                                        <img th:src="${kakaobest.thumbnail != null && !kakaobest.thumbnail.isEmpty() ? kakaobest.thumbnail : '/usr/v1/assets/images/prod/300/emty-img.jpg'}"
+                                        <img th:src="${kakaobest.thumbnail != null && !kakaobest.thumbnail.isEmpty() ? kakaobest.thumbnail : '/usr/v1/assets/images/emty-img.jpg'}"
                                         th:alt="${kakaobest.title}"/>
                                     </div>
                                     <p class="book-title" th:text="${kakaobest.title}">읽고 쓰고 소유하다</p>
@@ -206,7 +206,7 @@
                     </div>
                 </div>
             </section>
-            <section class="new_arrivals flexibilization2">
+            <section class="new_arrivals more_link_area">
                 <div>
                     <div class="area-head d-flex justify-content-between">
                         <div class="d-flex">
@@ -257,7 +257,7 @@
                     </div>
                 </div>
             </section> 
-            <section class="bestseller flexibilization3">
+            <section class="bestseller more_link_area">
                 <div>
                     <div class="area-head d-flex justify-content-between">
                         <div class="d-flex align-items-center">
@@ -311,7 +311,8 @@
 
 
             //첫번째슬라이드 설정 - 메인
-            var customTexts1 = ["핫 이슈", "발견의 기쁨", "기획전", "eBook", "핫트랙스"];
+            // var customTexts1 = ["핫 이슈", "발견의 기쁨", "기획전", "eBook", "핫트랙스"];
+            var customTexts1 = ["핫 이슈", "발견의 기쁨", "기획전", "eBook"];
             // // Swiper 초기화
             const createdGroups = new Set();
             var swiperInstance_swiper_slide = document.querySelectorAll(".main-slider-wrapper .swiper-slide") ;

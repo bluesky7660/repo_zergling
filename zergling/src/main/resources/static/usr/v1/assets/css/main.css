@@ -3,10 +3,6 @@ section{
     margin:0 auto;
 
 }
-/* .container{
-    padding-left:100px;
-    padding-right:100px;
-} */
 .swiper-slide{
     cursor: pointer;
 }
@@ -80,12 +76,8 @@ section{
     font-weight: bolder;
 }
 
-/* .your-slider img {
-    width: 100%;
-    height: auto;
-} */
 .slick-slider {
-    width: 100%; /* 슬라이더가 부모 컨테이너의 너비를 채우도록 설정 */
+    width: 100%; 
 }
 .slick-slide>div{
     width: fit-content;
@@ -97,7 +89,7 @@ section{
     /* width: calc(100% - 150px); */
     width: fit-content;
     position: absolute;
-    bottom:50px; /* 슬라이더 하단에서의 거리 조정 */
+    bottom:50px; 
     /* right:0; */
     right: 150px;
     /* padding:20px 50px; */
@@ -139,18 +131,6 @@ section{
     padding: 0;
     margin: 0;
 }
-
-/* .slick-dots li {
-    margin: 0 5px;
-} */
-
-/* .slick-dots button {
-
-    width: 126px;
-    height: 66px;
-    background: #000;
-    border: none;
-} */
 .main-slider-wrapper .slider-controls button{
     /* width: 126px; */
     padding:30px;
@@ -309,15 +289,12 @@ section{
     text-align: left;
 }
 .hit .left-box{
-    /* padding:20px; */
 }
 .hit .img-box{
     border-radius: 50%;
     overflow: hidden;
 }
 .hit .swiper-button-area{
-    /* width: 100%;
-    height: 100%; */
 }
 .hit .swiper-button-area .swiper-button-next{
     right:0px;
@@ -329,11 +306,9 @@ section{
 /*bestseller*/
 .best-content{
     display: flex;
-    /* grid-template-columns: repeat(5, 1fr); // 5개의 열
-    grid-template-rows: repeat(2, 1fr); //2개의 행 */
     width: 100%;
     height: 100%;
-    counter-reset: item-counter; /* 카운터 초기화 */
+    counter-reset: item-counter; 
 }
 .best-content li {
     /* display: flex;
@@ -341,9 +316,9 @@ section{
     align-items: center; */
     /* background: #ddd; */
     /* border: 1px solid #ccc; */
-    height: fit-content; /* 아이템 높이 */
-    width: 100%; /* 아이템 너비 (그리드의 열 너비와 같음) */
-    counter-increment: item-counter; /* 각 항목마다 카운터 증가 */
+    height: fit-content; 
+    width: 100%; 
+    counter-increment: item-counter; 
     cursor: pointer;
     /* box-sizing: border-box; */
 }
@@ -378,7 +353,7 @@ section{
     border-color:rgb(77, 172, 39);
     position: relative;
 }
-.best-content li .img-box::before{
+.best-content li .img-box::before, .more_link_area .swiper-slide .img-box::before{
     content: "상세보기";
     font-size: 20px;
     font-weight: bold;
@@ -392,7 +367,7 @@ section{
     opacity: 0;
     transition: opacity .5s ease;
 }
-.best-content li:hover .img-box::before{
+.best-content li:hover .img-box::before,.more_link_area .swiper-slide:hover .img-box::before{
     opacity: 1;
 }
 

@@ -426,6 +426,8 @@ public class indexController {
 		vo.setProdType(productService.prodOne(productDto).getProdType());
 		vo.setSeq(productService.prodOne(productDto).getSeq());
 		System.out.println("카테고리:" +productService.prodOne(productDto).getProdTypeName());
+		Date deliveryDate = DateUtil.getDeliveryDate(2);
+		model.addAttribute("deliveryDate",deliveryDate);
 		model.addAttribute("best", productService.bestCategoryProdList(vo));
 		model.addAttribute("prodAuthor", authorService.prodAuthorList(authorVo));
 		model.addAttribute("authors", authorService.authorUsrList(authorVo));
@@ -442,12 +444,6 @@ public class indexController {
             // 필요한 다른 속성도 추가적으로 출력할 수 있습니다.
         }
 		model.addAttribute("prodImg", productService.imgUsrList(productDto));
-		System.out.println("rvCount:" +reviewService.listCount(reviewVo));
-		System.out.println("목차: "+productService.prodOne(productDto).getIntro());
-		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
-//		System.out.println("rvTags: " +codeService.tagsList());
-//		model.addAttribute("author", authorService.authorOne(authorDto));
-//		model.addAttribute("authors", productAuthorService.productAuthorSelected(productAuthorDto));
 		return "usr/v1/pages/product_detail";
 	}
 	@RequestMapping(value = "product_list")
@@ -459,13 +455,6 @@ public class indexController {
 		model.addAttribute("list", productService.usrProdList(productVo));
 		model.addAttribute("bages", codeService.bageList());
 		model.addAttribute("reviewStats", reviewService.listScore(reviewVo, productVo));
-//		model.addAttribute("rvNum", reviewService.totalNum(reviewVo));
-		//		List<ProductDto> prods = productService.usrProdList(productVo);
-//		for(ProductDto prod : prods) {
-//			System.out.println("상품seq: "+prod.getSeq());
-//			System.out.println("타입: "+prod.getTitle()	);
-//		}
-//		productDto.setType(1);
 		List<ProductDto> imgList = productService.imgUsrList(productDto);
         
         // 리스트의 내용을 출력합니다.
@@ -474,15 +463,8 @@ public class indexController {
             System.out.println("ImgSrc: " + img.getImgSrc()); // 이미지 경로 출력
             // 필요한 다른 속성도 추가적으로 출력할 수 있습니다.
         }
-//		model.addAttribute("img", productService.imgUsrList(productDto));
-		 
-		System.out.println("검색: "+productService.usrProdList(productVo));
-		System.out.println("리뷰점수: " +reviewService.totalNum(reviewVo));
-//		System.out.println("최소: "+productVo.getMinPrice());
-//		System.out.println("베스트: " +productVo.getBestNy());
-//		System.out.println("투데이: " +productVo.getTodayPickNy());
-//		System.out.println("타입: " +productVo.getProdType());
-//		System.out.println("최대: "+productVo.getMaxPrice());
+        Date deliveryDate = DateUtil.getDeliveryDate(2);
+		model.addAttribute("deliveryDate",deliveryDate);
 		return "usr/v1/pages/product_list";
 	}
 	

@@ -121,7 +121,7 @@
                                 </div>
                                 <div>
                                     <p>무료배송</p>
-                                    <p><span th:text="${#dates.format(product.shipDate, 'M/d') + '(' + #dates.format(product.shipDate, 'E') + ')'}"></span> 출고예정</p>
+                                    <p><span th:text="${#dates.format(deliveryDate, 'M/d') + '(' + #dates.format(deliveryDate, 'E') + ')'}"></span> 출고예정</p>
                                     <p>기본배송지 기준</p>
                                 </div>
                             </div>

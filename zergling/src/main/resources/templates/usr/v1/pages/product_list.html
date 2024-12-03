@@ -225,7 +225,7 @@
                                             </div>
                                         </div>
                                         <div class="shipping_date d-flex flex-column gap-2" th:if="${listP.stockQty > 0}" >
-                                            <p><strong th:text="${#dates.format(listP.shipDate, 'M/d') + '(' + #dates.format(listP.shipDate, 'E') + ')'}">8/5(월)</strong></p>
+                                            <p><strong th:text="${#dates.format(deliveryDate, 'M/d') + '(' + #dates.format(deliveryDate, 'E') + ')'}"></strong></p>
                                             <p>출고예정</p>
                                         </div>
                                         <div class="button_box d-flex flex-column gap-2" th:if="${listP.stockQty > 0}" >

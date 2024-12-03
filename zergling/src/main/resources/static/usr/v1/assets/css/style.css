@@ -559,7 +559,8 @@ main>*{
 }
 
 .scrolltable{
-    min-width: 900px;
+    /* min-width: 900px; */
+    min-width: 1200px;
     max-width: 1500px;
     height: auto;
     position: relative;
@@ -946,4 +947,26 @@ footer .right-box{
 footer .right-box *{
     white-space: nowrap;
     font-size: 12.5px;
+}
+@media (max-width: 1200px) {
+    /* .search_wrapper{
+        width: 100%;
+    } */
+    
+    .scrolltable.active .search_area{
+        background-color: blue;
+        width: calc(100% - 150px);
+    } 
+    .scrolltable.active .search_box select{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 968px) {
+    .scrolltable.active .search_area{
+        background-color: red;
+        position: absolute;
+        padding: 20px;
+        left: -210px;
+        bottom: -115px;
+    }
 }
