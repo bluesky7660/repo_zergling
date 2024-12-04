@@ -263,7 +263,7 @@ textarea.form-control{
     
   }
   .value_display{
-    width: 50px;
+    width: 70px;
     border: none;
   }
   .value_display.right{
@@ -560,7 +560,7 @@ main>*{
 
 .scrolltable{
     /* min-width: 900px; */
-    min-width: 1200px;
+    /* min-width: 1200px; */
     max-width: 1500px;
     height: auto;
     position: relative;
@@ -608,20 +608,25 @@ main>*{
     height:50px;
 }
 .search_wrapper{
-    width: calc(100% - 300px);
+    /* width: calc(100% - 300px); */
+    width: 100%;
     max-width: 700px;
 }
-
+.search_area{
+    width: 100%;
+}
 .search_box{
     border: 1px solid #aaa ;
     border-radius: 50px;
     height: 100%;
     width: 100%;
     min-width:240px;
-    padding:10px 30px;
+    padding:10px 20px;
 }
 .search_box select{
-    width: 150px;
+    min-width: 100px;
+    max-width: 150px;
+    /* width: 150px; */
     border: 0;
 }
 .search_box input{
@@ -647,6 +652,9 @@ main>*{
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.user_my .user-name{
+    white-space: nowrap;
 }
 .user_my .usr-imgbox{
     display: block;
@@ -960,10 +968,14 @@ footer .right-box *{
     .scrolltable.active .search_box select{
         font-size: 12px;
     }
+    .search_box select{
+        
+    }
 }
 @media screen and (max-width: 968px) {
     .scrolltable.active .search_area{
         background-color: red;
+        width: fit-content;
         position: absolute;
         padding: 20px;
         left: -210px;

@@ -1,3 +1,9 @@
+function updateValue(input) {
+    let value = input.value.replace(/[^0-9]/g, ''); // 숫자 외 문자를 제거
+    if (value) {
+        input.value = new Intl.NumberFormat('ko-KR').format(value); // 천 단위 구분 기호 추가
+    }
+}
 $(document).ready(function(){
     //양방향 range
 
@@ -170,11 +176,17 @@ $(document).ready(function(){
     //      });
          
     //  });
+    
      
     //가격 양방향 range
     var slider1 = document.getElementById('price-slider');
+    const min_price_h = document.getElementById("min_price_h");
+    const max_price_h = document.getElementById("max_price_h");
+    
     var minPriceInput = document.getElementById('min-price');
     var maxPriceInput = document.getElementById('max-price');
+    minPriceInput.value = min_price_h.value;
+    maxPriceInput.value = max_price_h.value;
     var margin = 5000;
     var defaultMinValue = 0;
     var defaultMaxValue = 50000;
@@ -186,11 +198,12 @@ $(document).ready(function(){
              'min': 0,
              'max': 50000
          },
-         step: 500, // 스텝 간격
+         step: 1, // 스텝 간격
          margin: margin, // 두 핸들 간의 간격을 300으로 설정
          format: {
              to: function (value) {
-                 return value.toFixed(0); // 소수점 없이 정수로 표시
+                //  return value.toFixed(0); // 소수점 없이 정수로 표시
+                return new Intl.NumberFormat('ko-KR').format(value);
              },
              from: function (value) {
                  return Number(value); // 문자열을 숫자로 변환
@@ -202,31 +215,68 @@ $(document).ready(function(){
      slider1.noUiSlider.on('update', function (values) {
          minPriceInput.value = values[0];
          maxPriceInput.value = values[1];
+         console.log("noUiSlider minValue:"+values[0]);
+         console.log("noUiSlider maxValue:"+values[1]);
+         min_price_h.value = values[0].replace(/,/g, '');;
+         max_price_h.value = values[1].replace(/,/g, '');;
      });
 
      // input 필드의 값을 슬라이더에 반영
      minPriceInput.addEventListener('change', function () {
-         var minValue = parseFloat(this.value);
-         var maxValue = parseFloat(maxPriceInput.value);
+        
+        // console.log("this.value:"+this.value);
+        const baseMinValue = this.value.replace(/,/g, '');
+        
+        // console.log("baseMinValue:"+baseMinValue);
+         var minValue = parseFloat(baseMinValue);
+         min_price_h.value = minValue;
+         console.log("baseMinValue:"+minValue);
+        const baseMaxValue = maxPriceInput.value.replace(/,/g, '');
+         var maxValue = parseFloat(baseMaxValue);
+         console.log("baseMaxValue:"+maxValue);
          if (maxValue - minValue < margin) {
              if(minValue == maxPriceInput.max){
                  minPriceInput.value = maxPriceInput.max - margin;
+                 
+                 
              }else {
                  maxValue = minValue + margin;
                  maxPriceInput.value = maxValue;
+                 console.log("maxValue"+maxValue);
+                //  max_price_h.value = maxValue;
              }  
          }
-         slider1.noUiSlider.set([this.value, null]);
+         
+         slider1.noUiSlider.set([minValue, null]);
+         console.log("maxValue"+maxValue);
+          console.log("maxPriceInput.max:"+maxPriceInput.max);
+         console.log("minValue.maxPriceInput.max"+maxPriceInput.max - margin);
+        //  min_price_h.value = maxPriceInput.max - margin;
+        //  max_price_h.value = maxValue;
      });
 
      maxPriceInput.addEventListener('change', function () {
-         var maxValue = parseFloat(this.value);
-         var minValue = parseFloat(minPriceInput.value);
+        const baseMaxValue = this.value.replace(/,/g, '');
+         var maxValue = parseFloat(baseMaxValue);
+         const baseMinValue = minPriceInput.value.replace(/,/g, '');
+        //  max_price_h.value = maxValue;
+         var minValue = parseFloat(baseMinValue);
          if (maxValue - minValue < margin) {
+            console.log("maxValue"+maxValue);
              minValue = maxValue - margin;
              minPriceInput.value = minValue;
+             
+            
+         }else if(maxValue>50000){
+            maxValue = 50000;
+            
+            
          }
-         slider1.noUiSlider.set([null, this.value]);
+         slider1.noUiSlider.set([null, maxValue]);
+         console.log("minValue"+minValue);
+         console.log("maxValue"+maxValue);
+        //  min_price_h.value = minValue;
+        //  max_price_h.value = maxValue;
      });
 
 

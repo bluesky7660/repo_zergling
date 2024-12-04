@@ -104,15 +104,19 @@
                                 <div class="search_ranges_box">
                                     <div class="price_range_box">
                                         <label for="price_range">가격별</label>
+                                        <input type="hidden" id="min_price_h" name="minPrice" value="0" th:value="${vo.minPrice}">
+                                        <input type="hidden" id="max_price_h" name="maxPrice" value="50000" th:value="${vo.maxPrice}">
                                         <div id="price-slider">
                                                 
                                         </div>
                                         <!-- <div class="range_box">
                                         </div> -->
                                         <div class="value_display_box">
-                                            <input type="number" id="min-price" class="value_display left price_range1" name="minPrice" step="500" min="0" max="50000" value="0" th:value="${vo.minPrice}">
+                                            <!-- <input type="number" id="min-price" class="value_display left price_range1" name="minPrice" step="500" min="0" max="50000" value="0" th:value="${vo.minPrice}"> -->
+                                            <input type="text" id="min-price" class="value_display left price_range1" step="500" min="0" max="50000" value="0" oninput="updateValue(this)" >
                                             <span>~</span>
-                                            <input type="number" id="max-price" class="value_display right price_range2" name="maxPrice" step="500" min="0" max="50000" value="50000" th:value="${vo.maxPrice}">
+                                            <!-- <input type="number" id="max-price" class="value_display right price_range2" name="maxPrice" step="500" min="0" max="50000" value="50000" th:value="${vo.maxPrice}"> -->
+                                            <input type="text" id="max-price" class="value_display right price_range2" step="500" min="0" max="50000" value="50000" oninput="updateValue(this)">
                                         </div>
                                     </div>
                                     <div class="review_range_box">
@@ -356,17 +360,15 @@
             const prodTypeBtn = document.querySelectorAll(".prod_types_box .prodType");
             prodTypeBtn.forEach((prodType) => {
                 prodType.addEventListener("click", function(event) {
-                    
-                    console.log("dsajdk!");
                     var checkNum = this.id.slice(-1);
                     if(checkNum == 0){
                         inputProdType.value = "";
                     }else if (checkNum == 1) {
-                        console.log("소설!");
+                        // console.log("소설!");
                         inputProdType.value = 33;
                     }
                     else if(checkNum == 2){
-                        console.log("외!");
+                        // console.log("외!");
                         inputProdType.value = 34;
                     }
                     form.action = "product_list";
