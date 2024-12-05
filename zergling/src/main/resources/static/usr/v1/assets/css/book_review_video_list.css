@@ -133,3 +133,112 @@
 .video_detail a:hover{
     border-width: 2px;
 }
+
+
+
+
+
+/*리뉴얼*/
+main{
+    background-color: #F9F1CF;
+}
+.book_video_review{
+    background-color: #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    /* padding:50px; */
+    margin: 30px auto;
+}
+/*각 도서의 상단*/
+.item_title{
+    background-color: #6DB329;
+    color: #fff;
+    padding:30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.moreBtn{
+    padding:20px;
+    background-color: #63883e;
+    border: 1px solid #fff;
+}
+
+/*도서 컨텐츠 부분*/
+.book_area{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding:50px;
+}
+.book_area >*{
+    width: fit-content;
+    gap: 30px;
+    justify-content: space-between;
+}
+/*도서 이미지*/
+.book_img{
+    display: flex;
+}
+.book_img .img-box{
+    width: 100%;
+    min-width: 200px;
+    height: fit-content;
+}
+
+/*도서 정보*/
+.book_content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: space-between;
+}
+.book_info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+}
+.book_info *{
+    font-size: 18px;
+    line-height: 30px;
+}
+.creator_info span{
+    color:#888
+}
+
+
+.book_intro{
+    font-size: 16px;
+    line-height: 26px;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+
+/*도서 유투브영상*/
+.video_area{
+    width: 100%;
+    
+}
+.iframe_area {
+    position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 비율 */
+}
+.video_area iframe{
+    position: absolute;
+    width: 100%; /* 부모에 맞게 꽉 채운다. */
+    height: 100%;
+    /* max-width: 640px;
+    max-height: 360px; */
+    border-radius: 20px;
+    overflow: hidden;
+    /* min-width: 640px;
+    min-height: 360px; */
+}

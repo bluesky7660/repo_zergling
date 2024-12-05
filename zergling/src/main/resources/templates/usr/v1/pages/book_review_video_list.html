@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="/usr/v1/assets/css/product_list.css">
     <link rel="stylesheet" href="/usr/v1/assets/css/book_review_video_list.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+    <style></style>
 </head>
 <body>
     <div class="page-wrapper">
@@ -42,9 +42,39 @@
         <main>
             <div class="content_wrapper">
                 <div class="header_box">
-                    <h3>Youtube API [도서서평]</h3>
+                    <h3>도서서평 [Youtube]</h3>
                 </div>
-                <form id="listForm" name="listForm" autocomplete="off" method="post" action="book_review_video_list">
+                <div class="bookList_area">
+                    <div class="book_video_review row flex-row">
+                        <div class="item_title">
+                            <h4>영원한 천국</h4>
+                            <div class="moreBtn">
+                                <span></span><a href="/product_detail?seq=10">도서 자세히 보기</a></span>
+                            </div>
+                        </div>
+                        <div class="book_area">
+                            <div class="book_img">
+                                <div class="img-box">
+                                    <img src="https://zergling2.s3.ap-northeast-2.amazonaws.com/product/1/2024/11/04/21e9bf3d-5d34-494a-8cd0-f41d57a2fb93.jpg" alt="영원하 천국이미지">
+                                </div>
+                            </div>
+                            <div class="book_content">
+                                <div class="book_info">
+                                    <p class="creator_info"><span>정유정</span> · <span>은행나무</span></p>
+                                    <!-- <p class="book_author "><span>작가 - </span><span class="gray_color">정유정</span></p>
+                                    <p class="book_publisher"><span>출판사 - </span><span class="gray_color">은행나무</span></p> -->
+                                    <p class="book_intro">현실 너머로 질주하는 인간의 욕망을 탐구하다! 소설가 정유정이 도달한 인간성의 가장 먼 미래 《완전한 행복》에 이은 욕망 3부작 두 번째 이야기 출간!</p>
+                                </div>
+                                <div class="video_area">
+                                    <div class="iframe_area"><!-- width="640" height="360" -->
+                                        <iframe src="https://www.youtube.com/embed/8jAZ6IPtTYU" title="이런 상상, 정유정의 영원한 천국" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <form id="listForm" name="listForm" autocomplete="off" method="post" action="book_review_video_list">
                     <input type="hidden" name="searchKeyword" th:value="${shVo.searchKeyword}"/>
                     <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
                     <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
@@ -52,15 +82,10 @@
                     <div class="contentArea">
                         
                         <div class="view_options d-flex justify-content-end gap-3">
-                            <!-- <div class="d-flex flex-column justify-content-between">
-                                <p id="listTotalRow">전체 <span th:text="${#numbers.formatInteger(vo.totalRows,1,'COMMA')}"></span> 건</p>
-                                <p id="newDay" class="gray_color">최근 2개월 기준으로 등록된 신상품이 집계됩니다.</p>
-                            </div> -->
                             <div class="d-flex justify-content-between gap-3">
                                 <div>
                                     <select name="sortOrder" class="form-select" id="view_sort" >
                                         <option value="1" th:selected="${vo.sortOrder == 1}">최신순</option>
-                                        <!-- <option value="2" th:selected="${vo.sortOrder == 2}">판매량</option> -->
                                         <option value="3" th:selected="${vo.sortOrder == 3}">높은 조회순</option>
                                         <option value="4" th:selected="${vo.sortOrder == 4}">낮은 조회순</option>
                                         <option value="5" th:selected="${vo.sortOrder == 5}">높은 좋아요순</option>
@@ -84,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </form> -->
             </div>
         </main>
         <div class="top_btn"><i class="fa-solid fa-xl fa-chevron-up"></i></div>
