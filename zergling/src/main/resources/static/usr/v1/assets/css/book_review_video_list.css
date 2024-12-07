@@ -24,19 +24,20 @@
     flex-direction: column;
     gap: 10px;
 }
-/*채널*/
+
+/*채널 탭*/
 .channels_tab_area{
     margin-bottom: 30px;
     padding-bottom: 10px;
-    border-bottom: 1px solid;
+    /* border-bottom: 1px solid; */
 }
 .channel-tabs{
     /* display: flex;
     flex-wrap: wrap;
     justify-content: space-between; */
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 최대 6개 열 생성 */
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr); /* 최대 6개 열 생성 */
+    gap: 40px;
 
 }
 .channel-tabs li{
@@ -50,9 +51,29 @@
 .channel-tabs li a{
     width: 100%;
     display: block;
-    border: 1px solid #aaa;
+    /* border: 1px solid #fff; */
+    box-shadow: 
+    4px 4px 10px rgba(0, 0, 0, 0.2), 
+    -4px -4px 10px rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #fff;
     padding: 30px;
 }
+.channel-tab .img-box{
+    display: inline-block;
+    border: none;
+    margin-bottom: 0;
+}
+.channel_tab_name{
+    display: block;
+    background-color: #99e64f;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*채널 상세*/
 .channel_info a{
  display: flex;
  gap: 30px;
@@ -73,7 +94,7 @@
 .channels_description{
     line-height: 30px;
 }
-.channels_video_list{
+.channels_video_list.show{
     margin-top: 30px;
     border-top: 1px solid #aaa;
 }

@@ -42,8 +42,8 @@
         <main>
             <div class="content_wrapper">
                 <div class="header_box">
-                    <h3>Youtube API [서평채널]</h3>
-                    <div class="channel_add_area">
+                    <h2>Youtube API [서평채널]</h2>
+                    <!-- <div class="channel_add_area">
                         <h4>채널추가</h4>
                         <div class="channel_add_box">
                             <div class="channel_sreach_box">
@@ -53,7 +53,7 @@
                                 <button id="channel_add_btn" class="btn">채널추가</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <form id="listForm" name="listForm" autocomplete="off" method="post" action="book_review_video_list">
                     <input type="hidden" name="searchKeyword" th:value="${shVo.searchKeyword}"/>
@@ -66,7 +66,14 @@
                             <div id="channels_area" class="channels_area">
                                 <div class="channels_tab_area">
                                     <ul id="channel-tabs" class="channel-tabs">
-                                        <li th:each="channel:${channels}"><a href="javascript:void(0);" class="channel-tab" th:data-channel-id="${channel.ycId}" th:text="${channel.ycName}"></a></li>
+                                        <li th:each="channel:${channels}">
+                                            <a href="javascript:void(0);" class="channel-tab" th:data-channel-id="${channel.ycId}">
+                                                <span class="img-box">
+                                                    <img th:src="${channel.channelImageUrl}" th:alt="${channel.ycName}+'이미지'">
+                                                </span>
+                                                <span class="channel_tab_name" th:text="${channel.ycName}"></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="channels_box">
@@ -115,9 +122,9 @@
     <script src="/usr/v1/assets/js/video.js"></script>
     <script>
         $(document).ready(function() {
-            $('#loadingSpinner').show();
+            // $('#loadingSpinner').show();
             // 채널 목록 가져오기
-            loadChannels();
+            // loadChannels();
             // 검색 버튼 클릭 이벤트
             $('#channel_add_btn').on('click', function() {
                 const query = $('#channel_sreach').val();
@@ -142,6 +149,7 @@
             $(document).on('click', '.channel-tab', function(e) {
                 e.preventDefault(); // 기본 동작 방지
                 let ycId = $(this).data('channel-id');
+                
                 $('#loadingSpinner').show(); // 로딩 스피너 표시
                 loadChannelDetails(ycId); // 채널 상세 정보 로드
             });

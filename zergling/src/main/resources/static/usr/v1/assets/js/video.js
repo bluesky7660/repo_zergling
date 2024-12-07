@@ -167,6 +167,13 @@ function loadChannelDetails(channelId) {
                 videoHtml += '</div>';
             });
             $('#video-list').html(videoHtml);
+            $('html, body').animate(
+                {
+                  scrollTop: $(".channels_box").offset().top - 120,
+                },
+                100 
+              );
+            $(".channels_video_list").addClass("show");
         }
     });
 }

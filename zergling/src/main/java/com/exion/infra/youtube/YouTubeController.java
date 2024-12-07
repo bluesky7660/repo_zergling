@@ -44,10 +44,12 @@ public class YouTubeController {
             // 추가 정보를 채널 DTO에 설정
             channel.setSubscribersCount(detailedChannelInfo.getSubscribersCount());
             channel.setVideosCount(detailedChannelInfo.getVideosCount());
-            channel.setChannelUrl(detailedChannelInfo.getChannelUrl()); // URL도 업데이트
+            channel.setChannelUrl(detailedChannelInfo.getChannelUrl());
+            channel.setThumbnailUrl(detailedChannelInfo.getThumbnailUrl());
         }
         for (YouTubeChannelDto channel : channels) {
             System.out.println("채널 ID: " + channel.getYcId());
+            System.out.println("채널 이미지: " + channel.getThumbnailUrl());
             System.out.println("채널 이름: " + channel.getYcName());
             System.out.println("구독자 수: " + channel.getSubscribersCount());
             System.out.println("영상 수: " + channel.getVideosCount());

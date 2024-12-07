@@ -31,6 +31,7 @@
 		SELECT
 			ycSeq
 			,ycId
+			,channelImageUrl
 			,ycName
         FROM youtubechannels
         where 1=1
@@ -43,6 +44,7 @@
 				a.ycSeq
 				,a.ycId
 				,a.ycName
+				,a.channelImageUrl
 				,a.delNy
 				,a.useNy
 				,a.modDate
@@ -60,6 +62,7 @@
 			ycSeq
 			,ycId
 			,ycName
+			,channelImageUrl
 			,delNy
 			,useNy
 			,modDate
@@ -73,6 +76,7 @@
    			ycId
    			,ycName
    			,channelUrl
+   			,channelImageUrl
    			,delNy
    			,useNy
    			,modDate
@@ -81,6 +85,7 @@
    			#{ycId}
    			,#{ycName}
    			,#{channelUrl}
+   			,#{thumbnailUrl}
    			,0
    			,1
    			,now()

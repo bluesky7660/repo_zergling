@@ -19,6 +19,7 @@ public class YouTubeChannelDto {
     private Integer useNy;
     private Date regDate;
 	private Date modDate;
+	private String channelImageUrl;
 //------------------------------
 	public String getYcSeq() {
 		return ycSeq;
@@ -97,6 +98,12 @@ public class YouTubeChannelDto {
 	}
 	public void setYcUrl(String ycUrl) {
 		this.ycUrl = ycUrl;
+	}
+	public String getChannelImageUrl() {
+		return channelImageUrl;
+	}
+	public void setChannelImageUrl(String channelImageUrl) {
+		this.channelImageUrl = channelImageUrl;
 	}
 	
 }
