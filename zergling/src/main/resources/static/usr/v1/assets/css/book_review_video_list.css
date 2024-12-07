@@ -29,29 +29,20 @@
 .channels_tab_area{
     margin-bottom: 30px;
     padding-bottom: 10px;
-    /* border-bottom: 1px solid; */
 }
 .channel-tabs{
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; */
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 최대 6개 열 생성 */
     gap: 40px;
 
 }
 .channel-tabs li{
-    /* width: calc(16.66% - 5px); */
-    /* width: 100%;
-    min-width: calc(16.66% - 5px);
-    margin-bottom: 5px; */
     border-bottom: 0;
     text-align: center;
 }
 .channel-tabs li a{
     width: 100%;
     display: block;
-    /* border: 1px solid #fff; */
     box-shadow: 
     4px 4px 10px rgba(0, 0, 0, 0.2), 
     -4px -4px 10px rgba(255, 255, 255, 0.8);
