@@ -152,27 +152,27 @@ function loadChannelDetails(channelId) {
                 videoHtml += '<a href="' + video.videoUrl + '" target="_blank">';
                 videoHtml += '<div class="video_thumbnail">';
                 videoHtml += '<div class="img_box">';
-                videoHtml += '<img src="' + video.thumbnailUrl + '" alt="' + video.title + '">';
+                videoHtml += '<img src="' + video.thumbnailUrl + '" alt="' + video.title + '썸네일">';
                 videoHtml += '</div>';
                 videoHtml += '</div>';
-                // video title hidden
                 videoHtml += '<div class="video_detail">';
                 videoHtml += '<h4>' + video.title + '</h4>';
-                videoHtml += '<p>채널: ' + video.channelTitle + '</p>';
+                // videoHtml += '<p>채널: ' + channelInfo.ycName + '</p>';
                 videoHtml += '<p>조회수: ' + video.viewCount + '회</p>';
                 videoHtml += '<p>좋아요: ' + video.likeCount + '</p>';
-                videoHtml += '<p>댓글 수: ' + video.commentCount + '</p>';
+                // videoHtml += '<p>댓글 수: ' + video.commentCount + '</p>';
                 videoHtml += '</div>';
                 videoHtml += '</a>';
                 videoHtml += '</div>';
             });
-            $('#video-list').html(videoHtml);
+            $('#video_list').html(videoHtml);
             $('html, body').animate(
                 {
-                  scrollTop: $(".channels_box").offset().top - 120,
+                    scrollTop: $(".channels_box").offset().top - 120,
                 },
                 100 
-              );
+            );
+            $(".channels_box").addClass("show");
             $(".channels_video_list").addClass("show");
         }
     });
