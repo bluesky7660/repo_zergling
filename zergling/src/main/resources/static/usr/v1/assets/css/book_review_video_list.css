@@ -85,9 +85,10 @@
     overflow: hidden;
     padding: 30px;
 }
-.channel_info a{
+.channel_info>*{
  display: flex;
  gap: 30px;
+ align-items: center;
 }
 .channel_thumbnail_box{
     width: 260px;
@@ -126,6 +127,13 @@
 .channel_add_box{
     display: flex;
     gap: 10px;
+}
+
+.channel_link_btn{
+    border: 1px solid #fff;
+    padding:20px;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
 
