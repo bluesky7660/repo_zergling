@@ -11,4 +11,5 @@ public class Constants {
 	public static final String DATETIME_FORMAT_BASIC = "yyyy-MM-dd HH:mm:ss";
 	public static final int KAKAO_LOGIN = 1;
 	public static final int SITE_LOGIN = 0;
+	public static final String GRAPHQL_URL = "https://apis.tracker.delivery/graphql";
 }

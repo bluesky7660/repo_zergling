@@ -116,7 +116,8 @@
                                                 <button class="btn"></button>
                                             </div>
                                             <div th:if="${(list.orderStatus == 10) or (list.orderStatus == 14)}">
-                                                <a href="#" onclick="window.open('https://tracker.delivery/#/kr.cjlogistics/577215028796', '_blank', 'width=600,height=400'); return false;" class="btn btn-blue">배송조회</a>
+                                                <!-- <a href="javascript:void(0);" onclick="window.open('https://tracker.delivery/#/kr.cjlogistics/577215028796', '_blank', 'width=600,height=400'); return false;" class="btn btn-blue delivery_tracker">배송조회</a> -->
+                                                <a href="javascript:void(0);"  class="btn btn-blue delivery_tracker">배송조회</a>
                                             </div>
                                             
                                             <div th:if="${(list.orderStatus == 57) or (list.orderStatus == 56)}">
@@ -239,11 +240,46 @@
 
                         }
                         ,error: function(xhr, status, error) {
-                            console.error("Error fetching review data:", error);
+                            console.error("Error fetching 주문 data:", error);
                         }
                     });
                 })
             });
+            $(".delivery_tracker").on("click", function () {
+                const carrierId = "kr.cjlogistics";
+                let carrierName = "";
+                switch (carrierId) {
+                    case "kr.cjlogistics":
+                        carrierName = "CJ대한통운";
+                        break;
+                
+                    default:
+                        carrierName = "정보가 없습니다.";
+                        break;
+                }
+                const trackingNumber = "1234567890";
+                const deliveryName = $(this).closest(".order_product").find(".prod_title_box").text().replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                console.log(deliveryName);
+                $.ajax({
+                    async: true 
+                    ,cache: false
+                    ,type: "post"
+                    ,url: '/deliveryTracker'
+                    ,contentType: 'application/json'
+                    ,data:JSON.stringify({
+                        carrierId: carrierId,
+                        trackingNumber: trackingNumber
+                    }),success: function(response) {
+                        console.log("배송조회 데이터 json:",response);
+                        const popupWindow = window.open("/deliveryTrackerPopup", "delivery_tracker","width=600,height=800");
+                        popupWindow.onload = function() {
+                            popupWindow.displayDeliveryData(response,trackingNumber,deliveryName,carrierName);
+                        }
+                    },error: function(xhr, status, error) {
+                        console.error("Error fetching 배송 data:", error);
+                    }
+                })
+            })
         });
 
         function formatDate(dateString) {

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="256x256" href="/usr/v1/assets/images/favicon/favicon_256x256.png">
+    <link rel="stylesheet" href="/usr/v1/assets/css/delivery_tracker.css">
+    <title>배송조회</title>
+</head>
+<body>
+    <div class="container">
+        <div class="delivery_tracker_title">
+            <h2>배송조회</h2>
+        </div>
+        <div class="content">
+            <div class="delivery_info">
+                <p><span>배송업체: </span><span class="carrierName"></span></p>
+                <p><span>송장번호: </span><span class="trackingNumber"></span></p>
+                <p><span>주문명: </span><span class="deliveryName"></span></p>
+            </div>
+            <div id="node_area" class="node_area">
+            </div>
+        </div>
+    </div>
+    <script>
+        // window.onload = function() {
+        //     displayDeliveryData();
+        // }
+        function displayDeliveryData(data,trackingNumber,deliveryName,carrierName) {
+            // const node_status_name = document.querySelectorAll(".node_status_name");
+            const node_area = document.getElementById("node_area");
+            const carrierNameElement = document.querySelector(".carrierName");
+            const trackingNumberElement = document.querySelector(".trackingNumber");
+            const deliveryNameBox = document.querySelector(".deliveryName");
+            
+            carrierNameElement.innerText = carrierName;
+            trackingNumberElement.innerText = trackingNumber;
+            deliveryNameBox.innerText = deliveryName;
+            node_area.innerHTML = '';
+            
+            data.data.track.events.edges.forEach((event, index) => {
+
+                const date = new Date(event.node.time);
+
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true, 
+                    timeZone: 'Asia/Seoul'
+                };
+
+                const formattedDate = date.toLocaleString('ko-KR', options);
+                const node = `
+                    <div class="node_content">
+                        <p><span class="node_status_name">${event.node.status.name}</span> <span class="node_time">${formattedDate}</span></p>
+                        <p class="node_description">${event.node.description}</p>
+                    </div>
+                `
+                node_area.innerHTML += node; 
+            })
+            
+        }
+    </script>
+</body>
+</html>

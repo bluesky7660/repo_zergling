@@ -63,6 +63,8 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						,"/rest/member"
 						,"/rest/member/**"
 						,"/orderCancel"
+						,"/deliveryTracker"
+						,"/deliveryTrackerModal"
 						
 		);
 	}
