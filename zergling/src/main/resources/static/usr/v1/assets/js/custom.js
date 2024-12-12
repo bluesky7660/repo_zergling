@@ -290,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //밸리데이션
-    // console.log(feedbackText); 
     function RegExps(element,objValue,feedback) {
         console.log("태그: "+element.id);
         console.log("클래스: "+element.classList);
