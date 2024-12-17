@@ -26,10 +26,7 @@ public class LoginController {
 	public String loginXdm1() {
 		return "xdm/v1/infra/member/memberXdmLogin";
 	}
-	@RequestMapping(value = "v1/infra/index/indexXdmView")
-	public String indexXdmView() {
-		return "xdm/v1/infra/index/index";
-	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "v1/infra/member/loginProc1")

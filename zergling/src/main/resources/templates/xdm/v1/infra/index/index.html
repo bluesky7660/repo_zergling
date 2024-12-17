@@ -82,21 +82,6 @@
 
 					<!-- Content wrapper start -->
 					<div class="content-wrapper">
-						<!-- <div class="pageCategory">
-							<div class="row">
-								<div ><a href="../code/codeXdmList">코드</a></div>
-								<div ><a href="../codegroup/codeGroupXdmList">코드그룹</a></div>
-								<div ><a href="../member/memberXdmList">Member</a></div>
-								<div ><a href="../youtube/youtubeChannelXdmList">유튜브채널</a></div>
-							</div>
-							<div class="row">
-								<div class="col-4"><a href="../../mall/product/productXdmList">상품</a></div>
-								<div class="col-4"><a href="../../mall/product/authorXdmList">작가</a></div>
-								<div class="col-4"><a href="../../mall/product/freeGiftXdmList">사은품</a></div>
-								<div class="col-4"><a href="../address/addressXdmList">배송지관리</a></div>
-							</div>
-							
-						</div> -->
 						<!-- Row start -->
 						<div class="row">
 							<div class="col-xxl-3 col-sm-6 col-12">
@@ -105,8 +90,8 @@
 										<i class="bi bi-pie-chart"></i>
 									</div>
 									<div class="sale-details">
-										<h3 class="text-red">250k</h3>
-										<p>Sales</p>
+										<h3 class="text-red" th:text="${#numbers.formatInteger(revenue,3,'COMMA')+' 원'}"></h3>
+										<p><strong>수익</strong></p>
 									</div>
 								</div>
 							</div>
@@ -116,19 +101,19 @@
 										<i class="bi bi-emoji-smile"></i>
 									</div>
 									<div class="sale-details">
-										<h3 class="text-blue">24m</h3>
-										<p>Customers</p>
+										<h3 class="text-blue" th:text="${memberCount} + '명'"></h3>
+										<p><strong>회원</strong></p>
 									</div>
 								</div>
 							</div>
 							<div class="col-xxl-3 col-sm-6 col-12">
 								<div class="stats-tile">
 									<div class="sale-icon shade-yellow">
-										<i class="bi bi-box-seam"></i>
+										<i class="bi bi-book"></i>
 									</div>
 									<div class="sale-details">
-										<h3 class="text-yellow">15k</h3>
-										<p>Products</p>
+										<h3 class="text-yellow" th:text="${productCount} + '개'"></h3>
+										<p><strong>도서</strong></p>
 									</div>
 								</div>
 							</div>
@@ -138,8 +123,8 @@
 										<i class="bi bi-handbag"></i>
 									</div>
 									<div class="sale-details">
-										<h3 class="text-green">180m</h3>
-										<p>Revenue</p>
+										<h3 class="text-green" th:text="${orderCount} + '건'"></h3>
+										<p><strong>주문</strong></p>
 									</div>
 								</div>
 							</div>
@@ -147,209 +132,33 @@
 						<!-- Row end -->
 
 						<!-- Row start -->
-						<div class="row">
-							<div class="col-xxl-9  col-sm-12 col-12">
-
+						<div class="row chart">
+							
+							<div class="col-xxl-6  col-sm-12 col-12">
 								<div class="card">
+									<div class="card-header">
+										<div class="card-title">이번년 주문</div>
+									</div>
 									<div class="card-body">
-
-										<!-- Row start -->
-										<div class="row">
-											<div class="col-xxl-3 col-sm-4 col-12">
-												<div class="reports-summary">
-													<div class="reports-summary-block">
-														<i class="bi bi-circle-fill text-primary me-2"></i>
-														<div class="d-flex flex-column">
-															<h6>Overall Sales</h6>
-															<h5>12 Millions</h5>
-														</div>
-													</div>
-													<div class="reports-summary-block">
-														<i class="bi bi-circle-fill text-success me-2"></i>
-														<div class="d-flex flex-column">
-															<h6>Overall Earnings</h6>
-															<h5>78 Millions</h5>
-														</div>
-													</div>
-													<div class="reports-summary-block">
-														<i class="bi bi-circle-fill text-danger me-2"></i>
-														<div class="d-flex flex-column">
-															<h6>Overall Revenue</h6>
-															<h5>60 Millions</h5>
-														</div>
-													</div>
-													<div class="reports-summary-block">
-														<i class="bi bi-circle-fill text-warning me-2"></i>
-														<div class="d-flex flex-column">
-															<h6>New Customers</h6>
-															<h5>23k</h5>
-														</div>
-													</div>
-													<button class="btn btn-info download-reports">View Reports</button>
-												</div>
-											</div>
-											<div class="col-xxl-9 col-sm-8 col-12">
-												<div class="row">
-													<div class="col-12">
-														<div class="graph-day-selection mt-2" role="group">
-															<button type="button" class="btn active">Today</button>
-															<button type="button" class="btn">Yesterday</button>
-															<button type="button" class="btn">7 days</button>
-															<button type="button" class="btn">15 days</button>
-															<button type="button" class="btn">30 days</button>
-														</div>
-													</div>
-													<div class="col-12">
-														<div id="revenueGraph"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- Row end -->
-
+										<div id="basic-column-graph-datalables"></div>
 									</div>
 								</div>
+							</div>
 
+							<div class="col-xxl-3  col-sm-12 col-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">주문상태</div>
+									</div>
+									<div class="card-body">
+										<div id="basic-pie-graph" class="auto-align-graph"></div>
+									</div>
+								</div>
 							</div>
 							<div class="col-xxl-3  col-sm-12 col-12">
-
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">Sales</div>
-									</div>
-									<div class="card-body">
-										<div id="salesGraph" class="auto-align-graph"></div>
-										<div class="num-stats">
-											<h2>2100</h2>
-											<h6 class="text-truncate">12% higher than last month.</h6>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-						<!-- Row end -->
-
-						<!-- Row start -->
-						<div class="row">
-							<div class="col-12">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Orders</div>
-									</div>
-									<div class="card-body">
-
-										<div class="table-responsive">
-											<table class="table v-middle">
-												<thead>
-													<tr>
-														<th>Customer</th>
-														<th>Product</th>
-														<th>User ID</th>
-														<th>Ordered Placed</th>
-														<th>Amount</th>
-														<th>Payment Status</th>
-														<th>Order Status</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/user3.png" class="media-avatar" alt="Bootstrap Gallery">
-																<div class="media-box-body">
-																	<div class="text-truncate">Ellie Collins</div>
-																</div>
-															</div>
-														</td>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/food/img3.jpg" class="media-avatar" alt="Admin Themes">
-																<div class="media-box-body">
-																	<div class="text-truncate">Ginger Snacks</div>
-																</div>
-															</div>
-														</td>
-														<td>Arise827</td>
-														<td>12/12/2021</td>
-														<td>$18.00</td>
-														<td>
-															<span class="text-green td-status"><i class="bi bi-check-circle"></i> Paid</span>
-														</td>
-														<td>
-															<span class="badge shade-green min-90">Delivered</span>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" class="media-avatar" alt="Bootstrap Gallery">
-																<div class="media-box-body">
-																	<div class="text-truncate">Sophie Nguyen</div>
-																</div>
-															</div>
-														</td>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/food/img6.jpg" class="media-avatar" alt="Admin Themes">
-																<div class="media-box-body">
-																	<div class="text-truncate">Guava Sorbet</div>
-																</div>
-															</div>
-														</td>
-														<td>Arise253</td>
-														<td>18/12/2021</td>
-														<td>$32.00</td>
-														<td>
-															<span class="text-red td-status"><i class="bi bi-x-circle"></i> Failed</span>
-														</td>
-														<td>
-															<span class="badge shade-red min-90">Cancelled</span>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/user4.png" class="media-avatar" alt="Bootstrap Gallery">
-																<div class="media-box-body">
-																	<div class="text-truncate">Darcy Ryan</div>
-																</div>
-															</div>
-														</td>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/food/img5.jpg" class="media-avatar" alt="Admin Themes">
-																<div class="media-box-body">
-																	<div class="text-truncate">Gooseberry Surprise</div>
-																</div>
-															</div>
-														</td>
-														<td>Arise878</td>
-														<td>22/12/2021</td>
-														<td>$19.00</td>
-														<td>
-															<span class="text-blue td-status"><i class="bi bi-clock-history"></i> Awaiting</span>
-														</td>
-														<td>
-															<span class="badge shade-blue min-90">Processing</span>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Row end -->
-
-						<!-- Row start -->
-						<div class="row">
-							<div class="col-sm-6 col-12">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Transactions</div>
+										<div class="card-title">재고량</div>
 									</div>
 									<div class="card-body">
 										<div class="scroll370">
@@ -429,164 +238,85 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6 col-12">
+						</div>
+						<!-- Row end -->
+
+						<!-- Row start -->
+						<div class="row lastOrder">
+							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">Tasks</div>
-									</div>
-									<div class="card-body">
-										<div id="taskGraph"></div>
-										<ul class="task-list-container">
-											<li class="task-list-item">
-												<div class="task-icon shade-blue">
-													<i class="bi bi-clipboard-plus"></i>
-												</div>
-												<div class="task-info">
-													<h5 class="task-title">New</h5>
-													<p class="amount-spend">12</p>
-												</div>
-											</li>
-											<li class="task-list-item">
-												<div class="task-icon shade-green">
-													<i class="bi bi-clipboard-check"></i>
-												</div>
-												<div class="task-info">
-													<h5 class="task-title">Done</h5>
-													<p class="amount-spend">15</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-12">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Notifications</div>
-									</div>
-									<div class="card-body">
-										<div class="scroll370">
-											<ul class="user-messages">
-												<li>
-													<div class="customer shade-blue">MK</div>
-													<div class="delivery-details">
-														<span class="badge shade-blue">Sales</span>
-														<h5>Marie Kieffer</h5>
-														<p>Thanks for choosing Apple product, further if you have any questions please contact sales
-															team.</p>
-													</div>
-												</li>
-												<li>
-													<div class="customer shade-blue">ES</div>
-													<div class="delivery-details">
-														<span class="badge shade-blue">Marketing</span>
-														<h5>Ewelina Sikora</h5>
-														<p>Boost your sales by 50% with the easiest and proven marketing tool for customer enggement
-															&amp; motivation.</p>
-													</div>
-												</li>
-												<li>
-													<div class="customer shade-blue">TN</div>
-													<div class="delivery-details">
-														<span class="badge shade-blue">Business</span>
-														<h5>Teboho Ncube</h5>
-														<p>Use an exclusive promo code HKYMM50 and get 50% off on your first order in the new year.
-														</p>
-													</div>
-												</li>
-												<li>
-													<div class="customer shade-blue">CJ</div>
-													<div class="delivery-details">
-														<span class="badge shade-blue">Admin</span>
-														<h5>Carla Jackson</h5>
-														<p>Befor inviting the administrator, you must create a role that can be assigned to them.
-														</p>
-													</div>
-												</li>
-												<li>
-													<div class="customer shade-red">JK</div>
-													<div class="delivery-details">
-														<span class="badge shade-red">Security</span>
-														<h5>Julie Kemp</h5>
-														<p>Your security subscription has expired. Please renew the subscription.</p>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-12">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Activity</div>
+										<div class="card-title">최근 주문</div>
 									</div>
 									<div class="card-body">
 
-										<div class="scroll370">
-											<div class="activity-container">
-												<div class="activity-block">
-													<div class="activity-user">
-														<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" alt="Activity User">
-													</div>
-													<div class="activity-details">
-														<h4>Lilly Desmet</h4>
-														<h5>3 hours ago</h5>
-														<p>Sent invoice ref. #23457</p>
-														<span class="badge shade-green">Sent</span>
-													</div>
-												</div>
-												<div class="activity-block">
-													<div class="activity-user">
-														<img src="/xdm/v1/template/arise-v1.0/assets/images/user3.png" alt="Activity User">
-													</div>
-													<div class="activity-details">
-														<h4>Jennifer Wilson</h4>
-														<h5>7 hours ago</h5>
-														<p>Paid invoice ref. #23459</p>
-														<span class="badge shade-red">Payments</span>
-													</div>
-												</div>
-												<div class="activity-block">
-													<div class="activity-user">
-														<img src="/xdm/v1/template/arise-v1.0/assets/images/user4.png" alt="Activity User">
-													</div>
-													<div class="activity-details">
-														<h4>Elliott Hermans</h4>
-														<h5>1 day ago</h5>
-														<p>Paid invoice ref. #23473</p>
-														<span class="badge shade-green">Paid</span>
-													</div>
-												</div>
-												<div class="activity-block">
-													<div class="activity-user">
-														<img src="/xdm/v1/template/arise-v1.0/assets/images/user5.png" alt="Activity User">
-													</div>
-													<div class="activity-details">
-														<h4>Sophie Michiels</h4>
-														<h5>3 day ago</h5>
-														<p>Paid invoice ref. #26788</p>
-														<span class="badge shade-green">Sent</span>
-													</div>
-												</div>
-												<div class="activity-block">
-													<div class="activity-user">
-														<img src="/xdm/v1/template/arise-v1.0/assets/images/user2.png" alt="Activity User">
-													</div>
-													<div class="activity-details">
-														<h4>Ilyana Maes</h4>
-														<h5>One week ago</h5>
-														<p>Paid invoice ref. #34546</p>
-														<span class="badge shade-red">Invoice</span>
-													</div>
-												</div>
-											</div>
+										<div class="table-responsive">
+											<table class="table v-middle">
+												<thead>
+													<tr>
+														<th>고객</th>
+														<th>상품</th>
+														<th>사용자 ID</th>
+														<th>수량</th>
+														<th>금액</th>
+														<th>주문 일자</th>
+														<th>주문 상태</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="orderList:${orderList}">
+														<td>
+															<div class="media-box">
+																<!-- <img src="/xdm/v1/template/arise-v1.0/assets/images/user3.png" class="media-avatar" alt="Bootstrap Gallery"> -->
+																<div class="media-box-body">
+																	<div class="text-truncate" th:text="${orderList.name}"></div>
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="media-box">
+																<img th:src="${orderList.imgSrc}" class="media-avatar" th:alt="${orderList.title+ '이미지'}">
+																<div class="media-box-body">
+																	<span class="text-truncate" th:text="${orderList.title}"></span>
+																</div>
+															</div>
+														</td>
+														<td th:text="${orderList.userId}"></td>
+														<td th:text="${orderList.uoQuantity}"></td>
+														<td th:text="${#numbers.formatInteger(orderList.uoPrice,3,'COMMA')+'원'}"></td>
+														<td th:text="${#dates.format(orderList.orderDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td>
+															<span class="badge min-90"
+																th:classappend="${orderList.orderStatus == 56 ? 'shade-green' :
+																				orderList.orderStatus == 57 ? 'shade-yellow' :
+																				orderList.orderStatus == 14 ? 'shade-blue' :
+																				orderList.orderStatus == 10 ? 'shade-primary' :
+																				orderList.orderStatus == 19 ? 'shade-red' : ''}"
+																th:text="${orderList.orderStatus == 56 ? '결제완료' :
+																			orderList.orderStatus == 57 ? '준비중' :
+																			orderList.orderStatus == 14 ? '배송중' :
+																			orderList.orderStatus == 10 ? '배송완료' :
+																			orderList.orderStatus == 19 ? '취소' : ''}">
+															</span>
+<!-- 
+															<span class="badge shade-primary min-90">배송완료</span>
+															<span class="badge shade-green min-90">결제완료</span>
+															<span class="badge shade-yellow min-90">준비중</span>
+															<span class="badge shade-blue min-90">배송중</span> -->
+														</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 
 									</div>
 								</div>
 							</div>
 						</div>
+						<!-- Row end -->
+
+						<!-- Row start -->
+						
 						<!-- Row end -->
 
 					</div>
@@ -628,14 +358,25 @@
 
 		<!-- Apex Charts -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/apex/apexcharts.min.js"></script>
-		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/apex/custom/sales/salesGraph.js"></script>
+		<!-- <script src="/xdm/v1/template/arise-v1.0/assets/vendor/apex/custom/sales/salesGraph.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/apex/custom/sales/revenueGraph.js"></script>
-		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/apex/custom/sales/taskGraph.js"></script>
+		<script src="/xdm/v1/template/arise-v1.0/assets/vendor/apex/custom/sales/taskGraph.js"></script> -->
 
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
 		<!-- by developer -->
+		<script th:inline="javascript" type="text/javascript">
+			var orderMonthCount = /*[[${orderMonthCount}]]*/[];
+			var orderPaied = /*[[${orderPaied}]]*/[];
+			var orderReady = /*[[${orderReady}]]*/[];
+			var orderdTransit = /*[[${orderdTransit}]]*/[];
+			var orderDelivered = /*[[${orderDelivered}]]*/[];
+			var orderCanceled = /*[[${orderCanceled}]]*/[];
+			console.log("inner orderMonthCount:",orderMonthCount);
+		</script>
 		<script src="/xdm/v1/js/commonXdm.js"></script>
+		<script src="/xdm/v1/js/chart/column_chart.js"></script>
+		<script src="/xdm/v1/js/chart/pie_chart.js"></script>
 	</body>
 
 </html>

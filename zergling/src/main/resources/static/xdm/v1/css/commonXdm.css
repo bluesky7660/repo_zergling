@@ -1,4 +1,7 @@
 /*xdm용*/
+*{
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 #logoutBtn{
     width: 100%;
     font-weight: bold;
@@ -129,4 +132,19 @@
     content: "✕";
     margin-left: 5px;
     vertical-align: text-bottom;
+}
+.media-box .media-box-body,.media-box .text-truncate,.media-box,td{
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.chart *{
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    
+}
+.lastOrder *{
+    text-align: center;
+}
+.chart .card-body{
+    height: 403px
 }

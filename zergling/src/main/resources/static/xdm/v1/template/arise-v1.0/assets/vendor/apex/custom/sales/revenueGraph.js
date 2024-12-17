@@ -14,12 +14,12 @@ var options = {
 		width: 3
 	},
 	series: [{
-		name: 'Sales',
+		name: '2024년 주문',
 		data: [10, 40, 15, 40, 20, 35, 20, 10, 31, 43, 56, 29]
-	}, {
-		name: 'Revenue',
-		data: [2, 8, 25, 7, 20, 20, 51, 35, 42, 20, 33, 67]
-	}],
+	},{
+		name: '2024년 주문',
+		data: [10, 40, 15, 40, 20, 35, 20, 10, 31, 43, 56, 29]
+	},],
 	grid: {
     borderColor: '#e0e6ed',
     strokeDashArray: 5,
@@ -41,7 +41,7 @@ var options = {
     }, 
   },
 	xaxis: {
-		categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
 	},
 	yaxis: {
 		labels: {

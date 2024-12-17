@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
+
 @Repository
 public interface OrderDao {
 	public List<OrderDto> selectList(OrderVo vo);
@@ -12,4 +14,6 @@ public interface OrderDao {
 	public int cancel(OrderDto orderDto);
 	public int listCount(OrderVo vo);
 	public int insert(OrderDto orderDto);
+	public List<OrderDto> orderMonthCount();
+	public int revenue();
 }

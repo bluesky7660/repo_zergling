@@ -28,4 +28,10 @@ public class OrderService {
 	public int insert(OrderDto orderDto) {
 		return orderDao.insert(orderDto);
 	}
+	public List<OrderDto> orderMonthCount(){
+		return orderDao.orderMonthCount();
+	}
+	public int revenue() {
+		return orderDao.revenue();
+	}
 }

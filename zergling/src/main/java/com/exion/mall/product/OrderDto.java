@@ -29,6 +29,10 @@ public class OrderDto {
 	private String prodTypeName;
 	private String imgSrc;
 	private String name;
+	private String userId;
+	
+	private Integer orderMonth;
+	private Integer orderCount;
 //------------------------------------
 	public String getUoSeq() {
 		return uoSeq;
@@ -156,6 +160,24 @@ public class OrderDto {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public Integer getOrderMonth() {
+		return orderMonth;
+	}
+	public void setOrderMonth(Integer orderMonth) {
+		this.orderMonth = orderMonth;
+	}
+	public Integer getOrderCount() {
+		return orderCount;
+	}
+	public void setOrderCount(Integer orderCount) {
+		this.orderCount = orderCount;
 	}
 	
 }

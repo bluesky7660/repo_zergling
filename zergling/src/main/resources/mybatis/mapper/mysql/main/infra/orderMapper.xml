@@ -21,11 +21,14 @@
 					<when test="keywordType == 3">AND d.title Like CONCAT('%',#{searchKeyword},'%') </when>
 				</choose>
 			</if>
-			<choose>
-				<when test="dateType == 1"> AND a.orderDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				<when test="dateType == 2"> AND a.uoModDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				<when test="dateType == 3"> AND a.deliveryDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-			</choose>
+			<if test="(dateStart != null and !dateStart.equals('')) and (dateEnd != null and !dateEnd.equals(''))">
+				<choose>
+					<when test="dateType == 1"> AND a.orderDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 2"> AND a.uoModDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+					<when test="dateType == 3"> AND a.deliveryDate BETWEEN #{dateStart} AND #{dateEnd}</when>
+				</choose>
+			</if>
+			
 			<choose>
 				<when test="minPrice != null and maxPrice != null">
 			        AND a.uoPrice BETWEEN #{minPrice} AND #{maxPrice}
@@ -57,12 +60,15 @@
 			    ,d.title
 			    ,f.codeName as prodTypeName
 			    ,b.name
+			    ,e.path as imgSrc
+			    ,b.userId
 			from
 				userorder a
 				join member b on b.seq = a.member_seq
 				join commoncode c on c.seq = a.orderStatus and c.codeGroup_seq = 5
 				join product d on d.seq = a.product_seq
 				join commoncode f on f.seq = d.prodType and f.codeGroup_seq = 12
+				left join productupload e on e.pseq = d.seq and e.defaultNy = 1
 			<include refid="selectCommon"/>
 			order by a.orderDate desc
 			<include refid="base.selectListLowerForMysql"/>
@@ -183,4 +189,36 @@
 		WHERE 1=1
 			AND seq = #{seq}
 	</update>
+	
+	<select id="orderMonthCount" resultMap="resultObj">
+		WITH RECURSIVE MonthList AS (
+		    SELECT 1 AS month
+		    UNION ALL
+		    SELECT month + 1 
+		    	FROM MonthList 
+		    WHERE month &lt; 12
+		)
+		SELECT 
+		    m.month AS orderMonth,                
+		    COALESCE(COUNT(a.uoseq), 0) AS orderCount 
+		FROM MonthList m
+			LEFT JOIN userorder a ON MONTH(a.orderDate) = m.month AND a.orderDate IS NOT NULL
+			LEFT JOIN member b ON b.seq = a.member_seq
+			LEFT JOIN commoncode c ON c.seq = a.orderStatus AND c.codeGroup_seq = 5
+			LEFT JOIN product d ON d.seq = a.product_seq
+			LEFT JOIN commoncode f ON f.seq = d.prodType AND f.codeGroup_seq = 12
+		GROUP BY 
+		    m.month
+		ORDER BY 
+		    m.month
+
+	</select>
+	<select id="revenue" resultType="int">
+		select 
+			sum(a.uoPrice) as totalAmount
+		FROM userorder a
+		where 1=1
+			and a.orderStatus != 19;
+
+	</select>
 </mapper>
