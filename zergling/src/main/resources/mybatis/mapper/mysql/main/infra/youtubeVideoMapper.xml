@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exion.mall.video.VideoDao">
+	<resultMap type="com.exion.mall.video.VideoDto" id="resultObj"></resultMap>
+	<select id="reviewVideoList" resultMap="resultObj">
+		select
+			v.yvSeq
+			,v.yvUrl
+			,v.yvDelNy
+			,v.yvRegDate
+			,v.yvModDate
+			,v.pdSeq
+			,a.title
+			,a.intro
+			,a.publisher
+			,GROUP_CONCAT(DISTINCT b.name ORDER BY b.name ASC) AS authors
+			,f.path
+		from youtubevideo v
+			left join product a on a.seq = v.pdSeq
+			left join productauthor c on c.product_seq = a.seq and c.delNy = 0
+			left join author b on c.author_seq = b.seq
+			left join productupload f on f.pseq = a.seq and f.defaultNy = 1
+		where 1=1
+		GROUP BY v.yvSeq
+	</select>
+	<select id="reviewVideoOne" resultMap="resultObj">
+		select
+			v.yvSeq
+			,v.yvUrl
+			,v.yvDelNy
+			,v.yvRegDate
+			,v.yvModDate
+			,v.pdSeq
+			,a.title
+			,a.intro
+			,a.publisher
+			,GROUP_CONCAT(DISTINCT b.name ORDER BY b.name ASC) AS authors
+			,f.path
+			,p.codeName as publisherName
+		from youtubevideo v
+			left join product a on a.seq = v.pdSeq
+			left join productauthor c on c.product_seq = a.seq and c.delNy = 0
+			left join author b on c.author_seq = b.seq
+			left join productupload f on f.pseq = a.seq and f.defaultNy = 1
+			left join commoncode p on a.publisher = p.seq
+		where 1=1
+			and v.yvSeq = #{yvSeq}
+		GROUP BY v.yvSeq
+	</select>
+</mapper>

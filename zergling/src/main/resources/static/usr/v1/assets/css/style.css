@@ -518,6 +518,10 @@ a.img-box{
     gap: 10px;
     margin-bottom: 20px;
 }
+.soldout{
+    font-size: 1rem;
+    font-weight: bold;
+}
 
 /**/
 .customer_service_area{
@@ -551,6 +555,7 @@ header{
     transition: all .3s;
 }
 main{
+    /* min-height: 1000px; */
     /* padding-top: 225px; */
 }
 main>*{
@@ -956,6 +961,12 @@ footer .right-box *{
     white-space: nowrap;
     font-size: 12.5px;
 }
+footer .icon-box{
+    width: 30px;
+}
+
+
+/*media*/
 @media (max-width: 1200px) {
     /* .search_wrapper{
         width: 100%;

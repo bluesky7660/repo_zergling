@@ -218,12 +218,18 @@
 main{
     background-color: #F9F1CF;
 }
+
+.modal-content{
+    background-color: transparent;
+    border: none;
+}
 .book_video_review{
     background-color: #fff;
     border-radius: 50px;
     overflow: hidden;
     /* padding:50px; */
-    margin: 30px auto;
+    /* margin: 30px auto; */
+    margin: 0 auto;
 }
 /*도서 탭*/
 .bookList_tabs{
@@ -235,15 +241,60 @@ main{
 .bookList_tab{
     width: 100%;
     display: block;
+    
+    /* border: 10px solid #99e64f; */
+    
+    cursor: pointer;
+    /* background-color: #99e64f; */
+    /* padding: 10px; */
+    perspective: 1100px;
+}
+
+.bookList_item_img{
+    width: 100%; 
+    /* height: 100%;  */
+    height: 312px;
+    
+    /* overflow: hidden; */
+    position: relative;
+    transition: .4s;
+    transform-style: preserve-3d;
+}
+.front, .back {
+    position: absolute;
+    width: 100%; 
+    height:100%;
+    border-radius: 20px;
+    overflow: hidden;
     box-shadow: 
     4px 4px 10px rgba(0, 0, 0, 0.2), 
     -4px -4px 10px rgba(255, 255, 255, 0.8);
-    border: 10px solid #99e64f;
-    border-radius: 20px;
-    overflow: hidden;
-    /* background-color: #99e64f; */
-    /* padding: 10px; */
+    backface-visibility: hidden;
 }
+.bookList_item_img .front {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: #99e64f;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.bookList_item_img .front p{
+    text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4), 
+             -4px -4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back { 
+  background: royalblue; 
+  transform: rotateY(180deg);
+}
+
+.bookList_tab:hover .bookList_item_img {
+  transform: rotateY(180deg);
+}
+
 .bookList_tabs .bookList_tab .img-box{
     border: none;
     margin-bottom: 0;
@@ -262,6 +313,12 @@ main{
     padding:20px;
     background-color: #63883e;
     border: 1px solid #fff;
+    transition: all .8s ease;
+}
+.moreBtn:hover{
+    cursor: pointer;
+    color: #63883e;
+    background-color: #fff;
 }
 
 /*도서 컨텐츠 부분*/

@@ -105,8 +105,10 @@
                         </div>
                         <div class="prod_detail_info">
                             <div class="badges_box">
-                                <span class="badge">무료배송</span>
-                                <span class="badge">소득공제</span>
+                                <span class="badge" th:if="${product.salePrice > 15000 ? true : product.freeShippingNy == 1}">무료배송</span>
+                                <span class="badge" th:if="${product.taxDeductionNy == 1}">소득공제</span>
+                                <span class="badge" th:if="${product.bestNy == 1}">베스트</span>
+                                <span class="badge" th:if="${product.todayPickNy == 1}">오늘의 선택</span>
                             </div>
                             <div class="prod_price">
                                 <strong class="saleP"><span th:text="${product.sale}">10</span>%</strong>
@@ -115,24 +117,25 @@
                                 </span>
                                 <span class="regular_price"><span th:text="${#numbers.formatInteger(product.price,1,'COMMA')}">17,500</span>원</span>
                             </div>
-                            <div class="delivery_info d-flex justify-content-between">
+                            <div class="delivery_info d-flex justify-content-between" th:if="${product.stockQty > 0}">
                                 <div>
                                     <strong>배송안내</strong>
                                 </div>
                                 <div>
-                                    <p>무료배송</p>
+                                    <p th:text="${product.salePrice > 15000 ? '무료배송' :product.freeShippingNy == 1 ? '무료배송' : '2,500원 배송비 부과'}"></p>
                                     <p><span th:text="${#dates.format(deliveryDate, 'M/d') + '(' + #dates.format(deliveryDate, 'E') + ')'}"></span> 출고예정</p>
                                     <p>기본배송지 기준</p>
                                 </div>
                             </div>
                             <div class="prod_detail_info_etc">
-                                <div class="number-input">
+                                <div class="number-input" th:if="${product.stockQty > 0}">
                                     <button class="decrease-button">-</button>
                                     <input id="uoQuantity" name="uoQuantity" type="number" min="1" max="999" value="1" >
                                     <button class="increase-button">+</button>
                                 </div>
                                 <div class="buy_btn_box">
-                                    <button class="btn" th:data-seq="${product.seq}" onclick="buyProduct(this)">구매하기</button>
+                                    <button th:if="${product.stockQty > 0}" class="btn" th:data-seq="${product.seq}" onclick="buyProduct(this)">구매하기</button>
+                                    <p class="soldout" th:if="${product.stockQty==0}">품절되었습니다.</p>
                                 </div>
                             </div>
                         </div>

@@ -83,8 +83,7 @@ public class indexController {
 	@Autowired
     KakaoBookService kakaoBookService;
 	
-	@Autowired
-    YouTubeService youTubeService;
+
 	
 	@RequestMapping(value = "/captcha")
 	public void captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -165,79 +164,7 @@ public class indexController {
 //		userService.insertUser(userDto);
 //		return "redirect:login";
 //	}
-	@RequestMapping(value = "user_delivery_address")
-	public String deliveryAddress(Model model,HttpSession httpSession, MemberDto memberDto, DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
-		if(httpSession.getAttribute("kakoLogin") != null) {
-//			model.addAttribute("addrList", deliveryAddressService.selectList(vo));
-		}else {
-//			memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-//			deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-//			vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-////			model.addAttribute("member", memberService.selectOne(memberDto));
-//			model.addAttribute("count", deliveryAddressService.listUsrCount(vo));
-//			model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
-////			System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
-//			model.addAttribute("addrList", deliveryAddressService.selectUsrList(vo));
-		}
-		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		deliveryAddressDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-//		model.addAttribute("member", memberService.selectOne(memberDto));
-		model.addAttribute("count", deliveryAddressService.listUsrCount(vo));
-		model.addAttribute("item", deliveryAddressService.selectDefOne(deliveryAddressDto));
-//		System.out.println("DefSeq: "+deliveryAddressService.selectDefOne(deliveryAddressDto).getSeq());
-		model.addAttribute("addrList", deliveryAddressService.selectUsrList(vo));
-		
-//		int size = deliveryAddressService.selectList().size();
-//		model.addAttribute("size", size); // 사이즈 추가
-		model.addAttribute("userPage", "deliveryAddress");
-		System.out.println("user_delivery_address");
-		return "usr/v1/pages/user_delivery_address";
-	}
-	@RequestMapping(value = "user_delivery_addressMfom")
-	public String deliveryAddressMfom(Model model,DeliveryAddressDto deliveryAddressDto) {
-		model.addAttribute("item", deliveryAddressService.selectOne(deliveryAddressDto));
-		model.addAttribute("userPage", "deliveryAddress");
-		System.out.println("MfomSeq: "+deliveryAddressService.selectOne(deliveryAddressDto).getSeq());
-		return "usr/v1/pages/user_delivery_addressMfom";
-	}
-	@RequestMapping(value = "user_delivery_address_add")
-	public String deliveryAddressAddForm(Model model) {
-		System.out.println("user_delivery_address_add");
-		model.addAttribute("userPage", "deliveryAddress");
-		return "usr/v1/pages/user_delivery_address_add";
-	}
-	@RequestMapping(value = "user_delivery_address_inst")
-	public String deliveryAddressInst(HttpSession httpSession, DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
-		deliveryAddressDto.setMember_seq(httpSession.getAttribute("sessSeqXdm").toString());
-		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		System.out.println("getDefaultNy:"+deliveryAddressDto.getDefaultNy());
-		if(deliveryAddressDto.getDefaultNy() == null) {
-			deliveryAddressDto.setDefaultNy(0);
-		}
-		deliveryAddressService.insertAddr(deliveryAddressDto,vo);
-		System.out.println("user_delivery_address_inst");
-		return "redirect:user_delivery_address";
-	}
-	@RequestMapping(value = "user_delivery_address_updt")
-	public String deliveryAddressUpdt(DeliveryAddressDto deliveryAddressDto,DeliveryAddressVo vo) {
-		deliveryAddressService.update(deliveryAddressDto, vo);
-		return "redirect:user_delivery_address";
-	}
-	@RequestMapping(value = "user_delivery_address_uelt")
-	public String deliveryAddressUelt(DeliveryAddressDto deliveryAddressDto) {
-		deliveryAddressService.ueleteAddr(deliveryAddressDto);
-		return "redirect:user_delivery_address";
-	}
-	@RequestMapping(value = "user_delivery_address_Defupdt")
-	public String deliveryAddressDefUpdt(HttpSession httpSession, DeliveryAddressDto deliveryAddressDto,@ModelAttribute("vo") DeliveryAddressVo vo) {
-//		deliveryAddressService.updateDef(deliveryAddressDto);
-		
-		vo.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		System.out.println("DeliveryAddressVo.Seq: " + vo.getSeq());
-		deliveryAddressService.updateDefUsr(deliveryAddressDto,vo);
-		return "redirect:user_delivery_address";
-	}
+	
 	@RequestMapping(value = "user_account")
 	public String userAccount(Model model, MemberDto memberDto,CodeDto codeDto,HttpSession httpSession) {
 		System.out.println("sessSeqXdm: " + httpSession.getAttribute("sessSeqXdm"));
@@ -278,122 +205,7 @@ public class indexController {
 //		userService.update(userDto);
 //		return "redirect:index";
 //	}
-	@RequestMapping(value = "user_order_list")
-	public String userOrderList(Model model, HttpSession httpSession, OrderDto orderDto, MemberDto memberDto,ProductVo productVo) {
-//		model.addAttribute("member", memberService.selectOne(memberDto));
-		orderDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
-		List<OrderDto> orderlist = orderService.selectUsrList(orderDto);
-		model.addAttribute("orderlist", orderlist);
-		int readyCount = 0;
-		int inDeliveryCount = 0;
-		int deliveredCount = 0;
-		int cancelledCount = 0;
-		int paymentDoneCount = 0;
-		for(OrderDto order : orderlist) {
-			switch (order.getOrderStatus()) {
-				case 57: {
-					readyCount++;
-					break;
-				}
-				case 14: {
-					inDeliveryCount++;
-					break;
-				}
-				case 10: {
-					deliveredCount++;
-					break;
-				}
-				case 19: {
-					cancelledCount++;
-					break;
-				}
-				case 56: {
-					paymentDoneCount++;
-					break;
-				}
-			}
-//			default:
-//				
-//			}
-		}
-		// 모델에 각 카운트 값 추가
-		model.addAttribute("readyCount", readyCount);
-		model.addAttribute("inDeliveryCount", inDeliveryCount);
-		model.addAttribute("deliveredCount", deliveredCount);
-		model.addAttribute("cancelledCount", cancelledCount);
-		model.addAttribute("paymentDoneCount", paymentDoneCount);
-//		System.out.println("orderDto:"+orderDto.getProduct_seq());
-		System.out.println("orderDto:"+orderDto.getSeq());
-//		System.out.println("selectUsrList:"+orderService.selectUsrList(orderDto).get(0).getDeliveryDate()+", "+orderService.selectUsrList(orderDto).get(0).getOrderNumber());
-//		productVo.setSeq(orderService.selectUsrList(orderDto).get(0).getProduct_seq());
-//		model.addAttribute("prod", productService.prodUsrOne(productVo));
-		model.addAttribute("userPage", "orderList");
-		System.out.println("user_order_list");
-		return "usr/v1/pages/user_order_list";
-	}
-//	@RequestMapping(value = "orderinst")
-//	public String orderinst(Model model, HttpSession httpSession, OrderDto orderDto, MemberDto memberDto) {
-//		
-//		return "redirect:user_order_list";
-//	}
 	
-	@ResponseBody
-	@RequestMapping(value = "orderinst")
-	public Map<String, Object> orderinst(OrderDto orderDto){
-//		orderDto.setProduct_seq(orderDto.getSeq()); 
-		System.out.println("orderinst");
-		System.out.println("걍seq:"+orderDto.getSeq());
-		System.out.println("상품seq:"+orderDto.getProduct_seq());
-		System.out.println("유저seq:"+orderDto.getMmSeq());
-		System.out.println("주소seq:"+orderDto.getDaSeq());
-		Integer rtOrder = orderService.insert(orderDto);
-		
-		Map<String, Object> returnMap = new HashMap<>();
-		if (rtOrder != null) {
-			System.out.println("성공");
-			returnMap.put("rt", "success");
-		} else {
-			System.out.println("실패");
-			returnMap.put("rt", "fail");
-		}
-		return returnMap;
-	}
-	@ResponseBody
-	@RequestMapping(value = "orderCancel")
-	public Map<String, Object> orderCancel(@RequestParam("uoSeq") String uoSeq , OrderDto orderDto){
-		Map<String, Object> returnMap = new HashMap<>();
-		System.out.println("uoSeq:"+uoSeq);
-		orderDto.setUoSeq(uoSeq);
-		orderService.cancel(orderDto);
-	    OrderDto rtOrder = orderService.selectUsrOne(orderDto);
-	    System.out.println("rtOrder.getOrderDate():"+rtOrder.getOrderDate());
-	    if (rtOrder != null) {
-	        returnMap.put("rt", "success");
-	        returnMap.put("uoSeq", rtOrder.getUoSeq());
-	        returnMap.put("orderDate", rtOrder.getOrderDate());
-	        returnMap.put("orderNumber", rtOrder.getOrderNumber());
-	        returnMap.put("imgSrc", rtOrder.getImgSrc());
-	        returnMap.put("prodTypeName", rtOrder.getProdTypeName());
-	        returnMap.put("title", rtOrder.getTitle());
-	        returnMap.put("uoQuantity", rtOrder.getUoQuantity());
-	        returnMap.put("uoPrice", rtOrder.getUoPrice());
-	        returnMap.put("orderStatusText", rtOrder.getOrderStatusText());
-	        returnMap.put("deliveryDate", rtOrder.getDeliveryDate());
-	        returnMap.put("orderStatus", rtOrder.getOrderStatus());
-	        System.out.println("성공");
-	    } else {
-	        returnMap.put("rt", "fail");
-	        System.out.println("실패");
-	    }
-	    
-	    return returnMap;
-	}
-	@ResponseBody
-	@RequestMapping(value = "orderUelt")
-	public String orderUelt(OrderDto orderDto){
-		
-		return "returnMap";
-	}
 	@RequestMapping(value = "user_password")
 	public String userPassword(Model model,HttpSession httpSession, MemberDto memberDto) {
 		memberDto.setSeq(httpSession.getAttribute("sessSeqXdm").toString());
@@ -408,116 +220,9 @@ public class indexController {
 //		return "usr/v1/pages/user_password";
 //	}
 	
-	@RequestMapping(value = "product_detail")
-	public String productDetail(Model model,@ModelAttribute("vo") ReviewVo reviewVo, ReviewDto reviewDto, ProductDto productDto,ProductVo vo,AuthorVo authorVo,ProductAuthorDto productAuthorDto) {
-		System.out.println("productDetail");
-		reviewVo.setParamsPaging(reviewService.listCount(reviewVo));
-		List<ReviewDto> lists = reviewService.selectUsrList(reviewVo);
-		for(ReviewDto list:lists) {
-			System.out.println("점수: "+list.getRvScore()+" , 이름: "+list.getRvName());
-		}
-		for(CodeDto code:codeService.tagsList()) {
-			System.out.println("rvTags: " +code.getCodeName());
-		}
-		System.out.println("SEQ: "+productService.prodOne(productDto).getSeq()+" , 제목: "+productService.prodOne(productDto).getTitle());
-		model.addAttribute("product", productService.prodUsrOne(vo));
-//		vo.setProdType(null);
-		System.out.println("ProdType:" +productService.prodOne(productDto).getProdType());
-		vo.setProdType(productService.prodOne(productDto).getProdType());
-		vo.setSeq(productService.prodOne(productDto).getSeq());
-		System.out.println("카테고리:" +productService.prodOne(productDto).getProdTypeName());
-		Date deliveryDate = DateUtil.getDeliveryDate(2);
-		model.addAttribute("deliveryDate",deliveryDate);
-		model.addAttribute("best", productService.bestCategoryProdList(vo));
-		model.addAttribute("prodAuthor", authorService.prodAuthorList(authorVo));
-		model.addAttribute("authors", authorService.authorUsrList(authorVo));
-		model.addAttribute("rvTags", codeService.tagsList());
-		model.addAttribute("rvCount", reviewService.listCount(reviewVo));
-		model.addAttribute("rvList", reviewService.selectUsrList(reviewVo));
-		List<ProductDto> imgList = productService.imgUsrList(productDto);
-        
-        // 리스트의 내용을 출력합니다.
-        for (ProductDto img : imgList) {
-            System.out.println("Pseq: " + img.getPseq()); // Pseq 출력
-            System.out.println("type: " + img.getType()); // Pseq 출력
-            System.out.println("ImgSrc: " + img.getImgSrc()); // 이미지 경로 출력
-            // 필요한 다른 속성도 추가적으로 출력할 수 있습니다.
-        }
-		model.addAttribute("prodImg", productService.imgUsrList(productDto));
-		return "usr/v1/pages/product_detail";
-	}
-	@RequestMapping(value = "product_list")
-	public String productList(Model model,ProductDto productDto,@ModelAttribute("vo") ProductVo productVo,@ModelAttribute("shVo") BaseVo shVo,ReviewVo reviewVo) {
-		productVo.setParamsPaging(productService.listCount(productVo));
-		System.out.println("get: "+productVo.getMakeDateFillter());
-		System.out.println("검색어: "+productVo.getSearchKeyword());
-//		
-		model.addAttribute("list", productService.usrProdList(productVo));
-		model.addAttribute("bages", codeService.bageList());
-		model.addAttribute("reviewStats", reviewService.listScore(reviewVo, productVo));
-		List<ProductDto> imgList = productService.imgUsrList(productDto);
-        
-        // 리스트의 내용을 출력합니다.
-        for (ProductDto img : imgList) {
-            System.out.println("Pseq: " + img.getPseq()); // Pseq 출력
-            System.out.println("ImgSrc: " + img.getImgSrc()); // 이미지 경로 출력
-            // 필요한 다른 속성도 추가적으로 출력할 수 있습니다.
-        }
-        Date deliveryDate = DateUtil.getDeliveryDate(2);
-		model.addAttribute("deliveryDate",deliveryDate);
-		return "usr/v1/pages/product_list";
-	}
 	
-	@RequestMapping(value = "product_buy")
-	public String productBuy(Model model, @RequestParam(value = "isSelected", required = false) Boolean isSelected, @RequestParam(value="daSeq", required = false) String daSeq, DeliveryAddressDto deliveryAddressDto,ProductVo productVo, DeliveryAddressVo addressVo, HttpSession session) {
-		
-		String mmSeq = (String) session.getAttribute("sessSeqXdm");
-		deliveryAddressDto.setSeq(mmSeq);
-		addressVo.setSeq(mmSeq);
-		System.out.println("isSelected: " +isSelected +" , daSeq: "+daSeq);
-		
-		if(Boolean.TRUE.equals(isSelected)) {
-			System.out.println("셀렉트");
-			model.addAttribute("user", deliveryAddressService.selectOne(deliveryAddressDto));
-		}else {
-			System.out.println("usr.daseq: " +(deliveryAddressService.selectDefOne(deliveryAddressDto) != null ? deliveryAddressService.selectDefOne(deliveryAddressDto).getDaSeq(): "null"));
-			model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));
-		}
-//		model.addAttribute("user", deliveryAddressService.selectDefOne(deliveryAddressDto));
-		model.addAttribute("item", productService.prodUsrOne(productVo));
-		Date deliveryDate = DateUtil.getDeliveryDate(2);
-		model.addAttribute("deliveryDate",deliveryDate);
-		model.addAttribute("addrList", deliveryAddressService.selectUsrList(addressVo));
-		System.out.println("product_buy");
-		return "usr/v1/pages/product_buy";
-	}
-	@ResponseBody
-	@RequestMapping(value = "buyAddressChange")
-	public Map<String, Object> buyAddressChange(Model model,@RequestParam("daSeq") String daSeq,@RequestParam("seq") String seq, DeliveryAddressDto deliveryAddressDto) {
-		deliveryAddressDto.setDaSeq(daSeq);
-		Map<String, Object> returnMap = new HashMap<>();
-		DeliveryAddressDto addr = deliveryAddressService.selectOne(deliveryAddressDto);
-		if(addr != null) {
-//			model.addAttribute("user", deliveryAddressService.selectOne(deliveryAddressDto));
-			System.out.println("성공");
-			returnMap.put("rt", "success");
-			returnMap.put("data", addr);
-		}
-		else {
-			System.out.println("실패");
-			returnMap.put("rt", "fail");
-		}
-		System.out.println("주소이름: "+addr.getAddressName());
-		System.out.println("도로명: "+addr.getDaRoadAddress());
-		System.out.println("참조: "+addr.getDaExtraAddress());
-		System.out.println("우편번호: "+addr.getDaZonecode());
-		System.out.println("우편번호: "+addr.getRecipientPhone());
-		System.out.println("우편번호: "+addr.getRecipientName());
-//		System.out.println("우편번호: "+addr.getDaZonecode());
-//		System.out.println("상품seq: "+seq);
-		
-		return returnMap;
-	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "reviewInst")
 	public Map<String, Object> reviewInst(ReviewDto reviewDto){
@@ -791,18 +496,7 @@ public class indexController {
 		System.out.println("account_recovery");
 		return "usr/v1/pages/account_recovery";
 	}
-	@RequestMapping(value = "book_review_video_list")
-	public String videoList(@ModelAttribute("vo") BaseVo baseVo) {
-		
-		System.out.println("book_review_video_list");
-		return "usr/v1/pages/book_review_video_list";
-	}
-	@RequestMapping(value = "channels_video_list")
-	public String channelsVideoList(Model model, @ModelAttribute("vo") BaseVo baseVo) {
-		model.addAttribute("channels", youTubeService.channelSelectAllList());
-		System.out.println("channels_video_list");
-		return "usr/v1/pages/channels_video_list";
-	}
+	
 //	@RequestMapping(value = "instaProfile")
 //	public String instaProfile() {
 //		
