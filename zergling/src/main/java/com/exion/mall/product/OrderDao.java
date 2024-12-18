@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
 
 @Repository
 public interface OrderDao {

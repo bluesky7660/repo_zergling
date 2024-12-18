@@ -125,7 +125,7 @@
                                             </td>
                                             <td class="btn-box">
                                                 <a  class="btn"  th:href="@{user_delivery_addressMfom(daSeq=${list.daSeq},seq=${list.member_seq})}">수정</a>
-                                                <button th:if="${list.defaultNy == 0}" id="addr_delBtn" type="button" class="btn " data-bs-toggle="modal" data-bs-target="#addrUeleteModal">
+                                                <button th:if="${list.defaultNy == 0}" th:id="'addr_delBtn'+${list.daSeq}" type="button" class="btn addr_delBtn" data-bs-toggle="modal" data-bs-target="#addrUeleteModal">
                                                     삭제
                                                 </button>
                                             </td>
@@ -157,10 +157,10 @@
                     </div>
                     <div class="modal-body">
                         <span>주소를 삭제하시겠습니까?</span>
-                        <input class="addrUeleteModalSeq" type="hidden" name="daSeq" value="">
+                        <input class="addrUeleteModalSeq" id="addrUeleteModalSeq" type="hidden" name="daSeq" value="">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-red" data-bs-dismiss="modal">취소</button>
                         <button type="submit" class="btn btn-success">삭제 실행</button>
                     </div>
                 </form>
@@ -220,15 +220,12 @@
                 position: new kakao.maps.LatLng(y, x), // 마커의 좌표
                 map: map // 마커를 표시할 지도 객체
             });
-            $("#addr_delBtn").on("click", function() {
-                // 클릭된 버튼의 부모 요소 중 <tr> 찾기
+            $(".addr_delBtn").on("click", function() {
                 var parentTr = $(this).closest("tr");
-                
-                // <tr> 내부의 addrListSeq 클래스를 가진 요소에서 값 가져오기
-                var addrListSeqValue = parentTr.find(".addrListSeq").text(); // 텍스트 값일 경우
-
-                // addrUeleteModalSeq의 값에 addrListSeqValue 설정
-                $("#addrUeleteModalSeq").val(addrListSeqValue);
+                var addrListSeqValue = parentTr.find(".addrListSeq").val(); 
+                console.log("parentTr:",parentTr);
+                console.log("잉:",addrListSeqValue);
+                $("#addrUeleteModalSeq ").val(addrListSeqValue);
             });
         });
     </script>
